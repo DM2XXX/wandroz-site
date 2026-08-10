@@ -1,0 +1,53 @@
+name: Refresh Wandroz safety data
+
+# Runs monthly, plus can be triggered manually. This runs on GitHub's own
+# runners, which have normal outbound internet access (unlike the Claude
+# Cowork sandbox this pipeline was originally prototyped in) - so this is
+# where the FULL, unrestricted data pull to data.police.uk should happen,
+# not in a Claude session.
+on:
+  schedule:
+    - cron: "0 6 2 * *"   # 06:00 UTC on the 2nd of each month
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Fetch latest official crime data
+        run: python pipeline/fetch_london.py
+        # TODO: fetch_london.py doesn't exist yet - this sandbox couldn't
+        # reliably bulk-download data.police.uk (network policy truncated
+        # responses), so only a small real SAMPLE fetch was proven here
+        # (see pipeline/score_london.py's docstring). Writing a proper
+        # fetch_london.py (calling the bulk CSV export or paginating the
+        # API per LSOA) is the next concrete engineering task, best done
+        # once this repo is actually running on GitHub Actions where the
+        # network isn't restricted, so it can be tested against the real
+        # full response sizes.
+
+      - name: Recompute safety scores
+        run: python pipeline/score_london.py
+
+      - name: Rebuild static site
+        run: python pipeline/build_site.py
+
+      - name: Commit updated data + site if changed
+        run: |
+          git config user.name "wandroz-bot"
+          git config user.email "bot@wandroz.com"
+          git add data dist
+          git diff --cached --quiet || git commit -m "Automated monthly data refresh"
+          git push
