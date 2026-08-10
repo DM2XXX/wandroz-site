@@ -1,0 +1,75 @@
+{
+  "city": "London",
+  "boroughs": [
+    {
+      "borough": "Lambeth",
+      "slug": "lambeth",
+      "population": 317600,
+      "sample_record_count": 173,
+      "category_breakdown": {
+        "anti-social-behaviour": 173
+      },
+      "rate_per_1000_sample": 0.545,
+      "weighted_rate_per_1000_sample": 0.272,
+      "data_month": "2026-06",
+      "data_completeness": "partial_sample",
+      "relative_rank": 1
+    },
+    {
+      "borough": "Islington",
+      "slug": "islington",
+      "population": 215700,
+      "sample_record_count": 173,
+      "category_breakdown": {
+        "anti-social-behaviour": 173
+      },
+      "rate_per_1000_sample": 0.802,
+      "weighted_rate_per_1000_sample": 0.401,
+      "data_month": "2026-06",
+      "data_completeness": "partial_sample",
+      "relative_rank": 2
+    },
+    {
+      "borough": "Camden",
+      "slug": "camden",
+      "population": 210200,
+      "sample_record_count": 172,
+      "category_breakdown": {
+        "anti-social-behaviour": 172
+      },
+      "rate_per_1000_sample": 0.818,
+      "weighted_rate_per_1000_sample": 0.409,
+      "data_month": "2026-06",
+      "data_completeness": "partial_sample",
+      "relative_rank": 3
+    },
+    {
+      "borough": "Westminster",
+      "slug": "westminster",
+      "population": 204300,
+      "sample_record_count": 172,
+      "category_breakdown": {
+        "anti-social-behaviour": 172
+      },
+      "rate_per_1000_sample": 0.842,
+      "weighted_rate_per_1000_sample": 0.421,
+      "data_month": "2026-06",
+      "data_completeness": "partial_sample",
+      "relative_rank": 4
+    },
+    {
+      "borough": "Kensington & Chelsea",
+      "slug": "kensington_chelsea",
+      "population": 143400,
+      "sample_record_count": 172,
+      "category_breakdown": {
+        "anti-social-behaviour": 172
+      },
+      "rate_per_1000_sample": 1.199,
+      "weighted_rate_per_1000_sample": 0.6,
+      "data_month": "2026-06",
+      "data_completeness": "partial_sample",
+      "relative_rank": 5
+    }
+  ]
+}

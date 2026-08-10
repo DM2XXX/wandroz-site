@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Camden (London) safe? — Wandroz</title>
+<meta name="description" content="Safety data for Camden, London: 172 recorded incidents, based on official UK Police data.">
+<style>
+  :root{ --ink:#1f2430; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
+    --green:#2e7d46; --green-bg:#e6f4ea; --yellow:#c98a02; --yellow-bg:#fdf3d9;
+    --red:#c0392b; --red-bg:#fbe4e1; --blue:#2b5ea6; --blue-bg:#e8f0fb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.55; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
+  a { color: var(--blue); }
+  header.site { display:flex; align-items:center; gap:12px; margin-bottom: 28px; }
+  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 18px; }
+  .subtitle { color: var(--muted); margin-bottom: 28px; }
+  .card { background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+  .badge { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; }
+  .badge.good { background: var(--green-bg); color: var(--green); }
+  .badge.mid { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.caution { background: var(--red-bg); color: var(--red); }
+  .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
+  .list-item:last-child{ border-bottom:none; }
+  .note { font-size: 13px; color: var(--muted); background:#fdf3d9; border:1px solid #f1dfa3; border-radius:8px; padding:12px 14px; margin: 18px 0; }
+  table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
+  table.breakdown th, table.breakdown td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }
+  footer { text-align:center; font-size:12px; color:var(--muted); margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="logo">W</div>
+    <div><strong>Wandroz</strong></div>
+  </header>
+  
+<p><a href="../index.html">← London</a></p>
+<h1>Camden, London</h1>
+<span class="badge mid">Average</span>
+<p class="subtitle" style="margin-top:14px;">Relative rank 3 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
+
+<div class="card">
+  <strong>Recorded incidents (sample window)</strong>
+  <table class="breakdown">
+    <tr><th>Category</th><th>Count</th></tr>
+    
+    <tr><td>Anti social behaviour</td><td>172</td></tr>
+    
+  </table>
+</div>
+
+<div class="note">
+  Data completeness: <strong>partial_sample</strong>. This page currently reflects a partial sample (~172 incidents) rather than the full month for Camden — the automated full pipeline (needed to make this a reliable published score) is the next build step. Population used for normalisation: 210,200 residents (2021 census).
+</div>
+
+<p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+
+  <footer>Wandroz — public official data, not just reviews. Prototype build.</footer>
+</div>
+</body>
+</html>

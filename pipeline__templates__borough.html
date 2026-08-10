@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block title %}Is {{ b.borough }} ({{ city.city }}) safe? — Wandroz{% endblock %}
+{% block description %}Safety data for {{ b.borough }}, {{ city.city }}: {{ b.sample_record_count }} recorded incidents, based on official UK Police data.{% endblock %}
+{% block content %}
+<p><a href="../index.html">← {{ city.city }}</a></p>
+<h1>{{ b.borough }}, {{ city.city }}</h1>
+<span class="badge {{ tone }}">{{ label }}</span>
+<p class="subtitle" style="margin-top:14px;">Relative rank {{ b.relative_rank }} among boroughs currently covered. Based on official Metropolitan Police data ({{ b.data_month }}).</p>
+
+<div class="card">
+  <strong>Recorded incidents (sample window)</strong>
+  <table class="breakdown">
+    <tr><th>Category</th><th>Count</th></tr>
+    {% for cat, n in b.category_breakdown.items()|sort(attribute='1', reverse=True) %}
+    <tr><td>{{ cat|replace('-', ' ')|capitalize }}</td><td>{{ n }}</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="note">
+  Data completeness: <strong>{{ b.data_completeness }}</strong>. This page currently reflects a partial sample (~{{ b.sample_record_count }} incidents) rather than the full month for {{ b.borough }} — the automated full pipeline (needed to make this a reliable published score) is the next build step. Population used for normalisation: {{ "{:,}".format(b.population) }} residents (2021 census).
+</div>
+
+<p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+{% endblock %}
