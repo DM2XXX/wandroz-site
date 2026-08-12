@@ -37,8 +37,10 @@ METHODOLOGY NOTE
   are open follow-up work (tracked in the project dashboard).
 """
 
+import glob
 import json
 import os
+import re
 from collections import Counter
 
 RAW_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
@@ -85,13 +87,40 @@ CATEGORY_WEIGHT = {
 DEFAULT_WEIGHT = 1.0
 
 
+def load_manifest():
+    manifest_path = os.path.join(RAW_DIR, "manifest.json")
+    if os.path.exists(manifest_path):
+        with open(manifest_path) as f:
+            return json.load(f)
+    return {}
+
+
+def latest_raw_file(name):
+    """Pick the most recent data/raw/{name}_{YYYY-MM}.json on disk for this
+    borough, rather than a hardcoded month — fetch_london.py always writes
+    whatever the API's current latest month is, which drifts over time."""
+    pattern = os.path.join(RAW_DIR, f"{name}_*.json")
+    candidates = []
+    for path in glob.glob(pattern):
+        m = re.search(r"_(\d{4}-\d{2})\.json$", os.path.basename(path))
+        if m:
+            candidates.append((m.group(1), path))
+    if not candidates:
+        return None, None
+    candidates.sort(key=lambda pair: pair[0], reverse=True)
+    month, path = candidates[0]
+    return month, path
+
+
 def load_borough(name):
-    path = os.path.join(RAW_DIR, f"{name}_2026-06.json")
+    month, path = latest_raw_file(name)
+    if path is None:
+        raise FileNotFoundError(f"no raw data files found for borough '{name}'")
     with open(path) as f:
-        return json.load(f)
+        return month, json.load(f)
 
 
-def score_borough(name, records):
+def score_borough(name, month, records, manifest):
     pop = BOROUGH_POPULATION[name]
     counts = Counter(r.get("category", "unknown") for r in records)
     total = sum(counts.values())
@@ -103,6 +132,14 @@ def score_borough(name, records):
     rate_per_1000 = (total / pop) * 1000
     weighted_rate_per_1000 = (weighted / pop) * 1000
 
+    # Distinguish data pulled by fetch_london.py's full HTTP client (a
+    # complete point/radius catchment for the month) from the original
+    # v0.1 prototype files, which were truncated by a browser text tool.
+    fetched_via = manifest.get(name, {}).get(month, {}).get("source")
+    completeness = (
+        "full_point_radius_catchment" if fetched_via else "partial_sample_legacy"
+    )
+
     return {
         "borough": BOROUGH_LABEL[name],
         "slug": name,
@@ -111,20 +148,21 @@ def score_borough(name, records):
         "category_breakdown": dict(counts),
         "rate_per_1000_sample": round(rate_per_1000, 3),
         "weighted_rate_per_1000_sample": round(weighted_rate_per_1000, 3),
-        "data_month": "2026-06",
-        "data_completeness": "partial_sample",
+        "data_month": month,
+        "data_completeness": completeness,
     }
 
 
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
+    manifest = load_manifest()
     results = []
     for name in BOROUGH_POPULATION:
         try:
-            records = load_borough(name)
+            month, records = load_borough(name)
         except FileNotFoundError:
             continue
-        results.append(score_borough(name, records))
+        results.append(score_borough(name, month, records, manifest))
 
     # Rank: lower weighted rate = safer. This is purely relative across
     # the boroughs we have data for, not an absolute scale.
