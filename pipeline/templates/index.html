@@ -1,16 +1,16 @@
 {% extends "_base.html" %}
 {% block content %}
 <h1>Which neighbourhoods are actually safe?</h1>
-<p class="subtitle">Wandroz ranks city neighbourhoods using official public safety data, not just online reviews. Prototype: London, based on a partial June 2026 sample from the UK Police API.</p>
+<p class="subtitle">Wandroz ranks city neighbourhoods using official public safety data, not just online reviews.</p>
 
-<div class="note">This is an early data prototype, not a finished ranking. Coverage for London below is a partial sample (~170 records/borough), not a full month. See the methodology note on each borough page.</div>
+<div class="note">This is an early data prototype, not a finished ranking. See the methodology note on each borough page for exactly what each score is (and isn't) based on.</div>
 
 {% for city in cities %}
 <h2>{{ city.city }}</h2>
 {% for b in city.boroughs %}
 <a class="list-item" href="{{ city.city|lower|replace(' ', '-') }}/{{ b.slug }}.html" style="text-decoration:none;color:inherit;">
   <span>#{{ b.relative_rank }} {{ b.borough }}</span>
-  <span style="color:var(--muted);font-size:13px;">{{ b.sample_record_count }} recorded incidents (sample) →</span>
+  <span style="color:var(--muted);font-size:13px;">{{ b.sample_record_count }} recorded incidents ({{ b.data_month }}) →</span>
 </a>
 {% endfor %}
 {% endfor %}

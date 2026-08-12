@@ -18,7 +18,11 @@
 </div>
 
 <div class="note">
-  Data completeness: <strong>{{ b.data_completeness }}</strong>. This page currently reflects a partial sample (~{{ b.sample_record_count }} incidents) rather than the full month for {{ b.borough }} — the automated full pipeline (needed to make this a reliable published score) is the next build step. Population used for normalisation: {{ "{:,}".format(b.population) }} residents (2021 census).
+  {% if b.data_completeness == "full_point_radius_catchment" %}
+  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around {{ b.borough }}'s centre — {{ b.sample_record_count }} recorded incidents for {{ b.data_month }}. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a circle around the borough centre, not the exact administrative boundary, so incidents right at the edges of {{ b.borough }} may be over- or under-counted. Population used for normalisation: {{ "{:,}".format(b.population) }} residents (2021 census).
+  {% else %}
+  Data completeness: <strong>partial sample (legacy prototype data)</strong>. This page reflects an early, truncated sample (~{{ b.sample_record_count }} incidents) rather than the full month for {{ b.borough }} — it predates the automated fetch pipeline. Population used for normalisation: {{ "{:,}".format(b.population) }} residents (2021 census).
+  {% endif %}
 </div>
 
 <p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
