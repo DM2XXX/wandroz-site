@@ -1,0 +1,37 @@
+{
+  "camden": {
+    "2026-06": {
+      "fetched_records": 2981,
+      "file": "raw/camden_2026-06.json",
+      "source": "crimes-street/all-crime (point+radius)"
+    }
+  },
+  "islington": {
+    "2026-06": {
+      "fetched_records": 1784,
+      "file": "raw/islington_2026-06.json",
+      "source": "crimes-street/all-crime (point+radius)"
+    }
+  },
+  "kensington_chelsea": {
+    "2026-06": {
+      "fetched_records": 1114,
+      "file": "raw/kensington_chelsea_2026-06.json",
+      "source": "crimes-street/all-crime (point+radius)"
+    }
+  },
+  "lambeth": {
+    "2026-06": {
+      "fetched_records": 1704,
+      "file": "raw/lambeth_2026-06.json",
+      "source": "crimes-street/all-crime (point+radius)"
+    }
+  },
+  "westminster": {
+    "2026-06": {
+      "fetched_records": 2553,
+      "file": "raw/westminster_2026-06.json",
+      "source": "crimes-street/all-crime (point+radius)"
+    }
+  }
+}
