@@ -186,13 +186,17 @@ def score_borough(name, month, records, manifest):
     day_rate = _weighted_rate(counts, DAY_CATEGORIES, workday_pop)
     night_rate = _weighted_rate(counts, NIGHT_CATEGORIES, workday_pop)
 
-    # Distinguish data pulled by fetch_london.py's full HTTP client (a
-    # complete point/radius catchment for the month) from the original
-    # v0.1 prototype files, which were truncated by a browser text tool.
-    fetched_via = manifest.get(name, {}).get(month, {}).get("source")
-    completeness = (
-        "full_point_radius_catchment" if fetched_via else "partial_sample_legacy"
-    )
+    # Distinguish data pulled by fetch_london.py's full HTTP client from
+    # the original v0.1 prototype files (truncated by a browser text
+    # tool), and — since fetch_london.py v2 — distinguish a real polygon
+    # boundary query from the old point+radius circle fallback.
+    fetched_via = manifest.get(name, {}).get(month, {}).get("source", "")
+    if "polygon boundary" in fetched_via:
+        completeness = "full_polygon_boundary"
+    elif fetched_via:
+        completeness = "full_point_radius_fallback"
+    else:
+        completeness = "partial_sample_legacy"
 
     return {
         "borough": BOROUGH_LABEL[name],
