@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>È sicuro Werd a Zurigo? | Wandroz</title>
+<meta name="description" content="Werd richiede un livello di attenzione nella media, sia di giorno che di sera.">
+<link rel="canonical" href="https://wandroz.com/zurigo/werd/">
+<style>
+  :root{
+    --green:#2e7d46; --green-bg:#e6f4ea;
+    --yellow:#c98a02; --yellow-bg:#fdf3d9;
+    --red:#c0392b; --red-bg:#fbe4e1;
+    --grey:#7a8190; --grey-bg:#e9eaed;
+    --ink:#1f2430; --muted:#5b6270; --panel:#ffffff; --bg:#f4f5f7; --line:#e3e5ea;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.5; }
+  a { color:#0a5fb8; }
+  header { padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .brand .logo { width:34px; height:34px; border-radius:9px; background: linear-gradient(135deg, var(--green), var(--yellow) 55%, var(--red)); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:15px; flex-shrink:0; }
+  .brand h1, .brand span.wname { font-size:17px; margin:0; color:var(--ink); font-weight:700; }
+  .brand p { margin:0; font-size:12px; color:var(--muted); }
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 10px 20px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  main { max-width: 880px; margin: 0 auto; padding: 18px 20px 60px; }
+  h1.page-title { font-size: 26px; margin: 6px 0 8px; }
+  h2 { font-size: 18px; margin: 28px 0 10px; }
+  .lead { font-size:16.5px; color:#2a3040; background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin: 14px 0 20px; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0 18px; }
+  .badge { display:inline-block; padding:5px 12px; border-radius:20px; font-size:12.5px; font-weight:700; }
+  .badge.green{ background:var(--green-bg); color:var(--green); }
+  .badge.yellow{ background:var(--yellow-bg); color:var(--yellow); }
+  .badge.red{ background:var(--red-bg); color:var(--red); }
+  .badge.grey{ background:var(--grey-bg); color:var(--grey); }
+  .body-text { font-size:14.5px; color:#3a3f4d; }
+  .body-text .en-note { font-size:12px; color:var(--muted); margin-bottom:8px; }
+  .cta { display:inline-block; background:#003580; color:white; text-decoration:none; padding:12px 18px; border-radius:8px; font-size:14.5px; font-weight:600; margin-top:6px; }
+  .cta:hover { background:#002a63; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:8px; max-width: 520px; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f8fa; border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin: 18px 0; }
+  .disclaimer { background: #fff7e0; border:1px solid #f0dfa6; padding: 12px 16px; font-size: 12.5px; color: #6b5a10; border-radius:8px; margin: 20px 0; }
+  .zone-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:12px; margin: 16px 0; }
+  .zone-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; text-decoration:none; color:var(--ink); }
+  .zone-card:hover { border-color:#b9bfca; }
+  .zone-card .zn { font-weight:700; font-size:14.5px; margin-bottom:8px; }
+  .zone-card .zbadges { display:flex; gap:6px; flex-wrap:wrap; }
+  .zone-card .zbadges .badge { font-size:11px; padding:3px 8px; }
+  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:16px; margin: 18px 0; }
+  .city-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; text-decoration:none; color:var(--ink); }
+  .city-card:hover { border-color:#b9bfca; }
+  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:4px; }
+  .city-card .cc { font-size:12.5px; color:var(--muted); margin-bottom:10px;}
+  .legend { display:flex; flex-direction:column; gap:6px; font-size:13px; margin: 12px 0; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  #minimap { height: 260px; border-radius:10px; margin: 16px 0; border:1px solid var(--line); }
+  footer { padding:16px 20px; font-size:11.5px; color:var(--muted); background:var(--panel); border-top:1px solid var(--line); text-align:center; }
+  footer a { color: var(--muted); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "È sicuro Werd, a Zurigo?", "acceptedAnswer": {"@type": "Answer", "text": "Werd richiede un livello di attenzione nella media, sia di giorno che di sera."}}]}, {"@type": "Place", "name": "Werd, Zurigo", "address": {"@type": "PostalAddress", "addressLocality": "Werd", "addressCountry": "Svizzera"}}]}</script>
+</head>
+<body>
+<header>
+  <a class="brand" href="../../index.html">
+    <div class="logo">W</div>
+    <div><span class="wname">Wandroz</span><p>Sicurezza dei quartieri, prima di prenotare</p></div>
+  </a>
+</header>
+
+<nav class="crumbs"><a href="../../index.html">Home</a> &rsaquo; <a href="../index.html">Zurigo</a> &rsaquo; Werd</nav>
+<main>
+  <h1 class="page-title">Werd &mdash; Zurigo</h1>
+  <p class="lead">Werd richiede un livello di attenzione nella media, sia di giorno che di sera.</p>
+  <div class="badges">
+    <span class="badge yellow">Attenzione media</span> <span style="font-size:12px;color:var(--muted);align-self:center;">di giorno</span>
+    <span class="badge yellow">Attenzione media</span> <span style="font-size:12px;color:var(--muted);align-self:center;">di sera/notte</span>
+  </div>
+  <div id="minimap"></div>
+  <h2>In dettaglio</h2>
+  <div class="body-text">
+    <p class="en-note">(Descrizione dettagliata ancora in inglese in questa versione prototipale &mdash; la traduzione italiana è tra i prossimi passi.)</p>
+    <p>Part of district 4, close to Langstrasse; calm by day, worth more caution at night given the wider district&#x27;s reputation.</p>
+  </div>
+  <a class="cta" href="https://www.booking.com/searchresults.html?ss=Werd%2C+Zurich%2C+Switzerland&latitude=47.371866&longitude=8.526202&bounding_box_north=47.375788&bounding_box_south=47.367944&bounding_box_east=8.535164&bounding_box_west=8.517240&map=1" target="_blank" rel="noopener">Cerca alloggi qui su Booking.com &rarr;</a>
+  <p class="cta-note">Il link è già circoscritto a quest'area (non alla città intera) usando le coordinate reali del quartiere.</p>
+  <div class="methodnote">I livelli di rischio per Zurigo sono una valutazione qualitativa basata su conoscenza generale e reputazione pubblica dei quartieri. È stato confermato che la città di Zurigo pubblica anche un dataset ufficiale di criminalità reale (a livello di 12 Stadtkreis), non ancora integrato in questa versione del sito.</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script>
+  try {
+    var coords = [[[47.374883, 8.519308], [47.373907, 8.520183], [47.371614, 8.523619], [47.369644, 8.525969], [47.369794, 8.526248], [47.36952, 8.52657], [47.369288, 8.527973], [47.369017, 8.527961], [47.368849, 8.528196], [47.369377, 8.529007], [47.369205, 8.529217], [47.370338, 8.530665], [47.374052, 8.533096], [47.37446, 8.532661], [47.373217, 8.531885], [47.373522, 8.530227], [47.373133, 8.528158], [47.374157, 8.525095], [47.372492, 8.523938], [47.372502, 8.523428], [47.372726, 8.523876], [47.374168, 8.524841], [47.37429, 8.521953], [47.374883, 8.519308]]];
+    var c = {"north": 47.375788099999994, "south": 47.3679439, "east": 8.5351642, "west": 8.5172398, "lat": 47.371866, "lon": 8.526202000000001};
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true }).setView([c.lat, c.lon], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: "#c98a02", weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer>
+  Wandroz &middot; prototipo in sviluppo, non un prodotto pubblicato &middot; dati mappa: OpenStreetMap contributors<br>
+  <a href="../../index.html">Home</a>
+</footer>
+</body>
+</html>

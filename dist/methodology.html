@@ -64,11 +64,18 @@
 <p class="subtitle">Wandroz is early. This page explains exactly what today's scores are based on, what they leave out, and what changes as coverage grows — so you can decide how much to trust them.</p>
 
 <div class="card">
-  <strong>Right now: London only, one data source</strong>
+  <strong>Right now: London is the only automated, data-driven city</strong>
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
     London borough scores come from the UK Home Office's official street-level crime data, published monthly at
-    <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>. No other city is covered by
-    this pipeline yet — see "What's next" below.
+    <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>, and are recomputed automatically
+    every time the pipeline runs — no manual editing.
+  </p>
+  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
+    <a href="/torino/index.html">Turin</a> and <a href="/zurigo/index.html">Zurich</a> are also on the site as an early
+    preview, with interactive maps using each city's real official neighbourhood boundaries (Città di Torino's
+    "Quartieri" dataset; Stadt Zürich's "Statistische Quartiere" dataset) — but their safety ratings are a manual,
+    illustrative first pass, not yet backed by an automated open-data feed the way London is. Treat Turin/Zurich as a
+    preview of the map experience, not a verified rating, until they move onto a real pipeline.
   </p>
 </div>
 
@@ -95,9 +102,12 @@
   very central boroughs with that in mind.
 </div>
 <div class="note" style="margin-bottom:10px;">
-  <strong>A circle, not the real boundary.</strong> Each borough is queried as a point plus roughly a 1-mile radius
-  around its centre, not its exact administrative polygon. Incidents right at the edge of a borough may be
-  attributed to the wrong side of the boundary. Switching to exact boundaries is on the roadmap.
+  <strong>Crime data is still queried as a circle, even though the map now shows the real boundary.</strong> Each
+  borough page now displays its actual administrative outline (ONS 2021 boundaries) instead of a plain circle, so
+  the shape you see is accurate. The underlying crime count, however, is still fetched as a point plus roughly a
+  1-mile radius around the borough's centre, not filtered to the exact polygon — so incidents right at the edge of a
+  borough may still be attributed to the wrong side. Fetching crimes strictly inside the real polygon is the next
+  step.
 </div>
 <div class="note" style="margin-bottom:10px;">
   <strong>One month at a time.</strong> Scores reflect the single most recent month the UK Police API has published,
