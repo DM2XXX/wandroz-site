@@ -42,8 +42,10 @@
 </div>
 
 <div class="note">
-  {% if b.data_completeness == "full_point_radius_catchment" %}
-  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around {{ b.borough }}'s centre — {{ b.sample_record_count }} recorded incidents for {{ b.data_month }}. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a circle around the borough centre, not the exact administrative boundary, so incidents right at the edges of {{ b.borough }} may be over- or under-counted.
+  {% if b.data_completeness == "full_polygon_boundary" %}
+  Data completeness: <strong>full month, real administrative boundary</strong> — {{ b.sample_record_count }} recorded incidents for {{ b.data_month }}, queried against {{ b.borough }}'s actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for that exact area.
+  {% elif b.data_completeness == "full_point_radius_fallback" %}
+  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around {{ b.borough }}'s centre — {{ b.sample_record_count }} recorded incidents for {{ b.data_month }}. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a fallback circle around the borough centre (its real boundary couldn't be loaded for this run), not the exact administrative boundary, so incidents right at the edges of {{ b.borough }} may be over- or under-counted.
   {% else %}
   Data completeness: <strong>partial sample (legacy prototype data)</strong>. This page reflects an early, truncated sample (~{{ b.sample_record_count }} incidents) rather than the full month for {{ b.borough }} — it predates the automated fetch pipeline.
   {% endif %}
