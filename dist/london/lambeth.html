@@ -41,6 +41,11 @@
   .badge.caution { background: var(--red-bg); color: var(--red); }
   .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
   .list-item:last-child{ border-bottom:none; }
+  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
+  .city-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; text-decoration:none; color:var(--ink); }
+  .city-card:hover { border-color:#b9bfca; }
+  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:6px; }
+  .city-card .cc { font-size:13px; color:var(--muted); }
   .note { font-size: 13px; color: var(--muted); background:#fdf3d9; border:1px solid #f1dfa3; border-radius:8px; padding:12px 14px; margin: 18px 0; }
   table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
   table.breakdown th, table.breakdown td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }

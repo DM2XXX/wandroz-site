@@ -41,6 +41,11 @@
   .badge.caution { background: var(--red-bg); color: var(--red); }
   .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
   .list-item:last-child{ border-bottom:none; }
+  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
+  .city-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; text-decoration:none; color:var(--ink); }
+  .city-card:hover { border-color:#b9bfca; }
+  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:6px; }
+  .city-card .cc { font-size:13px; color:var(--muted); }
   .note { font-size: 13px; color: var(--muted); background:#fdf3d9; border:1px solid #f1dfa3; border-radius:8px; padding:12px 14px; margin: 18px 0; }
   table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
   table.breakdown th, table.breakdown td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }
@@ -61,54 +66,29 @@
   </header>
   
 <h1>Which neighbourhoods are actually safe?</h1>
-<p class="subtitle">Wandroz ranks city neighbourhoods using official public safety data, not just online reviews.</p>
+<p class="subtitle">Wandroz shows travellers city neighbourhoods on a real interactive map, using official public data where it exists — not just online reviews.</p>
 
-<div class="note">This is an early data prototype, not a finished ranking. See the methodology note on each borough page for exactly what each score is (and isn't) based on.</div>
+<div class="note">This is an early data prototype, not a finished product. Pick a city below to open its map — click any neighbourhood for the level, the reasoning, and a Booking.com link for that area.</div>
 
-
-<h2>London</h2>
-<a class="list-item" href="london/index.html" style="text-decoration:none;color:inherit;">
-  <span>Interactive map of all London boroughs</span>
-  <span style="color:var(--muted);font-size:13px;">click a borough for its rating →</span>
-</a>
-
-<a class="list-item" href="london/lambeth.html" style="text-decoration:none;color:inherit;">
-  <span>#1 Lambeth</span>
-  <span style="color:var(--muted);font-size:13px;">1704 recorded incidents (2026-06) →</span>
-</a>
-
-<a class="list-item" href="london/kensington_chelsea.html" style="text-decoration:none;color:inherit;">
-  <span>#2 Kensington &amp; Chelsea</span>
-  <span style="color:var(--muted);font-size:13px;">1114 recorded incidents (2026-06) →</span>
-</a>
-
-<a class="list-item" href="london/islington.html" style="text-decoration:none;color:inherit;">
-  <span>#3 Islington</span>
-  <span style="color:var(--muted);font-size:13px;">1784 recorded incidents (2026-06) →</span>
-</a>
-
-<a class="list-item" href="london/westminster.html" style="text-decoration:none;color:inherit;">
-  <span>#4 Westminster</span>
-  <span style="color:var(--muted);font-size:13px;">2553 recorded incidents (2026-06) →</span>
-</a>
-
-<a class="list-item" href="london/camden.html" style="text-decoration:none;color:inherit;">
-  <span>#5 Camden</span>
-  <span style="color:var(--muted);font-size:13px;">2981 recorded incidents (2026-06) →</span>
-</a>
-
-
-
-<h2>Other cities (early preview)</h2>
-<div class="note">Turin and Zurich below use interactive maps with real official neighbourhood boundaries, but the safety ratings are an illustrative first pass (general knowledge, not yet a verified dataset) — not the automated, data-driven approach used for London above. See <a href="/methodology.html">methodology</a>.</div>
-<a class="list-item" href="torino/index.html" style="text-decoration:none;color:inherit;">
-  <span>Turin, Italy</span>
-  <span style="color:var(--muted);font-size:13px;">23 neighbourhoods, interactive map →</span>
-</a>
-<a class="list-item" href="zurigo/index.html" style="text-decoration:none;color:inherit;">
-  <span>Zurich, Switzerland</span>
-  <span style="color:var(--muted);font-size:13px;">34 neighbourhoods, interactive map →</span>
-</a>
+<h2>Choose a city</h2>
+<div class="city-grid">
+  
+  <a class="city-card" href="london/index.html">
+    <div class="cn">London</div>
+    <div class="cc">33 boroughs on the map, 5 refreshed automatically every month from real Metropolitan Police data.</div>
+  </a>
+  
+  <a class="city-card" href="torino/index.html">
+    <div class="cn">Turin</div>
+    <div class="cc">23 neighbourhoods, real official council boundaries, illustrative safety ratings.</div>
+  </a>
+  
+  <a class="city-card" href="zurigo/index.html">
+    <div class="cn">Zurich</div>
+    <div class="cc">34 neighbourhoods, real official city boundaries, illustrative safety ratings.</div>
+  </a>
+  
+</div>
 
   <footer>Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
 </div>
