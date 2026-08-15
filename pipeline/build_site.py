@@ -20,13 +20,17 @@ many cities, proven out end-to-end here with one real city.
 
 import json
 import os
+import re
 import shutil
+import zipfile
 from jinja2 import Environment, FileSystemLoader
 
 BASE_DIR = os.path.dirname(__file__)
 DATA_DIR = os.path.join(BASE_DIR, "..", "data", "scores")
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
+ZONES_DIR = os.path.join(BASE_DIR, "data_zones")
+STATIC_CITIES_DIR = os.path.join(BASE_DIR, "static_cities")
 OUT_DIR = os.path.join(BASE_DIR, "..", "dist")
 
 # Canonical public URL — apex wandroz.com 308-redirects to this host on
@@ -43,6 +47,66 @@ def score_label(rank, total):
     if frac <= 0.6:
         return "Average", "mid"
     return "Higher caution advised", "caution"
+
+
+def _canon(name):
+    """Normalise a borough/neighbourhood name for matching across two
+    slightly different naming conventions (e.g. 'Kensington & Chelsea' vs
+    'Kensington and Chelsea')."""
+    name = name.lower().replace("&", " and ")
+    tokens = [t for t in re.split(r"[\s\-_]+", name) if t and t != "and"]
+    return "".join(tokens)
+
+
+def load_london_boundaries():
+    """Real London borough boundary polygons (ONS 2021 LSOA boundaries,
+    dissolved per borough), sourced from the earlier map prototype. Used to
+    replace the ~1-mile-radius circle shown on borough pages with the
+    borough's actual administrative outline."""
+    path = os.path.join(ZONES_DIR, "london_boundaries.json")
+    if not os.path.isfile(path):
+        return {}
+    with open(path) as f:
+        data = json.load(f)
+    return {_canon(z["name"]): z for z in data["zones"]}
+
+
+def attach_boundaries(cities):
+    """Attach a real boundary polygon to each London borough dict (in
+    place) where a match exists, so borough.html can render an accurate
+    outline instead of the point+radius circle."""
+    boundaries = load_london_boundaries()
+    if not boundaries:
+        return
+    for city in cities:
+        if city["city"].lower() != "london":
+            continue
+        for b in city["boroughs"]:
+            match = boundaries.get(_canon(b["borough"]))
+            if match:
+                b["coords"] = match["coords"]
+
+
+def unzip_static_cities():
+    """Copy the already-built Torino/Zurich prototype pages (real official
+    neighbourhood boundaries, day/night ratings, per-neighbourhood pages)
+    into dist/ as-is. These are illustrative-tier (not yet an automated
+    pipeline) — see methodology.html — unlike London, which is generated
+    fresh above from live police data on every run."""
+    added_urls = []
+    if not os.path.isdir(STATIC_CITIES_DIR):
+        return added_urls
+    for fname in sorted(os.listdir(STATIC_CITIES_DIR)):
+        if not fname.endswith(".zip"):
+            continue
+        zpath = os.path.join(STATIC_CITIES_DIR, fname)
+        with zipfile.ZipFile(zpath) as zf:
+            zf.extractall(OUT_DIR)
+            for name in zf.namelist():
+                if name.endswith("index.html"):
+                    url_path = name[: -len("index.html")]
+                    added_urls.append(f"{SITE_URL}/{url_path}")
+    return added_urls
 
 
 def copy_static():
@@ -91,6 +155,8 @@ def main():
             city_data = json.load(f)
         cities.append(city_data)
 
+    attach_boundaries(cities)
+
     index_tpl = env.get_template("index.html")
     borough_tpl = env.get_template("borough.html")
     methodology_tpl = env.get_template("methodology.html")
@@ -129,6 +195,10 @@ def main():
     copied = copy_static()
     for path in copied:
         print(f"Copied {path}")
+
+    static_city_urls = unzip_static_cities()
+    sitemap_urls.extend(static_city_urls)
+    print(f"Added {len(static_city_urls)} static-city pages (Torino/Zurich) to dist/")
 
     write_robots_and_sitemap(sitemap_urls)
 
