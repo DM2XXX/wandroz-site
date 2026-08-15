@@ -22,7 +22,6 @@ import json
 import os
 import re
 import shutil
-import zipfile
 from jinja2 import Environment, FileSystemLoader
 
 BASE_DIR = os.path.dirname(__file__)
@@ -30,7 +29,6 @@ DATA_DIR = os.path.join(BASE_DIR, "..", "data", "scores")
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 ZONES_DIR = os.path.join(BASE_DIR, "data_zones")
-STATIC_CITIES_DIR = os.path.join(BASE_DIR, "static_cities")
 OUT_DIR = os.path.join(BASE_DIR, "..", "dist")
 
 # Canonical public URL — apex wandroz.com 308-redirects to this host on
@@ -87,26 +85,158 @@ def attach_boundaries(cities):
                 b["coords"] = match["coords"]
 
 
-def unzip_static_cities():
-    """Copy the already-built Torino/Zurich prototype pages (real official
-    neighbourhood boundaries, day/night ratings, per-neighbourhood pages)
-    into dist/ as-is. These are illustrative-tier (not yet an automated
-    pipeline) — see methodology.html — unlike London, which is generated
-    fresh above from live police data on every run."""
-    added_urls = []
-    if not os.path.isdir(STATIC_CITIES_DIR):
-        return added_urls
-    for fname in sorted(os.listdir(STATIC_CITIES_DIR)):
-        if not fname.endswith(".zip"):
-            continue
-        zpath = os.path.join(STATIC_CITIES_DIR, fname)
-        with zipfile.ZipFile(zpath) as zf:
-            zf.extractall(OUT_DIR)
-            for name in zf.namelist():
-                if name.endswith("index.html"):
-                    url_path = name[: -len("index.html")]
-                    added_urls.append(f"{SITE_URL}/{url_path}")
-    return added_urls
+IT_TONE_BADGE = {"green": "Tranquillo", "yellow": "Attenzione media", "red": "Molta cautela", "grey": "Non valutato"}
+EN_TONE_BADGE = {"green": "Relatively safer", "yellow": "Average", "red": "Higher caution advised", "grey": "Not yet covered automatically"}
+
+
+def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banner, neigh_note):
+    """Render a full-city interactive map (day/night toggle, click-a-zone
+    detail sidebar) plus one detail sub-page per neighbourhood, for a city
+    whose ratings are an illustrative first pass rather than an automated
+    pipeline (Turin, Zurich today). Mirrors the original map prototype's
+    UX exactly, instead of the flat card-grid list this replaces."""
+    path = os.path.join(ZONES_DIR, f"{city_key}.json")
+    if not os.path.isfile(path):
+        return []
+    with open(path) as f:
+        data = json.load(f)
+    zones = data["zones"]
+    urls = []
+
+    city_dir = os.path.join(OUT_DIR, url_slug)
+    os.makedirs(city_dir, exist_ok=True)
+
+    js_zones = []
+    for z in zones:
+        z_url = f"/{url_slug}/{z['slug']}/"
+        js_zones.append({
+            "name": z["name"], "slug": z["slug"],
+            "day": z["day"], "night": z["night"],
+            "day_label": tone_badge.get(z["day"], z["day"]),
+            "night_label": tone_badge.get(z["night"], z["night"]),
+            "text": z["text"], "query": z["query"],
+            "coords": z["coords"], "url": z_url,
+        })
+
+    map_tpl = env.get_template("city_map.html")
+    canonical = f"{SITE_URL}/{url_slug}/"
+    html = map_tpl.render(
+        lang="it", city_label=data["label"], tagline=ui["tagline"],
+        nav_home=ui["nav_home"], nav_methodology=ui["nav_methodology"],
+        page_title=ui["page_title"], page_description=ui["page_description"],
+        canonical_url=canonical,
+        page_h1=ui["page_h1"], page_lead=ui["page_lead"],
+        data_note=data_note_banner, show_toggle=True,
+        label_day=ui["label_day"], label_night=ui["label_night"],
+        legend_green=ui["legend_green"], legend_yellow=ui["legend_yellow"],
+        legend_red=ui["legend_red"], legend_grey=ui["legend_grey"],
+        label_zone_detail=ui["label_zone_detail"], label_click_hint=ui["label_click_hint"],
+        label_all_zones=ui["label_all_zones"], label_booking=ui["label_booking"],
+        label_more=ui["label_more"], label_not_covered="",
+        footer_note=ui["footer_note"],
+        zones=js_zones, center=data["center"], zoom=data["zoom"],
+    )
+    with open(os.path.join(city_dir, "index.html"), "w") as f:
+        f.write(html)
+    urls.append(canonical)
+    print(f"Wrote {os.path.join(city_dir, 'index.html')} ({len(zones)} zones)")
+
+    neigh_tpl = env.get_template("neighbourhood.html")
+    for z in zones:
+        zdir = os.path.join(city_dir, z["slug"])
+        os.makedirs(zdir, exist_ok=True)
+        z_canonical = f"{SITE_URL}/{url_slug}/{z['slug']}/"
+        zone_ctx = dict(z)
+        zone_ctx["day_label"] = tone_badge.get(z["day"], z["day"])
+        zone_ctx["night_label"] = tone_badge.get(z["night"], z["night"])
+        page = neigh_tpl.render(
+            lang="it", city_label=data["label"], tagline=ui["tagline"],
+            nav_home=ui["nav_home"], canonical_url=z_canonical,
+            page_title=ui["neigh_title"].format(name=z["name"], city=data["label"]),
+            page_description=z["text"][:160],
+            zone=zone_ctx, label_day=ui["label_day"], label_night=ui["label_night"],
+            label_detail=ui["label_detail"], label_booking=ui["label_booking"],
+            label_booking_note=ui["label_booking_note"], data_note=neigh_note,
+            footer_note=ui["footer_note"],
+        )
+        with open(os.path.join(zdir, "index.html"), "w") as f:
+            f.write(page)
+        urls.append(z_canonical)
+
+    print(f"Wrote {len(zones)} neighbourhood pages under {city_dir}/")
+    return urls
+
+
+def render_london_map(cities):
+    """Render the London city-wide map hub (/london/) — every real ONS
+    borough boundary, coloured for the 5 boroughs the automated pipeline
+    currently scores and grey for the rest, click-for-detail sidebar, no
+    day/night toggle since that split isn't computed for London yet."""
+    boundaries = load_london_boundaries()
+    if not boundaries:
+        return []
+    london = next((c for c in cities if c["city"].lower() == "london"), None)
+    scored = {}
+    if london:
+        total = len(london["boroughs"])
+        for b in london["boroughs"]:
+            label, tone = score_label(b["relative_rank"], total)
+            color = {"good": "green", "mid": "yellow", "caution": "red"}[tone]
+            scored[_canon(b["borough"])] = {
+                "label": label, "color": color, "slug": b["slug"],
+                "rank": b["relative_rank"], "count": b["sample_record_count"],
+                "month": b["data_month"],
+            }
+
+    js_zones = []
+    for name_key, z in boundaries.items():
+        match = scored.get(_canon(z["name"]))
+        if match:
+            js_zones.append({
+                "name": z["name"], "day": match["color"], "night": match["color"],
+                "coords": z["coords"], "covered": True,
+                "tone_label": match["label"],
+                "text": f"Relative rank {match['rank']} among boroughs currently covered &middot; {match['count']} recorded incidents ({match['month']}).",
+                "query": "", "url": f"/london/{match['slug']}.html",
+            })
+        else:
+            js_zones.append({
+                "name": z["name"], "day": "grey", "night": "grey",
+                "coords": z["coords"], "covered": False,
+                "tone_label": "Not covered yet", "text": "", "query": "", "url": "",
+            })
+
+    london_dir = os.path.join(OUT_DIR, "london")
+    os.makedirs(london_dir, exist_ok=True)
+    map_tpl = env.get_template("city_map.html")
+    canonical = f"{SITE_URL}/london/"
+    data_note = (
+        "Shapes are the real ONS 2021 administrative boundaries for all 33 London boroughs. Only the 5 highlighted "
+        "boroughs (Westminster, Camden, Islington, Kensington & Chelsea, Lambeth) currently have a live score, "
+        "computed automatically from official Metropolitan Police data every time the pipeline runs — click one for "
+        "detail. The other 28 are shown in grey for context only; they are not yet part of the automated pipeline."
+    )
+    html = map_tpl.render(
+        lang="en", city_label="London", tagline="Neighbourhood safety for travellers",
+        nav_home="Home", nav_methodology="Methodology", canonical_url=canonical,
+        page_title="Is my London borough safe? — Wandroz",
+        page_description="Interactive map of all 33 London boroughs, with live official crime data for 5 boroughs so far.",
+        page_h1="London boroughs", page_lead="Click a borough for its safety rating and real Metropolitan Police data, where available.",
+        data_note=data_note, show_toggle=False,
+        label_day="", label_night="",
+        legend_green=EN_TONE_BADGE["green"], legend_yellow=EN_TONE_BADGE["yellow"],
+        legend_red=EN_TONE_BADGE["red"], legend_grey=EN_TONE_BADGE["grey"],
+        label_zone_detail="Borough detail", label_click_hint="Click a borough on the map to see its data.",
+        label_all_zones="All boroughs", label_booking="",
+        label_more="See full data →",
+        label_not_covered="Not yet covered by the automated pipeline — see methodology for which 5 boroughs have live data today.",
+        footer_note="public official data, not just reviews. Prototype build.",
+        zones=js_zones, center=[51.509, -0.118], zoom=10,
+    )
+    with open(os.path.join(london_dir, "index.html"), "w") as f:
+        f.write(html)
+    print(f"Wrote {os.path.join(london_dir, 'index.html')} ({len(js_zones)} boroughs, {len(scored)} live)")
+    return [canonical]
 
 
 def copy_static():
@@ -143,6 +273,55 @@ def write_robots_and_sitemap(urls):
     with open(sitemap_path, "w") as f:
         f.write(xml)
     print(f"Wrote {sitemap_path} ({len(urls)} URLs)")
+
+
+TORINO_UI = {
+    "tagline": "Sicurezza dei quartieri, prima di prenotare",
+    "nav_home": "Home", "nav_methodology": "Metodologia",
+    "page_title": "Quali quartieri di Torino sono sicuri? — Wandroz",
+    "page_description": "Mappa interattiva dei quartieri di Torino con i confini ufficiali del Comune, livelli di sicurezza giorno/notte.",
+    "page_h1": "Quartieri di Torino", "page_lead": "Clicca un quartiere sulla mappa per vedere il livello, la spiegazione e un link a Booking.com per quell'area.",
+    "label_day": "giorno", "label_night": "notte",
+    "legend_green": "Tranquillo — nessuna criticità particolare",
+    "legend_yellow": "Attenzione media — ok di giorno, più prudenza la sera",
+    "legend_red": "Molta cautela — criticità note e ricorrenti",
+    "legend_grey": "Non valutato — dati non comparabili per questa zona",
+    "label_zone_detail": "Dettaglio zona", "label_click_hint": "Clicca una zona sulla mappa per vedere il livello, la spiegazione e un link a Booking.com per quell'area.",
+    "label_all_zones": "Tutti i quartieri", "label_booking": "Cerca alloggi qui su Booking.com →",
+    "label_more": "Vedi la pagina completa →",
+    "footer_note": "prototipo in sviluppo, non un prodotto pubblicato",
+    "neigh_title": "È sicuro {name} a Torino? | Wandroz",
+    "label_detail": "In dettaglio", "label_booking_note": "Il link è già circoscritto a quest'area (non alla città intera) usando le coordinate reali del quartiere.",
+}
+
+ZURIGO_UI = dict(TORINO_UI)
+ZURIGO_UI.update({
+    "page_title": "Quali quartieri di Zurigo sono sicuri? — Wandroz",
+    "page_description": "Mappa interattiva dei quartieri di Zurigo con i confini ufficiali della città, livelli di sicurezza giorno/notte.",
+    "page_h1": "Quartieri di Zurigo",
+    "neigh_title": "È sicuro {name} a Zurigo? | Wandroz",
+})
+
+TORINO_BANNER = (
+    "I confini dei quartieri sono quelli ufficiali del Comune di Torino (dataset \"Quartieri\"). I livelli di "
+    "sicurezza sono invece una prima valutazione manuale — conoscenza generale, non un dataset di criminalità "
+    "geolocalizzato — a differenza di Londra. Vedi la methodology per i dettagli."
+)
+TORINO_NEIGH_NOTE = (
+    "I livelli di rischio per Torino sono una valutazione qualitativa basata su conoscenza generale e reputazione "
+    "pubblica dei quartieri, non su un dataset ufficiale di criminalità geolocalizzato — a differenza di Londra, "
+    "per Torino non esiste ancora un dato aperto comunale a questo livello di dettaglio."
+)
+ZURIGO_BANNER = (
+    "I confini dei quartieri sono quelli ufficiali della Città di Zurigo (dataset \"Statistische Quartiere\"). I "
+    "livelli di sicurezza sono invece una prima valutazione manuale — conoscenza generale, non un dataset di "
+    "criminalità geolocalizzato — a differenza di Londra. Vedi la methodology per i dettagli."
+)
+ZURIGO_NEIGH_NOTE = (
+    "I livelli di rischio per Zurigo sono una valutazione qualitativa basata su conoscenza generale e reputazione "
+    "pubblica dei quartieri, non su un dataset ufficiale di criminalità geolocalizzato — a differenza di Londra, "
+    "per Zurigo non esiste ancora un dato aperto comunale a questo livello di dettaglio."
+)
 
 
 def main():
@@ -196,9 +375,13 @@ def main():
     for path in copied:
         print(f"Copied {path}")
 
-    static_city_urls = unzip_static_cities()
-    sitemap_urls.extend(static_city_urls)
-    print(f"Added {len(static_city_urls)} static-city pages (Torino/Zurich) to dist/")
+    torino_urls = render_illustrative_city("torino", "torino", TORINO_UI, IT_TONE_BADGE, TORINO_BANNER, TORINO_NEIGH_NOTE)
+    sitemap_urls.extend(torino_urls)
+    zurigo_urls = render_illustrative_city("zurigo", "zurigo", ZURIGO_UI, IT_TONE_BADGE, ZURIGO_BANNER, ZURIGO_NEIGH_NOTE)
+    sitemap_urls.extend(zurigo_urls)
+    london_map_urls = render_london_map(cities)
+    sitemap_urls.extend(london_map_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
