@@ -8,7 +8,10 @@
 {% block content %}
 <p><a href="../index.html">← {{ city.city }}</a></p>
 <h1>{{ b.borough }}, {{ city.city }}</h1>
-<span class="badge {{ tone }}">{{ label }}</span>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge {{ b.day_tone }}">{{ day_label }}</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge {{ b.night_tone }}">{{ night_label }}</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
 <p class="subtitle" style="margin-top:14px;">Relative rank {{ b.relative_rank }} among boroughs currently covered. Based on official Metropolitan Police data ({{ b.data_month }}).</p>
 
 {% if b.coords %}
@@ -18,9 +21,10 @@
 <script>
   try {
     var coords = {{ b.coords|tojson }};
+    var color = {{ ({'green':'#2e7d46','yellow':'#c98a02','red':'#c0392b','grey':'#7a8190'}[b.day_tone] or '#7a8190')|tojson }};
     var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
-    var poly = L.polygon(coords, { color: "{{ '#2e7d46' if tone == 'good' else ('#c98a02' if tone == 'mid' else '#c0392b') }}", weight:2, fillOpacity:0.3 }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
     map.fitBounds(poly.getBounds().pad(0.08));
   } catch(e) {}
 </script>
@@ -39,10 +43,11 @@
 
 <div class="note">
   {% if b.data_completeness == "full_point_radius_catchment" %}
-  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around {{ b.borough }}'s centre — {{ b.sample_record_count }} recorded incidents for {{ b.data_month }}. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a circle around the borough centre, not the exact administrative boundary, so incidents right at the edges of {{ b.borough }} may be over- or under-counted. Population used for normalisation: {{ "{:,}".format(b.population) }} residents (2021 census).
+  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around {{ b.borough }}'s centre — {{ b.sample_record_count }} recorded incidents for {{ b.data_month }}. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a circle around the borough centre, not the exact administrative boundary, so incidents right at the edges of {{ b.borough }} may be over- or under-counted.
   {% else %}
-  Data completeness: <strong>partial sample (legacy prototype data)</strong>. This page reflects an early, truncated sample (~{{ b.sample_record_count }} incidents) rather than the full month for {{ b.borough }} — it predates the automated fetch pipeline. Population used for normalisation: {{ "{:,}".format(b.population) }} residents (2021 census).
+  Data completeness: <strong>partial sample (legacy prototype data)</strong>. This page reflects an early, truncated sample (~{{ b.sample_record_count }} incidents) rather than the full month for {{ b.borough }} — it predates the automated fetch pipeline.
   {% endif %}
+  Day score: {{ b.day_rate_per_1000 }} weighted incidents/1,000 people ({{ (b.day_vs_covered_average * 100)|round|int if b.day_vs_covered_average else '?' }}% of the 5-borough average). Night score: {{ b.night_rate_per_1000 }} weighted incidents/1,000 people ({{ (b.night_vs_covered_average * 100)|round|int if b.night_vs_covered_average else '?' }}% of the 5-borough average). Both are normalised by an estimated <strong>workday/footfall population</strong> of {{ "{:,}".format(b.workday_population) }} (2021 resident population of {{ "{:,}".format(b.population) }}, scaled by the 2011 Census resident-vs-workday ratio for {{ b.borough }} — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents. Rated against the average of the 5 boroughs currently on the automated pipeline, not yet a full London average.
 </div>
 
 <p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>

@@ -26,24 +26,43 @@
 <h2>How a score is built</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   For each London borough, Wandroz downloads every recorded crime for the most recent month available, within
-  roughly a 1-mile radius of the borough's centre. Each category of crime is weighted by how relevant it typically
-  is to a traveller's sense of safety — violent and sexual offences, robbery, and weapons possession count for more
-  than, say, shoplifting or anti-social behaviour, which are heavily over-represented in the raw data relative to
-  serious crime. The weighted total is then divided by the borough's resident population (2021 census), so a
-  busier but more populous borough isn't unfairly penalised just for having more people in it.
+  roughly a 1-mile radius of the borough's centre, then splits it into two scores. The <strong>day score</strong>
+  uses crime categories that are overwhelmingly daytime in nature (shoplifting, burglary, vehicle/cycle theft,
+  drugs); the <strong>night score</strong> uses categories with a well-documented evening/night skew (violence,
+  robbery, street theft, public order, anti-social behaviour). This is a <em>category-mix proxy</em>, not
+  literal time-stamped data — the UK Police API doesn't record a time of day per incident — so it will miss
+  anything that doesn't fit that pattern; a few categories (criminal damage, weapons possession, "other theft"/
+  "other crime") are left out of both scores rather than guessed at. Each category is also weighted by how
+  relevant it typically is to a traveller's sense of safety — violence and robbery count for more than
+  shoplifting or anti-social behaviour, which are heavily over-represented in the raw data relative to serious
+  crime.
 </p>
 <p style="font-size:13.5px;color:var(--muted);">
-  Boroughs are then ranked against each other — <em>relative to the other London boroughs currently covered</em>,
-  not against some fixed, borough-independent scale, and not against any other city yet.
+  Both scores are divided by an estimated <strong>workday/footfall population</strong>, not the borough's resident
+  population — central, nightlife-heavy or highly-visited boroughs otherwise look "less safe per resident" simply
+  because relatively few people are officially resident there compared to how many actually pass through. That
+  workday population is approximated by applying each borough's resident-vs-workday ratio from the ONS's 2011
+  Census "workday population" release (the most recent official one published — Westminster's workday population
+  was 267% of its resident population that year, for example) to its up-to-date 2021 resident population. It's a
+  deliberate approximation using the best available official ratio, not a fresh headcount.
+</p>
+<p style="font-size:13.5px;color:var(--muted);">
+  Boroughs are then rated against the <em>average of the other London boroughs currently on the automated
+  pipeline</em> (5 today) — not a fixed, borough-independent scale, and not yet a full London average, since only
+  5 of 33 boroughs are covered so far.
 </p>
 
 <h2>What this method gets wrong today</h2>
 <div class="note" style="margin-bottom:10px;">
-  <strong>Resident population, not visitor/daytime population.</strong> Central, nightlife-heavy or highly-visited
-  boroughs can end up looking "less safe per resident" simply because relatively few people are officially resident
-  there compared to how many people actually pass through on a given night. A proper fix (weighting by daytime or
-  "workday" population instead of only resident population) is planned but not built yet — treat scores for
-  very central boroughs with that in mind.
+  <strong>Only 5 of 33 boroughs are on the automated pipeline.</strong> The "average" every covered borough is
+  rated against is the average of those same 5 boroughs, not a true London-wide average — it will keep shifting
+  (and become more meaningful) as more boroughs join.
+</div>
+<div class="note" style="margin-bottom:10px;">
+  <strong>Workday population is a 2011-ratio approximation, not a fresh count.</strong> No official UK
+  workday-population release has been published since the 2011 Census, so today's footfall correction applies
+  that release's resident-vs-workday ratio to each borough's 2021 resident population rather than a directly
+  measured current figure.
 </div>
 <div class="note" style="margin-bottom:10px;">
   <strong>Crime data is still queried as a circle, even though the map now shows the real boundary.</strong> Each
@@ -53,14 +72,10 @@
   borough may still be attributed to the wrong side. Fetching crimes strictly inside the real polygon is the next
   step.
 </div>
-<div class="note" style="margin-bottom:10px;">
+<div class="note">
   <strong>One month at a time.</strong> Scores reflect the single most recent month the UK Police API has published,
   not a rolling average — so a single unusual month can swing a borough's relative position more than a longer-term
   trend would. Averaging several months is planned as more monthly data accumulates.
-</div>
-<div class="note">
-  <strong>No day/night split yet.</strong> The official data doesn't include time-of-day, so today's score doesn't
-  distinguish "safe to walk through at 3pm" from "safe to walk through at 3am" — it's one number for the whole day.
 </div>
 
 <h2>How this scales beyond London</h2>
