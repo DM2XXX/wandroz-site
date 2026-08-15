@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Is Camden (London) safe? — Wandroz</title>
 <meta name="description" content="Safety data for Camden, London: 2981 recorded incidents, based on official UK Police data.">
+<link rel="canonical" href="https://www.wandroz.com/london/camden.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wandroz">
+<meta property="og:title" content="Is Camden (London) safe? — Wandroz">
+<meta property="og:description" content="Safety data for Camden, London: 2981 recorded incidents, based on official UK Police data.">
+<meta property="og:url" content="https://www.wandroz.com/london/camden.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is Camden (London) safe? — Wandroz">
+<meta name="twitter:description" content="Safety data for Camden, London: 2981 recorded incidents, based on official UK Police data.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <style>
   :root{ --ink:#1f2430; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
     --green:#2e7d46; --green-bg:#e6f4ea; --yellow:#c98a02; --yellow-bg:#fdf3d9;
@@ -13,8 +26,11 @@
   body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.55; }
   .wrap { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
   a { color: var(--blue); }
-  header.site { display:flex; align-items:center; gap:12px; margin-bottom: 28px; }
-  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; }
+  header.site { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 28px; }
+  header.site .brand { display:flex; align-items:center; gap:12px; }
+  header.site nav a { color: var(--muted); text-decoration:none; font-size:13.5px; margin-left:18px; }
+  header.site nav a:hover { color: var(--blue); }
+  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; flex-shrink:0; }
   h1 { font-size: 26px; margin: 0 0 6px; }
   h2 { font-size: 18px; }
   .subtitle { color: var(--muted); margin-bottom: 28px; }
@@ -34,8 +50,14 @@
 <body>
 <div class="wrap">
   <header class="site">
-    <div class="logo">W</div>
-    <div><strong>Wandroz</strong></div>
+    <div class="brand">
+      <div class="logo">W</div>
+      <div><strong><a href="/" style="color:inherit;text-decoration:none;">Wandroz</a></strong></div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
   </header>
   
 <p><a href="../index.html">← London</a></p>
@@ -87,7 +109,7 @@
 
 <p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
 
-  <footer>Wandroz — public official data, not just reviews. Prototype build.</footer>
+  <footer>Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
 </div>
 </body>
 </html>
