@@ -39,6 +39,10 @@
   .badge.good { background: var(--green-bg); color: var(--green); }
   .badge.mid { background: var(--yellow-bg); color: var(--yellow); }
   .badge.caution { background: var(--red-bg); color: var(--red); }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.red { background: var(--red-bg); color: var(--red); }
+  .badge.grey { background:#eef0f3; color:var(--muted); }
   .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
   .list-item:last-child{ border-bottom:none; }
   .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
@@ -67,8 +71,11 @@
   
 <p><a href="../index.html">← London</a></p>
 <h1>Westminster, London</h1>
-<span class="badge caution">Higher caution advised</span>
-<p class="subtitle" style="margin-top:14px;">Relative rank 4 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge green">Relatively safer</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge green">Relatively safer</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
+<p class="subtitle" style="margin-top:14px;">Relative rank 1 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
@@ -77,9 +84,10 @@
 <script>
   try {
     var coords = [[[51.51501909560792, -0.19519490749552568], [51.51175686763993, -0.1940648517955471], [51.51181281090767, -0.19298538076751698], [51.5098681887945, -0.1921447841423895], [51.51017901903097, -0.18793499417265577], [51.50179293753744, -0.18426170683243978], [51.50146088682911, -0.18033641224587985], [51.497778636640014, -0.17957095600709427], [51.49902071665588, -0.16841516756818734], [51.49830016304591, -0.16764473854973325], [51.49923915815692, -0.1658038275277281], [51.49869743880506, -0.16550414669709], [51.50158852186416, -0.16102521357888333], [51.50224875828193, -0.15847541341338842], [51.49901786395965, -0.15787561695295455], [51.49776110230776, -0.1560980252688796], [51.49506335703358, -0.15532090614258312], [51.494494326298145, -0.15601376118956226], [51.493856707711444, -0.15501580926078048], [51.49321079041823, -0.15600015436059064], [51.49196177270886, -0.1548194783221966], [51.49145019176883, -0.15582011528976875], [51.490049059661814, -0.15519646587592453], [51.489605485347944, -0.1558728029850017], [51.48583802715927, -0.15007549690211236], [51.485774092265736, -0.1492207970756162], [51.485467271011636, -0.1500017780661931], [51.48455932696931, -0.14984422866012345], [51.484582788813896, -0.14517037662577134], [51.48381590754733, -0.13893889199838108], [51.48465692480531, -0.1330633606042318], [51.48580990185199, -0.12976470145142815], [51.48752668060899, -0.12722417648268056], [51.490051738120314, -0.12480125258557459], [51.493997914516946, -0.1228829362890217], [51.50581463896187, -0.12068618695250741], [51.508378578701894, -0.11775261668209372], [51.50914239090707, -0.11556773314556303], [51.50974293636499, -0.11146003393818177], [51.511653562867, -0.1115035171776195], [51.51264277246084, -0.1125109284521455], [51.51316189518846, -0.11172217218358406], [51.513657982539776, -0.11192692031136157], [51.51380499132367, -0.11104889951326648], [51.51522278254884, -0.11155320592373662], [51.51476075458004, -0.11381707204756933], [51.51598557234955, -0.11468616436640514], [51.514470711392114, -0.11950482697714311], [51.51481155493527, -0.12183557005448027], [51.51459167872888, -0.12206526957609619], [51.515108612506964, -0.12288815809145913], [51.512628783834536, -0.1273009770529777], [51.51347968365176, -0.12928622898090741], [51.51710015587219, -0.13083706987411414], [51.5167182639631, -0.1324754806312698], [51.51772802952862, -0.13362213473088563], [51.517561154852295, -0.1340702950900869], [51.51893191940449, -0.13526005904075936], [51.518694218225654, -0.13585222823045762], [51.51914590821299, -0.13632169538217814], [51.518883956263565, -0.13703491856437894], [51.52387728651753, -0.14290275028407817], [51.523907238512216, -0.14352240292278307], [51.52462218545829, -0.14349678415918096], [51.52464209049649, -0.14418071698964685], [51.52399622697798, -0.14415652207147875], [51.523993191181425, -0.14519830400120876], [51.52526899181534, -0.14581492199092053], [51.525041371795865, -0.1471965481019019], [51.53751941711037, -0.15273328621894033], [51.53636098720458, -0.1594427760282603], [51.53728130022028, -0.16048783993169857], [51.53577957625188, -0.16496164394181317], [51.53859717236689, -0.16954303431800222], [51.53779321864512, -0.17089022589991773], [51.53838214597531, -0.17198141888140875], [51.53763259772384, -0.17350951231245285], [51.5381990717126, -0.17414178400239141], [51.539476981416776, -0.17392192226629333], [51.53979253944453, -0.17835927043300723], [51.53837811294917, -0.1838745458309863], [51.53452326054411, -0.1887733107920306], [51.53628909992694, -0.1914835287887322], [51.53398832364937, -0.19303733197627324], [51.533254460447985, -0.1923841201932291], [51.532628425139826, -0.19256030882935038], [51.52765301497785, -0.1965689254151969], [51.527899901641774, -0.19780058020010077], [51.53044360708026, -0.19829945938390872], [51.53263126973966, -0.2016977851167588], [51.53291035012153, -0.20285090741097928], [51.532863210424864, -0.2074693010778403], [51.53129128451083, -0.2153513023707717], [51.53017230857703, -0.21512920658214554], [51.52916988903663, -0.2160194417805506], [51.526736851298224, -0.2155133868235323], [51.52683771759832, -0.21183259190726092], [51.52590675340614, -0.20607977786735798], [51.52360131225503, -0.2039958502469437], [51.52274362934223, -0.2015845356546264], [51.52064922136513, -0.20059476630733283], [51.52084367951469, -0.20220438897307466], [51.52058369323926, -0.20367666373821472], [51.51779865007165, -0.20148788557566144], [51.51797669611271, -0.20074881433945166], [51.514551518295086, -0.19921036449987745], [51.51501909560792, -0.19519490749552568]]];
+    var color = "#2e7d46";
     var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
-    var poly = L.polygon(coords, { color: "#c0392b", weight:2, fillOpacity:0.3 }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
     map.fitBounds(poly.getBounds().pad(0.08));
   } catch(e) {}
 </script>
@@ -124,8 +132,9 @@
 
 <div class="note">
   
-  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around Westminster's centre — 2553 recorded incidents for 2026-06. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a circle around the borough centre, not the exact administrative boundary, so incidents right at the edges of Westminster may be over- or under-counted. Population used for normalisation: 204,300 residents (2021 census).
+  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around Westminster's centre — 2553 recorded incidents for 2026-06. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a circle around the borough centre, not the exact administrative boundary, so incidents right at the edges of Westminster may be over- or under-counted.
   
+  Day score: 0.4639 weighted incidents/1,000 people (39% of the 5-borough average). Night score: 4.0512 weighted incidents/1,000 people (62% of the 5-borough average). Both are normalised by an estimated <strong>workday/footfall population</strong> of 747,552 (2021 resident population of 204,300, scaled by the 2011 Census resident-vs-workday ratio for Westminster — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents. Rated against the average of the 5 boroughs currently on the automated pipeline, not yet a full London average.
 </div>
 
 <p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>

@@ -39,6 +39,10 @@
   .badge.good { background: var(--green-bg); color: var(--green); }
   .badge.mid { background: var(--yellow-bg); color: var(--yellow); }
   .badge.caution { background: var(--red-bg); color: var(--red); }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.red { background: var(--red-bg); color: var(--red); }
+  .badge.grey { background:#eef0f3; color:var(--muted); }
   .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
   .list-item:last-child{ border-bottom:none; }
   .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
@@ -67,7 +71,10 @@
   
 <p><a href="../index.html">← London</a></p>
 <h1>Islington, London</h1>
-<span class="badge mid">Average</span>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
 <p class="subtitle" style="margin-top:14px;">Relative rank 3 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
 
 
@@ -77,9 +84,10 @@
 <script>
   try {
     var coords = [[[51.55494169334325, -0.13619497805649655], [51.551487739639995, -0.1310031165720577], [51.549618572864865, -0.13016267361381748], [51.54760882807838, -0.12717356765584945], [51.54212839457139, -0.12571159438043325], [51.53736001104356, -0.12252131971668517], [51.53072590213747, -0.12255609424575871], [51.53093777327959, -0.11989524866264084], [51.529871957259616, -0.11605440901826407], [51.52772220884907, -0.11543313033308611], [51.52640625168504, -0.11293334239679631], [51.52545850504292, -0.11420667569484513], [51.52453317110153, -0.11361364489848819], [51.52367180401345, -0.11230731494629709], [51.52298789747684, -0.10895610551658606], [51.52208666044629, -0.10826981360862271], [51.52215598125328, -0.1070428265426165], [51.51854326145761, -0.10534607724141463], [51.52068852389173, -0.09764591932302105], [51.521583021497946, -0.09729166203064323], [51.52284231900073, -0.09793369232769562], [51.523251903175314, -0.09677897130122688], [51.52282119167546, -0.09647057093434803], [51.52306062773234, -0.09506144479427125], [51.52144626094925, -0.09433470716560642], [51.521430886671205, -0.09251477121694636], [51.521001644049775, -0.09239692209124195], [51.520687348309025, -0.08969465629220966], [51.51996171830245, -0.0899529103155133], [51.518736158816225, -0.08618724970479465], [51.52249038110256, -0.08444145711256462], [51.52390017836432, -0.08422328985250029], [51.52392457231738, -0.08513894851206522], [51.524511089193425, -0.08544330898064774], [51.52541604094878, -0.08475115165588205], [51.52620306890048, -0.08502101039797902], [51.52578895869657, -0.0867952754582614], [51.52595739796347, -0.08744097810752675], [51.5274417013462, -0.08878122554869755], [51.529193490730385, -0.09540723030809073], [51.530051289972306, -0.09511379022491408], [51.53298119214186, -0.09703355121825827], [51.5372555198178, -0.08661813861576886], [51.54506368604115, -0.08366215011536332], [51.54660258951438, -0.08383906877454775], [51.546079795728616, -0.07683956978603525], [51.54635162371429, -0.07637783324110758], [51.54811857974098, -0.0767296524323807], [51.5515878840121, -0.07933620083705124], [51.552161910831266, -0.08550588036628518], [51.552788781616634, -0.0875350711096338], [51.55389758024769, -0.08858486278768357], [51.553766576771864, -0.08930914957378566], [51.55414949731946, -0.09040397723750553], [51.5578192256612, -0.09043016158463434], [51.56022206139978, -0.09170382245498881], [51.56122660960782, -0.09603222971127594], [51.56083766846403, -0.09858765658937478], [51.56841959358228, -0.1103389113844145], [51.57063034669351, -0.11508858161153367], [51.57189217243914, -0.1154079740117574], [51.57218397441778, -0.11611340097293626], [51.57254804888108, -0.11568028697614162], [51.57417281238826, -0.11758571509286768], [51.57443176757607, -0.11953581531845861], [51.57470191269545, -0.11900354359182606], [51.57553171998443, -0.11958609903550498], [51.574625770031865, -0.12388077862490239], [51.57411769111934, -0.12467925927957006], [51.57415368513877, -0.12749636125901395], [51.5735636344391, -0.1313908972496773], [51.56945806623626, -0.14053993945550888], [51.56901334150666, -0.14250132983962874], [51.56455181585484, -0.1406831120209677], [51.56035107991666, -0.14100607990503944], [51.5555956295456, -0.13738445447559658], [51.55494169334325, -0.13619497805649655]]];
+    var color = "#c98a02";
     var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
-    var poly = L.polygon(coords, { color: "#c98a02", weight:2, fillOpacity:0.3 }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
     map.fitBounds(poly.getBounds().pad(0.08));
   } catch(e) {}
 </script>
@@ -124,8 +132,9 @@
 
 <div class="note">
   
-  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around Islington's centre — 1784 recorded incidents for 2026-06. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a circle around the borough centre, not the exact administrative boundary, so incidents right at the edges of Islington may be over- or under-counted. Population used for normalisation: 215,700 residents (2021 census).
+  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around Islington's centre — 1784 recorded incidents for 2026-06. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a circle around the borough centre, not the exact administrative boundary, so incidents right at the edges of Islington may be over- or under-counted.
   
+  Day score: 1.2869 weighted incidents/1,000 people (109% of the 5-borough average). Night score: 7.2714 weighted incidents/1,000 people (111% of the 5-borough average). Both are normalised by an estimated <strong>workday/footfall population</strong> of 295,444 (2021 resident population of 215,700, scaled by the 2011 Census resident-vs-workday ratio for Islington — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents. Rated against the average of the 5 boroughs currently on the automated pipeline, not yet a full London average.
 </div>
 
 <p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
