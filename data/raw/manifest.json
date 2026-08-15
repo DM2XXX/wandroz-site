@@ -1,1 +1,37 @@
-{}
+{
+  "camden": {
+    "2026-06": {
+      "fetched_records": 3993,
+      "file": "raw/camden_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "islington": {
+    "2026-06": {
+      "fetched_records": 3593,
+      "file": "raw/islington_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "kensington_chelsea": {
+    "2026-06": {
+      "fetched_records": 2088,
+      "file": "raw/kensington_chelsea_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "lambeth": {
+    "2026-06": {
+      "fetched_records": 4557,
+      "file": "raw/lambeth_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "westminster": {
+    "2026-06": {
+      "fetched_records": 6684,
+      "file": "raw/westminster_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  }
+}

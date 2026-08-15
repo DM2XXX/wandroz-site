@@ -90,8 +90,9 @@
 
 <h2>How a score is built</h2>
 <p style="font-size:13.5px;color:var(--muted);">
-  For each London borough, Wandroz downloads every recorded crime for the most recent month available, within
-  roughly a 1-mile radius of the borough's centre, then splits it into two scores. The <strong>day score</strong>
+  For each London borough, Wandroz downloads every recorded crime for the most recent month available inside that
+  borough's real administrative boundary (the same ONS 2021 polygon outline the map draws — not a circle around
+  its centre), then splits it into two scores. The <strong>day score</strong>
   uses crime categories that are overwhelmingly daytime in nature (shoplifting, burglary, vehicle/cycle theft,
   drugs); the <strong>night score</strong> uses categories with a well-documented evening/night skew (violence,
   robbery, street theft, public order, anti-social behaviour). This is a <em>category-mix proxy</em>, not
@@ -130,12 +131,13 @@
   measured current figure.
 </div>
 <div class="note" style="margin-bottom:10px;">
-  <strong>Crime data is still queried as a circle, even though the map now shows the real boundary.</strong> Each
-  borough page now displays its actual administrative outline (ONS 2021 boundaries) instead of a plain circle, so
-  the shape you see is accurate. The underlying crime count, however, is still fetched as a point plus roughly a
-  1-mile radius around the borough's centre, not filtered to the exact polygon — so incidents right at the edge of a
-  borough may still be attributed to the wrong side. Fetching crimes strictly inside the real polygon is the next
-  step.
+  <strong>Fixed 15 August 2026 — crime data now queried inside the real boundary, not a circle.</strong> Earlier
+  versions of this page fetched crime counts from a point plus roughly a 1-mile radius around each borough's centre
+  — a circle, not the exact administrative shape — so incidents right at a border could be attributed to the wrong
+  side. Every borough now queries the UK Police API directly against its real ONS 2021 polygon outline (the same
+  shape the map draws), so the count matches the shape you see. If a borough's boundary data can't be loaded for a
+  given run, that borough's page will say so explicitly and fall back to the old circle rather than silently using
+  the wrong method.
 </div>
 <div class="note">
   <strong>One month at a time.</strong> Scores reflect the single most recent month the UK Police API has published,
