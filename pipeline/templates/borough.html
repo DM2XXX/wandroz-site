@@ -11,6 +11,22 @@
 <span class="badge {{ tone }}">{{ label }}</span>
 <p class="subtitle" style="margin-top:14px;">Relative rank {{ b.relative_rank }} among boroughs currently covered. Based on official Metropolitan Police data ({{ b.data_month }}).</p>
 
+{% if b.coords %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<div id="minimap" style="height:280px;border-radius:10px;margin:16px 0;border:1px solid var(--line);"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = {{ b.coords|tojson }};
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: "{{ '#2e7d46' if tone == 'good' else ('#c98a02' if tone == 'mid' else '#c0392b') }}", weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.08));
+  } catch(e) {}
+</script>
+<p class="cta-note" style="font-size:11.5px;color:var(--muted);">Real administrative boundary — Office for National Statistics 2021 boundaries, not an approximate circle.</p>
+{% endif %}
+
 <div class="card">
   <strong>Recorded incidents (sample window)</strong>
   <table class="breakdown">
