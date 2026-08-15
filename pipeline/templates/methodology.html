@@ -12,7 +12,8 @@
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
     London borough scores come from the UK Home Office's official street-level crime data, published monthly at
     <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>, and are recomputed automatically
-    every time the pipeline runs — no manual editing.
+    every time the pipeline runs — no manual editing. {{ london_covered_count }} of {{ london_total_boroughs }} London
+    boroughs are on this automated pipeline{% if london_covered_count and london_total_boroughs and london_covered_count >= london_total_boroughs - 1 %} — every borough except the City of London, which is policed separately and isn't covered by this dataset{% endif %}.
   </p>
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
     <a href="/torino/index.html">Turin</a> and <a href="/zurigo/index.html">Zurich</a> are also on the site as an early
@@ -42,28 +43,41 @@
   Both scores are divided by an estimated <strong>workday/footfall population</strong>, not the borough's resident
   population — central, nightlife-heavy or highly-visited boroughs otherwise look "less safe per resident" simply
   because relatively few people are officially resident there compared to how many actually pass through. That
-  workday population is approximated by applying each borough's resident-vs-workday ratio from the ONS's 2011
-  Census "workday population" release (the most recent official one published — Westminster's workday population
-  was 267% of its resident population that year, for example) to its up-to-date 2021 resident population. It's a
-  deliberate approximation using the best available official ratio, not a fresh headcount.
+  workday population is approximated from the ONS's 2011 Census "workday population" release (the most recent
+  official one published — Westminster's workday population was 267% of its resident population that year, for
+  example), applied to each borough's up-to-date 2021 resident population. This release doesn't cover every
+  borough the same way, so each borough page discloses which of three tiers its correction comes from: a
+  <strong>measured headcount</strong> (the release names the borough directly — the most reliable tier), a
+  <strong>density-based proxy</strong> (the borough isn't in the headcount tables but is in the release's density-
+  per-hectare table, used as a stand-in), or <strong>no correction at all</strong> (the borough appears in neither
+  table, so resident population is used as-is rather than inventing a number — this is disclosed explicitly on
+  that borough's page, not hidden).
 </p>
 <p style="font-size:13.5px;color:var(--muted);">
   Boroughs are then rated against the <em>average of the other London boroughs currently on the automated
-  pipeline</em> (5 today) — not a fixed, borough-independent scale, and not yet a full London average, since only
-  5 of 33 boroughs are covered so far.
+  pipeline</em> ({{ london_covered_count }} today) — not a fixed, borough-independent scale, and
+  {% if london_covered_count and london_total_boroughs and london_covered_count >= london_total_boroughs - 1 %}
+  effectively a full London average now that every borough except the City of London is covered.
+  {% else %}
+  not yet a full London average, since only {{ london_covered_count }} of {{ london_total_boroughs }} boroughs are covered so far.
+  {% endif %}
 </p>
 
 <h2>What this method gets wrong today</h2>
 <div class="note" style="margin-bottom:10px;">
-  <strong>Only 5 of 33 boroughs are on the automated pipeline.</strong> The "average" every covered borough is
-  rated against is the average of those same 5 boroughs, not a true London-wide average — it will keep shifting
-  (and become more meaningful) as more boroughs join.
+  <strong>Extended 15 August 2026 — from 5 to {{ london_covered_count }} of {{ london_total_boroughs }} boroughs.</strong>
+  The automated pipeline originally covered only 5 boroughs; it now covers {{ london_covered_count }}, using
+  population and workday-correction data researched and added for the rest. The "average" every covered borough
+  is rated against is the average of those {{ london_covered_count }} boroughs — it will keep shifting slightly as
+  new monthly data comes in.
 </div>
 <div class="note" style="margin-bottom:10px;">
-  <strong>Workday population is a 2011-ratio approximation, not a fresh count.</strong> No official UK
+  <strong>Workday population is a 2011-ratio approximation, and not every borough has one.</strong> No official UK
   workday-population release has been published since the 2011 Census, so today's footfall correction applies
   that release's resident-vs-workday ratio to each borough's 2021 resident population rather than a directly
-  measured current figure.
+  measured current figure — and for a subset of boroughs the 2011 release has no usable figure at all, so no
+  correction is applied for them (see the tier explanation above; each borough page states plainly which tier it
+  got).
 </div>
 <div class="note" style="margin-bottom:10px;">
   <strong>Fixed 15 August 2026 — crime data now queried inside the real boundary, not a circle.</strong> Earlier
