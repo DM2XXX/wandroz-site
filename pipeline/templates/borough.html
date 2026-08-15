@@ -12,7 +12,7 @@
   <span class="badge {{ b.day_tone }}">{{ day_label }}</span> <span style="font-size:12px;color:var(--muted);">day</span>
   <span class="badge {{ b.night_tone }}">{{ night_label }}</span> <span style="font-size:12px;color:var(--muted);">night</span>
 </div>
-<p class="subtitle" style="margin-top:14px;">Relative rank {{ b.relative_rank }} among boroughs currently covered. Based on official Metropolitan Police data ({{ b.data_month }}).</p>
+<p class="subtitle" style="margin-top:14px;">Relative rank {{ b.relative_rank }} among boroughs currently covered. Based on official Metropolitan Police data{% if b.months_included and b.months_included|length > 1 %}, averaged over {{ b.months_included|length }} months ({{ b.months_included[-1] }} to {{ b.months_included[0] }}){% else %} ({{ b.data_month }}){% endif %}.</p>
 
 {% if b.coords %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
@@ -32,24 +32,28 @@
 {% endif %}
 
 <div class="card">
-  <strong>Recorded incidents (sample window)</strong>
+  <strong>Recorded incidents {% if b.months_included and b.months_included|length > 1 %}(total across {{ b.months_included|length }} months, {{ b.months_included[-1] }}–{{ b.months_included[0] }}){% else %}(sample window){% endif %}</strong>
   <table class="breakdown">
     <tr><th>Category</th><th>Count</th></tr>
     {% for cat, n in b.category_breakdown.items()|sort(attribute='1', reverse=True) %}
     <tr><td>{{ cat|replace('-', ' ')|capitalize }}</td><td>{{ n }}</td></tr>
     {% endfor %}
   </table>
+  {% if b.months_included and b.months_included|length > 1 %}
+  <p style="margin:8px 0 0;font-size:11.5px;color:var(--muted);">{{ b.sample_record_count }} incidents total over {{ b.months_included|length }} months — averages {{ b.sample_record_count_avg_per_month }}/month, which is what the day/night scores below are based on.</p>
+  {% endif %}
 </div>
 
 <div class="note">
+  {% set window_desc = (b.months_included|length ~ " months (" ~ b.months_included[-1] ~ "–" ~ b.months_included[0] ~ ")") if b.months_included and b.months_included|length > 1 else ("the month of " ~ b.data_month) %}
   {% if b.data_completeness == "full_polygon_boundary" %}
-  Data completeness: <strong>full month, real administrative boundary</strong> — {{ b.sample_record_count }} recorded incidents for {{ b.data_month }}, queried against {{ b.borough }}'s actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for that exact area.
+  Data completeness: <strong>full months, real administrative boundary</strong> — {{ b.sample_record_count }} recorded incidents total across {{ window_desc }}, queried against {{ b.borough }}'s actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for each month in that window.
   {% elif b.data_completeness == "full_point_radius_fallback" %}
-  Data completeness: <strong>full month, ~1-mile-radius catchment</strong> around {{ b.borough }}'s centre — {{ b.sample_record_count }} recorded incidents for {{ b.data_month }}. This is the complete monthly response from the UK Police API for that catchment, not a truncated sample — but it's a fallback circle around the borough centre (its real boundary couldn't be loaded for this run), not the exact administrative boundary, so incidents right at the edges of {{ b.borough }} may be over- or under-counted.
+  Data completeness: <strong>full months, ~1-mile-radius catchment</strong> around {{ b.borough }}'s centre — {{ b.sample_record_count }} recorded incidents total across {{ window_desc }}. This is the complete response from the UK Police API for that catchment, not a truncated sample — but at least one month in this window used a fallback circle around the borough centre (its real boundary couldn't be loaded for that run) rather than the exact administrative boundary, so incidents right at the edges of {{ b.borough }} may be over- or under-counted.
   {% else %}
-  Data completeness: <strong>partial sample (legacy prototype data)</strong>. This page reflects an early, truncated sample (~{{ b.sample_record_count }} incidents) rather than the full month for {{ b.borough }} — it predates the automated fetch pipeline.
+  Data completeness: <strong>partial sample (legacy prototype data)</strong>. This page reflects an early, truncated sample (~{{ b.sample_record_count }} incidents) rather than the full window for {{ b.borough }} — it predates the automated fetch pipeline.
   {% endif %}
-  Day score: {{ b.day_rate_per_1000 }} weighted incidents/1,000 people ({{ (b.day_vs_covered_average * 100)|round|int if b.day_vs_covered_average else '?' }}% of the {{ b.covered_count }}-borough average). Night score: {{ b.night_rate_per_1000 }} weighted incidents/1,000 people ({{ (b.night_vs_covered_average * 100)|round|int if b.night_vs_covered_average else '?' }}% of the {{ b.covered_count }}-borough average).
+  Day score: {{ b.day_rate_per_1000 }} weighted incidents/1,000 people{% if b.months_included and b.months_included|length > 1 %}, averaged over the last {{ b.months_included|length }} months{% endif %} ({{ (b.day_vs_covered_average * 100)|round|int if b.day_vs_covered_average else '?' }}% of the {{ b.covered_count }}-borough average). Night score: {{ b.night_rate_per_1000 }} weighted incidents/1,000 people, same window ({{ (b.night_vs_covered_average * 100)|round|int if b.night_vs_covered_average else '?' }}% of the {{ b.covered_count }}-borough average).
   {% if b.workday_population_source == "no_data" %}
   Both are normalised by <strong>plain 2021 resident population</strong> ({{ "{:,}".format(b.population) }}) — no separate workday/footfall figure exists for {{ b.borough }} in the ONS's 2011 workday-population release (the most recent one published), so no correction is applied here (ratio 1.0) rather than guessing one. This means {{ b.borough }}'s score may be slightly overstated relative to boroughs where a real commuter/footfall correction could be applied — see methodology.
   {% else %}

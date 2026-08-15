@@ -26,9 +26,10 @@
 
 <h2>How a score is built</h2>
 <p style="font-size:13.5px;color:var(--muted);">
-  For each London borough, Wandroz downloads every recorded crime for the most recent month available inside that
-  borough's real administrative boundary (the same ONS 2021 polygon outline the map draws — not a circle around
-  its centre), then splits it into two scores. The <strong>day score</strong>
+  For each London borough, Wandroz downloads every recorded crime for each of the most recent 3 months available
+  (averaged together, not just the latest month — see "What this method gets wrong today" below for why) inside
+  that borough's real administrative boundary (the same ONS 2021 polygon outline the map draws — not a circle
+  around its centre), then splits it into two scores. The <strong>day score</strong>
   uses crime categories that are overwhelmingly daytime in nature (shoplifting, burglary, vehicle/cycle theft,
   drugs); the <strong>night score</strong> uses categories with a well-documented evening/night skew (violence,
   robbery, street theft, public order, anti-social behaviour). This is a <em>category-mix proxy</em>, not
@@ -89,9 +90,12 @@
   the wrong method.
 </div>
 <div class="note">
-  <strong>One month at a time.</strong> Scores reflect the single most recent month the UK Police API has published,
-  not a rolling average — so a single unusual month can swing a borough's relative position more than a longer-term
-  trend would. Averaging several months is planned as more monthly data accumulates.
+  <strong>Fixed 15 August 2026 — averaged over 3 months, not just one.</strong> Scores used to reflect only the
+  single most recent month the UK Police API had published, so one unusual month could swing a borough's relative
+  position more than a longer-term trend would. Every score is now an average of the most recent 3 months on
+  record for that borough (fewer right after a borough is first added, until 3 months have accumulated) — each
+  borough page states the exact months included. Averaging further back than 3 months is possible as more history
+  accumulates, but trades off responsiveness to genuinely recent changes.
 </div>
 
 <h2>How this scales beyond London</h2>
