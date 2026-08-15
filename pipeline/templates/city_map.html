@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ page_description }}">
+<link rel="canonical" href="{{ canonical_url }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  :root{
+    --green:#2e7d46; --green-bg:#e6f4ea;
+    --yellow:#c98a02; --yellow-bg:#fdf3d9;
+    --red:#c0392b; --red-bg:#fbe4e1;
+    --grey:#7a8190; --grey-bg:#e9eaed;
+    --ink:#1f2430; --muted:#5b6270; --panel:#ffffff; --bg:#f4f5f7; --line:#e3e5ea;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); }
+  a { color:#0a5fb8; }
+  header { padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap: wrap; gap:12px; }
+  .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
+  .brand .logo { width:34px; height:34px; border-radius:9px; background: linear-gradient(135deg, var(--green), var(--yellow) 55%, var(--red)); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:15px; flex-shrink:0; }
+  .brand h1, .brand span.wname { font-size:17px; margin:0; color:var(--ink); font-weight:700; }
+  .brand p { margin:0; font-size:12px; color:var(--muted); }
+  nav.top a { color:var(--muted); text-decoration:none; font-size:13px; margin-left:16px; }
+  nav.top a:hover { color:#0a5fb8; }
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 10px 20px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  .toolbar { display:flex; align-items:center; gap:16px; padding: 6px 20px 0; flex-wrap:wrap; }
+  h1.page-title { font-size: 21px; margin: 8px 20px 2px; }
+  .lead { font-size:13.5px; color:var(--muted); margin: 0 20px 10px; max-width:900px; }
+  .switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; }
+  .switch.on { background:#2b5ea6; }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; }
+  .switch.on .knob { left:22px; }
+  .notice { font-size:12.5px; color:#6b5a10; background:#fff7e0; border:1px solid #f0dfa6; border-radius:8px; padding:10px 14px; margin: 10px 20px 14px; max-width:1080px; }
+  .layout { display:flex; gap:16px; padding: 0 20px 24px; align-items:flex-start; flex-wrap:wrap; }
+  .sidebar { width:280px; flex-shrink:0; }
+  .legend { display:flex; flex-direction:column; gap:6px; font-size:13px; margin: 0 0 16px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  .detail-box { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; }
+  .detail-box h2 { font-size:13px; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); margin:0 0 10px; }
+  .detail-box .placeholder { color:var(--muted); font-size:13px; }
+  .detail-box .zn { font-size:16px; font-weight:700; margin-bottom:8px; }
+  .badge { display:inline-block; padding:4px 10px; border-radius:20px; font-size:11.5px; font-weight:700; margin-right:4px; }
+  .badge.green{ background:var(--green-bg); color:var(--green); }
+  .badge.yellow{ background:var(--yellow-bg); color:var(--yellow); }
+  .badge.red{ background:var(--red-bg); color:var(--red); }
+  .badge.grey{ background:var(--grey-bg); color:var(--grey); }
+  .detail-box .body-text { font-size:13px; color:#3a3f4d; margin:10px 0; }
+  .detail-box .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:10px 14px; border-radius:8px; font-size:13.5px; font-weight:600; margin-top:10px; }
+  .detail-box .cta.secondary { background:#0a5fb8; }
+  .detail-box .cta:hover { opacity:.92; }
+  #map { flex:1; min-width:280px; height: 640px; border-radius:10px; border:1px solid var(--line); }
+  .zone-list { margin-top:18px; }
+  .zone-list h2 { font-size:14px; margin: 0 0 8px; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:2; column-gap:16px; font-size:12.5px; }
+  .zone-list li { break-inside: avoid; padding:3px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { text-decoration:underline; }
+  footer { padding:16px 20px; font-size:11.5px; color:var(--muted); background:var(--panel); border-top:1px solid var(--line); text-align:center; }
+  footer a { color: var(--muted); }
+  @media (max-width: 720px){ #map{ height:420px; } .sidebar{ width:100%; order:2; } }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">
+    <div class="logo">W</div>
+    <div><span class="wname">Wandroz</span><p>{{ tagline }}</p></div>
+  </a>
+  <nav class="top">
+    <a href="/">{{ nav_home }}</a>
+    <a href="/methodology.html">{{ nav_methodology }}</a>
+  </nav>
+</header>
+<nav class="crumbs"><a href="/">{{ nav_home }}</a> &rsaquo; {{ city_label }}</nav>
+<h1 class="page-title">{{ page_h1 }}</h1>
+<p class="lead">{{ page_lead }}</p>
+{% if data_note %}<div class="notice">{{ data_note }}</div>{% endif %}
+
+<div class="toolbar">
+  {% if show_toggle %}
+  <div class="switch-wrap">
+    <span>{{ label_day }}</span>
+    <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+    <span>{{ label_night }}</span>
+  </div>
+  {% endif %}
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="legend">
+      <div class="legend-item"><span class="dot green"></span> {{ legend_green }}</div>
+      <div class="legend-item"><span class="dot yellow"></span> {{ legend_yellow }}</div>
+      <div class="legend-item"><span class="dot red"></span> {{ legend_red }}</div>
+      <div class="legend-item"><span class="dot grey"></span> {{ legend_grey }}</div>
+    </div>
+    <div class="detail-box" id="detailBox">
+      <h2>{{ label_zone_detail }}</h2>
+      <div id="detail"><p class="placeholder">{{ label_click_hint }}</p></div>
+    </div>
+  </div>
+  <div id="map"></div>
+</div>
+
+<div class="zone-list" style="padding:0 20px;">
+  <h2>{{ label_all_zones }}</h2>
+  <ul>
+    {% for z in zones %}
+    <li><a href="{{ z.url }}">{{ z.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<footer>
+  Wandroz &middot; {{ footer_note }} &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">{{ nav_home }}</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = {{ zones|tojson }};
+  var CENTER = {{ center|tojson }};
+  var ZOOM = {{ zoom|tojson }};
+  var SHOW_TOGGLE = {{ 'true' if show_toggle else 'false' }};
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = {{ label_click_hint|tojson }};
+  var L_BOOKING = {{ label_booking|tojson }};
+  var L_MORE = {{ label_more|tojson }};
+  var L_NOTCOVERED = {{ label_not_covered|tojson }};
+
+  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var layers = [];
+
+  function toneOf(z) {
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  function renderDetail(z) {
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.covered) {
+      html += badge(tone, z.tone_label || tone);
+    } else {
+      html += badge('grey', z.tone_label || '');
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.covered) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    ZONES.forEach(function(z){
+      var tone = toneOf(z);
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight:2, fillOpacity:0.32 }).addTo(map);
+      poly.on('click', function(){ renderDetail(z); });
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+    });
+  }
+</script>
+</body>
+</html>

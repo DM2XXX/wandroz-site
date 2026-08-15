@@ -7,6 +7,10 @@
 
 {% for city in cities %}
 <h2>{{ city.city }}</h2>
+<a class="list-item" href="{{ city.city|lower|replace(' ', '-') }}/index.html" style="text-decoration:none;color:inherit;">
+  <span>Interactive map of all {{ city.city }} boroughs</span>
+  <span style="color:var(--muted);font-size:13px;">click a borough for its rating →</span>
+</a>
 {% for b in city.boroughs %}
 <a class="list-item" href="{{ city.city|lower|replace(' ', '-') }}/{{ b.slug }}.html" style="text-decoration:none;color:inherit;">
   <span>#{{ b.relative_rank }} {{ b.borough }}</span>
