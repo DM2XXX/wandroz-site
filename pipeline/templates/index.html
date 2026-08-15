@@ -1,32 +1,17 @@
 {% extends "_base.html" %}
 {% block content %}
 <h1>Which neighbourhoods are actually safe?</h1>
-<p class="subtitle">Wandroz ranks city neighbourhoods using official public safety data, not just online reviews.</p>
+<p class="subtitle">Wandroz shows travellers city neighbourhoods on a real interactive map, using official public data where it exists — not just online reviews.</p>
 
-<div class="note">This is an early data prototype, not a finished ranking. See the methodology note on each borough page for exactly what each score is (and isn't) based on.</div>
+<div class="note">This is an early data prototype, not a finished product. Pick a city below to open its map — click any neighbourhood for the level, the reasoning, and a Booking.com link for that area.</div>
 
-{% for city in cities %}
-<h2>{{ city.city }}</h2>
-<a class="list-item" href="{{ city.city|lower|replace(' ', '-') }}/index.html" style="text-decoration:none;color:inherit;">
-  <span>Interactive map of all {{ city.city }} boroughs</span>
-  <span style="color:var(--muted);font-size:13px;">click a borough for its rating →</span>
-</a>
-{% for b in city.boroughs %}
-<a class="list-item" href="{{ city.city|lower|replace(' ', '-') }}/{{ b.slug }}.html" style="text-decoration:none;color:inherit;">
-  <span>#{{ b.relative_rank }} {{ b.borough }}</span>
-  <span style="color:var(--muted);font-size:13px;">{{ b.sample_record_count }} recorded incidents ({{ b.data_month }}) →</span>
-</a>
-{% endfor %}
-{% endfor %}
-
-<h2>Other cities (early preview)</h2>
-<div class="note">Turin and Zurich below use interactive maps with real official neighbourhood boundaries, but the safety ratings are an illustrative first pass (general knowledge, not yet a verified dataset) — not the automated, data-driven approach used for London above. See <a href="/methodology.html">methodology</a>.</div>
-<a class="list-item" href="torino/index.html" style="text-decoration:none;color:inherit;">
-  <span>Turin, Italy</span>
-  <span style="color:var(--muted);font-size:13px;">23 neighbourhoods, interactive map →</span>
-</a>
-<a class="list-item" href="zurigo/index.html" style="text-decoration:none;color:inherit;">
-  <span>Zurich, Switzerland</span>
-  <span style="color:var(--muted);font-size:13px;">34 neighbourhoods, interactive map →</span>
-</a>
+<h2>Choose a city</h2>
+<div class="city-grid">
+  {% for city in city_cards %}
+  <a class="city-card" href="{{ city.url }}">
+    <div class="cn">{{ city.name }}</div>
+    <div class="cc">{{ city.blurb }}</div>
+  </a>
+  {% endfor %}
+</div>
 {% endblock %}

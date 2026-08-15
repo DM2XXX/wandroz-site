@@ -33,9 +33,11 @@
   nav.crumbs { font-size:12.5px; color:var(--muted); padding: 10px 20px 0; }
   nav.crumbs a { color:var(--muted); text-decoration:none; }
   nav.crumbs a:hover { text-decoration:underline; }
-  .toolbar { display:flex; align-items:center; gap:16px; padding: 6px 20px 0; flex-wrap:wrap; }
   h1.page-title { font-size: 21px; margin: 8px 20px 2px; }
   .lead { font-size:13.5px; color:var(--muted); margin: 0 20px 10px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:5px 8px; background:var(--panel); }
   .switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
   .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; }
   .switch.on { background:#2b5ea6; }
@@ -79,25 +81,32 @@
     <div class="logo">W</div>
     <div><span class="wname">Wandroz</span><p>{{ tagline }}</p></div>
   </a>
-  <nav class="top">
-    <a href="/">{{ nav_home }}</a>
-    <a href="/methodology.html">{{ nav_methodology }}</a>
-  </nav>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">City</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        {% for c in city_links %}
+        <option value="{{ c.url }}" {% if c.url == canonical_url %}selected{% endif %}>{{ c.label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    {% if show_toggle %}
+    <div class="switch-wrap">
+      <span>{{ label_day }}</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>{{ label_night }}</span>
+    </div>
+    {% endif %}
+    <nav class="top">
+      <a href="/">{{ nav_home }}</a>
+      <a href="/methodology.html">{{ nav_methodology }}</a>
+    </nav>
+  </div>
 </header>
 <nav class="crumbs"><a href="/">{{ nav_home }}</a> &rsaquo; {{ city_label }}</nav>
 <h1 class="page-title">{{ page_h1 }}</h1>
 <p class="lead">{{ page_lead }}</p>
 {% if data_note %}<div class="notice">{{ data_note }}</div>{% endif %}
-
-<div class="toolbar">
-  {% if show_toggle %}
-  <div class="switch-wrap">
-    <span>{{ label_day }}</span>
-    <div class="switch" id="dnSwitch"><div class="knob"></div></div>
-    <span>{{ label_night }}</span>
-  </div>
-  {% endif %}
-</div>
 
 <div class="layout">
   <div class="sidebar">
@@ -119,7 +128,7 @@
   <h2>{{ label_all_zones }}</h2>
   <ul>
     {% for z in zones %}
-    <li><a href="{{ z.url }}">{{ z.name }}</a></li>
+    <li>{% if z.url %}<a href="{{ z.url }}">{{ z.name }}</a>{% else %}{{ z.name }}{% endif %}</li>
     {% endfor %}
   </ul>
 </div>
