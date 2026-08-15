@@ -1,6 +1,6 @@
 """
-Wandroz — full monthly crime data fetch for London boroughs (v2: real
-polygon boundary, not a circle)
+Wandroz — full monthly crime data fetch for London boroughs (v3: all 32
+boroughs, auto-discovered from the real boundary file)
 
 WHY THIS SCRIPT EXISTS
   The original prototype data in data/raw/*.json was pulled through a
@@ -19,27 +19,36 @@ DATA SOURCE
   v1 of this script queried by borough centroid (lat/lng), which the API
   implicitly expands to roughly a 1-mile-radius CIRCLE around that point —
   not the real administrative boundary, so incidents near a border could be
-  attributed to the wrong neighbour. v2 (this version) instead POSTs the
-  borough's real polygon boundary via the API's "poly" parameter (the same
-  ONS 2021 boundary coordinates the interactive map already draws, loaded
-  from pipeline/data_zones/london_boundaries.json), so the crime count now
-  matches the exact shape shown on the map. POST is used rather than GET
-  because several of these boundaries — Lambeth's ring alone has 135
-  points — produce a query string longer than the API's 4094-character GET
-  limit; the docs explicitly say to use POST for complex polygons.
+  attributed to the wrong neighbour. v2 instead POSTs each borough's real
+  polygon boundary via the API's "poly" parameter (the same ONS 2021
+  boundary coordinates the interactive map already draws, loaded from
+  pipeline/data_zones/london_boundaries.json), so the crime count matches
+  the exact shape shown on the map. POST is used rather than GET because
+  several of these boundaries — Lambeth's ring alone has 135 points —
+  produce a query string longer than the API's 4094-character GET limit;
+  the docs explicitly say to use POST for complex polygons.
 
-  If a borough's boundary can't be found in london_boundaries.json for any
-  reason, this script falls back to the old point/1-mile-radius circle for
-  that borough only, and records which method was actually used in
-  manifest.json so score_london.py / the site can be honest about it.
+  v3 (this version) stops hand-maintaining a fixed list of borough
+  centroids entirely: every borough is now discovered directly from
+  london_boundaries.json (all 33 ONS boundary zones, minus the City of
+  London — see EXCLUDED_ZONES), with its poly string AND its fallback
+  centroid (a simple average of its boundary ring's points) both computed
+  from the same real boundary data. Adding a borough to the automated
+  pipeline going forward only requires adding its population/workday data
+  to score_london.py — this script already covers it automatically.
+
+  If a borough's boundary can't be found for any reason, this script falls
+  back to the old point/1-mile-radius circle for that borough only, and
+  records which method was actually used in manifest.json so
+  score_london.py / the site can be honest about it.
 
 WHAT THIS SCRIPT DOES
   1. Asks the API which months of data are currently available
      (GET /api/crimes-street-dates) and picks the most recent one, unless
      FETCH_MONTHS is set explicitly.
-  2. For each configured borough, POSTs its real polygon boundary (falling
-     back to point+radius if the boundary is missing) and pulls the full
-     crime list for that month.
+  2. For each borough discovered from london_boundaries.json, POSTs its
+     real polygon boundary (falling back to point+radius if the boundary
+     is missing) and pulls the full crime list for that month.
   3. Writes data/raw/{slug}_{YYYY-MM}.json — same shape score_london.py
      already expects (a plain JSON list of raw crime records).
   4. Updates data/raw/manifest.json so re-runs don't need to re-fetch a
@@ -66,52 +75,54 @@ MANIFEST_PATH = os.path.join(RAW_DIR, "manifest.json")
 BOUNDARIES_PATH = os.path.join(BASE_DIR, "data_zones", "london_boundaries.json")
 
 API_BASE = "https://data.police.uk/api"
-USER_AGENT = "wandroz-site-fetch/0.2 (https://wandroz.com; automated monthly refresh)"
+USER_AGENT = "wandroz-site-fetch/0.3 (https://wandroz.com; automated monthly refresh)"
 REQUEST_TIMEOUT = 30
 REQUEST_DELAY_SECONDS = 1.0  # be polite to a free public API
 MAX_RETRIES = 3
 
-# Borough centroids — used ONLY as a fallback if a borough's real polygon
-# boundary can't be loaded from london_boundaries.json (see _load_boundary_polys
-# below). Approximate landmark/civic centres, not a formal centroid
-# calculation — fine for a clearly-labelled fallback circle, not for
-# claiming exact boundary coverage.
-BOROUGH_CENTROIDS = {
-    "westminster": (51.4975, -0.1357),
-    "camden": (51.5290, -0.1255),
-    "islington": (51.5416, -0.1022),
-    "kensington_chelsea": (51.4991, -0.1938),
-    "lambeth": (51.4607, -0.1163),
-}
+# Zones present in the boundary file that are intentionally NOT part of
+# this dataset. City of London is policed by the City of London Police,
+# not the Met — data.police.uk's Met Police force area doesn't cover it,
+# so it's excluded rather than silently scored on the wrong force's data.
+EXCLUDED_ZONES = {"city of london"}
 
 
-def _canon(name):
-    """Same normalisation build_site.py uses, so 'Kensington & Chelsea' in
-    the boundary file matches 'kensington_chelsea' in BOROUGH_CENTROIDS."""
+def _slugify(name):
+    """Same normalisation convention already used for the first 5
+    boroughs (e.g. 'Kensington and Chelsea' -> 'kensington_chelsea'):
+    lowercase, drop 'and', join remaining tokens with underscores."""
     name = name.lower().replace("&", " and ")
     tokens = [t for t in re.split(r"[\s\-_]+", name) if t and t != "and"]
-    return "".join(tokens)
+    return "_".join(tokens)
 
 
-def _load_boundary_polys():
-    """slug -> 'lat,lng:lat,lng:...' poly string, for every borough in
-    BOROUGH_CENTROIDS that has a matching real boundary. Coordinates are
-    rounded to 6 decimal places (~11cm precision, far finer than needed)
-    to keep the POST body a reasonable size."""
+def load_boroughs():
+    """slug -> {"label": original boundary name, "poly": 'lat,lng:...'
+    string, "centroid": (lat, lng)}, built directly from every zone in
+    london_boundaries.json except EXCLUDED_ZONES. Coordinates are rounded
+    to 6 decimal places (~11cm precision, far finer than needed) to keep
+    the POST body a reasonable size. The centroid (a plain average of the
+    boundary ring's points, not a proper geometric centroid) is only used
+    as a last-resort fallback if the poly query itself fails for some
+    reason — the primary fetch always uses the real polygon."""
     if not os.path.exists(BOUNDARIES_PATH):
         return {}
     with open(BOUNDARIES_PATH) as f:
         data = json.load(f)
-    by_canon = {_canon(z["name"]): z for z in data.get("zones", [])}
 
-    polys = {}
-    for slug in BOROUGH_CENTROIDS:
-        z = by_canon.get(_canon(slug))
-        if not z or not z.get("coords"):
+    boroughs = {}
+    for z in data.get("zones", []):
+        name = z.get("name", "")
+        if name.strip().lower() in EXCLUDED_ZONES:
+            continue
+        if not z.get("coords"):
             continue
         ring = max(z["coords"], key=len)  # largest ring if more than one
-        polys[slug] = ":".join(f"{lat:.6f},{lng:.6f}" for lat, lng in ring)
-    return polys
+        poly = ":".join(f"{lat:.6f},{lng:.6f}" for lat, lng in ring)
+        lat = sum(p[0] for p in ring) / len(ring)
+        lng = sum(p[1] for p in ring) / len(ring)
+        boroughs[_slugify(name)] = {"label": name, "poly": poly, "centroid": (lat, lng)}
+    return boroughs
 
 
 def _post(path, data):
@@ -236,26 +247,29 @@ def main():
             print(f"FATAL: could not determine latest available month: {exc}")
             sys.exit(1)
 
+    boroughs = load_boroughs()
+    if not boroughs:
+        print("FATAL: no boroughs discovered from london_boundaries.json")
+        sys.exit(1)
+
     print(f"Fetching months: {months}")
-    boundary_polys = _load_boundary_polys()
-    for slug in BOROUGH_CENTROIDS:
-        if slug in boundary_polys:
-            print(f"  {slug}: using real polygon boundary ({boundary_polys[slug].count(':') + 1} points)")
-        else:
-            print(f"  {slug}: WARNING — no boundary found, falling back to point+radius circle")
+    print(f"Boroughs discovered from boundary file: {len(boroughs)}")
+    for slug, info in boroughs.items():
+        print(f"  {slug}: using real polygon boundary ({info['poly'].count(':') + 1} points)")
 
     manifest = load_manifest()
     any_written = False
     any_errors = False
 
     for month in months:
-        for slug, (lat, lng) in BOROUGH_CENTROIDS.items():
+        for slug, info in boroughs.items():
             already = manifest.get(slug, {}).get(month)
             if already:
                 print(f"  {slug} / {month} already fetched on {already}, skipping")
                 continue
             try:
-                records, source = fetch_borough_month(slug, month, boundary_polys.get(slug), lat, lng)
+                lat, lng = info["centroid"]
+                records, source = fetch_borough_month(slug, month, info["poly"], lat, lng)
             except Exception as exc:
                 print(f"  ERROR fetching {slug} / {month}: {exc}")
                 any_errors = True

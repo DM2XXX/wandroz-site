@@ -1,15 +1,16 @@
 """
-Wandroz — London neighbourhood safety scoring (v0.2: day/night + footfall)
+Wandroz — London neighbourhood safety scoring (v0.3: all 32 boroughs)
 
 WHAT THIS DOES
   Reads raw street-level crime JSON (as returned by the UK Police API,
-  https://data.police.uk/api/crimes-street/all-crime) for a set of London
-  boroughs, splits it into a "day" score (property crime — shoplifting,
-  burglary, vehicle/cycle theft, drugs) and a "night" score (violence,
-  robbery, street theft, public order, anti-social behaviour), normalises
-  each by an estimated workday/footfall population instead of plain
-  resident population, and rates every borough against the average of the
-  boroughs currently covered.
+  https://data.police.uk/api/crimes-street/all-crime) for every London
+  borough except the City of London (policed by a separate force, not
+  covered by this dataset), splits it into a "day" score (property crime —
+  shoplifting, burglary, vehicle/cycle theft, drugs) and a "night" score
+  (violence, robbery, street theft, public order, anti-social behaviour),
+  normalises each by an estimated workday/footfall population instead of
+  plain resident population, and rates every borough against the average of
+  the boroughs currently covered.
 
 WHY DAY/NIGHT AND WHY WORKDAY POPULATION (READ THIS)
   The UK Police API does not carry a literal timestamp per incident, so the
@@ -21,15 +22,30 @@ WHY DAY/NIGHT AND WHY WORKDAY POPULATION (READ THIS)
   either pattern cleanly (criminal damage, weapons possession, "other
   theft"/"other crime") are left out of both scores rather than guessed at.
 
-  Central, highly-visited boroughs (Westminster, Camden, Kensington &
-  Chelsea especially) have far more people passing through on a typical day
-  than officially live there — normalising purely by resident population
-  makes them look artificially dangerous. WORKDAY_POPULATION below applies
-  the ratio between resident and workday population that the ONS's 2011
-  Census measured for each borough (the most recent official England &
-  Wales workday-population release; no update has been published since) to
-  each borough's up-to-date 2021 resident population. This is a deliberate
-  approximation, not a fresh ONS statistic — see /methodology.html.
+  Central, highly-visited boroughs have far more people passing through on
+  a typical day than officially live there — normalising purely by resident
+  population makes them look artificially dangerous. WORKDAY_POPULATION
+  below applies a resident-vs-workday ratio to each borough's up-to-date
+  2021 resident population. This is a deliberate approximation, not a fresh
+  ONS statistic — see /methodology.html. Three tiers of confidence apply,
+  recorded per borough as WORKDAY_RATIO_SOURCE (also surfaced in each
+  borough's JSON as "workday_population_source" so the site can disclose it
+  honestly rather than presenting every ratio as equally solid):
+
+    measured_headcount — the ONS's 2011 Census "workday population" release
+      (the most recent official England & Wales workday-population release;
+      no update has been published since) named this borough directly in
+      its resident/workday headcount tables (ages 16-74). Most reliable
+      tier available.
+    measured_density   — the same 2011 release didn't name this borough in
+      its headcount tables, but its "workday population density" table
+      (persons/hectare) covers it, so the resident/workday DENSITY ratio is
+      used as a proxy for the population ratio instead.
+    no_data            — this borough appears in neither table of the 2011
+      release. Rather than inventing a number, the ratio defaults to 1.0
+      (i.e. no correction applied — workday population = resident
+      population), and the site says so explicitly. This is a real
+      limitation, not a hidden guess.
 
 WHERE THE RAW DATA IN data/raw/*.json CAME FROM
   Pulled by fetch_london.py (real HTTP client, full monthly response) via a
@@ -39,13 +55,13 @@ WHERE THE RAW DATA IN data/raw/*.json CAME FROM
 
 TONE THRESHOLD
   Each borough's day (and separately, night) rate is compared against the
-  AVERAGE of that same rate across the boroughs currently on the automated
-  pipeline (5 today) — not a true London-wide average, since only 5 of 33
-  boroughs are covered so far. >=1.3x that average is flagged red ("higher
-  caution"), <=0.8x is green ("relatively safer"), everything between is
-  yellow ("average"). This mirrors the interactive map's existing red/
-  yellow/green legend so a covered borough's page and its polygon on the
-  map always agree.
+  AVERAGE of that same rate across every borough currently on the automated
+  pipeline — which, as of the 32-borough expansion, is effectively all of
+  London except the City of London. >=1.3x that average is flagged red
+  ("higher caution"), <=0.8x is green ("relatively safer"), everything
+  between is yellow ("average"). This mirrors the interactive map's
+  existing red/yellow/green legend so a covered borough's page and its
+  polygon on the map always agree.
 """
 
 import glob
@@ -57,15 +73,47 @@ from collections import Counter
 RAW_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
 OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "scores")
 
-# 2021 UK Census resident population by borough (ONS). Approximate —
-# should be refreshed against the latest ONS mid-year estimate in
-# production rather than hardcoded.
+# 2021 UK Census resident population by borough (ONS). Every borough except
+# the City of London (separate police force, out of scope for this
+# dataset). Westminster/Camden/Islington/Kensington & Chelsea/Lambeth are
+# from the original disclosure-controlled release used since the project's
+# first London pass; the other 27 are from ONS's "Census 2021 area
+# changes" comparison tool (ons.gov.uk/visualisations/censusareachanges),
+# which rounds to the nearest 100 — differences against other ONS 2021
+# rounding passes are under 0.15% and immaterial for a per-capita score.
 BOROUGH_POPULATION = {
     "westminster": 204300,
     "camden": 210200,
     "islington": 215700,
     "kensington_chelsea": 143400,
     "lambeth": 317600,
+    "barking_dagenham": 218900,
+    "barnet": 389300,
+    "bexley": 246500,
+    "brent": 339800,
+    "bromley": 330000,
+    "croydon": 390700,
+    "ealing": 367100,
+    "enfield": 330000,
+    "greenwich": 289100,
+    "hackney": 259100,
+    "hammersmith_fulham": 183200,
+    "haringey": 264200,
+    "harrow": 261200,
+    "havering": 262100,
+    "hillingdon": 305900,
+    "hounslow": 288200,
+    "kingston_upon_thames": 168100,
+    "lewisham": 300600,
+    "merton": 215200,
+    "newham": 351000,
+    "redbridge": 310300,
+    "richmond_upon_thames": 195300,
+    "southwark": 307600,
+    "sutton": 209600,
+    "tower_hamlets": 310300,
+    "waltham_forest": 278400,
+    "wandsworth": 327500,
 }
 
 BOROUGH_LABEL = {
@@ -74,31 +122,131 @@ BOROUGH_LABEL = {
     "islington": "Islington",
     "kensington_chelsea": "Kensington & Chelsea",
     "lambeth": "Lambeth",
+    "barking_dagenham": "Barking and Dagenham",
+    "barnet": "Barnet",
+    "bexley": "Bexley",
+    "brent": "Brent",
+    "bromley": "Bromley",
+    "croydon": "Croydon",
+    "ealing": "Ealing",
+    "enfield": "Enfield",
+    "greenwich": "Greenwich",
+    "hackney": "Hackney",
+    "hammersmith_fulham": "Hammersmith and Fulham",
+    "haringey": "Haringey",
+    "harrow": "Harrow",
+    "havering": "Havering",
+    "hillingdon": "Hillingdon",
+    "hounslow": "Hounslow",
+    "kingston_upon_thames": "Kingston upon Thames",
+    "lewisham": "Lewisham",
+    "merton": "Merton",
+    "newham": "Newham",
+    "redbridge": "Redbridge",
+    "richmond_upon_thames": "Richmond upon Thames",
+    "southwark": "Southwark",
+    "sutton": "Sutton",
+    "tower_hamlets": "Tower Hamlets",
+    "waltham_forest": "Waltham Forest",
+    "wandsworth": "Wandsworth",
 }
 
 # ONS "The workday population of England and Wales" (2011 Census release,
-# published 2013-10-31) — resident vs workday population, ages 16-74:
-#   Westminster            176,000 -> 644,000  (+267%)
-#   Camden                 174,000 -> 337,000  (+94%)
-#   Islington               165,000 -> 226,000  (+37%)
-#   Kensington & Chelsea    126,000 -> 161,000  (+28%)
-#   Lambeth: not in that release's named tables (its workday population is
-#     below its resident population); the release's borough density table
-#     gives resident 89/hectare vs workday 78/hectare, so the ratio 78/89
-#     is used instead of an exact headcount.
-# These ratios are applied to each borough's 2021 resident population
-# above, since no newer official workday-population release exists.
+# published 2013-10-31), ages 16-74. See the module docstring for what the
+# three source tiers (measured_headcount / measured_density / no_data)
+# mean. Headcount ratios (workday / resident):
+#   Westminster            176,000 -> 644,000
+#   Camden                 174,000 -> 337,000
+#   Islington               165,000 -> 226,000
+#   Kensington & Chelsea    126,000 -> 161,000
+#   Croydon                 263,000 -> 210,000
+#   Hillingdon              200,000 -> 235,000
+#   Hammersmith & Fulham    146,000 -> 170,000
+#   Southwark               225,000 -> 261,000
+#   Tower Hamlets           197,000 -> 310,000
+#   Lewisham                206,000 -> 149,000
+#   Wandsworth              244,000 -> 183,000
+#   Redbridge               200,000 -> 154,000
+#   Harrow                  175,000 -> 135,000
+#   Haringey                193,000 -> 150,000
+#   Waltham Forest          191,000 -> 149,000
+#   Bexley                  166,000 -> 130,000
+#   Merton                  150,000 -> 120,000
+# Density ratios (workday persons/hectare / resident persons/hectare) used
+# as a proxy where the release only published density, not a headcount:
+#   Lambeth      78 / 89
+#   Hackney      90 / 98
+#   Ealing       40 / 46
+#   Brent        47 / 54
+#   Newham       55 / 63
+# The remaining boroughs (Barking & Dagenham, Barnet, Bromley, Enfield,
+# Greenwich, Havering, Hounslow, Kingston upon Thames, Richmond upon
+# Thames, Sutton) appear in neither table of the 2011 release — see
+# WORKDAY_RATIO_SOURCE, ratio defaults to 1.0 (no correction) for these.
 WORKDAY_POPULATION_RATIO = {
     "westminster": 644 / 176,
     "camden": 337 / 174,
     "islington": 226 / 165,
     "kensington_chelsea": 161 / 126,
     "lambeth": 78 / 89,
+    "croydon": 210 / 263,
+    "hillingdon": 235 / 200,
+    "hammersmith_fulham": 170 / 146,
+    "southwark": 261 / 225,
+    "tower_hamlets": 310 / 197,
+    "lewisham": 149 / 206,
+    "wandsworth": 183 / 244,
+    "redbridge": 154 / 200,
+    "harrow": 135 / 175,
+    "haringey": 150 / 193,
+    "waltham_forest": 149 / 191,
+    "bexley": 130 / 166,
+    "merton": 120 / 150,
+    "hackney": 90 / 98,
+    "ealing": 40 / 46,
+    "brent": 47 / 54,
+    "newham": 55 / 63,
+}
+DEFAULT_WORKDAY_RATIO = 1.0  # applied when no 2011 release data exists at all
+
+WORKDAY_RATIO_SOURCE = {
+    "westminster": "measured_headcount",
+    "camden": "measured_headcount",
+    "islington": "measured_headcount",
+    "kensington_chelsea": "measured_headcount",
+    "croydon": "measured_headcount",
+    "hillingdon": "measured_headcount",
+    "hammersmith_fulham": "measured_headcount",
+    "southwark": "measured_headcount",
+    "tower_hamlets": "measured_headcount",
+    "lewisham": "measured_headcount",
+    "wandsworth": "measured_headcount",
+    "redbridge": "measured_headcount",
+    "harrow": "measured_headcount",
+    "haringey": "measured_headcount",
+    "waltham_forest": "measured_headcount",
+    "bexley": "measured_headcount",
+    "merton": "measured_headcount",
+    "lambeth": "measured_density",
+    "hackney": "measured_density",
+    "ealing": "measured_density",
+    "brent": "measured_density",
+    "newham": "measured_density",
+    "barking_dagenham": "no_data",
+    "barnet": "no_data",
+    "bromley": "no_data",
+    "enfield": "no_data",
+    "greenwich": "no_data",
+    "havering": "no_data",
+    "hounslow": "no_data",
+    "kingston_upon_thames": "no_data",
+    "richmond_upon_thames": "no_data",
+    "sutton": "no_data",
 }
 
 WORKDAY_POPULATION = {
-    name: round(BOROUGH_POPULATION[name] * ratio)
-    for name, ratio in WORKDAY_POPULATION_RATIO.items()
+    name: round(BOROUGH_POPULATION[name] * WORKDAY_POPULATION_RATIO.get(name, DEFAULT_WORKDAY_RATIO))
+    for name in BOROUGH_POPULATION
 }
 
 # Rough severity weights (higher = more relevant to a traveller's sense of
@@ -203,7 +351,8 @@ def score_borough(name, month, records, manifest):
         "slug": name,
         "population": pop,
         "workday_population": workday_pop,
-        "workday_population_ratio": round(WORKDAY_POPULATION_RATIO[name], 3),
+        "workday_population_ratio": round(WORKDAY_POPULATION_RATIO.get(name, DEFAULT_WORKDAY_RATIO), 3),
+        "workday_population_source": WORKDAY_RATIO_SOURCE.get(name, "no_data"),
         "sample_record_count": total,
         "category_breakdown": dict(counts),
         "day_rate_per_1000": day_rate,
@@ -228,10 +377,12 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     manifest = load_manifest()
     results = []
+    skipped = []
     for name in BOROUGH_POPULATION:
         try:
             month, records = load_borough(name)
         except FileNotFoundError:
+            skipped.append(name)
             continue
         results.append(score_borough(name, month, records, manifest))
 
@@ -243,6 +394,8 @@ def main():
             r["night_tone"] = _tone(r["night_rate_per_1000"], avg_night)
             r["day_vs_covered_average"] = round(r["day_rate_per_1000"] / avg_day, 2) if avg_day else None
             r["night_vs_covered_average"] = round(r["night_rate_per_1000"] / avg_night, 2) if avg_night else None
+            r["covered_count"] = len(results)
+            r["total_boroughs"] = len(BOROUGH_POPULATION)
 
         # Combined rank (average of day+night rate) purely for the
         # "relative rank X among boroughs covered" sentence on each page —
@@ -256,9 +409,11 @@ def main():
         json.dump({"city": "London", "boroughs": results}, f, indent=2)
 
     print(f"Wrote {out_path}")
+    if skipped:
+        print(f"  skipped (no raw data yet): {', '.join(skipped)}")
     for r in results:
         print(
-            f"  #{r['relative_rank']} {r['borough']:<22} "
+            f"  #{r['relative_rank']} {r['borough']:<24} "
             f"sample={r['sample_record_count']:>4}  "
             f"day={r['day_rate_per_1000']}/1000 ({r['day_tone']})  "
             f"night={r['night_rate_per_1000']}/1000 ({r['night_tone']})"

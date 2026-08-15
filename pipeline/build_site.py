@@ -228,16 +228,29 @@ def render_london_map(cities):
     os.makedirs(london_dir, exist_ok=True)
     map_tpl = env.get_template("city_map.html")
     canonical = f"{SITE_URL}/london/"
+    total_zones = len(js_zones)
+    not_covered = total_zones - live_count
+    if live_count >= total_zones - 1:
+        # The only realistic gap left is the City of London (structurally
+        # excluded — separate police force), so say so plainly instead of
+        # a vague "the rest" once coverage is effectively complete.
+        coverage_sentence = (
+            f"{live_count} of {total_zones} boroughs — every London borough except the City of London, which is "
+            "policed separately and isn't covered by this dataset — are refreshed automatically every month."
+        )
+    else:
+        coverage_sentence = (
+            f"{live_count} of {total_zones} boroughs are refreshed automatically every month; the other "
+            f"{not_covered} reflect the same real dataset from when this map was built and aren't on the automatic "
+            "refresh yet."
+        )
     data_note = (
-        "Boundaries and ratings are based on real Metropolitan Police crime data (data.police.uk). Five boroughs — "
-        "Westminster, Camden, Islington, Kensington & Chelsea, Lambeth — are refreshed automatically every month: "
-        "their day score (property crime) and night score (violence, robbery, street theft, public order, "
-        "anti-social behaviour — a category-mix proxy, not literal time-stamped data) are each normalised by an "
-        "estimated workday/footfall population rather than resident population, then rated against the AVERAGE of "
-        "those same 5 boroughs (not yet a full London average, since only 5 of 33 are covered so far). Click one and "
-        "follow the link for the live current numbers and full methodology. The other 28 boroughs reflect the same "
-        "real dataset from when this map was built and aren't on the automatic refresh yet. City of London is "
-        "unrated (policed by a separate force, not covered by this dataset)."
+        f"Boundaries and ratings are based on real Metropolitan Police crime data (data.police.uk). {coverage_sentence} "
+        "Each covered borough's day score (property crime) and night score (violence, robbery, street theft, public "
+        "order, anti-social behaviour — a category-mix proxy, not literal time-stamped data) are normalised by an "
+        f"estimated workday/footfall population rather than resident population, then rated against the AVERAGE of "
+        f"the {live_count} boroughs currently covered (not yet a fixed, borough-independent scale). Click one and "
+        "follow the link for the live current numbers and full methodology."
     )
     html = map_tpl.render(
         lang="en", city_label="London", tagline="Neighbourhood safety for travellers",
@@ -382,7 +395,11 @@ def main():
 
     # Methodology page
     with open(os.path.join(OUT_DIR, "methodology.html"), "w") as f:
-        f.write(methodology_tpl.render(canonical_url=SITE_URL + "/methodology.html"))
+        f.write(methodology_tpl.render(
+            canonical_url=SITE_URL + "/methodology.html",
+            london_covered_count=london_live_count,
+            london_total_boroughs=33,
+        ))
     print(f"Wrote {os.path.join(OUT_DIR, 'methodology.html')}")
 
     # One page per borough/neighbourhood
