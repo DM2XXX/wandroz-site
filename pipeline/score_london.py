@@ -1,5 +1,5 @@
 """
-Wandroz — London neighbourhood safety scoring (v0.3: all 32 boroughs)
+Wandroz — London neighbourhood safety scoring (v0.4: multi-month average)
 
 WHAT THIS DOES
   Reads raw street-level crime JSON (as returned by the UK Police API,
@@ -11,6 +11,15 @@ WHAT THIS DOES
   normalises each by an estimated workday/footfall population instead of
   plain resident population, and rates every borough against the average of
   the boroughs currently covered.
+
+  Each score is now an AVERAGE over the most recent MONTHS_TO_AVERAGE
+  months of data on disk (up to 3), not a single month. fetch_london.py
+  keeps a rolling window of that many months fetched per borough; this
+  script averages per-category counts across whatever's actually
+  available for a borough (fewer than MONTHS_TO_AVERAGE is handled
+  gracefully — e.g. right after a borough is first added). A single
+  unusual month swings the average less this way, which was flagged as a
+  known limitation in /methodology.html until this change.
 
 WHY DAY/NIGHT AND WHY WORKDAY POPULATION (READ THIS)
   The UK Police API does not carry a literal timestamp per incident, so the
@@ -72,6 +81,12 @@ from collections import Counter
 
 RAW_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
 OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "scores")
+
+# How many of the most recent months on disk to average per borough.
+# fetch_london.py keeps this many months' raw files around per borough
+# (its own MONTHS_TO_FETCH); this should be <= that, since averaging can
+# only use what's actually been fetched.
+MONTHS_TO_AVERAGE = 3
 
 # 2021 UK Census resident population by borough (ONS). Every borough except
 # the City of London (separate police force, out of scope for this
@@ -291,29 +306,38 @@ def load_manifest():
     return {}
 
 
-def latest_raw_file(name):
-    """Pick the most recent data/raw/{name}_{YYYY-MM}.json on disk for this
-    borough, rather than a hardcoded month — fetch_london.py always writes
-    whatever the API's current latest month is, which drifts over time."""
+def latest_raw_files(name, n=MONTHS_TO_AVERAGE):
+    """Pick the n most recent data/raw/{name}_{YYYY-MM}.json files on disk
+    for this borough (most-recent-first), rather than hardcoded months —
+    fetch_london.py always writes whatever months the API currently
+    publishes, which drifts over time. Returns fewer than n pairs if fewer
+    months have been fetched yet (e.g. a borough just added)."""
     pattern = os.path.join(RAW_DIR, f"{name}_*.json")
     candidates = []
     for path in glob.glob(pattern):
         m = re.search(r"_(\d{4}-\d{2})\.json$", os.path.basename(path))
         if m:
             candidates.append((m.group(1), path))
-    if not candidates:
-        return None, None
     candidates.sort(key=lambda pair: pair[0], reverse=True)
-    month, path = candidates[0]
-    return month, path
+    return candidates[:n]
 
 
-def load_borough(name):
-    month, path = latest_raw_file(name)
-    if path is None:
+def load_borough_window(name, n=MONTHS_TO_AVERAGE):
+    """Returns (months, counts_per_month): months is a most-recent-first
+    list of 'YYYY-MM' strings actually found on disk (up to n of them);
+    counts_per_month is a parallel list of Counter(category -> incident
+    count) for each of those months."""
+    files = latest_raw_files(name, n)
+    if not files:
         raise FileNotFoundError(f"no raw data files found for borough '{name}'")
-    with open(path) as f:
-        return month, json.load(f)
+    months = []
+    counts_per_month = []
+    for month, path in files:
+        with open(path) as f:
+            records = json.load(f)
+        months.append(month)
+        counts_per_month.append(Counter(r.get("category", "unknown") for r in records))
+    return months, counts_per_month
 
 
 def _weighted_rate(counts, category_set, workday_pop):
@@ -325,26 +349,46 @@ def _weighted_rate(counts, category_set, workday_pop):
     return round((weighted / workday_pop) * 1000, 4)
 
 
-def score_borough(name, month, records, manifest):
+# Completeness tiers ranked worst-to-best so a multi-month window can
+# report its WEAKEST tier honestly (e.g. if one of three months had to
+# fall back to a point/radius circle, the whole window says so) rather
+# than only reflecting the most recent month.
+_COMPLETENESS_RANK = {"partial_sample_legacy": 0, "full_point_radius_fallback": 1, "full_polygon_boundary": 2}
+
+
+def _month_completeness(manifest, name, month):
+    fetched_via = manifest.get(name, {}).get(month, {}).get("source", "")
+    if "polygon boundary" in fetched_via:
+        return "full_polygon_boundary"
+    elif fetched_via:
+        return "full_point_radius_fallback"
+    else:
+        return "partial_sample_legacy"
+
+
+def score_borough(name, months, counts_per_month, manifest):
     pop = BOROUGH_POPULATION[name]
     workday_pop = WORKDAY_POPULATION[name]
-    counts = Counter(r.get("category", "unknown") for r in records)
-    total = sum(counts.values())
+    n_months = len(months)
 
-    day_rate = _weighted_rate(counts, DAY_CATEGORIES, workday_pop)
-    night_rate = _weighted_rate(counts, NIGHT_CATEGORIES, workday_pop)
+    total_counts = Counter()
+    for c in counts_per_month:
+        total_counts.update(c)
+    total_records = sum(total_counts.values())
+    avg_counts = {cat: n / n_months for cat, n in total_counts.items()}
+
+    day_rate = _weighted_rate(avg_counts, DAY_CATEGORIES, workday_pop)
+    night_rate = _weighted_rate(avg_counts, NIGHT_CATEGORIES, workday_pop)
 
     # Distinguish data pulled by fetch_london.py's full HTTP client from
     # the original v0.1 prototype files (truncated by a browser text
-    # tool), and — since fetch_london.py v2 — distinguish a real polygon
-    # boundary query from the old point+radius circle fallback.
-    fetched_via = manifest.get(name, {}).get(month, {}).get("source", "")
-    if "polygon boundary" in fetched_via:
-        completeness = "full_polygon_boundary"
-    elif fetched_via:
-        completeness = "full_point_radius_fallback"
-    else:
-        completeness = "partial_sample_legacy"
+    # tool), and distinguish a real polygon boundary query from the old
+    # point+radius circle fallback — taking the WEAKEST tier found across
+    # the whole window, not just the latest month.
+    completeness = min(
+        (_month_completeness(manifest, name, m) for m in months),
+        key=lambda t: _COMPLETENESS_RANK[t],
+    )
 
     return {
         "borough": BOROUGH_LABEL[name],
@@ -353,11 +397,13 @@ def score_borough(name, month, records, manifest):
         "workday_population": workday_pop,
         "workday_population_ratio": round(WORKDAY_POPULATION_RATIO.get(name, DEFAULT_WORKDAY_RATIO), 3),
         "workday_population_source": WORKDAY_RATIO_SOURCE.get(name, "no_data"),
-        "sample_record_count": total,
-        "category_breakdown": dict(counts),
+        "sample_record_count": total_records,
+        "sample_record_count_avg_per_month": round(total_records / n_months, 1),
+        "category_breakdown": dict(total_counts),
         "day_rate_per_1000": day_rate,
         "night_rate_per_1000": night_rate,
-        "data_month": month,
+        "months_included": months,
+        "data_month": months[0],
         "data_completeness": completeness,
     }
 
@@ -380,11 +426,11 @@ def main():
     skipped = []
     for name in BOROUGH_POPULATION:
         try:
-            month, records = load_borough(name)
+            months, counts_per_month = load_borough_window(name)
         except FileNotFoundError:
             skipped.append(name)
             continue
-        results.append(score_borough(name, month, records, manifest))
+        results.append(score_borough(name, months, counts_per_month, manifest))
 
     if results:
         avg_day = sum(r["day_rate_per_1000"] for r in results) / len(results)

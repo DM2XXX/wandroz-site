@@ -44,19 +44,28 @@ DATA SOURCE
 
 WHAT THIS SCRIPT DOES
   1. Asks the API which months of data are currently available
-     (GET /api/crimes-street-dates) and picks the most recent one, unless
-     FETCH_MONTHS is set explicitly.
-  2. For each borough discovered from london_boundaries.json, POSTs its
-     real polygon boundary (falling back to point+radius if the boundary
-     is missing) and pulls the full crime list for that month.
+     (GET /api/crimes-street-dates) and picks the MONTHS_TO_FETCH most
+     recent ones (3 by default), unless FETCH_MONTHS is set explicitly.
+     Fetching a rolling window of months (not just the latest) is what
+     lets score_london.py average across them instead of a single month's
+     data swinging a borough's relative position — see that module's
+     docstring for why this matters.
+  2. For each borough discovered from london_boundaries.json and each
+     month in that window, POSTs its real polygon boundary (falling back
+     to point+radius if the boundary is missing) and pulls the full crime
+     list for that month.
   3. Writes data/raw/{slug}_{YYYY-MM}.json — same shape score_london.py
      already expects (a plain JSON list of raw crime records).
   4. Updates data/raw/manifest.json so re-runs don't need to re-fetch a
-     month that's already saved, and so the GitHub Actions "commit only if
-     changed" step has something meaningful to diff.
+     month that's already saved (each borough/month pair is fetched at
+     most once, ever), and so the GitHub Actions "commit only if changed"
+     step has something meaningful to diff. This means the first run after
+     this change fetches 2 extra months per borough (a bigger one-off
+     batch); every run after that only fetches the single new month that
+     rolls into the window each time the API publishes one.
 
 USAGE
-  python pipeline/fetch_london.py                # fetch latest available month
+  python pipeline/fetch_london.py                # fetch latest MONTHS_TO_FETCH available months
   FETCH_MONTHS=2026-06,2026-07 python pipeline/fetch_london.py   # backfill specific months
 """
 
@@ -79,6 +88,12 @@ USER_AGENT = "wandroz-site-fetch/0.3 (https://wandroz.com; automated monthly ref
 REQUEST_TIMEOUT = 30
 REQUEST_DELAY_SECONDS = 1.0  # be polite to a free public API
 MAX_RETRIES = 3
+
+# How many of the most recent published months to keep fetched per
+# borough, when FETCH_MONTHS isn't set explicitly. score_london.py
+# averages across whatever's on disk (up to this many months) rather than
+# scoring off a single month — see its docstring.
+MONTHS_TO_FETCH = 3
 
 # Zones present in the boundary file that are intentionally NOT part of
 # this dataset. City of London is policed by the City of London Police,
@@ -202,17 +217,18 @@ def save_manifest(manifest):
         json.dump(manifest, f, indent=2, sort_keys=True)
 
 
-def latest_available_month():
-    """Ask the API which months it actually has data for and return the
-    single most recent one (format 'YYYY-MM'). Doing this instead of
-    hardcoding a date means the monthly GitHub Actions run always tracks
-    whatever the API currently publishes, without needing edits here."""
+def latest_available_months(n=MONTHS_TO_FETCH):
+    """Ask the API which months it actually has data for and return the n
+    most recent ones (format 'YYYY-MM', most-recent-first). Doing this
+    instead of hardcoding dates means the monthly GitHub Actions run
+    always tracks whatever the API currently publishes, without needing
+    edits here."""
     dates = _get("/crimes-street-dates")
     if not dates:
         raise RuntimeError("crimes-street-dates returned no months")
     # API returns most-recent-first already, but sort defensively.
     months = sorted((d["date"] for d in dates), reverse=True)
-    return months[0]
+    return months[:n]
 
 
 def fetch_borough_month(slug, month, poly, lat, lng):
@@ -242,9 +258,9 @@ def main():
         months = [m.strip() for m in months_env.split(",") if m.strip()]
     else:
         try:
-            months = [latest_available_month()]
+            months = latest_available_months(MONTHS_TO_FETCH)
         except Exception as exc:
-            print(f"FATAL: could not determine latest available month: {exc}")
+            print(f"FATAL: could not determine latest available months: {exc}")
             sys.exit(1)
 
     boroughs = load_boroughs()
