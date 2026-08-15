@@ -1,0 +1,82 @@
+{% extends "_base.html" %}
+{% block title %}Methodology — how Wandroz scores neighbourhoods{% endblock %}
+{% block description %}How Wandroz turns official public safety data into neighbourhood scores — sources, method, and current limitations, explained honestly.{% endblock %}
+{% block og_title %}Methodology — how Wandroz scores neighbourhoods{% endblock %}
+{% block og_description %}How Wandroz turns official public safety data into neighbourhood scores — sources, method, and current limitations, explained honestly.{% endblock %}
+{% block content %}
+<h1>How Wandroz scores neighbourhoods</h1>
+<p class="subtitle">Wandroz is early. This page explains exactly what today's scores are based on, what they leave out, and what changes as coverage grows — so you can decide how much to trust them.</p>
+
+<div class="card">
+  <strong>Right now: London only, one data source</strong>
+  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
+    London borough scores come from the UK Home Office's official street-level crime data, published monthly at
+    <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>. No other city is covered by
+    this pipeline yet — see "What's next" below.
+  </p>
+</div>
+
+<h2>How a score is built</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  For each London borough, Wandroz downloads every recorded crime for the most recent month available, within
+  roughly a 1-mile radius of the borough's centre. Each category of crime is weighted by how relevant it typically
+  is to a traveller's sense of safety — violent and sexual offences, robbery, and weapons possession count for more
+  than, say, shoplifting or anti-social behaviour, which are heavily over-represented in the raw data relative to
+  serious crime. The weighted total is then divided by the borough's resident population (2021 census), so a
+  busier but more populous borough isn't unfairly penalised just for having more people in it.
+</p>
+<p style="font-size:13.5px;color:var(--muted);">
+  Boroughs are then ranked against each other — <em>relative to the other London boroughs currently covered</em>,
+  not against some fixed, borough-independent scale, and not against any other city yet.
+</p>
+
+<h2>What this method gets wrong today</h2>
+<div class="note" style="margin-bottom:10px;">
+  <strong>Resident population, not visitor/daytime population.</strong> Central, nightlife-heavy or highly-visited
+  boroughs can end up looking "less safe per resident" simply because relatively few people are officially resident
+  there compared to how many people actually pass through on a given night. A proper fix (weighting by daytime or
+  "workday" population instead of only resident population) is planned but not built yet — treat scores for
+  very central boroughs with that in mind.
+</div>
+<div class="note" style="margin-bottom:10px;">
+  <strong>A circle, not the real boundary.</strong> Each borough is queried as a point plus roughly a 1-mile radius
+  around its centre, not its exact administrative polygon. Incidents right at the edge of a borough may be
+  attributed to the wrong side of the boundary. Switching to exact boundaries is on the roadmap.
+</div>
+<div class="note" style="margin-bottom:10px;">
+  <strong>One month at a time.</strong> Scores reflect the single most recent month the UK Police API has published,
+  not a rolling average — so a single unusual month can swing a borough's relative position more than a longer-term
+  trend would. Averaging several months is planned as more monthly data accumulates.
+</div>
+<div class="note">
+  <strong>No day/night split yet.</strong> The official data doesn't include time-of-day, so today's score doesn't
+  distinguish "safe to walk through at 3pm" from "safe to walk through at 3am" — it's one number for the whole day.
+</div>
+
+<h2>How this scales beyond London</h2>
+<p style="font-size:13.5px;color:var(--muted);">Wandroz is meant to eventually cover neighbourhoods across Europe, not just London. Getting there honestly means being upfront about which of three tiers a city's data currently sits at:</p>
+<table class="breakdown" style="margin-top:10px;">
+  <tr><th>Tier</th><th>What it means</th></tr>
+  <tr><td><b>1 — Official, automated</b></td><td>A government or police API/dataset exists and is pulled automatically on a schedule, with no manual editing. London is here today.</td></tr>
+  <tr><td><b>2 — Local press signal</b></td><td>No clean official feed exists yet, so coverage is built (semi-automatically) from local news and public safety reporting instead.</td></tr>
+  <tr><td><b>3 — Community-verified</b></td><td>Residents confirm or correct scores directly, with multiple independent confirmations required before a correction is applied — to avoid the kind of single-person bias that has undermined similar crowdsourced safety apps in the past.</td></tr>
+</table>
+<p style="font-size:13.5px;color:var(--muted);margin-top:10px;">
+  Every city page will eventually say plainly which tier its data comes from, rather than presenting every score as
+  equally rigorous.
+</p>
+
+<h2>Updates</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  London's data refreshes automatically once a month via a scheduled job that re-pulls the latest official data,
+  recomputes every score, and republishes the site — no manual editing involved.
+</p>
+
+<h2>Feedback</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Wandroz doesn't have a public feedback form yet. If something here looks wrong, that's useful to know — this page
+  will get a proper reporting mechanism as the site matures.
+</p>
+
+<p><a href="/">← Back to the borough rankings</a></p>
+{% endblock %}

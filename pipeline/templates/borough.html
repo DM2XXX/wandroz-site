@@ -1,6 +1,10 @@
 {% extends "_base.html" %}
 {% block title %}Is {{ b.borough }} ({{ city.city }}) safe? — Wandroz{% endblock %}
 {% block description %}Safety data for {{ b.borough }}, {{ city.city }}: {{ b.sample_record_count }} recorded incidents, based on official UK Police data.{% endblock %}
+{% block og_title %}Is {{ b.borough }} ({{ city.city }}) safe? — Wandroz{% endblock %}
+{% block og_description %}Safety data for {{ b.borough }}, {{ city.city }}: {{ b.sample_record_count }} recorded incidents, based on official UK Police data.{% endblock %}
+{% block twitter_title %}Is {{ b.borough }} ({{ city.city }}) safe? — Wandroz{% endblock %}
+{% block twitter_description %}Safety data for {{ b.borough }}, {{ city.city }}: {{ b.sample_record_count }} recorded incidents, based on official UK Police data.{% endblock %}
 {% block content %}
 <p><a href="../index.html">← {{ city.city }}</a></p>
 <h1>{{ b.borough }}, {{ city.city }}</h1>
