@@ -47,15 +47,6 @@ CITY_LINKS = [
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
 
 
-def score_label(rank, total):
-    frac = (rank - 1) / max(total - 1, 1)
-    if frac <= 0.2:
-        return "Relatively safer", "good"
-    if frac <= 0.6:
-        return "Average", "mid"
-    return "Higher caution advised", "caution"
-
-
 def _canon(name):
     """Normalise a borough/neighbourhood name for matching across two
     slightly different naming conventions (e.g. 'Kensington & Chelsea' vs
@@ -181,22 +172,29 @@ def render_london_map(cities):
     description and Booking.com link on click, same as Turin/Zurich — using
     the real Met Police data this map was originally built from. The 5
     boroughs the automated pipeline currently refreshes every month
-    (Westminster, Camden, Islington, Kensington & Chelsea, Lambeth) get an
-    extra line with their live current numbers and a link through to the
-    auto-updating page; the rest show the same real dataset, just not on
-    the automatic monthly refresh yet — never blank/grey placeholders."""
+    (Westminster, Camden, Islington, Kensington & Chelsea, Lambeth) get
+    their polygon colour AND their sidebar text replaced with the real,
+    live-computed day/night rating from score_london.py (category-mix day/
+    night split, workday-population corrected — see that module's
+    docstring) plus a link through to the auto-updating page; the rest show
+    the same baked-in real dataset the map was originally built from, just
+    not on the automatic monthly refresh yet — never blank/grey
+    placeholders."""
     boundaries = load_london_boundaries()
     if not boundaries:
         return []
     london = next((c for c in cities if c["city"].lower() == "london"), None)
     live = {}
     if london:
-        total = len(london["boroughs"])
         for b in london["boroughs"]:
-            label, tone = score_label(b["relative_rank"], total)
             live[_canon(b["borough"])] = {
-                "label": label, "slug": b["slug"], "rank": b["relative_rank"],
+                "slug": b["slug"], "rank": b["relative_rank"],
                 "count": b["sample_record_count"], "month": b["data_month"],
+                "day_tone": b["day_tone"], "night_tone": b["night_tone"],
+                "day_label": EN_TONE_BADGE.get(b["day_tone"], b["day_tone"]),
+                "night_label": EN_TONE_BADGE.get(b["night_tone"], b["night_tone"]),
+                "day_vs_avg": b.get("day_vs_covered_average"),
+                "night_vs_avg": b.get("night_vs_covered_average"),
             }
 
     js_zones = []
@@ -212,9 +210,17 @@ def render_london_map(cities):
         if match:
             live_count += 1
             entry["url"] = f"/london/{match['slug']}.html"
+            # Live boroughs get their colour AND label replaced by the real
+            # computed rating — the baked tester value is only a fallback
+            # for boroughs not yet on the automated pipeline.
+            entry["day"] = match["day_tone"]
+            entry["night"] = match["night_tone"]
+            entry["day_label"] = match["day_label"]
+            entry["night_label"] = match["night_label"]
             entry["text"] = (
-                entry["text"] + f" Automatically kept current from official Metropolitan Police data: currently "
-                f"rank {match['rank']} ({match['label'].lower()}), {match['count']} recorded incidents ({match['month']})."
+                entry["text"] + f" Automatically kept current from official Metropolitan Police data: day "
+                f"{match['day_label'].lower()}, night {match['night_label'].lower()} "
+                f"({match['count']} recorded incidents, {match['month']})."
             )
         js_zones.append(entry)
 
@@ -223,12 +229,15 @@ def render_london_map(cities):
     map_tpl = env.get_template("city_map.html")
     canonical = f"{SITE_URL}/london/"
     data_note = (
-        "Boundaries and ratings are based on real Metropolitan Police crime data (data.police.uk), split into a day "
-        "(property crime) and night (violence, robbery, street theft) score against the London average. Five "
-        "boroughs — Westminster, Camden, Islington, Kensington & Chelsea, Lambeth — are refreshed automatically "
-        "every month by the pipeline; click one and follow the link for the live current numbers. The rest reflect "
-        "the same real dataset from when this map was built and aren't on the automatic refresh yet. City of London "
-        "is unrated (policed by a separate force, not covered by this dataset)."
+        "Boundaries and ratings are based on real Metropolitan Police crime data (data.police.uk). Five boroughs — "
+        "Westminster, Camden, Islington, Kensington & Chelsea, Lambeth — are refreshed automatically every month: "
+        "their day score (property crime) and night score (violence, robbery, street theft, public order, "
+        "anti-social behaviour — a category-mix proxy, not literal time-stamped data) are each normalised by an "
+        "estimated workday/footfall population rather than resident population, then rated against the AVERAGE of "
+        "those same 5 boroughs (not yet a full London average, since only 5 of 33 are covered so far). Click one and "
+        "follow the link for the live current numbers and full methodology. The other 28 boroughs reflect the same "
+        "real dataset from when this map was built and aren't on the automatic refresh yet. City of London is "
+        "unrated (policed by a separate force, not covered by this dataset)."
     )
     html = map_tpl.render(
         lang="en", city_label="London", tagline="Neighbourhood safety for travellers",
@@ -383,10 +392,12 @@ def main():
         os.makedirs(city_dir, exist_ok=True)
         total = len(city["boroughs"])
         for b in city["boroughs"]:
-            label, tone = score_label(b["relative_rank"], total)
+            day_label = EN_TONE_BADGE.get(b.get("day_tone"), b.get("day_tone"))
+            night_label = EN_TONE_BADGE.get(b.get("night_tone"), b.get("night_tone"))
             page_url = f"{SITE_URL}/{city_slug}/{b['slug']}.html"
             page = borough_tpl.render(
-                city=city, b=b, label=label, tone=tone, canonical_url=page_url
+                city=city, b=b, day_label=day_label, night_label=night_label,
+                canonical_url=page_url,
             )
             out_path = os.path.join(city_dir, f"{b['slug']}.html")
             with open(out_path, "w") as f:

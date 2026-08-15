@@ -1,40 +1,51 @@
 """
-Wandroz — London neighbourhood safety scoring (v0.1 prototype)
+Wandroz — London neighbourhood safety scoring (v0.2: day/night + footfall)
 
 WHAT THIS DOES
   Reads raw street-level crime JSON (as returned by the UK Police API,
   https://data.police.uk/api/crimes-street/all-crime) for a set of London
-  boroughs, aggregates crime counts by category, normalises by resident
-  population, and produces a simple per-borough safety score.
+  boroughs, splits it into a "day" score (property crime — shoplifting,
+  burglary, vehicle/cycle theft, drugs) and a "night" score (violence,
+  robbery, street theft, public order, anti-social behaviour), normalises
+  each by an estimated workday/footfall population instead of plain
+  resident population, and rates every borough against the average of the
+  boroughs currently covered.
 
-WHERE THE RAW DATA IN data/raw/*.json CAME FROM (READ THIS)
-  These files were pulled through a browser navigation to the Police API
-  for June 2026, one file per borough centroid (~1 mile radius). The text
-  extraction tool used to grab the page truncated each response at ~50k
-  characters, so each file holds roughly the first ~170 crime records of
-  that borough's actual monthly total (which is larger). This is a REAL
-  sample, not fabricated, but it is NOT the complete month for any borough.
-  Treat scores computed from it as a working demo of the pipeline logic,
-  not as accurate published safety scores yet.
+WHY DAY/NIGHT AND WHY WORKDAY POPULATION (READ THIS)
+  The UK Police API does not carry a literal timestamp per incident, so the
+  day/night split here is a CATEGORY-MIX PROXY, not time-stamped data: crime
+  types that are overwhelmingly daytime (shoplifting, burglary, vehicle/
+  cycle theft, drugs) feed the day score; crime types with a well-documented
+  evening/night skew (violence, robbery, street theft, public order,
+  anti-social behaviour) feed the night score. Categories that don't fit
+  either pattern cleanly (criminal damage, weapons possession, "other
+  theft"/"other crime") are left out of both scores rather than guessed at.
 
-WHAT A PRODUCTION RUN NEEDS TO DO DIFFERENTLY
-  This sandbox's network is restricted (it can only reach a handful of
-  allow-listed domains directly), so a full, unrestricted monthly pull
-  has to run somewhere with normal outbound internet access — e.g. a
-  GitHub Actions workflow (see .github/workflows/refresh-data.yml) or the
-  hosting platform's own serverless cron. There, this same scoring logic
-  should be fed the FULL monthly dataset (either via the same all-crime
-  API paginated by street/LSOA, or via the bulk CSV export at
-  https://data.police.uk/data/) instead of the truncated browser sample.
+  Central, highly-visited boroughs (Westminster, Camden, Kensington &
+  Chelsea especially) have far more people passing through on a typical day
+  than officially live there — normalising purely by resident population
+  makes them look artificially dangerous. WORKDAY_POPULATION below applies
+  the ratio between resident and workday population that the ONS's 2011
+  Census measured for each borough (the most recent official England &
+  Wales workday-population release; no update has been published since) to
+  each borough's up-to-date 2021 resident population. This is a deliberate
+  approximation, not a fresh ONS statistic — see /methodology.html.
 
-METHODOLOGY NOTE
-  A previous analysis session for this project reportedly split scores by
-  day/night and used workday (footfall) population instead of resident
-  population for some central boroughs. The UK Police API does not include
-  time-of-day, and that refinement's exact method wasn't recoverable in
-  this session (no reusable code was found). This v0.1 uses residential
-  population normalisation only; day/night and footfall-based refinements
-  are open follow-up work (tracked in the project dashboard).
+WHERE THE RAW DATA IN data/raw/*.json CAME FROM
+  Pulled by fetch_london.py (real HTTP client, full monthly response) via a
+  GitHub Actions run with normal outbound internet access — this sandbox's
+  own network is restricted, so score_london.py only ever reads whatever
+  fetch_london.py already wrote to data/raw/, it never fetches directly.
+
+TONE THRESHOLD
+  Each borough's day (and separately, night) rate is compared against the
+  AVERAGE of that same rate across the boroughs currently on the automated
+  pipeline (5 today) — not a true London-wide average, since only 5 of 33
+  boroughs are covered so far. >=1.3x that average is flagged red ("higher
+  caution"), <=0.8x is green ("relatively safer"), everything between is
+  yellow ("average"). This mirrors the interactive map's existing red/
+  yellow/green legend so a covered borough's page and its polygon on the
+  map always agree.
 """
 
 import glob
@@ -65,11 +76,36 @@ BOROUGH_LABEL = {
     "lambeth": "Lambeth",
 }
 
+# ONS "The workday population of England and Wales" (2011 Census release,
+# published 2013-10-31) — resident vs workday population, ages 16-74:
+#   Westminster            176,000 -> 644,000  (+267%)
+#   Camden                 174,000 -> 337,000  (+94%)
+#   Islington               165,000 -> 226,000  (+37%)
+#   Kensington & Chelsea    126,000 -> 161,000  (+28%)
+#   Lambeth: not in that release's named tables (its workday population is
+#     below its resident population); the release's borough density table
+#     gives resident 89/hectare vs workday 78/hectare, so the ratio 78/89
+#     is used instead of an exact headcount.
+# These ratios are applied to each borough's 2021 resident population
+# above, since no newer official workday-population release exists.
+WORKDAY_POPULATION_RATIO = {
+    "westminster": 644 / 176,
+    "camden": 337 / 174,
+    "islington": 226 / 165,
+    "kensington_chelsea": 161 / 126,
+    "lambeth": 78 / 89,
+}
+
+WORKDAY_POPULATION = {
+    name: round(BOROUGH_POPULATION[name] * ratio)
+    for name, ratio in WORKDAY_POPULATION_RATIO.items()
+}
+
 # Rough severity weights (higher = more relevant to a traveller's sense of
 # safety). Anti-social-behaviour is intentionally down-weighted since it is
 # heavily over-represented in the API relative to violent/serious crime.
 CATEGORY_WEIGHT = {
-    "violence-and-sexual-offences": 3.0,
+    "violent-crime": 3.0,  # data.police.uk id "violent-crime" = "Violence and sexual offences"
     "robbery": 3.0,
     "possession-of-weapons": 2.5,
     "burglary": 2.0,
@@ -85,6 +121,18 @@ CATEGORY_WEIGHT = {
     "other-crime": 1.0,
 }
 DEFAULT_WEIGHT = 1.0
+
+# Category-mix day/night proxy — see module docstring. Categories not
+# listed here (criminal-damage-arson, possession-of-weapons, other-theft,
+# other-crime) intentionally count towards neither score.
+DAY_CATEGORIES = {"shoplifting", "burglary", "vehicle-crime", "bicycle-theft", "drugs"}
+NIGHT_CATEGORIES = {
+    "violent-crime", "robbery", "theft-from-the-person",
+    "public-order", "anti-social-behaviour",
+}
+
+RED_THRESHOLD = 1.3   # rate >= 1.3x the covered-boroughs average -> red
+GREEN_THRESHOLD = 0.8  # rate <= 0.8x the covered-boroughs average -> green
 
 
 def load_manifest():
@@ -120,17 +168,23 @@ def load_borough(name):
         return month, json.load(f)
 
 
+def _weighted_rate(counts, category_set, workday_pop):
+    weighted = sum(
+        n * CATEGORY_WEIGHT.get(cat, DEFAULT_WEIGHT)
+        for cat, n in counts.items()
+        if cat in category_set
+    )
+    return round((weighted / workday_pop) * 1000, 4)
+
+
 def score_borough(name, month, records, manifest):
     pop = BOROUGH_POPULATION[name]
+    workday_pop = WORKDAY_POPULATION[name]
     counts = Counter(r.get("category", "unknown") for r in records)
     total = sum(counts.values())
 
-    weighted = sum(
-        n * CATEGORY_WEIGHT.get(cat, DEFAULT_WEIGHT) for cat, n in counts.items()
-    )
-    # per-1000-residents rate, in this SAMPLE window (not a full month)
-    rate_per_1000 = (total / pop) * 1000
-    weighted_rate_per_1000 = (weighted / pop) * 1000
+    day_rate = _weighted_rate(counts, DAY_CATEGORIES, workday_pop)
+    night_rate = _weighted_rate(counts, NIGHT_CATEGORIES, workday_pop)
 
     # Distinguish data pulled by fetch_london.py's full HTTP client (a
     # complete point/radius catchment for the month) from the original
@@ -144,13 +198,26 @@ def score_borough(name, month, records, manifest):
         "borough": BOROUGH_LABEL[name],
         "slug": name,
         "population": pop,
+        "workday_population": workday_pop,
+        "workday_population_ratio": round(WORKDAY_POPULATION_RATIO[name], 3),
         "sample_record_count": total,
         "category_breakdown": dict(counts),
-        "rate_per_1000_sample": round(rate_per_1000, 3),
-        "weighted_rate_per_1000_sample": round(weighted_rate_per_1000, 3),
+        "day_rate_per_1000": day_rate,
+        "night_rate_per_1000": night_rate,
         "data_month": month,
         "data_completeness": completeness,
     }
+
+
+def _tone(rate, average):
+    if average <= 0:
+        return "grey"
+    ratio = rate / average
+    if ratio >= RED_THRESHOLD:
+        return "red"
+    if ratio <= GREEN_THRESHOLD:
+        return "green"
+    return "yellow"
 
 
 def main():
@@ -164,11 +231,21 @@ def main():
             continue
         results.append(score_borough(name, month, records, manifest))
 
-    # Rank: lower weighted rate = safer. This is purely relative across
-    # the boroughs we have data for, not an absolute scale.
-    results.sort(key=lambda r: r["weighted_rate_per_1000_sample"])
-    for i, r in enumerate(results, start=1):
-        r["relative_rank"] = i
+    if results:
+        avg_day = sum(r["day_rate_per_1000"] for r in results) / len(results)
+        avg_night = sum(r["night_rate_per_1000"] for r in results) / len(results)
+        for r in results:
+            r["day_tone"] = _tone(r["day_rate_per_1000"], avg_day)
+            r["night_tone"] = _tone(r["night_rate_per_1000"], avg_night)
+            r["day_vs_covered_average"] = round(r["day_rate_per_1000"] / avg_day, 2) if avg_day else None
+            r["night_vs_covered_average"] = round(r["night_rate_per_1000"] / avg_night, 2) if avg_night else None
+
+        # Combined rank (average of day+night rate) purely for the
+        # "relative rank X among boroughs covered" sentence on each page —
+        # the day/night badges are what actually convey the ratings.
+        results.sort(key=lambda r: (r["day_rate_per_1000"] + r["night_rate_per_1000"]) / 2)
+        for i, r in enumerate(results, start=1):
+            r["relative_rank"] = i
 
     out_path = os.path.join(OUT_DIR, "london.json")
     with open(out_path, "w") as f:
@@ -179,7 +256,8 @@ def main():
         print(
             f"  #{r['relative_rank']} {r['borough']:<22} "
             f"sample={r['sample_record_count']:>4}  "
-            f"weighted_rate/1000={r['weighted_rate_per_1000_sample']}"
+            f"day={r['day_rate_per_1000']}/1000 ({r['day_tone']})  "
+            f"night={r['night_rate_per_1000']}/1000 ({r['night_tone']})"
         )
 
 
