@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Greenwich (London) safe? — Wandroz</title>
+<meta name="description" content="Safety data for Greenwich, London: 3011 recorded incidents, based on official UK Police data.">
+<link rel="canonical" href="https://www.wandroz.com/london/greenwich.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wandroz">
+<meta property="og:title" content="Is Greenwich (London) safe? — Wandroz">
+<meta property="og:description" content="Safety data for Greenwich, London: 3011 recorded incidents, based on official UK Police data.">
+<meta property="og:url" content="https://www.wandroz.com/london/greenwich.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is Greenwich (London) safe? — Wandroz">
+<meta name="twitter:description" content="Safety data for Greenwich, London: 3011 recorded incidents, based on official UK Police data.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+  :root{ --ink:#1f2430; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
+    --green:#2e7d46; --green-bg:#e6f4ea; --yellow:#c98a02; --yellow-bg:#fdf3d9;
+    --red:#c0392b; --red-bg:#fbe4e1; --blue:#2b5ea6; --blue-bg:#e8f0fb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.55; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
+  a { color: var(--blue); }
+  header.site { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 28px; }
+  header.site .brand { display:flex; align-items:center; gap:12px; }
+  header.site nav a { color: var(--muted); text-decoration:none; font-size:13.5px; margin-left:18px; }
+  header.site nav a:hover { color: var(--blue); }
+  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; flex-shrink:0; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 18px; }
+  .subtitle { color: var(--muted); margin-bottom: 28px; }
+  .card { background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+  .badge { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; }
+  .badge.good { background: var(--green-bg); color: var(--green); }
+  .badge.mid { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.caution { background: var(--red-bg); color: var(--red); }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.red { background: var(--red-bg); color: var(--red); }
+  .badge.grey { background:#eef0f3; color:var(--muted); }
+  .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
+  .list-item:last-child{ border-bottom:none; }
+  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
+  .city-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; text-decoration:none; color:var(--ink); }
+  .city-card:hover { border-color:#b9bfca; }
+  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:6px; }
+  .city-card .cc { font-size:13px; color:var(--muted); }
+  .note { font-size: 13px; color: var(--muted); background:#fdf3d9; border:1px solid #f1dfa3; border-radius:8px; padding:12px 14px; margin: 18px 0; }
+  table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
+  table.breakdown th, table.breakdown td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }
+  footer { text-align:center; font-size:12px; color:var(--muted); margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="brand">
+      <div class="logo">W</div>
+      <div><strong><a href="/" style="color:inherit;text-decoration:none;">Wandroz</a></strong></div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </header>
+  
+<p><a href="../index.html">← London</a></p>
+<h1>Greenwich, London</h1>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
+<p class="subtitle" style="margin-top:14px;">Relative rank 21 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<div id="minimap" style="height:280px;border-radius:10px;margin:16px 0;border:1px solid var(--line);"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[51.485043614857375, -0.01881475709052587], [51.48457691948989, -0.014658627320972947], [51.48473290428148, -0.010608130999966617], [51.48608685712575, -0.005082987840323052], [51.48842060756349, -0.0014106839979569114], [51.49138941610756, -0.00041651715064779706], [51.49331406873838, -0.0010831341893908753], [51.49792348240709, -0.004162759836755087], [51.5009690611321, -0.005189575107681679], [51.504551652273896, -0.003102231750482511], [51.50603062767531, -0.0009192948185243438], [51.50654958457097, 0.0009532564099872564], [51.5067445849243, 0.003952936581555671], [51.5055098565023, 0.007598495506441519], [51.49843984025894, 0.016908498553888582], [51.4969718830269, 0.020459900389423923], [51.495947256050215, 0.025026521008126877], [51.495784236962365, 0.029041542552364706], [51.49703929377687, 0.04176399920895685], [51.49692743106103, 0.05177923889758363], [51.496430627025056, 0.058626379347339795], [51.49653079868701, 0.06636753357563965], [51.49739875521105, 0.07183753199205883], [51.4993916099354, 0.07682666167068139], [51.502613368903816, 0.08084919679848021], [51.50749084441642, 0.08494703171505405], [51.50968560389885, 0.08804653003909174], [51.51099348270503, 0.09094545593440809], [51.511549427455655, 0.09399915405574844], [51.51189873398377, 0.09970621318820658], [51.51153862760376, 0.10797927755330045], [51.51358456891535, 0.11829604606969976], [51.511042927202155, 0.12053519135798427], [51.487639717209184, 0.12144768561331534], [51.485563817857354, 0.12207309990002388], [51.48223034032647, 0.12213279242239918], [51.47682319441023, 0.12415888654991257], [51.478434845532135, 0.12097282512466512], [51.47889664339003, 0.11849008205612147], [51.473073750166265, 0.11197606915992349], [51.47612643526615, 0.10822555300775123], [51.47501422773818, 0.10616252364066407], [51.47548187284316, 0.10488974037133715], [51.47457920055318, 0.10343997679903706], [51.47488268915634, 0.1025487294858472], [51.474440865044066, 0.10206256315191096], [51.4752198251674, 0.10028132046573911], [51.475448790036154, 0.0982770537275648], [51.473258946887256, 0.0965777403906686], [51.47295897823173, 0.0932996988848986], [51.47043111668884, 0.08917933524985364], [51.469434332952424, 0.08588243589988724], [51.466440834545196, 0.08327065190563608], [51.46660652599247, 0.08224573608419859], [51.46361374099181, 0.08262863997538529], [51.460983130485985, 0.08223002191698864], [51.45983440489392, 0.082876786374939], [51.45926244542352, 0.07863705537811325], [51.45777350682872, 0.0814190329005746], [51.456455414040676, 0.08569989150911383], [51.450450912252215, 0.08679452078349671], [51.447505705715315, 0.08803909998945579], [51.4457470049974, 0.08727974439956453], [51.445312051702274, 0.08629297339405716], [51.443246479809616, 0.08737883947192299], [51.44323642695863, 0.08632212503570051], [51.44261129405196, 0.08471200443898226], [51.443543026406815, 0.08321595137026373], [51.44328755092617, 0.08281045854059056], [51.44283780686012, 0.08283129431605384], [51.442010105268665, 0.08441452420989673], [51.43999799081932, 0.0818316727119575], [51.440451572785435, 0.08081481555484374], [51.43648586701366, 0.07784598664541341], [51.436876956553014, 0.07644101181810568], [51.43591711351552, 0.07496529141367003], [51.434866060399585, 0.07644607105121275], [51.43366311381022, 0.07567776182385204], [51.43330626420059, 0.07609478611412435], [51.43219456101965, 0.07463748737044072], [51.43203032478137, 0.07531960874114059], [51.430830718053784, 0.07483465631299287], [51.431489381968746, 0.07430485742390784], [51.431773320428164, 0.07332718963169405], [51.431378417209515, 0.07303380557977263], [51.431259519323206, 0.0734716747348076], [51.42943468625579, 0.07163582600240548], [51.4267218916217, 0.06693503658792253], [51.42601542457902, 0.06657733612647261], [51.42561713511636, 0.06471479945110559], [51.42427411709492, 0.06334254728541089], [51.42373417160063, 0.06170819858689159], [51.42507890927085, 0.060898455885550935], [51.42455597983371, 0.05862634556025668], [51.42610877103252, 0.05650616981646455], [51.43076802377741, 0.05183926356236474], [51.43807320884754, 0.04294175669976133], [51.43948288815149, 0.0422833351444792], [51.44098566858777, 0.039903280801010715], [51.44383138802234, 0.03263367232431194], [51.44434315589442, 0.030309859706292536], [51.441747526651625, 0.029501865679938667], [51.44162516722584, 0.02888703351381959], [51.44179644546663, 0.025004476619931368], [51.44270272277386, 0.021561872732899924], [51.44417427983645, 0.020634920870146196], [51.444405941316816, 0.021495058995230885], [51.44668688016631, 0.02116089322913793], [51.44719673299092, 0.02291470907793662], [51.448957467422375, 0.021927522064816424], [51.45003826709074, 0.015041729150409909], [51.45072745195989, 0.01983963319850556], [51.451721207891865, 0.019565124409977583], [51.45158717291136, 0.018298822779258365], [51.455049729105724, 0.0174799603497164], [51.45667564212192, 0.011382174793300557], [51.459497131776786, 0.009976426461493711], [51.465874420494394, 0.009095807172433957], [51.46683535281831, 0.013275625730986581], [51.46741636843506, 0.012720823840748838], [51.46813909723621, 0.013130436615925582], [51.46980700479169, 0.01260012414591566], [51.469744945284496, 0.014229187130310732], [51.46900818727359, 0.016310275468735064], [51.469494166715116, 0.01664947788146349], [51.473092752309135, 0.014910306604205103], [51.47391272246769, 0.01832365437300208], [51.47182355394967, -4.4523103913437005e-05], [51.47268035250492, -0.00813023827075501], [51.472340385079846, -0.0125205862858821], [51.47263825193428, -0.014077181730663918], [51.47172955835803, -0.015145754307731399], [51.4689356482424, -0.013130450683655393], [51.46803576535976, -0.015090528000699342], [51.46922751249693, -0.016558985578115176], [51.4690556145167, -0.016949580374965523], [51.46994741212134, -0.01911936857860018], [51.47050026602109, -0.01927267019492709], [51.47064454623481, -0.018673477283253782], [51.47198668800693, -0.01932160850072684], [51.47218313500203, -0.020245454912164545], [51.47301807876686, -0.02000411200468544], [51.47402480616433, -0.021772456793069498], [51.47398487243976, -0.022673024577033823], [51.475081816580854, -0.02292986371873575], [51.47556688667848, -0.020782098000869314], [51.47649766553568, -0.020784143706175533], [51.47719514034045, -0.019042980383846372], [51.479450435567514, -0.018964122230472356], [51.48028733294615, -0.016859747392477864], [51.48084730867825, -0.018402253335143365], [51.4802302322948, -0.020420057255909847], [51.47993538251038, -0.02036801707336851], [51.479628216463304, -0.02307169115791959], [51.48073620759326, -0.023162467157141663], [51.48150995824574, -0.026409261032153783], [51.48508874419806, -0.025189606877340353], [51.4868215222842, -0.02351777471009103], [51.485043614857375, -0.01881475709052587]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.08));
+  } catch(e) {}
+</script>
+<p class="cta-note" style="font-size:11.5px;color:var(--muted);">Real administrative boundary — Office for National Statistics 2021 boundaries, not an approximate circle.</p>
+
+
+<div class="card">
+  <strong>Recorded incidents (sample window)</strong>
+  <table class="breakdown">
+    <tr><th>Category</th><th>Count</th></tr>
+    
+    <tr><td>Violent crime</td><td>1028</td></tr>
+    
+    <tr><td>Anti social behaviour</td><td>605</td></tr>
+    
+    <tr><td>Other theft</td><td>240</td></tr>
+    
+    <tr><td>Vehicle crime</td><td>228</td></tr>
+    
+    <tr><td>Shoplifting</td><td>225</td></tr>
+    
+    <tr><td>Public order</td><td>187</td></tr>
+    
+    <tr><td>Burglary</td><td>133</td></tr>
+    
+    <tr><td>Robbery</td><td>110</td></tr>
+    
+    <tr><td>Drugs</td><td>94</td></tr>
+    
+    <tr><td>Theft from the person</td><td>60</td></tr>
+    
+    <tr><td>Other crime</td><td>38</td></tr>
+    
+    <tr><td>Bicycle theft</td><td>34</td></tr>
+    
+    <tr><td>Possession of weapons</td><td>22</td></tr>
+    
+    <tr><td>Criminal damage arson</td><td>7</td></tr>
+    
+  </table>
+</div>
+
+<div class="note">
+  
+  Data completeness: <strong>full month, real administrative boundary</strong> — 3011 recorded incidents for 2026-06, queried against Greenwich's actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for that exact area.
+  
+  Day score: 2.5192 weighted incidents/1,000 people (99% of the 32-borough average). Night score: 14.0467 weighted incidents/1,000 people (110% of the 32-borough average).
+  
+  Both are normalised by <strong>plain 2021 resident population</strong> (289,100) — no separate workday/footfall figure exists for Greenwich in the ONS's 2011 workday-population release (the most recent one published), so no correction is applied here (ratio 1.0) rather than guessing one. This means Greenwich's score may be slightly overstated relative to boroughs where a real commuter/footfall correction could be applied — see methodology.
+  
+  Rated against the average of the 32 boroughs currently on the automated pipeline.
+</div>
+
+<p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+
+  <footer>Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
+</div>
+</body>
+</html>

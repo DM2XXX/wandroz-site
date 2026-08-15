@@ -1,8 +1,120 @@
 {
+  "barking_dagenham": {
+    "2026-06": {
+      "fetched_records": 2141,
+      "file": "raw/barking_dagenham_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "barnet": {
+    "2026-06": {
+      "fetched_records": 3257,
+      "file": "raw/barnet_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "bexley": {
+    "2026-06": {
+      "fetched_records": 1850,
+      "file": "raw/bexley_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "brent": {
+    "2026-06": {
+      "fetched_records": 3612,
+      "file": "raw/brent_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "bromley": {
+    "2026-06": {
+      "fetched_records": 2443,
+      "file": "raw/bromley_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
   "camden": {
     "2026-06": {
       "fetched_records": 3993,
       "file": "raw/camden_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "croydon": {
+    "2026-06": {
+      "fetched_records": 3698,
+      "file": "raw/croydon_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "ealing": {
+    "2026-06": {
+      "fetched_records": 3703,
+      "file": "raw/ealing_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "enfield": {
+    "2026-06": {
+      "fetched_records": 3237,
+      "file": "raw/enfield_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "greenwich": {
+    "2026-06": {
+      "fetched_records": 3011,
+      "file": "raw/greenwich_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "hackney": {
+    "2026-06": {
+      "fetched_records": 3316,
+      "file": "raw/hackney_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "hammersmith_fulham": {
+    "2026-06": {
+      "fetched_records": 2255,
+      "file": "raw/hammersmith_fulham_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "haringey": {
+    "2026-06": {
+      "fetched_records": 3082,
+      "file": "raw/haringey_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "harrow": {
+    "2026-06": {
+      "fetched_records": 1811,
+      "file": "raw/harrow_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "havering": {
+    "2026-06": {
+      "fetched_records": 2121,
+      "file": "raw/havering_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "hillingdon": {
+    "2026-06": {
+      "fetched_records": 3317,
+      "file": "raw/hillingdon_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "hounslow": {
+    "2026-06": {
+      "fetched_records": 2849,
+      "file": "raw/hounslow_2026-06.json",
       "source": "crimes-street/all-crime (real polygon boundary)"
     }
   },
@@ -20,10 +132,87 @@
       "source": "crimes-street/all-crime (real polygon boundary)"
     }
   },
+  "kingston_upon_thames": {
+    "2026-06": {
+      "fetched_records": 1205,
+      "file": "raw/kingston_upon_thames_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
   "lambeth": {
     "2026-06": {
       "fetched_records": 4557,
       "file": "raw/lambeth_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "lewisham": {
+    "2026-06": {
+      "fetched_records": 3290,
+      "file": "raw/lewisham_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "merton": {
+    "2026-06": {
+      "fetched_records": 1356,
+      "file": "raw/merton_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "newham": {
+    "2026-06": {
+      "fetched_records": 4192,
+      "file": "raw/newham_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "redbridge": {
+    "2026-06": {
+      "fetched_records": 2525,
+      "file": "raw/redbridge_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "richmond_upon_thames": {
+    "2026-06": {
+      "fetched_records": 1324,
+      "file": "raw/richmond_upon_thames_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "southwark": {
+    "2026-06": {
+      "fetched_records": 4350,
+      "file": "raw/southwark_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "sutton": {
+    "2026-06": {
+      "fetched_records": 1440,
+      "file": "raw/sutton_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "tower_hamlets": {
+    "2026-06": {
+      "fetched_records": 4246,
+      "file": "raw/tower_hamlets_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "waltham_forest": {
+    "2026-06": {
+      "fetched_records": 2512,
+      "file": "raw/waltham_forest_2026-06.json",
+      "source": "crimes-street/all-crime (real polygon boundary)"
+    }
+  },
+  "wandsworth": {
+    "2026-06": {
+      "fetched_records": 2733,
+      "file": "raw/wandsworth_2026-06.json",
       "source": "crimes-street/all-crime (real polygon boundary)"
     }
   },

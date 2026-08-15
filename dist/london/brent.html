@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Brent (London) safe? — Wandroz</title>
+<meta name="description" content="Safety data for Brent, London: 3612 recorded incidents, based on official UK Police data.">
+<link rel="canonical" href="https://www.wandroz.com/london/brent.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wandroz">
+<meta property="og:title" content="Is Brent (London) safe? — Wandroz">
+<meta property="og:description" content="Safety data for Brent, London: 3612 recorded incidents, based on official UK Police data.">
+<meta property="og:url" content="https://www.wandroz.com/london/brent.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is Brent (London) safe? — Wandroz">
+<meta name="twitter:description" content="Safety data for Brent, London: 3612 recorded incidents, based on official UK Police data.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+  :root{ --ink:#1f2430; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
+    --green:#2e7d46; --green-bg:#e6f4ea; --yellow:#c98a02; --yellow-bg:#fdf3d9;
+    --red:#c0392b; --red-bg:#fbe4e1; --blue:#2b5ea6; --blue-bg:#e8f0fb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.55; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
+  a { color: var(--blue); }
+  header.site { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 28px; }
+  header.site .brand { display:flex; align-items:center; gap:12px; }
+  header.site nav a { color: var(--muted); text-decoration:none; font-size:13.5px; margin-left:18px; }
+  header.site nav a:hover { color: var(--blue); }
+  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; flex-shrink:0; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 18px; }
+  .subtitle { color: var(--muted); margin-bottom: 28px; }
+  .card { background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+  .badge { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; }
+  .badge.good { background: var(--green-bg); color: var(--green); }
+  .badge.mid { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.caution { background: var(--red-bg); color: var(--red); }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.red { background: var(--red-bg); color: var(--red); }
+  .badge.grey { background:#eef0f3; color:var(--muted); }
+  .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
+  .list-item:last-child{ border-bottom:none; }
+  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
+  .city-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; text-decoration:none; color:var(--ink); }
+  .city-card:hover { border-color:#b9bfca; }
+  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:6px; }
+  .city-card .cc { font-size:13px; color:var(--muted); }
+  .note { font-size: 13px; color: var(--muted); background:#fdf3d9; border:1px solid #f1dfa3; border-radius:8px; padding:12px 14px; margin: 18px 0; }
+  table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
+  table.breakdown th, table.breakdown td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }
+  footer { text-align:center; font-size:12px; color:var(--muted); margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="brand">
+      <div class="logo">W</div>
+      <div><strong><a href="/" style="color:inherit;text-decoration:none;">Wandroz</a></strong></div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </header>
+  
+<p><a href="../index.html">← London</a></p>
+<h1>Brent, London</h1>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
+<p class="subtitle" style="margin-top:14px;">Relative rank 26 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<div id="minimap" style="height:280px;border-radius:10px;margin:16px 0;border:1px solid var(--line);"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[51.535681207074425, -0.29058611370024184], [51.53675551841307, -0.28675174054297803], [51.53862600618785, -0.28256320730945156], [51.53502976610847, -0.2778805669153501], [51.53329198238739, -0.27907436720748735], [51.53263417936969, -0.28115271757018695], [51.53324344785222, -0.2816218585571987], [51.532818029173605, -0.28353888724311865], [51.53351739209865, -0.28403884497331344], [51.53166596208573, -0.2893894835979087], [51.52919339384393, -0.28570293442059347], [51.52840556386444, -0.2804795588471108], [51.52923208673259, -0.2771969887022371], [51.53004296311055, -0.2705930435643117], [51.52976457322266, -0.27041703643056075], [51.530002383017724, -0.2696766445304303], [51.52972559923188, -0.26914635618717725], [51.530155524176486, -0.2675259987587321], [51.53137140179254, -0.2651848570532685], [51.53218426898917, -0.26485377727092146], [51.534533622390306, -0.26043426518641205], [51.53533661626704, -0.2578088439648384], [51.53492765227202, -0.2564474747024949], [51.53395236949114, -0.2560500259352724], [51.53414177018146, -0.25234128645692455], [51.53389546898982, -0.25114044229684074], [51.53418323775289, -0.2507734216296443], [51.53347107099186, -0.24722672974026352], [51.53269663426936, -0.24621492013541996], [51.53178379217482, -0.243430330647177], [51.532017846620626, -0.23735013480212097], [51.53269160188935, -0.2344589633311936], [51.53108806788522, -0.23139557361106294], [51.530154346124206, -0.22759144431803896], [51.529926247690966, -0.22769516774187917], [51.52997617959251, -0.22377867898402357], [51.52792820221641, -0.21603020536009948], [51.529772460939306, -0.21583556886891453], [51.530258367214344, -0.21510565661408604], [51.53136421543668, -0.21526872078905804], [51.532863210424864, -0.2074693010778403], [51.53298114894517, -0.2050200703261542], [51.53265029827658, -0.20173654071021807], [51.530853624891236, -0.19885925071743432], [51.5300776958025, -0.1979768299906095], [51.527899901641774, -0.19780058020010077], [51.52765301497785, -0.1965689254151969], [51.532893381050975, -0.1924111116002109], [51.53398832364937, -0.19303733197627324], [51.53628909992694, -0.1914835287887322], [51.5498322599425, -0.2068132130015133], [51.55393763212804, -0.21238157888265424], [51.55912403411469, -0.21832112985032923], [51.56294047778248, -0.22195517086445982], [51.566793868872146, -0.2267206021360368], [51.56796769782068, -0.22882040599489975], [51.571979242435816, -0.2334422666341246], [51.57179927653908, -0.23450987698074505], [51.57228909922764, -0.2355808383770457], [51.57257513401198, -0.2354485456072627], [51.57230888491408, -0.2359339093157265], [51.57248076264859, -0.2375820124807196], [51.571769252331976, -0.2380884748458502], [51.572252078947834, -0.23885121928760963], [51.57210903050392, -0.24000931019335756], [51.572388092609124, -0.23996938219929634], [51.57210706922395, -0.2411260161781854], [51.57266557338352, -0.2413894638998461], [51.57282297213935, -0.24235803885600113], [51.572451035608374, -0.24250716675261172], [51.572269083465066, -0.2437299558767033], [51.57255191827584, -0.24433870539251548], [51.571905063553984, -0.2450936613421634], [51.57219699202958, -0.24599240589398802], [51.57152932171112, -0.24673312556418095], [51.5709563891965, -0.2460088435631734], [51.57002127823316, -0.24657440834823388], [51.56978220849983, -0.24607135127798163], [51.568958307202166, -0.24659914468371774], [51.56896329494717, -0.24738449306538737], [51.568554414985414, -0.2469992256398837], [51.568420365832246, -0.24735616798476923], [51.56897730443047, -0.2495762237765589], [51.571536011475196, -0.2526197005593483], [51.572576927852836, -0.2531007301245765], [51.57313516398772, -0.2513554281202523], [51.5788421741897, -0.2544151807319954], [51.58146295863591, -0.25439587169713085], [51.583456610536174, -0.251669523518378], [51.58436338174719, -0.24828566196545143], [51.588895155605144, -0.25307149030487813], [51.5920238818094, -0.25742382968583744], [51.6003696196277, -0.26715593540316823], [51.59831367529367, -0.2711408796727248], [51.59837155251845, -0.2730017136199086], [51.59689183241587, -0.2769756688550903], [51.59651415120416, -0.27651581301791095], [51.59560366427567, -0.28406951381330936], [51.59528868804468, -0.28546784128358654], [51.594748041949195, -0.2857980298419666], [51.59357048684894, -0.2904267487541631], [51.59218780685281, -0.28643463375495926], [51.591007745886714, -0.28465485618376446], [51.58888145557119, -0.283364272754078], [51.5851001030774, -0.2824345929707229], [51.58724040965911, -0.30079295181064725], [51.587053270099176, -0.3048466713198582], [51.58426159295488, -0.31307572757716245], [51.58043588520845, -0.32021248497810617], [51.578772164428756, -0.3266721639219075], [51.57319279408735, -0.32475184681008773], [51.569653420368674, -0.3221562089621585], [51.56825646121799, -0.32507585592831245], [51.56708641548913, -0.3297461490943179], [51.566213371208576, -0.32964583246594553], [51.565942467135166, -0.32866914802151526], [51.56247578334961, -0.3282399345805565], [51.562391849838775, -0.3296897770193427], [51.56152471035847, -0.33142032444333436], [51.558874128126, -0.33392418716485894], [51.557709435477705, -0.3339798744799027], [51.557831164821394, -0.3349093523942706], [51.55668737094683, -0.3355507874958565], [51.555296680679405, -0.3279643814477048], [51.55183416459598, -0.31858467779530775], [51.54923759363675, -0.31274890463920363], [51.5475587911695, -0.31149624632507045], [51.54593815821905, -0.3078416907090065], [51.545283177792875, -0.30718210383103145], [51.54524316712083, -0.3089596401509962], [51.54445621723083, -0.3080964049402428], [51.543239195872914, -0.30857619903686], [51.53985715877038, -0.30473561267989635], [51.53942911990791, -0.3059678463930287], [51.53422956260562, -0.306258204166535], [51.53306558229593, -0.3075031473419278], [51.53198204955033, -0.30273186895830684], [51.53325173484042, -0.2995567884233316], [51.53524059633379, -0.2965899919468808], [51.53493310354821, -0.2935239612755389], [51.535681207074425, -0.29058611370024184]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.08));
+  } catch(e) {}
+</script>
+<p class="cta-note" style="font-size:11.5px;color:var(--muted);">Real administrative boundary — Office for National Statistics 2021 boundaries, not an approximate circle.</p>
+
+
+<div class="card">
+  <strong>Recorded incidents (sample window)</strong>
+  <table class="breakdown">
+    <tr><th>Category</th><th>Count</th></tr>
+    
+    <tr><td>Violent crime</td><td>1092</td></tr>
+    
+    <tr><td>Anti social behaviour</td><td>950</td></tr>
+    
+    <tr><td>Vehicle crime</td><td>237</td></tr>
+    
+    <tr><td>Other theft</td><td>235</td></tr>
+    
+    <tr><td>Shoplifting</td><td>232</td></tr>
+    
+    <tr><td>Drugs</td><td>189</td></tr>
+    
+    <tr><td>Public order</td><td>188</td></tr>
+    
+    <tr><td>Theft from the person</td><td>147</td></tr>
+    
+    <tr><td>Burglary</td><td>129</td></tr>
+    
+    <tr><td>Robbery</td><td>92</td></tr>
+    
+    <tr><td>Other crime</td><td>54</td></tr>
+    
+    <tr><td>Possession of weapons</td><td>33</td></tr>
+    
+    <tr><td>Bicycle theft</td><td>27</td></tr>
+    
+    <tr><td>Criminal damage arson</td><td>7</td></tr>
+    
+  </table>
+</div>
+
+<div class="note">
+  
+  Data completeness: <strong>full month, real administrative boundary</strong> — 3612 recorded incidents for 2026-06, queried against Brent's actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for that exact area.
+  
+  Day score: 2.7814 weighted incidents/1,000 people (109% of the 32-borough average). Night score: 15.373 weighted incidents/1,000 people (120% of the 32-borough average).
+  
+  Both are normalised by an estimated <strong>workday/footfall population</strong> of 295,752 (2021 resident population of 339,800, scaled by a density-based proxy resident-vs-workday ratio from the ONS's 2011 Census release for Brent — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents.
+  
+  Rated against the average of the 32 boroughs currently on the automated pipeline.
+</div>
+
+<p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+
+  <footer>Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
+</div>
+</body>
+</html>

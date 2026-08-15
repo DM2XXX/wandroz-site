@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Enfield (London) safe? — Wandroz</title>
+<meta name="description" content="Safety data for Enfield, London: 3237 recorded incidents, based on official UK Police data.">
+<link rel="canonical" href="https://www.wandroz.com/london/enfield.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wandroz">
+<meta property="og:title" content="Is Enfield (London) safe? — Wandroz">
+<meta property="og:description" content="Safety data for Enfield, London: 3237 recorded incidents, based on official UK Police data.">
+<meta property="og:url" content="https://www.wandroz.com/london/enfield.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is Enfield (London) safe? — Wandroz">
+<meta name="twitter:description" content="Safety data for Enfield, London: 3237 recorded incidents, based on official UK Police data.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+  :root{ --ink:#1f2430; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
+    --green:#2e7d46; --green-bg:#e6f4ea; --yellow:#c98a02; --yellow-bg:#fdf3d9;
+    --red:#c0392b; --red-bg:#fbe4e1; --blue:#2b5ea6; --blue-bg:#e8f0fb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.55; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
+  a { color: var(--blue); }
+  header.site { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 28px; }
+  header.site .brand { display:flex; align-items:center; gap:12px; }
+  header.site nav a { color: var(--muted); text-decoration:none; font-size:13.5px; margin-left:18px; }
+  header.site nav a:hover { color: var(--blue); }
+  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; flex-shrink:0; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 18px; }
+  .subtitle { color: var(--muted); margin-bottom: 28px; }
+  .card { background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+  .badge { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; }
+  .badge.good { background: var(--green-bg); color: var(--green); }
+  .badge.mid { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.caution { background: var(--red-bg); color: var(--red); }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.red { background: var(--red-bg); color: var(--red); }
+  .badge.grey { background:#eef0f3; color:var(--muted); }
+  .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
+  .list-item:last-child{ border-bottom:none; }
+  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
+  .city-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; text-decoration:none; color:var(--ink); }
+  .city-card:hover { border-color:#b9bfca; }
+  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:6px; }
+  .city-card .cc { font-size:13px; color:var(--muted); }
+  .note { font-size: 13px; color: var(--muted); background:#fdf3d9; border:1px solid #f1dfa3; border-radius:8px; padding:12px 14px; margin: 18px 0; }
+  table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
+  table.breakdown th, table.breakdown td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }
+  footer { text-align:center; font-size:12px; color:var(--muted); margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="brand">
+      <div class="logo">W</div>
+      <div><strong><a href="/" style="color:inherit;text-decoration:none;">Wandroz</a></strong></div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </header>
+  
+<p><a href="../index.html">← London</a></p>
+<h1>Enfield, London</h1>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
+<p class="subtitle" style="margin-top:14px;">Relative rank 15 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<div id="minimap" style="height:280px;border-radius:10px;margin:16px 0;border:1px solid var(--line);"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[51.60883451310047, -0.055361239934909184], [51.60853305384055, -0.05294549261549237], [51.608022937592146, -0.053066392531849124], [51.60735416064987, -0.050232743640108136], [51.605630860724325, -0.04145164302584257], [51.60837861845293, -0.035022792730192036], [51.609664165700806, -0.033995857735424094], [51.61204667956375, -0.03558814860417758], [51.61357849231803, -0.03507424544304671], [51.61672228228881, -0.03231047533703583], [51.6219868030245, -0.02576316329196254], [51.62425162783346, -0.024452131671240423], [51.63545934313698, -0.015394811345575622], [51.63984687550044, -0.013279196461617699], [51.64975670447472, -0.011660563913552021], [51.652978618640404, -0.01181996610537094], [51.66030722063179, -0.008954844820588488], [51.66379290348653, -0.011514298358006134], [51.66760366392042, -0.01124518141477892], [51.669134779881674, -0.010585187470883127], [51.6719160696422, -0.011377209629907372], [51.67648393832942, -0.010287561470339372], [51.680867165291865, -0.011091789946172874], [51.68114845738664, -0.01979858167768007], [51.68254121101219, -0.030661080555607317], [51.682945096763426, -0.04249186455408705], [51.68343169638864, -0.04426902899265377], [51.68345253096326, -0.04718568204828409], [51.68426928179314, -0.04920781642542363], [51.68353233391575, -0.05172016802142852], [51.682985776203815, -0.056626798925362785], [51.68300533474717, -0.06204451670816469], [51.68384291629852, -0.06636759841144586], [51.68891190961809, -0.07902153297870493], [51.68996220216248, -0.08393706970677395], [51.690111523075245, -0.09480280580749484], [51.69184765546127, -0.10487427433831017], [51.69167231644398, -0.10977478146899594], [51.68898066151278, -0.1179961529017442], [51.688561949544074, -0.12183126232885848], [51.68891247542636, -0.13027493239290522], [51.68872235739937, -0.13540434978614116], [51.68791780389749, -0.13961127924029942], [51.68633184563724, -0.14468288211263075], [51.685514693683686, -0.14939525460597727], [51.68585401305641, -0.153282968641331], [51.68723762011059, -0.15801705245266712], [51.688111479117794, -0.16351814890062147], [51.68239959922138, -0.1636326847228545], [51.67308792721902, -0.17249821833126666], [51.67344618271074, -0.1753555317143145], [51.6725893334078, -0.17546690745191068], [51.67267594924566, -0.1770317458568156], [51.672096418530096, -0.17673756526628207], [51.66860078958159, -0.1821101474740435], [51.66283246938834, -0.18589168339572107], [51.65822428914558, -0.16504388310625806], [51.6581661408467, -0.16350429147166107], [51.65674958690082, -0.16051680726590645], [51.65553090139349, -0.1547877843262074], [51.65502786279254, -0.15472422057641164], [51.654662924548916, -0.15378402329463797], [51.653302724485975, -0.15349075134877488], [51.65297519011015, -0.1542320828863548], [51.651467400057356, -0.15256484920902605], [51.649845591553095, -0.15227041643748812], [51.650075545142926, -0.15102064792211617], [51.648791837179466, -0.14992096333001978], [51.64798480446272, -0.15227553916684428], [51.647639308707625, -0.15238339757032476], [51.64720478977839, -0.15106879401312917], [51.64582226344647, -0.152168189629802], [51.64536141254768, -0.15175143152486037], [51.64524911306278, -0.14916629958341812], [51.64208152882613, -0.14792053159397797], [51.642645479714176, -0.14510348904935136], [51.63819207258783, -0.14108065397263694], [51.634810543505935, -0.13478393816950524], [51.634419641981665, -0.13429695510321865], [51.63378994009781, -0.13463853332916362], [51.634049580606394, -0.13398975404088273], [51.63318172950393, -0.13322613941959668], [51.63226790493543, -0.1291629578192397], [51.629661268951395, -0.1311489994332792], [51.62937722474123, -0.13046712825402434], [51.62634422832988, -0.13354380603486035], [51.621786995582525, -0.1354002451663335], [51.61773156649254, -0.1406410490571863], [51.61758774596554, -0.14138853806125826], [51.616200585290564, -0.14197937205921066], [51.61548379736791, -0.14453728463116525], [51.610218300297454, -0.13882194957097238], [51.6112143271918, -0.13528266489719554], [51.60944360974788, -0.12825239626537285], [51.6093044227771, -0.12640457331504854], [51.61001756559593, -0.12535425526803817], [51.608701661297694, -0.12347724100292291], [51.608352890590226, -0.11917066399869287], [51.608588697596915, -0.11870656405632882], [51.60819996453374, -0.1175180150335172], [51.60861997847659, -0.1108057728026847], [51.60827391663213, -0.11003838391718007], [51.60847982793528, -0.1039819921944875], [51.60801719724175, -0.10248686692013363], [51.60846710380852, -0.10180376276097229], [51.60850002502261, -0.09744977569730875], [51.608954196032926, -0.09767500860336696], [51.60927506740806, -0.0958295597328037], [51.60864327103633, -0.09518182901240528], [51.60908026813385, -0.09259364289269352], [51.60840336980197, -0.08585754620526669], [51.60863469256976, -0.0677265474222344], [51.608917495473165, -0.06707054891080048], [51.60856264814498, -0.0653454615203805], [51.60883451310047, -0.055361239934909184]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.08));
+  } catch(e) {}
+</script>
+<p class="cta-note" style="font-size:11.5px;color:var(--muted);">Real administrative boundary — Office for National Statistics 2021 boundaries, not an approximate circle.</p>
+
+
+<div class="card">
+  <strong>Recorded incidents (sample window)</strong>
+  <table class="breakdown">
+    <tr><th>Category</th><th>Count</th></tr>
+    
+    <tr><td>Violent crime</td><td>950</td></tr>
+    
+    <tr><td>Anti social behaviour</td><td>733</td></tr>
+    
+    <tr><td>Vehicle crime</td><td>352</td></tr>
+    
+    <tr><td>Shoplifting</td><td>251</td></tr>
+    
+    <tr><td>Other theft</td><td>228</td></tr>
+    
+    <tr><td>Public order</td><td>162</td></tr>
+    
+    <tr><td>Drugs</td><td>152</td></tr>
+    
+    <tr><td>Robbery</td><td>111</td></tr>
+    
+    <tr><td>Burglary</td><td>109</td></tr>
+    
+    <tr><td>Theft from the person</td><td>94</td></tr>
+    
+    <tr><td>Other crime</td><td>38</td></tr>
+    
+    <tr><td>Possession of weapons</td><td>29</td></tr>
+    
+    <tr><td>Bicycle theft</td><td>18</td></tr>
+    
+    <tr><td>Criminal damage arson</td><td>10</td></tr>
+    
+  </table>
+</div>
+
+<div class="note">
+  
+  Data completeness: <strong>full month, real administrative boundary</strong> — 3237 recorded incidents for 2026-06, queried against Enfield's actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for that exact area.
+  
+  Day score: 2.673 weighted incidents/1,000 people (105% of the 32-borough average). Night score: 11.9148 weighted incidents/1,000 people (93% of the 32-borough average).
+  
+  Both are normalised by <strong>plain 2021 resident population</strong> (330,000) — no separate workday/footfall figure exists for Enfield in the ONS's 2011 workday-population release (the most recent one published), so no correction is applied here (ratio 1.0) rather than guessing one. This means Enfield's score may be slightly overstated relative to boroughs where a real commuter/footfall correction could be applied — see methodology.
+  
+  Rated against the average of the 32 boroughs currently on the automated pipeline.
+</div>
+
+<p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+
+  <footer>Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
+</div>
+</body>
+</html>

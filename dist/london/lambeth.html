@@ -75,7 +75,7 @@
   <span class="badge red">Higher caution advised</span> <span style="font-size:12px;color:var(--muted);">day</span>
   <span class="badge red">Higher caution advised</span> <span style="font-size:12px;color:var(--muted);">night</span>
 </div>
-<p class="subtitle" style="margin-top:14px;">Relative rank 5 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
+<p class="subtitle" style="margin-top:14px;">Relative rank 32 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
@@ -134,7 +134,11 @@
   
   Data completeness: <strong>full month, real administrative boundary</strong> — 4557 recorded incidents for 2026-06, queried against Lambeth's actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for that exact area.
   
-  Day score: 3.6081 weighted incidents/1,000 people (140% of the 5-borough average). Night score: 19.9371 weighted incidents/1,000 people (152% of the 5-borough average). Both are normalised by an estimated <strong>workday/footfall population</strong> of 278,346 (2021 resident population of 317,600, scaled by the 2011 Census resident-vs-workday ratio for Lambeth — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents. Rated against the average of the 5 boroughs currently on the automated pipeline, not yet a full London average.
+  Day score: 3.6081 weighted incidents/1,000 people (141% of the 32-borough average). Night score: 19.9371 weighted incidents/1,000 people (156% of the 32-borough average).
+  
+  Both are normalised by an estimated <strong>workday/footfall population</strong> of 278,346 (2021 resident population of 317,600, scaled by a density-based proxy resident-vs-workday ratio from the ONS's 2011 Census release for Lambeth — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents.
+  
+  Rated against the average of the 32 boroughs currently on the automated pipeline.
 </div>
 
 <p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>

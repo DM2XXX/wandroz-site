@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Merton (London) safe? — Wandroz</title>
+<meta name="description" content="Safety data for Merton, London: 1356 recorded incidents, based on official UK Police data.">
+<link rel="canonical" href="https://www.wandroz.com/london/merton.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wandroz">
+<meta property="og:title" content="Is Merton (London) safe? — Wandroz">
+<meta property="og:description" content="Safety data for Merton, London: 1356 recorded incidents, based on official UK Police data.">
+<meta property="og:url" content="https://www.wandroz.com/london/merton.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is Merton (London) safe? — Wandroz">
+<meta name="twitter:description" content="Safety data for Merton, London: 1356 recorded incidents, based on official UK Police data.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+  :root{ --ink:#1f2430; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
+    --green:#2e7d46; --green-bg:#e6f4ea; --yellow:#c98a02; --yellow-bg:#fdf3d9;
+    --red:#c0392b; --red-bg:#fbe4e1; --blue:#2b5ea6; --blue-bg:#e8f0fb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.55; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
+  a { color: var(--blue); }
+  header.site { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 28px; }
+  header.site .brand { display:flex; align-items:center; gap:12px; }
+  header.site nav a { color: var(--muted); text-decoration:none; font-size:13.5px; margin-left:18px; }
+  header.site nav a:hover { color: var(--blue); }
+  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; flex-shrink:0; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 18px; }
+  .subtitle { color: var(--muted); margin-bottom: 28px; }
+  .card { background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+  .badge { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; }
+  .badge.good { background: var(--green-bg); color: var(--green); }
+  .badge.mid { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.caution { background: var(--red-bg); color: var(--red); }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.red { background: var(--red-bg); color: var(--red); }
+  .badge.grey { background:#eef0f3; color:var(--muted); }
+  .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
+  .list-item:last-child{ border-bottom:none; }
+  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
+  .city-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; text-decoration:none; color:var(--ink); }
+  .city-card:hover { border-color:#b9bfca; }
+  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:6px; }
+  .city-card .cc { font-size:13px; color:var(--muted); }
+  .note { font-size: 13px; color: var(--muted); background:#fdf3d9; border:1px solid #f1dfa3; border-radius:8px; padding:12px 14px; margin: 18px 0; }
+  table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
+  table.breakdown th, table.breakdown td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }
+  footer { text-align:center; font-size:12px; color:var(--muted); margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="brand">
+      <div class="logo">W</div>
+      <div><strong><a href="/" style="color:inherit;text-decoration:none;">Wandroz</a></strong></div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </header>
+  
+<p><a href="../index.html">← London</a></p>
+<h1>Merton, London</h1>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge green">Relatively safer</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
+<p class="subtitle" style="margin-top:14px;">Relative rank 8 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<div id="minimap" style="height:280px;border-radius:10px;margin:16px 0;border:1px solid var(--line);"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[51.42412921640593, -0.17767165179065736], [51.4231821133118, -0.1735984922810477], [51.42091079215659, -0.16842561627139813], [51.42033986865422, -0.16483377279317715], [51.42009223244176, -0.16509351841556258], [51.41982384344148, -0.16169315263993828], [51.42193470071286, -0.159969628038425], [51.42266872041164, -0.16003536528965878], [51.41985314931089, -0.15132744922405614], [51.42001505897281, -0.14978010255752172], [51.41774384509635, -0.14456746583071675], [51.419249454085026, -0.1404067843185413], [51.41589376374811, -0.14498048455095858], [51.41546392009467, -0.14413443590745934], [51.41384590556698, -0.1470802777266635], [51.412868980930114, -0.14805536660218188], [51.41253804274609, -0.14680327243580113], [51.41233937027791, -0.14471581584060073], [51.41331868707194, -0.14264477100594913], [51.41217836985569, -0.139546177632613], [51.41100850810265, -0.13407611834174066], [51.41291809808334, -0.13353963228568963], [51.4125842397178, -0.13357595034672928], [51.41234429488655, -0.1327391554688637], [51.41198398539472, -0.1279327405928116], [51.412258237540556, -0.12759913226552105], [51.40957471100799, -0.12947829364828814], [51.409504736295396, -0.13125872959308044], [51.4092242773358, -0.13128267447029954], [51.4091707702664, -0.13208923310383086], [51.40845679654267, -0.13195656521063884], [51.40840580183211, -0.13248089032029708], [51.404093302568754, -0.1312807762460039], [51.401822617919066, -0.12814023704277358], [51.39895292063392, -0.12536420771189372], [51.39836487097207, -0.1256947443124912], [51.39760138846569, -0.12422211465728611], [51.393672183768885, -0.12975599563946583], [51.393437613871406, -0.1289479487607326], [51.39088585192067, -0.13437917468585045], [51.38934389296939, -0.14192407313861555], [51.390429668584744, -0.1432572006759479], [51.390678565470125, -0.14437989690416114], [51.389290537021076, -0.1578975264378619], [51.387768800167116, -0.16103478917052985], [51.38815667662935, -0.161930320132013], [51.38802168874404, -0.16540124834843897], [51.38969445178166, -0.16646090579228082], [51.39139627501466, -0.1698812105126211], [51.39254896924068, -0.17127620625632975], [51.392643033928294, -0.17289039570582695], [51.39341771638662, -0.1748674733188012], [51.389467299537294, -0.17986550357809147], [51.38962323065703, -0.18014332756524978], [51.38803180411013, -0.18272166543520854], [51.38756840981127, -0.18455454113408962], [51.38545094638851, -0.1884551875815183], [51.38785869756597, -0.19321771527274703], [51.3878718983878, -0.19395148586826572], [51.38488440055826, -0.20050539967989695], [51.38722608296541, -0.20351795068246314], [51.38609234136503, -0.20502900403265448], [51.38825269912879, -0.20979435245531067], [51.38015011491452, -0.21813760524369347], [51.38395310094265, -0.22774393139255453], [51.38770889135605, -0.23392856702583392], [51.3905390510114, -0.23465770050136678], [51.38928729146401, -0.2397270354257992], [51.3939396730345, -0.24178669558255714], [51.394711604028075, -0.2446905154567009], [51.397649125699296, -0.2474912599827216], [51.39871267312071, -0.24673369086682773], [51.40054582980745, -0.2468496246350479], [51.401877704216645, -0.24520862363377247], [51.404349540673465, -0.24465392814217382], [51.40735305419534, -0.24550098216120808], [51.407883006509365, -0.24705286256666248], [51.40856503173953, -0.24754801496842882], [51.40970980521479, -0.24717079190052416], [51.41493706479139, -0.24954691106787308], [51.41839077833441, -0.24958612195613447], [51.42190937331319, -0.2509597603494104], [51.42288321165985, -0.25171582570549084], [51.42339015850838, -0.25297891617815244], [51.42594892621291, -0.2523361674602066], [51.42968729068997, -0.2542371351902196], [51.43092127151367, -0.25335787633011053], [51.43256520779311, -0.2510854267412339], [51.43521895880876, -0.2407117156950476], [51.43818163299962, -0.23107375243366277], [51.438582812615984, -0.2245086752744619], [51.43885953973243, -0.2242789524782538], [51.43844779854489, -0.2204381312836162], [51.438656965914454, -0.21765045235788757], [51.43772905412677, -0.21568389174556188], [51.4378679989967, -0.21224373753817488], [51.439003231531984, -0.20365090493459984], [51.44144518416474, -0.19008396711932826], [51.439993288958064, -0.1897780439938678], [51.43896326114884, -0.19074941849286736], [51.43850536424866, -0.18929370884345706], [51.43816048833536, -0.18930461349899552], [51.43437794955481, -0.19045767983654097], [51.43342692531074, -0.191246105439271], [51.431851235798945, -0.1903713568891611], [51.43133054997207, -0.18978210215985328], [51.43156445065287, -0.18909541026771448], [51.431807451960864, -0.1892889361627433], [51.43206431940419, -0.18745876033754252], [51.432907149095506, -0.18736871928572763], [51.433087935028965, -0.1858016140452945], [51.43115434338872, -0.18420395539215242], [51.42765968916744, -0.18466514968750639], [51.42581396380482, -0.1836784518689094], [51.424701165848184, -0.1820449600448578], [51.42412921640593, -0.17767165179065736]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.08));
+  } catch(e) {}
+</script>
+<p class="cta-note" style="font-size:11.5px;color:var(--muted);">Real administrative boundary — Office for National Statistics 2021 boundaries, not an approximate circle.</p>
+
+
+<div class="card">
+  <strong>Recorded incidents (sample window)</strong>
+  <table class="breakdown">
+    <tr><th>Category</th><th>Count</th></tr>
+    
+    <tr><td>Violent crime</td><td>466</td></tr>
+    
+    <tr><td>Anti social behaviour</td><td>308</td></tr>
+    
+    <tr><td>Shoplifting</td><td>115</td></tr>
+    
+    <tr><td>Vehicle crime</td><td>114</td></tr>
+    
+    <tr><td>Other theft</td><td>88</td></tr>
+    
+    <tr><td>Public order</td><td>65</td></tr>
+    
+    <tr><td>Burglary</td><td>56</td></tr>
+    
+    <tr><td>Drugs</td><td>42</td></tr>
+    
+    <tr><td>Robbery</td><td>26</td></tr>
+    
+    <tr><td>Theft from the person</td><td>26</td></tr>
+    
+    <tr><td>Other crime</td><td>21</td></tr>
+    
+    <tr><td>Bicycle theft</td><td>19</td></tr>
+    
+    <tr><td>Criminal damage arson</td><td>6</td></tr>
+    
+    <tr><td>Possession of weapons</td><td>4</td></tr>
+    
+  </table>
+</div>
+
+<div class="note">
+  
+  Data completeness: <strong>full month, real administrative boundary</strong> — 1356 recorded incidents for 2026-06, queried against Merton's actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for that exact area.
+  
+  Day score: 1.9778 weighted incidents/1,000 people (77% of the 32-borough average). Night score: 10.223 weighted incidents/1,000 people (80% of the 32-borough average).
+  
+  Both are normalised by an estimated <strong>workday/footfall population</strong> of 172,160 (2021 resident population of 215,200, scaled by a measured resident-vs-workday ratio from the ONS's 2011 Census release for Merton — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents.
+  
+  Rated against the average of the 32 boroughs currently on the automated pipeline.
+</div>
+
+<p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+
+  <footer>Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
+</div>
+</body>
+</html>

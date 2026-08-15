@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Wandsworth (London) safe? — Wandroz</title>
+<meta name="description" content="Safety data for Wandsworth, London: 2733 recorded incidents, based on official UK Police data.">
+<link rel="canonical" href="https://www.wandroz.com/london/wandsworth.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wandroz">
+<meta property="og:title" content="Is Wandsworth (London) safe? — Wandroz">
+<meta property="og:description" content="Safety data for Wandsworth, London: 2733 recorded incidents, based on official UK Police data.">
+<meta property="og:url" content="https://www.wandroz.com/london/wandsworth.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is Wandsworth (London) safe? — Wandroz">
+<meta name="twitter:description" content="Safety data for Wandsworth, London: 2733 recorded incidents, based on official UK Police data.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+  :root{ --ink:#1f2430; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
+    --green:#2e7d46; --green-bg:#e6f4ea; --yellow:#c98a02; --yellow-bg:#fdf3d9;
+    --red:#c0392b; --red-bg:#fbe4e1; --blue:#2b5ea6; --blue-bg:#e8f0fb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.55; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
+  a { color: var(--blue); }
+  header.site { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 28px; }
+  header.site .brand { display:flex; align-items:center; gap:12px; }
+  header.site nav a { color: var(--muted); text-decoration:none; font-size:13.5px; margin-left:18px; }
+  header.site nav a:hover { color: var(--blue); }
+  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; flex-shrink:0; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 18px; }
+  .subtitle { color: var(--muted); margin-bottom: 28px; }
+  .card { background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+  .badge { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; }
+  .badge.good { background: var(--green-bg); color: var(--green); }
+  .badge.mid { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.caution { background: var(--red-bg); color: var(--red); }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.red { background: var(--red-bg); color: var(--red); }
+  .badge.grey { background:#eef0f3; color:var(--muted); }
+  .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
+  .list-item:last-child{ border-bottom:none; }
+  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin: 18px 0; }
+  .city-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; text-decoration:none; color:var(--ink); }
+  .city-card:hover { border-color:#b9bfca; }
+  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:6px; }
+  .city-card .cc { font-size:13px; color:var(--muted); }
+  .note { font-size: 13px; color: var(--muted); background:#fdf3d9; border:1px solid #f1dfa3; border-radius:8px; padding:12px 14px; margin: 18px 0; }
+  table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
+  table.breakdown th, table.breakdown td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }
+  footer { text-align:center; font-size:12px; color:var(--muted); margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="brand">
+      <div class="logo">W</div>
+      <div><strong><a href="/" style="color:inherit;text-decoration:none;">Wandroz</a></strong></div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </header>
+  
+<p><a href="../index.html">← London</a></p>
+<h1>Wandsworth, London</h1>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
+<p class="subtitle" style="margin-top:14px;">Relative rank 18 among boroughs currently covered. Based on official Metropolitan Police data (2026-06).</p>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<div id="minimap" style="height:280px;border-radius:10px;margin:16px 0;border:1px solid var(--line);"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[51.439877317168275, -0.19910370574575728], [51.44144518416474, -0.19008396711932826], [51.439993288958064, -0.1897780439938678], [51.43896326114884, -0.19074941849286736], [51.43850536424866, -0.18929370884345706], [51.43816048833536, -0.18930461349899552], [51.433037038196716, -0.191114041006887], [51.43133054997207, -0.18978210215985328], [51.43156445065287, -0.18909541026771448], [51.431807451960864, -0.1892889361627433], [51.43206431940419, -0.18745876033754252], [51.432907149095506, -0.18736871928572763], [51.433087935028965, -0.1858016140452945], [51.43115434338872, -0.18420395539215242], [51.42674389034366, -0.18437519852699627], [51.424701165848184, -0.1820449600448578], [51.42414118669277, -0.17748145194818157], [51.4231821133118, -0.1735984922810477], [51.42091079215659, -0.16842561627139813], [51.42033986865422, -0.16483377279317715], [51.42009223244176, -0.16509351841556258], [51.41982384344148, -0.16169315263993828], [51.42193470071286, -0.159969628038425], [51.42266872041164, -0.16003536528965878], [51.41985314931089, -0.15132744922405614], [51.42001505897281, -0.14978010255752172], [51.41774384509635, -0.14456746583071675], [51.419249454085026, -0.1404067843185413], [51.421106173528, -0.13785308422154896], [51.424767802262224, -0.13893494994788647], [51.43045725348271, -0.1384307210465296], [51.43029150273882, -0.13533513721598597], [51.433879254682346, -0.13658257965631548], [51.43370970703856, -0.1378647408380845], [51.434022782932516, -0.13828635586558713], [51.43540055068003, -0.13974822317098723], [51.43688126379414, -0.14006488800471742], [51.438658146747464, -0.13765989424113612], [51.439919206357665, -0.13754830892889053], [51.44199668610244, -0.13600425720888717], [51.4416708263372, -0.1381111949237117], [51.44177212776083, -0.14364789967531472], [51.445771244837054, -0.14570017179619268], [51.44846057507308, -0.14486501875849497], [51.45096703515873, -0.14232952134206908], [51.45231037068129, -0.14774699720531145], [51.452954388609186, -0.1474548035435868], [51.45730586835831, -0.14834093106382248], [51.4628591979329, -0.1507317913800024], [51.46588470953055, -0.15123128561263033], [51.46597714901622, -0.15047270891856676], [51.467614915142335, -0.15061784025757566], [51.47051948688882, -0.14310039737678204], [51.47006460232227, -0.14267769934152988], [51.47067843658452, -0.14149742611683933], [51.47090842643991, -0.14178426056755924], [51.47159130712468, -0.14034268557202725], [51.47132323845535, -0.13986647454518333], [51.471543341125994, -0.13936551204251676], [51.473127244040334, -0.13691609635340385], [51.472664064026354, -0.13611435410032857], [51.472940841577994, -0.1352255776811714], [51.47395821595826, -0.13435222141462952], [51.47433498989358, -0.13515965214510928], [51.474694950721435, -0.13498930929174935], [51.47523102916812, -0.13405304081051503], [51.477884682777976, -0.13258112268038522], [51.48112736647474, -0.12993826849218185], [51.48187636813615, -0.12753847363115936], [51.48447811759721, -0.1262900294942353], [51.48473604665458, -0.12821710081824186], [51.48590309844678, -0.12956384922483347], [51.48470188314979, -0.13288235051168165], [51.48385294914432, -0.1377942364362669], [51.48386492507612, -0.14035643301877193], [51.484582788813896, -0.14517037662577134], [51.48455932696931, -0.14984422866012345], [51.482196005522454, -0.16806966298765033], [51.48093538870355, -0.17336991728405318], [51.47998983320587, -0.17525324610565662], [51.477554512577015, -0.1778169930967361], [51.47680520173626, -0.17764568015870733], [51.473414599419726, -0.17901915044095923], [51.46752717161363, -0.18289526729177538], [51.46589288942809, -0.18540480483768648], [51.46427640048951, -0.1904089461093677], [51.46389731808001, -0.19518971941210136], [51.46467710093489, -0.20483376518457658], [51.46644592123314, -0.2116417239557988], [51.46781959027086, -0.21537011532026565], [51.469702429221854, -0.2185155017391416], [51.47235777540097, -0.22173535324452553], [51.47152002670153, -0.22342536547085393], [51.470761183285326, -0.22373014217249226], [51.47283087097137, -0.231492385142578], [51.472613817766245, -0.23261526584709397], [51.472035124937825, -0.2330251037220671], [51.46814515385617, -0.23344807489041716], [51.46663340793109, -0.232831951998617], [51.46604161571065, -0.23364967221731436], [51.463967309964694, -0.23320717987108355], [51.46517750632081, -0.2430145500974727], [51.46521629021721, -0.2529156858512258], [51.46303960195721, -0.2560219739082694], [51.460303913532464, -0.25802382082522024], [51.459878362179026, -0.2567997496229611], [51.454932358144156, -0.2591133577252039], [51.44918025169553, -0.2473273584168784], [51.44308347546839, -0.2416491854287328], [51.44191527640504, -0.2426756956563016], [51.43724050547464, -0.25403594252396766], [51.43529669010589, -0.2530763292598849], [51.43416894713857, -0.2512553789222619], [51.43256520779311, -0.2510854267412339], [51.43521895880876, -0.2407117156950476], [51.43818163299962, -0.23107375243366277], [51.438582812615984, -0.2245086752744619], [51.43885953973243, -0.2242789524782538], [51.43844779854489, -0.2204381312836162], [51.43867891983052, -0.2178464310859732], [51.43772905412677, -0.21568389174556188], [51.43781505668884, -0.21297067899756236], [51.439877317168275, -0.19910370574575728]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.08));
+  } catch(e) {}
+</script>
+<p class="cta-note" style="font-size:11.5px;color:var(--muted);">Real administrative boundary — Office for National Statistics 2021 boundaries, not an approximate circle.</p>
+
+
+<div class="card">
+  <strong>Recorded incidents (sample window)</strong>
+  <table class="breakdown">
+    <tr><th>Category</th><th>Count</th></tr>
+    
+    <tr><td>Violent crime</td><td>759</td></tr>
+    
+    <tr><td>Anti social behaviour</td><td>652</td></tr>
+    
+    <tr><td>Other theft</td><td>238</td></tr>
+    
+    <tr><td>Shoplifting</td><td>219</td></tr>
+    
+    <tr><td>Vehicle crime</td><td>214</td></tr>
+    
+    <tr><td>Public order</td><td>167</td></tr>
+    
+    <tr><td>Burglary</td><td>120</td></tr>
+    
+    <tr><td>Drugs</td><td>92</td></tr>
+    
+    <tr><td>Theft from the person</td><td>80</td></tr>
+    
+    <tr><td>Bicycle theft</td><td>69</td></tr>
+    
+    <tr><td>Robbery</td><td>67</td></tr>
+    
+    <tr><td>Other crime</td><td>26</td></tr>
+    
+    <tr><td>Possession of weapons</td><td>24</td></tr>
+    
+    <tr><td>Criminal damage arson</td><td>6</td></tr>
+    
+  </table>
+</div>
+
+<div class="note">
+  
+  Data completeness: <strong>full month, real administrative boundary</strong> — 2733 recorded incidents for 2026-06, queried against Wandsworth's actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for that exact area.
+  
+  Day score: 2.8894 weighted incidents/1,000 people (113% of the 32-borough average). Night score: 12.8831 weighted incidents/1,000 people (101% of the 32-borough average).
+  
+  Both are normalised by an estimated <strong>workday/footfall population</strong> of 245,625 (2021 resident population of 327,500, scaled by a measured resident-vs-workday ratio from the ONS's 2011 Census release for Wandsworth — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents.
+  
+  Rated against the average of the 32 boroughs currently on the automated pipeline.
+</div>
+
+<p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+
+  <footer>Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
+</div>
+</body>
+</html>
