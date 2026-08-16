@@ -21,6 +21,13 @@
   .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
   .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
   #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
 </style>
 </head>
 <body>
@@ -59,8 +66,37 @@
     the wider area rather than a rating of this exact neighbourhood.
   </div>
   
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Gewerbeschule safe?</summary>
+      <p>Wandroz currently rates Gewerbeschule in Zurich, Switzerland as roughly average compared to other areas covered on Wandroz during the day and roughly average compared to other areas covered on Wandroz at night. This is a qualitative first-pass assessment based on general local knowledge and public reputation, not an official geolocated crime dataset — see the note on data limitations below before treating it as more precise than it is.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Gewerbeschule safe at night?</summary>
+      <p>At night, Gewerbeschule is rated as roughly average compared to other areas covered on Wandroz. If you&#39;re unsure, it&#39;s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can&#39;t capture block-by-block variation.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Gewerbeschule a good area to stay in as a tourist?</summary>
+      <p>Gewerbeschule&#39;s day rating (roughly average compared to other areas covered on Wandroz) is the more relevant one for typical daytime tourist activity; check the night rating too if you&#39;ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is there any official crime data for Gewerbeschule?</summary>
+      <p>Partially. Gewerbeschule sits in Kreis 5, one of Zurich&#39;s 12 police districts. Kantonspolizei Zürich publishes a real, current burglary rate for that district — 12.57 per 1,000 residents, 123% of the 12-district average. This covers burglaries only, not all crime types, and is reported at district level, not specifically for Gewerbeschule — see the box below for the full figure and caveats.</p>
+    </details>
+    
+  </div>
+  
   <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:dadenuoto@gmail.com?subject=Wandroz%20correction%3A%20Gewerbeschule%2C%20Zurich%2C%20Switzerland">Report a correction &rarr;</a></p>
 </main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz currently rates Gewerbeschule in Zurich, Switzerland as roughly average compared to other areas covered on Wandroz during the day and roughly average compared to other areas covered on Wandroz at night. This is a qualitative first-pass assessment based on general local knowledge and public reputation, not an official geolocated crime dataset \u2014 see the note on data limitations below before treating it as more precise than it is."}, "name": "Is Gewerbeschule safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "At night, Gewerbeschule is rated as roughly average compared to other areas covered on Wandroz. If you\u0027re unsure, it\u0027s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can\u0027t capture block-by-block variation."}, "name": "Is Gewerbeschule safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Gewerbeschule\u0027s day rating (roughly average compared to other areas covered on Wandroz) is the more relevant one for typical daytime tourist activity; check the night rating too if you\u0027ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page."}, "name": "Is Gewerbeschule a good area to stay in as a tourist?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Partially. Gewerbeschule sits in Kreis 5, one of Zurich\u0027s 12 police districts. Kantonspolizei Z\u00fcrich publishes a real, current burglary rate for that district \u2014 12.57 per 1,000 residents, 123% of the 12-district average. This covers burglaries only, not all crime types, and is reported at district level, not specifically for Gewerbeschule \u2014 see the box below for the full figure and caveats."}, "name": "Is there any official crime data for Gewerbeschule?"}]}</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>

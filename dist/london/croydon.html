@@ -44,6 +44,14 @@
 
   table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
   table.breakdown th, table.breakdown td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); }
+
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
 </style>
 </head>
 <body>
@@ -136,7 +144,33 @@
 </div>
 
 <p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+
+
+<h2>Frequently asked questions</h2>
+<div class="faq">
+  
+  <details class="faq-item">
+    <summary>Is Croydon safe?</summary>
+    <p>Based on real, current UK Police data, Wandroz rates Croydon as roughly average compared to other areas covered on Wandroz during the day and roughly average compared to other areas covered on Wandroz at night, relative to the other London boroughs currently on the automated pipeline. The rating comes from 11021 recorded incidents over 3 months (2026-04 to 2026-06), split into a day-weighted score (property crime) and a night-weighted score (violence, robbery, antisocial behaviour).</p>
+  </details>
+  
+  <details class="faq-item">
+    <summary>Is Croydon safe at night?</summary>
+    <p>Croydon&#39;s night score is roughly average compared to other areas covered on Wandroz, based on the categories most relevant after dark (violence, robbery, street theft, public order, antisocial behaviour), normalised by an estimated workday/footfall population rather than plain residents where that data exists, so busy central boroughs aren&#39;t overstated as riskier just for having fewer official residents.</p>
+  </details>
+  
+  <details class="faq-item">
+    <summary>What official data is Croydon&#39;s rating based on?</summary>
+    <p>11021 recorded incidents from data.police.uk (the UK Police&#39;s official open crime API), queried against Croydon&#39;s real administrative boundary and covering 3 months (2026-04 to 2026-06) — refreshed automatically every month, not a one-off snapshot. Full category breakdown is shown further down this page.</p>
+  </details>
+  
+</div>
+
+
 <p class="cta-note" style="font-size:11.5px;color:var(--muted);margin-top:14px;">See something wrong or out of date on this page? <a href="mailto:dadenuoto@gmail.com?subject=Wandroz%20correction%3A%20Croydon%2C%20London">Report a correction &rarr;</a></p>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Based on real, current UK Police data, Wandroz rates Croydon as roughly average compared to other areas covered on Wandroz during the day and roughly average compared to other areas covered on Wandroz at night, relative to the other London boroughs currently on the automated pipeline. The rating comes from 11021 recorded incidents over 3 months (2026-04 to 2026-06), split into a day-weighted score (property crime) and a night-weighted score (violence, robbery, antisocial behaviour)."}, "name": "Is Croydon safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Croydon\u0027s night score is roughly average compared to other areas covered on Wandroz, based on the categories most relevant after dark (violence, robbery, street theft, public order, antisocial behaviour), normalised by an estimated workday/footfall population rather than plain residents where that data exists, so busy central boroughs aren\u0027t overstated as riskier just for having fewer official residents."}, "name": "Is Croydon safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "11021 recorded incidents from data.police.uk (the UK Police\u0027s official open crime API), queried against Croydon\u0027s real administrative boundary and covering 3 months (2026-04 to 2026-06) \u2014 refreshed automatically every month, not a one-off snapshot. Full category breakdown is shown further down this page."}, "name": "What official data is Croydon\u0027s rating based on?"}]}</script>
+
 
 </div>
 <footer class="wz-footer">Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
