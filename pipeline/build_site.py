@@ -156,10 +156,15 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
 
     extra_zone_data, if given, is a dict keyed by zone name (e.g. from
     build_zurich_zone_burglary()) merged into each zone's neighbourhood-
-    page context as zone_ctx["burglary"] — used to attach a real,
-    narrowly-scoped official data point on top of the illustrative rating,
-    without changing that rating itself or affecting cities that don't
-    pass this in (Turin)."""
+    page context as zone_ctx["burglary"], and into the interactive map's
+    per-zone JS data too — used to attach a real, narrowly-scoped official
+    data point on top of the illustrative day/night rating, without
+    changing that rating itself or affecting cities that don't pass this
+    in (Turin). When present, the map also gets an optional "real burglary
+    data" toggle (show_burglary_toggle) that recolours zones by their
+    Kreis's burglary tone instead of the manual day/night tone, so the one
+    real data layer Zurich has is visible on the map itself, not just
+    buried in each zone's detail page."""
     path = os.path.join(ZONES_DIR, f"{city_key}.json")
     if not os.path.isfile(path):
         return []
@@ -174,14 +179,17 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
     js_zones = []
     for z in zones:
         z_url = f"/{url_slug}/{z['slug']}/"
-        js_zones.append({
+        zone_js = {
             "name": z["name"], "slug": z["slug"],
             "day": z["day"], "night": z["night"],
             "day_label": tone_badge.get(z["day"], z["day"]),
             "night_label": tone_badge.get(z["night"], z["night"]),
             "text": z["text"], "query": z["query"],
             "coords": z["coords"], "url": z_url,
-        })
+        }
+        if extra_zone_data:
+            zone_js["burglary"] = extra_zone_data.get(z["name"])
+        js_zones.append(zone_js)
 
     map_tpl = env.get_template("city_map.html")
     canonical = f"{SITE_URL}/{url_slug}/"
@@ -200,6 +208,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         label_more=ui["label_more"], label_not_covered="",
         footer_note=ui["footer_note"],
         zones=js_zones, center=data["center"], zoom=data["zoom"],
+        show_burglary_toggle=bool(extra_zone_data),
     )
     with open(os.path.join(city_dir, "index.html"), "w") as f:
         f.write(html)
