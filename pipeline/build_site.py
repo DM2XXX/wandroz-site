@@ -460,12 +460,12 @@ def main():
     london = next((c for c in cities if c["city"].lower() == "london"), None)
     london_live_count = len(london["boroughs"]) if london else 0
     city_cards = [
-        {"name": "London", "url": "london/index.html",
+        {"name": "London", "url": "london/index.html", "flag": "🇬🇧",
          "blurb": f"33 boroughs on the map, {london_live_count} refreshed automatically every month from real Metropolitan Police data."},
-        {"name": "Turin", "url": "torino/index.html",
+        {"name": "Turin", "url": "torino/index.html", "flag": "🇮🇹",
          "blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings."},
-        {"name": "Zurich", "url": "zurigo/index.html",
-         "blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings."},
+        {"name": "Zurich", "url": "zurigo/index.html", "flag": "🇨🇭",
+         "blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings — plus a real official burglary-rate layer by district."},
     ]
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
         f.write(index_tpl.render(city_cards=city_cards, canonical_url=SITE_URL + "/"))
