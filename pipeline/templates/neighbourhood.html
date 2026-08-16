@@ -21,6 +21,13 @@
   .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
   .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
   #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
 </style>
 </head>
 <body>
@@ -60,8 +67,22 @@
     the wider area rather than a rating of this exact neighbourhood.
   </div>
   {% endif %}
+  {% if faq_items %}
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    {% for item in faq_items %}
+    <details class="faq-item">
+      <summary>{{ item.q }}</summary>
+      <p>{{ item.a }}</p>
+    </details>
+    {% endfor %}
+  </div>
+  {% endif %}
   <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:{{ correction_email }}?subject={{ ('Wandroz correction: ' ~ zone.name ~ ', ' ~ city_label)|urlencode }}">Report a correction &rarr;</a></p>
 </main>
+{% if faq_schema %}
+<script type="application/ld+json">{{ faq_schema|tojson }}</script>
+{% endif %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>

@@ -44,6 +44,14 @@
 
   table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
   table.breakdown th, table.breakdown td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); }
+
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
 </style>
 </head>
 <body>
