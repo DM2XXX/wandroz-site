@@ -60,6 +60,7 @@
     the wider area rather than a rating of this exact neighbourhood.
   </div>
   {% endif %}
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:{{ correction_email }}?subject={{ ('Wandroz correction: ' ~ zone.name ~ ', ' ~ city_label)|urlencode }}">Report a correction &rarr;</a></p>
 </main>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
