@@ -30,6 +30,9 @@
   .switch.on { background: var(--accent); }
   .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
   .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
   .notice { font-size:13px; color:#6b5a10; background:#fff9e8; border:1px solid #f1dfa3; border-radius: var(--radius-sm); padding:12px 16px; margin: 12px 24px 16px; max-width:1080px; }
   .layout { display:flex; gap:18px; padding: 0 24px 28px; align-items:flex-start; flex-wrap:wrap; }
   .sidebar { width:290px; flex-shrink:0; }
@@ -76,11 +79,12 @@
       </select>
     </div>
     
-    <div class="switch-wrap">
+    <div class="switch-wrap" id="dnSwitchWrap">
       <span>day</span>
       <div class="switch" id="dnSwitch"><div class="knob"></div></div>
       <span>night</span>
     </div>
+    
     
     <nav class="wz-nav">
       <a href="/">Home</a>
@@ -95,11 +99,11 @@
 
 <div class="layout">
   <div class="sidebar">
-    <div class="legend">
-      <div class="legend-item"><span class="dot green"></span> Relatively safer</div>
-      <div class="legend-item"><span class="dot yellow"></span> Average</div>
-      <div class="legend-item"><span class="dot red"></span> Higher caution advised</div>
-      <div class="legend-item"><span class="dot grey"></span> Not yet covered automatically</div>
+    <div class="legend" id="legendBox">
+      <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Relatively safer</span></div>
+      <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Average</span></div>
+      <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Higher caution advised</span></div>
+      <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Not yet covered automatically</span></div>
     </div>
     <div class="detail-box" id="detailBox">
       <h2>Borough detail</h2>
@@ -193,19 +197,30 @@
   var CENTER = [51.509, -0.118];
   var ZOOM = 10;
   var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
   var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
   var L_CLICK = "Click a borough on the map to see its level, the reasoning, and a Booking.com link for that area.";
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the auto-updating live data \u2192";
   var L_NOTCOVERED = "";
+  var L_LEGEND_DAYNIGHT = { green: "Relatively safer", yellow: "Average", red: "Higher caution advised", grey: "Not yet covered automatically" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
 
   var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
 
   var isNight = false;
+  var burglaryMode = false;
   var layers = [];
+  var lastZone = null;
 
   function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
     if (!SHOW_TOGGLE) return z.day || 'grey';
     return isNight ? (z.night || 'grey') : (z.day || 'grey');
   }
@@ -214,7 +229,28 @@
     return '<span class="badge ' + tone + '">' + text + '</span>';
   }
 
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+  }
+
   function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
     var tone = toneOf(z);
     var html = '<div class="zn">' + z.name + '</div>';
     if (SHOW_TOGGLE) {
@@ -238,6 +274,14 @@
     document.getElementById('detail').innerHTML = html;
   }
 
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    document.getElementById('legendGreyText').textContent = set.grey;
+  }
+
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
@@ -257,6 +301,24 @@
       isNight = !isNight;
       sw.classList.toggle('on', isNight);
       draw();
+      if (lastZone && !burglaryMode) renderDetail(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) renderDetail(lastZone);
     });
   }
 </script>
