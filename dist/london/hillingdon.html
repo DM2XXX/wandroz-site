@@ -19,18 +19,18 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <style>
-  :root{ --ink:#1f2430; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
+  :root{ --ink:#0c1d39; --muted:#5b6270; --panel:#fff; --bg:#f4f5f7; --line:#e3e5ea;
     --green:#2e7d46; --green-bg:#e6f4ea; --yellow:#c98a02; --yellow-bg:#fdf3d9;
-    --red:#c0392b; --red-bg:#fbe4e1; --blue:#2b5ea6; --blue-bg:#e8f0fb; }
+    --red:#c0392b; --red-bg:#fbe4e1; --accent:#147a65; --accent-bg:#e7f5f1; --navy:#0c1d39; }
   * { box-sizing: border-box; }
   body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.55; }
   .wrap { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
-  a { color: var(--blue); }
+  a { color: var(--accent); }
   header.site { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 28px; }
   header.site .brand { display:flex; align-items:center; gap:12px; }
   header.site nav a { color: var(--muted); text-decoration:none; font-size:13.5px; margin-left:18px; }
-  header.site nav a:hover { color: var(--blue); }
-  .logo { width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#2b5ea6,#2e7d46); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; flex-shrink:0; }
+  header.site nav a:hover { color: var(--accent); }
+  .logo { width:38px; height:38px; border-radius:10px; display:block; object-fit:cover; flex-shrink:0; }
   h1 { font-size: 26px; margin: 0 0 6px; }
   h2 { font-size: 18px; }
   .subtitle { color: var(--muted); margin-bottom: 28px; }
@@ -60,7 +60,7 @@
 <div class="wrap">
   <header class="site">
     <div class="brand">
-      <div class="logo">W</div>
+      <img class="logo" src="/logo-mark.png" alt="Wandroz" width="38" height="38">
       <div><strong><a href="/" style="color:inherit;text-decoration:none;">Wandroz</a></strong></div>
     </div>
     <nav>
