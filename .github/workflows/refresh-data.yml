@@ -38,6 +38,15 @@ jobs:
       - name: Recompute safety scores
         run: python pipeline/score_london.py
 
+      - name: Fetch Zurich burglary data (Kantonspolizei Zürich, Kreis-level)
+        run: python pipeline/fetch_zurich.py
+        # Narrow, real, genuinely-updated dataset (burglaries only, 12
+        # Stadtkreise, not the 34-Quartier map) — see pipeline/fetch_zurich.py's
+        # docstring for why this dataset and not Zurich's stale general PKS one.
+
+      - name: Recompute Zurich burglary scores
+        run: python pipeline/score_zurich.py
+
       - name: Rebuild static site
         run: python pipeline/build_site.py
 
