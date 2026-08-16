@@ -79,10 +79,14 @@
 <style>
   /* Homepage-only decorative "flight map" hero. Scoped here (rather than
      _base.html) since no other page uses it. Percent-based pin positions
-     come from build_site.py's city_cards (x/y hand-mapped from each
-     city's real lat/lon onto a simplified Europe bounding box — see the
-     comment there), so pins land in roughly correct relative positions
-     without needing a real map asset or projection library. */
+     come from build_site.py's city_cards (x/y = each city's real lat/lon
+     projected onto an equirectangular box: lon -16..26 -> x 0..100%, lat
+     34..62 -> y 100%..0%). The .landmass path below (country outlines,
+     coastline) is projected with that SAME box — generated once from
+     Natural Earth 110m country boundaries (public domain) and simplified/
+     inlined as a static path, no map library needed at runtime — so pins
+     line up with the real coastline under them. If the bounding box ever
+     changes, both must change together. */
   .euro-map-wrap { margin: 22px 0 34px; }
   .euro-map-hint { font-size:12.5px; color:var(--muted); margin: 0 0 10px; }
   .euro-map {
@@ -99,9 +103,14 @@
   .map-glow { position:absolute; border-radius:50%; filter: blur(50px); opacity:0.32; pointer-events:none; }
   .map-glow-a { width:220px; height:220px; background:var(--accent-bright); top:-40px; left:8%; }
   .map-glow-b { width:260px; height:260px; background:#e2a33d; bottom:-60px; right:6%; }
+  .euro-map svg.landmass { position:absolute; inset:0; width:100%; height:100%; }
+  .euro-map .landmass path {
+    fill: #2f5486; stroke: rgba(255,255,255,0.4); stroke-width:0.18;
+    vector-effect: non-scaling-stroke;
+  }
   .euro-map svg.routes { position:absolute; inset:0; width:100%; height:100%; }
   .euro-map .route {
-    fill:none; stroke: rgba(255,255,255,0.5); stroke-width:0.35;
+    fill:none; stroke: rgba(255,255,255,0.55); stroke-width:0.35;
     stroke-dasharray: 1.1 1.6; stroke-linecap:round;
     animation: wz-dashmove 16s linear infinite;
   }
@@ -109,13 +118,16 @@
 
   .map-pin {
     position:absolute; transform:translate(-50%,-50%);
-    display:flex; flex-direction:column; align-items:center;
+    display:flex; align-items:center;
     text-decoration:none; z-index:2;
   }
   .map-pin:hover { text-decoration:none; }
+  .map-pin.side-down { flex-direction:column; }
+  .map-pin.side-right { flex-direction:row; }
+  .map-pin.side-left { flex-direction:row-reverse; }
   .map-pin .pin-dot {
     width:15px; height:15px; border-radius:50%; background: var(--pin-color);
-    border:2px solid rgba(255,255,255,0.85); position:relative;
+    border:2px solid rgba(255,255,255,0.85); position:relative; flex:none;
     box-shadow: 0 2px 6px rgba(0,0,0,0.35);
     transition: transform .15s ease;
   }
@@ -130,12 +142,15 @@
     100% { opacity:0; }
   }
   .map-pin .pin-chip {
-    margin-top:9px; background:rgba(255,255,255,0.97); color:var(--navy);
+    background:rgba(255,255,255,0.97); color:var(--navy);
     font-size:12.5px; font-weight:700; padding:5px 11px; border-radius:20px;
     box-shadow:0 3px 10px rgba(0,0,0,0.3); white-space:nowrap;
     display:flex; align-items:center; gap:5px;
     transition: transform .15s ease, box-shadow .15s ease;
   }
+  .map-pin.side-down .pin-chip { margin-top:9px; }
+  .map-pin.side-right .pin-chip { margin-left:9px; }
+  .map-pin.side-left .pin-chip { margin-right:9px; }
   .map-pin:hover .pin-dot { transform: scale(1.2); }
   .map-pin:hover .pin-chip { transform: translateY(-2px) scale(1.06); box-shadow:0 8px 18px rgba(0,0,0,0.35); }
   .map-badge {
@@ -165,22 +180,25 @@
     <span class="map-badge">🗺️ 3 cities mapped so far</span>
     <div class="map-glow map-glow-a"></div>
     <div class="map-glow map-glow-b"></div>
+    <svg class="landmass" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path d="M112,-27L108,-25.5L106,-25L107,-27.5L104,-29L100.5,-28L99.5,-25.5L97,-23.5L94.5,-24.5L91.5,-24.5L88.5,-26.5L87,-25.5L85.5,-23L81,-23.5L80.5,-21.5L78,-21.5L76.5,-19L74,-15L70.5,-10L70.5,-7.5L68,-7.5L66.5,-4L66.5,0.5L68,2.5L67.5,6.5L65.5,9L64.5,11L63,9L58,13L55,14L51.5,12L50.5,8.5L50,0L52,-2L58.5,-5L63,-9L67.5,-14L73,-21L77,-23.5L84,-28L89,-29.5L93,-29.5L96.5,-32.5L101,-32L105,-33L112.5,-30L109.5,-29L112,-27Z M53,45L57.5,46.5L56,49L56,51.5L54,51.5L52.5,54.5L54.5,57L55,59.5L55,63.5L56,65.5L53.5,67.5L49,66.5L45.5,67.5L45,69.5L42.5,70L40,68.5L34.5,67.5L35,64L35.5,57L33,53.5L31,51.5L27.5,50L27,47.5L30,47L34,47.5L33.5,43.5L35.5,45L41.5,42.5L42,39.5L44,39L45.5,40L46.5,41.5L48.5,43L51.5,44.5ZM59,69L60.5,68L61,71L60,73.5L58.5,70.5Z M60.5,113L59.5,107L58,105.5L56,102.5L56,99.5L57.5,97.5L58,94.5L57.5,91.5L58,89.5L60.5,88L62.5,88.5L62.5,90.5L64.5,89L63.5,91.5L64,94L64,97L62.5,99L62.5,101L64.5,102.5L65.5,106L63.5,108L62,109.5L62,112.5Z M17.5,123.5L17.5,118.5L21.5,116L23.5,115L25.5,114.5L26.5,112.5L29.5,111L29.5,108.5L32,107L35,106L35,104L34,100.5L34,98L33,96L35,94L38,93.5L39.5,92L41.5,90.5L45.5,90L49.5,90L53,89L55.5,89L58,89.5L57.5,91.5L58,94.5L57.5,97.5L56,99.5L56,102.5L58,104.5L59.5,107L60.5,113L61.5,116.5L61,121L61,124.5L61,126.5L60.5,128L61.5,131L62.5,134.5L65.5,135.5L66.5,137.5L58.5,144.5L51.5,151.5L48.5,153L45.5,153.5L45.5,151L43,149.5L42.5,148L34.5,140L26.5,132L17.5,123.5Z M64.5,11L65.5,9L67.5,6.5L68,2.5L66.5,0.5L66.5,-4L68,-7.5L70.5,-7.5L70.5,-10L74,-15L76.5,-19L78,-21.5L80.5,-21.5L81,-23.5L85.5,-23L86,-25L90.5,-23.5L94,-21L94,-15.5L91,-13.5L88.5,-11L89,-8.5L85,-6L80.5,-2.5L79,2.5L80.5,5L83,7L80.5,11L78,11.5L77.5,17.5L76,21L73,20.5L71.5,23.5L69,23.5L68,20.5L66,16.5L64.5,11Z M105,21L107.5,21.5L111.5,23L111.5,25.5L113,28L115.5,30L115,31.5L113,31.5L114,35.5L111.5,35.5L111,38L108,38L105.5,37L103.5,37L101,36.5L98.5,36L96.5,36L94,37L93.5,34L95,32L94,29L96.5,29L99,27.5L99.5,25.5L101.5,24.5L102.5,22L105,21Z M114,35.5L116,35L118.5,34.5L120,36.5L119.5,38.5L121.5,38.5L122.5,40L125.5,42L127,41.5L128.5,43L133.5,44.5L132.5,47L133,49L130.5,50.5L129,53L127,53.5L125.5,54.5L123.5,55L121.5,56L121.5,58L120,57L118.5,56.5L113.5,56L111.5,55L110.5,57L108.5,59.5L106.5,59.5L106.5,57.5L107,55.5L109,56L108.5,54L107.5,51.5L106.5,49.5L103.5,48.5L101.5,49L100,50L98,50.5L96,50L93,49.5L90.5,48.5L92,46L94,42L95.5,40.5L94,37L96.5,36L98.5,36L101,36.5L103.5,37L105.5,37L107,37L110,38L111,36.5L114,35.5Z M94,29L95,32L93.5,34L94,35.5L95.5,40.5L94,42L91.5,44.5L92.5,46.5L89.5,44.5L88,45.5L85.5,45.5L84,44.5L82,43L80,42.5L78.5,41L75,40L73,36.5L72.5,33.5L72.5,31.5L71.5,29.5L73.5,28.5L77,26.5L80,25.5L82.5,26L85,27L88,27.5L92,27.5L94,29Z M78.5,49.5L77,51L76.5,54L74,55L71,55.5L67.5,54.5L64.5,54L63,54L60.5,53L61.5,51.5L65.5,51.5L67,51L69,52L69,49L70.5,47L72,48L73.5,46.5L76.5,47.5L78.5,48Z M90.5,48.5L92,50.5L89.5,53.5L88,56L86,56.5L83,57.5L80,57.5L78.5,56L77,54L77.5,52L78.5,49.5L80.5,51L82.5,50.5L85,49L87,48L90,49Z M101.5,49L103.5,48.5L105.5,49.5L107.5,50.5L108,52.5L109.5,54.5L107.5,56L106.5,57.5L105.5,59L105,56L103.5,52L102,49.5Z M105.5,59L107.5,59L108.5,60.5L107,61L106,65.5L103,63.5L100,64.5L95.5,65L93.5,64.5L92,63.5L91.5,62L89.5,61.5L88,59L86,56.5L88,56L89.5,53.5L90.5,51L93,49.5L96,50L98,50.5L100,50L101.5,49L103,50.5L105,54.5L105,57.5Z M101,23L99.5,25.5L99,27.5L96.5,29L94,29L92,27.5L92.5,25.5L88.5,24.5L88,21.5L91,20L95,20.5L97.5,20L99,21L101,23Z M103,16L104.5,18.5L105,21L102.5,22L99,21L97.5,20L95,20.5L91,20L88,21.5L88.5,18.5L89.5,16.5L91.5,15L93.5,18L95.5,18L96,15L98,14.5L101,16L103,16Z M104.5,9L103.5,11.5L104,15L101,16L99,15L96,15L96.5,13L94,12L93.5,10L96.5,9L99.5,8.5L102.5,9L104.5,9Z M71.5,29.5L72.5,31.5L72.5,33.5L73,35.5L74,39L71.5,39.5L70,40L67,42L68,44.5L70.5,47L69.5,48.5L69,51.5L67,51L65.5,51.5L63,51.5L61,51.5L58.5,50.5L56,51.5L56,49L57.5,46.5L54,45.5L53,43L53,40L52.5,36L54.5,35L55,31.5L55,29.5L57,29.5L59,28.5L58.5,25L60,25.5L62,26.5L64,27.5L66.5,28L70.5,28.5Z M92,63.5L93.5,64.5L95.5,65L99,65.5L103,63.5L104.5,65L105,67L104,69.5L105,71.5L102.5,71L100.5,72L100.5,74L98,74L96.5,73L94.5,74L92.5,74L92.5,71.5L92,70L93,67L91.5,65.5L92,63.5Z M100.5,95.5L97,96.5L94,95.5L96,95L97.5,95L99.5,95ZM92.5,74L94.5,74L96.5,73L98,74L100.5,74L100.5,72L100.5,75L98.5,75.5L94.5,76L96,78L93.5,78.5L92.5,77L92.5,80L93.5,81.5L94,84L95.5,87L93,86L94,88L93,91.5L89.5,90L89,87L88.5,84.5L87.5,83L86,81L87,78L88,76.5L89.5,75L92,74.5Z M144.5,88.5L142.5,88.5L140,88L136,89L132,90.5L130,90.5L126.5,90.5L125,92.5L123.5,92L120.5,90L119,92L115.5,92.5L113.5,90.5L111,90.5L109,92.5L106.5,90.5L104,90.5L102.5,87L101,85L102,82L100.5,80.5L103,77L106.5,77L107.5,74L112.5,74.5L115,72.5L118,71.5L122,71.5L126,74L129.5,75L132,74.5L134,75L137,73L139.5,73L142,74.5L142,77.5L144,78.5L143,80.5L144,84.5L144.5,88.5ZM100.5,72L102.5,71L105,71.5L107,74L104,75L101,78L100,76.5L101.5,73Z M88,75.5L87,78L86,80L84.5,77.5L84,76L84.5,73.5L84,70.5L85,69L86.5,70.5L87,72L87,74.5Z M77.5,55.5L80,57.5L82,58L84.5,60L82.5,60.5L78.5,60L77,60.5L77,63L78.5,65.5L80,68L82.5,69L80,68.5L78.5,67L76,66L74,63.5L73.5,61.5L72,60L71.5,61.5L70.5,59L72.5,59L74.5,59L75.5,56.5L77.5,55.5Z M61,51.5L61.5,54L63,55.5L60,55.5L58.5,57L56.5,58L54.5,57L53.5,55.5L54,52.5L56,51.5L58,51.5L61,51.5Z M52.5,42.5L53,45L52,42.5Z M53,40L52.5,42.5L51.5,44.5L49.5,43L46.5,41.5L45.5,40L44,39L46,38L47.5,38.5L50,37.5L51.5,39Z M54.5,30.5L54.5,35L52.5,36L53,40L50,37.5L47.5,38.5L46,38L49.5,32L52.5,30.5L54.5,30.5Z M16.5,72L18.5,70.5L19,72L21,71.5L23,73.5L22,77.5L21.5,79.5L21,82L20.5,84.5L21,86.5L20.5,89L18,89.5L17.5,87L17,85L15.5,83L15.5,80.5L16.5,78L17,76L16.5,73Z M20.5,89L21,86.5L20.5,84.5L21,82L20,80L21.5,78L22,74.5L22,72L20.5,72L18.5,70.5L16.5,72L16.5,69.5L15.5,68L19,65L22,66L25,66L27.5,66.5L29.5,66L33.5,66.5L39,69.5L42.5,70L45,69.5L45.5,72L43,74L40,75L38.5,78L37.5,81L38.5,83L37,84.5L36.5,87L34.5,87.5L33,90.5L30,90.5L27.5,90.5L26,91.5L24,92.5L22.5,89.5L20.5,89Z M23.5,29L23.5,31.5L22,35L17.5,37L14.5,36.5L16.5,32.5L15,29L18.5,26L20,24.5L20.5,26.5L20,28.5L23.5,29Z M63,54L64.5,54L67,53L71,55.5L70.5,57L67.5,59.5L67.5,61L68,64L70.5,66L71.5,68.5L74,71.5L76,71.5L78,74.5L80,75.5L82,77.5L81.5,79L80.5,77.5L78.5,77L77.5,79.5L79,80.5L78.5,82.5L76.5,86L76,83L75.5,80L75,78.5L73,76.5L70.5,74.5L69,74L67,72.5L64.5,70L63,68L62.5,64.5L59.5,63L57,65L55,63.5L54,60.5L54.5,58L56.5,58L58,56.5L60,55.5L61.5,56L63,54ZM73,85L75,85L74,87.5L74,90.5L72,89.5L67.5,87L68,85.5L71,85.5L73,85ZM59,75.5L61.5,77L61,81.5L59,82.5L58,77L57.5,75Z M61.5,25L58.5,25L57.5,23L57.5,19.5L58.5,17.5L60.5,17L63.5,15L63,17L63,19.5L63.5,21L61,23.5L61.5,25ZM67.5,21L68.5,23L67,25.5L64.5,23.5L67.5,21Z M23.5,29L21.5,28.5L20.5,26.5L20,24.5L22,24.5L24.5,26.5L23.5,29ZM30.5,30.5L31,28.5L29.5,26.5L26.5,25.5L27,23L25,24L24.5,20.5L23.5,18.5L24.5,15L26,12L28,12.5L31,12L28.5,16L31,15.5L33.5,15.5L33,18.5L30.5,21.5L33,22L35.5,26.5L37,27L38.5,31L42,33L42,35.5L41.5,38L39.5,40L36,40L32,41L29.5,42L27.5,41.5L25.5,43L28,38.5L30,38L26,37L28,34.5L26.5,32.5L27,30.5L30.5,30.5Z M3.5,-16L3,-13.5L5.5,-11L2.5,-8.5L-4.5,-6L-6.5,-5.5L-9.5,-6L-16,-7L-14,-8.5L-19,-10.5L-14.5,-11L-20,-13L-18,-15L-14.5,-15.5L-11,-13.5L-7.5,-15.5L-4.5,-14.5L-0.5,-16L3.5,-16Z M71,55.5L73,55.5L76,54.5L75.5,57.5L73.5,59L70.5,59L70.5,57L71,55.5Z M106,-25L106,-22.5L109.5,-20.5L107.5,-17.5L110,-13.5L108.5,-10.5L110.5,-8L109.5,-5.5L113,-3L112,-1.5L110,1L105,5.5L100.5,5.5L96.5,7L92.5,7.5L91,5.5L89,4.5L89.5,1L88,-2L89.5,-4.5L91.5,-6.5L97,-10.5L98.5,-11L95,-14.5L94,-21L90.5,-23.5L87,-25.5L88.5,-26.5L91.5,-24.5L94.5,-24.5L97,-23.5L99.5,-25.5L100.5,-28L104,-29L107,-27.5L106,-25Z M92,46L90.5,48.5L87.5,48L86.5,49L84,49.5L80.5,51L78.5,49.5L79,47L80.5,47L82,45.5L84,44.5L85.5,45.5L88,45.5L89.5,44.5L92,46Z M74,39L77,40.5L78,42L80,41.5L82,43L83,44.5L81.5,45.5L80,47L77.5,47L74.5,46.5L72,48L70.5,47L69,45.5L67.5,43L69,41L71.5,39.5L74,39Z M33,96L34,98L34,100.5L35,104L35,106L32,107L31,108L29.5,111L26.5,112.5L25.5,114.5L23.5,115L21.5,116L17.5,118.5L17.5,122.5L17,124.5L15,125.5L13,125L11,125.5L10,128L8.5,133L5,137L4,141.5L3.5,143.5L-2.5,145L-1.5,142.5L-0.5,140.5L0,136.5L1.5,134.5L3,132L3,130L3.5,127.5L5.5,126.5L7,122.5L8,121.5L10.5,121L12,118.5L15.5,114.5L14.5,110L15.5,107L16,105L17.5,102.5L20,101L21.5,99.5L23,96L24,93.5L25.5,93.5L27,95L29.5,95L32,96Z M126,143L116.5,143L107,143L97.5,143L97.5,129.5L97.5,117L97,114L97.5,112L98,108.5L101,108.5L103.5,109.5L106,110.5L109,110L112,108.5L113.5,109L114,111L116.5,110.5L118.5,111L121,115L120.5,117.5L120,120L119.5,122L117,120L115.5,115L116,119L117.5,122.5L119.5,128L120,130L121,132L123,136L122.5,139L125.5,142Z M97.5,143L97.5,150L95,150L85.5,144.5L76,138L73.5,140L72,141L70.5,139L66.5,137.5L65.5,135.5L63.5,133.5L62,132.5L60.5,128L61,126.5L61,124.5L61.5,122.5L61.5,118L60.5,113L62,111L63.5,108L65.5,106L65.5,103L68,104.5L71,104.5L74.5,106L75.5,109.5L77.5,110L81,111.5L83.5,113.5L86,111L85.5,108L86,106.5L87.5,104.5L89.5,104L92.5,105L93.5,106.5L95,107L97.5,107.5L97,110.5L97,114L97.5,117L97.5,129.5L97.5,143Z M82.5,69L80,68L79.5,66.5L77.5,64L75.5,61.5L77.5,60L80.5,60.5L83.5,61L85,64L84.5,66L82.5,67L82.5,69Z M91.5,70.5L92.5,74L90.5,74.5L88,75.5L87,73L87.5,71L89.5,70.5L91.5,70.5Z M83,57.5L85,56.5L87.5,58L89,60L91,62.5L91.5,64.5L93,67L91.5,69.5L89.5,70.5L89,68.5L87.5,67L86.5,68.5L85,67L85,64L83.5,63L84.5,60L83,57.5Z M86,69.5L84,70.5L82,69.5L82.5,67L84.5,66.5L86.5,68Z M87,72L86.5,70.5L86.5,68.5L87.5,67L89,68.5L89.5,70.5L87.5,71Z"></path>
+    </svg>
     <svg class="routes" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path class="route" d="M33,35 Q50,28 64,49"></path>
-      <path class="route" d="M64,49 Q66,59 51,71"></path>
+      <path class="route" d="M37.8,37.5 Q50,28 58.4,52.2"></path>
+      <path class="route" d="M58.4,52.2 Q66,59 56.4,60.5"></path>
     </svg>
     
-    <a class="map-pin" href="london/index.html" style="left:33%; top:35%;">
+    <a class="map-pin side-right" href="london/index.html" style="left:37.8%; top:37.5%;">
       <span class="pin-dot" style="--pin-color:#2f6fed;"></span>
       <span class="pin-chip">🇬🇧 London</span>
     </a>
     
-    <a class="map-pin" href="torino/index.html" style="left:51%; top:71%;">
+    <a class="map-pin side-left" href="torino/index.html" style="left:56.4%; top:60.5%;">
       <span class="pin-dot" style="--pin-color:#e2a33d;"></span>
       <span class="pin-chip">🇮🇹 Turin</span>
     </a>
     
-    <a class="map-pin" href="zurigo/index.html" style="left:64%; top:49%;">
+    <a class="map-pin side-right" href="zurigo/index.html" style="left:58.4%; top:52.2%;">
       <span class="pin-dot" style="--pin-color:#d1483f;"></span>
       <span class="pin-chip">🇨🇭 Zurich</span>
     </a>
@@ -194,7 +212,7 @@
     <span class="flag">🇬🇧</span>
     <span class="arrow">→</span>
     <div class="cn">London</div>
-    <div class="cc">33 boroughs on the map, 32 refreshed automatically every month from real Metropolitan Police data.</div>
+    <div class="cc">33 boroughs on the map, 5 refreshed automatically every month from real Metropolitan Police data.</div>
   </a>
   
   <a class="city-card hover-lift" href="torino/index.html">
