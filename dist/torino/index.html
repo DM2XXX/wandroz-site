@@ -11,76 +11,56 @@
 <meta property="og:description" content="Interactive map of Turin&#39;s neighbourhoods with the council&#39;s real official boundaries, day/night safety levels.">
 <meta property="og:url" content="https://www.wandroz.com/torino/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <style>
-  :root{
-    --green:#2e7d46; --green-bg:#e6f4ea;
-    --yellow:#c98a02; --yellow-bg:#fdf3d9;
-    --red:#c0392b; --red-bg:#fbe4e1;
-    --grey:#7a8190; --grey-bg:#e9eaed;
-    --ink:#0c1d39; --muted:#5b6270; --panel:#ffffff; --bg:#f4f5f7; --line:#e3e5ea;
-    --accent:#147a65; --accent-bg:#e7f5f1;
-  }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); }
-  a { color: var(--accent); }
-  header { padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap: wrap; gap:12px; }
-  .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
-  .brand .logo { width:34px; height:34px; border-radius:9px; display:block; object-fit:cover; flex-shrink:0; }
-  .brand h1, .brand span.wname { font-size:17px; margin:0; color:var(--ink); font-weight:700; }
-  .brand p { margin:0; font-size:12px; color:var(--muted); }
-  nav.top a { color:var(--muted); text-decoration:none; font-size:13px; margin-left:16px; }
-  nav.top a:hover { color: var(--accent); }
-  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 10px 20px 0; }
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
   nav.crumbs a { color:var(--muted); text-decoration:none; }
   nav.crumbs a:hover { text-decoration:underline; }
-  h1.page-title { font-size: 21px; margin: 8px 20px 2px; }
-  .lead { font-size:13.5px; color:var(--muted); margin: 0 20px 10px; max-width:900px; }
-  .header-controls { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
   .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
-  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:5px 8px; background:var(--panel); }
-  .switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
-  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
   .switch.on { background: var(--accent); }
-  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
   .switch.on .knob { left:22px; }
-  .notice { font-size:12.5px; color:#6b5a10; background:#fff7e0; border:1px solid #f0dfa6; border-radius:8px; padding:10px 14px; margin: 10px 20px 14px; max-width:1080px; }
-  .layout { display:flex; gap:16px; padding: 0 20px 24px; align-items:flex-start; flex-wrap:wrap; }
-  .sidebar { width:280px; flex-shrink:0; }
-  .legend { display:flex; flex-direction:column; gap:6px; font-size:13px; margin: 0 0 16px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
-  .legend-item { display:flex; align-items:center; gap:8px; }
-  .dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+  .notice { font-size:13px; color:#6b5a10; background:#fff9e8; border:1px solid #f1dfa3; border-radius: var(--radius-sm); padding:12px 16px; margin: 12px 24px 16px; max-width:1080px; }
+  .layout { display:flex; gap:18px; padding: 0 24px 28px; align-items:flex-start; flex-wrap:wrap; }
+  .sidebar { width:290px; flex-shrink:0; }
+  .legend { display:flex; flex-direction:column; gap:8px; font-size:13px; margin: 0 0 16px; background:var(--panel); border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; box-shadow: var(--shadow-sm); }
+  .legend-item { display:flex; align-items:center; gap:9px; }
+  .dot { width:11px; height:11px; border-radius:50%; flex-shrink:0; }
   .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
-  .detail-box { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; }
-  .detail-box h2 { font-size:13px; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); margin:0 0 10px; }
+  .detail-box { background:var(--panel); border:1px solid var(--line); border-radius: var(--radius-md); padding:16px 18px; font-size:13.5px; box-shadow: var(--shadow-sm); }
+  .detail-box h2 { font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:0 0 12px; font-weight:700; }
   .detail-box .placeholder { color:var(--muted); font-size:13px; }
-  .detail-box .zn { font-size:16px; font-weight:700; margin-bottom:8px; }
-  .badge { display:inline-block; padding:4px 10px; border-radius:20px; font-size:11.5px; font-weight:700; margin-right:4px; }
-  .badge.green{ background:var(--green-bg); color:var(--green); }
-  .badge.yellow{ background:var(--yellow-bg); color:var(--yellow); }
-  .badge.red{ background:var(--red-bg); color:var(--red); }
-  .badge.grey{ background:var(--grey-bg); color:var(--grey); }
-  .detail-box .body-text { font-size:13px; color:#3a3f4d; margin:10px 0; }
-  .detail-box .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:10px 14px; border-radius:8px; font-size:13.5px; font-weight:600; margin-top:10px; }
+  .detail-box .zn { font-size:17px; font-weight:700; margin-bottom:9px; color:var(--navy); }
+  .detail-box .badge { margin-right:4px; margin-bottom:4px; }
+  .detail-box .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .detail-box .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .detail-box .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
   .detail-box .cta.secondary { background: var(--accent); }
-  .detail-box .cta:hover { opacity:.92; }
-  #map { flex:1; min-width:280px; height: 640px; border-radius:10px; border:1px solid var(--line); }
-  .zone-list { margin-top:18px; }
-  .zone-list h2 { font-size:14px; margin: 0 0 8px; }
-  .zone-list ul { list-style:none; margin:0; padding:0; columns:2; column-gap:16px; font-size:12.5px; }
-  .zone-list li { break-inside: avoid; padding:3px 0; }
+  #map { flex:1; min-width:280px; height: 640px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:2; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
   .zone-list a { color: var(--ink); text-decoration:none; }
-  .zone-list a:hover { text-decoration:underline; }
-  footer { padding:16px 20px; font-size:11.5px; color:var(--muted); background:var(--panel); border-top:1px solid var(--line); text-align:center; }
-  footer a { color: var(--muted); }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
   @media (max-width: 720px){ #map{ height:420px; } .sidebar{ width:100%; order:2; } }
 </style>
 </head>
 <body>
-<header>
-  <a class="brand" href="/">
-    <img class="logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
-    <div><span class="wname">Wandroz</span><p>Neighbourhood safety for travellers</p></div>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
   </a>
   <div class="header-controls">
     <div class="city-switch-wrap">
@@ -102,7 +82,7 @@
       <span>night</span>
     </div>
     
-    <nav class="top">
+    <nav class="wz-nav">
       <a href="/">Home</a>
       <a href="/methodology.html">Methodology</a>
     </nav>
@@ -129,7 +109,7 @@
   <div id="map"></div>
 </div>
 
-<div class="zone-list" style="padding:0 20px;">
+<div class="zone-list">
   <h2>All neighbourhoods</h2>
   <ul>
     
@@ -182,7 +162,7 @@
   </ul>
 </div>
 
-<footer>
+<footer class="wz-footer">
   Wandroz &middot; prototype build, not a finished product &middot; map data: OpenStreetMap contributors<br>
   <a href="/">Home</a>
 </footer>

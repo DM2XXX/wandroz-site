@@ -7,65 +7,42 @@
 <meta name="description" content="Residential hillside neighborhood, calm.">
 <link rel="canonical" href="https://www.wandroz.com/zurigo/friesenberg/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
 <style>
-  :root{
-    --green:#2e7d46; --green-bg:#e6f4ea;
-    --yellow:#c98a02; --yellow-bg:#fdf3d9;
-    --red:#c0392b; --red-bg:#fbe4e1;
-    --grey:#7a8190; --grey-bg:#e9eaed;
-    --ink:#0c1d39; --muted:#5b6270; --panel:#ffffff; --bg:#f4f5f7; --line:#e3e5ea;
-    --accent:#147a65; --accent-bg:#e7f5f1;
-  }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height:1.5; }
-  a { color: var(--accent); }
-  header { padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
-  .brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .brand .logo { width:34px; height:34px; border-radius:9px; display:block; object-fit:cover; flex-shrink:0; }
-  .brand h1, .brand span.wname { font-size:17px; margin:0; color:var(--ink); font-weight:700; }
-  .brand p { margin:0; font-size:12px; color:var(--muted); }
-  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 10px 20px 0; }
-  nav.crumbs a { color:var(--muted); text-decoration:none; }
-  nav.crumbs a:hover { text-decoration:underline; }
-  main { max-width: 880px; margin: 0 auto; padding: 18px 20px 60px; }
-  h1.page-title { font-size: 26px; margin: 6px 0 8px; }
-  h2 { font-size: 18px; margin: 28px 0 10px; }
-  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0 18px; }
-  .badge { display:inline-block; padding:5px 12px; border-radius:20px; font-size:12.5px; font-weight:700; }
-  .badge.green{ background:var(--green-bg); color:var(--green); }
-  .badge.yellow{ background:var(--yellow-bg); color:var(--yellow); }
-  .badge.red{ background:var(--red-bg); color:var(--red); }
-  .badge.grey{ background:var(--grey-bg); color:var(--grey); }
-  .body-text { font-size:14.5px; color:#3a3f4d; }
-  .cta { display:inline-block; background:#003580; color:white; text-decoration:none; padding:12px 18px; border-radius:8px; font-size:14.5px; font-weight:600; margin-top:6px; }
-  .cta:hover { background:#002a63; }
-  .cta-note { font-size:11.5px; color:var(--muted); margin-top:8px; max-width: 520px; }
-  .methodnote { font-size:13px; color:var(--muted); background:#f7f8fa; border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin: 18px 0; }
-  #minimap { height: 320px; border-radius:10px; margin: 16px 0; border:1px solid var(--line); }
-  footer { padding:16px 20px; font-size:11.5px; color:var(--muted); background:var(--panel); border-top:1px solid var(--line); text-align:center; }
-  footer a { color: var(--muted); }
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
 </style>
 </head>
 <body>
-<header>
-  <a class="brand" href="/">
-    <img class="logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
-    <div><span class="wname">Wandroz</span><p>Neighbourhood safety for travellers</p></div>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
   </a>
 </header>
 
-<nav class="crumbs"><a href="/">Home</a> &rsaquo; <a href="../index.html">Zurich, Switzerland</a> &rsaquo; Friesenberg</nav>
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="../index.html">Zurich, Switzerland</a> &rsaquo; Friesenberg</nav>
 <main>
   <h1 class="page-title">Friesenberg &mdash; Zurich, Switzerland</h1>
   <div class="badges">
-    <span class="badge green">Relatively safer</span> <span style="font-size:12px;color:var(--muted);align-self:center;">day</span>
-    <span class="badge green">Relatively safer</span> <span style="font-size:12px;color:var(--muted);align-self:center;">night</span>
+    <span class="badge green">Relatively safer</span> <span class="badge-label">day</span>
+    <span class="badge green">Relatively safer</span> <span class="badge-label">night</span>
   </div>
   <div id="minimap"></div>
   <h2>In detail</h2>
   <div class="body-text"><p>Residential hillside neighborhood, calm.</p></div>
   
-  <a class="cta" href="https://www.booking.com/searchresults.html?ss=Friesenberg%2C%20Zurich%2C%20Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Friesenberg%2C%20Zurich%2C%20Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
   <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
   
   <div class="methodnote">Risk levels for Zurich are a qualitative judgment call based on general knowledge and public reputation of each neighbourhood, not an official geolocated crime dataset — unlike London, no open municipal dataset at this level of detail exists yet for Zurich.</div>
@@ -96,7 +73,7 @@
   } catch(e) {}
 </script>
 
-<footer>
+<footer class="wz-footer">
   Wandroz &middot; prototype build, not a finished product &middot; map data: OpenStreetMap contributors<br>
   <a href="/">Home</a>
 </footer>

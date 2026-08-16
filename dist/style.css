@@ -1,0 +1,120 @@
+/* Wandroz — shared design system
+   Loaded on every page (linked from each template's <head>) so brand
+   colors, spacing, type scale and component styles (cards, badges,
+   buttons, header) stay in one place instead of duplicated per-template.
+   Page-specific layout (map sizing, sidebar widths, etc.) stays inline in
+   each template's own <style> block and reads these custom properties. */
+
+:root{
+  /* Brand */
+  --navy:#0c1d39;
+  --ink:#0c1d39;
+  --muted:#5b6270;
+  --muted-soft:#8890a0;
+  --panel:#ffffff;
+  --bg:#f4f6f8;
+  --line:#e5e8ee;
+  --accent:#147a65;
+  --accent-bright:#1fa987;
+  --accent-bg:#e7f5f1;
+
+  /* Safety tones (meaningful — not brand color, don't repurpose) */
+  --green:#2e7d46;   --green-bg:#e6f4ea;
+  --yellow:#c98a02;  --yellow-bg:#fdf3d9;
+  --red:#c0392b;     --red-bg:#fbe4e1;
+  --grey:#7a8190;    --grey-bg:#e9eaed;
+
+  /* Spacing scale */
+  --sp-1:4px;  --sp-2:8px;  --sp-3:12px; --sp-4:16px;
+  --sp-5:20px; --sp-6:28px; --sp-7:40px; --sp-8:56px;
+
+  /* Radius + shadow */
+  --radius-sm:8px; --radius-md:12px; --radius-lg:18px;
+  --shadow-sm:0 1px 2px rgba(12,29,57,0.06), 0 1px 1px rgba(12,29,57,0.04);
+  --shadow-md:0 4px 14px rgba(12,29,57,0.08), 0 1px 3px rgba(12,29,57,0.06);
+  --shadow-lift:0 10px 24px rgba(12,29,57,0.12), 0 2px 6px rgba(12,29,57,0.06);
+
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin:0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  line-height:1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3 { font-family: var(--font); letter-spacing:-0.01em; color: var(--navy); }
+
+a { color: var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* Site header (shared shell used by _base.html, city_map.html, neighbourhood.html) */
+.wz-header {
+  padding: 16px 24px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:14px;
+  position: sticky; top:0; z-index: 20;
+}
+.wz-brand { display:flex; align-items:center; gap:11px; text-decoration:none; color:inherit; }
+.wz-brand:hover { text-decoration:none; }
+.wz-logo { border-radius:10px; display:block; object-fit:cover; flex-shrink:0; box-shadow: var(--shadow-sm); }
+.wz-brand .wz-name { font-size:17px; margin:0; color:var(--navy); font-weight:700; letter-spacing:-0.01em; }
+.wz-brand .wz-tagline { margin:0; font-size:12px; color:var(--muted); }
+.wz-nav a { color:var(--muted); text-decoration:none; font-size:13.5px; margin-left:22px; font-weight:500; transition: color .15s; }
+.wz-nav a:hover { color: var(--accent); text-decoration:none; }
+
+/* Cards */
+.card, .wz-card {
+  background: var(--panel);
+  border:1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  margin-bottom:14px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Badges / pills */
+.badge { display:inline-block; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:0.01em; }
+.badge.good, .badge.green { background: var(--green-bg); color: var(--green); }
+.badge.mid, .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+.badge.caution, .badge.red { background: var(--red-bg); color: var(--red); }
+.badge.grey { background: var(--grey-bg); color: var(--muted); }
+
+/* Buttons */
+.btn-primary {
+  display:inline-block; background: var(--navy); color:#fff; text-decoration:none;
+  padding:12px 20px; border-radius: var(--radius-sm); font-size:14.5px; font-weight:600;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { text-decoration:none; transform: translateY(-1px); box-shadow: var(--shadow-md); background:#122644; }
+.btn-secondary {
+  display:inline-block; background: var(--accent); color:#fff; text-decoration:none;
+  padding:12px 20px; border-radius: var(--radius-sm); font-size:14.5px; font-weight:600;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn-secondary:hover { text-decoration:none; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+/* Notes / callouts */
+.note {
+  font-size: 13.5px; color:#6b5a10; background:#fff9e8; border:1px solid #f1dfa3;
+  border-radius: var(--radius-sm); padding:14px 16px; margin: 20px 0;
+}
+
+footer.wz-footer {
+  text-align:center; font-size:12px; color:var(--muted);
+  padding: 28px 20px; margin-top: 40px;
+  background: var(--panel); border-top:1px solid var(--line);
+}
+footer.wz-footer a { color: var(--muted); }
+
+/* Scroll-reveal-free subtle transition helpers */
+.hover-lift { transition: transform .15s ease, box-shadow .15s ease; }
+.hover-lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
