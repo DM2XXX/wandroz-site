@@ -1,6 +1,163 @@
 {
-  "kreise": {},
-  "city_average_rate_per_1000": null,
-  "kreise_covered": 0,
+  "city_average_rate_per_1000": 10.23,
+  "kreise": {
+    "kreis_1": {
+      "kreis_label": "Kreis 1",
+      "kreis_number": 1,
+      "rate_avg_per_1000": 38.8,
+      "tone": "red",
+      "vs_city_average": 3.792,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_10": {
+      "kreis_label": "Kreis 10",
+      "kreis_number": 10,
+      "rate_avg_per_1000": 5.4,
+      "tone": "green",
+      "vs_city_average": 0.528,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_11": {
+      "kreis_label": "Kreis 11",
+      "kreis_number": 11,
+      "rate_avg_per_1000": 5.47,
+      "tone": "green",
+      "vs_city_average": 0.535,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_12": {
+      "kreis_label": "Kreis 12",
+      "kreis_number": 12,
+      "rate_avg_per_1000": 2.9,
+      "tone": "green",
+      "vs_city_average": 0.283,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_2": {
+      "kreis_label": "Kreis 2",
+      "kreis_number": 2,
+      "rate_avg_per_1000": 6.53,
+      "tone": "green",
+      "vs_city_average": 0.638,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_3": {
+      "kreis_label": "Kreis 3",
+      "kreis_number": 3,
+      "rate_avg_per_1000": 6.77,
+      "tone": "green",
+      "vs_city_average": 0.662,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_4": {
+      "kreis_label": "Kreis 4",
+      "kreis_number": 4,
+      "rate_avg_per_1000": 16.57,
+      "tone": "red",
+      "vs_city_average": 1.619,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_5": {
+      "kreis_label": "Kreis 5",
+      "kreis_number": 5,
+      "rate_avg_per_1000": 12.57,
+      "tone": "yellow",
+      "vs_city_average": 1.229,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_6": {
+      "kreis_label": "Kreis 6",
+      "kreis_number": 6,
+      "rate_avg_per_1000": 7.4,
+      "tone": "green",
+      "vs_city_average": 0.723,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_7": {
+      "kreis_label": "Kreis 7",
+      "kreis_number": 7,
+      "rate_avg_per_1000": 6.13,
+      "tone": "green",
+      "vs_city_average": 0.599,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_8": {
+      "kreis_label": "Kreis 8",
+      "kreis_number": 8,
+      "rate_avg_per_1000": 8.97,
+      "tone": "yellow",
+      "vs_city_average": 0.877,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    },
+    "kreis_9": {
+      "kreis_label": "Kreis 9",
+      "kreis_number": 9,
+      "rate_avg_per_1000": 5.27,
+      "tone": "green",
+      "vs_city_average": 0.515,
+      "years_included": [
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "years_with_data": 3
+    }
+  },
+  "kreise_covered": 12,
   "kreise_total": 12
 }
