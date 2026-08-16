@@ -92,6 +92,150 @@ def attach_boundaries(cities):
 
 EN_TONE_BADGE = {"green": "Relatively safer", "yellow": "Average", "red": "Higher caution advised", "grey": "Not yet covered automatically"}
 
+# Short, plain-language descriptor for each tone, used inside FAQ answer
+# sentences below (EN_TONE_BADGE is a label for a UI badge, not a sentence
+# fragment — this is worded to read naturally in a sentence instead).
+TONE_DESCRIPTOR = {
+    "green": "relatively safer than most other areas covered on Wandroz",
+    "yellow": "roughly average compared to other areas covered on Wandroz",
+    "red": "an area where Wandroz's data suggests extra caution relative to other areas covered",
+    "grey": "not yet covered by a comparative rating",
+}
+
+
+def _faq_jsonld(items):
+    """Build a schema.org FAQPage JSON-LD dict from a list of {"q","a"}
+    items, for the <script type="application/ld+json"> block on each
+    neighbourhood/borough page. Google's rich-result eligibility for FAQ
+    snippets isn't guaranteed just by adding this markup, but it's a
+    prerequisite, and the plain-language Q&A text underneath also directly
+    targets the long-tail "is X safe" search phrasing this project is
+    aiming for — useful on its own even before/without a rich snippet."""
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": item["q"],
+                "acceptedAnswer": {"@type": "Answer", "text": item["a"]},
+            }
+            for item in items
+        ],
+    }
+
+
+def build_faq_illustrative(zone, city_label, burglary=None):
+    """FAQ content for a Turin/Zurich neighbourhood page — honest about the
+    fact that the underlying rating is a qualitative first pass, not a
+    geolocated crime dataset (unlike London). If burglary is given (Zurich
+    only), a 4th question surfaces that one real, narrowly-scoped official
+    data point instead of just saying "no data exists"."""
+    name = zone["name"]
+    day_desc = TONE_DESCRIPTOR.get(zone["day"], zone["day"])
+    night_desc = TONE_DESCRIPTOR.get(zone["night"], zone["night"])
+    faqs = [
+        {
+            "q": f"Is {name} safe?",
+            "a": (
+                f"Wandroz currently rates {name} in {city_label} as {day_desc} during the day and "
+                f"{night_desc} at night. This is a qualitative first-pass assessment based on general "
+                f"local knowledge and public reputation, not an official geolocated crime dataset — see "
+                f"the note on data limitations below before treating it as more precise than it is."
+            ),
+        },
+        {
+            "q": f"Is {name} safe at night?",
+            "a": (
+                f"At night, {name} is rated as {night_desc}. If you're unsure, it's worth checking recent "
+                f"local reviews for your specific street or block, since a neighbourhood-wide rating can't "
+                f"capture block-by-block variation."
+            ),
+        },
+        {
+            "q": f"Is {name} a good area to stay in as a tourist?",
+            "a": (
+                f"{name}'s day rating ({day_desc}) is the more relevant one for typical daytime tourist "
+                f"activity; check the night rating too if you'll be out late. You can search accommodation "
+                f"already filtered to this specific area using the Booking.com link on this page."
+            ),
+        },
+    ]
+    if burglary:
+        faqs.append({
+            "q": f"Is there any official crime data for {name}?",
+            "a": (
+                f"Partially. {name} sits in {burglary['kreis_label']}, one of Zurich's 12 police districts. "
+                f"Kantonspolizei Zürich publishes a real, current burglary rate for that district — "
+                f"{burglary['rate_avg_per_1000']} per 1,000 residents"
+                + (
+                    f", {round(burglary['vs_city_average'] * 100)}% of the 12-district average"
+                    if burglary.get("city_average_rate_per_1000") else ""
+                )
+                + f". This covers burglaries only, not all crime types, and is reported at district level, "
+                  f"not specifically for {name} — see the box below for the full figure and caveats."
+            ),
+        })
+    else:
+        faqs.append({
+            "q": f"Is there official crime data for {name}?",
+            "a": (
+                f"Not yet at neighbourhood level. Unlike London, this city does not currently publish an "
+                f"open, geolocated crime dataset at this level of detail (checked against the relevant local "
+                f"and national open-data portals — see the methodology page for what was checked). If you "
+                f"live in or know {name} well, you can suggest a correction to its rating using the link "
+                f"below."
+            ),
+        })
+    return faqs
+
+
+def build_faq_london(b, city_label="London"):
+    """FAQ content for a London borough page — grounded in the real,
+    automated UK Police data this page is built from (incident counts,
+    category mix, workday-population normalisation), unlike the
+    illustrative Turin/Zurich version above."""
+    name = b["borough"]
+    day_desc = TONE_DESCRIPTOR.get(b.get("day_tone"), b.get("day_tone"))
+    night_desc = TONE_DESCRIPTOR.get(b.get("night_tone"), b.get("night_tone"))
+    window = (
+        f"{len(b['months_included'])} months ({b['months_included'][-1]} to {b['months_included'][0]})"
+        if b.get("months_included") and len(b["months_included"]) > 1
+        else f"the month of {b.get('data_month')}"
+    )
+    faqs = [
+        {
+            "q": f"Is {name} safe?",
+            "a": (
+                f"Based on real, current UK Police data, Wandroz rates {name} as {day_desc} during the day "
+                f"and {night_desc} at night, relative to the other London boroughs currently on the "
+                f"automated pipeline. The rating comes from {b.get('sample_record_count')} recorded "
+                f"incidents over {window}, split into a day-weighted score (property crime) and a "
+                f"night-weighted score (violence, robbery, antisocial behaviour)."
+            ),
+        },
+        {
+            "q": f"Is {name} safe at night?",
+            "a": (
+                f"{name}'s night score is {night_desc}, based on the categories most relevant after dark "
+                f"(violence, robbery, street theft, public order, antisocial behaviour), normalised by an "
+                f"estimated workday/footfall population rather than plain residents where that data exists, "
+                f"so busy central boroughs aren't overstated as riskier just for having fewer official "
+                f"residents."
+            ),
+        },
+        {
+            "q": f"What official data is {name}'s rating based on?",
+            "a": (
+                f"{b.get('sample_record_count')} recorded incidents from data.police.uk (the UK Police's "
+                f"official open crime API), queried against {name}'s real administrative boundary and "
+                f"covering {window} — refreshed automatically every month, not a one-off snapshot. Full "
+                f"category breakdown is shown further down this page."
+            ),
+        },
+    ]
+    return faqs
+
 # Zurich's 34 Statistische Quartiere grouped by their parent Kreis (city
 # district) — sourced from the German Wikipedia "Kreis (Zürich)" article
 # and cross-checked name-for-name against data_zones/zurigo.json's 34
@@ -230,6 +374,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         zone_ctx["night_label"] = tone_badge.get(z["night"], z["night"])
         if extra_zone_data:
             zone_ctx["burglary"] = extra_zone_data.get(z["name"])
+        faq_items = build_faq_illustrative(zone_ctx, data["label"], burglary=zone_ctx.get("burglary"))
         page = neigh_tpl.render(
             lang="en", city_label=data["label"], tagline=ui["tagline"],
             nav_home=ui["nav_home"], canonical_url=z_canonical,
@@ -239,6 +384,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
             label_booking_note=ui["label_booking_note"], data_note=neigh_note,
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
+            faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
         )
         with open(os.path.join(zdir, "index.html"), "w") as f:
             f.write(page)
@@ -503,9 +649,11 @@ def main():
             day_label = EN_TONE_BADGE.get(b.get("day_tone"), b.get("day_tone"))
             night_label = EN_TONE_BADGE.get(b.get("night_tone"), b.get("night_tone"))
             page_url = f"{SITE_URL}/{city_slug}/{b['slug']}.html"
+            faq_items = build_faq_london(b, city["city"])
             page = borough_tpl.render(
                 city=city, b=b, day_label=day_label, night_label=night_label,
                 canonical_url=page_url, correction_email=CORRECTION_EMAIL,
+                faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
             )
             out_path = os.path.join(city_dir, f"{b['slug']}.html")
             with open(out_path, "w") as f:
