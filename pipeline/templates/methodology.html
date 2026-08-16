@@ -16,11 +16,13 @@
     boroughs are on this automated pipeline{% if london_covered_count and london_total_boroughs and london_covered_count >= london_total_boroughs - 1 %} — every borough except the City of London, which is policed separately and isn't covered by this dataset{% endif %}.
   </p>
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    <a href="/torino/index.html">Turin</a> and <a href="/zurigo/index.html">Zurich</a> are also on the site as an early
-    preview, with interactive maps using each city's real official neighbourhood boundaries (Città di Torino's
-    "Quartieri" dataset; Stadt Zürich's "Statistische Quartiere" dataset) — but their safety ratings are a manual,
-    illustrative first pass, not yet backed by an automated open-data feed the way London is. Treat Turin/Zurich as a
-    preview of the map experience, not a verified rating, until they move onto a real pipeline.
+    <a href="/torino/index.html">Turin</a> and <a href="/zurigo/index.html">Zurich</a> are also on the site, with
+    interactive maps using each city's real official neighbourhood boundaries (Città di Torino's "Quartieri" dataset;
+    Stadt Zürich's "Statistische Quartiere" dataset) — but their day/night safety ratings are still a manual,
+    illustrative first pass, not an automated open-data feed the way London's is. Zurich now has one additional,
+    narrow real data layer on top of that (see below); Turin doesn't, and — per research described below — currently
+    can't, for reasons outside Wandroz's control. Treat the day/night ratings for both as a preview of the map
+    experience, not a verified score, until (or unless) a real per-city pipeline exists for them.
   </p>
 </div>
 
@@ -96,6 +98,35 @@
   record for that borough (fewer right after a borough is first added, until 3 months have accumulated) — each
   borough page states the exact months included. Averaging further back than 3 months is possible as more history
   accumulates, but trades off responsiveness to genuinely recent changes.
+</div>
+
+<h2>Turin and Zurich: what's real today</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Both cities were researched (16 August 2026) to see whether they could get their own automated pipeline like
+  London's. The two turned out very different, and it's worth being specific about why rather than lumping them
+  together as "not done yet."
+</p>
+<div class="note" style="margin-bottom:10px;">
+  <strong>Turin: no automated pipeline is currently possible, not just "not built yet."</strong> Unlike the UK, Italy
+  does not publish an open, geolocated, neighbourhood-level crime dataset. The City of Turin's own open-data portal
+  (aperTO) has no such dataset; Italy's national statistics office (ISTAT) publishes crime figures only at the
+  provincia level (an area far larger than a single city), or a one-off Turin-specific study over 20 years out of
+  date; and the Ministero dell'Interno's crime data is published at the whole-city or provincia level, not by
+  neighbourhood. This matches independent reporting on Italian open data generally, not just a gap specific to
+  Turin. Turin's ratings stay a manual, illustrative first pass for now — this page will be updated the moment that
+  changes, but there's no pipeline to build against today.
+</div>
+<div class="note">
+  <strong>Zurich: one real, narrow, official data layer added — burglaries, by district.</strong> The Kantonspolizei
+  Zürich's comprehensive crime dataset (all offense types) turned out to not actually be current despite claiming an
+  annual update — its data stops at 2022 and hasn't been refreshed since April 2023, so it wouldn't have been honest
+  to build an automated pipeline on it. A separate, narrower dataset from the same source — burglaries only — is
+  genuinely current (refreshed days before this was written, with data through 2025) and is now pulled automatically.
+  It's published only at the level of Zurich's 12 Stadtkreise (city districts), not the 34 Statistische Quartiere the
+  map shows, so every neighbourhood page inherits its district's figure rather than having its own — this is stated
+  plainly on each Zurich neighbourhood page, and it sits alongside the existing manual day/night rating rather than
+  replacing it. It's a real, official, current number — just a narrower and coarser one than London's pipeline
+  provides.
 </div>
 
 <h2>How this scales beyond London</h2>

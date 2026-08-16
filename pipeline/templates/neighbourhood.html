@@ -68,6 +68,20 @@
   <p class="cta-note">{{ label_booking_note }}</p>
   {% endif %}
   <div class="methodnote">{{ data_note }}</div>
+  {% if zone.burglary %}
+  <div class="methodnote">
+    <strong>Real official data point:</strong> {{ zone.name }} sits in {{ zone.burglary.kreis_label }}, one of
+    Zurich's 12 police districts. Kantonspolizei Zürich recorded an average burglary rate of
+    <strong>{{ zone.burglary.rate_avg_per_1000 }} per 1,000 residents</strong> there
+    {% if zone.burglary.years_with_data == 1 %}in {{ zone.burglary.years_included[0] }}{% else %}across
+    {{ zone.burglary.years_with_data }} years ({{ zone.burglary.years_included|join(', ') }}){% endif %}{% if
+    zone.burglary.city_average_rate_per_1000 %}, {{ (zone.burglary.vs_city_average * 100)|round|int }}% of the
+    12-district average of {{ zone.burglary.city_average_rate_per_1000 }}/1,000{% endif %}. This figure is real,
+    current, and official — but it covers <strong>burglaries only</strong> (not the full range of crime types) and
+    is reported at the district level, not for {{ zone.name }} specifically, so treat it as directional context for
+    the wider area rather than a rating of this exact neighbourhood.
+  </div>
+  {% endif %}
 </main>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
