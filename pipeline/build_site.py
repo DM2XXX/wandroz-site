@@ -87,13 +87,79 @@ def attach_boundaries(cities):
 
 EN_TONE_BADGE = {"green": "Relatively safer", "yellow": "Average", "red": "Higher caution advised", "grey": "Not yet covered automatically"}
 
+# Zurich's 34 Statistische Quartiere grouped by their parent Kreis (city
+# district) — sourced from the German Wikipedia "Kreis (Zürich)" article
+# and cross-checked name-for-name against data_zones/zurigo.json's 34
+# zones (exact match). Kantonspolizei Zürich's real burglary dataset (see
+# fetch_zurich.py / score_zurich.py) is only published at Kreis level, not
+# per-Quartier, so this mapping is how a real Kreis-level figure gets
+# attached to each Quartier page — every Quartier in a Kreis shows that
+# Kreis's number, so this is an inherited/coarser figure, not a
+# Quartier-specific one, and is disclosed as such in neighbourhood.html.
+KREIS_TO_QUARTIERE = {
+    1: ["Rathaus", "Hochschulen", "Lindenhof", "City"],
+    2: ["Wollishofen", "Leimbach", "Enge"],
+    3: ["Alt-Wiedikon", "Friesenberg", "Sihlfeld"],
+    4: ["Werd", "Langstrasse", "Hard"],
+    5: ["Gewerbeschule", "Escher Wyss"],
+    6: ["Unterstrass", "Oberstrass"],
+    7: ["Fluntern", "Hottingen", "Hirslanden", "Witikon"],
+    8: ["Seefeld", "Mühlebach", "Weinegg"],
+    9: ["Albisrieden", "Altstetten"],
+    10: ["Höngg", "Wipkingen"],
+    11: ["Affoltern", "Oerlikon", "Seebach"],
+    12: ["Saatlen", "Schwamendingen-Mitte", "Hirzenbach"],
+}
+QUARTIER_TO_KREIS = {name: k for k, names in KREIS_TO_QUARTIERE.items() for name in names}
 
-def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banner, neigh_note):
+
+def load_zurich_burglary():
+    """Loads score_zurich.py's output (data/scores/zurich_burglary.json)
+    if it exists. Returns {} if the file is missing or has no scored
+    Kreise yet (e.g. this sandbox, or before the first real GitHub Actions
+    run) — callers treat that the same as "no real data available yet"."""
+    path = os.path.join(DATA_DIR, "zurich_burglary.json")
+    if not os.path.isfile(path):
+        return {}
+    with open(path) as f:
+        return json.load(f)
+
+
+def build_zurich_zone_burglary():
+    """Maps each of Zurich's 34 Quartier names to a burglary disclosure
+    dict inherited from its parent Kreis, via QUARTIER_TO_KREIS. Returns {}
+    if no Kreis has scored data yet, so render_illustrative_city's
+    zurich call simply renders with no burglary note (identical to
+    Turin) rather than breaking."""
+    burglary = load_zurich_burglary()
+    kreise = burglary.get("kreise") or {}
+    if not kreise:
+        return {}
+    city_avg = burglary.get("city_average_rate_per_1000")
+    zone_data = {}
+    for quartier, kreis_n in QUARTIER_TO_KREIS.items():
+        rec = kreise.get(f"kreis_{kreis_n}")
+        if not rec:
+            continue
+        merged = dict(rec)
+        merged["city_average_rate_per_1000"] = city_avg
+        zone_data[quartier] = merged
+    return zone_data
+
+
+def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banner, neigh_note, extra_zone_data=None):
     """Render a full-city interactive map (day/night toggle, click-a-zone
     detail sidebar) plus one detail sub-page per neighbourhood, for a city
     whose ratings are an illustrative first pass rather than an automated
     pipeline (Turin, Zurich today). Mirrors the original map prototype's
-    UX exactly, instead of the flat card-grid list this replaces."""
+    UX exactly, instead of the flat card-grid list this replaces.
+
+    extra_zone_data, if given, is a dict keyed by zone name (e.g. from
+    build_zurich_zone_burglary()) merged into each zone's neighbourhood-
+    page context as zone_ctx["burglary"] — used to attach a real,
+    narrowly-scoped official data point on top of the illustrative rating,
+    without changing that rating itself or affecting cities that don't
+    pass this in (Turin)."""
     path = os.path.join(ZONES_DIR, f"{city_key}.json")
     if not os.path.isfile(path):
         return []
@@ -148,6 +214,8 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         zone_ctx = dict(z)
         zone_ctx["day_label"] = tone_badge.get(z["day"], z["day"])
         zone_ctx["night_label"] = tone_badge.get(z["night"], z["night"])
+        if extra_zone_data:
+            zone_ctx["burglary"] = extra_zone_data.get(z["name"])
         page = neigh_tpl.render(
             lang="en", city_label=data["label"], tagline=ui["tagline"],
             nav_home=ui["nav_home"], canonical_url=z_canonical,
@@ -350,8 +418,10 @@ TORINO_NEIGH_NOTE = (
 )
 ZURIGO_BANNER = (
     "Neighbourhood shapes are the City of Zurich's real official boundaries (the \"Statistische Quartiere\" "
-    "dataset). Safety levels, on the other hand, are a first manual pass — general knowledge, not a geolocated "
-    "crime dataset — unlike London. See the methodology page for details."
+    "dataset). Safety levels are a first manual pass — general knowledge, not a geolocated crime dataset — unlike "
+    "London. Where available, each neighbourhood page below also shows one real, official data point: the "
+    "Kantonspolizei Zürich's burglary rate for its wider city district (Kreis) — narrower and coarser than "
+    "London's pipeline, but genuine and current. See the methodology page for details."
 )
 ZURIGO_NEIGH_NOTE = (
     "Risk levels for Zurich are a qualitative judgment call based on general knowledge and public reputation of "
@@ -368,6 +438,13 @@ def main():
             continue
         with open(os.path.join(DATA_DIR, fname)) as f:
             city_data = json.load(f)
+        if "boroughs" not in city_data:
+            # Not a per-city ranking file — e.g. zurich_burglary.json, a
+            # narrower supplementary dataset (see load_zurich_burglary() /
+            # build_zurich_zone_burglary()) that's loaded separately and
+            # attached to Zurich's illustrative pages rather than treated
+            # as its own ranked city.
+            continue
         cities.append(city_data)
 
     attach_boundaries(cities)
@@ -430,7 +507,11 @@ def main():
 
     torino_urls = render_illustrative_city("torino", "torino", TORINO_UI, EN_TONE_BADGE, TORINO_BANNER, TORINO_NEIGH_NOTE)
     sitemap_urls.extend(torino_urls)
-    zurigo_urls = render_illustrative_city("zurigo", "zurigo", ZURIGO_UI, EN_TONE_BADGE, ZURIGO_BANNER, ZURIGO_NEIGH_NOTE)
+    zurich_zone_burglary = build_zurich_zone_burglary()
+    zurigo_urls = render_illustrative_city(
+        "zurigo", "zurigo", ZURIGO_UI, EN_TONE_BADGE, ZURIGO_BANNER, ZURIGO_NEIGH_NOTE,
+        extra_zone_data=zurich_zone_burglary,
+    )
     sitemap_urls.extend(zurigo_urls)
     london_map_urls = render_london_map(cities)
     sitemap_urls.extend(london_map_urls)
