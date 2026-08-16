@@ -35,6 +35,11 @@ OUT_DIR = os.path.join(BASE_DIR, "..", "dist")
 # Vercel, so this is what canonical/OG tags and the sitemap should use.
 SITE_URL = "https://www.wandroz.com"
 
+# "Report a correction" mailto target, shown on every neighbourhood/borough
+# detail page. Update this if the project ever gets a dedicated address
+# (e.g. corrections@wandroz.com) instead of a personal inbox.
+CORRECTION_EMAIL = "dadenuoto@gmail.com"
+
 # Every city with a map page, used to populate the "City" switcher shown on
 # every map page (top-right, next to the Day/Night toggle) so a visitor can
 # jump straight from one city's map to another's without going back home.
@@ -233,7 +238,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
             zone=zone_ctx, label_day=ui["label_day"], label_night=ui["label_night"],
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
             label_booking_note=ui["label_booking_note"], data_note=neigh_note,
-            footer_note=ui["footer_note"],
+            footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
         )
         with open(os.path.join(zdir, "index.html"), "w") as f:
             f.write(page)
@@ -500,7 +505,7 @@ def main():
             page_url = f"{SITE_URL}/{city_slug}/{b['slug']}.html"
             page = borough_tpl.render(
                 city=city, b=b, day_label=day_label, night_label=night_label,
-                canonical_url=page_url,
+                canonical_url=page_url, correction_email=CORRECTION_EMAIL,
             )
             out_path = os.path.join(city_dir, f"{b['slug']}.html")
             with open(out_path, "w") as f:
