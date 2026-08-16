@@ -619,13 +619,27 @@ def main():
     # (click a zone) is where safety levels and reasoning live.
     london = next((c for c in cities if c["city"].lower() == "london"), None)
     london_live_count = len(london["boroughs"]) if london else 0
+    # x/y are hand-computed from each city's real lat/lon, mapped onto a
+    # simplified Europe bounding box (lon -10..20 -> x 0..100%, lat 36..60
+    # -> y 100%..0%) so the three pins land in roughly the right relative
+    # positions on the homepage's decorative map (London NW, Zurich/Turin
+    # close together in the centre-south, matching real geography) without
+    # needing a full geographic projection or an actual map asset. color is
+    # a distinct accent per city purely for visual variety on that map —
+    # unrelated to the day/night safety tone colors used elsewhere.
     city_cards = [
         {"name": "London", "url": "london/index.html", "flag": "🇬🇧",
-         "blurb": f"33 boroughs on the map, {london_live_count} refreshed automatically every month from real Metropolitan Police data."},
+         "blurb": f"33 boroughs on the map, {london_live_count} refreshed automatically every month from real Metropolitan Police data.",
+         "x": 33, "y": 35, "color": "#2f6fed"},
         {"name": "Turin", "url": "torino/index.html", "flag": "🇮🇹",
-         "blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings."},
+         "blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings.",
+         # Nudged further from Zurich than real lat/lon would place it —
+         # the two cities are only ~200km apart, too close on a decorative
+         # map this size to fit both pin labels without overlap.
+         "x": 51, "y": 71, "color": "#e2a33d"},
         {"name": "Zurich", "url": "zurigo/index.html", "flag": "🇨🇭",
-         "blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings — plus a real official burglary-rate layer by district."},
+         "blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings — plus a real official burglary-rate layer by district.",
+         "x": 64, "y": 49, "color": "#d1483f"},
     ]
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
         f.write(index_tpl.render(city_cards=city_cards, canonical_url=SITE_URL + "/"))
