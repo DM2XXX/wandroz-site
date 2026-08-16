@@ -1,14 +1,19 @@
 {% extends "_base.html" %}
 {% block content %}
-<h1>Which neighbourhoods are actually safe?</h1>
-<p class="subtitle">Wandroz shows travellers city neighbourhoods on a real interactive map, using official public data where it exists — not just online reviews.</p>
+<div class="hero">
+  <span class="eyebrow">Official public data, not just reviews</span>
+  <h1>Which neighbourhoods are actually safe?</h1>
+  <p class="subtitle">Wandroz shows travellers city neighbourhoods on a real interactive map, using official public data where it exists — not just online reviews.</p>
+</div>
 
 <div class="note">This is an early data prototype, not a finished product. Pick a city below to open its map — click any neighbourhood for the level, the reasoning, and a Booking.com link for that area.</div>
 
 <h2>Choose a city</h2>
 <div class="city-grid">
   {% for city in city_cards %}
-  <a class="city-card" href="{{ city.url }}">
+  <a class="city-card hover-lift" href="{{ city.url }}">
+    <span class="flag">{{ city.flag }}</span>
+    <span class="arrow">→</span>
     <div class="cn">{{ city.name }}</div>
     <div class="cc">{{ city.blurb }}</div>
   </a>
