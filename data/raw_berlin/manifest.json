@@ -1,0 +1,30 @@
+{
+  "fetch_method": "browser-relay (same-origin fetch via www.polizei-berlin.eu, 17 Aug 2026) \u2014 this sandbox has no direct outbound network access to polizei-berlin.eu, so fetch_berlin.py's requests-based logic was mirrored in-browser instead of run directly; the aggregation logic (date parsing, 365-day window, LOR truncation) is identical.",
+  "status_17aug2026": "These two count files are real, current (post-2021 LOR scheme, 143 zones), and correctly aggregated \u2014 safe to use as-is. What's still missing is a matching boundary/polygon file in the SAME (post-2021) LOR scheme: every boundary source found so far either points at the same broken gdi.berlin.de WFS outage, is a dead link, or uses the older pre-2021 138-zone scheme (incompatible codes \u2014 see the long note in score_berlin.py for what was tried and why). Do not join these counts to old-scheme geometry by code. Re-run fetch_berlin.py (or repeat the browser-relay fetch) rather than reusing this snapshot once boundaries are solved, since the window is rolling.",
+  "fetched_sources": {
+    "bike_theft": {
+      "bezirksregionen_covered": 143,
+      "dataset_page": "https://daten.berlin.de/datensaetze/fahrraddiebstahl-in-berlin",
+      "file": "raw_berlin/bike_theft_by_bezirksregion.json",
+      "rows_kept": 15930,
+      "rows_skipped_bad_lor": 0,
+      "rows_skipped_out_of_window": 11395,
+      "rows_total": 27325,
+      "source_csv": "https://www.polizei-berlin.eu/Fahrraddiebstahl/Fahrraddiebstahl.csv",
+      "window_end": "2026-08-14",
+      "window_start": "2025-08-14"
+    },
+    "vehicle_crime": {
+      "bezirksregionen_covered": 143,
+      "dataset_page": "https://daten.berlin.de/datensaetze/diebstahl-an-aus-kfz",
+      "file": "raw_berlin/vehicle_crime_by_bezirksregion.json",
+      "rows_kept": 34026,
+      "rows_skipped_bad_lor": 0,
+      "rows_skipped_out_of_window": 19635,
+      "rows_total": 53661,
+      "source_csv": "https://www.polizei-berlin.eu/Kfzdiebstahl/Kfzdiebstahl.csv",
+      "window_end": "2026-08-14",
+      "window_start": "2025-08-14"
+    }
+  }
+}
