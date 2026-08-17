@@ -47,6 +47,7 @@ CITY_LINKS = [
     {"label": "London", "url": f"{SITE_URL}/london/"},
     {"label": "Turin", "url": f"{SITE_URL}/torino/"},
     {"label": "Zurich", "url": f"{SITE_URL}/zurigo/"},
+    {"label": "Milan", "url": f"{SITE_URL}/milano/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -566,6 +567,14 @@ ZURIGO_UI.update({
     "neigh_title": "Is {name} in Zurich safe? | Wandroz",
 })
 
+MILANO_UI = dict(TORINO_UI)
+MILANO_UI.update({
+    "page_title": "Is my Milan neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Milan's neighbourhoods (real official NIL boundaries) with day/night safety levels based on current local press research.",
+    "page_h1": "Milan neighbourhoods",
+    "neigh_title": "Is {name} in Milan safe? | Wandroz",
+})
+
 TORINO_BANNER = (
     "Neighbourhood shapes are the City of Turin's real official boundaries (the \"Quartieri\" dataset). Safety "
     "levels, on the other hand, are a first manual pass — general knowledge, not a geolocated crime dataset — "
@@ -587,6 +596,22 @@ ZURIGO_NEIGH_NOTE = (
     "Risk levels for Zurich are a qualitative judgment call based on general knowledge and public reputation of "
     "each neighbourhood, not an official geolocated crime dataset — unlike London, no open municipal dataset at "
     "this level of detail exists yet for Zurich."
+)
+
+MILANO_BANNER = (
+    "Neighbourhood shapes are the Comune di Milano's real official boundaries (the \"Nuclei d'Identità Locale\" "
+    "dataset). Unlike Turin/Zurich's general-knowledge first pass, Milan's safety levels are Wandroz's Level 2 "
+    "approach: genuine current local/national press research per area, honestly disclosed as press-based rather "
+    "than official crime statistics — no open geolocated crime dataset exists for Milan (checked against the "
+    "Comune, Regione Lombardia and local police). 20 of 88 official zones are covered so far, prioritising "
+    "traveller-relevant areas plus every area with a documented safety concern in recent local news. See the "
+    "methodology page for details and sources."
+)
+MILANO_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Milan: genuine current local/national press research for this "
+    "specific area (not blind guessing, not fabricated crime statistics), honestly disclosed as press-based "
+    "rather than official data — no open geolocated crime dataset exists for Milan at neighbourhood level. See "
+    "the methodology page for what was checked and how this differs from London's automated official-data pipeline."
 )
 
 
@@ -650,6 +675,9 @@ def main():
         {"name": "Zurich", "url": "zurigo/index.html", "flag": "🇨🇭",
          "blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings — plus a real official burglary-rate layer by district.",
          "x": 58.4, "y": 52.2, "color": "#d1483f", "label_side": "right"},
+        {"name": "Milan", "url": "milano/index.html", "flag": "🇮🇹",
+         "blurb": "20 of 88 official zones so far, real council boundaries, safety ratings from genuine current local press research.",
+         "x": 60.0, "y": 59.1, "color": "#3fae6b", "label_side": "right"},
     ]
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
         f.write(index_tpl.render(city_cards=city_cards, canonical_url=SITE_URL + "/", europe_landmass_path=EUROPE_LANDMASS_PATH))
@@ -701,7 +729,9 @@ def main():
     sitemap_urls.extend(zurigo_urls)
     london_map_urls = render_london_map(cities)
     sitemap_urls.extend(london_map_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)})")
+    milano_urls = render_illustrative_city("milano", "milano", MILANO_UI, EN_TONE_BADGE, MILANO_BANNER, MILANO_NEIGH_NOTE)
+    sitemap_urls.extend(milano_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
