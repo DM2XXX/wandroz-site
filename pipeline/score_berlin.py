@@ -39,6 +39,62 @@ DEPENDS ON A BOUNDARY FILE THIS REPO DOES NOT YET HAVE
   the closest precedent), this one writes an empty result rather than
   fabricating boundaries, an area, or a rate.
 
+  UPDATE (17 Aug 2026) — checked again, still blocked, now via 4
+  independent paths, and one promising-looking shortcut turned out to be a
+  trap worth documenting so it isn't retried blind:
+    1. gdi.berlin.de/services/wfs/lor_2021 — still "Wartungsarbeiten" on
+       every request, including GetCapabilities.
+    2. daten.odis-berlin.de's "WFS-Explorer" for LOR-Bezirksregionen (ab
+       2021) — greyed out/inactive in its own UI; its links resolve to
+       wfsexplorer.odis-berlin.de, which itself proxies gdi.berlin.de — so
+       it's the same outage wearing a nicer UI, not an alternate source.
+    3. github.com/rbb-data/berlin-lor — DOES have a real, fetchable
+       138-Bezirksregion polygon file (berlin-lor.bezirksregionen.geojson,
+       via Git LFS — fetch through
+       https://media.githubusercontent.com/media/rbb-data/berlin-lor/master/berlin-lor.bezirksregionen.geojson,
+       not raw.githubusercontent.com, which only returns the LFS pointer
+       stub). THE TRAP: its SCHLUESSEL codes use the PRE-2021 LOR scheme.
+       The live 2026 police CSVs (fetch_berlin.py) use the CURRENT
+       (post-2021) scheme. Tried joining directly on the 6-digit code on
+       17 Aug 2026: zero overlap between the two code sets — not a few
+       missing zones, a completely different numbering. A polygon file
+       built from this source was generated, scored (produced 138 zones
+       all reading exactly 0 incidents — the tell that the join silently
+       failed rather than raising an error) and then DELETED along with
+       the bogus score output once the mismatch was caught — see git
+       history / pipeline/data_zones/_unreconciled/ for the labelled
+       leftover if it's still there. Do not resurrect this file and join
+       it directly again without first solving the code mismatch (below).
+    4. daten.berlin.de's own dataset page for "Lebensweltlich orientierte
+       Räume (LOR) in Berlin" lists direct-download resources (SHP, KMZ,
+       DXF, and a "LOR-Schluesselsystematik.xls" key/name crosswalk) that
+       looked independent of the broken WFS — but every one of those
+       resource links points at
+       www.stadtentwicklung.berlin.de/planen/basisdaten_stadtentwicklung/lor/download/...,
+       which now returns HTTP 410 Gone (the old stadtentwicklung.berlin.de
+       site structure has been retired). Also checked govdata.de: it has
+       LOR-level population datasets, not the polygon geometry itself.
+
+  NEXT PERSON/SESSION: two realistic ways forward once gdi.berlin.de comes
+  back (no ETA observed) —
+    (a) fetch_berlin_boundaries.py against the real WFS once it's back —
+        the clean path, gets current-scheme geometry directly, no join
+        needed.
+    (b) if only an old-scheme geometry source is available again, get
+        LOR-Schluesselsystematik.xls (or an equivalent official
+        code<->name crosswalk covering BOTH the pre- and post-2021
+        schemes — it did not appear to still be hosted anywhere reachable
+        as of 17 Aug 2026 either) and join old-scheme geometry to
+        new-scheme crime data BY NAME instead of by code, verifying a
+        sane 1:1 (or documented split/merge) match before trusting it —
+        do not assume a naive name-string match is automatically correct,
+        Berlin Bezirksregion names can repeat or nearly-match across
+        different Bezirke.
+  Either way: do not ship a joined result without confirming a nonzero,
+  plausible incident count lands in most zones first (score_berlin.py's
+  city_average_rate_per_km2 being exactly 0.0 across every zone, as
+  happened on 17 Aug, is the giveaway that the join silently failed).
+
 USAGE
   python pipeline/score_berlin.py
 """
