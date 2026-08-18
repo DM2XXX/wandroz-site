@@ -600,12 +600,12 @@ ZURIGO_NEIGH_NOTE = (
 
 MILANO_BANNER = (
     "Neighbourhood shapes are the Comune di Milano's real official boundaries (the \"Nuclei d'Identità Locale\" "
-    "dataset). Unlike Turin/Zurich's general-knowledge first pass, Milan's safety levels are Wandroz's Level 2 "
-    "approach: genuine current local/national press research per area, honestly disclosed as press-based rather "
-    "than official crime statistics — no open geolocated crime dataset exists for Milan (checked against the "
-    "Comune, Regione Lombardia and local police). 20 of 88 official zones are covered so far, prioritising "
-    "traveller-relevant areas plus every area with a documented safety concern in recent local news. See the "
-    "methodology page for details and sources."
+    "dataset), covering all 88 official zones. Unlike Turin/Zurich's general-knowledge first pass, Milan's safety "
+    "levels are Wandroz's Level 2 approach: genuine current local/national press research per area, honestly "
+    "disclosed as press-based rather than official crime statistics — no open geolocated crime dataset exists for "
+    "Milan (checked against the Comune, Regione Lombardia and local police). Where no specific news coverage was "
+    "found for a zone, that is stated plainly rather than assumed either way. See the methodology page for "
+    "details and sources."
 )
 MILANO_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Milan: genuine current local/national press research for this "
@@ -676,7 +676,7 @@ def main():
          "blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings — plus a real official burglary-rate layer by district.",
          "x": 58.4, "y": 52.2, "color": "#d1483f", "label_side": "right"},
         {"name": "Milan", "url": "milano/index.html", "flag": "🇮🇹",
-         "blurb": "20 of 88 official zones so far, real council boundaries, safety ratings from genuine current local press research.",
+         "blurb": "All 88 official zones mapped, real council boundaries, safety ratings from genuine current local press research.",
          "x": 60.0, "y": 59.1, "color": "#3fae6b", "label_side": "right"},
     ]
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
