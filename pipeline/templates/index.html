@@ -1,133 +1,157 @@
-{% extends "_base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="5DCj9gpYkJtNZmnLGFZkmzduyZr8bO2YDMeZ5vhS8nI" />
+<title>Wandroz — Neighbourhood safety for travellers</title>
+<meta name="description" content="Wandroz shows travellers which city neighbourhoods are genuinely safe, using public official data instead of just reviews.">
+<link rel="canonical" href="{{ canonical_url }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wandroz">
+<meta property="og:title" content="Wandroz — Neighbourhood safety for travellers">
+<meta property="og:description" content="Wandroz shows travellers which city neighbourhoods are genuinely safe, using public official data instead of just reviews.">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wandroz — Neighbourhood safety for travellers">
+<meta name="twitter:description" content="Wandroz shows travellers which city neighbourhoods are genuinely safe, using public official data instead of just reviews.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
 <style>
-  /* Homepage-only decorative "flight map" hero. Scoped here (rather than
-     _base.html) since no other page uses it. Percent-based pin positions
-     come from build_site.py's city_cards (x/y = each city's real lat/lon
-     projected onto an equirectangular box: lon -16..26 -> x 0..100%, lat
-     34..62 -> y 100%..0%). The .landmass path below (country outlines,
-     coastline) is projected with that SAME box — generated once from
-     Natural Earth 110m country boundaries (public domain) and simplified/
-     inlined as a static path, no map library needed at runtime — so pins
-     line up with the real coastline under them. If the bounding box ever
-     changes, both must change together. */
-  .euro-map-wrap { margin: 22px 0 34px; }
-  .euro-map-hint { font-size:12.5px; color:var(--muted); margin: 0 0 10px; }
-  .euro-map {
-    position: relative; width:100%; aspect-ratio: 16/10; min-height:300px;
-    border-radius: var(--radius-lg); overflow:hidden;
-    background: radial-gradient(ellipse at 28% 18%, #1c4270 0%, var(--navy) 55%, #071120 100%);
-    box-shadow: var(--shadow-lift);
-  }
-  .euro-map::before {
-    content:""; position:absolute; inset:0; pointer-events:none;
-    background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px);
-    background-size: 22px 22px; opacity:0.7;
-  }
-  .map-glow { position:absolute; border-radius:50%; filter: blur(50px); opacity:0.32; pointer-events:none; }
-  .map-glow-a { width:220px; height:220px; background:var(--accent-bright); top:-40px; left:8%; }
-  .map-glow-b { width:260px; height:260px; background:#e2a33d; bottom:-60px; right:6%; }
-  .euro-map svg.landmass { position:absolute; inset:0; width:100%; height:100%; }
-  .euro-map .landmass path {
-    fill: #2f5486; stroke: rgba(255,255,255,0.4); stroke-width:0.18;
-    vector-effect: non-scaling-stroke;
-  }
-  .euro-map svg.routes { position:absolute; inset:0; width:100%; height:100%; }
-  .euro-map .route {
-    fill:none; stroke: rgba(255,255,255,0.55); stroke-width:0.35;
-    stroke-dasharray: 1.1 1.6; stroke-linecap:round;
-    animation: wz-dashmove 16s linear infinite;
-  }
-  @keyframes wz-dashmove { to { stroke-dashoffset: -120; } }
+  /* Homepage hero: a real, zoomable Leaflet map of every mapped city
+     (real lat/lon, no hand-tuned projection), clustered so it scales
+     cleanly as more cities are added — pins never sit on top of each
+     other, they group into a cluster bubble and split apart on zoom.
+     This replaces an earlier fixed decorative "flight map" hero (an
+     equirectangular SVG with hard-coded pixel positions) plus a
+     duplicate list of city cards below it; both had to be hand-tuned
+     per city and started visibly colliding with only 4 cities on the
+     map — not viable once the site covers dozens of cities. */
+  .hero-compact { padding: 26px 24px 14px; max-width:900px; }
+  .hero-compact .eyebrow { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color: var(--accent); background: var(--accent-bg); padding:5px 12px; border-radius:20px; margin-bottom:14px; letter-spacing:0.02em; }
+  .hero-compact h1 { font-size: 26px; margin: 0 0 6px; font-weight:800; letter-spacing:-0.01em; }
+  .hero-compact .subtitle { color: var(--muted); margin:0; font-size:14.5px; max-width:640px; }
+  .map-hint { font-size:12.5px; color:var(--muted); padding: 0 24px 12px; }
+  .map-page-wrap { position:relative; padding: 0 24px 28px; }
+  #homeMap { width:100%; height: calc(100vh - 230px); min-height:460px; max-height:820px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-count-badge { position:absolute; top:16px; left:38px; z-index:1000; background:rgba(12,29,57,0.82); backdrop-filter:blur(6px); color:#fff; font-size:11.5px; font-weight:600; letter-spacing:0.02em; padding:6px 12px; border-radius:20px; }
 
-  .map-pin {
-    position:absolute; transform:translate(-50%,-50%);
-    display:flex; align-items:center;
-    text-decoration:none; z-index:2;
-  }
-  .map-pin:hover { text-decoration:none; }
-  .map-pin.side-down { flex-direction:column; }
-  .map-pin.side-right { flex-direction:row; }
-  .map-pin.side-left { flex-direction:row-reverse; }
-  .map-pin .pin-dot {
-    width:15px; height:15px; border-radius:50%; background: var(--pin-color);
-    border:2px solid rgba(255,255,255,0.85); position:relative; flex:none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.35);
-    transition: transform .15s ease;
-  }
-  .map-pin .pin-dot::before {
-    content:""; position:absolute; inset:-7px; border-radius:50%;
-    background: var(--pin-color); opacity:0.45;
-    animation: wz-pinpulse 2.4s ease-out infinite;
-  }
-  @keyframes wz-pinpulse {
-    0% { transform:scale(0.55); opacity:0.55; }
-    70% { transform:scale(2.3); opacity:0; }
-    100% { opacity:0; }
-  }
-  .map-pin .pin-chip {
-    background:rgba(255,255,255,0.97); color:var(--navy);
-    font-size:12.5px; font-weight:700; padding:5px 11px; border-radius:20px;
-    box-shadow:0 3px 10px rgba(0,0,0,0.3); white-space:nowrap;
-    display:flex; align-items:center; gap:5px;
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .map-pin.side-down .pin-chip { margin-top:9px; }
-  .map-pin.side-right .pin-chip { margin-left:9px; }
-  .map-pin.side-left .pin-chip { margin-right:9px; }
-  .map-pin:hover .pin-dot { transform: scale(1.2); }
-  .map-pin:hover .pin-chip { transform: translateY(-2px) scale(1.06); box-shadow:0 8px 18px rgba(0,0,0,0.35); }
-  .map-badge {
-    position:absolute; top:16px; left:16px; z-index:2;
-    background:rgba(255,255,255,0.12); backdrop-filter:blur(6px);
-    color:#fff; font-size:11.5px; font-weight:600; letter-spacing:0.02em;
-    padding:6px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.2);
-  }
-  @media (max-width:560px) {
-    .euro-map { aspect-ratio: 4/5; }
-    .map-pin .pin-chip { font-size:11.5px; padding:4px 9px; }
+  /* Custom marker: colored dot + white flag/name chip, same visual
+     language as the old decorative pins, now rendered as real Leaflet
+     divIcons at real coordinates. */
+  .wz-pin-icon { display:flex; align-items:center; gap:7px; transform: translate(-2px,-2px); }
+  .wz-pin-dot { width:15px; height:15px; border-radius:50%; border:2px solid rgba(255,255,255,0.9); box-shadow:0 2px 6px rgba(0,0,0,0.35); flex:none; }
+  .wz-pin-chip { background:rgba(255,255,255,0.97); color:var(--navy); font-size:12.5px; font-weight:700; padding:4px 10px; border-radius:20px; box-shadow:0 3px 10px rgba(0,0,0,0.25); white-space:nowrap; }
+
+  /* Cluster bubbles, restyled to match the brand palette instead of
+     the plugin's default yellow/orange. */
+  .wz-cluster { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:var(--accent); border:3px solid rgba(255,255,255,0.9); color:#fff; font-weight:700; font-size:14px; box-shadow:0 3px 10px rgba(0,0,0,0.3); }
+
+  .wz-popup .leaflet-popup-content-wrapper { border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+  .wz-popup .leaflet-popup-content { margin:14px 16px; min-width:190px; }
+  .popup-name { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+  .popup-blurb { font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:10px; }
+  .popup-cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:7px 12px; border-radius: var(--radius-sm); font-size:12.5px; font-weight:600; }
+  .popup-cta:hover { text-decoration:none; opacity:0.92; }
+
+  @media (max-width: 720px){
+    #homeMap { height: calc(100vh - 260px); min-height:380px; }
+    .hero-compact { padding: 20px 14px 10px; }
+    .hero-compact h1 { font-size:22px; }
+    .map-page-wrap { padding: 0 12px 20px; }
+    .map-hint { padding: 0 14px 10px; }
+    .map-count-badge { left:26px; }
   }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="38" height="38">
+    <div><div class="wz-name">Wandroz</div></div>
+  </a>
+  <nav class="wz-nav">
+    <a href="/">Home</a>
+    <a href="/methodology.html">Methodology</a>
+  </nav>
+</header>
 
-<div class="hero">
+<div class="hero-compact">
   <span class="eyebrow">Official public data, not just reviews</span>
   <h1>Which neighbourhoods are actually safe?</h1>
-  <p class="subtitle">Wandroz shows travellers city neighbourhoods on a real interactive map, using official public data where it exists — not just online reviews.</p>
+  <p class="subtitle">Wandroz shows travellers city neighbourhoods on a real interactive map, using official public data where it exists — not just online reviews. This is an early data prototype, not a finished product.</p>
+</div>
+<p class="map-hint">Click a pin to open that city — zoom in on any cluster to spread its cities apart.</p>
+
+<div class="map-page-wrap">
+  <div id="homeMap"></div>
+  <span class="map-count-badge">🗺️ {{ city_cards|length }} {{ 'city' if city_cards|length == 1 else 'cities' }} mapped so far</span>
 </div>
 
-<div class="note">This is an early data prototype, not a finished product. Pick a city below to open its map — click any neighbourhood for the level, the reasoning, and a Booking.com link for that area.</div>
+<footer class="wz-footer">Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
 
-<h2>Choose a city</h2>
-<p class="euro-map-hint">Tap a pin to jump straight to that city's map.</p>
-<div class="euro-map-wrap">
-  <div class="euro-map">
-    <span class="map-badge">🗺️ {{ city_cards|length }} cities mapped so far</span>
-    <div class="map-glow map-glow-a"></div>
-    <div class="map-glow map-glow-b"></div>
-    <svg class="landmass" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="{{ europe_landmass_path }}"></path>
-    </svg>
-    <svg class="routes" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path class="route" d="M{{ city_cards[0].x }},{{ city_cards[0].y }} Q50,28 {{ city_cards[2].x }},{{ city_cards[2].y }}"></path>
-      <path class="route" d="M{{ city_cards[2].x }},{{ city_cards[2].y }} Q66,59 {{ city_cards[1].x }},{{ city_cards[1].y }}"></path>
-    </svg>
-    {% for city in city_cards %}
-    <a class="map-pin side-{{ city.label_side|default('down') }}" href="{{ city.url }}" style="left:{{ city.x }}%; top:{{ city.y }}%;">
-      <span class="pin-dot" style="--pin-color:{{ city.color }};"></span>
-      <span class="pin-chip">{{ city.flag }} {{ city.name }}</span>
-    </a>
-    {% endfor %}
-  </div>
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+<script>
+  var CITIES = {{ city_cards|tojson }};
 
-<div class="city-grid">
-  {% for city in city_cards %}
-  <a class="city-card hover-lift" href="{{ city.url }}">
-    <span class="flag">{{ city.flag }}</span>
-    <span class="arrow">→</span>
-    <div class="cn">{{ city.name }}</div>
-    <div class="cc">{{ city.blurb }}</div>
-  </a>
-  {% endfor %}
-</div>
-{% endblock %}
+  // Leaflet requires a view (center+zoom) before any layer is added, or
+  // adding the tile layer throws "Set map center and zoom first." — set a
+  // provisional Europe-wide view now, then fitBounds() below refines it
+  // once the real city coordinates are known (so this stays correct as
+  // more cities are added, no manual re-tuning needed).
+  var map = L.map('homeMap', { scrollWheelZoom:true }).setView([48.5, 8], 4);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var clusters = L.markerClusterGroup({
+    maxClusterRadius: 42,
+    iconCreateFunction: function(cluster) {
+      return L.divIcon({
+        html: '<div class="wz-cluster">' + cluster.getChildCount() + '</div>',
+        className: '',
+        iconSize: [40, 40]
+      });
+    }
+  });
+
+  CITIES.forEach(function(c) {
+    var icon = L.divIcon({
+      className: '',
+      html: '<div class="wz-pin-icon"><span class="wz-pin-dot" style="background:' + c.color + ';"></span><span class="wz-pin-chip">' + c.flag + ' ' + c.name + '</span></div>',
+      iconSize: null,
+      iconAnchor: [9, 9]
+    });
+    var marker = L.marker([c.lat, c.lon], { icon: icon });
+    var popupHtml = '<div class="popup-name">' + c.flag + ' ' + c.name + '</div>' +
+      '<div class="popup-blurb">' + c.blurb + '</div>' +
+      '<a class="popup-cta" href="' + c.url + '">View map &rarr;</a>';
+    marker.bindPopup(popupHtml, { className: 'wz-popup' });
+    clusters.addLayer(marker);
+  });
+
+  map.addLayer(clusters);
+
+  if (CITIES.length > 0) {
+    var bounds = L.latLngBounds(CITIES.map(function(c){ return [c.lat, c.lon]; }));
+    map.fitBounds(bounds, { padding: [50, 50], maxZoom: 8 });
+  }
+</script>
+</body>
+</html>
