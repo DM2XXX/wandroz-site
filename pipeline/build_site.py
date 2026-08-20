@@ -48,6 +48,7 @@ CITY_LINKS = [
     {"label": "Turin", "url": f"{SITE_URL}/torino/"},
     {"label": "Zurich", "url": f"{SITE_URL}/zurigo/"},
     {"label": "Milan", "url": f"{SITE_URL}/milano/"},
+    {"label": "Rome", "url": f"{SITE_URL}/roma/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -297,7 +298,7 @@ def build_zurich_zone_burglary():
     return zone_data
 
 
-def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banner, neigh_note, extra_zone_data=None):
+def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banner, neigh_note, extra_zone_data=None, flat=False):
     """Render a full-city interactive map (day/night toggle, click-a-zone
     detail sidebar) plus one detail sub-page per neighbourhood, for a city
     whose ratings are an illustrative first pass rather than an automated
@@ -314,7 +315,18 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
     data" toggle (show_burglary_toggle) that recolours zones by their
     Kreis's burglary tone instead of the manual day/night tone, so the one
     real data layer Zurich has is visible on the map itself, not just
-    buried in each zone's detail page."""
+    buried in each zone's detail page.
+
+    flat=True writes each neighbourhood page as {url_slug}/{slug}.html
+    instead of {url_slug}/{slug}/index.html — same convention already used
+    for London's borough pages (render_london_map/borough.html below).
+    This exists for Roma specifically: with 155 zones, deploying via
+    GitHub's browser-based web-upload UI (the only permitted deployment
+    mechanism for this project — no git CLI, no stored credentials) can't
+    recreate 155 nested per-zone subdirectories, since that upload UI's
+    file input has no webkitdirectory/folder support reachable through
+    browser automation — only a flat multi-file selection, which can be
+    batched into a handful of commits instead of ~155 individual ones."""
     path = os.path.join(ZONES_DIR, f"{city_key}.json")
     if not os.path.isfile(path):
         return []
@@ -328,7 +340,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
 
     js_zones = []
     for z in zones:
-        z_url = f"/{url_slug}/{z['slug']}/"
+        z_url = f"/{url_slug}/{z['slug']}.html" if flat else f"/{url_slug}/{z['slug']}/"
         zone_js = {
             "name": z["name"], "slug": z["slug"],
             "day": z["day"], "night": z["night"],
@@ -367,9 +379,14 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
 
     neigh_tpl = env.get_template("neighbourhood.html")
     for z in zones:
-        zdir = os.path.join(city_dir, z["slug"])
-        os.makedirs(zdir, exist_ok=True)
-        z_canonical = f"{SITE_URL}/{url_slug}/{z['slug']}/"
+        if flat:
+            out_path = os.path.join(city_dir, f"{z['slug']}.html")
+            z_canonical = f"{SITE_URL}/{url_slug}/{z['slug']}.html"
+        else:
+            zdir = os.path.join(city_dir, z["slug"])
+            os.makedirs(zdir, exist_ok=True)
+            out_path = os.path.join(zdir, "index.html")
+            z_canonical = f"{SITE_URL}/{url_slug}/{z['slug']}/"
         zone_ctx = dict(z)
         zone_ctx["day_label"] = tone_badge.get(z["day"], z["day"])
         zone_ctx["night_label"] = tone_badge.get(z["night"], z["night"])
@@ -387,7 +404,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
             faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
         )
-        with open(os.path.join(zdir, "index.html"), "w") as f:
+        with open(out_path, "w") as f:
             f.write(page)
         urls.append(z_canonical)
 
@@ -575,6 +592,14 @@ MILANO_UI.update({
     "neigh_title": "Is {name} in Milan safe? | Wandroz",
 })
 
+ROMA_UI = dict(TORINO_UI)
+ROMA_UI.update({
+    "page_title": "Is my Rome neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Rome's neighbourhoods (real official Zone Urbanistiche boundaries) with day/night safety levels based on current local press research.",
+    "page_h1": "Rome neighbourhoods",
+    "neigh_title": "Is {name} in Rome safe? | Wandroz",
+})
+
 TORINO_BANNER = (
     "Neighbourhood shapes are the City of Turin's real official boundaries (the \"Quartieri\" dataset). Safety "
     "levels, on the other hand, are a first manual pass — general knowledge, not a geolocated crime dataset — "
@@ -611,6 +636,21 @@ MILANO_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Milan: genuine current local/national press research for this "
     "specific area (not blind guessing, not fabricated crime statistics), honestly disclosed as press-based "
     "rather than official data — no open geolocated crime dataset exists for Milan at neighbourhood level. See "
+    "the methodology page for what was checked and how this differs from London's automated official-data pipeline."
+)
+
+ROMA_BANNER = (
+    "Neighbourhood shapes are Roma Capitale's real official boundaries (the \"Zone Urbanistiche\" dataset, via the "
+    "Comune's Geoportale), covering all 155 official zones. Like Milan, Rome's safety levels are Wandroz's Level 2 "
+    "approach: genuine current local/national press research per area, honestly disclosed as press-based rather "
+    "than official crime statistics — no open geolocated crime dataset exists for Rome (Italy does not publish one "
+    "at neighbourhood level). Where no specific news coverage was found for a zone, that is stated plainly rather "
+    "than assumed either way. See the methodology page for details and sources."
+)
+ROMA_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Rome: genuine current local/national press research for this "
+    "specific area (not blind guessing, not fabricated crime statistics), honestly disclosed as press-based "
+    "rather than official data — no open geolocated crime dataset exists for Rome at neighbourhood level. See "
     "the methodology page for what was checked and how this differs from London's automated official-data pipeline."
 )
 
@@ -673,6 +713,9 @@ def main():
         {"name": "Milan", "url": "milano/index.html", "flag": "🇮🇹",
          "blurb": "All 88 official zones mapped, real council boundaries, safety ratings from genuine current local press research.",
          "lat": 45.4642, "lon": 9.1900, "color": "#3fae6b"},
+        {"name": "Rome", "url": "roma/index.html", "flag": "🇮🇹",
+         "blurb": "All 155 official zones mapped, real council boundaries, safety ratings from genuine current local press research.",
+         "lat": 41.9028, "lon": 12.4964, "color": "#8e44ad"},
     ]
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
         f.write(index_tpl.render(city_cards=city_cards, canonical_url=SITE_URL + "/"))
@@ -726,7 +769,9 @@ def main():
     sitemap_urls.extend(london_map_urls)
     milano_urls = render_illustrative_city("milano", "milano", MILANO_UI, EN_TONE_BADGE, MILANO_BANNER, MILANO_NEIGH_NOTE)
     sitemap_urls.extend(milano_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)})")
+    roma_urls = render_illustrative_city("roma", "roma", ROMA_UI, EN_TONE_BADGE, ROMA_BANNER, ROMA_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(roma_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
