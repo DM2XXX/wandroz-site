@@ -102,7 +102,7 @@
 
 <div class="map-page-wrap">
   <div id="homeMap"></div>
-  <span class="map-count-badge">🗺️ 4 cities mapped so far</span>
+  <span class="map-count-badge">🗺️ 5 cities mapped so far</span>
 </div>
 
 <footer class="wz-footer">Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
@@ -110,7 +110,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
 <script>
-  var CITIES = [{"blurb": "33 boroughs on the map, 5 refreshed automatically every month from real Metropolitan Police data.", "color": "#2f6fed", "flag": "\ud83c\uddec\ud83c\udde7", "lat": 51.5074, "lon": -0.1278, "name": "London", "url": "london/index.html"}, {"blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings.", "color": "#e2a33d", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 45.0703, "lon": 7.6869, "name": "Turin", "url": "torino/index.html"}, {"blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings \u2014 plus a real official burglary-rate layer by district.", "color": "#d1483f", "flag": "\ud83c\udde8\ud83c\udded", "lat": 47.3769, "lon": 8.5417, "name": "Zurich", "url": "zurigo/index.html"}, {"blurb": "All 88 official zones mapped, real council boundaries, safety ratings from genuine current local press research.", "color": "#3fae6b", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 45.4642, "lon": 9.19, "name": "Milan", "url": "milano/index.html"}];
+  var CITIES = [{"blurb": "33 boroughs on the map, 5 refreshed automatically every month from real Metropolitan Police data.", "color": "#2f6fed", "flag": "\ud83c\uddec\ud83c\udde7", "lat": 51.5074, "lon": -0.1278, "name": "London", "url": "london/index.html"}, {"blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings.", "color": "#e2a33d", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 45.0703, "lon": 7.6869, "name": "Turin", "url": "torino/index.html"}, {"blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings \u2014 plus a real official burglary-rate layer by district.", "color": "#d1483f", "flag": "\ud83c\udde8\ud83c\udded", "lat": 47.3769, "lon": 8.5417, "name": "Zurich", "url": "zurigo/index.html"}, {"blurb": "All 88 official zones mapped, real council boundaries, safety ratings from genuine current local press research.", "color": "#3fae6b", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 45.4642, "lon": 9.19, "name": "Milan", "url": "milano/index.html"}, {"blurb": "All 155 official zones mapped, real council boundaries, safety ratings from genuine current local press research.", "color": "#8e44ad", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 41.9028, "lon": 12.4964, "name": "Rome", "url": "roma/index.html"}];
 
   // Leaflet requires a view (center+zoom) before any layer is added, or
   // adding the tile layer throws "Set map center and zoom first." — set a
