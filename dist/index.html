@@ -27,83 +27,78 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
 <style>
-  /* Homepage hero: a real, zoomable Leaflet map of every mapped city
+  /* Homepage: compressed to "brand → promise → search → map → explore
+     cities" with nothing else competing for attention above the fold.
+     The map itself is a real, zoomable Leaflet map of every mapped city
      (real lat/lon, no hand-tuned projection), clustered so it scales
-     cleanly as more cities are added — pins never sit on top of each
-     other, they group into a cluster bubble and split apart on zoom.
-     Below the map: a plain-text status line, a real search bar backed by
-     a build-time-generated index (see build_search_index() in
-     build_site.py — every result is a genuine page, nothing invented),
-     and a "Popular cities" card grid, so the map is one way to browse,
-     not the only way. */
-  .hero-compact { padding: 26px 24px 6px; max-width:900px; }
-  .hero-compact .eyebrow { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color: var(--accent); background: var(--accent-bg); padding:5px 12px; border-radius:20px; margin-bottom:14px; letter-spacing:0.02em; }
-  .hero-compact h1 { font-size: 26px; margin: 0 0 6px; font-weight:800; letter-spacing:-0.01em; }
-  .hero-compact .subtitle { color: var(--muted); margin:0; font-size:14.5px; max-width:640px; }
-  .hero-compact .beta-note { color: var(--muted-soft); margin:9px 0 0; font-size:12.5px; }
-  .hero-compact .beta-note a { color: var(--muted-soft); text-decoration:underline; }
+     cleanly as more cities are added. Secondary material (why Wandroz,
+     the beta note, methodology link) lives further down, out of the way
+     of the first screen. */
+  .hero-compact { padding: 22px 24px 4px; max-width:900px; }
+  .hero-compact h1 { font-size: 25px; margin: 0 0 4px; font-weight:800; letter-spacing:-0.01em; }
+  .hero-compact .subtitle { color: var(--muted); margin:0; font-size:14px; font-style:italic; }
 
-  .status-line { font-size:12.5px; color:var(--muted); font-weight:600; padding: 10px 24px 0; margin:0; }
-
-  .search-wrap { padding: 12px 24px 4px; position:relative; }
-  .search-input { width:100%; max-width:520px; padding:12px 16px; border:1px solid var(--line); border-radius: var(--radius-md); font-size:14.5px; font-family:var(--font); background:#fff; box-shadow: var(--shadow-sm); }
+  .search-wrap { padding: 14px 24px 4px; position:relative; max-width:520px; }
+  .search-label { display:block; font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+  .search-input { width:100%; padding:12px 16px; border:1px solid var(--line); border-radius: var(--radius-md); font-size:14.5px; font-family:var(--font); background:#fff; box-shadow: var(--shadow-sm); }
   .search-input:focus { outline:2px solid var(--accent-bright); outline-offset:1px; }
-  .search-results { position:absolute; top:100%; left:24px; right:24px; max-width:520px; margin-top:6px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-md); max-height:320px; overflow-y:auto; z-index:1200; display:none; }
+  .search-results { position:absolute; top:100%; left:24px; right:24px; margin-top:6px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-md); max-height:320px; overflow-y:auto; z-index:1200; display:none; }
   .search-results.open { display:block; }
   .search-result-item { display:block; padding:10px 14px; font-size:13.5px; color:var(--navy); border-bottom:1px solid var(--line); text-decoration:none; }
   .search-result-item:last-child { border-bottom:none; }
-  .search-result-item:hover { background: var(--accent-bg); text-decoration:none; }
+  .search-result-item:hover, .search-result-item.active { background: var(--accent-bg); text-decoration:none; }
   .search-result-city { color:var(--muted); font-size:12px; margin-left:6px; }
-  .search-empty { padding:12px 14px; font-size:13px; color:var(--muted); }
+  .search-status { padding:12px 14px; font-size:13px; color:var(--muted); line-height:1.5; }
 
-  .map-hint { font-size:12.5px; color:var(--muted); padding: 10px 24px 12px; }
-  .map-page-wrap { position:relative; padding: 0 24px 28px; }
-  #homeMap { width:100%; height: calc(100vh - 230px); min-height:460px; max-height:820px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-page-wrap { position:relative; padding: 14px 24px 20px; }
+  #homeMap { width:100%; height: calc(100vh - 280px); min-height:420px; max-height:720px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .leaflet-control-zoom a { width:27px !important; height:27px !important; line-height:27px !important; font-size:15px !important; }
+  .leaflet-control-attribution { font-size:10px !important; opacity:0.75; }
 
-  /* Custom marker: colored dot + white flag/name chip, same visual
-     language as the old decorative pins, now rendered as real Leaflet
-     divIcons at real coordinates. Chip is hidden on mobile (see the
-     media query below) so pins don't crowd a narrow map — the name is
-     still one tap away via the popup. */
   .wz-pin-icon { display:flex; align-items:center; gap:7px; transform: translate(-2px,-2px); }
   .wz-pin-dot { width:15px; height:15px; border-radius:50%; border:2px solid rgba(255,255,255,0.9); box-shadow:0 2px 6px rgba(0,0,0,0.35); flex:none; }
   .wz-pin-chip { background:rgba(255,255,255,0.97); color:var(--navy); font-size:12.5px; font-weight:700; padding:4px 10px; border-radius:20px; box-shadow:0 3px 10px rgba(0,0,0,0.25); white-space:nowrap; }
 
-  /* Cluster bubbles, restyled to match the brand palette instead of
-     the plugin's default yellow/orange. */
-  .wz-cluster { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:var(--accent); border:3px solid rgba(255,255,255,0.9); color:#fff; font-weight:700; font-size:14px; box-shadow:0 3px 10px rgba(0,0,0,0.3); }
+  .wz-cluster { display:flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:var(--accent); border:3px solid rgba(255,255,255,0.9); color:#fff; font-weight:700; font-size:13.5px; box-shadow:0 3px 10px rgba(0,0,0,0.3); }
 
+  /* Per-city "card" shown on tap — flag/name, real neighbourhood count,
+     an honest one-line data-tier tag (see data_tag in build_site.py:
+     only claims "official data" where that's actually true), and a CTA. */
   .wz-popup .leaflet-popup-content-wrapper { border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
-  .wz-popup .leaflet-popup-content { margin:14px 16px; min-width:190px; }
-  .popup-name { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:5px; display:flex; align-items:center; gap:6px; }
-  .popup-blurb { font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:10px; }
+  .wz-popup .leaflet-popup-content { margin:14px 16px; min-width:200px; }
+  .popup-name { font-size:15.5px; font-weight:700; color:var(--navy); margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .popup-count { font-size:12.5px; color:var(--ink); margin-bottom:2px; }
+  .popup-datatag { font-size:11.5px; color:var(--accent); font-weight:600; margin-bottom:10px; }
   .popup-cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:7px 12px; border-radius: var(--radius-sm); font-size:12.5px; font-weight:600; }
   .popup-cta:hover { text-decoration:none; opacity:0.92; }
 
-  .popular-cities { padding: 6px 24px 44px; max-width:900px; }
-  .popular-cities h2 { font-size:16px; margin:0 0 12px; font-weight:700; color:var(--navy); }
-  .city-card-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr)); gap:12px; }
-  .city-card-link { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; text-decoration:none; color:var(--navy); box-shadow: var(--shadow-sm); transition: transform .12s ease, box-shadow .12s ease; }
-  .city-card-link:hover { text-decoration:none; transform: translateY(-2px); box-shadow: var(--shadow-md); }
-  .city-card-flag { font-size:22px; line-height:1; }
-  .city-card-name { font-weight:700; font-size:14px; flex:1; }
-  .city-card-arrow { color:var(--muted); }
+  .explore-cities { padding: 4px 24px 8px; max-width:900px; }
+  .explore-cities h2 { font-size:14.5px; margin:0 0 10px; font-weight:700; color:var(--navy); }
+  .city-card-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap:8px; }
+  .city-card-link { display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-sm); padding:9px 12px; text-decoration:none; color:var(--navy); font-size:13px; font-weight:600; }
+  .city-card-link:hover { text-decoration:none; border-color: var(--accent-bright); }
+  .city-card-flag { font-size:15px; line-height:1; }
+  .city-card-name { flex:1; }
+  .city-card-arrow { color:var(--muted); font-weight:400; }
+
+  .why-wandroz { padding: 26px 24px 6px; max-width:900px; display:flex; gap:22px; flex-wrap:wrap; }
+  .why-item { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); font-weight:600; }
+  .why-item .why-icon { font-size:16px; }
+
+  .beta-footnote { padding: 14px 24px 30px; max-width:900px; font-size:12px; color:var(--muted-soft); }
+  .beta-footnote a { color:var(--muted-soft); text-decoration:underline; }
 
   @media (max-width: 720px){
-    /* Compact map (~420px) so the map doesn't eat the whole first
-       screen, plus tighter fitBounds padding/zoom in the script below
-       so edge cities (e.g. Rome) aren't cropped on a narrow viewport. */
     #homeMap { height: 420px; min-height:360px; }
     .wz-pin-chip { display:none; }
-    .hero-compact { padding: 20px 14px 4px; }
+    .hero-compact { padding: 18px 14px 4px; }
     .hero-compact h1 { font-size:21px; }
-    .hero-compact .subtitle { font-size:13.5px; }
-    .status-line { padding: 8px 14px 0; }
-    .search-wrap { padding: 10px 14px 4px; }
+    .search-wrap { padding: 12px 14px 4px; }
     .search-results { left:14px; right:14px; }
-    .map-hint { padding: 8px 14px 10px; }
-    .map-page-wrap { padding: 0 12px 20px; }
-    .popular-cities { padding: 4px 14px 32px; }
+    .map-page-wrap { padding: 12px 12px 16px; }
+    .explore-cities { padding: 4px 14px 6px; }
+    .why-wandroz { padding: 20px 14px 4px; gap:16px; }
+    .beta-footnote { padding: 12px 14px 26px; }
   }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -128,27 +123,22 @@
 </header>
 
 <div class="hero-compact">
-  <span class="eyebrow">Official public data, not just reviews</span>
   <h1>Know the neighbourhood before you book.</h1>
-  <p class="subtitle">Real interactive maps of city neighbourhoods, built from official public data where it exists.</p>
-  <p class="beta-note">Wandroz is currently in beta — coverage is expanding. <a href="/methodology.html">See how it works →</a></p>
+  <p class="subtitle">Check safety using official public data.</p>
 </div>
 
-<p class="status-line">🗺️ 5 cities available · more coming</p>
-
-<div class="search-wrap">
-  <input type="text" id="wzSearch" class="search-input" placeholder="Search a city or neighbourhood…" autocomplete="off" aria-label="Search a city or neighbourhood">
+<form id="wzSearchForm" class="search-wrap" autocomplete="off">
+  <label class="search-label" for="wzSearch">Where are you staying?</label>
+  <input type="text" id="wzSearch" class="search-input" placeholder="Enter an address, hotel or neighbourhood" autocomplete="off" aria-label="Where are you staying">
   <div id="wzSearchResults" class="search-results"></div>
-</div>
-
-<p class="map-hint">Or browse the map — click a pin to open that city, zoom in on a cluster to spread it apart.</p>
+</form>
 
 <div class="map-page-wrap">
   <div id="homeMap"></div>
 </div>
 
-<div class="popular-cities">
-  <h2>Popular cities</h2>
+<div class="explore-cities">
+  <h2>Explore cities</h2>
   <div class="city-card-grid">
     
     <a class="city-card-link" href="london/index.html">
@@ -184,19 +174,27 @@
   </div>
 </div>
 
+<div class="why-wandroz">
+  <span class="why-item"><span class="why-icon">🏛️</span> Official public data</span>
+  <span class="why-item"><span class="why-icon">📍</span> Neighbourhood-level insights</span>
+  <span class="why-item"><span class="why-icon">✈️</span> Built for travellers</span>
+</div>
+
+<p class="beta-footnote"><em>Wandroz is currently in beta — coverage is expanding.</em> <a href="/methodology.html">Methodology →</a></p>
+
 <footer class="wz-footer">Wandroz — public official data, not just reviews. Beta build. · <a href="/methodology.html">Methodology</a></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
 <script>
-  var CITIES = [{"blurb": "33 boroughs on the map, 5 refreshed automatically every month from real Metropolitan Police data.", "color": "#2f6fed", "flag": "\ud83c\uddec\ud83c\udde7", "lat": 51.5074, "lon": -0.1278, "name": "London", "url": "london/index.html"}, {"blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings.", "color": "#e2a33d", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 45.0703, "lon": 7.6869, "name": "Turin", "url": "torino/index.html"}, {"blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings \u2014 plus a real official burglary-rate layer by district.", "color": "#d1483f", "flag": "\ud83c\udde8\ud83c\udded", "lat": 47.3769, "lon": 8.5417, "name": "Zurich", "url": "zurigo/index.html"}, {"blurb": "All 88 official zones mapped, real council boundaries, safety ratings from genuine current local press research.", "color": "#3fae6b", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 45.4642, "lon": 9.19, "name": "Milan", "url": "milano/index.html"}, {"blurb": "All 155 official zones mapped, real council boundaries, safety ratings from genuine current local press research.", "color": "#8e44ad", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 41.9028, "lon": 12.4964, "name": "Rome", "url": "roma/index.html"}];
+  var CITIES = [{"blurb": "33 boroughs on the map, 5 refreshed automatically every month from real Metropolitan Police data.", "color": "#2f6fed", "data_tag": "Official police data", "flag": "\ud83c\uddec\ud83c\udde7", "lat": 51.5074, "lon": -0.1278, "name": "London", "url": "london/index.html", "zone_count": 33}, {"blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings.", "color": "#e2a33d", "data_tag": "Official boundaries", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 45.0703, "lon": 7.6869, "name": "Turin", "url": "torino/index.html", "zone_count": 23}, {"blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings \u2014 plus a real official burglary-rate layer by district.", "color": "#d1483f", "data_tag": "Official boundaries + burglary data", "flag": "\ud83c\udde8\ud83c\udded", "lat": 47.3769, "lon": 8.5417, "name": "Zurich", "url": "zurigo/index.html", "zone_count": 34}, {"blurb": "All 88 official zones mapped, real council boundaries, safety ratings from genuine current local press research.", "color": "#3fae6b", "data_tag": "Official boundaries", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 45.4642, "lon": 9.19, "name": "Milan", "url": "milano/index.html", "zone_count": 88}, {"blurb": "All 155 official zones mapped, real council boundaries, safety ratings from genuine current local press research.", "color": "#8e44ad", "data_tag": "Official boundaries", "flag": "\ud83c\uddee\ud83c\uddf9", "lat": 41.9028, "lon": 12.4964, "name": "Rome", "url": "roma/index.html", "zone_count": 155}];
 
   // Leaflet requires a view (center+zoom) before any layer is added, or
   // adding the tile layer throws "Set map center and zoom first." — set a
   // provisional Europe-wide view now, then fitBounds() below refines it
-  // once the real city coordinates are known (so this stays correct as
-  // more cities are added, no manual re-tuning needed).
-  var map = L.map('homeMap', { scrollWheelZoom:true }).setView([48.5, 8], 4);
+  // once the real city coordinates are known.
+  var map = L.map('homeMap', { scrollWheelZoom:true, zoomControl:false }).setView([48.5, 8], 4);
+  L.control.zoom({ position: 'topright' }).addTo(map);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
 
   var clusters = L.markerClusterGroup({
@@ -205,7 +203,7 @@
       return L.divIcon({
         html: '<div class="wz-cluster">' + cluster.getChildCount() + '</div>',
         className: '',
-        iconSize: [40, 40]
+        iconSize: [38, 38]
       });
     }
   });
@@ -219,8 +217,9 @@
     });
     var marker = L.marker([c.lat, c.lon], { icon: icon });
     var popupHtml = '<div class="popup-name">' + c.flag + ' ' + c.name + '</div>' +
-      '<div class="popup-blurb">' + c.blurb + '</div>' +
-      '<a class="popup-cta" href="' + c.url + '">View map &rarr;</a>';
+      '<div class="popup-count">' + c.zone_count + ' neighbourhoods mapped</div>' +
+      '<div class="popup-datatag">' + c.data_tag + '</div>' +
+      '<a class="popup-cta" href="' + c.url + '">Explore ' + c.name + ' &rarr;</a>';
     marker.bindPopup(popupHtml, { className: 'wz-popup' });
     clusters.addLayer(marker);
   });
@@ -229,26 +228,40 @@
 
   if (CITIES.length > 0) {
     var bounds = L.latLngBounds(CITIES.map(function(c){ return [c.lat, c.lon]; }));
-    // Narrower padding + a lower max zoom on small screens, so a
-    // corner city (e.g. Rome, furthest south/east of the current set)
-    // doesn't get cropped against a narrow, tall viewport.
     var isNarrow = window.innerWidth <= 720;
     map.fitBounds(bounds, { padding: isNarrow ? [20, 20] : [50, 50], maxZoom: isNarrow ? 6 : 8 });
   }
 
-  // Search bar — backed by /search-index.json, generated at build time
-  // from the same real data the site's pages are built from (see
-  // build_search_index() in build_site.py). No fabricated entries, no
-  // guessing at neighbourhoods that don't have a real page.
+  // Search — name matches are instant and local (from /search-index.json,
+  // built at deploy time from the site's real pages, see
+  // build_search_index() in build_site.py). If nothing matches locally
+  // and the visitor hits Enter, it's treated as a real address: geocoded
+  // via Nominatim (OpenStreetMap's free geocoder, no API key), then
+  // matched against the site's real zone boundary polygons (the exact
+  // shapes the maps draw — see build_zone_boundaries()) with a
+  // point-in-polygon test, entirely client-side. No fabricated matches —
+  // an address outside every mapped city is reported as not covered
+  // rather than guessed at.
   (function() {
+    var form = document.getElementById('wzSearchForm');
     var input = document.getElementById('wzSearch');
     var resultsBox = document.getElementById('wzSearchResults');
     var searchData = [];
+    var boundaryData = null;
+    var currentMatches = [];
 
     fetch('/search-index.json')
       .then(function(r) { return r.ok ? r.json() : []; })
       .then(function(data) { searchData = data || []; })
       .catch(function() { searchData = []; });
+
+    function loadBoundaries() {
+      if (boundaryData) { return Promise.resolve(boundaryData); }
+      return fetch('/zone-boundaries.json')
+        .then(function(r) { return r.ok ? r.json() : { zones: [], cities: [] }; })
+        .then(function(data) { boundaryData = data; return boundaryData; })
+        .catch(function() { boundaryData = { zones: [], cities: [] }; return boundaryData; });
+    }
 
     function escapeHtml(s) {
       return String(s).replace(/[&<>"']/g, function(ch) {
@@ -256,28 +269,105 @@
       });
     }
 
-    function renderResults(query) {
+    function renderMatches(query) {
       var q = query.trim().toLowerCase();
-      if (!q) { resultsBox.classList.remove('open'); resultsBox.innerHTML = ''; return; }
-      var matches = searchData.filter(function(item) {
+      if (!q) { currentMatches = []; resultsBox.classList.remove('open'); resultsBox.innerHTML = ''; return; }
+      currentMatches = searchData.filter(function(item) {
         return item.name.toLowerCase().indexOf(q) !== -1;
       }).slice(0, 8);
-      if (!matches.length) {
-        resultsBox.innerHTML = '<div class="search-empty">No matches yet — try a city name.</div>';
-      } else {
-        resultsBox.innerHTML = matches.map(function(item) {
+      if (currentMatches.length) {
+        resultsBox.innerHTML = currentMatches.map(function(item) {
           var label = item.type === 'city' ? (item.flag + ' ' + escapeHtml(item.name)) : escapeHtml(item.name);
           var sub = item.city ? '<span class="search-result-city">' + escapeHtml(item.city) + '</span>' : '';
           return '<a class="search-result-item" href="' + item.url + '">' + label + sub + '</a>';
         }).join('');
+        resultsBox.classList.add('open');
+      } else {
+        resultsBox.innerHTML = '';
+        resultsBox.classList.remove('open');
       }
+    }
+
+    function showStatus(html) {
+      resultsBox.innerHTML = '<div class="search-status">' + html + '</div>';
       resultsBox.classList.add('open');
     }
 
-    input.addEventListener('input', function(e) { renderResults(e.target.value); });
-    input.addEventListener('focus', function(e) { if (e.target.value) renderResults(e.target.value); });
+    // Ray-casting point-in-polygon on the zone's outer ring, in [lat,lon]
+    // form (matches the coords format the maps already render with).
+    function pointInRing(lat, lon, ring) {
+      var inside = false;
+      for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        var yi = ring[i][0], xi = ring[i][1];
+        var yj = ring[j][0], xj = ring[j][1];
+        var intersect = ((yi > lat) !== (yj > lat)) &&
+          (lon < (xj - xi) * (lat - yi) / (yj - yi) + xi);
+        if (intersect) { inside = !inside; }
+      }
+      return inside;
+    }
+
+    function findZone(lat, lon, boundaries) {
+      for (var i = 0; i < boundaries.zones.length; i++) {
+        var z = boundaries.zones[i];
+        if (z.coords && z.coords[0] && pointInRing(lat, lon, z.coords[0])) {
+          return z;
+        }
+      }
+      return null;
+    }
+
+    function findCityFallback(lat, lon, boundaries) {
+      for (var i = 0; i < boundaries.cities.length; i++) {
+        var c = boundaries.cities[i];
+        var b = c.bbox;
+        if (lat >= b[0] && lat <= b[2] && lon >= b[1] && lon <= b[3]) {
+          return c;
+        }
+      }
+      return null;
+    }
+
+    function tryAddressSearch(query) {
+      showStatus('Looking up that address…');
+      var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=gb,ch,it&q=' + encodeURIComponent(query);
+      Promise.all([
+        fetch(url, { headers: { 'Accept-Language': 'en' } }).then(function(r) { return r.ok ? r.json() : []; }),
+        loadBoundaries(),
+      ]).then(function(results) {
+        var geo = results[0];
+        var boundaries = results[1];
+        if (!geo || !geo.length) {
+          showStatus('Couldn’t find that address. Try a supported city or neighbourhood name instead — London, Turin, Zurich, Milan or Rome.');
+          return;
+        }
+        var lat = parseFloat(geo[0].lat), lon = parseFloat(geo[0].lon);
+        var zone = findZone(lat, lon, boundaries);
+        if (zone) { window.location.href = zone.url; return; }
+        var city = findCityFallback(lat, lon, boundaries);
+        if (city) { window.location.href = city.url; return; }
+        showStatus('That address isn’t in a city Wandroz covers yet — currently London, Turin, Zurich, Milan and Rome.');
+      }).catch(function() {
+        showStatus('Couldn’t look up that address right now. Try again, or search by city/neighbourhood name.');
+      });
+    }
+
+    input.addEventListener('input', function(e) { renderMatches(e.target.value); });
+    input.addEventListener('focus', function(e) { if (e.target.value) renderMatches(e.target.value); });
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.search-wrap')) { resultsBox.classList.remove('open'); }
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var q = input.value.trim();
+      if (currentMatches.length) {
+        window.location.href = currentMatches[0].url;
+        return;
+      }
+      if (q.length >= 4) {
+        tryAddressSearch(q);
+      }
     });
   })();
 </script>
