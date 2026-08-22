@@ -31,23 +31,40 @@
      (real lat/lon, no hand-tuned projection), clustered so it scales
      cleanly as more cities are added — pins never sit on top of each
      other, they group into a cluster bubble and split apart on zoom.
-     This replaces an earlier fixed decorative "flight map" hero (an
-     equirectangular SVG with hard-coded pixel positions) plus a
-     duplicate list of city cards below it; both had to be hand-tuned
-     per city and started visibly colliding with only 4 cities on the
-     map — not viable once the site covers dozens of cities. */
-  .hero-compact { padding: 26px 24px 14px; max-width:900px; }
+     Below the map: a plain-text status line, a real search bar backed by
+     a build-time-generated index (see build_search_index() in
+     build_site.py — every result is a genuine page, nothing invented),
+     and a "Popular cities" card grid, so the map is one way to browse,
+     not the only way. */
+  .hero-compact { padding: 26px 24px 6px; max-width:900px; }
   .hero-compact .eyebrow { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color: var(--accent); background: var(--accent-bg); padding:5px 12px; border-radius:20px; margin-bottom:14px; letter-spacing:0.02em; }
   .hero-compact h1 { font-size: 26px; margin: 0 0 6px; font-weight:800; letter-spacing:-0.01em; }
   .hero-compact .subtitle { color: var(--muted); margin:0; font-size:14.5px; max-width:640px; }
-  .map-hint { font-size:12.5px; color:var(--muted); padding: 0 24px 12px; }
+  .hero-compact .beta-note { color: var(--muted-soft); margin:9px 0 0; font-size:12.5px; }
+  .hero-compact .beta-note a { color: var(--muted-soft); text-decoration:underline; }
+
+  .status-line { font-size:12.5px; color:var(--muted); font-weight:600; padding: 10px 24px 0; margin:0; }
+
+  .search-wrap { padding: 12px 24px 4px; position:relative; }
+  .search-input { width:100%; max-width:520px; padding:12px 16px; border:1px solid var(--line); border-radius: var(--radius-md); font-size:14.5px; font-family:var(--font); background:#fff; box-shadow: var(--shadow-sm); }
+  .search-input:focus { outline:2px solid var(--accent-bright); outline-offset:1px; }
+  .search-results { position:absolute; top:100%; left:24px; right:24px; max-width:520px; margin-top:6px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-md); max-height:320px; overflow-y:auto; z-index:1200; display:none; }
+  .search-results.open { display:block; }
+  .search-result-item { display:block; padding:10px 14px; font-size:13.5px; color:var(--navy); border-bottom:1px solid var(--line); text-decoration:none; }
+  .search-result-item:last-child { border-bottom:none; }
+  .search-result-item:hover { background: var(--accent-bg); text-decoration:none; }
+  .search-result-city { color:var(--muted); font-size:12px; margin-left:6px; }
+  .search-empty { padding:12px 14px; font-size:13px; color:var(--muted); }
+
+  .map-hint { font-size:12.5px; color:var(--muted); padding: 10px 24px 12px; }
   .map-page-wrap { position:relative; padding: 0 24px 28px; }
   #homeMap { width:100%; height: calc(100vh - 230px); min-height:460px; max-height:820px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
-  .map-count-badge { position:absolute; top:16px; left:38px; z-index:1000; background:rgba(12,29,57,0.82); backdrop-filter:blur(6px); color:#fff; font-size:11.5px; font-weight:600; letter-spacing:0.02em; padding:6px 12px; border-radius:20px; }
 
   /* Custom marker: colored dot + white flag/name chip, same visual
      language as the old decorative pins, now rendered as real Leaflet
-     divIcons at real coordinates. */
+     divIcons at real coordinates. Chip is hidden on mobile (see the
+     media query below) so pins don't crowd a narrow map — the name is
+     still one tap away via the popup. */
   .wz-pin-icon { display:flex; align-items:center; gap:7px; transform: translate(-2px,-2px); }
   .wz-pin-dot { width:15px; height:15px; border-radius:50%; border:2px solid rgba(255,255,255,0.9); box-shadow:0 2px 6px rgba(0,0,0,0.35); flex:none; }
   .wz-pin-chip { background:rgba(255,255,255,0.97); color:var(--navy); font-size:12.5px; font-weight:700; padding:4px 10px; border-radius:20px; box-shadow:0 3px 10px rgba(0,0,0,0.25); white-space:nowrap; }
@@ -63,13 +80,30 @@
   .popup-cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:7px 12px; border-radius: var(--radius-sm); font-size:12.5px; font-weight:600; }
   .popup-cta:hover { text-decoration:none; opacity:0.92; }
 
+  .popular-cities { padding: 6px 24px 44px; max-width:900px; }
+  .popular-cities h2 { font-size:16px; margin:0 0 12px; font-weight:700; color:var(--navy); }
+  .city-card-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr)); gap:12px; }
+  .city-card-link { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; text-decoration:none; color:var(--navy); box-shadow: var(--shadow-sm); transition: transform .12s ease, box-shadow .12s ease; }
+  .city-card-link:hover { text-decoration:none; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .city-card-flag { font-size:22px; line-height:1; }
+  .city-card-name { font-weight:700; font-size:14px; flex:1; }
+  .city-card-arrow { color:var(--muted); }
+
   @media (max-width: 720px){
-    #homeMap { height: calc(100vh - 260px); min-height:380px; }
-    .hero-compact { padding: 20px 14px 10px; }
-    .hero-compact h1 { font-size:22px; }
+    /* Compact map (~420px) so the map doesn't eat the whole first
+       screen, plus tighter fitBounds padding/zoom in the script below
+       so edge cities (e.g. Rome) aren't cropped on a narrow viewport. */
+    #homeMap { height: 420px; min-height:360px; }
+    .wz-pin-chip { display:none; }
+    .hero-compact { padding: 20px 14px 4px; }
+    .hero-compact h1 { font-size:21px; }
+    .hero-compact .subtitle { font-size:13.5px; }
+    .status-line { padding: 8px 14px 0; }
+    .search-wrap { padding: 10px 14px 4px; }
+    .search-results { left:14px; right:14px; }
+    .map-hint { padding: 8px 14px 10px; }
     .map-page-wrap { padding: 0 12px 20px; }
-    .map-hint { padding: 0 14px 10px; }
-    .map-count-badge { left:26px; }
+    .popular-cities { padding: 4px 14px 32px; }
   }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -95,17 +129,38 @@
 
 <div class="hero-compact">
   <span class="eyebrow">Official public data, not just reviews</span>
-  <h1>Which neighbourhoods are actually safe?</h1>
-  <p class="subtitle">Wandroz shows travellers city neighbourhoods on a real interactive map, using official public data where it exists — not just online reviews. This is an early data prototype, not a finished product.</p>
+  <h1>Know the neighbourhood before you book.</h1>
+  <p class="subtitle">Real interactive maps of city neighbourhoods, built from official public data where it exists.</p>
+  <p class="beta-note">Wandroz is currently in beta — coverage is expanding. <a href="/methodology.html">See how it works →</a></p>
 </div>
-<p class="map-hint">Click a pin to open that city — zoom in on any cluster to spread its cities apart.</p>
+
+<p class="status-line">🗺️ {{ city_cards|length }} {{ 'city' if city_cards|length == 1 else 'cities' }} available · more coming</p>
+
+<div class="search-wrap">
+  <input type="text" id="wzSearch" class="search-input" placeholder="Search a city or neighbourhood…" autocomplete="off" aria-label="Search a city or neighbourhood">
+  <div id="wzSearchResults" class="search-results"></div>
+</div>
+
+<p class="map-hint">Or browse the map — click a pin to open that city, zoom in on a cluster to spread it apart.</p>
 
 <div class="map-page-wrap">
   <div id="homeMap"></div>
-  <span class="map-count-badge">🗺️ {{ city_cards|length }} {{ 'city' if city_cards|length == 1 else 'cities' }} mapped so far</span>
 </div>
 
-<footer class="wz-footer">Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
+<div class="popular-cities">
+  <h2>Popular cities</h2>
+  <div class="city-card-grid">
+    {% for c in city_cards %}
+    <a class="city-card-link" href="{{ c.url }}">
+      <span class="city-card-flag">{{ c.flag }}</span>
+      <span class="city-card-name">{{ c.name }}</span>
+      <span class="city-card-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<footer class="wz-footer">Wandroz — public official data, not just reviews. Beta build. · <a href="/methodology.html">Methodology</a></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
@@ -150,8 +205,57 @@
 
   if (CITIES.length > 0) {
     var bounds = L.latLngBounds(CITIES.map(function(c){ return [c.lat, c.lon]; }));
-    map.fitBounds(bounds, { padding: [50, 50], maxZoom: 8 });
+    // Narrower padding + a lower max zoom on small screens, so a
+    // corner city (e.g. Rome, furthest south/east of the current set)
+    // doesn't get cropped against a narrow, tall viewport.
+    var isNarrow = window.innerWidth <= 720;
+    map.fitBounds(bounds, { padding: isNarrow ? [20, 20] : [50, 50], maxZoom: isNarrow ? 6 : 8 });
   }
+
+  // Search bar — backed by /search-index.json, generated at build time
+  // from the same real data the site's pages are built from (see
+  // build_search_index() in build_site.py). No fabricated entries, no
+  // guessing at neighbourhoods that don't have a real page.
+  (function() {
+    var input = document.getElementById('wzSearch');
+    var resultsBox = document.getElementById('wzSearchResults');
+    var searchData = [];
+
+    fetch('/search-index.json')
+      .then(function(r) { return r.ok ? r.json() : []; })
+      .then(function(data) { searchData = data || []; })
+      .catch(function() { searchData = []; });
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function(ch) {
+        return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+      });
+    }
+
+    function renderResults(query) {
+      var q = query.trim().toLowerCase();
+      if (!q) { resultsBox.classList.remove('open'); resultsBox.innerHTML = ''; return; }
+      var matches = searchData.filter(function(item) {
+        return item.name.toLowerCase().indexOf(q) !== -1;
+      }).slice(0, 8);
+      if (!matches.length) {
+        resultsBox.innerHTML = '<div class="search-empty">No matches yet — try a city name.</div>';
+      } else {
+        resultsBox.innerHTML = matches.map(function(item) {
+          var label = item.type === 'city' ? (item.flag + ' ' + escapeHtml(item.name)) : escapeHtml(item.name);
+          var sub = item.city ? '<span class="search-result-city">' + escapeHtml(item.city) + '</span>' : '';
+          return '<a class="search-result-item" href="' + item.url + '">' + label + sub + '</a>';
+        }).join('');
+      }
+      resultsBox.classList.add('open');
+    }
+
+    input.addEventListener('input', function(e) { renderResults(e.target.value); });
+    input.addEventListener('focus', function(e) { if (e.target.value) renderResults(e.target.value); });
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.search-wrap')) { resultsBox.classList.remove('open'); }
+    });
+  })();
 </script>
 </body>
 </html>
