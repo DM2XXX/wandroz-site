@@ -562,6 +562,73 @@ def build_search_index(cities, city_cards):
     return entries
 
 
+def build_zone_boundaries(cities, city_cards):
+    """Real per-zone polygon boundaries, exported for the homepage's
+    address search (see templates/index.html) to do a client-side
+    point-in-polygon match against a geocoded address — the exact same
+    polygons the interactive maps already draw (render_illustrative_city /
+    render_london_map), never an approximated or fabricated shape.
+
+    Also emits a padded bounding box per city (from the real union of that
+    city's own zone coordinates, not a hand-picked radius) so an address
+    that geocodes just outside the outermost mapped zone but still clearly
+    inside the city can fall back to that city's hub page instead of being
+    reported as uncovered."""
+    zones = []
+    city_bbox = {}
+
+    def _extend_bbox(label, coords):
+        if not coords or not coords[0]:
+            return
+        for lat, lon in coords[0]:
+            b = city_bbox.setdefault(label, [lat, lon, lat, lon])
+            b[0] = min(b[0], lat)
+            b[1] = min(b[1], lon)
+            b[2] = max(b[2], lat)
+            b[3] = max(b[3], lon)
+
+    for city in cities:
+        city_slug = city["city"].lower().replace(" ", "-")
+        for b in city["boroughs"]:
+            if b.get("coords"):
+                zones.append({
+                    "name": b["borough"], "city": city["city"],
+                    "url": f"/{city_slug}/{b['slug']}.html",
+                    "coords": b["coords"],
+                })
+                _extend_bbox(city["city"], b["coords"])
+
+    illustrative = [
+        ("torino", "torino", "Turin", False),
+        ("zurigo", "zurigo", "Zurich", False),
+        ("milano", "milano", "Milan", False),
+        ("roma", "roma", "Rome", True),
+    ]
+    for city_key, url_slug, label, flat in illustrative:
+        path = os.path.join(ZONES_DIR, f"{city_key}.json")
+        if not os.path.isfile(path):
+            continue
+        with open(path) as f:
+            data = json.load(f)
+        for z in data["zones"]:
+            z_url = f"/{url_slug}/{z['slug']}.html" if flat else f"/{url_slug}/{z['slug']}/"
+            zones.append({"name": z["name"], "city": label, "url": z_url, "coords": z["coords"]})
+            _extend_bbox(label, z["coords"])
+
+    city_url_by_label = {c["name"]: "/" + c["url"] for c in city_cards}
+    cities_out = []
+    for label, bbox in city_bbox.items():
+        pad_lat = (bbox[2] - bbox[0]) * 0.08 + 0.01
+        pad_lon = (bbox[3] - bbox[1]) * 0.08 + 0.01
+        cities_out.append({
+            "name": label,
+            "url": city_url_by_label.get(label, "/"),
+            "bbox": [bbox[0] - pad_lat, bbox[1] - pad_lon, bbox[2] + pad_lat, bbox[3] + pad_lon],
+        })
+
+    return {"zones": zones, "cities": cities_out}
+
+
 def copy_static():
     """Copy favicon/manifest assets into dist/ on every build, so they're
     reproducible from source (pipeline/static/) instead of relying on
@@ -741,22 +808,44 @@ def main():
     # dozens of cities instead of needing a per-city "label_side" hack.
     # color is a distinct accent per city purely for visual variety on that
     # map — unrelated to the day/night safety tone colors used elsewhere.
+    # zone_count/data_tag feed the homepage map's per-city popup card (see
+    # templates/index.html). zone_count is read straight from each city's
+    # real zone dataset (never hand-typed, so it can't drift out of sync
+    # with the actual number of pages). data_tag is a short, deliberately
+    # honest label: "Official boundaries" is true for every city here (all
+    # five use real official council/city boundary datasets), but only
+    # London's *ratings* come from an official crime feed (data.police.uk)
+    # and only Zurich has one additional real official crime layer
+    # (burglary-by-district) on top of its illustrative ratings — Turin,
+    # Milan and Rome's day/night ratings are Level 2 (genuine press
+    # research, see methodology.html), not official crime statistics, so
+    # their tag does not claim "official data" beyond the boundaries.
+    def _zone_count(city_key):
+        path = os.path.join(ZONES_DIR, f"{city_key}.json")
+        with open(path) as f:
+            return len(json.load(f)["zones"])
+
     city_cards = [
         {"name": "London", "url": "london/index.html", "flag": "🇬🇧",
          "blurb": f"33 boroughs on the map, {london_live_count} refreshed automatically every month from real Metropolitan Police data.",
-         "lat": 51.5074, "lon": -0.1278, "color": "#2f6fed"},
+         "lat": 51.5074, "lon": -0.1278, "color": "#2f6fed",
+         "zone_count": 33, "data_tag": "Official police data"},
         {"name": "Turin", "url": "torino/index.html", "flag": "🇮🇹",
          "blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings.",
-         "lat": 45.0703, "lon": 7.6869, "color": "#e2a33d"},
+         "lat": 45.0703, "lon": 7.6869, "color": "#e2a33d",
+         "zone_count": _zone_count("torino"), "data_tag": "Official boundaries"},
         {"name": "Zurich", "url": "zurigo/index.html", "flag": "🇨🇭",
          "blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings — plus a real official burglary-rate layer by district.",
-         "lat": 47.3769, "lon": 8.5417, "color": "#d1483f"},
+         "lat": 47.3769, "lon": 8.5417, "color": "#d1483f",
+         "zone_count": _zone_count("zurigo"), "data_tag": "Official boundaries + burglary data"},
         {"name": "Milan", "url": "milano/index.html", "flag": "🇮🇹",
          "blurb": "All 88 official zones mapped, real council boundaries, safety ratings from genuine current local press research.",
-         "lat": 45.4642, "lon": 9.1900, "color": "#3fae6b"},
+         "lat": 45.4642, "lon": 9.1900, "color": "#3fae6b",
+         "zone_count": _zone_count("milano"), "data_tag": "Official boundaries"},
         {"name": "Rome", "url": "roma/index.html", "flag": "🇮🇹",
          "blurb": "All 155 official zones mapped, real council boundaries, safety ratings from genuine current local press research.",
-         "lat": 41.9028, "lon": 12.4964, "color": "#8e44ad"},
+         "lat": 41.9028, "lon": 12.4964, "color": "#8e44ad",
+         "zone_count": _zone_count("roma"), "data_tag": "Official boundaries"},
     ]
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
         f.write(index_tpl.render(city_cards=city_cards, canonical_url=SITE_URL + "/"))
@@ -767,6 +856,15 @@ def main():
     with open(os.path.join(OUT_DIR, "search-index.json"), "w") as f:
         json.dump(search_entries, f, ensure_ascii=False)
     print(f"Wrote {os.path.join(OUT_DIR, 'search-index.json')} ({len(search_entries)} entries)")
+
+    # Homepage address search's boundary data — real zone polygons + real
+    # per-city bounding boxes, used for a client-side point-in-polygon
+    # match against a geocoded address (see build_zone_boundaries
+    # docstring and templates/index.html).
+    zone_boundaries = build_zone_boundaries(cities, city_cards)
+    with open(os.path.join(OUT_DIR, "zone-boundaries.json"), "w") as f:
+        json.dump(zone_boundaries, f, ensure_ascii=False)
+    print(f"Wrote {os.path.join(OUT_DIR, 'zone-boundaries.json')} ({len(zone_boundaries['zones'])} zones, {len(zone_boundaries['cities'])} city boxes)")
 
     # Methodology page
     with open(os.path.join(OUT_DIR, "methodology.html"), "w") as f:
