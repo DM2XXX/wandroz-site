@@ -521,6 +521,47 @@ def render_london_map(cities):
     return [canonical]
 
 
+def build_search_index(cities, city_cards):
+    """Build the homepage search bar's data source, purely from real content
+    that already exists elsewhere in the pipeline — no invented names, no
+    placeholder entries. Covers: the top-level city cards (same 5 shown on
+    the homepage map); every London borough that actually has its own live
+    page (the automated-pipeline set in `cities`, not all 33 — the other
+    boroughs have no individual URL to send someone to); and every zone in
+    each illustrative city's data_zones JSON (Torino/Zurigo/Milano nested
+    URLs, Roma flat URLs — mirrors the exact scheme render_illustrative_city
+    uses, so a search result always resolves to a real page)."""
+    entries = []
+    for c in city_cards:
+        entries.append({"type": "city", "name": c["name"], "flag": c["flag"], "url": "/" + c["url"]})
+
+    for city in cities:
+        city_slug = city["city"].lower().replace(" ", "-")
+        for b in city["boroughs"]:
+            entries.append({
+                "type": "zone", "name": b["borough"], "city": city["city"],
+                "url": f"/{city_slug}/{b['slug']}.html",
+            })
+
+    illustrative = [
+        ("torino", "torino", "Turin", False),
+        ("zurigo", "zurigo", "Zurich", False),
+        ("milano", "milano", "Milan", False),
+        ("roma", "roma", "Rome", True),
+    ]
+    for city_key, url_slug, label, flat in illustrative:
+        path = os.path.join(ZONES_DIR, f"{city_key}.json")
+        if not os.path.isfile(path):
+            continue
+        with open(path) as f:
+            data = json.load(f)
+        for z in data["zones"]:
+            z_url = f"/{url_slug}/{z['slug']}.html" if flat else f"/{url_slug}/{z['slug']}/"
+            entries.append({"type": "zone", "name": z["name"], "city": label, "url": z_url})
+
+    return entries
+
+
 def copy_static():
     """Copy favicon/manifest assets into dist/ on every build, so they're
     reproducible from source (pipeline/static/) instead of relying on
@@ -719,6 +760,13 @@ def main():
     ]
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
         f.write(index_tpl.render(city_cards=city_cards, canonical_url=SITE_URL + "/"))
+
+    # Homepage search bar's data — built fresh from real content on every
+    # run (see build_search_index docstring), never hand-maintained.
+    search_entries = build_search_index(cities, city_cards)
+    with open(os.path.join(OUT_DIR, "search-index.json"), "w") as f:
+        json.dump(search_entries, f, ensure_ascii=False)
+    print(f"Wrote {os.path.join(OUT_DIR, 'search-index.json')} ({len(search_entries)} entries)")
 
     # Methodology page
     with open(os.path.join(OUT_DIR, "methodology.html"), "w") as f:
