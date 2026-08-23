@@ -46,6 +46,7 @@ CORRECTION_EMAIL = "dadenuoto@gmail.com"
 CITY_LINKS = [
     {"label": "London", "url": f"{SITE_URL}/london/"},
     {"label": "Berlin", "url": f"{SITE_URL}/berlin/"},
+    {"label": "Amsterdam", "url": f"{SITE_URL}/amsterdam/"},
     {"label": "Turin", "url": f"{SITE_URL}/torino/"},
     {"label": "Zurich", "url": f"{SITE_URL}/zurigo/"},
     {"label": "Milan", "url": f"{SITE_URL}/milano/"},
@@ -550,6 +551,7 @@ def build_search_index(cities, city_cards):
         ("milano", "milano", "Milan", False),
         ("roma", "roma", "Rome", True),
         ("berlin", "berlin", "Berlin", True),
+        ("amsterdam", "amsterdam", "Amsterdam", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -606,6 +608,7 @@ def build_zone_boundaries(cities, city_cards):
         ("milano", "milano", "Milan", False),
         ("roma", "roma", "Rome", True),
         ("berlin", "berlin", "Berlin", True),
+        ("amsterdam", "amsterdam", "Amsterdam", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -791,6 +794,33 @@ BERLIN_NEIGH_NOTE = (
     "higher without that meaning elevated risk per visit. See the methodology page for full sourcing."
 )
 
+AMSTERDAM_UI = dict(TORINO_UI)
+AMSTERDAM_UI.update({
+    "page_title": "Is my Amsterdam neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Amsterdam's 110 official wijken with real official CBS crime-rate data per zone.",
+    "page_h1": "Amsterdam neighbourhoods",
+    "neigh_title": "Is {name} in Amsterdam safe? | Wandroz",
+})
+
+AMSTERDAM_BANNER = (
+    "Neighbourhood shapes are the Gemeente Amsterdam's real official \"wijk\" boundaries (110 zones, via "
+    "api.data.amsterdam.nl). Like Berlin, Amsterdam's safety levels come from a real official statistic — CBS "
+    "(Statistics Netherlands) registered crimes per wijk for 2025, converted to a rate per 100,000 residents "
+    "using CBS's own 2025 population figures per wijk — rather than Milan/Rome's press-research approach. This "
+    "rate is calculated against registered residents, not footfall, so high-traffic tourist/shopping/transit "
+    "areas (like the city centre) can read higher without that meaning elevated risk per visit, and a few very "
+    "sparsely populated wijken (harbour/industrial fringe areas) can swing sharply from a handful of cases — see "
+    "the methodology page for details."
+)
+AMSTERDAM_NEIGH_NOTE = (
+    "This rating for Amsterdam is a real official statistic — CBS's 2025 registered crimes for this wijk, "
+    "converted to a rate per 100,000 residents using CBS's own 2025 population figures — not a qualitative or "
+    "press-based judgment. It has no day/night split in the source data, so both figures shown are the same. The "
+    "rate counts against registered residents, not footfall, so a busy tourist, shopping or transit area can "
+    "read higher without that meaning elevated risk per visit, and a very sparsely populated wijk can swing "
+    "sharply from a handful of cases. See the methodology page for full sourcing."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -895,6 +925,10 @@ def main():
          "blurb": "All 143 official Bezirksregionen mapped, safety levels from Polizei Berlin's real official 2025 crime-rate statistics.",
          "lat": 52.5200, "lon": 13.4050, "color": "#1f9e89",
          "zone_count": _zone_count("berlin"), "data_tag": "Official police data"},
+        {"name": "Amsterdam", "url": "amsterdam/index.html", "flag": "🇳🇱",
+         "blurb": "All 110 official wijken mapped, safety levels from CBS's real official 2025 crime and population statistics.",
+         "lat": 52.3676, "lon": 4.9041, "color": "#f2994a",
+         "zone_count": _zone_count("amsterdam"), "data_tag": "Official police data"},
         {"name": "Turin", "url": "torino/index.html", "flag": "🇮🇹",
          "blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings.",
          "lat": 45.0703, "lon": 7.6869, "color": "#e2a33d",
@@ -985,7 +1019,9 @@ def main():
     sitemap_urls.extend(roma_urls)
     berlin_urls = render_illustrative_city("berlin", "berlin", BERLIN_UI, EN_TONE_BADGE, BERLIN_BANNER, BERLIN_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(berlin_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)})")
+    amsterdam_urls = render_illustrative_city("amsterdam", "amsterdam", AMSTERDAM_UI, EN_TONE_BADGE, AMSTERDAM_BANNER, AMSTERDAM_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(amsterdam_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
