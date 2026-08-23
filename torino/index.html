@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is my Turin neighbourhood safe? — Wandroz</title>
+<meta name="description" content="Interactive map of Turin&#39;s neighbourhoods with the council&#39;s real official boundaries, day/night safety levels.">
+<link rel="canonical" href="https://www.wandroz.com/torino/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Is my Turin neighbourhood safe? — Wandroz">
+<meta property="og:description" content="Interactive map of Turin&#39;s neighbourhoods with the council&#39;s real official boundaries, day/night safety levels.">
+<meta property="og:url" content="https://www.wandroz.com/torino/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
+  .switch.on { background: var(--accent); }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
+  .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
+  .notice { font-size:13px; color:#6b5a10; background:#fff9e8; border:1px solid #f1dfa3; border-radius: var(--radius-sm); padding:12px 16px; margin: 12px 24px 16px; max-width:1080px; }
+  .map-wrap { position:relative; padding: 0 24px 28px; }
+  #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
+  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
+  .map-detail .close-btn:hover { color:var(--ink); }
+  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
+  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
+  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
+  .map-detail .cta.secondary { background: var(--accent); }
+  .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
+  .leaflet-tooltip.zone-tooltip::before { display:none; }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  @media (max-width: 720px){
+    #map{ height:520px; }
+    .map-wrap { padding: 0 12px 24px; }
+    .map-legend { right:10px; top:10px; font-size:11px; max-width:170px; padding:8px 10px; }
+    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
+    .zone-list ul { columns:2; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">City</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        
+        <option value="https://www.wandroz.com/london/" >London</option>
+        
+        <option value="https://www.wandroz.com/berlin/" >Berlin</option>
+        
+        <option value="https://www.wandroz.com/amsterdam/" >Amsterdam</option>
+        
+        <option value="https://www.wandroz.com/torino/" selected>Turin</option>
+        
+        <option value="https://www.wandroz.com/zurigo/" >Zurich</option>
+        
+        <option value="https://www.wandroz.com/milano/" >Milan</option>
+        
+        <option value="https://www.wandroz.com/roma/" >Rome</option>
+        
+      </select>
+    </div>
+    
+    <div class="switch-wrap" id="dnSwitchWrap">
+      <span>day</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>night</span>
+    </div>
+    
+    
+    <nav class="wz-nav">
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+<nav class="crumbs"><a href="/">Home</a> &rsaquo; Turin, Italy</nav>
+<h1 class="page-title">Turin neighbourhoods</h1>
+<p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
+<div class="notice">Neighbourhood shapes are the City of Turin&#39;s real official boundaries (the &#34;Quartieri&#34; dataset). Safety levels, on the other hand, are a first manual pass — general knowledge, not a geolocated crime dataset — unlike London. See the methodology page for details.</div>
+
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="map-legend" id="legendBox">
+    <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
+    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
+    <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
+    <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Not rated — data not comparable for this zone</span></div>
+  </div>
+  <div class="map-detail" id="detailBox">
+    <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<div class="zone-list">
+  <h2>All neighbourhoods</h2>
+  <ul>
+    
+    <li><a href="/torino/centro/">Centro</a></li>
+    
+    <li><a href="/torino/san-salvario/">San Salvario</a></li>
+    
+    <li><a href="/torino/crocetta/">Crocetta</a></li>
+    
+    <li><a href="/torino/vanchiglia/">Vanchiglia</a></li>
+    
+    <li><a href="/torino/aurora/">Aurora</a></li>
+    
+    <li><a href="/torino/borgo-po-e-cavoretto/">Borgo Po e Cavoretto</a></li>
+    
+    <li><a href="/torino/madonna-del-pilone/">Madonna del Pilone</a></li>
+    
+    <li><a href="/torino/san-donato/">San Donato</a></li>
+    
+    <li><a href="/torino/cenisia/">Cenisia</a></li>
+    
+    <li><a href="/torino/madonna-di-campagna/">Madonna di Campagna</a></li>
+    
+    <li><a href="/torino/borgata-vittoria/">Borgata Vittoria</a></li>
+    
+    <li><a href="/torino/pozzo-strada/">Pozzo Strada</a></li>
+    
+    <li><a href="/torino/barriera-di-milano/">Barriera di Milano</a></li>
+    
+    <li><a href="/torino/regio-parco/">Regio Parco</a></li>
+    
+    <li><a href="/torino/falchera/">Falchera</a></li>
+    
+    <li><a href="/torino/le-vallette/">Le Vallette</a></li>
+    
+    <li><a href="/torino/mirafiori-sud/">Mirafiori Sud</a></li>
+    
+    <li><a href="/torino/mercati-generali/">Mercati generali</a></li>
+    
+    <li><a href="/torino/parella/">Parella</a></li>
+    
+    <li><a href="/torino/san-paolo-borgo-san-paolo-cit-turin/">San Paolo (Borgo San Paolo / Cit Turin)</a></li>
+    
+    <li><a href="/torino/santa-rita/">Santa Rita</a></li>
+    
+    <li><a href="/torino/nizza-millefonti-lingotto/">Nizza Millefonti / Lingotto</a></li>
+    
+    <li><a href="/torino/mirafiori-nord/">Mirafiori Nord</a></li>
+    
+  </ul>
+</div>
+
+<footer class="wz-footer">
+  Wandroz &middot; prototype build, not a finished product &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = [{"coords": [[[45.068627, 7.662612], [45.080826, 7.671329], [45.07477, 7.689643], [45.065465, 7.698825], [45.065451, 7.699056], [45.063999, 7.696862], [45.063567, 7.697488], [45.063502, 7.697293], [45.063881, 7.696709], [45.061005, 7.693552], [45.058528, 7.691417], [45.05809, 7.691935], [45.068627, 7.662612]]], "day": "green", "day_label": "Relatively safer", "name": "Centro", "night": "green", "night_label": "Relatively safer", "query": "Centro, Turin, Italy", "slug": "centro", "text": "The historic, touristic and commercial core of the city (Via Roma, Piazza Castello, the Quadrilatero Romano). Highest perceived safety at any hour, heavily patrolled and busy with people even late in the evening.", "url": "/torino/centro/"}, {"coords": [[[45.04435, 7.66699], [45.054493, 7.673312], [45.054398, 7.673591], [45.0553, 7.674338], [45.055907, 7.675136], [45.058138, 7.676765], [45.058006, 7.677229], [45.059176, 7.677764], [45.062347, 7.680097], [45.05809, 7.691935], [45.058204, 7.691241], [45.057014, 7.690443], [45.05559, 7.688841], [45.054143, 7.687579], [45.049301, 7.685577], [45.046573, 7.684944], [45.045594, 7.684485], [45.045537, 7.684215], [45.045289, 7.684328], [45.044988, 7.684896], [45.045209, 7.684236], [45.044424, 7.683321], [45.042598, 7.67892], [45.042082, 7.678065], [45.041581, 7.677681], [45.041296, 7.678286], [45.042956, 7.670254], [45.044002, 7.666768], [45.04435, 7.66699]]], "day": "green", "day_label": "Relatively safer", "name": "San Salvario", "night": "yellow", "night_label": "Average", "query": "San Salvario, Turin, Italy", "slug": "san-salvario", "text": "A lively, multi-ethnic neighborhood with great nightlife and restaurants. Calm by day. At night, especially near Porta Nuova station, expect the usual bustle of a nightlife-and-station area.", "url": "/torino/san-salvario/"}, {"coords": [[[45.055189, 7.654587], [45.057089, 7.655128], [45.068476, 7.663032], [45.062347, 7.680097], [45.059176, 7.677764], [45.058006, 7.677229], [45.058138, 7.676765], [45.055907, 7.675136], [45.0553, 7.674338], [45.054398, 7.673591], [45.054493, 7.673312], [45.044744, 7.667246], [45.045529, 7.667054], [45.046164, 7.666597], [45.049294, 7.663374], [45.050128, 7.661686], [45.050823, 7.658713], [45.051667, 7.656781], [45.0523, 7.655911], [45.053808, 7.654862], [45.055189, 7.654587]]], "day": "green", "day_label": "Relatively safer", "name": "Crocetta", "night": "green", "night_label": "Relatively safer", "query": "Crocetta, Turin, Italy", "slug": "crocetta", "text": "An upscale residential neighborhood, among the calmest in the city at any hour.", "url": "/torino/crocetta/"}, {"coords": [[[45.07477, 7.689643], [45.073386, 7.693829], [45.073935, 7.694226], [45.073726, 7.694188], [45.073576, 7.694664], [45.073402, 7.696222], [45.073574, 7.6974], [45.07482, 7.700633], [45.075258, 7.704292], [45.07546, 7.704117], [45.075481, 7.704402], [45.079692, 7.700639], [45.085438, 7.713573], [45.089111, 7.718755], [45.089039, 7.719062], [45.086414, 7.719193], [45.083764, 7.720333], [45.082149, 7.721978], [45.078798, 7.724753], [45.077993, 7.723749], [45.077528, 7.721833], [45.077182, 7.722008], [45.077614, 7.723687], [45.078308, 7.724783], [45.078364, 7.725239], [45.076855, 7.726936], [45.075519, 7.727506], [45.07553, 7.728059], [45.075349, 7.72807], [45.075342, 7.72759], [45.074428, 7.727244], [45.073043, 7.726033], [45.071622, 7.723809], [45.070932, 7.720748], [45.068914, 7.708731], [45.068773, 7.708225], [45.068376, 7.708454], [45.068253, 7.708027], [45.068656, 7.707794], [45.068621, 7.707461], [45.067091, 7.702462], [45.065465, 7.698825], [45.07477, 7.689643]], [[45.076153, 7.717758], [45.075848, 7.717999], [45.076596, 7.719771], [45.077171, 7.721959], [45.077518, 7.721786], [45.076917, 7.719495], [45.076153, 7.717758]], [[45.075625, 7.704573], [45.075285, 7.704888], [45.075218, 7.70758], [45.074758, 7.710318], [45.075038, 7.710706], [45.075594, 7.707557], [45.075625, 7.704573]], [[45.074702, 7.71056], [45.073568, 7.713519], [45.073501, 7.714479], [45.073843, 7.715452], [45.075757, 7.717784], [45.076063, 7.71754], [45.074094, 7.715195], [45.073788, 7.714522], [45.073885, 7.7137], [45.074993, 7.710939], [45.074702, 7.71056]]], "day": "green", "day_label": "Relatively safer", "name": "Vanchiglia", "night": "green", "night_label": "Relatively safer", "query": "Vanchiglia, Turin, Italy", "slug": "vanchiglia", "text": "University neighborhood, very livable, well lit, calm even in the evening thanks to the constant student presence.", "url": "/torino/vanchiglia/"}, {"coords": [[[45.080826, 7.671329], [45.087788, 7.676204], [45.087686, 7.676377], [45.089413, 7.677549], [45.090167, 7.67864], [45.089064, 7.688276], [45.087706, 7.691117], [45.085103, 7.695787], [45.075481, 7.704402], [45.075585, 7.703988], [45.075125, 7.70048], [45.073778, 7.696827], [45.073755, 7.695529], [45.074042, 7.694413], [45.073386, 7.693829], [45.080826, 7.671329]], [[45.082058, 7.684941], [45.081824, 7.685306], [45.082297, 7.685276], [45.082421, 7.685087], [45.082058, 7.684941]], [[45.079728, 7.688372], [45.079575, 7.688486], [45.079727, 7.688992], [45.080221, 7.688486], [45.079728, 7.688372]], [[45.082212, 7.685346], [45.081777, 7.685376], [45.081118, 7.686327], [45.081533, 7.686491], [45.082212, 7.685346]], [[45.083284, 7.68306], [45.082134, 7.684817], [45.082489, 7.684982], [45.083569, 7.683195], [45.083346, 7.682918], [45.083284, 7.68306]], [[45.081015, 7.686454], [45.080482, 7.687505], [45.079791, 7.6883], [45.08026, 7.688433], [45.08059, 7.688007], [45.081404, 7.68676], [45.081015, 7.686454]], [[45.084914, 7.680459], [45.083384, 7.682789], [45.083629, 7.683222], [45.085266, 7.680725], [45.084914, 7.680459]], [[45.075389, 7.691875], [45.074014, 7.693494], [45.07379, 7.694016], [45.074107, 7.694243], [45.074582, 7.693326], [45.075748, 7.692187], [45.075543, 7.691726], [45.075389, 7.691875]], [[45.087455, 7.676308], [45.085002, 7.6803], [45.08535, 7.680558], [45.087811, 7.676569], [45.087455, 7.676308]], [[45.079417, 7.688541], [45.076275, 7.690972], [45.07579, 7.691476], [45.076022, 7.691997], [45.079452, 7.689267], [45.079609, 7.689088], [45.079417, 7.688541]]], "day": "red", "day_label": "Higher caution advised", "name": "Aurora", "night": "red", "night_label": "Higher caution advised", "query": "Aurora, Turin, Italy", "slug": "aurora", "text": "This is the official quartiere that contains Porta Palazzo \u2014 the example that inspired this whole project. The market itself is a genuine, safe daytime attraction, but the wider Aurora area has well-documented, recurring problems with drug dealing and decay that show up even in daylight and worsen at night. Despite this, some listings here get very high online reviews from tourists who never notice the difference.", "url": "/torino/aurora/"}, {"coords": [[[45.019848, 7.673914], [45.022218, 7.674457], [45.024793, 7.674677], [45.025175, 7.674701], [45.025236, 7.674168], [45.025218, 7.674703], [45.02621, 7.674761], [45.028672, 7.674436], [45.029642, 7.67461], [45.032516, 7.678214], [45.033747, 7.679015], [45.034784, 7.679115], [45.035358, 7.678605], [45.035404, 7.679078], [45.035432, 7.678574], [45.035878, 7.678612], [45.038223, 7.677902], [45.039899, 7.678117], [45.041021, 7.678867], [45.041213, 7.678232], [45.041377, 7.678338], [45.041195, 7.678934], [45.042184, 7.680079], [45.043881, 7.684149], [45.044735, 7.685498], [45.044988, 7.684896], [45.044872, 7.685591], [45.046239, 7.686271], [45.051934, 7.687839], [45.054378, 7.689262], [45.056655, 7.691726], [45.057665, 7.692492], [45.057995, 7.691871], [45.05818, 7.691997], [45.058024, 7.692754], [45.061613, 7.695774], [45.062947, 7.698144], [45.063486, 7.697376], [45.063567, 7.697488], [45.063068, 7.698302], [45.065563, 7.701358], [45.066937, 7.704634], [45.067736, 7.708072], [45.067845, 7.708267], [45.068253, 7.708027], [45.068309, 7.708243], [45.067494, 7.708712], [45.06383, 7.711869], [45.064078, 7.712916], [45.063135, 7.715419], [45.061509, 7.715594], [45.060907, 7.715942], [45.060279, 7.717033], [45.058991, 7.718064], [45.058726, 7.71944], [45.057987, 7.719686], [45.056679, 7.72133], [45.055298, 7.721572], [45.054301, 7.722834], [45.053489, 7.722415], [45.053292, 7.721594], [45.053466, 7.720682], [45.053347, 7.720433], [45.052538, 7.721674], [45.052395, 7.72184], [45.052025, 7.7218], [45.052039, 7.722014], [45.051402, 7.72156], [45.051257, 7.721844], [45.050786, 7.720722], [45.05028, 7.721164], [45.048378, 7.721572], [45.046727, 7.722681], [45.046311, 7.722729], [45.045959, 7.722416], [45.044984, 7.722705], [45.044622, 7.722514], [45.044386, 7.722608], [45.043985, 7.722389], [45.043768, 7.721265], [45.042277, 7.721257], [45.041904, 7.721983], [45.042243, 7.723214], [45.042086, 7.723781], [45.040774, 7.72478], [45.040157, 7.726231], [45.03985, 7.725892], [45.038422, 7.725961], [45.037994, 7.726826], [45.038405, 7.728483], [45.038153, 7.728945], [45.038159, 7.729399], [45.038517, 7.729596], [45.038854, 7.730191], [45.038287, 7.730426], [45.038469, 7.732067], [45.039193, 7.732906], [45.039127, 7.733991], [45.037796, 7.732618], [45.031252, 7.722618], [45.026985, 7.708106], [45.023943, 7.707651], [45.024099, 7.707284], [45.023952, 7.705922], [45.024316, 7.704138], [45.024043, 7.703595], [45.024023, 7.702394], [45.023735, 7.701497], [45.024082, 7.700327], [45.023525, 7.700109], [45.023354, 7.699621], [45.023056, 7.697897], [45.023205, 7.696316], [45.022971, 7.695656], [45.023751, 7.693909], [45.024072, 7.691957], [45.024658, 7.690091], [45.024593, 7.687039], [45.024033, 7.685123], [45.023362, 7.683929], [45.022096, 7.682821], [45.021978, 7.682438], [45.02098, 7.682402], [45.020393, 7.682014], [45.020048, 7.681426], [45.018649, 7.680855], [45.017653, 7.679307], [45.016241, 7.677788], [45.016303, 7.677289], [45.018177, 7.674872], [45.018995, 7.674176], [45.019848, 7.673914]]], "day": "green", "day_label": "Relatively safer", "name": "Borgo Po e Cavoretto", "night": "green", "night_label": "Relatively safer", "query": "Borgo Po e Cavoretto, Turin, Italy", "slug": "borgo-po-e-cavoretto", "text": "The Turin hills and Borgo Po: a green, upscale residential area, among the calmest in the city.", "url": "/torino/borgo-po-e-cavoretto/"}, {"coords": [[[45.068376, 7.708454], [45.06797, 7.708687], [45.067957, 7.708882], [45.068597, 7.710927], [45.069744, 7.720779], [45.070081, 7.722365], [45.071299, 7.725554], [45.0724, 7.727091], [45.073816, 7.728272], [45.074328, 7.728563], [45.075356, 7.72864], [45.075349, 7.72807], [45.07553, 7.728059], [45.075548, 7.728618], [45.076774, 7.728464], [45.079771, 7.725467], [45.085984, 7.721201], [45.087336, 7.7207], [45.08886, 7.720665], [45.090962, 7.721398], [45.091674, 7.721913], [45.0924, 7.722825], [45.093091, 7.724762], [45.093097, 7.726754], [45.092656, 7.728894], [45.093276, 7.729285], [45.093184, 7.72962], [45.092566, 7.729276], [45.092023, 7.731556], [45.09066, 7.735609], [45.090334, 7.737563], [45.090575, 7.740109], [45.091575, 7.742917], [45.090744, 7.743946], [45.089114, 7.744588], [45.08866, 7.745124], [45.088641, 7.745568], [45.088093, 7.746155], [45.087955, 7.746606], [45.087106, 7.746658], [45.086939, 7.746945], [45.086562, 7.747052], [45.085689, 7.748531], [45.085338, 7.748569], [45.084994, 7.748896], [45.083631, 7.750792], [45.083106, 7.753279], [45.083206, 7.754628], [45.082703, 7.755181], [45.082139, 7.75692], [45.082356, 7.757805], [45.082603, 7.762235], [45.082402, 7.763564], [45.082605, 7.764457], [45.082443, 7.765063], [45.080996, 7.766894], [45.081691, 7.768952], [45.080901, 7.769176], [45.0807, 7.769021], [45.080223, 7.767373], [45.079764, 7.767489], [45.079147, 7.767992], [45.078308, 7.769984], [45.078173, 7.77092], [45.078463, 7.77164], [45.078459, 7.772293], [45.078307, 7.772948], [45.077929, 7.773351], [45.0578, 7.755805], [45.051179, 7.748161], [45.044769, 7.740267], [45.039127, 7.733991], [45.039193, 7.732906], [45.038469, 7.732067], [45.038287, 7.730426], [45.038854, 7.730191], [45.038517, 7.729596], [45.038159, 7.729399], [45.038153, 7.728945], [45.038405, 7.728483], [45.037994, 7.726826], [45.038148, 7.726296], [45.038422, 7.725961], [45.039061, 7.725841], [45.03985, 7.725892], [45.040091, 7.72621], [45.040238, 7.726155], [45.040774, 7.72478], [45.042151, 7.723676], [45.042243, 7.723214], [45.041901, 7.722043], [45.042277, 7.721257], [45.043768, 7.721265], [45.043985, 7.722389], [45.044386, 7.722608], [45.044622, 7.722514], [45.044984, 7.722705], [45.045959, 7.722416], [45.046311, 7.722729], [45.046727, 7.722681], [45.048378, 7.721572], [45.05028, 7.721164], [45.050786, 7.720722], [45.051257, 7.721844], [45.051402, 7.72156], [45.052039, 7.722014], [45.052025, 7.7218], [45.052395, 7.72184], [45.052538, 7.721674], [45.053347, 7.720433], [45.053466, 7.720682], [45.053292, 7.721594], [45.053489, 7.722415], [45.054301, 7.722834], [45.055298, 7.721572], [45.056679, 7.72133], [45.057987, 7.719686], [45.058726, 7.71944], [45.058991, 7.718064], [45.060279, 7.717033], [45.060907, 7.715942], [45.061509, 7.715594], [45.063135, 7.715419], [45.064078, 7.712916], [45.06383, 7.711869], [45.067494, 7.708712], [45.068309, 7.708243], [45.068376, 7.708454]]], "day": "green", "day_label": "Relatively safer", "name": "Madonna del Pilone", "night": "green", "night_label": "Relatively safer", "query": "Madonna del Pilone, Turin, Italy", "slug": "madonna-del-pilone", "text": "Calm residential area along the Po river, on the hill side of the city.", "url": "/torino/madonna-del-pilone/"}, {"coords": [[[45.07593, 7.643572], [45.07978, 7.646406], [45.091737, 7.654442], [45.091438, 7.654886], [45.091999, 7.662868], [45.090919, 7.662974], [45.09078, 7.663131], [45.09089, 7.664655], [45.089939, 7.670158], [45.090141, 7.670211], [45.087788, 7.676204], [45.076576, 7.668241], [45.075576, 7.643319], [45.07593, 7.643572]], [[45.090503, 7.654048], [45.090295, 7.65469], [45.089885, 7.655198], [45.087866, 7.655775], [45.087308, 7.656249], [45.087491, 7.656493], [45.088228, 7.655882], [45.08956, 7.655729], [45.090102, 7.655407], [45.090842, 7.654216], [45.090503, 7.654048]], [[45.086922, 7.656821], [45.086411, 7.661278], [45.087335, 7.664452], [45.087937, 7.664813], [45.088846, 7.664051], [45.089305, 7.662107], [45.089612, 7.66169], [45.090172, 7.661669], [45.090706, 7.66288], [45.091035, 7.662788], [45.090544, 7.661575], [45.089776, 7.661296], [45.089097, 7.661868], [45.088715, 7.663976], [45.088122, 7.664212], [45.087418, 7.663442], [45.086786, 7.661958], [45.086623, 7.661072], [45.086951, 7.657581], [45.087195, 7.657015], [45.086922, 7.656821]]], "day": "green", "day_label": "Relatively safer", "name": "San Donato", "night": "green", "night_label": "Relatively safer", "query": "San Donato, Turin, Italy", "slug": "san-donato", "text": "Central residential neighborhood, livable and well connected, no particular concerns.", "url": "/torino/san-donato/"}, {"coords": [[[45.069151, 7.638604], [45.075576, 7.643319], [45.076576, 7.668241], [45.068627, 7.662612], [45.068476, 7.663032], [45.0614, 7.658086], [45.064761, 7.649385], [45.064994, 7.64959], [45.064929, 7.648949], [45.068971, 7.638483], [45.069151, 7.638604]]], "day": "green", "day_label": "Relatively safer", "name": "Cenisia", "night": "green", "night_label": "Relatively safer", "query": "Cenisia, Turin, Italy", "slug": "cenisia", "text": "Residential/university area near the Polytechnic, calm.", "url": "/torino/cenisia/"}, {"coords": [[[45.106646, 7.645169], [45.112134, 7.645359], [45.112172, 7.649911], [45.112825, 7.654473], [45.114839, 7.654508], [45.114925, 7.654637], [45.116398, 7.653019], [45.123271, 7.652605], [45.123894, 7.653595], [45.12445, 7.65411], [45.122522, 7.65591], [45.1207, 7.658305], [45.119917, 7.6601], [45.119394, 7.660751], [45.120062, 7.660932], [45.120432, 7.661031], [45.120677, 7.660687], [45.120979, 7.659239], [45.122417, 7.656751], [45.122838, 7.656796], [45.123678, 7.656416], [45.125051, 7.65521], [45.124796, 7.654415], [45.127787, 7.657106], [45.12821, 7.657098], [45.12897, 7.656658], [45.129666, 7.655743], [45.129156, 7.655313], [45.129579, 7.654593], [45.130502, 7.655308], [45.131505, 7.654326], [45.133297, 7.655725], [45.133542, 7.655053], [45.135065, 7.65285], [45.134794, 7.657319], [45.135112, 7.660785], [45.134912, 7.661615], [45.134052, 7.6634], [45.135303, 7.663744], [45.135624, 7.661941], [45.136199, 7.661101], [45.139212, 7.662436], [45.139608, 7.663261], [45.140016, 7.66328], [45.139977, 7.663701], [45.140244, 7.664205], [45.140124, 7.664836], [45.139187, 7.66589], [45.139031, 7.66652], [45.138728, 7.666135], [45.138546, 7.666276], [45.138517, 7.667989], [45.138029, 7.668914], [45.137714, 7.670682], [45.137551, 7.670979], [45.136685, 7.671004], [45.136143, 7.671508], [45.136113, 7.672021], [45.136284, 7.672217], [45.135743, 7.673215], [45.135647, 7.673917], [45.135299, 7.674329], [45.134843, 7.674322], [45.134643, 7.674606], [45.134439, 7.674467], [45.134083, 7.674751], [45.133791, 7.674382], [45.133585, 7.674504], [45.133444, 7.67381], [45.133652, 7.67309], [45.132539, 7.67257], [45.132704, 7.673752], [45.130866, 7.672675], [45.130513, 7.673838], [45.128429, 7.672626], [45.126267, 7.672795], [45.122226, 7.671801], [45.121822, 7.670234], [45.121828, 7.669515], [45.120307, 7.666323], [45.119918, 7.665121], [45.120263, 7.662255], [45.120498, 7.662183], [45.120442, 7.66128], [45.119281, 7.66097], [45.11953, 7.66495], [45.120068, 7.666805], [45.121048, 7.669165], [45.121148, 7.669865], [45.121606, 7.670391], [45.121857, 7.671043], [45.122191, 7.673314], [45.122319, 7.672951], [45.122528, 7.673472], [45.122279, 7.673845], [45.121057, 7.674679], [45.121096, 7.674822], [45.119349, 7.676702], [45.118197, 7.676924], [45.117012, 7.678302], [45.116579, 7.679931], [45.111509, 7.678628], [45.111654, 7.678014], [45.113656, 7.675879], [45.114456, 7.675295], [45.115098, 7.674011], [45.110985, 7.672939], [45.11116, 7.671503], [45.109572, 7.670827], [45.108996, 7.673565], [45.105758, 7.673135], [45.10491, 7.671629], [45.104828, 7.672993], [45.096917, 7.671722], [45.096639, 7.671966], [45.096415, 7.671531], [45.096189, 7.671614], [45.090098, 7.670305], [45.090255, 7.67023], [45.090475, 7.669171], [45.091065, 7.665045], [45.091107, 7.663193], [45.090919, 7.662974], [45.091999, 7.662868], [45.091438, 7.654886], [45.091737, 7.654442], [45.103558, 7.662401], [45.104282, 7.662697], [45.104506, 7.66286], [45.104345, 7.66316], [45.105403, 7.663236], [45.105821, 7.65571], [45.106209, 7.654885], [45.108528, 7.652215], [45.104819, 7.645712], [45.105568, 7.645323], [45.106646, 7.645169]]], "day": "yellow", "day_label": "Average", "name": "Madonna di Campagna", "night": "yellow", "night_label": "Average", "query": "Madonna di Campagna, Turin, Italy", "slug": "madonna-di-campagna", "text": "Working-class neighborhood to the north, with some known issues worth more attention especially in the evening.", "url": "/torino/madonna-di-campagna/"}, {"coords": [[[45.090823, 7.670458], [45.096189, 7.671614], [45.096415, 7.671531], [45.096639, 7.671966], [45.096917, 7.671722], [45.104828, 7.672993], [45.10491, 7.671629], [45.105758, 7.673135], [45.108996, 7.673565], [45.109572, 7.670827], [45.11116, 7.671503], [45.110985, 7.672939], [45.115098, 7.674011], [45.114456, 7.675295], [45.113656, 7.675879], [45.111654, 7.678014], [45.111509, 7.678628], [45.116719, 7.679861], [45.116362, 7.683263], [45.116554, 7.684048], [45.116997, 7.68468], [45.117332, 7.686078], [45.116961, 7.687154], [45.115887, 7.688695], [45.115699, 7.689264], [45.115021, 7.690004], [45.114631, 7.690963], [45.113932, 7.694347], [45.114082, 7.695634], [45.113456, 7.695757], [45.113398, 7.696175], [45.113459, 7.696703], [45.114191, 7.69702], [45.114193, 7.697329], [45.113521, 7.697048], [45.11378, 7.69757], [45.114194, 7.697754], [45.110027, 7.696771], [45.108486, 7.695929], [45.106839, 7.694729], [45.100414, 7.688196], [45.098409, 7.685815], [45.092905, 7.68002], [45.091532, 7.678873], [45.091303, 7.679329], [45.091, 7.679317], [45.090513, 7.678714], [45.090167, 7.67864], [45.089413, 7.677549], [45.087686, 7.676377], [45.090098, 7.670305], [45.090823, 7.670458]]], "day": "yellow", "day_label": "Average", "name": "Borgata Vittoria", "night": "yellow", "night_label": "Average", "query": "Borgata Vittoria, Turin, Italy", "slug": "borgata-vittoria", "text": "Working-class neighborhood undergoing gradual regeneration, with some known issues.", "url": "/torino/borgata-vittoria/"}, {"coords": [[[45.071405, 7.603632], [45.07403, 7.605595], [45.075576, 7.643319], [45.068971, 7.638483], [45.061873, 7.635348], [45.060323, 7.635091], [45.055565, 7.634819], [45.057461, 7.625084], [45.05769, 7.62531], [45.059691, 7.625083], [45.059405, 7.620224], [45.059025, 7.618605], [45.059291, 7.615688], [45.060148, 7.61275], [45.060555, 7.610415], [45.060143, 7.609779], [45.060574, 7.607598], [45.065044, 7.609378], [45.066258, 7.614131], [45.066858, 7.613067], [45.068091, 7.609474], [45.07041, 7.608404], [45.07081, 7.606603], [45.071158, 7.603464], [45.071405, 7.603632]]], "day": "green", "day_label": "Relatively safer", "name": "Pozzo Strada", "night": "green", "night_label": "Relatively safer", "query": "Pozzo Strada, Turin, Italy", "slug": "pozzo-strada", "text": "Calm residential neighborhood west of the center.", "url": "/torino/pozzo-strada/"}, {"coords": [[[45.090395, 7.678632], [45.091054, 7.67935], [45.091303, 7.679329], [45.091532, 7.678873], [45.092445, 7.679582], [45.098409, 7.685815], [45.099289, 7.687009], [45.09972, 7.688443], [45.099795, 7.69091], [45.099118, 7.693201], [45.093472, 7.707112], [45.091099, 7.705005], [45.085872, 7.709674], [45.086168, 7.711481], [45.085847, 7.712531], [45.085246, 7.713152], [45.079692, 7.700639], [45.085103, 7.695787], [45.088099, 7.690348], [45.089064, 7.688276], [45.090167, 7.67864], [45.090395, 7.678632]]], "day": "red", "day_label": "Higher caution advised", "name": "Barriera di Milano", "night": "red", "night_label": "Higher caution advised", "query": "Barriera di Milano, Turin, Italy", "slug": "barriera-di-milano", "text": "Peripheral neighborhood with well-documented issues around drug dealing and petty crime in several streets, present even during the day and not only at night. Of little touristic relevance, but often shows up in budget accommodation listings.", "url": "/torino/barriera-di-milano/"}, {"coords": [[[45.097661, 7.697219], [45.102345, 7.700273], [45.100953, 7.705534], [45.102637, 7.706719], [45.102381, 7.708262], [45.103148, 7.708932], [45.103291, 7.709597], [45.106337, 7.711742], [45.104404, 7.713776], [45.103407, 7.715942], [45.102609, 7.717112], [45.101322, 7.718032], [45.10144, 7.717695], [45.101221, 7.717748], [45.101573, 7.717325], [45.101612, 7.716957], [45.101272, 7.717524], [45.098876, 7.719392], [45.097951, 7.720781], [45.098786, 7.721926], [45.100379, 7.720446], [45.100865, 7.720221], [45.100978, 7.719678], [45.10231, 7.718859], [45.102831, 7.71805], [45.103218, 7.717853], [45.103589, 7.718043], [45.103622, 7.717819], [45.103403, 7.7178], [45.10349, 7.71798], [45.103034, 7.717716], [45.10424, 7.716541], [45.104868, 7.716204], [45.10795, 7.728085], [45.111608, 7.729678], [45.11344, 7.730959], [45.113867, 7.731331], [45.116258, 7.735287], [45.117252, 7.734918], [45.117782, 7.735002], [45.118269, 7.73541], [45.118698, 7.736356], [45.11862, 7.737161], [45.118008, 7.738075], [45.117303, 7.736953], [45.11288, 7.736579], [45.112684, 7.737297], [45.113132, 7.739066], [45.112916, 7.739894], [45.111134, 7.739921], [45.110092, 7.740127], [45.109951, 7.739845], [45.109792, 7.740095], [45.109573, 7.739964], [45.109463, 7.741494], [45.108218, 7.743854], [45.107409, 7.744338], [45.106759, 7.743933], [45.105821, 7.746064], [45.104531, 7.747987], [45.102686, 7.752365], [45.100494, 7.751363], [45.09866, 7.751318], [45.097347, 7.750942], [45.094423, 7.745798], [45.092647, 7.741612], [45.092321, 7.742035], [45.09173, 7.740558], [45.091815, 7.738836], [45.09151, 7.736098], [45.092196, 7.733729], [45.092459, 7.733282], [45.093125, 7.732945], [45.092955, 7.732892], [45.093703, 7.731598], [45.093923, 7.730073], [45.093184, 7.72962], [45.093276, 7.729285], [45.094043, 7.729753], [45.094897, 7.727672], [45.098663, 7.72211], [45.09782, 7.720956], [45.095869, 7.722932], [45.095212, 7.72396], [45.094712, 7.722659], [45.093679, 7.721277], [45.092268, 7.720145], [45.089093, 7.719017], [45.089111, 7.718755], [45.086004, 7.714463], [45.085246, 7.713152], [45.085847, 7.712531], [45.086168, 7.711481], [45.085872, 7.709674], [45.091099, 7.705005], [45.093472, 7.707112], [45.097522, 7.69713], [45.097661, 7.697219]], [[45.119508, 7.740428], [45.121325, 7.743094], [45.12232, 7.742853], [45.12257, 7.743441], [45.123823, 7.7445], [45.124593, 7.745674], [45.124723, 7.745994], [45.123877, 7.747105], [45.124664, 7.748347], [45.123738, 7.749286], [45.122316, 7.749622], [45.120742, 7.748532], [45.117328, 7.743369], [45.119508, 7.740428]]], "day": "green", "day_label": "Relatively safer", "name": "Regio Parco", "night": "yellow", "night_label": "Average", "query": "Regio Parco, Turin, Italy", "slug": "regio-parco", "text": "Residential area along the Dora river, calm by day.", "url": "/torino/regio-parco/"}, {"coords": [[[45.137747, 7.670877], [45.1382, 7.671706], [45.13779, 7.67233], [45.137996, 7.672476], [45.137124, 7.675147], [45.137303, 7.676373], [45.138013, 7.676799], [45.138229, 7.677581], [45.138578, 7.678025], [45.137919, 7.678751], [45.137807, 7.679201], [45.138861, 7.680561], [45.137774, 7.681656], [45.137917, 7.682026], [45.137231, 7.683408], [45.136565, 7.68317], [45.135834, 7.683612], [45.135537, 7.684006], [45.135187, 7.685826], [45.134628, 7.686111], [45.134342, 7.68669], [45.134016, 7.686603], [45.133983, 7.68738], [45.133011, 7.690159], [45.133546, 7.690485], [45.134622, 7.690615], [45.134407, 7.694066], [45.133013, 7.693882], [45.132571, 7.696342], [45.130985, 7.696344], [45.131678, 7.70373], [45.132593, 7.709353], [45.133557, 7.709804], [45.133197, 7.711114], [45.136991, 7.712006], [45.137234, 7.712443], [45.137218, 7.712848], [45.137568, 7.713176], [45.137589, 7.713817], [45.137308, 7.713912], [45.137096, 7.714352], [45.137309, 7.714602], [45.137386, 7.714483], [45.137249, 7.714915], [45.13744, 7.715034], [45.137351, 7.715425], [45.13755, 7.715474], [45.137765, 7.716278], [45.138102, 7.716668], [45.13792, 7.717714], [45.138087, 7.718151], [45.13778, 7.719084], [45.138093, 7.719725], [45.137922, 7.720302], [45.137745, 7.7203], [45.13743, 7.721626], [45.137026, 7.722241], [45.136903, 7.72298], [45.137166, 7.723966], [45.136758, 7.724798], [45.135816, 7.724632], [45.135521, 7.724529], [45.13546, 7.724171], [45.132739, 7.723451], [45.132847, 7.722904], [45.131649, 7.72285], [45.131387, 7.721238], [45.130554, 7.720941], [45.130526, 7.718108], [45.130422, 7.718225], [45.127337, 7.717358], [45.12678, 7.719205], [45.125146, 7.721246], [45.126279, 7.722418], [45.126979, 7.724909], [45.125256, 7.729621], [45.124913, 7.729513], [45.124327, 7.728857], [45.123697, 7.730433], [45.123854, 7.733931], [45.123553, 7.736559], [45.123424, 7.736659], [45.122242, 7.736246], [45.122063, 7.735913], [45.1196, 7.735103], [45.119239, 7.738494], [45.118264, 7.738482], [45.118008, 7.738075], [45.11862, 7.737161], [45.118713, 7.73663], [45.118536, 7.73585], [45.118108, 7.7352], [45.117252, 7.734918], [45.116258, 7.735287], [45.113867, 7.731331], [45.11344, 7.730959], [45.111608, 7.729678], [45.10795, 7.728085], [45.104868, 7.716204], [45.105339, 7.715916], [45.107575, 7.71248], [45.110581, 7.708488], [45.111612, 7.706601], [45.110508, 7.705879], [45.109786, 7.707587], [45.110457, 7.706803], [45.109823, 7.708737], [45.107449, 7.711131], [45.10727, 7.71121], [45.107309, 7.710902], [45.106337, 7.711742], [45.103291, 7.709597], [45.103148, 7.708932], [45.102441, 7.708435], [45.102637, 7.706719], [45.100953, 7.705534], [45.102345, 7.700273], [45.097522, 7.69713], [45.099725, 7.691342], [45.099851, 7.689366], [45.099289, 7.687009], [45.106748, 7.694644], [45.108486, 7.695929], [45.11095, 7.697086], [45.114549, 7.697823], [45.114472, 7.697483], [45.114193, 7.697329], [45.114191, 7.69702], [45.114472, 7.69717], [45.114504, 7.6956], [45.114082, 7.695634], [45.114052, 7.695319], [45.11433, 7.692912], [45.114464, 7.692697], [45.114456, 7.69308], [45.114601, 7.6927], [45.114455, 7.692541], [45.114791, 7.690994], [45.115109, 7.690207], [45.115778, 7.689873], [45.117476, 7.686365], [45.117468, 7.685304], [45.117044, 7.683891], [45.116985, 7.678869], [45.118158, 7.6771], [45.118634, 7.677363], [45.118496, 7.677881], [45.119302, 7.677494], [45.119017, 7.677959], [45.122362, 7.673898], [45.122766, 7.673195], [45.122495, 7.672995], [45.122226, 7.671801], [45.126267, 7.672795], [45.128429, 7.672626], [45.130513, 7.673838], [45.130866, 7.672675], [45.132704, 7.673752], [45.132539, 7.67257], [45.133652, 7.67309], [45.133444, 7.67381], [45.133509, 7.674375], [45.133585, 7.674504], [45.133791, 7.674382], [45.134083, 7.674751], [45.134439, 7.674467], [45.134643, 7.674606], [45.134843, 7.674322], [45.135181, 7.674431], [45.135647, 7.673917], [45.135743, 7.673215], [45.136284, 7.672217], [45.136113, 7.672021], [45.136143, 7.671508], [45.136685, 7.671004], [45.137551, 7.670979], [45.137714, 7.670682], [45.137747, 7.670877]], [[45.113762, 7.697675], [45.11376, 7.698447], [45.114398, 7.698611], [45.114538, 7.697923], [45.113762, 7.697675]], [[45.113581, 7.698842], [45.112596, 7.701893], [45.110798, 7.705554], [45.1118, 7.706212], [45.113337, 7.702959], [45.114019, 7.700762], [45.114408, 7.698996], [45.113581, 7.698842]]], "day": "yellow", "day_label": "Average", "name": "Falchera", "night": "red", "night_label": "Higher caution advised", "query": "Falchera, Turin, Italy", "slug": "falchera", "text": "A peripheral social-housing estate with well-known, longstanding social and security issues, particularly at night. Essentially no touristic relevance, but included for full city coverage.", "url": "/torino/falchera/"}, {"coords": [[[45.10718, 7.611782], [45.108176, 7.614271], [45.1082, 7.618753], [45.107984, 7.620196], [45.108439, 7.622629], [45.113438, 7.622578], [45.113852, 7.622886], [45.112134, 7.645359], [45.106646, 7.645169], [45.105568, 7.645323], [45.104819, 7.645712], [45.108528, 7.652215], [45.106209, 7.654885], [45.105821, 7.65571], [45.105403, 7.663236], [45.104345, 7.66316], [45.104506, 7.66286], [45.104282, 7.662697], [45.103558, 7.662401], [45.090883, 7.653859], [45.093109, 7.651391], [45.093615, 7.649953], [45.093614, 7.649302], [45.093241, 7.648814], [45.092736, 7.648556], [45.091592, 7.648302], [45.09061, 7.648465], [45.090038, 7.647821], [45.089571, 7.645807], [45.08948, 7.645993], [45.089122, 7.645407], [45.089194, 7.645187], [45.088593, 7.64385], [45.088121, 7.641148], [45.088291, 7.640725], [45.088495, 7.636893], [45.088347, 7.635343], [45.088164, 7.63532], [45.088294, 7.635074], [45.087653, 7.633549], [45.086352, 7.632496], [45.085821, 7.631507], [45.086081, 7.630764], [45.085964, 7.630659], [45.086095, 7.63074], [45.087051, 7.629533], [45.088088, 7.628872], [45.088042, 7.628718], [45.088575, 7.628668], [45.089164, 7.628298], [45.090514, 7.626984], [45.091603, 7.625038], [45.09216, 7.62287], [45.09283, 7.621898], [45.094095, 7.621788], [45.094276, 7.621578], [45.094698, 7.620312], [45.09455, 7.619618], [45.094048, 7.619203], [45.095158, 7.61963], [45.096758, 7.618649], [45.100051, 7.614226], [45.10718, 7.611782]]], "day": "yellow", "day_label": "Average", "name": "Le Vallette", "night": "red", "night_label": "Higher caution advised", "query": "Le Vallette, Turin, Italy", "slug": "le-vallette", "text": "Peripheral working-class neighborhood (Vallette) with well-known, recurring social issues, especially at night. Of little touristic relevance, but included for full city coverage.", "url": "/torino/le-vallette/"}, {"coords": [[[45.041869, 7.577831], [45.044329, 7.580309], [45.043752, 7.582157], [45.043108, 7.582154], [45.042112, 7.583917], [45.044883, 7.586709], [45.042157, 7.592573], [45.04162, 7.592716], [45.040491, 7.595239], [45.039886, 7.596732], [45.039607, 7.598172], [45.035661, 7.606508], [45.034836, 7.609129], [45.03186, 7.616507], [45.035672, 7.624863], [45.029628, 7.642681], [45.029508, 7.642761], [45.023606, 7.636182], [45.022887, 7.635088], [45.021134, 7.640143], [45.018517, 7.643604], [45.017577, 7.647922], [45.017565, 7.658448], [45.016297, 7.658894], [45.007347, 7.655114], [45.00799, 7.654007], [45.008098, 7.652558], [45.008742, 7.652404], [45.008946, 7.652089], [45.008746, 7.651252], [45.007959, 7.649803], [45.008036, 7.649048], [45.007811, 7.647532], [45.007102, 7.646207], [45.007083, 7.64459], [45.006828, 7.644388], [45.007008, 7.642683], [45.007179, 7.642033], [45.008325, 7.640434], [45.008877, 7.639033], [45.008984, 7.638216], [45.008427, 7.637393], [45.008559, 7.637108], [45.009065, 7.637151], [45.008554, 7.637053], [45.00897, 7.635737], [45.009473, 7.635076], [45.009368, 7.634942], [45.008931, 7.635591], [45.008331, 7.637278], [45.008142, 7.63663], [45.009497, 7.634669], [45.009485, 7.635046], [45.010163, 7.63359], [45.010862, 7.631233], [45.01075, 7.629801], [45.010455, 7.629464], [45.010398, 7.629017], [45.008368, 7.627563], [45.00814, 7.62651], [45.008168, 7.624152], [45.009056, 7.620913], [45.009337, 7.620555], [45.00945, 7.619975], [45.009556, 7.620094], [45.009714, 7.619768], [45.011068, 7.616189], [45.011102, 7.615719], [45.010865, 7.61529], [45.011215, 7.614367], [45.010288, 7.611727], [45.010352, 7.610406], [45.011185, 7.608164], [45.011378, 7.608345], [45.011526, 7.608256], [45.011177, 7.608123], [45.010617, 7.609369], [45.011547, 7.606475], [45.011908, 7.606064], [45.012485, 7.605893], [45.012886, 7.605171], [45.012906, 7.604286], [45.012622, 7.605534], [45.011831, 7.605898], [45.013317, 7.602608], [45.013541, 7.601092], [45.013001, 7.599452], [45.013688, 7.59908], [45.014606, 7.597659], [45.01502, 7.595473], [45.0149, 7.594512], [45.015676, 7.591652], [45.016029, 7.591167], [45.016458, 7.591085], [45.016115, 7.590808], [45.016416, 7.589761], [45.017297, 7.59239], [45.019477, 7.591844], [45.019774, 7.591955], [45.019946, 7.59269], [45.018812, 7.600511], [45.029816, 7.607349], [45.028334, 7.601559], [45.030072, 7.598801], [45.029984, 7.597748], [45.032141, 7.59392], [45.034374, 7.589038], [45.034625, 7.58798], [45.036561, 7.583506], [45.037334, 7.58288], [45.03832, 7.581064], [45.039661, 7.580114], [45.041869, 7.577831]], [[45.013176, 7.596382], [45.014138, 7.596882], [45.014493, 7.596692], [45.014432, 7.597397], [45.013584, 7.598933], [45.012815, 7.599158], [45.012132, 7.598237], [45.012236, 7.596666], [45.012591, 7.596158], [45.013176, 7.596382]], [[45.015213, 7.59191], [45.014625, 7.59307], [45.014636, 7.594751], [45.014112, 7.594131], [45.014065, 7.593123], [45.014582, 7.592401], [45.015417, 7.591548], [45.015213, 7.59191]], [[45.010582, 7.608818], [45.010149, 7.611323], [45.009832, 7.610052], [45.010148, 7.609086], [45.010667, 7.608519], [45.010582, 7.608818]], [[45.010458, 7.629668], [45.010697, 7.630654], [45.010324, 7.632488], [45.010458, 7.629668]], [[45.010836, 7.615493], [45.010978, 7.615951], [45.010421, 7.617419], [45.010836, 7.615493]], [[45.007797, 7.640876], [45.007188, 7.641788], [45.007358, 7.64117], [45.007797, 7.640876]], [[45.008861, 7.621341], [45.008461, 7.622755], [45.008861, 7.621341]], [[45.011594, 7.606224], [45.011144, 7.607175], [45.011263, 7.606571], [45.011594, 7.606224]]], "day": "yellow", "day_label": "Average", "name": "Mirafiori Sud", "night": "red", "night_label": "Higher caution advised", "query": "Mirafiori Sud, Turin, Italy", "slug": "mirafiori-sud", "text": "Peripheral area with known social issues in some streets, rarely visited by tourists but included for completeness.", "url": "/torino/mirafiori-sud/"}, {"coords": [[[45.023443, 7.63598], [45.0486, 7.664158], [45.045876, 7.666837], [45.044744, 7.667246], [45.044002, 7.666768], [45.043835, 7.666867], [45.043484, 7.666688], [45.042366, 7.6656], [45.039273, 7.66328], [45.032644, 7.659453], [45.02888, 7.657809], [45.027285, 7.657544], [45.02166, 7.65766], [45.019018, 7.658017], [45.017565, 7.658448], [45.017577, 7.647922], [45.018517, 7.643604], [45.021134, 7.640143], [45.022887, 7.635088], [45.023443, 7.63598]]], "day": "yellow", "day_label": "Average", "name": "Mercati generali", "night": "yellow", "night_label": "Average", "query": "Mercati generali, Turin, Italy", "slug": "mercati-generali", "text": "Wholesale-market and light-industrial district. Quiet but isolated and poorly lit at night; minimal touristic relevance.", "url": "/torino/mercati-generali/"}, {"coords": [[[45.074131, 7.605672], [45.082564, 7.611418], [45.086332, 7.611202], [45.087685, 7.612581], [45.088799, 7.613332], [45.089, 7.6154], [45.09081, 7.617915], [45.091381, 7.6183], [45.092062, 7.618364], [45.093426, 7.618976], [45.094506, 7.620189], [45.094484, 7.62071], [45.093917, 7.621605], [45.093134, 7.621518], [45.092377, 7.622076], [45.090805, 7.626098], [45.089227, 7.62788], [45.088042, 7.628718], [45.087796, 7.628524], [45.086856, 7.629272], [45.085849, 7.630583], [45.085957, 7.630687], [45.085841, 7.630613], [45.085682, 7.630951], [45.085418, 7.631941], [45.085432, 7.633458], [45.085919, 7.633155], [45.086951, 7.633384], [45.087622, 7.63393], [45.088014, 7.635384], [45.088164, 7.63532], [45.088028, 7.635438], [45.088175, 7.636523], [45.087706, 7.636368], [45.088181, 7.636705], [45.087952, 7.640747], [45.088121, 7.641148], [45.087972, 7.641067], [45.087947, 7.642024], [45.088516, 7.644346], [45.089051, 7.645579], [45.089122, 7.645407], [45.08948, 7.645993], [45.089543, 7.647028], [45.089958, 7.648113], [45.090569, 7.648708], [45.091887, 7.648584], [45.092922, 7.648914], [45.093519, 7.649433], [45.093504, 7.649974], [45.092805, 7.651319], [45.091375, 7.652931], [45.090883, 7.653859], [45.07978, 7.646406], [45.075576, 7.643319], [45.074131, 7.605672]]], "day": "green", "day_label": "Relatively safer", "name": "Parella", "night": "green", "night_label": "Relatively safer", "query": "Parella, Turin, Italy", "slug": "parella", "text": "Peripheral residential neighborhood, calm, little touristic relevance.", "url": "/torino/parella/"}, {"coords": [[[45.056534, 7.634883], [45.060323, 7.635091], [45.061873, 7.635348], [45.068971, 7.638483], [45.064929, 7.648949], [45.064994, 7.64959], [45.064761, 7.649385], [45.0614, 7.658086], [45.057089, 7.655128], [45.056561, 7.654862], [45.055023, 7.65459], [45.053537, 7.65499], [45.0523, 7.655911], [45.051667, 7.656781], [45.050823, 7.658713], [45.055565, 7.634819], [45.056534, 7.634883]]], "day": "green", "day_label": "Relatively safer", "name": "San Paolo (Borgo San Paolo / Cit Turin)", "night": "yellow", "night_label": "Average", "query": "San Paolo, Turin, Italy", "slug": "san-paolo-borgo-san-paolo-cit-turin", "text": "Former working-class district (covers what locals also call Borgo San Paolo and Cit Turin) undergoing regeneration. Generally calm by day, with a few streets worth more caution at night.", "url": "/torino/san-paolo-borgo-san-paolo-cit-turin/"}, {"coords": [[[45.040408, 7.633945], [45.055565, 7.634819], [45.050128, 7.661686], [45.049493, 7.663068], [45.0486, 7.664158], [45.032751, 7.646483], [45.040112, 7.633927], [45.040408, 7.633945]]], "day": "green", "day_label": "Relatively safer", "name": "Santa Rita", "night": "green", "night_label": "Relatively safer", "query": "Santa Rita, Turin, Italy", "slug": "santa-rita", "text": "Working-class but calm residential neighborhood, of little touristic relevance.", "url": "/torino/santa-rita/"}, {"coords": [[[45.022902, 7.657613], [45.027285, 7.657544], [45.030037, 7.658195], [45.032644, 7.659453], [45.039273, 7.66328], [45.042366, 7.6656], [45.043407, 7.666638], [45.043835, 7.666867], [45.044002, 7.666768], [45.042956, 7.670254], [45.041296, 7.678286], [45.04141, 7.677584], [45.040006, 7.676948], [45.03889, 7.676787], [45.037229, 7.677102], [45.037197, 7.67697], [45.037187, 7.677141], [45.03645, 7.677264], [45.036263, 7.677131], [45.036164, 7.677397], [45.034688, 7.678138], [45.034043, 7.678036], [45.033159, 7.677527], [45.032127, 7.676565], [45.030076, 7.673902], [45.029204, 7.673467], [45.02841, 7.673398], [45.028378, 7.673202], [45.028321, 7.673422], [45.028107, 7.673264], [45.027532, 7.673507], [45.025578, 7.673636], [45.025325, 7.673752], [45.025251, 7.67417], [45.025281, 7.673757], [45.02404, 7.673484], [45.024013, 7.673338], [45.023974, 7.673478], [45.022053, 7.673418], [45.020475, 7.673106], [45.018941, 7.673147], [45.018695, 7.672944], [45.017639, 7.672802], [45.017612, 7.673289], [45.018642, 7.673407], [45.016852, 7.675032], [45.016984, 7.675265], [45.01684, 7.675295], [45.01683, 7.675055], [45.016535, 7.675408], [45.016808, 7.673166], [45.017547, 7.673285], [45.017574, 7.672799], [45.016848, 7.672838], [45.017125, 7.670562], [45.016297, 7.658894], [45.019018, 7.658017], [45.022902, 7.657613]]], "day": "yellow", "day_label": "Average", "name": "Nizza Millefonti / Lingotto", "night": "yellow", "night_label": "Average", "query": "Nizza Millefonti / Lingotto, Turin, Italy", "slug": "nizza-millefonti-lingotto", "text": "Mixed post-industrial area that also covers the Lingotto district around the former Fiat factory and Eataly. Safe by day; the outer streets deserve more attention in the evening.", "url": "/torino/nizza-millefonti-lingotto/"}, {"coords": [[[45.03378, 7.611608], [45.039898, 7.614587], [45.03904, 7.616441], [45.041011, 7.617437], [45.043806, 7.618398], [45.043949, 7.618151], [45.044508, 7.618581], [45.044907, 7.619337], [45.044648, 7.620342], [45.045951, 7.621197], [45.046232, 7.619412], [45.046801, 7.617884], [45.048354, 7.618757], [45.048984, 7.617341], [45.050261, 7.619322], [45.051423, 7.620657], [45.052268, 7.622754], [45.057461, 7.625084], [45.055565, 7.634819], [45.040112, 7.633927], [45.032751, 7.646483], [45.029508, 7.642761], [45.035672, 7.624863], [45.03186, 7.616507], [45.03378, 7.611608]]], "day": "yellow", "day_label": "Average", "name": "Mirafiori Nord", "night": "yellow", "night_label": "Average", "query": "Mirafiori Nord, Turin, Italy", "slug": "mirafiori-nord", "text": "Large peripheral neighborhood tied to the former Fiat plant, with some pockets worth caution, little touristic relevance.", "url": "/torino/mirafiori-nord/"}];
+  var CENTER = [45.0703, 7.6869];
+  var ZOOM = 12;
+  var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_BOOKING = "Search accommodation here on Booking.com \u2192";
+  var L_MORE = "See the full page \u2192";
+  var L_NOTCOVERED = "";
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
+
+  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var burglaryMode = false;
+  var layers = [];
+  var lastZone = null;
+
+  function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  var detailPanel = document.getElementById('detailBox');
+
+  function showPanel() { detailPanel.classList.add('visible'); }
+  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; }
+  document.getElementById('detailClose').addEventListener('click', hidePanel);
+
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.day) {
+      // This city's data has no time-of-day split (day and night are
+      // identical for every zone), so the switch is hidden entirely and
+      // a single badge is shown instead of two redundant ones.
+      html += badge(tone, z.day_label || tone);
+    } else {
+      html += badge('grey', L_NOTCOVERED || '');
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.day) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    document.getElementById('legendGreyText').textContent = set.grey;
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    ZONES.forEach(function(z){
+      var tone = toneOf(z);
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight:2, fillOpacity:0.32 }).addTo(map);
+      // Name is visible on hover (not just after a click) via a sticky
+      // tooltip, plus a highlight so it's obvious which zone you're over —
+      // click still opens the full detail card.
+      poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
+      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
+      poly.on('mouseout', function(){ poly.setStyle({ weight:2 }); });
+      poly.on('click', function(){ renderDetail(z); });
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+      if (lastZone && !burglaryMode) renderDetail(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) renderDetail(lastZone);
+    });
+  }
+</script>
+</body>
+</html>
