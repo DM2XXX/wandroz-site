@@ -27,78 +27,171 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
 <style>
-  /* Homepage: compressed to "brand → promise → search → map → explore
-     cities" with nothing else competing for attention above the fold.
-     The map itself is a real, zoomable Leaflet map of every mapped city
-     (real lat/lon, no hand-tuned projection), clustered so it scales
-     cleanly as more cities are added. Secondary material (why Wandroz,
-     the beta note, methodology link) lives further down, out of the way
-     of the first screen. */
-  .hero-compact { padding: 22px 24px 4px; max-width:900px; }
-  .hero-compact h1 { font-size: 25px; margin: 0 0 4px; font-weight:800; letter-spacing:-0.01em; }
-  .hero-compact .subtitle { color: var(--muted); margin:0; font-size:14px; font-style:italic; }
+  /* Homepage — desktop-first hero redesign (23 Aug 2026). Structure:
+     header → two-column hero (value prop + search / interactive map) →
+     three benefit cards → a real example neighbourhood card → explore
+     cities grid → one beta line → footer. Everything below the hero sits
+     in a shared `.section-inner` container so vertical rhythm and max
+     width stay consistent as sections stack. Mobile keeps the original
+     single-column stack; the two-column hero only kicks in at >=1024px,
+     where there's actually room for the map to sit beside the copy
+     instead of dominating a full-width strip beneath it. */
+  .section-inner { max-width:1400px; margin:0 auto; padding:0 24px; }
 
-  .search-wrap { padding: 14px 24px 4px; position:relative; max-width:520px; }
-  .search-label { display:block; font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:6px; }
-  .search-input { width:100%; padding:12px 16px; border:1px solid var(--line); border-radius: var(--radius-md); font-size:14.5px; font-family:var(--font); background:#fff; box-shadow: var(--shadow-sm); }
-  .search-input:focus { outline:2px solid var(--accent-bright); outline-offset:1px; }
-  .search-results { position:absolute; top:100%; left:24px; right:24px; margin-top:6px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-md); max-height:320px; overflow-y:auto; z-index:1200; display:none; }
+  .wz-header .wz-logo, .wz-header .wz-name, .wz-nav a { transition:none; }
+
+  /* ---------- Hero ---------- */
+  .hero-section { padding: 26px 0 6px; }
+  .hero-inner { max-width:1400px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; gap:22px; }
+  .hero-copy { max-width:640px; }
+  .hero-copy h1 { font-size:26px; line-height:1.14; margin:0 0 8px; font-weight:800; letter-spacing:-0.01em; color:var(--navy); }
+  .hero-subtitle { color: var(--muted); margin:0 0 18px; font-size:14.5px; font-style:italic; }
+
+  .search-wrap { position:relative; max-width:560px; margin:0; }
+  .search-label { display:block; font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:7px; }
+  .search-box { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding:0 6px 0 16px; height:52px; transition: box-shadow .15s ease, border-color .15s ease; }
+  .search-box:focus-within { border-color: var(--accent-bright); box-shadow: 0 0 0 3px var(--accent-bg), var(--shadow-md); }
+  .search-icon { flex:none; color: var(--muted-soft); }
+  .search-input { flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:var(--font); font-size:15px; color:var(--ink); height:100%; padding:0; }
+  .search-input::placeholder { color: var(--muted-soft); }
+  .search-go { flex:none; width:40px; height:40px; border-radius:50%; border:none; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition: background .15s ease, transform .15s ease; }
+  .search-go:hover { background: var(--accent-bright); transform: scale(1.06); }
+  .search-go:active { transform: scale(0.96); }
+  .search-results { position:absolute; top:calc(100% + 8px); left:0; right:0; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-md); max-height:320px; overflow-y:auto; z-index:1200; display:none; }
   .search-results.open { display:block; }
-  .search-result-item { display:block; padding:10px 14px; font-size:13.5px; color:var(--navy); border-bottom:1px solid var(--line); text-decoration:none; }
+  .search-result-item { display:block; padding:11px 16px; font-size:13.5px; color:var(--navy); border-bottom:1px solid var(--line); text-decoration:none; }
   .search-result-item:last-child { border-bottom:none; }
   .search-result-item:hover, .search-result-item.active { background: var(--accent-bg); text-decoration:none; }
   .search-result-city { color:var(--muted); font-size:12px; margin-left:6px; }
-  .search-status { padding:12px 14px; font-size:13px; color:var(--muted); line-height:1.5; }
+  .search-status { padding:13px 16px; font-size:13px; color:var(--muted); line-height:1.55; }
 
-  .map-page-wrap { position:relative; padding: 14px 24px 20px; }
-  #homeMap { width:100%; height: calc(100vh - 280px); min-height:420px; max-height:720px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
-  .leaflet-control-zoom a { width:27px !important; height:27px !important; line-height:27px !important; font-size:15px !important; }
-  .leaflet-control-attribution { font-size:10px !important; opacity:0.75; }
+  .hero-quicklinks { display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; margin-top:16px; font-size:12.5px; }
+  .quicklinks-label { color: var(--muted-soft); font-weight:600; }
+  .quicklink { display:inline-flex; align-items:center; gap:6px; color:var(--navy); font-weight:600; text-decoration:none; }
+  .quicklink:hover { text-decoration:underline; }
+  .quicklink-dot { width:8px; height:8px; border-radius:50%; flex:none; }
+  .quicklink-sep { color: var(--line); }
 
-  .wz-pin-icon { display:flex; align-items:center; gap:7px; transform: translate(-2px,-2px); }
-  .wz-pin-dot { width:15px; height:15px; border-radius:50%; border:2px solid rgba(255,255,255,0.9); box-shadow:0 2px 6px rgba(0,0,0,0.35); flex:none; }
-  .wz-pin-chip { background:rgba(255,255,255,0.97); color:var(--navy); font-size:12.5px; font-weight:700; padding:4px 10px; border-radius:20px; box-shadow:0 3px 10px rgba(0,0,0,0.25); white-space:nowrap; }
+  /* ---------- Hero map ---------- */
+  .hero-map-col { min-width:0; }
+  .hero-map-shell { position:relative; border-radius: var(--radius-lg); overflow:hidden; box-shadow: var(--shadow-md); border:1px solid var(--line); background:#eef1f3; }
+  #homeMap { width:100%; height: 360px; }
+  .leaflet-control-zoom a { width:26px !important; height:26px !important; line-height:26px !important; font-size:14px !important; }
+  .leaflet-control-attribution { font-size:9.5px !important; opacity:0.65; }
 
-  .wz-cluster { display:flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:var(--accent); border:3px solid rgba(255,255,255,0.9); color:#fff; font-weight:700; font-size:13.5px; box-shadow:0 3px 10px rgba(0,0,0,0.3); }
+  .wz-pin-icon { display:flex; align-items:center; gap:7px; transform: translate(-2px,-2px); transition: transform .15s ease; }
+  .leaflet-marker-icon:hover .wz-pin-icon { transform: translate(-2px,-2px) scale(1.06); }
+  .wz-pin-dot { width:16px; height:16px; border-radius:50%; border:2.5px solid rgba(255,255,255,0.95); box-shadow:0 2px 8px rgba(12,29,57,0.4); flex:none; }
+  .wz-pin-chip { background:rgba(255,255,255,0.97); color:var(--navy); font-size:12.5px; font-weight:700; padding:4px 10px; border-radius:20px; box-shadow:0 3px 10px rgba(12,29,57,0.22); white-space:nowrap; }
 
-  /* Per-city "card" shown on tap — flag/name, real neighbourhood count,
-     an honest one-line data-tier tag (see data_tag in build_site.py:
-     only claims "official data" where that's actually true), and a CTA. */
-  .wz-popup .leaflet-popup-content-wrapper { border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
-  .wz-popup .leaflet-popup-content { margin:14px 16px; min-width:200px; }
-  .popup-name { font-size:15.5px; font-weight:700; color:var(--navy); margin-bottom:6px; display:flex; align-items:center; gap:6px; }
-  .popup-count { font-size:12.5px; color:var(--ink); margin-bottom:2px; }
-  .popup-datatag { font-size:11.5px; color:var(--accent); font-weight:600; margin-bottom:10px; }
-  .popup-cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:7px 12px; border-radius: var(--radius-sm); font-size:12.5px; font-weight:600; }
-  .popup-cta:hover { text-decoration:none; opacity:0.92; }
+  .wz-cluster { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:var(--accent); border:3px solid rgba(255,255,255,0.92); color:#fff; font-weight:700; font-size:14px; box-shadow:0 3px 12px rgba(12,29,57,0.3); transition: transform .12s ease; }
+  .marker-cluster:hover .wz-cluster { transform: scale(1.07); }
 
-  .explore-cities { padding: 4px 24px 8px; max-width:900px; }
-  .explore-cities h2 { font-size:14.5px; margin:0 0 10px; font-weight:700; color:var(--navy); }
-  .city-card-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap:8px; }
-  .city-card-link { display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-sm); padding:9px 12px; text-decoration:none; color:var(--navy); font-size:13px; font-weight:600; }
-  .city-card-link:hover { text-decoration:none; border-color: var(--accent-bright); }
-  .city-card-flag { font-size:15px; line-height:1; }
-  .city-card-name { flex:1; }
+  /* Per-city "card" shown on tap — flag/name, real neighbourhood count and
+     an honest one-line data-tier tag (see data_tag in build_site.py: only
+     claims "official data" where that's actually true), plus a CTA. */
+  .wz-popup .leaflet-popup-content-wrapper { border-radius: var(--radius-md); box-shadow: var(--shadow-lift); }
+  .wz-popup .leaflet-popup-content { margin:16px 18px; min-width:210px; }
+  .popup-name { font-size:16px; font-weight:800; color:var(--navy); margin-bottom:7px; display:flex; align-items:center; gap:7px; }
+  .popup-meta { font-size:12.5px; color:var(--muted); margin-bottom:12px; line-height:1.5; }
+  .popup-meta strong { color:var(--ink); font-weight:600; }
+  .popup-cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:8px 14px; border-radius: var(--radius-sm); font-size:12.5px; font-weight:700; transition: background .15s ease; }
+  .popup-cta:hover { text-decoration:none; background:var(--accent-bright); }
+
+  /* ---------- Benefit cards ---------- */
+  .benefits-section { padding: 30px 0 4px; }
+  .benefits-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+  .benefit-card { background:#fff; border:1px solid var(--line); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); padding:20px 22px; }
+  .benefit-icon { font-size:24px; line-height:1; margin-bottom:8px; }
+  .benefit-title { font-weight:700; color:var(--navy); font-size:14.5px; margin-bottom:4px; }
+  .benefit-desc { font-size:13px; color:var(--muted); line-height:1.55; margin:0; }
+
+  /* ---------- Product preview ---------- */
+  .preview-section { padding: 28px 0 4px; }
+  .section-title { font-size:18px; font-weight:800; color:var(--navy); margin:0 0 5px; }
+  .section-lede { font-size:13.5px; color:var(--muted); margin:0 0 16px; }
+  .preview-card { display:block; background:#fff; border:1px solid var(--line); border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); padding:20px 22px; text-decoration:none; color:inherit; max-width:640px; }
+  .preview-card-head { display:flex; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:11px; }
+  .preview-card-name { font-size:17px; font-weight:800; color:var(--navy); }
+  .preview-card-city { font-size:12.5px; color:var(--muted); font-weight:600; }
+  .preview-badges { display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:13px; }
+  .preview-badges .badge-label { font-size:11.5px; color:var(--muted); margin-right:6px; }
+  .preview-text { font-size:13.5px; color:#3a3f4d; line-height:1.65; margin:0 0 14px; }
+  .preview-cta { font-size:13.5px; font-weight:700; color:var(--accent); }
+  .preview-card:hover { text-decoration:none; border-color:var(--accent-bright); box-shadow: var(--shadow-lift); }
+  .preview-card:hover .preview-cta { text-decoration:underline; }
+
+  /* ---------- Explore cities ---------- */
+  .explore-section { padding: 26px 0 6px; }
+  .city-card-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:10px; }
+  .city-card-link { display:flex; flex-direction:column; gap:6px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); padding:15px 16px; text-decoration:none; color:var(--navy); box-shadow: var(--shadow-sm); transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease; }
+  .city-card-link:hover { text-decoration:none; border-color: var(--accent-bright); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .city-card-top { display:flex; align-items:center; gap:8px; }
+  .city-card-flag { font-size:18px; line-height:1; }
+  .city-card-name { flex:1; font-size:14.5px; font-weight:700; }
   .city-card-arrow { color:var(--muted); font-weight:400; }
+  .city-card-meta { font-size:11.5px; color:var(--muted); padding-left:26px; }
 
-  .why-wandroz { padding: 26px 24px 6px; max-width:900px; display:flex; gap:22px; flex-wrap:wrap; }
-  .why-item { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); font-weight:600; }
-  .why-item .why-icon { font-size:16px; }
-
-  .beta-footnote { padding: 14px 24px 30px; max-width:900px; font-size:12px; color:var(--muted-soft); }
+  .beta-footnote { padding: 18px 0 8px; max-width:900px; font-size:12px; color:var(--muted-soft); margin:0 auto; }
   .beta-footnote a { color:var(--muted-soft); text-decoration:underline; }
 
-  @media (max-width: 720px){
-    #homeMap { height: 420px; min-height:360px; }
+  /* ---------- Small phones ---------- */
+  @media (max-width: 640px){
+    #homeMap { height: 340px; }
     .wz-pin-chip { display:none; }
-    .hero-compact { padding: 18px 14px 4px; }
-    .hero-compact h1 { font-size:21px; }
-    .search-wrap { padding: 12px 14px 4px; }
-    .search-results { left:14px; right:14px; }
-    .map-page-wrap { padding: 12px 12px 16px; }
-    .explore-cities { padding: 4px 14px 6px; }
-    .why-wandroz { padding: 20px 14px 4px; gap:16px; }
-    .beta-footnote { padding: 12px 14px 26px; }
+    .city-card-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 420px){
+    .city-card-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Desktop / large screens ---------- */
+  @media (min-width: 1024px){
+    .wz-header .wz-logo { width:44px; height:44px; }
+    .wz-header .wz-name { font-size:19px; }
+    .wz-nav a { font-size:14.5px; margin-left:28px; }
+
+    .hero-section { padding: 60px 0 20px; }
+    .hero-inner { display:grid; grid-template-columns: minmax(340px, 460px) 1fr; align-items:center; gap:56px; padding:0 40px; }
+    .hero-copy { max-width:460px; }
+    .hero-map-col { min-width:0; }
+    .hero-copy h1 { font-size: clamp(32px, 2.6vw + 14px, 46px); line-height:1.1; margin-bottom:14px; }
+    .hero-subtitle { font-size: clamp(15px, 0.5vw + 13px, 18px); margin-bottom:28px; }
+    .search-box { height:56px; padding:0 8px 0 18px; gap:10px; }
+    .search-input { font-size: clamp(14px, 0.6vw + 12px, 16.5px); }
+    .search-go { width:44px; height:44px; }
+    .hero-quicklinks { font-size:13.5px; margin-top:20px; }
+    #homeMap { height: 560px; }
+
+    .section-inner { padding:0 40px; }
+    .benefits-section { padding: 56px 0 10px; }
+    .benefits-grid { grid-template-columns: repeat(3,1fr); gap:20px; }
+    .benefit-card { padding:26px 26px; }
+    .benefit-icon { font-size:30px; margin-bottom:12px; }
+    .benefit-title { font-size:16px; }
+    .benefit-desc { font-size:14px; }
+
+    .preview-section { padding: 46px 0 10px; }
+    .section-title { font-size:23px; }
+    .section-lede { font-size:14.5px; margin-bottom:22px; }
+    .preview-card { padding:30px 34px; max-width:720px; }
+    .preview-card-name { font-size:20px; }
+    .preview-text { font-size:14.5px; }
+
+    .explore-section { padding: 46px 0 12px; }
+    .city-card-grid { grid-template-columns: repeat(3,1fr); gap:18px; }
+    .city-card-link { padding:22px 24px; }
+    .city-card-flag { font-size:22px; }
+    .city-card-name { font-size:16.5px; }
+    .city-card-meta { font-size:12.5px; padding-left:30px; }
+
+    .beta-footnote { padding:26px 40px 12px; }
+  }
+  @media (min-width: 1200px){
+    #homeMap { height: 590px; }
+  }
+  @media (min-width: 1400px){
+    #homeMap { height: 620px; }
   }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -122,43 +215,98 @@
   </nav>
 </header>
 
-<div class="hero-compact">
-  <h1>Know the neighbourhood before you book.</h1>
-  <p class="subtitle">Check safety using official public data.</p>
-</div>
+<section class="hero-section">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1>Know the neighbourhood before you book.</h1>
+      <p class="hero-subtitle">Check safety using official public data.</p>
 
-<form id="wzSearchForm" class="search-wrap" autocomplete="off">
-  <label class="search-label" for="wzSearch">Where are you staying?</label>
-  <input type="text" id="wzSearch" class="search-input" placeholder="Enter an address, hotel or neighbourhood" autocomplete="off" aria-label="Where are you staying">
-  <div id="wzSearchResults" class="search-results"></div>
-</form>
+      <form id="wzSearchForm" class="search-wrap" autocomplete="off">
+        <label class="search-label" for="wzSearch">Where are you staying?</label>
+        <div class="search-box">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="wzSearch" class="search-input" placeholder="Search an address, hotel or neighbourhood" autocomplete="off" aria-label="Where are you staying">
+          <button type="submit" class="search-go" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+        <div id="wzSearchResults" class="search-results"></div>
+      </form>
 
-<div class="map-page-wrap">
-  <div id="homeMap"></div>
-</div>
+      <div class="hero-quicklinks">
+        <span class="quicklinks-label">Popular:</span>
+        {% for c in city_cards[:4] %}<a class="quicklink" href="{{ c.url }}"><span class="quicklink-dot" style="background:{{ c.color }};"></span>{{ c.name }}</a>{% if not loop.last %}<span class="quicklink-sep">·</span>{% endif %}{% endfor %}
+      </div>
+    </div>
 
-<div class="explore-cities">
-  <h2>Explore cities</h2>
-  <div class="city-card-grid">
-    {% for c in city_cards %}
-    <a class="city-card-link" href="{{ c.url }}">
-      <span class="city-card-flag">{{ c.flag }}</span>
-      <span class="city-card-name">{{ c.name }}</span>
-      <span class="city-card-arrow">→</span>
-    </a>
-    {% endfor %}
+    <div class="hero-map-col">
+      <div class="hero-map-shell">
+        <div id="homeMap"></div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<div class="why-wandroz">
-  <span class="why-item"><span class="why-icon">🏛️</span> Official public data</span>
-  <span class="why-item"><span class="why-icon">📍</span> Neighbourhood-level insights</span>
-  <span class="why-item"><span class="why-icon">✈️</span> Built for travellers</span>
-</div>
+<section class="benefits-section">
+  <div class="section-inner benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">🏛️</div>
+      <div class="benefit-title">Official public data</div>
+      <p class="benefit-desc">Based on government and public sources.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">📍</div>
+      <div class="benefit-title">Neighbourhood-level insights</div>
+      <p class="benefit-desc">Understand individual areas, not just entire cities.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">✈️</div>
+      <div class="benefit-title">Built for travellers</div>
+      <p class="benefit-desc">Check an area before choosing where to stay.</p>
+    </div>
+  </div>
+</section>
+
+<section class="preview-section">
+  <div class="section-inner">
+    <h2 class="section-title">See what Wandroz tells you</h2>
+    <p class="section-lede">A real example, taken straight from the map — this is an actual Wandroz neighbourhood page.</p>
+    <a class="preview-card" href="{{ preview_zone.url }}">
+      <div class="preview-card-head">
+        <span class="preview-card-name">{{ preview_zone.flag }} {{ preview_zone.name }}</span>
+        <span class="preview-card-city">{{ preview_zone.city }}</span>
+      </div>
+      <div class="preview-badges">
+        <span class="badge {{ preview_zone.day }}">{{ preview_zone.day_label }}</span><span class="badge-label">By day</span>
+        <span class="badge {{ preview_zone.night }}">{{ preview_zone.night_label }}</span><span class="badge-label">By night</span>
+      </div>
+      <p class="preview-text">{{ preview_zone.text }}</p>
+      <span class="preview-cta">Explore {{ preview_zone.name }} &rarr;</span>
+    </a>
+  </div>
+</section>
+
+<section class="explore-section">
+  <div class="section-inner">
+    <h2 class="section-title">Explore cities</h2>
+    <div class="city-card-grid">
+      {% for c in city_cards %}
+      <a class="city-card-link" href="{{ c.url }}">
+        <span class="city-card-top">
+          <span class="city-card-flag">{{ c.flag }}</span>
+          <span class="city-card-name">{{ c.name }}</span>
+          <span class="city-card-arrow">→</span>
+        </span>
+        <span class="city-card-meta">{{ c.zone_count }} neighbourhoods · {{ c.data_tag }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
 <p class="beta-footnote"><em>Wandroz is currently in beta — coverage is expanding.</em> <a href="/methodology.html">Methodology →</a></p>
 
-<footer class="wz-footer">Wandroz — public official data, not just reviews. Beta build. · <a href="/methodology.html">Methodology</a></footer>
+<footer class="wz-footer">Wandroz — public official data, not just reviews. · <a href="/methodology.html">Methodology</a></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
@@ -168,8 +316,15 @@
   // Leaflet requires a view (center+zoom) before any layer is added, or
   // adding the tile layer throws "Set map center and zoom first." — set a
   // provisional Europe-wide view now, then fitBounds() below refines it
-  // once the real city coordinates are known.
-  var map = L.map('homeMap', { scrollWheelZoom:true, zoomControl:false }).setView([48.5, 8], 4);
+  // once the real city coordinates are known. isNarrow tracks the same
+  // 1024px breakpoint the hero layout switches on: below it the map is a
+  // full-width strip below the copy, above it it's a tall column beside
+  // the copy — the fitBounds padding/zoom below are tuned per case so the
+  // default view stays tight around the actually-covered cities (London
+  // to Berlin to central/northern Italy to Rome) instead of padding out
+  // to show the Atlantic, North Africa or Eastern Europe.
+  var isNarrow = window.innerWidth < 1024;
+  var map = L.map('homeMap', { scrollWheelZoom:true, zoomControl:false, minZoom:3 }).setView([48.5, 8], 4);
   L.control.zoom({ position: 'topright' }).addTo(map);
   // Light, low-clutter basemap (CartoDB Positron) for the homepage overview —
   // this map is just showing which cities are covered, so a muted grey
@@ -188,7 +343,7 @@
       return L.divIcon({
         html: '<div class="wz-cluster">' + cluster.getChildCount() + '</div>',
         className: '',
-        iconSize: [38, 38]
+        iconSize: [40, 40]
       });
     }
   });
@@ -202,10 +357,14 @@
     });
     var marker = L.marker([c.lat, c.lon], { icon: icon });
     var popupHtml = '<div class="popup-name">' + c.flag + ' ' + c.name + '</div>' +
-      '<div class="popup-count">' + c.zone_count + ' neighbourhoods mapped</div>' +
-      '<div class="popup-datatag">' + c.data_tag + '</div>' +
+      '<div class="popup-meta"><strong>' + c.zone_count + ' neighbourhoods</strong> mapped · ' + c.data_tag + '</div>' +
       '<a class="popup-cta" href="' + c.url + '">Explore ' + c.name + ' &rarr;</a>';
     marker.bindPopup(popupHtml, { className: 'wz-popup' });
+    // A light "fly" into the city under the popup, rather than a hard cut —
+    // it's still the same overview map (only the per-city hub page linked
+    // above actually draws that city's real neighbourhood polygons), but
+    // it makes selecting a city feel like the map is responding to you.
+    marker.on('click', function() { map.flyTo([c.lat, c.lon], isNarrow ? 7 : 8, { duration: 0.6 }); });
     clusters.addLayer(marker);
   });
 
@@ -213,8 +372,7 @@
 
   if (CITIES.length > 0) {
     var bounds = L.latLngBounds(CITIES.map(function(c){ return [c.lat, c.lon]; }));
-    var isNarrow = window.innerWidth <= 720;
-    map.fitBounds(bounds, { padding: isNarrow ? [20, 20] : [50, 50], maxZoom: isNarrow ? 6 : 8 });
+    map.fitBounds(bounds, { padding: isNarrow ? [22, 22] : [38, 38], maxZoom: isNarrow ? 6.3 : 7.4 });
   }
 
   // Search — name matches are instant and local (from /search-index.json,
@@ -323,7 +481,7 @@
     // of auto-navigating, so the visitor picks the right city themselves.
     function tryAddressSearch(query) {
       showStatus('Looking up that address…');
-      var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=gb,ch,it&q=' + encodeURIComponent(query);
+      var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=gb,ch,it,de&q=' + encodeURIComponent(query);
       Promise.all([
         fetch(url, { headers: { 'Accept-Language': 'en' } }).then(function(r) { return r.ok ? r.json() : []; }),
         loadBoundaries(),
@@ -331,7 +489,7 @@
         var geo = results[0];
         var boundaries = results[1];
         if (!geo || !geo.length) {
-          showStatus('Couldn’t find that address. Try a supported city or neighbourhood name instead — London, Turin, Zurich, Milan or Rome.');
+          showStatus('Couldn’t find that address. Try a supported city or neighbourhood name instead — London, Berlin, Turin, Zurich, Milan or Rome.');
           return;
         }
 
@@ -363,7 +521,7 @@
           return;
         }
         if (cityFallback) { window.location.href = cityFallback.url; return; }
-        showStatus('That address isn’t in a city Wandroz covers yet — currently London, Turin, Zurich, Milan and Rome.');
+        showStatus('That address isn’t in a city Wandroz covers yet — currently London, Berlin, Turin, Zurich, Milan and Rome.');
       }).catch(function() {
         showStatus('Couldn’t look up that address right now. Try again, or search by city/neighbourhood name.');
       });
