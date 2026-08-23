@@ -304,9 +304,17 @@
       return null;
     }
 
+    // Many street names exist in more than one of the mapped cities (e.g.
+    // "Via Giacinto Collegno" is a real street in both Turin and Milan) —
+    // Nominatim's single top "importance"-ranked result can silently pick
+    // the wrong one. So this never trusts result #1 blindly: it fetches
+    // several candidates, keeps only the ones that land inside a REAL
+    // mapped zone polygon (never a guess), dedupes them, and — if there's
+    // more than one real match — shows them as a clickable list instead
+    // of auto-navigating, so the visitor picks the right city themselves.
     function tryAddressSearch(query) {
       showStatus('Looking up that address…');
-      var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=gb,ch,it&q=' + encodeURIComponent(query);
+      var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=gb,ch,it&q=' + encodeURIComponent(query);
       Promise.all([
         fetch(url, { headers: { 'Accept-Language': 'en' } }).then(function(r) { return r.ok ? r.json() : []; }),
         loadBoundaries(),
@@ -317,11 +325,35 @@
           showStatus('Couldn’t find that address. Try a supported city or neighbourhood name instead — London, Turin, Zurich, Milan or Rome.');
           return;
         }
-        var lat = parseFloat(geo[0].lat), lon = parseFloat(geo[0].lon);
-        var zone = findZone(lat, lon, boundaries);
-        if (zone) { window.location.href = zone.url; return; }
-        var city = findCityFallback(lat, lon, boundaries);
-        if (city) { window.location.href = city.url; return; }
+
+        var zoneMatches = [];
+        var seenUrls = {};
+        var cityFallback = null;
+        geo.forEach(function(g) {
+          var lat = parseFloat(g.lat), lon = parseFloat(g.lon);
+          var zone = findZone(lat, lon, boundaries);
+          if (zone && !seenUrls[zone.url]) {
+            seenUrls[zone.url] = true;
+            zoneMatches.push(zone);
+          } else if (!zone && !cityFallback) {
+            var city = findCityFallback(lat, lon, boundaries);
+            if (city) { cityFallback = city; }
+          }
+        });
+
+        if (zoneMatches.length === 1) {
+          window.location.href = zoneMatches[0].url;
+          return;
+        }
+        if (zoneMatches.length > 1) {
+          resultsBox.innerHTML = zoneMatches.map(function(z) {
+            return '<a class="search-result-item" href="' + z.url + '">' + escapeHtml(z.name) +
+              '<span class="search-result-city">' + escapeHtml(z.city) + '</span></a>';
+          }).join('');
+          resultsBox.classList.add('open');
+          return;
+        }
+        if (cityFallback) { window.location.href = cityFallback.url; return; }
         showStatus('That address isn’t in a city Wandroz covers yet — currently London, Turin, Zurich, Milan and Rome.');
       }).catch(function() {
         showStatus('Couldn’t look up that address right now. Try again, or search by city/neighbourhood name.');
