@@ -171,7 +171,16 @@
   // once the real city coordinates are known.
   var map = L.map('homeMap', { scrollWheelZoom:true, zoomControl:false }).setView([48.5, 8], 4);
   L.control.zoom({ position: 'topright' }).addTo(map);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+  // Light, low-clutter basemap (CartoDB Positron) for the homepage overview —
+  // this map is just showing which cities are covered, so a muted grey
+  // background keeps the city pins as the only thing competing for attention,
+  // for a cleaner, more designed first impression than the full-detail OSM
+  // tiles (which are kept on the per-city neighbourhood maps, where street
+  // detail actually matters).
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  }).addTo(map);
 
   var clusters = L.markerClusterGroup({
     maxClusterRadius: 42,

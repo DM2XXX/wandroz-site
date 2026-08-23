@@ -163,15 +163,9 @@
   };
 
   var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
-  // Light, low-clutter basemap (CartoDB Positron) instead of standard OSM
-  // tiles — the colourful default tiles (green parks, yellow roads, POI
-  // icons) compete visually with the safety-tone overlay, especially on
-  // dense city maps (Milan 88 zones, Rome 155 zones). A muted grey basemap
-  // lets the coloured zone polygons read as the main signal.
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-  }).addTo(map);
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
 
   var isNight = false;
   var burglaryMode = false;
@@ -254,17 +248,13 @@
     layers = [];
     ZONES.forEach(function(z){
       var tone = toneOf(z);
-      // Thinner border + higher fill opacity than before: against the new
-      // light basemap this reads the tone colour clearly without needing a
-      // heavy outline, which keeps dense city maps (88-155 zones) legible
-      // instead of turning into a grid of thick borders.
-      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight:1.2, fillOpacity:0.45 }).addTo(map);
-      // Name is now visible on hover (not just after a click) via a sticky
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight:2, fillOpacity:0.32 }).addTo(map);
+      // Name is visible on hover (not just after a click) via a sticky
       // tooltip, plus a highlight so it's obvious which zone you're over —
       // click still opens the full detail card.
       poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
-      poly.on('mouseover', function(){ poly.setStyle({ weight:3 }); poly.bringToFront(); });
-      poly.on('mouseout', function(){ poly.setStyle({ weight:1.2 }); });
+      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
+      poly.on('mouseout', function(){ poly.setStyle({ weight:2 }); });
       poly.on('click', function(){ renderDetail(z); });
       layers.push(poly);
     });
