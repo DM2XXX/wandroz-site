@@ -34,15 +34,6 @@
   .hero { padding: 48px 0 8px; }
   .hero .eyebrow { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color: var(--accent); background: var(--accent-bg); padding:5px 12px; border-radius:20px; margin-bottom:18px; letter-spacing:0.02em; }
 
-  .city-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:18px; margin: 24px 0; }
-  .city-card { display:block; background: var(--panel); border:1px solid var(--line); border-radius: var(--radius-md); padding:22px; text-decoration:none; color:var(--ink); box-shadow: var(--shadow-sm); position:relative; overflow:hidden; }
-  .city-card:hover { text-decoration:none; }
-  .city-card .flag { font-size:26px; margin-bottom:10px; display:block; }
-  .city-card .cn { font-size:19px; font-weight:700; margin-bottom:6px; color:var(--navy); }
-  .city-card .cc { font-size:13px; color:var(--muted); line-height:1.5; }
-  .city-card .arrow { position:absolute; top:20px; right:20px; color: var(--muted-soft); font-size:16px; transition: transform .15s, color .15s; }
-  .city-card:hover .arrow { transform: translateX(3px); color: var(--accent); }
-
   table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
   table.breakdown th, table.breakdown td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); }
 
@@ -240,6 +231,32 @@
   Rogoredo, Via Padova — are flagged here because independent local reporting also documents specific, recurring
   incidents there (not just the zona rossa designation on its own), which is why those areas carry a caution
   rating and the others don't.
+</div>
+
+<h2>Berlin: real official police data, annual not live</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Berlin (23 August 2026) is the second city on the site, after London, whose ratings come from an official,
+  geolocated police dataset rather than press research or general knowledge. Polizei Berlin publishes the
+  <a href="https://www.kriminalitaetsatlas.berlin.de">Kriminalitätsatlas Berlin</a>, a real crime map covering all
+  143 official "Bezirksregionen" (Berlin's finest routinely-published statistical subdivision), which was used both
+  for the zone boundaries themselves and for each zone's Häufigkeitszahl (HZ) — total recorded offences per
+  100,000 registered residents, an annual, already population-normalized figure. Every zone is rated red/yellow/
+  green against the citywide average HZ, the same 1.3×/0.8× thresholds used for London.
+</p>
+<div class="note" style="margin-bottom:10px;">
+  <strong>Real data, but not a live pipeline, and no day/night split.</strong> Unlike London's monthly automated
+  refresh, the Kriminalitätsatlas publishes one annual figure per zone, so Berlin's ratings here are a snapshot of
+  the 2025 HZ table, not something re-pulled on a schedule yet. The source data also has no time-of-day breakdown,
+  so — rather than inventing a day/night difference that isn't in the data — every Berlin zone shows the same
+  level for both, disclosed plainly on each zone's page.
+</div>
+<div class="note">
+  <strong>HZ counts residents, not footfall — read high numbers carefully.</strong> Häufigkeitszahl is defined
+  against each zone's registered resident population. A zone with heavy tourist, shopping or transit traffic and
+  relatively few residents (central Mitte's Alexanderplatz and Regierungsviertel, for instance) can show a high HZ
+  from a normal volume of opportunistic offences spread over a small resident base — that is not the same claim as
+  "unusually dangerous to visit." A quiet, heavily residential zone can likewise show a low HZ simply by having few
+  recorded offences relative to its population. This caveat is repeated on every Berlin zone page, not just here.
 </div>
 
 <h2>How this scales beyond London</h2>
