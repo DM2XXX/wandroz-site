@@ -799,6 +799,38 @@ BERLIN_NEIGH_NOTE = (
 # lat/lon below), so this constant is no longer needed and was removed.
 
 
+def build_homepage_preview():
+    """Real example neighbourhood shown in the homepage's "See what Wandroz
+    tells you" section — pulled straight from Rome's real zone dataset at
+    build time (never hand-typed on the page), so it can't drift out of
+    sync with the actual live zone page. Trastevere is used because its
+    real day/night tones (green by day, yellow by night, from genuine
+    press research — see methodology.html) demonstrate exactly the thing a
+    single overall score couldn't: the same place reads differently
+    depending on when you're there. No score/stat is invented here — this
+    only ever surfaces fields that already exist in roma.json."""
+    path = os.path.join(ZONES_DIR, "roma.json")
+    with open(path) as f:
+        data = json.load(f)
+    zone = next(z for z in data["zones"] if z["slug"] == "trastevere")
+
+    # Trim the real body text to a clean sentence boundary for a compact
+    # card, rather than a hard mid-sentence cut.
+    text = zone["text"]
+    snippet = text[:260]
+    cut = snippet.rfind(". ")
+    snippet = snippet[:cut + 1] if cut > 120 else snippet.rstrip() + "…"
+
+    return {
+        "name": zone["name"], "city": "Rome", "flag": "🇮🇹",
+        "day": zone["day"], "night": zone["night"],
+        "day_label": EN_TONE_BADGE.get(zone["day"], zone["day"]),
+        "night_label": EN_TONE_BADGE.get(zone["night"], zone["night"]),
+        "text": snippet,
+        "url": "roma/trastevere.html",
+    }
+
+
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     cities = []
@@ -880,8 +912,9 @@ def main():
          "lat": 41.9028, "lon": 12.4964, "color": "#8e44ad",
          "zone_count": _zone_count("roma"), "data_tag": "Official boundaries"},
     ]
+    preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
-        f.write(index_tpl.render(city_cards=city_cards, canonical_url=SITE_URL + "/"))
+        f.write(index_tpl.render(city_cards=city_cards, preview_zone=preview_zone, canonical_url=SITE_URL + "/"))
 
     # Homepage search bar's data — built fresh from real content on every
     # run (see build_search_index docstring), never hand-maintained.
