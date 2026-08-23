@@ -45,6 +45,7 @@ CORRECTION_EMAIL = "dadenuoto@gmail.com"
 # jump straight from one city's map to another's without going back home.
 CITY_LINKS = [
     {"label": "London", "url": f"{SITE_URL}/london/"},
+    {"label": "Berlin", "url": f"{SITE_URL}/berlin/"},
     {"label": "Turin", "url": f"{SITE_URL}/torino/"},
     {"label": "Zurich", "url": f"{SITE_URL}/zurigo/"},
     {"label": "Milan", "url": f"{SITE_URL}/milano/"},
@@ -548,6 +549,7 @@ def build_search_index(cities, city_cards):
         ("zurigo", "zurigo", "Zurich", False),
         ("milano", "milano", "Milan", False),
         ("roma", "roma", "Rome", True),
+        ("berlin", "berlin", "Berlin", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -603,6 +605,7 @@ def build_zone_boundaries(cities, city_cards):
         ("zurigo", "zurigo", "Zurich", False),
         ("milano", "milano", "Milan", False),
         ("roma", "roma", "Rome", True),
+        ("berlin", "berlin", "Berlin", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -762,6 +765,32 @@ ROMA_NEIGH_NOTE = (
     "the methodology page for what was checked and how this differs from London's automated official-data pipeline."
 )
 
+BERLIN_UI = dict(TORINO_UI)
+BERLIN_UI.update({
+    "page_title": "Is my Berlin neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Berlin's 143 official Bezirksregionen with real official Polizei Berlin crime-rate data (Häufigkeitszahl) per zone.",
+    "page_h1": "Berlin neighbourhoods",
+    "neigh_title": "Is {name} in Berlin safe? | Wandroz",
+})
+
+BERLIN_BANNER = (
+    "Neighbourhood shapes are Polizei Berlin's real official \"Bezirksregion\" boundaries (143 zones, via the "
+    "Kriminalitätsatlas Berlin / LKA St 14). Unlike Milan and Rome's press-research approach, Berlin's safety "
+    "levels come from a real official police statistic — the 2025 Häufigkeitszahl (total recorded offences per "
+    "100,000 registered residents) per zone — the same kind of open geolocated data London's pipeline uses, "
+    "though here as one annual figure rather than a live day/night feed, so the day and night levels shown are "
+    "always the same for a given zone. HZ counts against registered residents, not footfall, so busy tourist, "
+    "shopping or transit areas can read higher without that meaning elevated risk per visit — see the "
+    "methodology page for details."
+)
+BERLIN_NEIGH_NOTE = (
+    "This rating for Berlin is a real official police statistic — Polizei Berlin's 2025 Häufigkeitszahl (total "
+    "recorded offences per 100,000 registered residents) for this Bezirksregion — not a qualitative or "
+    "press-based judgment. It has no day/night split in the source data, so both figures shown are the same. HZ "
+    "counts against registered residents, not footfall, so a busy tourist, shopping or transit area can read "
+    "higher without that meaning elevated risk per visit. See the methodology page for full sourcing."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -830,6 +859,10 @@ def main():
          "blurb": f"33 boroughs on the map, {london_live_count} refreshed automatically every month from real Metropolitan Police data.",
          "lat": 51.5074, "lon": -0.1278, "color": "#2f6fed",
          "zone_count": 33, "data_tag": "Official police data"},
+        {"name": "Berlin", "url": "berlin/index.html", "flag": "🇩🇪",
+         "blurb": "All 143 official Bezirksregionen mapped, safety levels from Polizei Berlin's real official 2025 crime-rate statistics.",
+         "lat": 52.5200, "lon": 13.4050, "color": "#1f9e89",
+         "zone_count": _zone_count("berlin"), "data_tag": "Official police data"},
         {"name": "Turin", "url": "torino/index.html", "flag": "🇮🇹",
          "blurb": "23 neighbourhoods, real official council boundaries, illustrative safety ratings.",
          "lat": 45.0703, "lon": 7.6869, "color": "#e2a33d",
@@ -917,7 +950,9 @@ def main():
     sitemap_urls.extend(milano_urls)
     roma_urls = render_illustrative_city("roma", "roma", ROMA_UI, EN_TONE_BADGE, ROMA_BANNER, ROMA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(roma_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)})")
+    berlin_urls = render_illustrative_city("berlin", "berlin", BERLIN_UI, EN_TONE_BADGE, BERLIN_BANNER, BERLIN_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(berlin_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
