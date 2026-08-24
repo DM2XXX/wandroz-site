@@ -9,12 +9,24 @@ this session against statistikkbanken.oslo.kommune.no and
 nominatim.openstreetmap.org)
   - District list: Oslo's 15 official bydeler, each with its own elected
     bydelsutvalg (local borough council) — 01 Gamle Oslo through
-    15 Sondre Nordstrand. "Sentrum" (the city-centre financial/commercial
-    area) and "Marka" (forest) are NOT administrative bydeler — Oslo
-    kommune's own population table (BEF005) only lists these same 15
-    "Bydel X" rows as valid areas, confirming there is no district-level
-    population figure for Sentrum/Marka to build a zone from. All 15 real
-    bydeler are mapped here — none excluded.
+    15 Sondre Nordstrand — PLUS Sentrum (16), the city-centre financial/
+    commercial/nightlife area, added 24 August 2026. Sentrum is NOT an
+    administrative bydel — Oslo kommune's own population table (BEF005)
+    only lists the 15 "Bydel X" rows, confirming there is no
+    administrative-bydel population figure for Sentrum. But KRI002 (the
+    crime table) DOES give Sentrum its own real, distinct crime figure
+    (gjerningssted "16 Sentrum", separate from the 15 bydeler and from
+    "99 Uoppgitt gjerningsbydel, inkludert Marka"), and Statistics Norway's
+    own separate "urban district" geographic system (SSB table 10826) DOES
+    give Sentrum its own real population figure (1,528 in 2024) even though
+    Oslo kommune's administrative-bydel system doesn't. Combining these two
+    real, official, differently-sourced figures lets Sentrum be mapped
+    honestly rather than left as an unexplained gap in the middle of the
+    city. "Marka" (forest, effectively unpopulated, no accommodation)
+    remains excluded — KRI002 has no distinct figure for it either, only
+    the mixed "99 Uoppgitt..." catch-all, which cannot be honestly
+    attributed to Marka alone. All 15 real bydeler plus Sentrum (16 zones
+    total) are mapped here — none excluded.
   - Crime counts: Oslo kommune Statistikkbanken, table KRI002 ("Anmeldte
     lovbrudd med gjerningssted i Oslo, etter type lovbrudd (lovbruddsgrupper)
     og gjerningsbydel"), filtered to "Alle lovbruddsgrupper" (all crime-type
@@ -68,8 +80,8 @@ OUTPUT
   pipeline/data_zones/oslo.json, matching the exact schema
   render_illustrative_city() in build_site.py consumes for Berlin/Amsterdam/
   Prague: {"label","center","zoom","dataNote","zones":[{"name","slug","day",
-  "night","coords","text","query"}]}. All 15 bydeler included — none
-  excluded.
+  "night","coords","text","query"}]}. All 15 bydeler plus Sentrum (16 zones
+  total) included — none excluded.
 
 USAGE
   python pipeline/build_oslo_zones.py
@@ -160,9 +172,26 @@ def build_text(name, crimes, pop, rate, tone, avg):
             "regardless of where the incident actually happened, which inflates this figure somewhat independent "
             "of on-the-ground risk here."
         )
+    elif name == "Sentrum":
+        extra_note = (
+            " Sentrum is not one of Oslo's 15 administrative bydeler — it has only 1,528 registered residents "
+            "(Statistics Norway, 2024), a tiny base for what is Oslo's densest concentration of hotels, shops, "
+            "restaurants, nightlife and offices, with a daytime and evening population many times its resident "
+            "count. Dividing a genuinely high absolute number of reported offences by that small resident base "
+            "produces a per-100,000-residents rate far beyond anything a visitor actually experiences per visit — "
+            "it reflects a statistical artefact of the tiny denominator, not a literal multiple of walking-around "
+            "risk. Sentrum is still shown here, rather than left blank, because Oslo kommune's own crime table "
+            "does track it as a real, distinct area (separately from the 15 bydeler), and leaving Oslo's own city "
+            "centre off the map — exactly where many visitors book — would be a bigger gap than an inflated "
+            "number with this caveat attached."
+        )
 
     return (
-        f"{name} is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced "
+        f"{name} is one of Oslo's 15 official bydeler (city boroughs)." if name != "Sentrum" else
+        f"{name} is Oslo's city centre — not one of the 15 administrative bydeler, but mapped here as its own "
+        "zone using the same official sources."
+    ) + (
+        f" Oslo kommune's own police-sourced "
         f"Statistikkbanken data recorded {crimes_fmt} reported offences with their place of occurrence here in "
         f"2024, across a population of {pop_fmt} residents — a rate of {rate_fmt} offences per 100,000 residents, "
         f"{rel}. This rate is calculated against registered residents, not footfall, so a busy central or "
@@ -198,8 +227,8 @@ def main():
 
     if not merged:
         raise SystemExit("FATAL: no zones merged — aborting rather than writing an empty oslo.json")
-    if len(merged) != 15:
-        print(f"WARNING: expected 15 zones, merged {len(merged)} — 'tutti i quartieri' requires all 15")
+    if len(merged) != 16:
+        print(f"WARNING: expected 16 zones (15 bydeler + Sentrum), merged {len(merged)} — 'tutti i quartieri' requires all of them")
 
     city_avg = sum(z["rate"] for z in merged) / len(merged)
     # city_avg here is the mean of per-bydel rates; also report the
@@ -237,14 +266,17 @@ def main():
         "center": [59.9139, 10.7522],
         "zoom": 11,
         "dataNote": (
-            "Neighbourhood shapes are Oslo's real official 15 bydeler (city boroughs), sourced from OpenStreetMap's "
-            "administrative boundaries. Like Berlin, Amsterdam and Prague, Oslo's safety levels here come from a "
-            "real official statistic — Oslo kommune's own Statistikkbanken figures on reported offences by place of "
-            "occurrence per bydel for 2024, converted to a rate per 100,000 residents using the same "
-            "Statistikkbanken's 2024 population figures per bydel — rather than a press-research approach. This "
-            "rate is calculated against registered residents, not footfall, so busy central/nightlife/shopping "
-            "bydeler can read higher without that meaning elevated risk per visit — see each zone's page for the "
-            "real numbers and this caveat in context, and the methodology page for full sourcing."
+            "Neighbourhood shapes are Oslo's real official 15 bydeler (city boroughs) plus Sentrum, the city "
+            "centre, sourced from OpenStreetMap's administrative boundaries. Like Berlin, Amsterdam and Prague, "
+            "Oslo's safety levels here come from a real official statistic — Oslo kommune's own Statistikkbanken "
+            "figures on reported offences by place of occurrence per bydel for 2024, converted to a rate per "
+            "100,000 residents using each area's 2024 population (Statistikkbanken for the 15 bydeler, Statistics "
+            "Norway's separate 'urban district' population figures for Sentrum, which is not an administrative "
+            "bydel) — rather than a press-research approach. This rate is calculated against registered residents, "
+            "not footfall, so busy central/nightlife/shopping bydeler — and especially Sentrum itself, whose tiny "
+            "resident base next to huge daytime/evening footfall produces an extreme rate — can read higher "
+            "without that meaning elevated risk per visit — see each zone's page for the real numbers and this "
+            "caveat in context, and the methodology page for full sourcing."
         ),
         "zones": zones_out,
     }
