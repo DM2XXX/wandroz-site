@@ -51,6 +51,7 @@ CITY_LINKS = [
     {"label": "Zurich", "url": f"{SITE_URL}/zurigo/"},
     {"label": "Milan", "url": f"{SITE_URL}/milano/"},
     {"label": "Rome", "url": f"{SITE_URL}/roma/"},
+    {"label": "Prague", "url": f"{SITE_URL}/praha/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -337,6 +338,16 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
     zones = data["zones"]
     urls = []
 
+    # Some cities' underlying data has no time-of-day split at all (Berlin's
+    # HZ, Amsterdam's CBS rate — every zone's day and night tone are
+    # identical by construction, disclosed in each zone's text). Showing a
+    # day/night switch that visibly does nothing when clicked reads as
+    # broken (reported for both cities), so the switch itself is only
+    # rendered when at least one zone actually varies between day and
+    # night — detected here from the real data rather than hardcoded per
+    # city, so it stays correct automatically if a city's data changes.
+    show_toggle = any(z["day"] != z["night"] for z in zones)
+
     city_dir = os.path.join(OUT_DIR, url_slug)
     os.makedirs(city_dir, exist_ok=True)
 
@@ -363,7 +374,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         page_title=ui["page_title"], page_description=ui["page_description"],
         canonical_url=canonical, city_links=CITY_LINKS,
         page_h1=ui["page_h1"], page_lead=ui["page_lead"],
-        data_note=data_note_banner, show_toggle=True,
+        data_note=data_note_banner, show_toggle=show_toggle,
         label_day=ui["label_day"], label_night=ui["label_night"],
         legend_green=ui["legend_green"], legend_yellow=ui["legend_yellow"],
         legend_red=ui["legend_red"], legend_grey=ui["legend_grey"],
@@ -552,6 +563,7 @@ def build_search_index(cities, city_cards):
         ("roma", "roma", "Rome", True),
         ("berlin", "berlin", "Berlin", True),
         ("amsterdam", "amsterdam", "Amsterdam", True),
+        ("praha", "praha", "Prague", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -609,6 +621,7 @@ def build_zone_boundaries(cities, city_cards):
         ("roma", "roma", "Rome", True),
         ("berlin", "berlin", "Berlin", True),
         ("amsterdam", "amsterdam", "Amsterdam", True),
+        ("praha", "praha", "Prague", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -781,10 +794,10 @@ BERLIN_BANNER = (
     "Kriminalitätsatlas Berlin / LKA St 14). Unlike Milan and Rome's press-research approach, Berlin's safety "
     "levels come from a real official police statistic — the 2025 Häufigkeitszahl (total recorded offences per "
     "100,000 registered residents) per zone — the same kind of open geolocated data London's pipeline uses, "
-    "though here as one annual figure rather than a live day/night feed, so the day and night levels shown are "
-    "always the same for a given zone. HZ counts against registered residents, not footfall, so busy tourist, "
-    "shopping or transit areas can read higher without that meaning elevated risk per visit — see the "
-    "methodology page for details."
+    "though here as one annual figure rather than a live day/night feed, so the source data has no time-of-day "
+    "breakdown and this map shows one consistent level per zone rather than a day/night toggle. HZ counts "
+    "against registered residents, not footfall, so busy tourist, shopping or transit areas can read higher "
+    "without that meaning elevated risk per visit — see the methodology page for details."
 )
 BERLIN_NEIGH_NOTE = (
     "This rating for Berlin is a real official police statistic — Polizei Berlin's 2025 Häufigkeitszahl (total "
@@ -809,8 +822,9 @@ AMSTERDAM_BANNER = (
     "using CBS's own 2025 population figures per wijk — rather than Milan/Rome's press-research approach. This "
     "rate is calculated against registered residents, not footfall, so high-traffic tourist/shopping/transit "
     "areas (like the city centre) can read higher without that meaning elevated risk per visit, and a few very "
-    "sparsely populated wijken (harbour/industrial fringe areas) can swing sharply from a handful of cases — see "
-    "the methodology page for details."
+    "sparsely populated wijken (harbour/industrial fringe areas) can swing sharply from a handful of cases. The "
+    "source data has no time-of-day breakdown, so — like Berlin — this map shows one consistent level per wijk "
+    "rather than a day/night toggle; see the methodology page for details."
 )
 AMSTERDAM_NEIGH_NOTE = (
     "This rating for Amsterdam is a real official statistic — CBS's 2025 registered crimes for this wijk, "
@@ -819,6 +833,36 @@ AMSTERDAM_NEIGH_NOTE = (
     "rate counts against registered residents, not footfall, so a busy tourist, shopping or transit area can "
     "read higher without that meaning elevated risk per visit, and a very sparsely populated wijk can swing "
     "sharply from a handful of cases. See the methodology page for full sourcing."
+)
+
+PRAHA_UI = dict(TORINO_UI)
+PRAHA_UI.update({
+    "page_title": "Is my Prague neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Prague's 57 official mestske casti (city districts) with real official Policie CR crime-rate data per district.",
+    "page_h1": "Prague neighbourhoods",
+    "neigh_title": "Is {name} in Prague safe? | Wandroz",
+})
+
+PRAHA_BANNER = (
+    "Neighbourhood shapes are Prague's real official 57 \"mestske casti\" (city districts, boundaries via "
+    "OpenStreetMap's administrative-boundary data). Like Berlin and Amsterdam, Prague's safety levels come from a "
+    "real official statistic — Policie CR's (Czech Police) total registered incidents per district for 2024, via "
+    "the official kriminalita.policie.gov.cz portal, converted to a rate per 100,000 residents using CSU (Czech "
+    "Statistical Office) 2024 population figures per district — rather than Milan/Rome's press-research approach. "
+    "This rate is calculated against registered residents, not footfall, so high-traffic tourist/shopping/transit "
+    "areas (like Praha 1's historic centre) can read higher without that meaning elevated risk per visit, and a "
+    "few very sparsely populated outer districts can swing sharply from a handful of cases. The source data has "
+    "no time-of-day breakdown, so — like Berlin and Amsterdam — this map shows one consistent level per district "
+    "rather than a day/night toggle; see the methodology page for details."
+)
+PRAHA_NEIGH_NOTE = (
+    "This rating for Prague is a real official statistic — Policie CR's total registered incidents for this "
+    "district in 2024 (via kriminalita.policie.gov.cz), converted to a rate per 100,000 residents using CSU's "
+    "2024 population figures for the district — not a qualitative or press-based judgment. It has no day/night "
+    "split in the source data, so both figures shown are the same. The rate counts against registered residents, "
+    "not footfall, so a busy tourist, shopping or transit area can read higher without that meaning elevated risk "
+    "per visit, and a very sparsely populated district can swing sharply from a handful of cases. See the "
+    "methodology page for full sourcing."
 )
 
 
@@ -945,6 +989,10 @@ def main():
          "blurb": "All 155 official zones mapped, real council boundaries, safety ratings from genuine current local press research.",
          "lat": 41.9028, "lon": 12.4964, "color": "#8e44ad",
          "zone_count": _zone_count("roma"), "data_tag": "Official boundaries"},
+        {"name": "Prague", "url": "praha/index.html", "flag": "🇨🇿",
+         "blurb": "All 57 official mestske casti mapped, safety levels from Policie CR's real official 2024 crime and population statistics.",
+         "lat": 50.0755, "lon": 14.4378, "color": "#b5651d",
+         "zone_count": _zone_count("praha"), "data_tag": "Official police data"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1021,7 +1069,9 @@ def main():
     sitemap_urls.extend(berlin_urls)
     amsterdam_urls = render_illustrative_city("amsterdam", "amsterdam", AMSTERDAM_UI, EN_TONE_BADGE, AMSTERDAM_BANNER, AMSTERDAM_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(amsterdam_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)})")
+    praha_urls = render_illustrative_city("praha", "praha", PRAHA_UI, EN_TONE_BADGE, PRAHA_BANNER, PRAHA_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(praha_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
