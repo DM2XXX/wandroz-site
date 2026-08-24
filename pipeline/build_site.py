@@ -871,21 +871,26 @@ PRAHA_NEIGH_NOTE = (
 OSLO_UI = dict(TORINO_UI)
 OSLO_UI.update({
     "page_title": "Is my Oslo neighbourhood safe? — Wandroz",
-    "page_description": "Interactive map of Oslo's 15 official bydeler (city boroughs) with real official Oslo kommune crime-rate data per bydel.",
+    "page_description": "Interactive map of Oslo's 15 official bydeler (city boroughs) plus Sentrum (the city centre) with real official Oslo kommune crime-rate data per zone.",
     "page_h1": "Oslo neighbourhoods",
     "neigh_title": "Is {name} in Oslo safe? | Wandroz",
 })
 
 OSLO_BANNER = (
     "Neighbourhood shapes are Oslo's real official 15 bydeler (city boroughs, boundaries via OpenStreetMap's "
-    "administrative-boundary data). Like Berlin, Amsterdam and Prague, Oslo's safety levels come from a real "
-    "official statistic — Oslo kommune's own Statistikkbanken figures on reported offences by place of occurrence "
-    "per bydel for 2024, converted to a rate per 100,000 residents using the same Statistikkbanken's 2024 "
-    "population figures per bydel — rather than Milan/Rome's press-research approach. This rate is calculated "
-    "against registered residents, not footfall, so high-traffic central/nightlife/shopping bydeler (like Gamle "
-    "Oslo or Frogner) can read higher without that meaning elevated risk per visit. The source data has no "
-    "time-of-day breakdown, so — like Berlin, Amsterdam and Prague — this map shows one consistent level per bydel "
-    "rather than a day/night toggle; see the methodology page for details."
+    "administrative-boundary data) plus Sentrum, the city centre — 16 zones, none excluded. Like Berlin, Amsterdam "
+    "and Prague, Oslo's safety levels come from a real official statistic — Oslo kommune's own Statistikkbanken "
+    "figures on reported offences by place of occurrence per bydel for 2024, converted to a rate per 100,000 "
+    "residents using the same Statistikkbanken's 2024 population figures per bydel — rather than Milan/Rome's "
+    "press-research approach. Sentrum is not one of the 15 administrative bydeler and has no bydel-level population "
+    "figure, so its rating instead combines Oslo kommune's own crime figure for Sentrum with a population figure "
+    "for the same area from Statistics Norway (SSB); the resulting rate is roughly 60x the citywide average, a "
+    "statistical artefact of Sentrum's tiny resident base against its huge footfall — see the methodology page and "
+    "Sentrum's own zone page for the full explanation. This rate is calculated against registered residents, not "
+    "footfall, so high-traffic central/nightlife/shopping bydeler (like Gamle Oslo or Frogner) can read higher "
+    "without that meaning elevated risk per visit. The source data has no time-of-day breakdown, so — like Berlin, "
+    "Amsterdam and Prague — this map shows one consistent level per bydel rather than a day/night toggle; see the "
+    "methodology page for details."
 )
 OSLO_NEIGH_NOTE = (
     "This rating for Oslo is a real official statistic — Oslo kommune's own Statistikkbanken figure for reported "
