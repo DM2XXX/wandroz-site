@@ -52,6 +52,7 @@ CITY_LINKS = [
     {"label": "Milan", "url": f"{SITE_URL}/milano/"},
     {"label": "Rome", "url": f"{SITE_URL}/roma/"},
     {"label": "Prague", "url": f"{SITE_URL}/praha/"},
+    {"label": "Oslo", "url": f"{SITE_URL}/oslo/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -564,6 +565,7 @@ def build_search_index(cities, city_cards):
         ("berlin", "berlin", "Berlin", True),
         ("amsterdam", "amsterdam", "Amsterdam", True),
         ("praha", "praha", "Prague", True),
+        ("oslo", "oslo", "Oslo", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -622,6 +624,7 @@ def build_zone_boundaries(cities, city_cards):
         ("berlin", "berlin", "Berlin", True),
         ("amsterdam", "amsterdam", "Amsterdam", True),
         ("praha", "praha", "Prague", True),
+        ("oslo", "oslo", "Oslo", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -865,6 +868,34 @@ PRAHA_NEIGH_NOTE = (
     "methodology page for full sourcing."
 )
 
+OSLO_UI = dict(TORINO_UI)
+OSLO_UI.update({
+    "page_title": "Is my Oslo neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Oslo's 15 official bydeler (city boroughs) with real official Oslo kommune crime-rate data per bydel.",
+    "page_h1": "Oslo neighbourhoods",
+    "neigh_title": "Is {name} in Oslo safe? | Wandroz",
+})
+
+OSLO_BANNER = (
+    "Neighbourhood shapes are Oslo's real official 15 bydeler (city boroughs, boundaries via OpenStreetMap's "
+    "administrative-boundary data). Like Berlin, Amsterdam and Prague, Oslo's safety levels come from a real "
+    "official statistic — Oslo kommune's own Statistikkbanken figures on reported offences by place of occurrence "
+    "per bydel for 2024, converted to a rate per 100,000 residents using the same Statistikkbanken's 2024 "
+    "population figures per bydel — rather than Milan/Rome's press-research approach. This rate is calculated "
+    "against registered residents, not footfall, so high-traffic central/nightlife/shopping bydeler (like Gamle "
+    "Oslo or Frogner) can read higher without that meaning elevated risk per visit. The source data has no "
+    "time-of-day breakdown, so — like Berlin, Amsterdam and Prague — this map shows one consistent level per bydel "
+    "rather than a day/night toggle; see the methodology page for details."
+)
+OSLO_NEIGH_NOTE = (
+    "This rating for Oslo is a real official statistic — Oslo kommune's own Statistikkbanken figure for reported "
+    "offences by place of occurrence in this bydel in 2024, converted to a rate per 100,000 residents using the "
+    "same source's 2024 population figure for the bydel — not a qualitative or press-based judgment. It has no "
+    "day/night split in the source data, so both figures shown are the same. The rate counts against registered "
+    "residents, not footfall, so a busy central, nightlife or shopping bydel can read higher without that meaning "
+    "elevated risk per visit. See the methodology page for full sourcing."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -993,6 +1024,10 @@ def main():
          "blurb": "All 57 official mestske casti mapped, safety levels from Policie CR's real official 2024 crime and population statistics.",
          "lat": 50.0755, "lon": 14.4378, "color": "#b5651d",
          "zone_count": _zone_count("praha"), "data_tag": "Official police data"},
+        {"name": "Oslo", "url": "oslo/index.html", "flag": "🇳🇴",
+         "blurb": "All 15 official bydeler mapped, safety levels from Oslo kommune's real official 2024 crime and population statistics.",
+         "lat": 59.9139, "lon": 10.7522, "color": "#2678b6",
+         "zone_count": _zone_count("oslo"), "data_tag": "Official police data"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1071,7 +1106,9 @@ def main():
     sitemap_urls.extend(amsterdam_urls)
     praha_urls = render_illustrative_city("praha", "praha", PRAHA_UI, EN_TONE_BADGE, PRAHA_BANNER, PRAHA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(praha_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)})")
+    oslo_urls = render_illustrative_city("oslo", "oslo", OSLO_UI, EN_TONE_BADGE, OSLO_BANNER, OSLO_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(oslo_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
