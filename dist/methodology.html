@@ -363,6 +363,42 @@
   travellers the way Sentrum's initial omission did.
 </div>
 
+<h2>Munich: real official Polizeipräsidium München and Statistisches Amt München data</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Munich (10 August 2026) is the seventh city on the site whose ratings come from an official, geolocated
+  government dataset rather than press research or general knowledge. The zone boundaries are Munich's own
+  official 25 "Stadtbezirke" (city districts), none excluded, sourced directly from GeodatenService München's own
+  boundary WFS. Each district's rating is computed from two real official sources: Polizeipräsidium München and the
+  Statistisches Amt München's own published "Straftaten in den Stadtbezirken 2025" table (total recorded offences
+  per district) and the Statistisches Amt München's population-per-Stadtbezirk figures as of 31 December 2024. The
+  crime figures were independently extracted twice before being used for a published rating — once via an automated
+  summary of the source PDF, once from scratch by loading the PDF's raw bytes and running pdf.js against them
+  directly in the browser (Chrome's built-in PDF viewer failed to render this particular file) — and both
+  extractions agreed. The population figures were checked by confirming the 25 district populations sum exactly to
+  the dataset's own published citywide total (1,603,776). Every zone is rated red/yellow/green against the
+  population-weighted citywide average rate, the same 1.3×/0.8× thresholds used for London, Berlin, Amsterdam,
+  Prague and Oslo.
+</p>
+<div class="note" style="margin-bottom:10px;">
+  <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin, Amsterdam, Prague and
+  Oslo, this is a snapshot of 2025 crime figures against a 2024 population figure, not something re-pulled on a
+  schedule yet, and the source data has no time-of-day breakdown — so every Munich zone shows the same level for
+  both day and night, disclosed plainly on each zone's page.
+</div>
+<div class="note">
+  <strong>The rate counts residents, not footfall — read high numbers carefully.</strong> Altstadt-Lehel (Munich's
+  historic centre around Marienplatz) and Ludwigsvorstadt-Isarvorstadt (which includes the Hauptbahnhof/
+  Bahnhofsviertel area and the Gärtnerplatz/Glockenbach nightlife district) both show a rate several times the
+  citywide average — a small resident base next to some of Munich's densest hotel, shopping, station and nightlife
+  traffic, the same footfall effect already documented for London's West End, Prague, Amsterdam, Berlin and Oslo's
+  Sentrum. That is not the same claim as "unusually dangerous to visit," and this caveat is repeated on both
+  districts' own zone pages, not just here. Two districts' boundary polygons — Untergiesing-Harlaching and
+  Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln — were returned twice by the source WFS service with
+  identical crime/population attribution but two different shapes (a small fragment and the full district body);
+  the full body was kept and the tiny duplicate fragment dropped, since it is imperceptible at map scale and does
+  not affect either district's crime or population figures.
+</div>
+
 <h2>How this scales beyond London</h2>
 <p style="font-size:13.5px;color:var(--muted);">Wandroz is meant to eventually cover neighbourhoods across Europe, not just London. Getting there honestly means being upfront about which of three tiers a city's data currently sits at:</p>
 <table class="breakdown" style="margin-top:10px;">
