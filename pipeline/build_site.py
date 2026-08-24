@@ -53,6 +53,7 @@ CITY_LINKS = [
     {"label": "Rome", "url": f"{SITE_URL}/roma/"},
     {"label": "Prague", "url": f"{SITE_URL}/praha/"},
     {"label": "Oslo", "url": f"{SITE_URL}/oslo/"},
+    {"label": "Munich", "url": f"{SITE_URL}/monaco-di-baviera/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -566,6 +567,7 @@ def build_search_index(cities, city_cards):
         ("amsterdam", "amsterdam", "Amsterdam", True),
         ("praha", "praha", "Prague", True),
         ("oslo", "oslo", "Oslo", True),
+        ("munich", "monaco-di-baviera", "Munich", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -625,6 +627,7 @@ def build_zone_boundaries(cities, city_cards):
         ("amsterdam", "amsterdam", "Amsterdam", True),
         ("praha", "praha", "Prague", True),
         ("oslo", "oslo", "Oslo", True),
+        ("munich", "monaco-di-baviera", "Munich", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -901,6 +904,37 @@ OSLO_NEIGH_NOTE = (
     "elevated risk per visit. See the methodology page for full sourcing."
 )
 
+MUNICH_UI = dict(TORINO_UI)
+MUNICH_UI.update({
+    "page_title": "Is my Munich neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Munich's 25 official Stadtbezirke (city districts) with real official Polizeipraesidium Muenchen crime-rate data per zone.",
+    "page_h1": "Munich neighbourhoods",
+    "neigh_title": "Is {name} in Munich safe? | Wandroz",
+})
+
+MUNICH_BANNER = (
+    "Neighbourhood shapes are Munich's real official 25 Stadtbezirke (city districts, boundaries via "
+    "GeodatenService München's own boundary data). Like Berlin, Amsterdam, Prague and Oslo, Munich's safety levels "
+    "come from a real official statistic — Polizeipräsidium München and the Statistisches Amt München's own "
+    "published 2025 total recorded-offence counts per Stadtbezirk, converted to a rate per 100,000 residents using "
+    "each district's 31 December 2024 population — rather than Milan/Rome's press-research approach. This rate is "
+    "calculated against registered residents, not footfall, so high-traffic central/station/nightlife districts — "
+    "especially Altstadt-Lehel (the historic centre around Marienplatz) and Ludwigsvorstadt-Isarvorstadt "
+    "(Hauptbahnhof and the Glockenbach nightlife district) — can read higher without that meaning elevated risk "
+    "per visit. The source data has no time-of-day breakdown, so — like Berlin, Amsterdam, Prague and Oslo — this "
+    "map shows one consistent level per Stadtbezirk rather than a day/night toggle; see the methodology page for "
+    "details."
+)
+MUNICH_NEIGH_NOTE = (
+    "This rating for Munich is a real official statistic — Polizeipräsidium München and the Statistisches Amt "
+    "München's own published 2025 total recorded-offence count for this Stadtbezirk, converted to a rate per "
+    "100,000 residents using the same source's 31 December 2024 population figure for the district — not a "
+    "qualitative or press-based judgment. It has no day/night split in the source data, so both figures shown are "
+    "the same. The rate counts against registered residents, not footfall, so a busy central, station or "
+    "nightlife district can read higher without that meaning elevated risk per visit. See the methodology page "
+    "for full sourcing."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1033,6 +1067,10 @@ def main():
          "blurb": "All 15 official bydeler mapped, safety levels from Oslo kommune's real official 2024 crime and population statistics.",
          "lat": 59.9139, "lon": 10.7522, "color": "#2678b6",
          "zone_count": _zone_count("oslo"), "data_tag": "Official police data"},
+        {"name": "Munich", "url": "monaco-di-baviera/index.html", "flag": "🇩🇪",
+         "blurb": "All 25 official Stadtbezirke mapped, safety levels from Polizeipräsidium München's real official 2025 crime and population statistics.",
+         "lat": 48.1372, "lon": 11.5755, "color": "#4a7c59",
+         "zone_count": _zone_count("munich"), "data_tag": "Official police data"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1113,7 +1151,9 @@ def main():
     sitemap_urls.extend(praha_urls)
     oslo_urls = render_illustrative_city("oslo", "oslo", OSLO_UI, EN_TONE_BADGE, OSLO_BANNER, OSLO_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(oslo_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)})")
+    munich_urls = render_illustrative_city("munich", "monaco-di-baviera", MUNICH_UI, EN_TONE_BADGE, MUNICH_BANNER, MUNICH_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(munich_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
