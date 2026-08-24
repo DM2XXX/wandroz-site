@@ -1,0 +1,22 @@
+{
+  "source_crime": "Oslo kommune Statistikkbanken, table KRI002 (Anmeldte lovbrudd med gjerningssted i Oslo, etter type lovbrudd og gjerningsbydel), 'Alle lovbruddsgrupper' (total offences), year 2024. https://statistikkbanken.oslo.kommune.no/statbank/pxweb/no/db1/db1__Kriminalitet/KRI002.px/",
+  "source_population": "Oslo kommune Statistikkbanken, table BEF005 (Folkemengden etter administrativ bydel og alder), 'Alder i alt' (all ages), year 2024. https://statistikkbanken.oslo.kommune.no/statbank/pxweb/no/db1/db1__Befolkning__Folkemengde/OK-BEF005.px/",
+  "note": "Oslo's 15 official administrative bydeler (each with its own bydelsutvalg/local borough council) are used. 'Sentrum' (financial/commercial city-centre area) and 'Marka' (forest) are excluded because they are not administrative bydeler and carry no population figure in Oslo kommune's own BEF005 table (only 15 'Bydel X' rows exist there, confirmed live) -- so all real bydeler are mapped, none excluded.",
+  "districts": [
+    {"name": "Gamle Oslo",        "code": "01", "crimes_2024": 9499, "population_2024": 63721},
+    {"name": "Grünerløkka",       "code": "02", "crimes_2024": 6600, "population_2024": 65532},
+    {"name": "Sagene",            "code": "03", "crimes_2024": 3906, "population_2024": 47627},
+    {"name": "St. Hanshaugen",    "code": "04", "crimes_2024": 7312, "population_2024": 41571},
+    {"name": "Frogner",           "code": "05", "crimes_2024": 6791, "population_2024": 60727},
+    {"name": "Ullern",            "code": "06", "crimes_2024": 1993, "population_2024": 35440},
+    {"name": "Vestre Aker",       "code": "07", "crimes_2024": 1896, "population_2024": 52590},
+    {"name": "Nordre Aker",       "code": "08", "crimes_2024": 2643, "population_2024": 55056},
+    {"name": "Bjerke",            "code": "09", "crimes_2024": 2927, "population_2024": 36450},
+    {"name": "Grorud",            "code": "10", "crimes_2024": 1929, "population_2024": 28080},
+    {"name": "Stovner",           "code": "11", "crimes_2024": 2231, "population_2024": 34111},
+    {"name": "Alna",              "code": "12", "crimes_2024": 3452, "population_2024": 50358},
+    {"name": "Østensjø",          "code": "13", "crimes_2024": 2046, "population_2024": 51895},
+    {"name": "Nordstrand",        "code": "14", "crimes_2024": 3372, "population_2024": 54027},
+    {"name": "Søndre Nordstrand", "code": "15", "crimes_2024": 2651, "population_2024": 39124}
+  ]
+}
