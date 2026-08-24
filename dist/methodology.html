@@ -287,6 +287,35 @@
   on every Amsterdam zone page, not just here.
 </div>
 
+<h2>Prague: real official Policie ČR crime and CSU population data</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Prague (24 August 2026) is the fourth city on the site whose ratings come from an official, geolocated
+  government dataset rather than press research or general knowledge. The zone boundaries are Prague's own
+  official "městské části" (57 city districts, the full set of Praha 1–22 plus the 35 smaller named "Praha-X"
+  districts, none excluded), and each zone's rating is computed from two real official sources: Policie ČR's
+  (Czech national police) total registered incidents per district for 2024, via the official
+  kriminalita.policie.gov.cz portal, and CSU (Czech Statistical Office) population per district for 2024, from
+  the DataStat open API. Both figures were pulled for the same year (2024) to keep the resulting rate from being
+  skewed by a vintage mismatch. Every zone is rated red/yellow/green against the citywide average rate, the same
+  1.3×/0.8× thresholds used for London, Berlin and Amsterdam.
+</p>
+<div class="note" style="margin-bottom:10px;">
+  <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin and Amsterdam, this is
+  a snapshot of 2024 figures, not something re-pulled on a schedule yet, and the source data has no time-of-day
+  breakdown — so every Prague zone shows the same level for both day and night, disclosed plainly on each zone's
+  page.
+</div>
+<div class="note">
+  <strong>The rate counts residents, not footfall — read high numbers carefully.</strong> A district with heavy
+  tourist, shopping or transit traffic and relatively few residents (Praha 1's historic centre, for instance) can
+  show a high rate from a normal volume of opportunistic offences spread over a small resident base — that is not
+  the same claim as "unusually dangerous to visit." A handful of very sparsely populated outer districts can also
+  swing sharply from just a few recorded cases; those districts' own pages flag the small population explicitly.
+  This caveat is repeated on every Prague zone page, not just here. Separately, mapakriminality.cz (an
+  NGO-republished feed of the same underlying police data) was checked as a possible source and found stale since
+  November 2020, so the official kriminalita.policie.gov.cz portal was used directly instead.
+</div>
+
 <h2>How this scales beyond London</h2>
 <p style="font-size:13.5px;color:var(--muted);">Wandroz is meant to eventually cover neighbourhoods across Europe, not just London. Getting there honestly means being upfront about which of three tiers a city's data currently sits at:</p>
 <table class="breakdown" style="margin-top:10px;">
