@@ -5,13 +5,13 @@
     10.7522
   ],
   "zoom": 11,
-  "dataNote": "Neighbourhood shapes are Oslo's real official 15 bydeler (city boroughs), sourced from OpenStreetMap's administrative boundaries. Like Berlin, Amsterdam and Prague, Oslo's safety levels here come from a real official statistic — Oslo kommune's own Statistikkbanken figures on reported offences by place of occurrence per bydel for 2024, converted to a rate per 100,000 residents using the same Statistikkbanken's 2024 population figures per bydel — rather than a press-research approach. This rate is calculated against registered residents, not footfall, so busy central/nightlife/shopping bydeler can read higher without that meaning elevated risk per visit — see each zone's page for the real numbers and this caveat in context, and the methodology page for full sourcing.",
+  "dataNote": "Neighbourhood shapes are Oslo's real official 15 bydeler (city boroughs) plus Sentrum, the city centre, sourced from OpenStreetMap's administrative boundaries. Like Berlin, Amsterdam and Prague, Oslo's safety levels here come from a real official statistic — Oslo kommune's own Statistikkbanken figures on reported offences by place of occurrence per bydel for 2024, converted to a rate per 100,000 residents using each area's 2024 population (Statistikkbanken for the 15 bydeler, Statistics Norway's separate 'urban district' population figures for Sentrum, which is not an administrative bydel) — rather than a press-research approach. This rate is calculated against registered residents, not footfall, so busy central/nightlife/shopping bydeler — and especially Sentrum itself, whose tiny resident base next to huge daytime/evening footfall produces an extreme rate — can read higher without that meaning elevated risk per visit — see each zone's page for the real numbers and this caveat in context, and the methodology page for full sourcing.",
   "zones": [
     {
       "name": "Alna",
       "slug": "alna",
-      "day": "yellow",
-      "night": "yellow",
+      "day": "green",
+      "night": "green",
       "coords": [
         [
           [
@@ -236,7 +236,7 @@
           ]
         ]
       ],
-      "text": "Alna is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 3,452 reported offences with their place of occurrence here in 2024, across a population of 50,358 residents — a rate of 6,855 offences per 100,000 residents, close to the citywide average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Alna is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 3,452 reported offences with their place of occurrence here in 2024, across a population of 50,358 residents — a rate of 6,855 offences per 100,000 residents, roughly 0.7× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Alna, Oslo, Norway"
     },
     {
@@ -382,8 +382,8 @@
     {
       "name": "Frogner",
       "slug": "frogner",
-      "day": "red",
-      "night": "red",
+      "day": "yellow",
+      "night": "yellow",
       "coords": [
         [
           [
@@ -524,7 +524,7 @@
           ]
         ]
       ],
-      "text": "Frogner is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 6,791 reported offences with their place of occurrence here in 2024, across a population of 60,727 residents — a rate of 11,183 offences per 100,000 residents, roughly 1.4× the citywide bydel average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Frogner is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 6,791 reported offences with their place of occurrence here in 2024, across a population of 60,727 residents — a rate of 11,183 offences per 100,000 residents, close to the citywide average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Frogner, Oslo, Norway"
     },
     {
@@ -700,14 +700,14 @@
           ]
         ]
       ],
-      "text": "Gamle Oslo is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 9,499 reported offences with their place of occurrence here in 2024, across a population of 63,721 residents — a rate of 14,907 offences per 100,000 residents, roughly 1.8× the citywide bydel average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Gamle Oslo is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 9,499 reported offences with their place of occurrence here in 2024, across a population of 63,721 residents — a rate of 14,907 offences per 100,000 residents, roughly 1.6× the citywide bydel average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Gamle Oslo, Oslo, Norway"
     },
     {
       "name": "Grorud",
       "slug": "grorud",
-      "day": "yellow",
-      "night": "yellow",
+      "day": "green",
+      "night": "green",
       "coords": [
         [
           [
@@ -960,7 +960,7 @@
           ]
         ]
       ],
-      "text": "Grorud is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 1,929 reported offences with their place of occurrence here in 2024, across a population of 28,080 residents — a rate of 6,870 offences per 100,000 residents, close to the citywide average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Grorud is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 1,929 reported offences with their place of occurrence here in 2024, across a population of 28,080 residents — a rate of 6,870 offences per 100,000 residents, roughly 0.7× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Grorud, Oslo, Norway"
     },
     {
@@ -1360,7 +1360,7 @@
           ]
         ]
       ],
-      "text": "Nordre Aker is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 2,643 reported offences with their place of occurrence here in 2024, across a population of 55,056 residents — a rate of 4,801 offences per 100,000 residents, roughly 0.6× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Nordre Aker is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 2,643 reported offences with their place of occurrence here in 2024, across a population of 55,056 residents — a rate of 4,801 offences per 100,000 residents, roughly 0.5× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Nordre Aker, Oslo, Norway"
     },
     {
@@ -1548,7 +1548,7 @@
           ]
         ]
       ],
-      "text": "Nordstrand is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 3,372 reported offences with their place of occurrence here in 2024, across a population of 54,027 residents — a rate of 6,241 offences per 100,000 residents, roughly 0.8× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. Oslo kommune's own statistics note flags that many criminal-damage cases reported by the city's public transport operator (Sporveien) are registered with an offence address in Bydel Nordstrand regardless of where the incident actually happened, which inflates this figure somewhat independent of on-the-ground risk here. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Nordstrand is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 3,372 reported offences with their place of occurrence here in 2024, across a population of 54,027 residents — a rate of 6,241 offences per 100,000 residents, roughly 0.7× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. Oslo kommune's own statistics note flags that many criminal-damage cases reported by the city's public transport operator (Sporveien) are registered with an offence address in Bydel Nordstrand regardless of where the incident actually happened, which inflates this figure somewhat independent of on-the-ground risk here. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Nordstrand, Oslo, Norway"
     },
     {
@@ -1626,6 +1626,110 @@
       ],
       "text": "Sagene is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 3,906 reported offences with their place of occurrence here in 2024, across a population of 47,627 residents — a rate of 8,201 offences per 100,000 residents, close to the citywide average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Sagene, Oslo, Norway"
+    },
+    {
+      "name": "Sentrum",
+      "slug": "sentrum",
+      "day": "red",
+      "night": "red",
+      "coords": [
+        [
+          [
+            59.9152653,
+            10.7225781
+          ],
+          [
+            59.9152846,
+            10.7277149
+          ],
+          [
+            59.9137588,
+            10.725534
+          ],
+          [
+            59.9131416,
+            10.7271722
+          ],
+          [
+            59.9124884,
+            10.7250666
+          ],
+          [
+            59.9118876,
+            10.7264856
+          ],
+          [
+            59.9127786,
+            10.7282971
+          ],
+          [
+            59.9119299,
+            10.7318566
+          ],
+          [
+            59.9092391,
+            10.7288603
+          ],
+          [
+            59.90233,
+            10.7273047
+          ],
+          [
+            59.8996712,
+            10.7464438
+          ],
+          [
+            59.9043663,
+            10.7534605
+          ],
+          [
+            59.9133544,
+            10.7588929
+          ],
+          [
+            59.9144824,
+            10.7531692
+          ],
+          [
+            59.9128176,
+            10.7459284
+          ],
+          [
+            59.9144624,
+            10.7415438
+          ],
+          [
+            59.9165421,
+            10.7405705
+          ],
+          [
+            59.9200774,
+            10.7353668
+          ],
+          [
+            59.9172815,
+            10.7321627
+          ],
+          [
+            59.9187232,
+            10.7316089
+          ],
+          [
+            59.9203111,
+            10.7278944
+          ],
+          [
+            59.9170889,
+            10.7230671
+          ],
+          [
+            59.9152653,
+            10.7225781
+          ]
+        ]
+      ],
+      "text": "Sentrum is Oslo's city centre — not one of the 15 administrative bydeler, but mapped here as its own zone using the same official sources. Oslo kommune's own police-sourced Statistikkbanken data recorded 8,858 reported offences with their place of occurrence here in 2024, across a population of 1,528 residents — a rate of 579,712 offences per 100,000 residents, roughly 61.1× the citywide bydel average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. Sentrum is not one of Oslo's 15 administrative bydeler — it has only 1,528 registered residents (Statistics Norway, 2024), a tiny base for what is Oslo's densest concentration of hotels, shops, restaurants, nightlife and offices, with a daytime and evening population many times its resident count. Dividing a genuinely high absolute number of reported offences by that small resident base produces a per-100,000-residents rate far beyond anything a visitor actually experiences per visit — it reflects a statistical artefact of the tiny denominator, not a literal multiple of walking-around risk. Sentrum is still shown here, rather than left blank, because Oslo kommune's own crime table does track it as a real, distinct area (separately from the 15 bydeler), and leaving Oslo's own city centre off the map — exactly where many visitors book — would be a bigger gap than an inflated number with this caveat attached. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "query": "Sentrum, Oslo, Norway"
     },
     {
       "name": "St. Hanshaugen",
@@ -1720,7 +1824,7 @@
           ]
         ]
       ],
-      "text": "St. Hanshaugen is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 7,312 reported offences with their place of occurrence here in 2024, across a population of 41,571 residents — a rate of 17,589 offences per 100,000 residents, roughly 2.1× the citywide bydel average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "St. Hanshaugen is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 7,312 reported offences with their place of occurrence here in 2024, across a population of 41,571 residents — a rate of 17,589 offences per 100,000 residents, roughly 1.9× the citywide bydel average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "St. Hanshaugen, Oslo, Norway"
     },
     {
@@ -1852,14 +1956,14 @@
           ]
         ]
       ],
-      "text": "Stovner is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 2,231 reported offences with their place of occurrence here in 2024, across a population of 34,111 residents — a rate of 6,540 offences per 100,000 residents, roughly 0.8× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Stovner is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 2,231 reported offences with their place of occurrence here in 2024, across a population of 34,111 residents — a rate of 6,540 offences per 100,000 residents, roughly 0.7× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Stovner, Oslo, Norway"
     },
     {
       "name": "Søndre Nordstrand",
       "slug": "sondre-nordstrand",
-      "day": "yellow",
-      "night": "yellow",
+      "day": "green",
+      "night": "green",
       "coords": [
         [
           [
@@ -2152,7 +2256,7 @@
           ]
         ]
       ],
-      "text": "Søndre Nordstrand is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 2,651 reported offences with their place of occurrence here in 2024, across a population of 39,124 residents — a rate of 6,776 offences per 100,000 residents, close to the citywide average. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Søndre Nordstrand is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 2,651 reported offences with their place of occurrence here in 2024, across a population of 39,124 residents — a rate of 6,776 offences per 100,000 residents, roughly 0.7× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Søndre Nordstrand, Oslo, Norway"
     },
     {
@@ -2316,7 +2420,7 @@
           ]
         ]
       ],
-      "text": "Ullern is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 1,993 reported offences with their place of occurrence here in 2024, across a population of 35,440 residents — a rate of 5,624 offences per 100,000 residents, roughly 0.7× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Ullern is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 1,993 reported offences with their place of occurrence here in 2024, across a population of 35,440 residents — a rate of 5,624 offences per 100,000 residents, roughly 0.6× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Ullern, Oslo, Norway"
     },
     {
@@ -2780,7 +2884,7 @@
           ]
         ]
       ],
-      "text": "Østensjø is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 2,046 reported offences with their place of occurrence here in 2024, across a population of 51,895 residents — a rate of 3,943 offences per 100,000 residents, roughly 0.5× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
+      "text": "Østensjø is one of Oslo's 15 official bydeler (city boroughs). Oslo kommune's own police-sourced Statistikkbanken data recorded 2,046 reported offences with their place of occurrence here in 2024, across a population of 51,895 residents — a rate of 3,943 offences per 100,000 residents, roughly 0.4× the citywide average, below it. This rate is calculated against registered residents, not footfall, so a busy central or nightlife/shopping-heavy bydel can read higher without that meaning it is unusually risky to walk through, and a quiet residential bydel can show a low rate simply by having few offences relative to its population. This is Wandroz's official-data layer for Oslo — real Oslo kommune Statistikkbanken figures, not a qualitative or press-based judgment — and the source data is not split here by time of day, so both figures shown here are the same.",
       "query": "Østensjø, Oslo, Norway"
     }
   ]
