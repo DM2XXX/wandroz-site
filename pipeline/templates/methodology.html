@@ -338,6 +338,44 @@
   not affect either district's crime or population figures.
 </div>
 
+<h2>Stockholm: real official Brå and Stockholms stad data</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Stockholm (25 August 2026) is the eighth city on the site whose ratings come from an official, geolocated
+  government dataset rather than press research or general knowledge, and the first built on a Swedish national
+  source. The zone boundaries are Stockholm's own official 11 "stadsdelsnämnder" (city district committees), none
+  excluded, sourced directly from Stockholms stad's own "Stadskartans Stadsdelsnämnder 2023" boundary dataset. Each
+  district's rating is computed from two real official sources: Brå (Brottsförebyggande rådet, Sweden's national
+  crime-prevention council)'s own live statistics database, queried for total reported offences per district for
+  2025, and Stockholms stad's own "Befolkningsöversikt Årsrapport 2024" population-per-district figures as of 31
+  December 2024. Every zone is rated red/yellow/green against the population-weighted citywide average rate, the
+  same 1.3×/0.8× thresholds used for London, Berlin, Amsterdam, Prague, Oslo and Munich.
+</p>
+<div class="note" style="margin-bottom:10px;">
+  <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin, Amsterdam, Prague, Oslo
+  and Munich, this is a snapshot of 2025 crime figures against a 2024 population figure, not something re-pulled on
+  a schedule yet, and the source data has no time-of-day breakdown — so every Stockholm zone shows the same level
+  for both day and night, disclosed plainly on each zone's page.
+</div>
+<div class="note" style="margin-bottom:10px;">
+  <strong>The rate counts residents, not footfall — read high numbers carefully.</strong> Norra innerstaden
+  (Stockholm's dense inner-city core, covering the former Norrmalm and Östermalm districts — Centralstationen,
+  Sergels torg, and the main shopping streets around Drottninggatan and Hamngatan) shows a rate meaningfully above
+  the citywide average, and Södermalm (a major nightlife and restaurant district) follows close behind — both a
+  small resident base next to some of Stockholm's densest station, shopping and nightlife traffic, the same
+  footfall effect already documented for London's West End, Prague, Amsterdam, Berlin, Oslo's Sentrum and Munich's
+  Altstadt-Lehel. That is not the same claim as "unusually dangerous to visit," and this caveat is repeated on both
+  districts' own zone pages, not just here.
+</div>
+<div class="note">
+  <strong>Stockholm's 2024 reform means "11 districts" is genuinely current, not a mismatch between sources.</strong>
+  Brå's own crime-statistics tool initially looked like it might use a different district scheme from Stockholm's
+  real administrative boundaries — its region list shows several older, now-discontinued district names (marked
+  "upphörde 2024-01-01") alongside the 11 currently-active ones. Checked directly against Stockholms stad's own
+  website: the city genuinely reorganised down to these same 11 stadsdelsnämnder, so the crime, population and
+  boundary sources used here all line up on the same real, current districts — not an approximation across
+  mismatched schemes.
+</div>
+
 <h2>How this scales beyond London</h2>
 <p style="font-size:13.5px;color:var(--muted);">Wandroz is meant to eventually cover neighbourhoods across Europe, not just London. Getting there honestly means being upfront about which of three tiers a city's data currently sits at:</p>
 <table class="breakdown" style="margin-top:10px;">
