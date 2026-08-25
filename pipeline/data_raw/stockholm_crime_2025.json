@@ -1,0 +1,20 @@
+{
+  "source": "https://statistik.bra.se/solwebb/action/index (Brå – Brottsförebyggande rådet, official Swedish national crime-prevention council)",
+  "title": "Anmälda brott, Totalt antal brott, 2025, per Stadsdelsområde (Sthlm)",
+  "publisher": "Brå (Brottsförebyggande rådet)",
+  "extraction_method": "Live query built via statistik.bra.se/solwebb query tool (old frameset UI), region=area select filtered to the 11 currently-active 'Stadsdelsområde X (Sthlm)' options (excluding all options marked 'upphörde', which are discontinued historical district schemes), brott=Totalt antal brott, period=2025, enhet=Antal brott. Result table read directly from the 'soktabell' frame via JS.",
+  "note": "These are Brå's own police-district 'Stadsdelsområde' boundaries, which may not match Stockholm kommun's 14 official stadsdelsnämnder one-to-one (Brå shows an 11-district scheme active since a 2024-01-01 reorganization that merged some districts).",
+  "rows": [
+    {"name": "Bromma", "crimes_2025": 10989},
+    {"name": "Enskede - Årsta - Vantör", "crimes_2025": 20436},
+    {"name": "Farsta", "crimes_2025": 11816},
+    {"name": "Hägersten-Älvsjö", "crimes_2025": 19805},
+    {"name": "Hässelby - Vällingby", "crimes_2025": 14214},
+    {"name": "Järva", "crimes_2025": 15694},
+    {"name": "Kungsholmen", "crimes_2025": 11712},
+    {"name": "Norra innerstaden", "crimes_2025": 39745},
+    {"name": "Skarpnäck", "crimes_2025": 6569},
+    {"name": "Skärholmen", "crimes_2025": 6411},
+    {"name": "Södermalm", "crimes_2025": 32269}
+  ]
+}

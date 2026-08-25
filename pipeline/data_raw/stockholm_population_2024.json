@@ -1,0 +1,23 @@
+{
+  "source": "https://start.stockholm/globalassets/start/om-stockholms-stad/utredningar-statistik-och-fakta/statistik/befolkning/befolkningsoversikt-2024.pdf",
+  "title": "Befolkningsöversikt Årsrapport 2024 (Table 2: Folkmängd per stadsdelsområde, 31 december 2024)",
+  "publisher": "Stockholms stad (City of Stockholm), Utredningar, statistik och fakta",
+  "published": "2025-06-23",
+  "note_restomrade": "The report's citywide total (995,574) includes a 'Restområde' row of 3,637 residents registered without a known physical/district address, not attributable to any of the 11 named districts. Sum of the 11 named districts (991,937) + Restområde (3,637) = 995,574, confirmed by cross-check.",
+  "citywide_total": 995574,
+  "restomrade": 3637,
+  "sum_of_11_districts": 991937,
+  "rows": [
+    {"name": "Bromma", "population_2024": 83118},
+    {"name": "Enskede-Årsta-Vantör", "population_2024": 105241},
+    {"name": "Farsta", "population_2024": 62085},
+    {"name": "Hägersten-Älvsjö", "population_2024": 128794},
+    {"name": "Hässelby-Vällingby", "population_2024": 76340},
+    {"name": "Järva", "population_2024": 95220},
+    {"name": "Kungsholmen", "population_2024": 70932},
+    {"name": "Norra innerstaden", "population_2024": 155286},
+    {"name": "Skarpnäck", "population_2024": 46407},
+    {"name": "Skärholmen", "population_2024": 38112},
+    {"name": "Södermalm", "population_2024": 130402}
+  ]
+}
