@@ -1,0 +1,513 @@
+[
+  {
+    "nom": "el Raval",
+    "day": "yellow",
+    "night": "red",
+    "text": "El Raval is repeatedly described in Catalan/Spanish press as Ciutat Vella's main hotspot for drug-related crime: ARA (2024-2025, English edition) documented open-air drug dealing and consumption visible from cafe terraces, and residents told El Debate (Oct 2025) and MetropoliAbierta (Sept-Oct 2025) that 'narcopisos' (drug-dealing squats) are proliferating and that they've hired private security out of fear of robbery and occupation. A June 2026 brawl between rival groups on Rambla del Raval led to multiple arrests and prompted Mossos d'Esquadra and Guardia Urbana to install a permanent summer police post; citywide Mossos arrest data shows detentions in Ciutat Vella rising sharply since 2018. This is a mix of high property-crime exposure and real (if localized, often drug-market-linked) violence, distinct from random street muggings of tourists.",
+    "sources": ["ARA (English) - drug dens in the Raval", "El Debate, Oct 2025", "MetropoliAbierta, Oct 2025 / June 2026", "El Caso/ElNacional, June 2024"]
+  },
+  {
+    "nom": "el Barri Gòtic",
+    "day": "yellow",
+    "night": "red",
+    "text": "Daytime risk in the Gòtic is dominated by organized theft: Crónica Global (June 2026) reported a shopkeeper on Carrer Petritxol describing near-daily 'piranha' thefts by coordinated groups, part of a broader wave affecting multiple businesses. More seriously, El Caso/ElNacional (March 2024) reported a violent night-time assault (Jan 28, 2024) in which three men beat a 39-year-old tourist and left him with serious facial injuries while stealing his watch, attributed to an established pattern of 'relojero' (watch-thief) gangs operating with force. This combination of chronic petty theft and occasional violent muggings targeting valuables is well documented for this barri.",
+    "sources": ["Crónica Global, June 2026", "El Caso/ElNacional, March 2024", "Barna Diario"]
+  },
+  {
+    "nom": "la Barceloneta",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "La Barceloneta beach is very consistently reported as a theft hotspot rather than a violent-crime one: Que.es (Sept 2025) described it as a 'nightmare for tourists' where bags are grabbed in broad daylight, prompting the Guàrdia Urbana's long-running Beach Unit and its 'kit del hurto' program for victims. Robberies/thefts made up over 85% of recorded crime in the area per that report; Barcelona ranks among the world's top cities for tourist theft. No comparable pattern of violent assault specific to Barceloneta was found, so night risk is elevated mainly by theft/nightlife-adjacent disorder rather than confirmed violence.",
+    "sources": ["Que.es, Sept 2025", "TheObjective, April 2024", "El Caso/ElNacional", "TotBarcelona.cat"]
+  },
+  {
+    "nom": "Sant Pere, Santa Caterina i la Ribera",
+    "day": "green",
+    "night": "yellow",
+    "text": "This barri (which includes El Born) shows comparatively little press evidence of daytime crime concern — an older ElNacional overview of Ciutat Vella (2018) rated it as having 'fewer problems' than Raval, Gòtic or Barceloneta. A recent MetropoliAbierta report (Jan 2026) on Passeig del Born documents a real night-time issue: sound levels chronically over legal limits, the highest complaint density in Ciutat Vella, and city officials explicitly linking late-night alcohol/drug use around the bars to 'more robberies, arguments and fights,' prompting a new Special Acoustic Regulation Zone. No violent no-go-area pattern was found for daytime; the concern is specifically nightlife-hours disorder around Born's bar strip.",
+    "sources": ["MetropoliAbierta, Jan 2026", "ElNacional, 2018"]
+  },
+  {
+    "nom": "la Dreta de l'Eixample",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Genuine property-crime risk documented here: a €500,000 Richard Mille watch was snatched from a tourist on Passeig de Gràcia in December 2023 by an organized scooter gang (3Cat), and Mossos' specialist anti-watch-robbery unit has repeatedly targeted this area. Tourist apartments are also a specific burglary target — Mossos arrested one man for 51 break-ins into holiday flats across Eixample and Sant Martí. Betevé (Feb 2024) also reported heavy resident complaints about all-night tourist-flat parties — an incivility issue more than a threat to visitor safety. No evidence found of violent street crime against pedestrians specifically in this barri.",
+    "sources": ["3Cat", "Govern.cat (Mossos press release)", "Betevé, Feb 2024"]
+  },
+  {
+    "nom": "l'Antiga Esquerra de l'Eixample",
+    "day": "green",
+    "night": "green",
+    "text": "No particular ongoing safety concern found in press research for this barri. The one notable item was an isolated, already-resolved case: on 2 December 2024, police evicted an occupied, deteriorated building at Carrer Muntaner 28 that had become 'a refuge for thieves and repeat offenders' (totbarcelona.cat). This was a single-building situation that has since been cleared, not a documented area-wide pattern.",
+    "sources": ["totbarcelona.cat"]
+  },
+  {
+    "nom": "la Nova Esquerra de l'Eixample",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns found in press research specific to this barri. Searches turned up only general Eixample-district-wide statistics (a decline in overall crime in the district in 2024) and no barri-specific incident reporting.",
+    "sources": ["Ajuntament de Barcelona (Eixample district)"]
+  },
+  {
+    "nom": "Sant Antoni",
+    "day": "yellow",
+    "night": "red",
+    "text": "Multiple independent, recent sources document a genuine deterioration pattern here. Vilaweb and Betevé (2024/2025) reported a wave of repeated storefront break-ins on Carrer Tamarit. El Nacional (Sept 2025) described open street drug injection and informal markets around the Sant Antoni Market, prompting a 20-point emergency plan in August 2025. Most seriously, Betevé/totbarcelona (May 2026) reported the Sant Antoni Comerç merchants' association (261 businesses) demanding 24-hour police patrols after 'recent violent incidents,' stating insecurity is 'uncontrollable' after 8pm, with several restaurants reportedly no longer opening in the evening for safety reasons.",
+    "sources": ["Betevé", "Vilaweb", "El Nacional, Sept 2025", "totbarcelona.cat, May 2026"]
+  },
+  {
+    "nom": "el Fort Pienc",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Residents, merchants, schools and parent associations filed a joint formal complaint describing rising theft and drug dealing, calling the barri 'an unsafe and abandoned space.' A concrete violent incident: on 8 June 2026 a man smashed a delicatessen's storefront window with a manhole cover in an early-morning ransacking on Carrer Sicília, which neighbours linked to a broader rise in commercial robberies. No reports of street violence against passersby (as opposed to businesses) were found.",
+    "sources": ["Betevé", "El Caso/El Nacional", "Línia Eixample"]
+  },
+  {
+    "nom": "la Sagrada Família",
+    "day": "yellow",
+    "night": "green",
+    "text": "The dominant press coverage of this barri is overtourism/quality-of-life (saturated sidewalks, 824 tourist apartments), not violent crime, and no reports of night-time danger specific to the residential barri were found. The area around the basilica is widely associated with tourist-targeted pickpocketing in the general context of Barcelona ranking among the world's top cities for theft against tourists. This is a property/theft risk tied to dense tourist crowds around the monument, not evidence of violent crime.",
+    "sources": ["CONFAVC", "Racó Català", "El Caso"]
+  },
+  {
+    "nom": "el Poble-sec",
+    "day": "green",
+    "night": "green",
+    "text": "No reports of assault, robbery patterns, or no-go conditions targeting visitors were found for Poble-sec; an idealista.com neighbourhood safety guide (2025) explicitly recommends it. The one documented issue is property crime against parked cars (Mossos arrested a man in Feb 2025 for smashing windows on 18 parked vehicles near Montjuïc), not pedestrians, so no elevated rating is warranted.",
+    "sources": ["idealista.com, Sept 2025", "Barna Diario, Feb 2025"]
+  },
+  {
+    "nom": "la Marina del Prat Vermell",
+    "day": "green",
+    "night": "yellow",
+    "text": "This is a low-population, mostly industrial/port-adjacent barri with essentially no tourist foot traffic and no reports of street crime against pedestrians. However, press in May-June 2026 reported a cluster of fatal shootings (organized-crime/narco-trafficking related) in the adjoining Zona Franca/Marina de Port area, and given the barri's industrial character means streets are dark and deserted after dusk, a cautious night rating is warranted even though this violence is targeted (rival trafficking groups), not opportunistic crime against travellers.",
+    "sources": ["laciutat.cat, June 2026", "metropoliabierta.elespanol.com, 2025"]
+  },
+  {
+    "nom": "la Marina de Port",
+    "day": "yellow",
+    "night": "red",
+    "text": "This barri saw a genuine and recent cluster of gun violence: a fatal shooting on Carrer de la Mineria on 8 June 2026 was the second lethal shooting on the same street within a month and the third violent incident recently. Officials attribute it to 'ajustes de cuentas' between organized-crime/drug-trafficking groups rather than danger to residents or tourists generally, but multiple fatal public shootings within weeks warrant a cautious rating for both day and especially night.",
+    "sources": ["Metrópoli Abierta, 8 June 2026", "Telecinco", "Infobae", "laciutat.cat"]
+  },
+  {
+    "nom": "la Font de la Guatlla",
+    "day": "green",
+    "night": "green",
+    "text": "No pickpocketing, robbery, assault, or no-go-area reports were found for this small barri. A 2024 Metrópoli Abierta feature describes it instead as neglected by the city administration (deteriorated infrastructure) and disturbed by tourist noise crossing to the Olympic Stadium — infrastructure and quality-of-life complaints, not crime.",
+    "sources": ["Metrópoli Abierta, Feb 2024"]
+  },
+  {
+    "nom": "Hostafrancs",
+    "day": "green",
+    "night": "yellow",
+    "text": "The clearest documented concern is localized: a Metrópoli Abierta report (May 2025) describes a private parking garage on Carrer de Béjar occupied by roughly ten people using stairwells as makeshift shelter, with residents alleging drug dealing and prostitution on the premises. This is a specific, localized issue rather than a general threat across the barri.",
+    "sources": ["Metrópoli Abierta, 1 May 2025"]
+  },
+  {
+    "nom": "la Bordeta",
+    "day": "green",
+    "night": "yellow",
+    "text": "Documented trouble in la Bordeta centers on one nightlife venue ('Genius Bar', formerly La Choza), where neighbours reported frequent fights, drug consumption/trafficking, and assaults on police. A joint Mossos/Guardia Urbana operation in July 2024 made arrests. No wider pattern of assault or robbery across the rest of the barri was found; the concern is localized to nightlife around that specific address.",
+    "sources": ["Metrópoli Abierta, July 2024"]
+  },
+  {
+    "nom": "Sants - Badal",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A Metrópoli Abierta report (Aug 2020) described a spike in daily thefts on Rambla de Badal including pickpocketing and at least one violent bar robbery, with elderly residents avoiding the street. This evidence is several years old and no more recent (2023-2025) corroborating report was found, so treat it as dated but not disproven — a moderate caution rather than a confirmed ongoing pattern.",
+    "sources": ["Metrópoli Abierta, 26 Aug 2020"]
+  },
+  {
+    "nom": "Sants",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Barcelona Sants railway/metro station, within this barri, is a well and repeatedly documented pickpocketing hotspot for property theft, flagged by idealista.com's 2025 neighbourhood safety guide, barcelonaurbana.com's pickpocket-zone guide, and multiple firsthand traveller reports of theft at the station. This is a theft-against-property risk tied to the transit hub's crowds, not evidence of violent crime or a no-go area. Citywide theft fell roughly 7-9% through 2024-2025, so this is location-specific, not worsening.",
+    "sources": ["idealista.com, Sept 2025", "barcelonaurbana.com, 2026", "Tripadvisor forum", "Metrópoli Abierta, Jan 2021"]
+  },
+  {
+    "nom": "les Corts",
+    "day": "green",
+    "night": "yellow",
+    "text": "Les Corts is generally described as one of Barcelona's calmest, most family-friendly and least-dense districts, so daytime presence poses no particular concern. Press coverage found repeated property-crime issues (car break-ins shared with neighbouring Sants-Badal) and persistent squatting problems on streets just off Camp Nou, where neighbours describe the occupants as violent, worsening on matchdays. No reports of violent street crime targeting tourists were found; night is a cautious yellow rather than red.",
+    "sources": ["Metropoli Abierta, June 2025", "Metropoli Abierta, Apr 2021 / May 2022"]
+  },
+  {
+    "nom": "la Maternitat i Sant Ramon",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "This barri (streets immediately around Camp Nou) shows the clearest press evidence of property-crime concern of the three Les Corts barris: Metropoli Abierta reported residents suffering roughly 200 robberies in a little over a year, with over 20 commercial robberies concentrated on specific streets. Squatted flats near Camp Nou were described by neighbours as housing 'violent' occupants, worsening on matchdays. No widespread violent-crime pattern against pedestrians or tourists was found.",
+    "sources": ["Metropoli Abierta - multiple 2022 articles"]
+  },
+  {
+    "nom": "Pedralbes",
+    "day": "green",
+    "night": "yellow",
+    "text": "Pedralbes is a wealthy, low-density, mostly residential area with no reports found of street crime or violence against pedestrians/tourists. Press coverage instead documents property crime targeting affluent homes and cars (71 home break-ins between Jan 2021-Feb 2022, a Feb 2025 wave of car vandalism/theft). These are property crimes affecting resident homes/vehicles rather than muggings, so night is a cautious yellow rather than red for a visiting traveller on foot.",
+    "sources": ["Metropoli Abierta, 2019/2022", "Dolça Catalunya, Feb 2025", "El Caso/El Nacional"]
+  },
+  {
+    "nom": "les Tres Torres",
+    "day": "green",
+    "night": "green",
+    "text": "Press coverage of this, Barcelona's wealthiest and most exclusive barri, focuses on residential burglary trends rather than street crime or violence against pedestrians/tourists: home break-ins here fell 59% in 2024 vs 2023, aided by drone patrols. No reports found of pickpocketing, muggings, scams, or no-go areas affecting visitors.",
+    "sources": ["es.ara.cat, 2026", "metropoliabierta.elespanol.com"]
+  },
+  {
+    "nom": "Sant Gervasi - la Bonanova",
+    "day": "green",
+    "night": "yellow",
+    "text": "No evidence of pickpocketing/scam risk to travellers. The one substantial press pattern is a 2023 squatting conflict at specific occupied buildings ('Kubo' and 'Ruïna'), where neighbours reported threats and violence from squatters, requiring a special Mossos operation. This was a localized, building-specific conflict that appears to have de-escalated after 2023 evictions.",
+    "sources": ["elindependiente.com, Nov 2023", "infobae.com, May 2023", "libremercado.com, May 2023"]
+  },
+  {
+    "nom": "el Putxet i el Farró",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Residents organized volunteer night patrols ('Serenos del Putxet') in 2021 after a wave of building break-ins, and Mossos data showed about 40 robberies targeting minors leaving schools in one year. An overnight shooting on Calle Ferran Puig in July 2026 (no injuries) adds to the picture, part of a citywide uptick in gun incidents. These are real but scattered incidents; daytime robberies were specifically linked to school-exit times.",
+    "sources": ["metropoliabierta.elespanol.com, 2021", "barnadiario.com, Jul 2026"]
+  },
+  {
+    "nom": "Sant Gervasi - Galvany",
+    "day": "green",
+    "night": "yellow",
+    "text": "No barri-specific press incidents were found for Galvany in targeted searches. It falls within the broader Sarrià-Sant Gervasi district that saw a documented pattern of home burglaries district-wide (two women arrested June 2026 for burgling up to 11 apartments across the district). Since that report doesn't specify Galvany itself, day stays green while night reflects the general district-level residential burglary trend.",
+    "sources": ["infobae.com, Jul 2026"]
+  },
+  {
+    "nom": "Vallvidrera, el Tibidabo i les Planes",
+    "day": "green",
+    "night": "yellow",
+    "text": "This is a low-density, largely forested hillside area; coverage centers on residential burglary of isolated houses. Metropoli Abierta (2022) reported 32 burglaries/attempted burglaries over 15 months in one area alone, mostly between 22:00-06:00, attributed to the hilly terrain and distance from police stations. No incidents were found involving the Tibidabo funicular, amusement park, or other tourist-facing spots.",
+    "sources": ["metropoliabierta.elespanol.com, Jun 2022"]
+  },
+  {
+    "nom": "Sarrià",
+    "day": "green",
+    "night": "yellow",
+    "text": "Overall trend is positive: crime in Sarrià hit a 4-year low in Jan-May 2026, even as burglaries rose citywide. Still, recent isolated incidents were reported in 2026 (two home burglaries, a smash-and-grab at a luxury handbag store, an attempted jewelry-store robbery), prompting increased patrols. Residents express persistent unease despite improving statistics, mostly around empty homes being targeted.",
+    "sources": ["cronicaglobal.elespanol.com, Jun 2026", "es.ara.cat, 2026"]
+  },
+  {
+    "nom": "Vallcarca i els Penitents",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Press coverage of Vallcarca focuses almost entirely on chronic squatting (okupació) and antisystem groups concentrated around long-occupied buildings (Ateneu Popular, occupied ~16 years, evicted April 2026; La Fusteria). Residents describe unauthorized parties, noise and clashes with these groups. This is a social-conflict/property-occupation story rather than documented street crime against travellers, but gives parts of the barri a rundown, tense feel reported consistently through 2024-2026.",
+    "sources": ["El Debate, Dec 2024", "Metròpoli Obert, Nov 2024/Feb 2025/Apr 2026"]
+  },
+  {
+    "nom": "el Coll",
+    "day": "green",
+    "night": "green",
+    "text": "Multiple targeted searches for crime, okupació, robberies or resident complaints specific to el Coll returned no substantive press coverage of safety incidents. Following this project's rule that absence of evidence defaults to green, el Coll is rated green for both day and night; it is a small, largely residential hillside barri with essentially no tourist footfall reported in press.",
+    "sources": ["Ajuntament de Barcelona el Coll page"]
+  },
+  {
+    "nom": "la Salut",
+    "day": "green",
+    "night": "yellow",
+    "text": "La Salut's specific press coverage centres on the Turó de la Rovira/Búnkers del Carmel viewpoint on its edge (shared with el Carmel), a popular sunset/tourist spot: Metròpoli Obert (Jul 2023) reported car break-ins and a 76-year-old resident beaten and robbed of his phone confronting tourists trying to enter the fenced-off bunkers at night, plus unauthorized late-night drinking gatherings that led the city to fence and close the area after 7:30pm. Daytime visits show no comparable incident reports.",
+    "sources": ["Metròpoli Obert, 15 Jul 2023"]
+  },
+  {
+    "nom": "la Vila de Gràcia",
+    "day": "green",
+    "night": "yellow",
+    "text": "By day, la Vila de Gràcia shows no specific incident reports. By night the picture is mixed: beteve.cat reported a wave of night-time break-ins at shops/bars along Carrer de la Providència, forcing extra patrols. Plaça del Sol/Plaça de la Vila have a long-documented chronic 'botellón'/noise problem, and Festa Major de Gràcia (mid-August) sees a very large annual police deployment targeting theft, disorder and (in past years) reported sexual-assault incidents linked to festival crowds.",
+    "sources": ["beteve.cat", "ARA.cat"]
+  },
+  {
+    "nom": "el Camp d'en Grassot i Gràcia Nova",
+    "day": "green",
+    "night": "yellow",
+    "text": "An older insurance-industry study placed Camp d'en Grassot below the city average for home break-ins. The most significant recent story is a 'narcopiso' at Pasaje d'Alió 21, occupied by a conflictive group through mid-to-late 2024, with residents' fear of theft and knives used in street fights; the block was formally evicted in November 2024, resolving the specific flashpoint. A separate, older (2019) alleged sexual assault near Passeig de Sant Joan was tied to Festa Major crowds passing through.",
+    "sources": ["beteve.cat", "Metròpoli Obert, Jul/Nov 2024", "totbarcelona.cat"]
+  },
+  {
+    "nom": "el Baix Guinardó",
+    "day": "green",
+    "night": "yellow",
+    "text": "Organised burglars were caught marking apartment doors and forcing building entrances to target empty flats on Carrer de les Camèlies, leading to 5 arrests (May 2022). A March 2021 article on Horta-Guinardó also flagged a rise in shop theft and violent robberies district-wide. No pattern of street crime or violence against visitors was found; the concern is residential burglary, not traveler-facing crime.",
+    "sources": ["Metròpoli Obert, 4 May 2022", "24 Mar 2021"]
+  },
+  {
+    "nom": "el Guinardó",
+    "day": "yellow",
+    "night": "red",
+    "text": "Local news shows a cluster of violent incidents in 2025-2026: a youth was stabbed during an attempted robbery (23 Oct 2025), three minors were arrested for stabbing an adolescent in a separate robbery attempt (12 Nov 2025), and a shooting led to four arrests (5 May 2023). Repeated container arsons have fuelled resident fear of a 'serial arsonist'. These incidents mostly involve local youths/residents rather than tourists, but the frequency of knife violence tied to theft attempts is a genuine night-time concern.",
+    "sources": ["barnadiario.com, Oct 2025-Aug 2026"]
+  },
+  {
+    "nom": "Can Baró",
+    "day": "green",
+    "night": "green",
+    "text": "The main documented issue is a wave of residential burglaries in tall apartment blocks, with one resident robbed five times in five years; thieves moved building-to-building via balconies. This is a property-crime problem affecting residents' homes, not street crime against visitors; no reports of assault, pickpocketing of pedestrians, or no-go areas were found.",
+    "sources": ["ara.cat, 22 Mar 2020"]
+  },
+  {
+    "nom": "el Carmel",
+    "day": "yellow",
+    "night": "red",
+    "text": "El Carmel has the strongest documented safety concerns in the district. Around the Bunkers del Carmel viewpoint, residents describe their street as 'the worst street in Barcelona,' citing a violent robbery by minors, an assault on a neighbour who confronted late-night revellers, vandalism, and squatters throwing large parties — prompting the city to install €1.4M anti-crowding fencing to close the viewpoint at 10pm. More recently: a mass brawl with a stabbing and 13 arrests at El Coll-La Teixonera metro station (5 Apr 2026), a suspect linked to ~16 break-ins arrested, and a kidnapping/attempted-murder arrest. Daytime risk is mainly pickpocketing/burglary; night-time, especially around the bunkers viewpoint and metro area, carries real risk of confrontational violence.",
+    "sources": ["Metròpoli Obert, 12 Nov 2022", "elindependiente.com, 9 Apr 2023", "barnadiario.com, Dec 2024-Apr 2026"]
+  },
+  {
+    "nom": "la Teixonera",
+    "day": "green",
+    "night": "yellow",
+    "text": "Named alongside El Carmel and Guinardó in a March 2021 article about a rise in thefts/robberies. On 5 April 2026 a mass brawl with a stabbing and 13 arrests occurred at the adjoining El Coll-La Teixonera metro station. On 8 April 2026 squatters were found illegally sleeping in a blocked emergency exit of a local market, with a concealed knife found. No daytime street-crime pattern specific to travelers was found, but recent night-time incidents around the metro/market warrant caution after dark.",
+    "sources": ["Metròpoli Obert, 24 Mar 2021", "barnadiario.com, 5 Apr 2026", "Metròpoli Abierta, 8 Apr 2026"]
+  },
+  {
+    "nom": "Sant Genís dels Agudells",
+    "day": "green",
+    "night": "red",
+    "text": "A 53-year-old local resident was fatally stabbed on 20 April 2026 at a local square while trying to break up a fight between other men at a neighbourhood gathering. Separately, in 2019 an illegally squatted former school building was linked by shopkeepers to systematic shoplifting and intimidation. The April 2026 homicide involved people known to each other rather than a stranger/traveler-targeted attack, but is a serious and very recent violent incident that raises night-time caution.",
+    "sources": ["en.ara.cat, Apr 2026", "elcaso.elnacional.cat, Apr 2026", "Metròpoli Obert, 21 May 2019"]
+  },
+  {
+    "nom": "Montbau",
+    "day": "green",
+    "night": "green",
+    "text": "Very little press coverage of crime was found for Montbau. The only identified incident is a May 2021 report of individuals detained by Mossos d'Esquadra for marking apartment doors as a precursor to burglary — an isolated property-crime report, not a violent or street-crime pattern.",
+    "sources": ["barnadiario.com, 23 May 2021"]
+  },
+  {
+    "nom": "la Vall d'Hebron",
+    "day": "green",
+    "night": "yellow",
+    "text": "The clearest reported concern is inside and around Vall d'Hebron Hospital, where staff reported a rise in thefts including mobile phones stolen from lift users; hospital management acknowledged 'sporadic thefts' amid a broader rise in reported Barcelona crime. No reports of street violence, muggings, or no-go areas were found for the residential parts of the barri.",
+    "sources": ["cronicaglobal.elespanol.com, 14 Aug 2023"]
+  },
+  {
+    "nom": "la Clota",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns found in press research. La Clota is repeatedly described in local press as one of Barcelona's smallest and quietest barris, known for its preserved historic houses and gardens; searches of local news outlets turned up no theft, robbery, assault, or okupa-related coverage.",
+    "sources": ["Metròpoli Obert, 24 Oct 2024"]
+  },
+  {
+    "nom": "la Font d'en Fargues",
+    "day": "green",
+    "night": "green",
+    "text": "No pattern of street crime, theft, or robbery targeting the public was found for this barri. The only crime-related item located was an isolated May 2021 arrest for abuse of two minors — a single case, not indicative of a general public/traveler safety risk. Coverage otherwise dominated by urban-renewal and heritage-restoration news.",
+    "sources": ["barnadiario.com, 7 May 2021"]
+  },
+  {
+    "nom": "Horta",
+    "day": "green",
+    "night": "yellow",
+    "text": "On 30 January 2026 a man was arrested after an attempted knife-point purse-snatching on the street. In July 2023 police dismantled a drug-dealing flat that supplied nearby beachgoers. A March 2021 article named local merchants among those reporting a post-pandemic rise in shoplifting. Together these point to a modest but real theft/robbery risk concentrated at night; no broader violent no-go-area pattern was found for the historic Horta core.",
+    "sources": ["barnadiario.com, 30 Jan 2026 / 12 Jul 2023", "Metròpoli Obert, 24 Mar 2021"]
+  },
+  {
+    "nom": "Vilapicina i la Torre Llobeta",
+    "day": "green",
+    "night": "green",
+    "text": "Press research found no pattern of concern for this barri. The only notable incident located was an isolated 2019 armed robbery at a supermarket — a single dated commercial robbery, not evidence of an ongoing neighbourhood risk.",
+    "sources": ["metropoliabierta.elespanol.com, Jan 2019"]
+  },
+  {
+    "nom": "Porta",
+    "day": "green",
+    "night": "yellow",
+    "text": "No violent-crime or theft coverage specific to Porta was found. Local press (June 2025) reports recurring 'botellón' drinking parties and incivism near Can Dragó on weekends, plus an ongoing 2025-2026 resident dispute over noise/disorder from a nightclub. These are nuisance/incivility issues rather than documented violent or property crime against visitors.",
+    "sources": ["metropoliabierta.elespanol.com, Jun 2025 / Jan 2025 / May 2026"]
+  },
+  {
+    "nom": "el Turó de la Peira",
+    "day": "green",
+    "night": "yellow",
+    "text": "A 2021 piece described social-coexistence friction (loud gatherings, alcohol, litter) linked to demographic change, not documented crime. The neighbourhood park has been closed at night during Sant Joan since a 2022 fight disrupted the celebration, and the city announced a €6M renewal (Jan 2025) targeting the area's feel. No robbery/assault pattern targeting the public was found; night-time park disorder is the concrete, sourced issue.",
+    "sources": ["metropoliabierta.elespanol.com, Jan 2021 / Jun 2022 / Jan 2025"]
+  },
+  {
+    "nom": "Can Peguera",
+    "day": "green",
+    "night": "yellow",
+    "text": "El Caso/Barna Diario (2023) reported a night-time shooting on Carrer de Riells — several shots fired at a residential façade, no injuries, shell casings recovered. Police linked it to suspected inter-clan tension in this historically Romani neighbourhood (territorial 'marking', not an attack on bystanders), one of five such shootings in the metro area within a week. No daytime incidents or tourist-targeted crime were found.",
+    "sources": ["elcaso.elnacional.cat, 2023", "barnadiario.com"]
+  },
+  {
+    "nom": "la Guineueta",
+    "day": "green",
+    "night": "yellow",
+    "text": "Metròpoli Obert (Oct 2022) documented recurring evening fights outside the Biblioteca Nou Barris, reportedly starting around 20:30 most days, with residents complaining of slow police response. This is a specific, sourced pattern of evening/night public disorder rather than crime against visitors; no daytime concerns were found.",
+    "sources": ["metropoliabierta.elespanol.com, Oct 2022"]
+  },
+  {
+    "nom": "Verdun",
+    "day": "green",
+    "night": "yellow",
+    "text": "Verdún was one of the barris named by residents in an October 2025 report advocating for a dedicated night police unit for Nou Barris, citing drug trafficking, illegal occupations, nightclub-related disorder and threats. In March 2026, a joint police/inspection operation sealed several unlicensed venues shared between Verdum and la Prosperitat, with arrests including drug-related and weapons seizures. No specific daytime theft/assault pattern was found.",
+    "sources": ["metropoliabierta.elespanol.com, Oct 2025 / Mar 2026"]
+  },
+  {
+    "nom": "la Prosperitat",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "La Prosperitat has two concrete, recent documented incidents: March 2026 Mossos arrested a repeat offender for two violent robberies at the same food shop using an iron bar; and the March 2026 multi-agency operation that sealed unlicensed venues shared with neighbouring Verdum, with drug-related arrests and weapons seized. The barri was also named in the October 2025 push for a Nou Barris night police unit citing drug trafficking and disorder.",
+    "sources": ["metropoliabierta.elespanol.com, Mar 2026 / Oct 2025"]
+  },
+  {
+    "nom": "Canyelles",
+    "day": "yellow",
+    "night": "red",
+    "text": "The most concrete violent incident found for Canyelles: on 31 Jan 2026, two 17-year-old boys were attacked with machetes and robbed of their scooters at a park above Canyelles metro station; one victim needed 15 staples. Witnesses said the group regularly prowls the park looking for victims — a documented recurring robbery pattern, not a one-off. Two suspects were arrested by Mossos on 16 Feb 2026. Canyelles was also named in the Oct 2025 report on drug-trafficking/occupation complaints behind the push for a district night patrol unit.",
+    "sources": ["metropoliabierta.elespanol.com, 1 Feb 2026 / 16 Feb 2026"]
+  },
+  {
+    "nom": "les Roquetes",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns found in press research for les Roquetes specifically, despite deliberate searching for narcopisos, Mossos operations, and drug/violence coverage. Coverage of this barri centres on a €5M urban-renewal project and routine neighbourhood-council meeting notes.",
+    "sources": ["metropoliabierta.elespanol.com, Feb 2025", "decidim.barcelona"]
+  },
+  {
+    "nom": "la Trinitat Nova",
+    "day": "green",
+    "night": "red",
+    "text": "A 2019 profile piece explicitly stated the barri's reputation for insecurity is 'not a safety issue' and driven by economic/social factors and poorly lit corners, not crime. However, Trinitat Nova metro station has a documented pattern of serious late-night violence against transit security staff: a March 2022 assault leaving a guard with a broken hand, and a 22 Nov 2025 attack by ~10 young people using pepper spray, bottles and an expandable baton that left a guard needing 12 stitches (attackers arrested Dec 2025, barred from the metro). This is a real, repeated night-time violence pattern at this specific station.",
+    "sources": ["metropoliabierta.elespanol.com, Apr 2019 / Mar 2022 / 23 Nov 2025", "elcaso.elnacional.cat, Dec 2025"]
+  },
+  {
+    "nom": "Torre Baró",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns found in press research specific to Torre Baró. Searches turned up only generic real-estate/transit pages and, most recently, coverage of an August 2026 Collserola wildfire that forced a precautionary evacuation — a fire-safety event unrelated to crime.",
+    "sources": ["infobae.com, 25 Aug 2026"]
+  },
+  {
+    "nom": "Ciutat Meridiana",
+    "day": "yellow",
+    "night": "red",
+    "text": "The most substantial documented crime coverage in this district. In April 2024, Mossos/Guardia Civil dismantled 'Los Demons de Ciutat Meridiana', a youth gang engaged in drug trafficking, violent robberies, fraud and bladed-weapon assaults; 11 arrested with firearms, machetes, axes and katanas seized. Separately, Metròpoli Obert (2021) documented an established 'squatting-for-payment' racket run by organized groups, and multiple outlets describe the barri as Barcelona's poorest, citing a historic housing-eviction crisis and social isolation. Several outlets are also explicit that no official barri-level crime statistics exist and that some 'no-go' framing is exaggerated.",
+    "sources": ["metropoliabierta.elespanol.com, 10 May 2024 / Mar 2021 / 2020", "eldebate.com, Apr 2025"]
+  },
+  {
+    "nom": "Vallbona",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns found in press research specific to Vallbona; it is Nou Barris' smallest and most sparsely built-up barri and did not surface in any crime, drug or robbery coverage during this research. The only tangential mention was a 2019 Trinitat Nova article noting poorly lit stretches 'near Vallbona' as a contributor to perceived (not actual) unease at night.",
+    "sources": ["metropoliabierta.elespanol.com, Apr 2019, tangential mention"]
+  },
+  {
+    "nom": "la Trinitat Vella",
+    "day": "green",
+    "night": "yellow",
+    "text": "No evidence of daytime tourist-targeted crime was found for this barri. Real press does show isolated violent incidents: a man arrested for stabbing another man in the street (Sept 2025) and a knife attack among family members inside a home (July 2026, domestic in nature). In 2020, residents formed vigilante street patrols after a spate of robberies/intimidation blamed on young people living in occupied housing, leading to a confrontation with police. These are genuine but sparse, mostly interpersonal/localized incidents.",
+    "sources": ["cronicaglobal.elespanol.com, Jun 2020", "metropoliabierta.elespanol.com, Sept 2025 / Jul 2026"]
+  },
+  {
+    "nom": "Baró de Viver",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns found in genuine press research. Search turned up only low-quality generic SEO sites with no sourced incidents, which do not count as genuine press coverage under this project's rules. Per project methodology, being a small, lower-income neighbourhood does not by itself justify a yellow/red rating without documented evidence.",
+    "sources": ["No qualifying genuine press coverage found"]
+  },
+  {
+    "nom": "el Bon Pastor",
+    "day": "green",
+    "night": "yellow",
+    "text": "Property-crime concern is documented: in late June 2024, around 50 residents confronted three suspected burglars targeting a home in the evening, and the confrontation turned violent with injuries on both sides. The barri's old low-rise housing blocks (mid-demolition) have also had a recurring squatting problem, with several evictions of occupied buildings/warehouses. This points to a genuine burglary/property-crime and okupa pattern rather than crime targeting tourists.",
+    "sources": ["Regional wire report, June 2024", "cronicaglobal.elespanol.com, Nov 2023", "elcaso.elnacional.cat, Oct 2021"]
+  },
+  {
+    "nom": "Sant Andreu",
+    "day": "green",
+    "night": "green",
+    "text": "No genuine press evidence of a crime pattern specific to this barri (the historic Sant Andreu core) was found. An August 2025 arrest of a serial robbery suspect took place 'in Sant Andreu' but the robberies themselves occurred in other districts — he was merely apprehended there. District-wide crime figures show falling crime through 2024-2026.",
+    "sources": ["totbarcelona.cat, Aug 2025", "metropoliabierta.elespanol.com, 2024-2026"]
+  },
+  {
+    "nom": "la Sagrera",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "This is the one barri in the group with a genuine, recurring, well-documented insecurity story spanning 2020-2026: residents have repeatedly protested over an informal shantytown/settlement near the future high-speed train station, with reports of home burglaries, an arson incident endangering homes and cars (Jan 2025), night-time altercations and assaults, and burnt vehicles. The city launched a 2026 paid patrol/surveillance program specifically to curb this. This is localized property crime and night-time altercations tied to specific streets/settlement areas, not systematic violence across the whole barri.",
+    "sources": ["metropoliabierta.elespanol.com, Nov 2020 / Jan 2025 / Mar 2026", "eldebate.com, Mar 2026", "catalunyapress.es, Mar 2026"]
+  },
+  {
+    "nom": "el Congrés i els Indians",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns found in press research. Coverage of this barri is dominated by urban development, local business, and neighbourhood-council news rather than crime. The only crime-adjacent story found was a minor 2021 item about burglars caught because they were too noisy — an isolated incident, not a pattern.",
+    "sources": ["metropoliabierta.elespanol.com, Feb 2021"]
+  },
+  {
+    "nom": "Navas",
+    "day": "green",
+    "night": "green",
+    "text": "No evidence of street crime, pickpocketing, or assault against residents or visitors was found. The one notable incident located was an armed robbery of a security cash van on Avinguda Meridiana (June 2023) — organized crime targeting a cash-transport company, not street-level crime affecting pedestrians or travellers, and no further incidents specific to Navas were found.",
+    "sources": ["alternativasindical.es, June 2023"]
+  },
+  {
+    "nom": "el Camp de l'Arpa del Clot",
+    "day": "green",
+    "night": "yellow",
+    "text": "No evidence of tourist-targeted crime, but in May 2026 Mossos arrested a 3-person gang responsible for 15 violent mobile-phone robberies committed here (and in adjoining Horta-Guinardó) between Nov 2025-Apr 2026, using electric scooters to spot victims and bladed weapons to intimidate them. No specific reports of theft against tourists or beach/park incidents were found for this residential barri.",
+    "sources": ["Barcelona al Dia, 11 May 2026"]
+  },
+  {
+    "nom": "el Clot",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A cluster of public-order incidents was reported in August 2026: a bar terrace was deliberately set on fire with gasoline (19 Aug 2026), preceded within the same week by a fire in Parc del Clot and a street brawl. Residents told press they had been requesting more police presence and CCTV cameras for months without response, and a city councillor called the situation 'very serious'. No specific pattern of tourist-targeted pickpocketing was found; the concern is local public-order/violence.",
+    "sources": ["Metrópoli Abierta, 19 Aug 2026"]
+  },
+  {
+    "nom": "el Parc i la Llacuna del Poblenou",
+    "day": "green",
+    "night": "yellow",
+    "text": "No reports of theft or violence against travellers were found for this barri specifically. The recurring issue in local press is nightlife disturbance around the 'Triangle Golfo' bar cluster near Rambla del Poblenou — noise, drunk tourists/students and private after-parties, with residents saying an anti-noise plan had 'failed'. One minor, non-violent theft was reported. No pickpocketing/robbery pattern or violent crime was documented.",
+    "sources": ["Metrópoli Abierta, Dec 2023"]
+  },
+  {
+    "nom": "la Vila Olímpica del Poblenou",
+    "day": "green",
+    "night": "red",
+    "text": "Daytime (beach/marina/promenade) has no particular documented concern. At night, the Port Olímpic nightlife strip has a recurring pattern of violent incidents in press coverage: a man was stabbed there around 21:30 on 8 May 2026 during a confrontation between two groups, echoing an earlier fatal stabbing case at Port Olímpic. Separately, the adjacent Carles I park was gated and closed at night in 2019 after police records showed recurring fights, drug consumption, robberies and other criminal offenses.",
+    "sources": ["Metrópoli Abierta, 9 May 2026 / 4 Aug 2019", "Telecinco/Republica.com"]
+  },
+  {
+    "nom": "el Poblenou",
+    "day": "green",
+    "night": "yellow",
+    "text": "No pattern of theft or violence against tourists was found for the core el Poblenou barri. Local coverage instead centers on squatting-related disorder: in November 2022 residents reported intimidation from an 'okupa mafia' subletting an illegally occupied building, and in October 2025 an occupied warehouse that had reportedly become the scene of constant beatings and street brawls among its occupants was evicted. These incidents involve occupants/local disputes rather than crime targeting visitors.",
+    "sources": ["COPE, 3 Nov 2022", "Crónica Global, 3 Nov 2022", "El Debate, 10 Oct 2025"]
+  },
+  {
+    "nom": "Diagonal Mar i el Front Marítim del Poblenou",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "This barri has a documented pattern of property crime against both residents and tourists. In April 2026 two men attempted to snatch a tourist family's bag at Plaça Willy Brandt (the Fòrum area); the attempt failed and was caught on dashcam. A June 2026 'ram-raid' smashed a luxury car into a jewellery store in the Diagonal Mar shopping centre at night. A city councillor documented building-entrance robberies, car break-ins, thefts and heavy drug-paraphernalia presence in Diagonal Mar park. No reports of violent crime against persons were found — the concern is theft/robbery of property, including opportunistic targeting of tourists.",
+    "sources": ["Metrópoli Abierta, 6 Apr 2026 / 15 Jun 2026 / 15 Oct 2024"]
+  },
+  {
+    "nom": "el Besòs i el Maresme",
+    "day": "yellow",
+    "night": "red",
+    "text": "This is the one Sant Martí barri repeatedly flagged in real press/analysis as a higher-crime area. An idealista.com analysis (Feb 2026), citing Mossos data and 2025 security studies, lists it among Barcelona's most-flagged neighbourhoods for higher-than-average thefts, robberies, vandalism and fights, and references a shooting investigated nearby in August 2025. Earlier coverage documents a masked gang using crowbars to force entry into homes over roughly two years, a dismantled stolen-phone resale ring, and residents publicly protesting insecurity since at least 2021, including concern about spillover from shootings in the adjacent La Mina estate.",
+    "sources": ["idealista.com, 9 Feb 2026", "Metrópoli Abierta, 25 Jan 2023 / 1 Oct 2021"]
+  },
+  {
+    "nom": "Provençals del Poblenou",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns for travellers found in press research. Local coverage is limited to non-violent, minor issues: a 24-hour supermarket break-in in the early morning (Feb 2022) and long-running resident complaints about an abandoned, rubbish-strewn vacant lot. No pickpocketing, robbery, or violent crime pattern was found.",
+    "sources": ["Metrópoli Abierta archive"]
+  },
+  {
+    "nom": "Sant Martí de Provençals",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concerns for travellers found in press research specific to this barri. Searches surfaced only isolated, generic incidents (a mobile-phone shop robbed overnight in 2022) with no sustained pattern of theft or violence tied to this neighbourhood.",
+    "sources": ["Metrópoli Abierta, 21 Mar 2022"]
+  },
+  {
+    "nom": "la Verneda i la Pau",
+    "day": "yellow",
+    "night": "red",
+    "text": "This barri has multi-year, sustained press coverage of both property and violent crime, plus organized resident protests. A shooting on Carrer Concilio de Trento (12 Sept 2023, no arrests) prompted a public hearing where residents described rising mobile-phone robberies. Earlier reporting (Feb 2021) described 'drug clans and squatting mafias' as major neighbourhood problems, and in January 2025 residents organized a demonstration against insecurity, citing theft targeting elderly people, a bar brawl, building occupations and drug dealing, with nightly protests continuing afterward.",
+    "sources": ["Metrópoli Abierta, 24 Sep 2023 / 5 Feb 2021 / 12 & 15 Jan 2025"]
+  }
+]
