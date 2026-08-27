@@ -55,6 +55,7 @@ CITY_LINKS = [
     {"label": "Oslo", "url": f"{SITE_URL}/oslo/"},
     {"label": "Munich", "url": f"{SITE_URL}/monaco-di-baviera/"},
     {"label": "Stockholm", "url": f"{SITE_URL}/stockholm/"},
+    {"label": "Barcelona", "url": f"{SITE_URL}/barcelona/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -570,6 +571,7 @@ def build_search_index(cities, city_cards):
         ("oslo", "oslo", "Oslo", True),
         ("munich", "monaco-di-baviera", "Munich", True),
         ("stockholm", "stockholm", "Stockholm", True),
+        ("barcelona", "barcelona", "Barcelona", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -631,6 +633,7 @@ def build_zone_boundaries(cities, city_cards):
         ("oslo", "oslo", "Oslo", True),
         ("munich", "monaco-di-baviera", "Munich", True),
         ("stockholm", "stockholm", "Stockholm", True),
+        ("barcelona", "barcelona", "Barcelona", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -736,6 +739,14 @@ ROMA_UI.update({
     "neigh_title": "Is {name} in Rome safe? | Wandroz",
 })
 
+BARCELONA_UI = dict(TORINO_UI)
+BARCELONA_UI.update({
+    "page_title": "Is my Barcelona neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Barcelona's 73 official barris (real official Ajuntament boundaries) with day/night safety levels based on current local press research.",
+    "page_h1": "Barcelona neighbourhoods",
+    "neigh_title": "Is {name} in Barcelona safe? | Wandroz",
+})
+
 TORINO_BANNER = (
     "Neighbourhood shapes are the City of Turin's real official boundaries (the \"Quartieri\" dataset). Safety "
     "levels, on the other hand, are a first manual pass — general knowledge, not a geolocated crime dataset — "
@@ -788,6 +799,25 @@ ROMA_NEIGH_NOTE = (
     "specific area (not blind guessing, not fabricated crime statistics), honestly disclosed as press-based "
     "rather than official data — no open geolocated crime dataset exists for Rome at neighbourhood level. See "
     "the methodology page for what was checked and how this differs from London's automated official-data pipeline."
+)
+
+BARCELONA_BANNER = (
+    "Neighbourhood shapes are the Ajuntament de Barcelona's real official administrative boundaries (73 official "
+    "\"barris\", grouped into 10 districts), reached via a direct GeoJSON conversion of the Ajuntament's own "
+    "shapefile dataset (the portal's own raw endpoint was bot-gated for automated access at build time, so a "
+    "mirror that republishes the same official geometry unmodified was used instead). Like Milan, Rome and Turin, "
+    "Barcelona's safety levels are Wandroz's Level 2 approach: genuine current local/national press research per "
+    "barri, honestly disclosed as press-based rather than official crime statistics — no open geolocated crime "
+    "dataset exists for Barcelona at neighbourhood level (checked against the Ajuntament's own open-data portal). "
+    "Where no specific news coverage was found for a barri, that is stated plainly rather than assumed either "
+    "way. See the methodology page for details and sources."
+)
+BARCELONA_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Barcelona: genuine current local/national press research for "
+    "this specific barri (not blind guessing, not fabricated crime statistics), honestly disclosed as "
+    "press-based rather than official data — no open geolocated crime dataset exists for Barcelona at "
+    "neighbourhood level. See the methodology page for what was checked and how this differs from London's "
+    "automated official-data pipeline."
 )
 
 BERLIN_UI = dict(TORINO_UI)
@@ -1107,6 +1137,10 @@ def main():
          "blurb": "All 11 official stadsdelsnämnder mapped, safety levels from Brå's real official 2025 crime and population statistics.",
          "lat": 59.3293, "lon": 18.0686, "color": "#4472ca",
          "zone_count": _zone_count("stockholm"), "data_tag": "Official police data"},
+        {"name": "Barcelona", "url": "barcelona/index.html", "flag": "🇪🇸",
+         "blurb": "All 73 official barris mapped, real council boundaries, safety ratings from genuine current local press research.",
+         "lat": 41.3874, "lon": 2.1686, "color": "#c94f7c",
+         "zone_count": _zone_count("barcelona"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1191,7 +1225,9 @@ def main():
     sitemap_urls.extend(munich_urls)
     stockholm_urls = render_illustrative_city("stockholm", "stockholm", STOCKHOLM_UI, EN_TONE_BADGE, STOCKHOLM_BANNER, STOCKHOLM_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(stockholm_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)})")
+    barcelona_urls = render_illustrative_city("barcelona", "barcelona", BARCELONA_UI, EN_TONE_BADGE, BARCELONA_BANNER, BARCELONA_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(barcelona_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
