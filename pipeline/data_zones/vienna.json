@@ -1,0 +1,1279 @@
+{
+  "label": "Vienna, Austria",
+  "center": [
+    48.2082,
+    16.3738
+  ],
+  "zoom": 12,
+  "dataNote": "Vienna: district shapes are the real official administrative boundaries of Vienna's 23 \"Bezirke\", sourced from Statistik Austria's own official boundary dataset (via a direct GeoJSON conversion of that dataset, since Vienna's own data.wien.gv.at endpoint was not directly reachable at build time). Unlike London/Berlin/Amsterdam/Prague/Oslo/Munich/Stockholm's official crime statistics, Austria has no open, geolocated Bezirk-level crime dataset (Statistik Austria and the Bundeskriminalamt only publish at Bundesland/state level; an internal police spatial-crime-analysis tool exists but is not public) — so, like Rome, Milan, Turin, Barcelona and Madrid, Vienna's safety levels are Wandroz's Level 2 approach: genuine current local/national press research per district, honestly disclosed as press-based rather than official crime statistics. Where no specific news coverage was found for a district, that is stated plainly rather than assumed either way. See the methodology page for details and sources.",
+  "zones": [
+    {
+      "name": "Innere Stadt (01. Bezirk)",
+      "slug": "innere-stadt",
+      "day": "yellow",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.200377853267504,
+            16.363164983803465
+          ],
+          [
+            48.200645502478245,
+            16.37243812909773
+          ],
+          [
+            48.212048550268115,
+            16.38212528640086
+          ],
+          [
+            48.21918853374676,
+            16.36737600282262
+          ],
+          [
+            48.21503691565174,
+            16.353737152842204
+          ],
+          [
+            48.207605815436416,
+            16.3531036596632
+          ],
+          [
+            48.20335556178468,
+            16.35876568322656
+          ],
+          [
+            48.200377853267504,
+            16.363164983803465
+          ]
+        ]
+      ],
+      "text": "Vienna's historic 1st district is not associated with violent crime in local press, but 2024 police statistics reported by meinbezirk.at showed pickpocketing rising from 1,160 to 1,290 cases and car break-ins nearly doubling (101 to 191), attributed to the district's dense concentration of tourists, transit hubs and nightlife. A 2025 city-wide ranking (oe24) put Innere Stadt fifth among Vienna's 23 districts by absolute crime count (10,130 offences in 2024), though this reflects extremely high foot traffic rather than a violent-crime pattern; residential burglaries in the district actually fell. City-wide surveys cited by vienna.at found 75% of Viennese feel safe, versus 87% in the rest of Austria, underlining a gap between statistics and perception. No specific no-go streets or serious/violent incidents tied to the Innere Stadt were found in current press; the concern documented is petty theft and scams around crowded tourist areas, relevant both day and night. Sources checked: meinbezirk.at, May 2025; oe24.at, April 2025; vienna.at, November 2025.",
+      "query": "Innere Stadt, Vienna, Austria"
+    },
+    {
+      "name": "Leopoldstadt (02. Bezirk)",
+      "slug": "leopoldstadt",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.212048550268115,
+            16.38212528640086
+          ],
+          [
+            48.18703753510934,
+            16.42832360798286
+          ],
+          [
+            48.16696870541775,
+            16.49429743446746
+          ],
+          [
+            48.20805473315226,
+            16.434174486064208
+          ],
+          [
+            48.237052160215605,
+            16.39536823597344
+          ],
+          [
+            48.225800730741234,
+            16.364683976653293
+          ],
+          [
+            48.21918853374676,
+            16.36737600282262
+          ],
+          [
+            48.212048550268115,
+            16.38212528640086
+          ]
+        ]
+      ],
+      "text": "Leopoldstadt's Praterstern square, a major rail/U-Bahn hub, is the most consistently documented safety hotspot among Vienna's districts. It has held a weapon- and alcohol-prohibition zone since February 2019, with police reporting 586 weapons (480 knives) confiscated there by early 2026, and it was one of the locations featured in ORF's November 2025 documentary on Vienna's 'forbidden zones,' alongside repeated meinbezirk.at reports of undercover drug-dealing arrests at the square (cannabis sales to plainclothes officers in 2022 and 2023). A 2025 district-count ranking (oe24) placed Leopoldstadt fourth in the city with 11,770 recorded offences. Outside the immediate Praterstern area, the rest of the sizeable district (Prater park, Karmelitermarkt, Augarten) is not flagged in press coverage with similar concerns, so the yellow/red rating here reflects Praterstern specifically rather than the whole district; day traffic through the hub sees occasional dealing arrests (yellow), while night is where press and police measures (weapon ban, knife seizures) most consistently describe a red-flagged trouble spot. Sources checked: ORF/OTS press release, November 2025; meinbezirk.at, January 2023; meinbezirk.at, July 2022; meinbezirk.at, March 2026; oe24.at, April 2025.",
+      "query": "Leopoldstadt, Vienna, Austria"
+    },
+    {
+      "name": "Landstraße (03. Bezirk)",
+      "slug": "landstrasse",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.17622171989469,
+            16.39267600676061
+          ],
+          [
+            48.184188153153094,
+            16.40128889784484
+          ],
+          [
+            48.18703753510934,
+            16.42832360798286
+          ],
+          [
+            48.212048550268115,
+            16.38212528640086
+          ],
+          [
+            48.200645502478245,
+            16.37243812909773
+          ],
+          [
+            48.18881172078526,
+            16.378218102650727
+          ],
+          [
+            48.17622171989469,
+            16.39267600676061
+          ]
+        ]
+      ],
+      "text": "No specific violent-crime hotspot or no-go area was identified for Landstraße in current press. A May 2025 meinbezirk.at report on the district's 2024 police statistics found the crime profile dominated by property offences — bicycle theft nearly doubled (479 to 626 cases) and car break-ins almost quadrupled (65 to 289) — alongside a rise in internet fraud (over 900 reports) and shoplifting (about 550 cases). More notably, reported sexual assaults nearly doubled from 23 to 42 cases year-on-year, which the district itself flagged without a specific location pattern. Police stressed these are reported-case counts, not proof of an actual crime increase. Given the documented rise in break-ins and reported assaults, a slightly more cautious night tone is warranted, but nothing in press points to organized street crime, drug scenes, or a defined trouble area within Landstraße. Sources checked: meinbezirk.at, May 2025.",
+      "query": "Landstraße, Vienna, Austria"
+    },
+    {
+      "name": "Wieden (04. Bezirk)",
+      "slug": "wieden",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.18452442136732,
+            16.366064581523357
+          ],
+          [
+            48.18881172078526,
+            16.378218102650727
+          ],
+          [
+            48.200645502478245,
+            16.37243812909773
+          ],
+          [
+            48.200377853267504,
+            16.363164983803465
+          ],
+          [
+            48.19740658388773,
+            16.356594178328507
+          ],
+          [
+            48.18452442136732,
+            16.366064581523357
+          ]
+        ]
+      ],
+      "text": "Wieden's Karlsplatz/Resselpark area — which sits on the district's border with Innere Stadt — was Vienna's best-known open drug scene from the 1980s through the 2000s, but a City of Vienna social-space monitoring report from December 2023 describes the area today as safe and 'harmonious,' with police enforcement and park redesigns since around 2010 having dispersed the drug scene; remaining issues are limited to occasional weekend noise and litter, not crime. District-wide 2024 police data reported by meinbezirk.at (May 2025) shows an ordinary property-crime profile — bicycle theft (269 cases) as the single most common offence, car break-ins nearly doubling (59 to 135), and a sharp rise in online fraud/phishing reports — with reported rapes ticking up slightly (6 to 7). No violent-crime hotspot, gang activity, or no-go reputation for Wieden was found in current press. Sources checked: FSW/Stadt Wien Team Focus report, December 2023; meinbezirk.at, May 2025; meinbezirk.at, 2011 (historical Karlsplatz context).",
+      "query": "Wieden, Vienna, Austria"
+    },
+    {
+      "name": "Margareten (05. Bezirk)",
+      "slug": "margareten",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.179913743479226,
+            16.346959470980305
+          ],
+          [
+            48.18452442136732,
+            16.366064581523357
+          ],
+          [
+            48.19740658388773,
+            16.356594178328507
+          ],
+          [
+            48.189160488653506,
+            16.338966838058703
+          ],
+          [
+            48.179913743479226,
+            16.346959470980305
+          ]
+        ]
+      ],
+      "text": "Margareten does not have a documented no-go reputation or a recurring crime hotspot in current press, and general district crime counts (2,049 offences in the first half of 2021, per a parliamentary crime-statistics response) place it in the middle of Vienna's 23 districts rather than among the worst. Reinprechtsdorfer Straße, near the district's western Gürtel-adjacent edge, was the site of two isolated but serious incidents covered by ORF Wien and meinbezirk.at: an armed robbery of an electronics shop (October 2022) and a fatal stabbing followed by a WEGA tactical-unit arrest (reported January/February 2023). In 2023, local politicians debated opening a third police station in that same western part of the district to address 'subjective' safety concerns, while opponents pointed to falling city-wide crime and street-racing on the Gürtel as the area's more persistent nuisance. These are isolated incidents rather than an ongoing pattern, so day is rated green, with night nudged to yellow to reflect the documented serious incidents on Reinprechtsdorfer Straße and Gürtel-edge nuisance activity. Sources checked: meinbezirk.at, February 2023; ORF Wien, October 2022; meinbezirk.at, April 2023.",
+      "query": "Margareten, Vienna, Austria"
+    },
+    {
+      "name": "Mariahilf (06. Bezirk)",
+      "slug": "mariahilf",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.189160488653506,
+            16.338966838058703
+          ],
+          [
+            48.19740658388773,
+            16.356594178328507
+          ],
+          [
+            48.200377853267504,
+            16.363164983803465
+          ],
+          [
+            48.20335556178468,
+            16.35876568322656
+          ],
+          [
+            48.196572007869946,
+            16.336475834812877
+          ],
+          [
+            48.18900327191591,
+            16.336288687561304
+          ],
+          [
+            48.189160488653506,
+            16.338966838058703
+          ]
+        ]
+      ],
+      "text": "District-level crime statistics reported by Bezirkszeitung (meinbezirk.at) in May 2025 show a near-doubling of car break-ins (60 to 100 cases) and a rise in reported rapes (8 to 10) between 2023 and 2024, alongside a drop in shoplifting. Mariahilfer Straße, Vienna's main shopping street, has seen recurring theft and pickpocketing reported by police in 2025, including a five-figure cash theft from a shopper in July 2025. Separately, Heute.at reported in February 2026 that Mariahilf ranks second among Vienna's 23 districts for drug-related offenses, identifying the U6 station at Gumpendorfer Straße as a recurring dealing hotspot where a passenger who refused to buy drugs was assaulted and robbed, and where drug use has pushed into building stairwells over winter. Daytime on the shopping street carries the ordinary pickpocket/theft risk of a busy retail strip; after dark, the Gumpendorfer Straße U6 area specifically has documented, repeated drug dealing and occasional violence. Sources checked: meinbezirk.at, 24 May 2025 – \"Mariahilf-Statistik: Mehr Vergewaltigungen, Autoeinbrüche fast verdoppelt\"; Heute.at, 15 Feb 2026 – \"Im Winter schlimmer – Mariahilf als Drogen-Hotspot\"; vienna.at, 23 Nov 2025 – \"Fahndung: Duo in Wien-Mariahilf soll fünfstellige Summe aus Tasche gestohlen haben\".",
+      "query": "Mariahilf, Vienna, Austria"
+    },
+    {
+      "name": "Neubau (07. Bezirk)",
+      "slug": "neubau",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.196572007869946,
+            16.336475834812877
+          ],
+          [
+            48.20335556178468,
+            16.35876568322656
+          ],
+          [
+            48.207605815436416,
+            16.3531036596632
+          ],
+          [
+            48.2092779811175,
+            16.33567147915875
+          ],
+          [
+            48.20488486077469,
+            16.334242917059946
+          ],
+          [
+            48.196572007869946,
+            16.336475834812877
+          ]
+        ]
+      ],
+      "text": "Neubau's own district crime statistics, published via meinbezirk.at in May 2025, show car break-ins rising from 29 to 62 cases and car vandalism from 98 to 142 between 2023 and 2024, while building-damage cases fell; the article notes residents broadly report feeling safe and describes no street-level violence, harassment, or theft directed at pedestrians or visitors. Further searches on drug dealing, assault, or nightlife-area disorder around Spittelberg and the district's bar streets turned up no specific safety-relevant press coverage in the last several years. On that basis, press research found no particular safety concern for Neubau by day or by night; the documented crime trend is mostly vehicle-related property crime rather than anything affecting a visitor on foot. Sources checked: meinbezirk.at, 5 May 2025 – \"Neubau: Kriminalitätsstatistik zeigt, wie sicher die Grätzln sind\".",
+      "query": "Neubau, Vienna, Austria"
+    },
+    {
+      "name": "Josefstadt (08. Bezirk)",
+      "slug": "josefstadt",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.2092779811175,
+            16.33567147915875
+          ],
+          [
+            48.207605815436416,
+            16.3531036596632
+          ],
+          [
+            48.21503691565174,
+            16.353737152842204
+          ],
+          [
+            48.21586921041474,
+            16.33810467534275
+          ],
+          [
+            48.2128420242543,
+            16.33648511228829
+          ],
+          [
+            48.2092779811175,
+            16.33567147915875
+          ]
+        ]
+      ],
+      "text": "Josefstadt is consistently reported as the least crime-affected of Vienna's 23 districts: an oe24.at article from April 2025, based on 2024 police-recorded crime figures, put Josefstadt at 3,058 reported offenses for the year, the lowest of any district and a small fraction of the 26,218 recorded in Favoriten. Targeted searches for incidents specifically tied to Josefstadt (robbery, assault, drug dealing, harassment) turned up nothing current and district-specific; one U-Bahn robbery reported in March 2025 involved suspects who exited the U6 at Josefstädter Straße station, but the offense itself was not clearly located within the district's boundaries, so it is not counted here. Press research found no particular safety concern for Josefstadt, day or night. Sources checked: oe24.at, 15 Apr 2025 – \"Das sind die gefährlichsten Bezirke Wiens – Favoriten schlägt alle\".",
+      "query": "Josefstadt, Vienna, Austria"
+    },
+    {
+      "name": "Alsergrund (09. Bezirk)",
+      "slug": "alsergrund",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.21586921041474,
+            16.33810467534275
+          ],
+          [
+            48.21503691565174,
+            16.353737152842204
+          ],
+          [
+            48.21918853374676,
+            16.36737600282262
+          ],
+          [
+            48.225800730741234,
+            16.364683976653293
+          ],
+          [
+            48.23700266218906,
+            16.358846251589924
+          ],
+          [
+            48.23268540818413,
+            16.350989610071032
+          ],
+          [
+            48.217940226421995,
+            16.33922033172304
+          ],
+          [
+            48.21586921041474,
+            16.33810467534275
+          ]
+        ]
+      ],
+      "text": "Alsergrund's district crime statistics, reported by meinbezirk.at in May 2025, show car break-ins nearly doubling from 38 to 69 cases between 2023 and 2024, while apartment burglaries stayed roughly stable around 105 cases and bicycle theft fell slightly. In August 2026 a Freedom Party (FPÖ) press statement circulated via the OTS wire cited police figures for around 20 business break-ins across Alsergrund and neighbouring Währing within a few weeks, attributing most to juvenile offenders — a party statement rather than neutral reporting, though based on cited police data. These are overwhelmingly property-crime trends (parked cars, businesses, apartments) rather than street-level offenses against pedestrians, and no documented incidents of violent or street crime affecting visitors turned up for Alsergrund. Daytime is unremarkable in press coverage; the documented rise in break-in activity is mainly relevant after dark and mostly to residents/car owners rather than a pedestrian-safety issue. Sources checked: meinbezirk.at, 13 May 2025 – \"Kriminalstatistik: Deutlich mehr Einbrüche am Alsergrund verzeichnet\"; OTS (ots.at), 18 Aug 2026 – FPÖ press release: \"20 Geschäftseinbrüche in Währing und Alsergrund – ehemals sichere Bezirke werden zum Kriminalitäts-Hotspot\".",
+      "query": "Alsergrund, Vienna, Austria"
+    },
+    {
+      "name": "Favoriten (10. Bezirk)",
+      "slug": "favoriten",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.12062596106924,
+            16.434246243952863
+          ],
+          [
+            48.13867258550262,
+            16.43344804359402
+          ],
+          [
+            48.1480354444509,
+            16.427189124050223
+          ],
+          [
+            48.17622171989469,
+            16.39267600676061
+          ],
+          [
+            48.18881172078526,
+            16.378218102650727
+          ],
+          [
+            48.18452442136732,
+            16.366064581523357
+          ],
+          [
+            48.179913743479226,
+            16.346959470980305
+          ],
+          [
+            48.159973743076364,
+            16.332868971180666
+          ],
+          [
+            48.153913709545726,
+            16.338382107811846
+          ],
+          [
+            48.14821862263684,
+            16.37434175538172
+          ],
+          [
+            48.12936740383815,
+            16.362860914712996
+          ],
+          [
+            48.129094678210095,
+            16.363113841196046
+          ],
+          [
+            48.12606494554488,
+            16.38556577135256
+          ],
+          [
+            48.118937473447055,
+            16.410046375913776
+          ],
+          [
+            48.123759871092815,
+            16.420130498661283
+          ],
+          [
+            48.12062596106924,
+            16.434246243952863
+          ]
+        ]
+      ],
+      "text": "Favoriten is consistently identified in press coverage as Vienna's highest-crime district by volume: an oe24.at analysis of 2024 police data (April 2025) recorded 26,218 offenses there, more than any other district and well over the 15,114 in second-placed Floridsdorf. Reporting focuses heavily on two adjoining squares, Reumannplatz and Keplerplatz, where a police 'Schutzzone' (protection zone allowing preventive removal of suspected drug offenders) has been in force since October 2022 and remains actively enforced, with a drug-deal arrest there reported as recently as April 2026. Falter (April 2024) and vienna.at (March 2024) documented a spate of knife attacks and stabbings around Reumannplatz, including a soldier stabbed while intervening in a dispute, plus open drug dealing and group tensions a local vendor described as escalating easily into violence; a further Falter report (August 2025) revisited Keplerplatz as an ongoing drug-dealing flashpoint. Away from this specific corridor, the wider district (residential streets, the Favoritenstraße shopping strip) is not singled out in press coverage for particular danger, so daytime risk district-wide reflects the general elevated crime-volume backdrop rather than a specific threat; after dark, the Reumannplatz/Keplerplatz corridor specifically carries a well-documented, repeated pattern of drug dealing and occasional knife violence. Sources checked: oe24.at, 15 Apr 2025 – \"Das sind die gefährlichsten Bezirke Wiens – Favoriten schlägt alle\"; Falter, 5 Apr 2024 – \"Der Reumannplatz ist zum Unort geworden\"; vienna.at, 24 Mar 2024 – \"Messerattacken, Drogen: Nächtlicher Lokalaugenschein am Wiener Reumannplatz\"; meinbezirk.at, 5 Apr 2026 – \"Käufer und Verkäufer geschnappt: Drogen-Deal am Reumannplatz von Polizei beobachtet\"; vienna.at, 9 Nov 2022 – \"Drogenszene: Schutzzone am Wiener Keplerplatz ab Samstag\"; Falter, 5 Aug 2025 – \"Brennpunkt Wien: Keplerplatz, Drogen, Migration, Polizei, FPÖ\".",
+      "query": "Favoriten, Vienna, Austria"
+    },
+    {
+      "name": "Simmering (11. Bezirk)",
+      "slug": "simmering",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.13867258550262,
+            16.43344804359402
+          ],
+          [
+            48.139603986968346,
+            16.450602077089048
+          ],
+          [
+            48.15725530904309,
+            16.4757103554131
+          ],
+          [
+            48.1596215500773,
+            16.511013602174128
+          ],
+          [
+            48.16696870541775,
+            16.49429743446746
+          ],
+          [
+            48.18703753510934,
+            16.42832360798286
+          ],
+          [
+            48.184188153153094,
+            16.40128889784484
+          ],
+          [
+            48.17622171989469,
+            16.39267600676061
+          ],
+          [
+            48.1480354444509,
+            16.427189124050223
+          ],
+          [
+            48.13867258550262,
+            16.43344804359402
+          ]
+        ]
+      ],
+      "text": "Vienna's 11th district shows up in the press mainly through isolated, resolved police actions rather than a broader unsafe reputation. In June 2025, four masked men pepper-sprayed and robbed a man in an underground car park; arrests followed between November 2025 and early 2026. In August 2026, the police street-crime task force broke up a drug-dealing operation, seizing roughly 13kg of marijuana, 61g of cocaine, a loaded pistol and cash, with five arrests. An earlier case from January 2023 involved three men caught trying to break into a residential building on Feldkellergasse. No district-wide 'no-go' warning appears in the coverage reviewed, and daytime activity (e.g. near the Zentralfriedhof or Gasometer) raised no concern; the armed robbery and drug bust suggest mild extra caution after dark. Sources checked: vienna.at, \"Vierte Festnahme nach Raub in Wien-Simmering\" (reporting on the June 2025 robbery and Nov 2025–Jan 2026 arrests); meinbezirk.at, \"Drogenring zerschlagen, 13 Kilo Suchtgift, Waffe sichergestellt\" (Simmering, 26–28 Aug 2026); meinbezirk.at, \"Gleich dreimal schlugen Räuber in Wien zu – Festnahmen\" (18 Jan 2023).",
+      "query": "Simmering, Vienna, Austria"
+    },
+    {
+      "name": "Meidling (12. Bezirk)",
+      "slug": "meidling",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.159973743076364,
+            16.332868971180666
+          ],
+          [
+            48.179913743479226,
+            16.346959470980305
+          ],
+          [
+            48.189160488653506,
+            16.338966838058703
+          ],
+          [
+            48.18900327191591,
+            16.336288687561304
+          ],
+          [
+            48.18651014352038,
+            16.317364555237564
+          ],
+          [
+            48.17118012156427,
+            16.305266692015703
+          ],
+          [
+            48.162996520563695,
+            16.289044072582637
+          ],
+          [
+            48.15609634147865,
+            16.327808783570653
+          ],
+          [
+            48.159973743076364,
+            16.332868971180666
+          ]
+        ]
+      ],
+      "text": "Meidling's press coverage centers heavily on Bahnhof Meidling and its surrounding parks, which multiple 2024–2025 reports describe as a genuine trouble spot. In July 2024 rival youth groups fought with knives, hammers and knuckle-dusters near the station, injuring four people; in January 2025 another violent clash left a bloodied man fleeing into a nearby building, with eight of 25 identified suspects arrested. An April 2025 Heute.at report described open drug use visible on the station steps by day and residents saying they avoid the area after dark, while a local EU parliamentarian said she no longer walks alone from evening events to her car. City crime statistics cited in that reporting put Meidling slightly above Vienna's average (about 68 offences per 10,000 residents) but well below inner districts like Neubau or Mariahilf, and separately, car break-ins in the district more than doubled between 2023 and 2024 per police figures reported in May 2025. The concern is concentrated at and around the train station, worse after dark, rather than spread across the whole district. Sources checked: heute.at, \"'Gehe nicht mehr allein im Dunkeln' – Hotspot Meidling\" (2025); heute.at, \"'Überall war Blut am Boden!' – Anrainer in Angst\" (11 Apr 2025); meinbezirk.at, \"Autoeinbrüche in Meidling im Vorjahr mehr als verdoppelt\" (7 May 2025).",
+      "query": "Meidling, Vienna, Austria"
+    },
+    {
+      "name": "Hietzing (13. Bezirk)",
+      "slug": "hietzing",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.162996520563695,
+            16.289044072582637
+          ],
+          [
+            48.17118012156427,
+            16.305266692015703
+          ],
+          [
+            48.18651014352038,
+            16.317364555237564
+          ],
+          [
+            48.18787313462468,
+            16.311432636107966
+          ],
+          [
+            48.19461747992664,
+            16.26254869719196
+          ],
+          [
+            48.20477757986063,
+            16.23289217229616
+          ],
+          [
+            48.20303439441751,
+            16.20461564491174
+          ],
+          [
+            48.18685956072124,
+            16.197036539291
+          ],
+          [
+            48.17172505807664,
+            16.179122869495856
+          ],
+          [
+            48.16704939705835,
+            16.190954190587004
+          ],
+          [
+            48.155241722116926,
+            16.195198488648696
+          ],
+          [
+            48.15387843224085,
+            16.22042735257546
+          ],
+          [
+            48.15015809902418,
+            16.22728658886389
+          ],
+          [
+            48.16071498031599,
+            16.253665459648154
+          ],
+          [
+            48.156559033066316,
+            16.27027001543793
+          ],
+          [
+            48.162996520563695,
+            16.289044072582637
+          ]
+        ]
+      ],
+      "text": "Hietzing is consistently one of Vienna's lowest-crime districts in the press research reviewed. A 2020 vienna.at report on drug-crime hotspots by district ranked Hietzing lowest of all, with 125 cases, and a 2021 heute.at analysis of police-reported offences again placed it among the three safest districts (1,323 offences in H1 2021, versus over 8,000 in Favoriten). The only notable 2026 item found was an isolated domestic incident in June 2026, in which a man threatened his sister with an airsoft pistol and police later found several firearms at his home; this reads as a private/domestic matter (he turned himself in voluntarily) rather than a public street-safety concern. No press coverage was found describing pickpocketing, scams, or safety problems around the Schönbrunn Palace tourist area specifically. Based on available press, no particular safety concern emerges for this district, day or night. Sources checked: vienna.at, \"Das sind die Drogen-Hotspots Wiens\" (13 Jul 2020); heute.at, \"Enthüllt: Das sind Wiens Hotspots der Kriminalität\" (7 Dec 2021); vienna.at, \"Schwester bedroht: Polizei findet mehrere Schusswaffen in Wien-Hietzing\" (26 Jun 2026).",
+      "query": "Hietzing, Vienna, Austria"
+    },
+    {
+      "name": "Penzing (14. Bezirk)",
+      "slug": "penzing",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.20303439441751,
+            16.20461564491174
+          ],
+          [
+            48.20477757986063,
+            16.23289217229616
+          ],
+          [
+            48.19461747992664,
+            16.26254869719196
+          ],
+          [
+            48.18787313462468,
+            16.311432636107966
+          ],
+          [
+            48.20356168512081,
+            16.30791912399246
+          ],
+          [
+            48.20828939693882,
+            16.283111448231352
+          ],
+          [
+            48.21468462448445,
+            16.282512542753633
+          ],
+          [
+            48.222143847696614,
+            16.25085257467259
+          ],
+          [
+            48.24057601187154,
+            16.253842706615437
+          ],
+          [
+            48.239011958901656,
+            16.238761362149564
+          ],
+          [
+            48.25097255934359,
+            16.2310602053596
+          ],
+          [
+            48.264791213360155,
+            16.205295593469874
+          ],
+          [
+            48.250611784028436,
+            16.1935404286642
+          ],
+          [
+            48.22390134272117,
+            16.18239186839708
+          ],
+          [
+            48.22403570803854,
+            16.193321524415694
+          ],
+          [
+            48.20303439441751,
+            16.20461564491174
+          ]
+        ]
+      ],
+      "text": "No significant safety concerns specific to Penzing turned up in the press research. A January 2022 meinbezirk.at interview with a long-serving local police inspector described the district's main issues as neighbourhood disputes and occasional disturbances from homeless or alcohol-dependent people near Penzing station and parks, with phone scammers impersonating police officers to defraud elderly residents flagged as the 'biggest problem' locally — a scam not particularly relevant to travellers. A 2020 vienna.at overview of drug-crime hotspots by district mentioned a past cocaine seizure in Penzing but did not list it among the city's notable hotspots. No reports of street robbery, violent-crime clusters, or a no-go reputation were found for the district. The honest assessment from the available press is no particular safety concern, by day or night. Sources checked: meinbezirk.at, \"Der 14. Bezirk ist sein Revier\" (11 Jan 2022); vienna.at, \"Das sind die Drogen-Hotspots Wiens\" (13 Jul 2020).",
+      "query": "Penzing, Vienna, Austria"
+    },
+    {
+      "name": "Rudolfsheim-Fünfhaus (15. Bezirk)",
+      "slug": "rudolfsheim-fuenfhaus",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.18651014352038,
+            16.317364555237564
+          ],
+          [
+            48.18900327191591,
+            16.336288687561304
+          ],
+          [
+            48.196572007869946,
+            16.336475834812877
+          ],
+          [
+            48.20488486077469,
+            16.334242917059946
+          ],
+          [
+            48.20356168512081,
+            16.30791912399246
+          ],
+          [
+            48.18787313462468,
+            16.311432636107966
+          ],
+          [
+            48.18651014352038,
+            16.317364555237564
+          ]
+        ]
+      ],
+      "text": "Rudolfsheim-Fünfhaus, and specifically the area around Westbahnhof station and the Gürtel, has substantial and recent documented press coverage of an open drug scene. vienna.at (24 Nov 2025) and heute.at (23 Nov 2025) both reported a growing drug scene at Westbahnhof with users injecting in building entrances, rising dealing, property damage and residents feeling 'left alone' by authorities, explicitly locating the problem in the 15th district. The city responded with a new alcohol-prohibition zone around Westbahnhof and a protected zone at Fritz-Imhoff-Park, effective 8 May 2026, and police drug busts continued into 2026, including a July 2026 raid on Mariahilfer Straße (within the district) seizing 500g of cocaine and €15,000 in cash. A heute.at report from 9 August 2026 cites district-level statistics showing drug offences in Rudolfsheim-Fünfhaus rose from 435 to 697 cases year-on-year (2024 to 2025), one of the city's largest increases alongside neighbouring Mariahilf. This is a well-documented, ongoing pattern rather than a single incident, concentrated around the Westbahnhof/Gürtel corridor and worse after dark. Sources checked: vienna.at, \"Drogenszene am Wiener Westbahnhof wächst: Anrainer fühlen sich allein gelassen\" (24 Nov 2025); heute.at, \"Spritzen, Vandalismus – Drogen-Hotspot Westbahnhof wird zum Problem\" (23 Nov 2025); meinbezirk.at, \"Sicherheitspaket: Alkoholverbotszone am Westbahnhof, Fritz-Imhoff-Park wird Schutzzone\" (effective 8 May 2026); heute.at, \"Drogen-Hotspot in Wien – Suchtmitteldelikte steigen\" (9 Aug 2026); meinbezirk.at, \"Wiener Polizei hebt Dealerduo und halbes Kilo Kokain aus\" (11 Jul 2026).",
+      "query": "Rudolfsheim-Fünfhaus, Vienna, Austria"
+    },
+    {
+      "name": "Ottakring (16. Bezirk)",
+      "slug": "ottakring",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.222143847696614,
+            16.25085257467259
+          ],
+          [
+            48.21468462448445,
+            16.282512542753633
+          ],
+          [
+            48.20828939693882,
+            16.283111448231352
+          ],
+          [
+            48.20356168512081,
+            16.30791912399246
+          ],
+          [
+            48.20488486077469,
+            16.334242917059946
+          ],
+          [
+            48.2092779811175,
+            16.33567147915875
+          ],
+          [
+            48.2128420242543,
+            16.33648511228829
+          ],
+          [
+            48.221217119476734,
+            16.31813390844274
+          ],
+          [
+            48.227731095076905,
+            16.27342993191296
+          ],
+          [
+            48.222143847696614,
+            16.25085257467259
+          ]
+        ]
+      ],
+      "text": "The Yppenplatz/Brunnenmarkt area of Ottakring has repeated, well-documented safety issues: after a series of violent incidents (including a 2024 shooting that left two people seriously injured), Vienna's police directorate imposed a weapons-ban zone and a separate child-protection zone around Yppenplatz in August 2025, both since extended into 2026, with 17 knives confiscated under the ban as of early 2026. A fatal shooting took place in a bar near Yppenplatz in autumn 2025 (trial ongoing as of August 2026). District FPÖ officials cite a 40% year-on-year rise in drug-related charges in parts of Ottakring (868 cases in 2023 to 1,215 in 2024), a politically-framed figure but consistent with police data. By day, the market itself (the actual Brunnenmarkt) functions as an ordinary lively local market with no specific daytime incidents found, so the concern is concentrated after dark and around the square's edges rather than the market stalls themselves. Sources checked: Stadt Wien, wien.gv.at official notice on the Yppenplatz Schutzzone/Waffenverbotszone (ordinance dated 21 July 2026); meinbezirk.at, \"Seit August: Waffenverbotszone am Yppenplatz war 2025 wichtigstes Thema\" (4 January 2026); meinbezirk.at, \"Bluttat in Ottakring: Zwei Männer bei Prozess um tödliche Schießerei enthaftet\" (24 August 2026); Heute.at, \"Drogen, Gewalt & Obdachlose – Hotspots immer schlimmer!\" (16 February 2025); OTS/FPÖ press release, \"Ottakring wird immer mehr zum Drogenumschlagplatz\" (10 July 2025).",
+      "query": "Ottakring, Vienna, Austria"
+    },
+    {
+      "name": "Hernals (17. Bezirk)",
+      "slug": "hernals",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.21586921041474,
+            16.33810467534275
+          ],
+          [
+            48.217940226421995,
+            16.33922033172304
+          ],
+          [
+            48.223540151744295,
+            16.333937004333023
+          ],
+          [
+            48.23591703709915,
+            16.299532374634378
+          ],
+          [
+            48.25167121738468,
+            16.28563386933175
+          ],
+          [
+            48.25901822523876,
+            16.282784673675316
+          ],
+          [
+            48.256882904137726,
+            16.269487217059133
+          ],
+          [
+            48.24057601187154,
+            16.253842706615437
+          ],
+          [
+            48.222143847696614,
+            16.25085257467259
+          ],
+          [
+            48.227731095076905,
+            16.27342993191296
+          ],
+          [
+            48.221217119476734,
+            16.31813390844274
+          ],
+          [
+            48.2128420242543,
+            16.33648511228829
+          ],
+          [
+            48.21586921041474,
+            16.33810467534275
+          ]
+        ]
+      ],
+      "text": "No press reports of violent street crime, drug-dealing hotspots or tourist-targeted crime were found for Hernals. The one recurring theme in local press is property crime affecting residents' cars and bicycles: meinbezirk.at's review of 2024 police statistics found bike thefts up from 144 to 181 cases, car break-ins up from 61 to 87, and damage to parked cars up from 172 to 215, alongside 3 homicides and 11 sexual assaults recorded district-wide for the year — figures that are largely about residential/vehicle property crime rather than incidents affecting pedestrians or visitors. Hernals is also described in local media as an up-and-coming ('Trendbezirk') residential area. On balance, honest press research turned up nothing indicating a particular safety concern for a traveller on foot, day or night. Sources checked: meinbezirk.at, \"Kriminaljahr 2024: Autos in Hernals besonders oft Ziel von Verbrechern\" (13 May 2025); wien.gv.at, Bezirk Hernals Sicherheit page.",
+      "query": "Hernals, Vienna, Austria"
+    },
+    {
+      "name": "Währing (18. Bezirk)",
+      "slug": "waehring",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.217940226421995,
+            16.33922033172304
+          ],
+          [
+            48.23268540818413,
+            16.350989610071032
+          ],
+          [
+            48.234547188133185,
+            16.33501332109175
+          ],
+          [
+            48.25167121738468,
+            16.28563386933175
+          ],
+          [
+            48.23591703709915,
+            16.299532374634378
+          ],
+          [
+            48.223540151744295,
+            16.333937004333023
+          ],
+          [
+            48.217940226421995,
+            16.33922033172304
+          ]
+        ]
+      ],
+      "text": "Währing is a quiet, largely residential district and press research found no pattern of street crime, drug dealing or tourist-targeted offences. Local crime statistics for 2021–2022 showed a 9.7% rise in recorded offences (2,513 to 2,758) and a 42.2% case-clearance rate — an increase, but notably smaller than Vienna's citywide 16.7% rise over the same period, meaning Währing's crime grew more slowly than the city average. The one serious documented incident is a single armed robbery at a Dorotheum branch on Währinger Straße on 7 August 2026, in which a masked, reportedly armed suspect fled empty-handed after a large police response; no injuries were reported and this reads as an isolated event rather than an ongoing pattern. No other safety-relevant incidents for pedestrians or visitors, day or night, turned up in the search. Sources checked: meinbezirk.at, \"2021 und 2022 im Vergleich: Währing ist ein Stück krimineller geworden\" (3 April 2023); meinbezirk.at, \"Großeinsatz in Währing: Täter lässt Beute bei Dorotheum-Überfall zurück\" (7 August 2026).",
+      "query": "Währing, Vienna, Austria"
+    },
+    {
+      "name": "Döbling (19. Bezirk)",
+      "slug": "doebling",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.25167121738468,
+            16.28563386933175
+          ],
+          [
+            48.234547188133185,
+            16.33501332109175
+          ],
+          [
+            48.23268540818413,
+            16.350989610071032
+          ],
+          [
+            48.23700266218906,
+            16.358846251589924
+          ],
+          [
+            48.25084288220289,
+            16.36883372123199
+          ],
+          [
+            48.26341786956094,
+            16.369613744122102
+          ],
+          [
+            48.284042653322786,
+            16.353184316827658
+          ],
+          [
+            48.28580864296009,
+            16.341700947175422
+          ],
+          [
+            48.27467785173231,
+            16.311804873544666
+          ],
+          [
+            48.271205267703756,
+            16.28624185195569
+          ],
+          [
+            48.25901822523876,
+            16.282784673675316
+          ],
+          [
+            48.25167121738468,
+            16.28563386933175
+          ]
+        ]
+      ],
+      "text": "Döbling is Vienna's affluent northern district (including Grinzing and Heiligenstadt); a targeted search for tourist- or Heuriger-related crime around Grinzing/Heiligenstadt returned nothing, and general street crime in the district actually declined in the latest reporting period aside from car break-ins (75 to 96 cases) and bicycle theft (94 to 110), per the 2024 district crime statistics. The one genuine concern in recent press is a sharp rise in youth-related robbery: police recorded a 222% increase in robbery cases over a six-month comparison (9 to 29), concentrated in March–April 2026 and attributed to a small group of repeat offenders, several under age 14 and thus below the age of criminal responsibility, prompting the district chief to meet Austria's interior minister in June 2026. Cybercrime targeting IT systems/data also rose sharply (330 to 476 cases, 2023–2024), but that is a remote-fraud risk rather than a street-safety one. Given the youth-robbery spike is a real, recent, specific pattern, a modest night-time caution is warranted while daytime remains without documented concern. Sources checked: meinbezirk.at, \"Kriminalstatistik des Bezirks: Cybercrime nimmt in Döbling immer mehr zu\" (7 May 2025); Heute.at, \"Jugendkriminalität in Döbling – Plus 222% bei Raub\" (8 June 2026); OTS/FPÖ press release (17 June 2026).",
+      "query": "Döbling, Vienna, Austria"
+    },
+    {
+      "name": "Brigittenau (20. Bezirk)",
+      "slug": "brigittenau",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.225800730741234,
+            16.364683976653293
+          ],
+          [
+            48.237052160215605,
+            16.39536823597344
+          ],
+          [
+            48.26341786956094,
+            16.369613744122102
+          ],
+          [
+            48.25084288220289,
+            16.36883372123199
+          ],
+          [
+            48.23700266218906,
+            16.358846251589924
+          ],
+          [
+            48.225800730741234,
+            16.364683976653293
+          ]
+        ]
+      ],
+      "text": "Local press repeatedly flags the Handelskai riverside strip and Maria-Restituta-Platz for youth conflicts, fights and vandalism, with police confirming property damage (mostly graffiti) makes up the largest share of reported offences there, and describing incidents as isolated rather than a rising trend (meinbezirk.at, Feb 2024). A 22-year-old was stabbed in the thigh during a dispute on Handelskai in May 2024 (meinbezirk.at). More seriously, in July 2024 a violent feud between two loosely organised gangs escalated into stabbings and armed confrontations concentrated in Brigittenau, at Anton-Kummerer-Park, the U6 Jägerstraße station and Hannovermarkt, prompting large police operations with hundreds of ID checks and weapons seizures (meinbezirk.at, Jul 2024). In late 2025 police also raided a 'bunker apartment' in the district, seizing over 20 kg of drugs (cannabis, cocaine, ketamine) plus a firearm (meinbezirk.at, Nov 2025). Daytime foot patrols and video surveillance have since been stepped up around Handelskai. Sources checked: meinbezirk.at, \"Prügel, Messerattacken & Co.: Wie sicher ist die Lage am Wiener Handelskai?\" (13 Feb 2024); meinbezirk.at, \"22-Jähriger bei Messerattacke am Handelskai verletzt\" (3 May 2024); meinbezirk.at, \"Brutale Fehde: So geht die Wiener Polizei gegen den Bandenkrieg vor\" (Jul 2024); meinbezirk.at, \"Brigittenau: Mehr als 20 Kilogramm Drogen in Bunkerwohnung gefunden\" (3 Nov 2025).",
+      "query": "Brigittenau, Vienna, Austria"
+    },
+    {
+      "name": "Floridsdorf (21. Bezirk)",
+      "slug": "floridsdorf",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.237052160215605,
+            16.39536823597344
+          ],
+          [
+            48.24599757258164,
+            16.410437527027064
+          ],
+          [
+            48.24740530472904,
+            16.42511327486127
+          ],
+          [
+            48.262323274845144,
+            16.434173493863366
+          ],
+          [
+            48.2636791387937,
+            16.45011035756392
+          ],
+          [
+            48.276008516001454,
+            16.471936075452582
+          ],
+          [
+            48.29261407533503,
+            16.437630624152003
+          ],
+          [
+            48.31750416651291,
+            16.434987484050755
+          ],
+          [
+            48.32107384619422,
+            16.425226930412876
+          ],
+          [
+            48.323256351480374,
+            16.39239950424916
+          ],
+          [
+            48.31779980502046,
+            16.378914974312043
+          ],
+          [
+            48.30787766719905,
+            16.38106502478186
+          ],
+          [
+            48.28299603442784,
+            16.360411753940745
+          ],
+          [
+            48.284042653322786,
+            16.353184316827658
+          ],
+          [
+            48.26341786956094,
+            16.369613744122102
+          ],
+          [
+            48.237052160215605,
+            16.39536823597344
+          ]
+        ]
+      ],
+      "text": "Floridsdorf's press coverage clusters heavily around the area of Floridsdorf railway station and the adjacent Wasserpark. In May 2025, two youths fired shots (from what turned out to be a blank-firing pistol) while chasing someone through the skatepark near the station, drawing a large WEGA response (ORF, 31 May 2025). In August 2025, a 33-year-old man was stabbed twice with life-threatening injuries near the Wasserpark in a dispute among people from the homeless community; a 19-year-old suspect was arrested days later (meinbezirk.at, Aug 2025). In November 2025 a 27-year-old was shot in both legs on Sandrockgasse by a 52-year-old acquaintance with legally owned firearms (ORF, 24 Nov 2025). Street-level drug dealing near the station continues to be an enforcement focus, with a task-force operation in December 2025 netting a 17-year-old dealer, three buyers, cash and roughly 400g of cocaine (vienna.at, Dec 2025). Away from this station/park cluster, no comparable pattern of incidents was found. Sources checked: wien.ORF.at, \"Schüsse und Rufe in Skaterpark\" (31 May 2025); meinbezirk.at, \"Im Wasserpark Floridsdorf: Tatverdächtiger nach Mordversuch festgenommen\" (Aug 2025); wien.ORF.at, \"Ein Verletzter nach Schüssen in Floridsdorf\" (24 Nov 2025); vienna.at, \"Drogendealer in Wien-Floridsdorf auf frischer Tat ertappt\" (4 Dec 2025).",
+      "query": "Floridsdorf, Vienna, Austria"
+    },
+    {
+      "name": "Donaustadt (22. Bezirk)",
+      "slug": "donaustadt",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.14513007099916,
+            16.574217561105915
+          ],
+          [
+            48.164305038155426,
+            16.565369815470728
+          ],
+          [
+            48.16275200232795,
+            16.550278259444433
+          ],
+          [
+            48.177768384145324,
+            16.533509707881418
+          ],
+          [
+            48.192132635047535,
+            16.538995894395168
+          ],
+          [
+            48.201134401858994,
+            16.53350027525358
+          ],
+          [
+            48.21691450973785,
+            16.543216655932003
+          ],
+          [
+            48.23969285403885,
+            16.549971211397587
+          ],
+          [
+            48.243530825875844,
+            16.536642054824277
+          ],
+          [
+            48.26369178826104,
+            16.54420825354776
+          ],
+          [
+            48.26528362729321,
+            16.518046652881957
+          ],
+          [
+            48.27429456418365,
+            16.503905100948554
+          ],
+          [
+            48.28622670147884,
+            16.512124331592528
+          ],
+          [
+            48.291052237931495,
+            16.4994138251528
+          ],
+          [
+            48.29386326000429,
+            16.478608738740245
+          ],
+          [
+            48.28062401829184,
+            16.480689545806946
+          ],
+          [
+            48.276008516001454,
+            16.471936075452582
+          ],
+          [
+            48.2636791387937,
+            16.45011035756392
+          ],
+          [
+            48.262323274845144,
+            16.434173493863366
+          ],
+          [
+            48.24740530472904,
+            16.42511327486127
+          ],
+          [
+            48.24599757258164,
+            16.410437527027064
+          ],
+          [
+            48.237052160215605,
+            16.39536823597344
+          ],
+          [
+            48.20805473315226,
+            16.434174486064208
+          ],
+          [
+            48.16696870541775,
+            16.49429743446746
+          ],
+          [
+            48.1596215500773,
+            16.511013602174128
+          ],
+          [
+            48.14390363000495,
+            16.54055899753159
+          ],
+          [
+            48.13591277512623,
+            16.57325705011586
+          ],
+          [
+            48.14513007099916,
+            16.574217561105915
+          ]
+        ]
+      ],
+      "text": "Donaustadt is Vienna's largest district by area, dominated by the Donauinsel recreation strip, Kagran/Stadlau housing areas and UNO City, and press coverage found no particular daytime safety concern for visitors to these areas. Between January and April 2024, a gang of Austrian teenagers (14-17) carried out 45 forced break-ins at shops, bakeries and pizzerias in the Stadlau/Neu-Kagran area before being caught (vienna.at, 2024) — a property-crime pattern rather than a threat to travellers. On the Donauinsel itself, incidents are occasional and quickly resolved: in August 2026 a 30-year-old was threatened with a knife and had his e-scooter stolen late at night, with the suspect arrested nearby within a short time (meinbezirk.at, Aug 2026). The annual Donauinselfest draws a large security operation (hundreds of officers, 297 reports and 17 arrests over three days in 2025), which police called a largely orderly, safe event (ORF, Jun 2025). Sources checked: vienna.at, \"Teenie-Bande in Wien-Donaustadt nach Einbruchsserie geschnappt\" (2024); meinbezirk.at, \"Nach Messer-Überfall auf Donauinsel schnappt Polizei Täter schnell\" (22 Aug 2026); wien.ORF.at, \"Donauinselfest: 17 Festnahmen, 297 Anzeigen\" (23 Jun 2025).",
+      "query": "Donaustadt, Vienna, Austria"
+    },
+    {
+      "name": "Liesing (23. Bezirk)",
+      "slug": "liesing",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.12876260702782,
+            16.215319946458333
+          ],
+          [
+            48.12616536751681,
+            16.222751181809326
+          ],
+          [
+            48.12784698736299,
+            16.226346919323102
+          ],
+          [
+            48.13427342400874,
+            16.264424575994266
+          ],
+          [
+            48.130186359275314,
+            16.295080095194596
+          ],
+          [
+            48.126017999864594,
+            16.29577743156106
+          ],
+          [
+            48.12022714306248,
+            16.309429782935833
+          ],
+          [
+            48.13848672084602,
+            16.321827213952385
+          ],
+          [
+            48.12936740383815,
+            16.362860914712996
+          ],
+          [
+            48.14821862263684,
+            16.37434175538172
+          ],
+          [
+            48.153913709545726,
+            16.338382107811846
+          ],
+          [
+            48.159973743076364,
+            16.332868971180666
+          ],
+          [
+            48.15609634147865,
+            16.327808783570653
+          ],
+          [
+            48.162996520563695,
+            16.289044072582637
+          ],
+          [
+            48.156559033066316,
+            16.27027001543793
+          ],
+          [
+            48.16071498031599,
+            16.253665459648154
+          ],
+          [
+            48.15015809902418,
+            16.22728658886389
+          ],
+          [
+            48.15387843224085,
+            16.22042735257546
+          ],
+          [
+            48.14831773880361,
+            16.20708090134603
+          ],
+          [
+            48.136179788847485,
+            16.219768043828484
+          ],
+          [
+            48.12876260702782,
+            16.215319946458333
+          ]
+        ]
+      ],
+      "text": "Press research on Liesing, Vienna's southernmost and largely suburban/residential district, turned up no violent crime, drug-scene or no-go-area coverage. District crime statistics for 2024 show mainly property and cyber offences typical of a residential outer district: vehicle break-ins rose sharply (285 cases, up from 118) alongside internet fraud (521 cases) and bicycle theft, while residential and cellar burglaries actually fell year-on-year (meinbezirk.at, May 2025). The only recurring local-safety topic in district council coverage is youth groups gathering at Liesinger Platz near the train station, which prompted calls for streetworkers and possible CCTV in 2024 — but the district police chief explicitly stated there are no crime 'hotspots' in Liesing (meinbezirk.at, Apr 2024). No specific incidents or safety concerns relevant to travellers were identified for either day or night. Sources checked: meinbezirk.at, \"Kriminalstatistik: Diebstahl, Einbrüche und Internetbetrug in Liesing\" (6 May 2025); meinbezirk.at, \"Politik in Liesing: Das Thema Sicherheit ist im Fokus der Bezirksvertretung\" (2 Apr 2024).",
+      "query": "Liesing, Vienna, Austria"
+    }
+  ]
+}
