@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is my Vienna neighbourhood safe? — Wandroz</title>
+<meta name="description" content="Interactive map of Vienna&#39;s 23 official Bezirke (real official Statistik Austria boundaries) with day/night safety levels based on current local press research.">
+<link rel="canonical" href="https://www.wandroz.com/vienna/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Is my Vienna neighbourhood safe? — Wandroz">
+<meta property="og:description" content="Interactive map of Vienna&#39;s 23 official Bezirke (real official Statistik Austria boundaries) with day/night safety levels based on current local press research.">
+<meta property="og:url" content="https://www.wandroz.com/vienna/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
+  .switch.on { background: var(--accent); }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
+  .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
+  .notice { font-size:13px; color:#6b5a10; background:#fff9e8; border:1px solid #f1dfa3; border-radius: var(--radius-sm); padding:12px 16px; margin: 12px 24px 16px; max-width:1080px; }
+  .map-wrap { position:relative; padding: 0 24px 28px; }
+  #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
+  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
+  .map-detail .close-btn:hover { color:var(--ink); }
+  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
+  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
+  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
+  .map-detail .cta.secondary { background: var(--accent); }
+  .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
+  .leaflet-tooltip.zone-tooltip::before { display:none; }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  @media (max-width: 720px){
+    #map{ height:520px; }
+    .map-wrap { padding: 0 12px 24px; }
+    .map-legend { right:10px; top:10px; font-size:11px; max-width:170px; padding:8px 10px; }
+    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
+    .zone-list ul { columns:2; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">City</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        
+        <option value="https://www.wandroz.com/london/" >London</option>
+        
+        <option value="https://www.wandroz.com/berlin/" >Berlin</option>
+        
+        <option value="https://www.wandroz.com/amsterdam/" >Amsterdam</option>
+        
+        <option value="https://www.wandroz.com/torino/" >Turin</option>
+        
+        <option value="https://www.wandroz.com/zurigo/" >Zurich</option>
+        
+        <option value="https://www.wandroz.com/milano/" >Milan</option>
+        
+        <option value="https://www.wandroz.com/roma/" >Rome</option>
+        
+        <option value="https://www.wandroz.com/praha/" >Prague</option>
+        
+        <option value="https://www.wandroz.com/oslo/" >Oslo</option>
+        
+        <option value="https://www.wandroz.com/monaco-di-baviera/" >Munich</option>
+        
+        <option value="https://www.wandroz.com/stockholm/" >Stockholm</option>
+        
+        <option value="https://www.wandroz.com/barcelona/" >Barcelona</option>
+        
+        <option value="https://www.wandroz.com/madrid/" >Madrid</option>
+        
+        <option value="https://www.wandroz.com/vienna/" selected>Vienna</option>
+        
+      </select>
+    </div>
+    
+    <div class="switch-wrap" id="dnSwitchWrap">
+      <span>day</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>night</span>
+    </div>
+    
+    
+    <nav class="wz-nav">
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+<nav class="crumbs"><a href="/">Home</a> &rsaquo; Vienna, Austria</nav>
+<h1 class="page-title">Vienna neighbourhoods</h1>
+<p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
+<div class="notice">District shapes are Vienna&#39;s real official administrative boundaries (the 23 &#34;Bezirke&#34;), sourced from Statistik Austria&#39;s own official boundary dataset. Like Milan, Rome, Turin, Barcelona and Madrid, Vienna&#39;s safety levels are Wandroz&#39;s Level 2 approach: genuine current local/national press research per district, honestly disclosed as press-based rather than official crime statistics — Austria has no open, geolocated Bezirk-level crime dataset (Statistik Austria and the Bundeskriminalamt&#39;s PKS only publish at Bundesland/state level; an internal police spatial-crime-analysis tool exists but is not public). Where no specific news coverage was found for a district, that is stated plainly rather than assumed either way. See the methodology page for details and sources.</div>
+
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="map-legend" id="legendBox">
+    <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
+    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
+    <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
+    <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Not rated — data not comparable for this zone</span></div>
+  </div>
+  <div class="map-detail" id="detailBox">
+    <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<div class="zone-list">
+  <h2>All neighbourhoods</h2>
+  <ul>
+    
+    <li><a href="/vienna/innere-stadt.html">Innere Stadt (01. Bezirk)</a></li>
+    
+    <li><a href="/vienna/leopoldstadt.html">Leopoldstadt (02. Bezirk)</a></li>
+    
+    <li><a href="/vienna/landstrasse.html">Landstraße (03. Bezirk)</a></li>
+    
+    <li><a href="/vienna/wieden.html">Wieden (04. Bezirk)</a></li>
+    
+    <li><a href="/vienna/margareten.html">Margareten (05. Bezirk)</a></li>
+    
+    <li><a href="/vienna/mariahilf.html">Mariahilf (06. Bezirk)</a></li>
+    
+    <li><a href="/vienna/neubau.html">Neubau (07. Bezirk)</a></li>
+    
+    <li><a href="/vienna/josefstadt.html">Josefstadt (08. Bezirk)</a></li>
+    
+    <li><a href="/vienna/alsergrund.html">Alsergrund (09. Bezirk)</a></li>
+    
+    <li><a href="/vienna/favoriten.html">Favoriten (10. Bezirk)</a></li>
+    
+    <li><a href="/vienna/simmering.html">Simmering (11. Bezirk)</a></li>
+    
+    <li><a href="/vienna/meidling.html">Meidling (12. Bezirk)</a></li>
+    
+    <li><a href="/vienna/hietzing.html">Hietzing (13. Bezirk)</a></li>
+    
+    <li><a href="/vienna/penzing.html">Penzing (14. Bezirk)</a></li>
+    
+    <li><a href="/vienna/rudolfsheim-fuenfhaus.html">Rudolfsheim-Fünfhaus (15. Bezirk)</a></li>
+    
+    <li><a href="/vienna/ottakring.html">Ottakring (16. Bezirk)</a></li>
+    
+    <li><a href="/vienna/hernals.html">Hernals (17. Bezirk)</a></li>
+    
+    <li><a href="/vienna/waehring.html">Währing (18. Bezirk)</a></li>
+    
+    <li><a href="/vienna/doebling.html">Döbling (19. Bezirk)</a></li>
+    
+    <li><a href="/vienna/brigittenau.html">Brigittenau (20. Bezirk)</a></li>
+    
+    <li><a href="/vienna/floridsdorf.html">Floridsdorf (21. Bezirk)</a></li>
+    
+    <li><a href="/vienna/donaustadt.html">Donaustadt (22. Bezirk)</a></li>
+    
+    <li><a href="/vienna/liesing.html">Liesing (23. Bezirk)</a></li>
+    
+  </ul>
+</div>
+
+<footer class="wz-footer">
+  Wandroz &middot; prototype build, not a finished product &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = [{"coords": [[[48.200377853267504, 16.363164983803465], [48.200645502478245, 16.37243812909773], [48.212048550268115, 16.38212528640086], [48.21918853374676, 16.36737600282262], [48.21503691565174, 16.353737152842204], [48.207605815436416, 16.3531036596632], [48.20335556178468, 16.35876568322656], [48.200377853267504, 16.363164983803465]]], "day": "yellow", "day_label": "Average", "name": "Innere Stadt (01. Bezirk)", "night": "yellow", "night_label": "Average", "query": "Innere Stadt, Vienna, Austria", "slug": "innere-stadt", "text": "Vienna\u0027s historic 1st district is not associated with violent crime in local press, but 2024 police statistics reported by meinbezirk.at showed pickpocketing rising from 1,160 to 1,290 cases and car break-ins nearly doubling (101 to 191), attributed to the district\u0027s dense concentration of tourists, transit hubs and nightlife. A 2025 city-wide ranking (oe24) put Innere Stadt fifth among Vienna\u0027s 23 districts by absolute crime count (10,130 offences in 2024), though this reflects extremely high foot traffic rather than a violent-crime pattern; residential burglaries in the district actually fell. City-wide surveys cited by vienna.at found 75% of Viennese feel safe, versus 87% in the rest of Austria, underlining a gap between statistics and perception. No specific no-go streets or serious/violent incidents tied to the Innere Stadt were found in current press; the concern documented is petty theft and scams around crowded tourist areas, relevant both day and night. Sources checked: meinbezirk.at, May 2025; oe24.at, April 2025; vienna.at, November 2025.", "url": "/vienna/innere-stadt.html"}, {"coords": [[[48.212048550268115, 16.38212528640086], [48.18703753510934, 16.42832360798286], [48.16696870541775, 16.49429743446746], [48.20805473315226, 16.434174486064208], [48.237052160215605, 16.39536823597344], [48.225800730741234, 16.364683976653293], [48.21918853374676, 16.36737600282262], [48.212048550268115, 16.38212528640086]]], "day": "yellow", "day_label": "Average", "name": "Leopoldstadt (02. Bezirk)", "night": "red", "night_label": "Higher caution advised", "query": "Leopoldstadt, Vienna, Austria", "slug": "leopoldstadt", "text": "Leopoldstadt\u0027s Praterstern square, a major rail/U-Bahn hub, is the most consistently documented safety hotspot among Vienna\u0027s districts. It has held a weapon- and alcohol-prohibition zone since February 2019, with police reporting 586 weapons (480 knives) confiscated there by early 2026, and it was one of the locations featured in ORF\u0027s November 2025 documentary on Vienna\u0027s \u0027forbidden zones,\u0027 alongside repeated meinbezirk.at reports of undercover drug-dealing arrests at the square (cannabis sales to plainclothes officers in 2022 and 2023). A 2025 district-count ranking (oe24) placed Leopoldstadt fourth in the city with 11,770 recorded offences. Outside the immediate Praterstern area, the rest of the sizeable district (Prater park, Karmelitermarkt, Augarten) is not flagged in press coverage with similar concerns, so the yellow/red rating here reflects Praterstern specifically rather than the whole district; day traffic through the hub sees occasional dealing arrests (yellow), while night is where press and police measures (weapon ban, knife seizures) most consistently describe a red-flagged trouble spot. Sources checked: ORF/OTS press release, November 2025; meinbezirk.at, January 2023; meinbezirk.at, July 2022; meinbezirk.at, March 2026; oe24.at, April 2025.", "url": "/vienna/leopoldstadt.html"}, {"coords": [[[48.17622171989469, 16.39267600676061], [48.184188153153094, 16.40128889784484], [48.18703753510934, 16.42832360798286], [48.212048550268115, 16.38212528640086], [48.200645502478245, 16.37243812909773], [48.18881172078526, 16.378218102650727], [48.17622171989469, 16.39267600676061]]], "day": "green", "day_label": "Relatively safer", "name": "Landstra\u00dfe (03. Bezirk)", "night": "yellow", "night_label": "Average", "query": "Landstra\u00dfe, Vienna, Austria", "slug": "landstrasse", "text": "No specific violent-crime hotspot or no-go area was identified for Landstra\u00dfe in current press. A May 2025 meinbezirk.at report on the district\u0027s 2024 police statistics found the crime profile dominated by property offences \u2014 bicycle theft nearly doubled (479 to 626 cases) and car break-ins almost quadrupled (65 to 289) \u2014 alongside a rise in internet fraud (over 900 reports) and shoplifting (about 550 cases). More notably, reported sexual assaults nearly doubled from 23 to 42 cases year-on-year, which the district itself flagged without a specific location pattern. Police stressed these are reported-case counts, not proof of an actual crime increase. Given the documented rise in break-ins and reported assaults, a slightly more cautious night tone is warranted, but nothing in press points to organized street crime, drug scenes, or a defined trouble area within Landstra\u00dfe. Sources checked: meinbezirk.at, May 2025.", "url": "/vienna/landstrasse.html"}, {"coords": [[[48.18452442136732, 16.366064581523357], [48.18881172078526, 16.378218102650727], [48.200645502478245, 16.37243812909773], [48.200377853267504, 16.363164983803465], [48.19740658388773, 16.356594178328507], [48.18452442136732, 16.366064581523357]]], "day": "green", "day_label": "Relatively safer", "name": "Wieden (04. Bezirk)", "night": "green", "night_label": "Relatively safer", "query": "Wieden, Vienna, Austria", "slug": "wieden", "text": "Wieden\u0027s Karlsplatz/Resselpark area \u2014 which sits on the district\u0027s border with Innere Stadt \u2014 was Vienna\u0027s best-known open drug scene from the 1980s through the 2000s, but a City of Vienna social-space monitoring report from December 2023 describes the area today as safe and \u0027harmonious,\u0027 with police enforcement and park redesigns since around 2010 having dispersed the drug scene; remaining issues are limited to occasional weekend noise and litter, not crime. District-wide 2024 police data reported by meinbezirk.at (May 2025) shows an ordinary property-crime profile \u2014 bicycle theft (269 cases) as the single most common offence, car break-ins nearly doubling (59 to 135), and a sharp rise in online fraud/phishing reports \u2014 with reported rapes ticking up slightly (6 to 7). No violent-crime hotspot, gang activity, or no-go reputation for Wieden was found in current press. Sources checked: FSW/Stadt Wien Team Focus report, December 2023; meinbezirk.at, May 2025; meinbezirk.at, 2011 (historical Karlsplatz context).", "url": "/vienna/wieden.html"}, {"coords": [[[48.179913743479226, 16.346959470980305], [48.18452442136732, 16.366064581523357], [48.19740658388773, 16.356594178328507], [48.189160488653506, 16.338966838058703], [48.179913743479226, 16.346959470980305]]], "day": "green", "day_label": "Relatively safer", "name": "Margareten (05. Bezirk)", "night": "yellow", "night_label": "Average", "query": "Margareten, Vienna, Austria", "slug": "margareten", "text": "Margareten does not have a documented no-go reputation or a recurring crime hotspot in current press, and general district crime counts (2,049 offences in the first half of 2021, per a parliamentary crime-statistics response) place it in the middle of Vienna\u0027s 23 districts rather than among the worst. Reinprechtsdorfer Stra\u00dfe, near the district\u0027s western G\u00fcrtel-adjacent edge, was the site of two isolated but serious incidents covered by ORF Wien and meinbezirk.at: an armed robbery of an electronics shop (October 2022) and a fatal stabbing followed by a WEGA tactical-unit arrest (reported January/February 2023). In 2023, local politicians debated opening a third police station in that same western part of the district to address \u0027subjective\u0027 safety concerns, while opponents pointed to falling city-wide crime and street-racing on the G\u00fcrtel as the area\u0027s more persistent nuisance. These are isolated incidents rather than an ongoing pattern, so day is rated green, with night nudged to yellow to reflect the documented serious incidents on Reinprechtsdorfer Stra\u00dfe and G\u00fcrtel-edge nuisance activity. Sources checked: meinbezirk.at, February 2023; ORF Wien, October 2022; meinbezirk.at, April 2023.", "url": "/vienna/margareten.html"}, {"coords": [[[48.189160488653506, 16.338966838058703], [48.19740658388773, 16.356594178328507], [48.200377853267504, 16.363164983803465], [48.20335556178468, 16.35876568322656], [48.196572007869946, 16.336475834812877], [48.18900327191591, 16.336288687561304], [48.189160488653506, 16.338966838058703]]], "day": "yellow", "day_label": "Average", "name": "Mariahilf (06. Bezirk)", "night": "red", "night_label": "Higher caution advised", "query": "Mariahilf, Vienna, Austria", "slug": "mariahilf", "text": "District-level crime statistics reported by Bezirkszeitung (meinbezirk.at) in May 2025 show a near-doubling of car break-ins (60 to 100 cases) and a rise in reported rapes (8 to 10) between 2023 and 2024, alongside a drop in shoplifting. Mariahilfer Stra\u00dfe, Vienna\u0027s main shopping street, has seen recurring theft and pickpocketing reported by police in 2025, including a five-figure cash theft from a shopper in July 2025. Separately, Heute.at reported in February 2026 that Mariahilf ranks second among Vienna\u0027s 23 districts for drug-related offenses, identifying the U6 station at Gumpendorfer Stra\u00dfe as a recurring dealing hotspot where a passenger who refused to buy drugs was assaulted and robbed, and where drug use has pushed into building stairwells over winter. Daytime on the shopping street carries the ordinary pickpocket/theft risk of a busy retail strip; after dark, the Gumpendorfer Stra\u00dfe U6 area specifically has documented, repeated drug dealing and occasional violence. Sources checked: meinbezirk.at, 24 May 2025 \u2013 \"Mariahilf-Statistik: Mehr Vergewaltigungen, Autoeinbr\u00fcche fast verdoppelt\"; Heute.at, 15 Feb 2026 \u2013 \"Im Winter schlimmer \u2013 Mariahilf als Drogen-Hotspot\"; vienna.at, 23 Nov 2025 \u2013 \"Fahndung: Duo in Wien-Mariahilf soll f\u00fcnfstellige Summe aus Tasche gestohlen haben\".", "url": "/vienna/mariahilf.html"}, {"coords": [[[48.196572007869946, 16.336475834812877], [48.20335556178468, 16.35876568322656], [48.207605815436416, 16.3531036596632], [48.2092779811175, 16.33567147915875], [48.20488486077469, 16.334242917059946], [48.196572007869946, 16.336475834812877]]], "day": "green", "day_label": "Relatively safer", "name": "Neubau (07. Bezirk)", "night": "green", "night_label": "Relatively safer", "query": "Neubau, Vienna, Austria", "slug": "neubau", "text": "Neubau\u0027s own district crime statistics, published via meinbezirk.at in May 2025, show car break-ins rising from 29 to 62 cases and car vandalism from 98 to 142 between 2023 and 2024, while building-damage cases fell; the article notes residents broadly report feeling safe and describes no street-level violence, harassment, or theft directed at pedestrians or visitors. Further searches on drug dealing, assault, or nightlife-area disorder around Spittelberg and the district\u0027s bar streets turned up no specific safety-relevant press coverage in the last several years. On that basis, press research found no particular safety concern for Neubau by day or by night; the documented crime trend is mostly vehicle-related property crime rather than anything affecting a visitor on foot. Sources checked: meinbezirk.at, 5 May 2025 \u2013 \"Neubau: Kriminalit\u00e4tsstatistik zeigt, wie sicher die Gr\u00e4tzln sind\".", "url": "/vienna/neubau.html"}, {"coords": [[[48.2092779811175, 16.33567147915875], [48.207605815436416, 16.3531036596632], [48.21503691565174, 16.353737152842204], [48.21586921041474, 16.33810467534275], [48.2128420242543, 16.33648511228829], [48.2092779811175, 16.33567147915875]]], "day": "green", "day_label": "Relatively safer", "name": "Josefstadt (08. Bezirk)", "night": "green", "night_label": "Relatively safer", "query": "Josefstadt, Vienna, Austria", "slug": "josefstadt", "text": "Josefstadt is consistently reported as the least crime-affected of Vienna\u0027s 23 districts: an oe24.at article from April 2025, based on 2024 police-recorded crime figures, put Josefstadt at 3,058 reported offenses for the year, the lowest of any district and a small fraction of the 26,218 recorded in Favoriten. Targeted searches for incidents specifically tied to Josefstadt (robbery, assault, drug dealing, harassment) turned up nothing current and district-specific; one U-Bahn robbery reported in March 2025 involved suspects who exited the U6 at Josefst\u00e4dter Stra\u00dfe station, but the offense itself was not clearly located within the district\u0027s boundaries, so it is not counted here. Press research found no particular safety concern for Josefstadt, day or night. Sources checked: oe24.at, 15 Apr 2025 \u2013 \"Das sind die gef\u00e4hrlichsten Bezirke Wiens \u2013 Favoriten schl\u00e4gt alle\".", "url": "/vienna/josefstadt.html"}, {"coords": [[[48.21586921041474, 16.33810467534275], [48.21503691565174, 16.353737152842204], [48.21918853374676, 16.36737600282262], [48.225800730741234, 16.364683976653293], [48.23700266218906, 16.358846251589924], [48.23268540818413, 16.350989610071032], [48.217940226421995, 16.33922033172304], [48.21586921041474, 16.33810467534275]]], "day": "green", "day_label": "Relatively safer", "name": "Alsergrund (09. Bezirk)", "night": "yellow", "night_label": "Average", "query": "Alsergrund, Vienna, Austria", "slug": "alsergrund", "text": "Alsergrund\u0027s district crime statistics, reported by meinbezirk.at in May 2025, show car break-ins nearly doubling from 38 to 69 cases between 2023 and 2024, while apartment burglaries stayed roughly stable around 105 cases and bicycle theft fell slightly. In August 2026 a Freedom Party (FP\u00d6) press statement circulated via the OTS wire cited police figures for around 20 business break-ins across Alsergrund and neighbouring W\u00e4hring within a few weeks, attributing most to juvenile offenders \u2014 a party statement rather than neutral reporting, though based on cited police data. These are overwhelmingly property-crime trends (parked cars, businesses, apartments) rather than street-level offenses against pedestrians, and no documented incidents of violent or street crime affecting visitors turned up for Alsergrund. Daytime is unremarkable in press coverage; the documented rise in break-in activity is mainly relevant after dark and mostly to residents/car owners rather than a pedestrian-safety issue. Sources checked: meinbezirk.at, 13 May 2025 \u2013 \"Kriminalstatistik: Deutlich mehr Einbr\u00fcche am Alsergrund verzeichnet\"; OTS (ots.at), 18 Aug 2026 \u2013 FP\u00d6 press release: \"20 Gesch\u00e4ftseinbr\u00fcche in W\u00e4hring und Alsergrund \u2013 ehemals sichere Bezirke werden zum Kriminalit\u00e4ts-Hotspot\".", "url": "/vienna/alsergrund.html"}, {"coords": [[[48.12062596106924, 16.434246243952863], [48.13867258550262, 16.43344804359402], [48.1480354444509, 16.427189124050223], [48.17622171989469, 16.39267600676061], [48.18881172078526, 16.378218102650727], [48.18452442136732, 16.366064581523357], [48.179913743479226, 16.346959470980305], [48.159973743076364, 16.332868971180666], [48.153913709545726, 16.338382107811846], [48.14821862263684, 16.37434175538172], [48.12936740383815, 16.362860914712996], [48.129094678210095, 16.363113841196046], [48.12606494554488, 16.38556577135256], [48.118937473447055, 16.410046375913776], [48.123759871092815, 16.420130498661283], [48.12062596106924, 16.434246243952863]]], "day": "yellow", "day_label": "Average", "name": "Favoriten (10. Bezirk)", "night": "red", "night_label": "Higher caution advised", "query": "Favoriten, Vienna, Austria", "slug": "favoriten", "text": "Favoriten is consistently identified in press coverage as Vienna\u0027s highest-crime district by volume: an oe24.at analysis of 2024 police data (April 2025) recorded 26,218 offenses there, more than any other district and well over the 15,114 in second-placed Floridsdorf. Reporting focuses heavily on two adjoining squares, Reumannplatz and Keplerplatz, where a police \u0027Schutzzone\u0027 (protection zone allowing preventive removal of suspected drug offenders) has been in force since October 2022 and remains actively enforced, with a drug-deal arrest there reported as recently as April 2026. Falter (April 2024) and vienna.at (March 2024) documented a spate of knife attacks and stabbings around Reumannplatz, including a soldier stabbed while intervening in a dispute, plus open drug dealing and group tensions a local vendor described as escalating easily into violence; a further Falter report (August 2025) revisited Keplerplatz as an ongoing drug-dealing flashpoint. Away from this specific corridor, the wider district (residential streets, the Favoritenstra\u00dfe shopping strip) is not singled out in press coverage for particular danger, so daytime risk district-wide reflects the general elevated crime-volume backdrop rather than a specific threat; after dark, the Reumannplatz/Keplerplatz corridor specifically carries a well-documented, repeated pattern of drug dealing and occasional knife violence. Sources checked: oe24.at, 15 Apr 2025 \u2013 \"Das sind die gef\u00e4hrlichsten Bezirke Wiens \u2013 Favoriten schl\u00e4gt alle\"; Falter, 5 Apr 2024 \u2013 \"Der Reumannplatz ist zum Unort geworden\"; vienna.at, 24 Mar 2024 \u2013 \"Messerattacken, Drogen: N\u00e4chtlicher Lokalaugenschein am Wiener Reumannplatz\"; meinbezirk.at, 5 Apr 2026 \u2013 \"K\u00e4ufer und Verk\u00e4ufer geschnappt: Drogen-Deal am Reumannplatz von Polizei beobachtet\"; vienna.at, 9 Nov 2022 \u2013 \"Drogenszene: Schutzzone am Wiener Keplerplatz ab Samstag\"; Falter, 5 Aug 2025 \u2013 \"Brennpunkt Wien: Keplerplatz, Drogen, Migration, Polizei, FP\u00d6\".", "url": "/vienna/favoriten.html"}, {"coords": [[[48.13867258550262, 16.43344804359402], [48.139603986968346, 16.450602077089048], [48.15725530904309, 16.4757103554131], [48.1596215500773, 16.511013602174128], [48.16696870541775, 16.49429743446746], [48.18703753510934, 16.42832360798286], [48.184188153153094, 16.40128889784484], [48.17622171989469, 16.39267600676061], [48.1480354444509, 16.427189124050223], [48.13867258550262, 16.43344804359402]]], "day": "green", "day_label": "Relatively safer", "name": "Simmering (11. Bezirk)", "night": "yellow", "night_label": "Average", "query": "Simmering, Vienna, Austria", "slug": "simmering", "text": "Vienna\u0027s 11th district shows up in the press mainly through isolated, resolved police actions rather than a broader unsafe reputation. In June 2025, four masked men pepper-sprayed and robbed a man in an underground car park; arrests followed between November 2025 and early 2026. In August 2026, the police street-crime task force broke up a drug-dealing operation, seizing roughly 13kg of marijuana, 61g of cocaine, a loaded pistol and cash, with five arrests. An earlier case from January 2023 involved three men caught trying to break into a residential building on Feldkellergasse. No district-wide \u0027no-go\u0027 warning appears in the coverage reviewed, and daytime activity (e.g. near the Zentralfriedhof or Gasometer) raised no concern; the armed robbery and drug bust suggest mild extra caution after dark. Sources checked: vienna.at, \"Vierte Festnahme nach Raub in Wien-Simmering\" (reporting on the June 2025 robbery and Nov 2025\u2013Jan 2026 arrests); meinbezirk.at, \"Drogenring zerschlagen, 13 Kilo Suchtgift, Waffe sichergestellt\" (Simmering, 26\u201328 Aug 2026); meinbezirk.at, \"Gleich dreimal schlugen R\u00e4uber in Wien zu \u2013 Festnahmen\" (18 Jan 2023).", "url": "/vienna/simmering.html"}, {"coords": [[[48.159973743076364, 16.332868971180666], [48.179913743479226, 16.346959470980305], [48.189160488653506, 16.338966838058703], [48.18900327191591, 16.336288687561304], [48.18651014352038, 16.317364555237564], [48.17118012156427, 16.305266692015703], [48.162996520563695, 16.289044072582637], [48.15609634147865, 16.327808783570653], [48.159973743076364, 16.332868971180666]]], "day": "yellow", "day_label": "Average", "name": "Meidling (12. Bezirk)", "night": "red", "night_label": "Higher caution advised", "query": "Meidling, Vienna, Austria", "slug": "meidling", "text": "Meidling\u0027s press coverage centers heavily on Bahnhof Meidling and its surrounding parks, which multiple 2024\u20132025 reports describe as a genuine trouble spot. In July 2024 rival youth groups fought with knives, hammers and knuckle-dusters near the station, injuring four people; in January 2025 another violent clash left a bloodied man fleeing into a nearby building, with eight of 25 identified suspects arrested. An April 2025 Heute.at report described open drug use visible on the station steps by day and residents saying they avoid the area after dark, while a local EU parliamentarian said she no longer walks alone from evening events to her car. City crime statistics cited in that reporting put Meidling slightly above Vienna\u0027s average (about 68 offences per 10,000 residents) but well below inner districts like Neubau or Mariahilf, and separately, car break-ins in the district more than doubled between 2023 and 2024 per police figures reported in May 2025. The concern is concentrated at and around the train station, worse after dark, rather than spread across the whole district. Sources checked: heute.at, \"\u0027Gehe nicht mehr allein im Dunkeln\u0027 \u2013 Hotspot Meidling\" (2025); heute.at, \"\u0027\u00dcberall war Blut am Boden!\u0027 \u2013 Anrainer in Angst\" (11 Apr 2025); meinbezirk.at, \"Autoeinbr\u00fcche in Meidling im Vorjahr mehr als verdoppelt\" (7 May 2025).", "url": "/vienna/meidling.html"}, {"coords": [[[48.162996520563695, 16.289044072582637], [48.17118012156427, 16.305266692015703], [48.18651014352038, 16.317364555237564], [48.18787313462468, 16.311432636107966], [48.19461747992664, 16.26254869719196], [48.20477757986063, 16.23289217229616], [48.20303439441751, 16.20461564491174], [48.18685956072124, 16.197036539291], [48.17172505807664, 16.179122869495856], [48.16704939705835, 16.190954190587004], [48.155241722116926, 16.195198488648696], [48.15387843224085, 16.22042735257546], [48.15015809902418, 16.22728658886389], [48.16071498031599, 16.253665459648154], [48.156559033066316, 16.27027001543793], [48.162996520563695, 16.289044072582637]]], "day": "green", "day_label": "Relatively safer", "name": "Hietzing (13. Bezirk)", "night": "green", "night_label": "Relatively safer", "query": "Hietzing, Vienna, Austria", "slug": "hietzing", "text": "Hietzing is consistently one of Vienna\u0027s lowest-crime districts in the press research reviewed. A 2020 vienna.at report on drug-crime hotspots by district ranked Hietzing lowest of all, with 125 cases, and a 2021 heute.at analysis of police-reported offences again placed it among the three safest districts (1,323 offences in H1 2021, versus over 8,000 in Favoriten). The only notable 2026 item found was an isolated domestic incident in June 2026, in which a man threatened his sister with an airsoft pistol and police later found several firearms at his home; this reads as a private/domestic matter (he turned himself in voluntarily) rather than a public street-safety concern. No press coverage was found describing pickpocketing, scams, or safety problems around the Sch\u00f6nbrunn Palace tourist area specifically. Based on available press, no particular safety concern emerges for this district, day or night. Sources checked: vienna.at, \"Das sind die Drogen-Hotspots Wiens\" (13 Jul 2020); heute.at, \"Enth\u00fcllt: Das sind Wiens Hotspots der Kriminalit\u00e4t\" (7 Dec 2021); vienna.at, \"Schwester bedroht: Polizei findet mehrere Schusswaffen in Wien-Hietzing\" (26 Jun 2026).", "url": "/vienna/hietzing.html"}, {"coords": [[[48.20303439441751, 16.20461564491174], [48.20477757986063, 16.23289217229616], [48.19461747992664, 16.26254869719196], [48.18787313462468, 16.311432636107966], [48.20356168512081, 16.30791912399246], [48.20828939693882, 16.283111448231352], [48.21468462448445, 16.282512542753633], [48.222143847696614, 16.25085257467259], [48.24057601187154, 16.253842706615437], [48.239011958901656, 16.238761362149564], [48.25097255934359, 16.2310602053596], [48.264791213360155, 16.205295593469874], [48.250611784028436, 16.1935404286642], [48.22390134272117, 16.18239186839708], [48.22403570803854, 16.193321524415694], [48.20303439441751, 16.20461564491174]]], "day": "green", "day_label": "Relatively safer", "name": "Penzing (14. Bezirk)", "night": "green", "night_label": "Relatively safer", "query": "Penzing, Vienna, Austria", "slug": "penzing", "text": "No significant safety concerns specific to Penzing turned up in the press research. A January 2022 meinbezirk.at interview with a long-serving local police inspector described the district\u0027s main issues as neighbourhood disputes and occasional disturbances from homeless or alcohol-dependent people near Penzing station and parks, with phone scammers impersonating police officers to defraud elderly residents flagged as the \u0027biggest problem\u0027 locally \u2014 a scam not particularly relevant to travellers. A 2020 vienna.at overview of drug-crime hotspots by district mentioned a past cocaine seizure in Penzing but did not list it among the city\u0027s notable hotspots. No reports of street robbery, violent-crime clusters, or a no-go reputation were found for the district. The honest assessment from the available press is no particular safety concern, by day or night. Sources checked: meinbezirk.at, \"Der 14. Bezirk ist sein Revier\" (11 Jan 2022); vienna.at, \"Das sind die Drogen-Hotspots Wiens\" (13 Jul 2020).", "url": "/vienna/penzing.html"}, {"coords": [[[48.18651014352038, 16.317364555237564], [48.18900327191591, 16.336288687561304], [48.196572007869946, 16.336475834812877], [48.20488486077469, 16.334242917059946], [48.20356168512081, 16.30791912399246], [48.18787313462468, 16.311432636107966], [48.18651014352038, 16.317364555237564]]], "day": "yellow", "day_label": "Average", "name": "Rudolfsheim-F\u00fcnfhaus (15. Bezirk)", "night": "red", "night_label": "Higher caution advised", "query": "Rudolfsheim-F\u00fcnfhaus, Vienna, Austria", "slug": "rudolfsheim-fuenfhaus", "text": "Rudolfsheim-F\u00fcnfhaus, and specifically the area around Westbahnhof station and the G\u00fcrtel, has substantial and recent documented press coverage of an open drug scene. vienna.at (24 Nov 2025) and heute.at (23 Nov 2025) both reported a growing drug scene at Westbahnhof with users injecting in building entrances, rising dealing, property damage and residents feeling \u0027left alone\u0027 by authorities, explicitly locating the problem in the 15th district. The city responded with a new alcohol-prohibition zone around Westbahnhof and a protected zone at Fritz-Imhoff-Park, effective 8 May 2026, and police drug busts continued into 2026, including a July 2026 raid on Mariahilfer Stra\u00dfe (within the district) seizing 500g of cocaine and \u20ac15,000 in cash. A heute.at report from 9 August 2026 cites district-level statistics showing drug offences in Rudolfsheim-F\u00fcnfhaus rose from 435 to 697 cases year-on-year (2024 to 2025), one of the city\u0027s largest increases alongside neighbouring Mariahilf. This is a well-documented, ongoing pattern rather than a single incident, concentrated around the Westbahnhof/G\u00fcrtel corridor and worse after dark. Sources checked: vienna.at, \"Drogenszene am Wiener Westbahnhof w\u00e4chst: Anrainer f\u00fchlen sich allein gelassen\" (24 Nov 2025); heute.at, \"Spritzen, Vandalismus \u2013 Drogen-Hotspot Westbahnhof wird zum Problem\" (23 Nov 2025); meinbezirk.at, \"Sicherheitspaket: Alkoholverbotszone am Westbahnhof, Fritz-Imhoff-Park wird Schutzzone\" (effective 8 May 2026); heute.at, \"Drogen-Hotspot in Wien \u2013 Suchtmitteldelikte steigen\" (9 Aug 2026); meinbezirk.at, \"Wiener Polizei hebt Dealerduo und halbes Kilo Kokain aus\" (11 Jul 2026).", "url": "/vienna/rudolfsheim-fuenfhaus.html"}, {"coords": [[[48.222143847696614, 16.25085257467259], [48.21468462448445, 16.282512542753633], [48.20828939693882, 16.283111448231352], [48.20356168512081, 16.30791912399246], [48.20488486077469, 16.334242917059946], [48.2092779811175, 16.33567147915875], [48.2128420242543, 16.33648511228829], [48.221217119476734, 16.31813390844274], [48.227731095076905, 16.27342993191296], [48.222143847696614, 16.25085257467259]]], "day": "yellow", "day_label": "Average", "name": "Ottakring (16. Bezirk)", "night": "red", "night_label": "Higher caution advised", "query": "Ottakring, Vienna, Austria", "slug": "ottakring", "text": "The Yppenplatz/Brunnenmarkt area of Ottakring has repeated, well-documented safety issues: after a series of violent incidents (including a 2024 shooting that left two people seriously injured), Vienna\u0027s police directorate imposed a weapons-ban zone and a separate child-protection zone around Yppenplatz in August 2025, both since extended into 2026, with 17 knives confiscated under the ban as of early 2026. A fatal shooting took place in a bar near Yppenplatz in autumn 2025 (trial ongoing as of August 2026). District FP\u00d6 officials cite a 40% year-on-year rise in drug-related charges in parts of Ottakring (868 cases in 2023 to 1,215 in 2024), a politically-framed figure but consistent with police data. By day, the market itself (the actual Brunnenmarkt) functions as an ordinary lively local market with no specific daytime incidents found, so the concern is concentrated after dark and around the square\u0027s edges rather than the market stalls themselves. Sources checked: Stadt Wien, wien.gv.at official notice on the Yppenplatz Schutzzone/Waffenverbotszone (ordinance dated 21 July 2026); meinbezirk.at, \"Seit August: Waffenverbotszone am Yppenplatz war 2025 wichtigstes Thema\" (4 January 2026); meinbezirk.at, \"Bluttat in Ottakring: Zwei M\u00e4nner bei Prozess um t\u00f6dliche Schie\u00dferei enthaftet\" (24 August 2026); Heute.at, \"Drogen, Gewalt \u0026 Obdachlose \u2013 Hotspots immer schlimmer!\" (16 February 2025); OTS/FP\u00d6 press release, \"Ottakring wird immer mehr zum Drogenumschlagplatz\" (10 July 2025).", "url": "/vienna/ottakring.html"}, {"coords": [[[48.21586921041474, 16.33810467534275], [48.217940226421995, 16.33922033172304], [48.223540151744295, 16.333937004333023], [48.23591703709915, 16.299532374634378], [48.25167121738468, 16.28563386933175], [48.25901822523876, 16.282784673675316], [48.256882904137726, 16.269487217059133], [48.24057601187154, 16.253842706615437], [48.222143847696614, 16.25085257467259], [48.227731095076905, 16.27342993191296], [48.221217119476734, 16.31813390844274], [48.2128420242543, 16.33648511228829], [48.21586921041474, 16.33810467534275]]], "day": "green", "day_label": "Relatively safer", "name": "Hernals (17. Bezirk)", "night": "green", "night_label": "Relatively safer", "query": "Hernals, Vienna, Austria", "slug": "hernals", "text": "No press reports of violent street crime, drug-dealing hotspots or tourist-targeted crime were found for Hernals. The one recurring theme in local press is property crime affecting residents\u0027 cars and bicycles: meinbezirk.at\u0027s review of 2024 police statistics found bike thefts up from 144 to 181 cases, car break-ins up from 61 to 87, and damage to parked cars up from 172 to 215, alongside 3 homicides and 11 sexual assaults recorded district-wide for the year \u2014 figures that are largely about residential/vehicle property crime rather than incidents affecting pedestrians or visitors. Hernals is also described in local media as an up-and-coming (\u0027Trendbezirk\u0027) residential area. On balance, honest press research turned up nothing indicating a particular safety concern for a traveller on foot, day or night. Sources checked: meinbezirk.at, \"Kriminaljahr 2024: Autos in Hernals besonders oft Ziel von Verbrechern\" (13 May 2025); wien.gv.at, Bezirk Hernals Sicherheit page.", "url": "/vienna/hernals.html"}, {"coords": [[[48.217940226421995, 16.33922033172304], [48.23268540818413, 16.350989610071032], [48.234547188133185, 16.33501332109175], [48.25167121738468, 16.28563386933175], [48.23591703709915, 16.299532374634378], [48.223540151744295, 16.333937004333023], [48.217940226421995, 16.33922033172304]]], "day": "green", "day_label": "Relatively safer", "name": "W\u00e4hring (18. Bezirk)", "night": "green", "night_label": "Relatively safer", "query": "W\u00e4hring, Vienna, Austria", "slug": "waehring", "text": "W\u00e4hring is a quiet, largely residential district and press research found no pattern of street crime, drug dealing or tourist-targeted offences. Local crime statistics for 2021\u20132022 showed a 9.7% rise in recorded offences (2,513 to 2,758) and a 42.2% case-clearance rate \u2014 an increase, but notably smaller than Vienna\u0027s citywide 16.7% rise over the same period, meaning W\u00e4hring\u0027s crime grew more slowly than the city average. The one serious documented incident is a single armed robbery at a Dorotheum branch on W\u00e4hringer Stra\u00dfe on 7 August 2026, in which a masked, reportedly armed suspect fled empty-handed after a large police response; no injuries were reported and this reads as an isolated event rather than an ongoing pattern. No other safety-relevant incidents for pedestrians or visitors, day or night, turned up in the search. Sources checked: meinbezirk.at, \"2021 und 2022 im Vergleich: W\u00e4hring ist ein St\u00fcck krimineller geworden\" (3 April 2023); meinbezirk.at, \"Gro\u00dfeinsatz in W\u00e4hring: T\u00e4ter l\u00e4sst Beute bei Dorotheum-\u00dcberfall zur\u00fcck\" (7 August 2026).", "url": "/vienna/waehring.html"}, {"coords": [[[48.25167121738468, 16.28563386933175], [48.234547188133185, 16.33501332109175], [48.23268540818413, 16.350989610071032], [48.23700266218906, 16.358846251589924], [48.25084288220289, 16.36883372123199], [48.26341786956094, 16.369613744122102], [48.284042653322786, 16.353184316827658], [48.28580864296009, 16.341700947175422], [48.27467785173231, 16.311804873544666], [48.271205267703756, 16.28624185195569], [48.25901822523876, 16.282784673675316], [48.25167121738468, 16.28563386933175]]], "day": "green", "day_label": "Relatively safer", "name": "D\u00f6bling (19. Bezirk)", "night": "yellow", "night_label": "Average", "query": "D\u00f6bling, Vienna, Austria", "slug": "doebling", "text": "D\u00f6bling is Vienna\u0027s affluent northern district (including Grinzing and Heiligenstadt); a targeted search for tourist- or Heuriger-related crime around Grinzing/Heiligenstadt returned nothing, and general street crime in the district actually declined in the latest reporting period aside from car break-ins (75 to 96 cases) and bicycle theft (94 to 110), per the 2024 district crime statistics. The one genuine concern in recent press is a sharp rise in youth-related robbery: police recorded a 222% increase in robbery cases over a six-month comparison (9 to 29), concentrated in March\u2013April 2026 and attributed to a small group of repeat offenders, several under age 14 and thus below the age of criminal responsibility, prompting the district chief to meet Austria\u0027s interior minister in June 2026. Cybercrime targeting IT systems/data also rose sharply (330 to 476 cases, 2023\u20132024), but that is a remote-fraud risk rather than a street-safety one. Given the youth-robbery spike is a real, recent, specific pattern, a modest night-time caution is warranted while daytime remains without documented concern. Sources checked: meinbezirk.at, \"Kriminalstatistik des Bezirks: Cybercrime nimmt in D\u00f6bling immer mehr zu\" (7 May 2025); Heute.at, \"Jugendkriminalit\u00e4t in D\u00f6bling \u2013 Plus 222% bei Raub\" (8 June 2026); OTS/FP\u00d6 press release (17 June 2026).", "url": "/vienna/doebling.html"}, {"coords": [[[48.225800730741234, 16.364683976653293], [48.237052160215605, 16.39536823597344], [48.26341786956094, 16.369613744122102], [48.25084288220289, 16.36883372123199], [48.23700266218906, 16.358846251589924], [48.225800730741234, 16.364683976653293]]], "day": "yellow", "day_label": "Average", "name": "Brigittenau (20. Bezirk)", "night": "red", "night_label": "Higher caution advised", "query": "Brigittenau, Vienna, Austria", "slug": "brigittenau", "text": "Local press repeatedly flags the Handelskai riverside strip and Maria-Restituta-Platz for youth conflicts, fights and vandalism, with police confirming property damage (mostly graffiti) makes up the largest share of reported offences there, and describing incidents as isolated rather than a rising trend (meinbezirk.at, Feb 2024). A 22-year-old was stabbed in the thigh during a dispute on Handelskai in May 2024 (meinbezirk.at). More seriously, in July 2024 a violent feud between two loosely organised gangs escalated into stabbings and armed confrontations concentrated in Brigittenau, at Anton-Kummerer-Park, the U6 J\u00e4gerstra\u00dfe station and Hannovermarkt, prompting large police operations with hundreds of ID checks and weapons seizures (meinbezirk.at, Jul 2024). In late 2025 police also raided a \u0027bunker apartment\u0027 in the district, seizing over 20 kg of drugs (cannabis, cocaine, ketamine) plus a firearm (meinbezirk.at, Nov 2025). Daytime foot patrols and video surveillance have since been stepped up around Handelskai. Sources checked: meinbezirk.at, \"Pr\u00fcgel, Messerattacken \u0026 Co.: Wie sicher ist die Lage am Wiener Handelskai?\" (13 Feb 2024); meinbezirk.at, \"22-J\u00e4hriger bei Messerattacke am Handelskai verletzt\" (3 May 2024); meinbezirk.at, \"Brutale Fehde: So geht die Wiener Polizei gegen den Bandenkrieg vor\" (Jul 2024); meinbezirk.at, \"Brigittenau: Mehr als 20 Kilogramm Drogen in Bunkerwohnung gefunden\" (3 Nov 2025).", "url": "/vienna/brigittenau.html"}, {"coords": [[[48.237052160215605, 16.39536823597344], [48.24599757258164, 16.410437527027064], [48.24740530472904, 16.42511327486127], [48.262323274845144, 16.434173493863366], [48.2636791387937, 16.45011035756392], [48.276008516001454, 16.471936075452582], [48.29261407533503, 16.437630624152003], [48.31750416651291, 16.434987484050755], [48.32107384619422, 16.425226930412876], [48.323256351480374, 16.39239950424916], [48.31779980502046, 16.378914974312043], [48.30787766719905, 16.38106502478186], [48.28299603442784, 16.360411753940745], [48.284042653322786, 16.353184316827658], [48.26341786956094, 16.369613744122102], [48.237052160215605, 16.39536823597344]]], "day": "yellow", "day_label": "Average", "name": "Floridsdorf (21. Bezirk)", "night": "red", "night_label": "Higher caution advised", "query": "Floridsdorf, Vienna, Austria", "slug": "floridsdorf", "text": "Floridsdorf\u0027s press coverage clusters heavily around the area of Floridsdorf railway station and the adjacent Wasserpark. In May 2025, two youths fired shots (from what turned out to be a blank-firing pistol) while chasing someone through the skatepark near the station, drawing a large WEGA response (ORF, 31 May 2025). In August 2025, a 33-year-old man was stabbed twice with life-threatening injuries near the Wasserpark in a dispute among people from the homeless community; a 19-year-old suspect was arrested days later (meinbezirk.at, Aug 2025). In November 2025 a 27-year-old was shot in both legs on Sandrockgasse by a 52-year-old acquaintance with legally owned firearms (ORF, 24 Nov 2025). Street-level drug dealing near the station continues to be an enforcement focus, with a task-force operation in December 2025 netting a 17-year-old dealer, three buyers, cash and roughly 400g of cocaine (vienna.at, Dec 2025). Away from this station/park cluster, no comparable pattern of incidents was found. Sources checked: wien.ORF.at, \"Sch\u00fcsse und Rufe in Skaterpark\" (31 May 2025); meinbezirk.at, \"Im Wasserpark Floridsdorf: Tatverd\u00e4chtiger nach Mordversuch festgenommen\" (Aug 2025); wien.ORF.at, \"Ein Verletzter nach Sch\u00fcssen in Floridsdorf\" (24 Nov 2025); vienna.at, \"Drogendealer in Wien-Floridsdorf auf frischer Tat ertappt\" (4 Dec 2025).", "url": "/vienna/floridsdorf.html"}, {"coords": [[[48.14513007099916, 16.574217561105915], [48.164305038155426, 16.565369815470728], [48.16275200232795, 16.550278259444433], [48.177768384145324, 16.533509707881418], [48.192132635047535, 16.538995894395168], [48.201134401858994, 16.53350027525358], [48.21691450973785, 16.543216655932003], [48.23969285403885, 16.549971211397587], [48.243530825875844, 16.536642054824277], [48.26369178826104, 16.54420825354776], [48.26528362729321, 16.518046652881957], [48.27429456418365, 16.503905100948554], [48.28622670147884, 16.512124331592528], [48.291052237931495, 16.4994138251528], [48.29386326000429, 16.478608738740245], [48.28062401829184, 16.480689545806946], [48.276008516001454, 16.471936075452582], [48.2636791387937, 16.45011035756392], [48.262323274845144, 16.434173493863366], [48.24740530472904, 16.42511327486127], [48.24599757258164, 16.410437527027064], [48.237052160215605, 16.39536823597344], [48.20805473315226, 16.434174486064208], [48.16696870541775, 16.49429743446746], [48.1596215500773, 16.511013602174128], [48.14390363000495, 16.54055899753159], [48.13591277512623, 16.57325705011586], [48.14513007099916, 16.574217561105915]]], "day": "green", "day_label": "Relatively safer", "name": "Donaustadt (22. Bezirk)", "night": "yellow", "night_label": "Average", "query": "Donaustadt, Vienna, Austria", "slug": "donaustadt", "text": "Donaustadt is Vienna\u0027s largest district by area, dominated by the Donauinsel recreation strip, Kagran/Stadlau housing areas and UNO City, and press coverage found no particular daytime safety concern for visitors to these areas. Between January and April 2024, a gang of Austrian teenagers (14-17) carried out 45 forced break-ins at shops, bakeries and pizzerias in the Stadlau/Neu-Kagran area before being caught (vienna.at, 2024) \u2014 a property-crime pattern rather than a threat to travellers. On the Donauinsel itself, incidents are occasional and quickly resolved: in August 2026 a 30-year-old was threatened with a knife and had his e-scooter stolen late at night, with the suspect arrested nearby within a short time (meinbezirk.at, Aug 2026). The annual Donauinselfest draws a large security operation (hundreds of officers, 297 reports and 17 arrests over three days in 2025), which police called a largely orderly, safe event (ORF, Jun 2025). Sources checked: vienna.at, \"Teenie-Bande in Wien-Donaustadt nach Einbruchsserie geschnappt\" (2024); meinbezirk.at, \"Nach Messer-\u00dcberfall auf Donauinsel schnappt Polizei T\u00e4ter schnell\" (22 Aug 2026); wien.ORF.at, \"Donauinselfest: 17 Festnahmen, 297 Anzeigen\" (23 Jun 2025).", "url": "/vienna/donaustadt.html"}, {"coords": [[[48.12876260702782, 16.215319946458333], [48.12616536751681, 16.222751181809326], [48.12784698736299, 16.226346919323102], [48.13427342400874, 16.264424575994266], [48.130186359275314, 16.295080095194596], [48.126017999864594, 16.29577743156106], [48.12022714306248, 16.309429782935833], [48.13848672084602, 16.321827213952385], [48.12936740383815, 16.362860914712996], [48.14821862263684, 16.37434175538172], [48.153913709545726, 16.338382107811846], [48.159973743076364, 16.332868971180666], [48.15609634147865, 16.327808783570653], [48.162996520563695, 16.289044072582637], [48.156559033066316, 16.27027001543793], [48.16071498031599, 16.253665459648154], [48.15015809902418, 16.22728658886389], [48.15387843224085, 16.22042735257546], [48.14831773880361, 16.20708090134603], [48.136179788847485, 16.219768043828484], [48.12876260702782, 16.215319946458333]]], "day": "green", "day_label": "Relatively safer", "name": "Liesing (23. Bezirk)", "night": "green", "night_label": "Relatively safer", "query": "Liesing, Vienna, Austria", "slug": "liesing", "text": "Press research on Liesing, Vienna\u0027s southernmost and largely suburban/residential district, turned up no violent crime, drug-scene or no-go-area coverage. District crime statistics for 2024 show mainly property and cyber offences typical of a residential outer district: vehicle break-ins rose sharply (285 cases, up from 118) alongside internet fraud (521 cases) and bicycle theft, while residential and cellar burglaries actually fell year-on-year (meinbezirk.at, May 2025). The only recurring local-safety topic in district council coverage is youth groups gathering at Liesinger Platz near the train station, which prompted calls for streetworkers and possible CCTV in 2024 \u2014 but the district police chief explicitly stated there are no crime \u0027hotspots\u0027 in Liesing (meinbezirk.at, Apr 2024). No specific incidents or safety concerns relevant to travellers were identified for either day or night. Sources checked: meinbezirk.at, \"Kriminalstatistik: Diebstahl, Einbr\u00fcche und Internetbetrug in Liesing\" (6 May 2025); meinbezirk.at, \"Politik in Liesing: Das Thema Sicherheit ist im Fokus der Bezirksvertretung\" (2 Apr 2024).", "url": "/vienna/liesing.html"}];
+  var CENTER = [48.2082, 16.3738];
+  var ZOOM = 12;
+  var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_BOOKING = "Search accommodation here on Booking.com \u2192";
+  var L_MORE = "See the full page \u2192";
+  var L_NOTCOVERED = "";
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
+
+  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var burglaryMode = false;
+  var layers = [];
+  var lastZone = null;
+
+  function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  var detailPanel = document.getElementById('detailBox');
+
+  function showPanel() { detailPanel.classList.add('visible'); }
+  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; }
+  document.getElementById('detailClose').addEventListener('click', hidePanel);
+
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.day) {
+      // This city's data has no time-of-day split (day and night are
+      // identical for every zone), so the switch is hidden entirely and
+      // a single badge is shown instead of two redundant ones.
+      html += badge(tone, z.day_label || tone);
+    } else {
+      html += badge('grey', L_NOTCOVERED || '');
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.day) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    document.getElementById('legendGreyText').textContent = set.grey;
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    ZONES.forEach(function(z){
+      var tone = toneOf(z);
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight:2, fillOpacity:0.32 }).addTo(map);
+      // Name is visible on hover (not just after a click) via a sticky
+      // tooltip, plus a highlight so it's obvious which zone you're over —
+      // click still opens the full detail card.
+      poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
+      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
+      poly.on('mouseout', function(){ poly.setStyle({ weight:2 }); });
+      poly.on('click', function(){ renderDetail(z); });
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+      if (lastZone && !burglaryMode) renderDetail(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) renderDetail(lastZone);
+    });
+  }
+</script>
+</body>
+</html>
