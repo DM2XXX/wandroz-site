@@ -58,6 +58,7 @@ CITY_LINKS = [
     {"label": "Barcelona", "url": f"{SITE_URL}/barcelona/"},
     {"label": "Madrid", "url": f"{SITE_URL}/madrid/"},
     {"label": "Vienna", "url": f"{SITE_URL}/vienna/"},
+    {"label": "Lisbon", "url": f"{SITE_URL}/lisbon/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -576,6 +577,7 @@ def build_search_index(cities, city_cards):
         ("barcelona", "barcelona", "Barcelona", True),
         ("madrid", "madrid", "Madrid", True),
         ("vienna", "vienna", "Vienna", True),
+        ("lisbon", "lisbon", "Lisbon", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -640,6 +642,7 @@ def build_zone_boundaries(cities, city_cards):
         ("barcelona", "barcelona", "Barcelona", True),
         ("madrid", "madrid", "Madrid", True),
         ("vienna", "vienna", "Vienna", True),
+        ("lisbon", "lisbon", "Lisbon", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -875,6 +878,32 @@ VIENNA_NEIGH_NOTE = (
     "this specific district (not blind guessing, not fabricated crime statistics), honestly disclosed as "
     "press-based rather than official data — Austria has no open, geolocated Bezirk-level crime dataset. See "
     "the methodology page for what was checked and how this differs from London's automated official-data "
+    "pipeline."
+)
+
+LISBON_UI = dict(TORINO_UI)
+LISBON_UI.update({
+    "page_title": "Is my Lisbon neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Lisbon's 24 official freguesias (real official Câmara Municipal de Lisboa boundaries) with day/night safety levels based on current local press research.",
+    "page_h1": "Lisbon neighbourhoods",
+    "neigh_title": "Is {name} in Lisbon safe? | Wandroz",
+})
+
+LISBON_BANNER = (
+    "Neighbourhood shapes are Lisbon's real official administrative boundaries (the 24 \"freguesias\", civil "
+    "parishes since the 2012 reform), sourced directly from the Câmara Municipal de Lisboa's own Lisboa Aberta "
+    "open-data portal. Like Milan, Rome, Turin, Barcelona, Madrid and Vienna, Lisbon's safety levels are "
+    "Wandroz's Level 2 approach: genuine current local/national press research per freguesia, honestly "
+    "disclosed as press-based rather than official crime statistics — Portugal has no open, geolocated "
+    "freguesia-level crime dataset (the Sistema de Segurança Interna's annual RASI report is PDF-only and "
+    "reports only at municipality/national level). Where no specific news coverage was found for a freguesia, "
+    "that is stated plainly rather than assumed either way. See the methodology page for details and sources."
+)
+LISBON_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Lisbon: genuine current local/national press research for "
+    "this specific freguesia (not blind guessing, not fabricated crime statistics), honestly disclosed as "
+    "press-based rather than official data — Portugal has no open, geolocated freguesia-level crime dataset. "
+    "See the methodology page for what was checked and how this differs from London's automated official-data "
     "pipeline."
 )
 
@@ -1207,6 +1236,10 @@ def main():
          "blurb": "All 23 official Bezirke mapped, real council boundaries, safety ratings from genuine current local press research.",
          "lat": 48.2082, "lon": 16.3738, "color": "#5b8c5a",
          "zone_count": _zone_count("vienna"), "data_tag": "Official boundaries"},
+        {"name": "Lisbon", "url": "lisbon/index.html", "flag": "🇵🇹",
+         "blurb": "All 24 official freguesias mapped, real council boundaries, safety ratings from genuine current local press research.",
+         "lat": 38.7223, "lon": -9.1393, "color": "#c9483f",
+         "zone_count": _zone_count("lisbon"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1297,7 +1330,9 @@ def main():
     sitemap_urls.extend(madrid_urls)
     vienna_urls = render_illustrative_city("vienna", "vienna", VIENNA_UI, EN_TONE_BADGE, VIENNA_BANNER, VIENNA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(vienna_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)})")
+    lisbon_urls = render_illustrative_city("lisbon", "lisbon", LISBON_UI, EN_TONE_BADGE, LISBON_BANNER, LISBON_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(lisbon_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
