@@ -1,0 +1,1388 @@
+[
+  {
+    "nom": "Palacio",
+    "day": "green",
+    "night": "green",
+    "text": "Repeated searches of Spanish press turned up no specific safety-relevant incidents for the Palacio barrio (around the Royal Palace, Opera and Plaza de Oriente) in the last several years. Coverage found was limited to real-estate and lifestyle pieces describing it as a quiet, historic, monument-dense residential area. No particular safety concern found in press research.",
+    "sources": [
+      "Idealista/news, Oct 2024 (lifestyle piece)",
+      "General Madrid danger-ranking listicles checked, none single out Palacio",
+      "No specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Embajadores",
+    "day": "yellow",
+    "night": "red",
+    "text": "Embajadores (which contains Lavapies) has extensive, repeated press coverage of narcopisos, with multiple dismantlings reported across 2023-2025, and residents quoted saying drugs are sold openly in several plazas. In July 2023 a shopkeeper was murdered in a robbery on Plaza Tirso de Molina, and residents and merchants have repeatedly described frequent robberies and muggings despite dozens of CCTV cameras being installed. This is the most consistently and seriously documented barrio of the six, warranting a red night rating, with daytime concerns concentrated around drug-market plazas.",
+    "sources": [
+      "El Espanol, July 2023 (Lavapies murder of shopkeeper)",
+      "El Debate, April 2024 (residents fed up with narcopisos)",
+      "ElDiario.es Somos Lavapies",
+      "Gacetin Madrid, May 2024 (narcopiso dismantled, 8 arrested)",
+      "Telemadrid, June 2024"
+    ]
+  },
+  {
+    "nom": "Cortes",
+    "day": "green",
+    "night": "green",
+    "text": "No barrio-specific safety incidents were found for Cortes (Huertas, Santa Ana, Congreso area) beyond generic listicles that describe the wider Centro district as Madrid's highest-crime district without breaking figures down by barrio. Specific searches turned up only minor nightlife-noise complaints rather than robbery, drug-market, or violence coverage. No particular safety concern found in press research.",
+    "sources": [
+      "Madridiario (noise complaints, Plaza de Santa Ana)",
+      "Generic district-level ranking articles checked but gave no Cortes-specific detail",
+      "No barrio-specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Justicia",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Justicia (which contains Chueca) has long-running, well-documented quality-of-life problems at Plaza Pedro Zerolo, where a homeless encampment has repeatedly occupied the children's play area (reported as far back as 2019, with a follow-up as recent as November 2025 describing a rat infestation), and the neighbourhood association has called the situation 'unsustainable.' This is a persistent social/quality-of-life concern rather than documented violent crime, robbery or drug-market activity.",
+    "sources": [
+      "ElDiario.es Somos Chueca (Plaza Pedro Zerolo situation)",
+      "Telemadrid, Nov 2025 (rat infestation)",
+      "No specific robbery/violent-crime coverage found for Justicia/Chueca"
+    ]
+  },
+  {
+    "nom": "Universidad",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Universidad (which contains Malasana) has documented incidents of nighttime disorder: in December 2024 a brawl involving around 30 young people in Plaza del Dos de Mayo led to 10 arrests, and the Ayuntamiento activated 16 surveillance cameras after residents said they were fed up with fights and drug dealing. Earlier reporting (2023) also described residents denouncing the plaza's degradation, alongside chronic botellon and noise complaints in the wider barrio.",
+    "sources": [
+      "El Espanol, Dec 2024 (brawl, 10 arrests, Plaza Dos de Mayo)",
+      "Telemadrid, Dec 2024 (cameras activated)",
+      "Telemadrid, Oct 2023 (plaza degradation)",
+      "ElDiario.es Somos Malasana"
+    ]
+  },
+  {
+    "nom": "Sol",
+    "day": "green",
+    "night": "yellow",
+    "text": "Sol (Puerta del Sol and adjoining Callao) has documented nighttime robbery incidents: in August 2025 Telemadrid and El Espanol reported a chain-snatching robbery and a violent attempted phone robbery within the same early-morning hour around Callao and Puerta del Sol, with three suspects arrested. General city-wide reporting also flags Centro as having high volumes of tourist-targeted pickpocketing. Night is rated yellow while day (heavy foot traffic, no comparable daytime incident reports found) remains green.",
+    "sources": [
+      "Telemadrid, Aug 2025 (Noche de robos en Madrid: tres atracos en Callao y en Sol)",
+      "El Espanol, Aug 2025",
+      "Telemadrid, Dec 2024 (metro pickpocketing, general)"
+    ]
+  },
+  {
+    "nom": "Imperial",
+    "day": "green",
+    "night": "green",
+    "text": "Searches across Spanish national and local outlets turned up no specific safety-relevant incidents tied to Imperial. Real-estate and lifestyle guides consistently describe it as a calm, traditional residential barrio near the Manzanares river and Madrid Rio park. No particular safety concern found in press research.",
+    "sources": [
+      "Madrid crime-ranking articles checked, Imperial not named",
+      "Fotocasa/Enalquiler barrio guides",
+      "No specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Acacias",
+    "day": "green",
+    "night": "green",
+    "text": "No press coverage of theft, drug activity, violent incidents, or street prostitution specific to Acacias was found. General Madrid danger-ranking articles do not mention Acacias, and lifestyle/real-estate coverage describes it as a settled, family-oriented residential barrio. No particular safety concern found in press research.",
+    "sources": [
+      "Sector Alarm, 'Los barrios mas inseguros de Madrid' (Acacias not listed)",
+      "Fotocasa 'Vivir en Acacias' guide",
+      "No specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Chopera",
+    "day": "green",
+    "night": "green",
+    "text": "No dedicated press coverage of robbery, drug dealing, violence, or street prostitution specific to Chopera was found, including in searches targeting narcopisos and okupacion by name. It is a small, mixed residential/light-industrial barrio that does not appear in any general Madrid danger-ranking articles reviewed. No particular safety concern found in press research.",
+    "sources": [
+      "General Madrid danger-ranking articles checked, Chopera not named",
+      "No specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Legazpi",
+    "day": "green",
+    "night": "yellow",
+    "text": "The residential and cultural core of Legazpi (around Matadero Madrid and Madrid Rio) is described by local lifestyle coverage as calm, with no incidents found there. However, Spanish press has repeatedly documented a longstanding cluster of illegal brothels on adjoining Paseo de las Delicias, described as sitting roughly 100 metres from Plaza de Legazpi, with an October 2025 police operation referenced there. This is a border-adjacent, night-time concern rather than one affecting Legazpi's residential core.",
+    "sources": [
+      "Madridiario, 'Un Babel de prostitucion a 100 metros de Legazpi'",
+      "ElDiario.es/Somos Madrid Arganzuela, Jan 2026",
+      "Living Rio Madrid (frames core barrio as safe)"
+    ]
+  },
+  {
+    "nom": "Delicias",
+    "day": "yellow",
+    "night": "red",
+    "text": "Paseo de las Delicias has extensive, recurring Spanish press coverage documenting street-level brothels tied to sexual exploitation at specific building numbers -- a problem residents say dates to the early 1990s and survived repeated eviction attempts plus a further police operation in October 2025 that identified around 140 people on-site. Separately, Telemadrid reported a police raid on a drug-dealing narcopiso on Paseo de las Delicias in August 2024. Residents quoted in January 2026 describe constant noise, unsanitary common areas, and frequent police raids.",
+    "sources": [
+      "ElDiario.es/Somos Madrid Arganzuela, Jan 2026",
+      "El Espanol, Apr 2023 & May 2023",
+      "Telemadrid, Oct 2022",
+      "Telemadrid, Aug 2024 (narcopiso raid)"
+    ]
+  },
+  {
+    "nom": "Palos de la Frontera",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Telemadrid reported in April 2024 that residents of the 'Planetario' area (around Parque Enrique Tierno Galvan and Mendez Alvaro, within Palos de la Frontera) were demanding greater security following a rise in robberies, and called for an end to illegal encampments in the same area. No coverage suggests violent crime or a no-go reputation, but there is a documented, recent, resident-driven concern about theft and informal settlements.",
+    "sources": [
+      "Telemadrid, 24 Apr 2024 (residents demand security)",
+      "Telemadrid, 28 Apr 2024 (call to end illegal encampments)"
+    ]
+  },
+  {
+    "nom": "Atocha",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "The Atocha barrio contains Madrid's principal railway station, long flagged in traveller forums as a pickpocketing target for tourists and rail passengers, consistent with major transit hubs generally. Spanish outlets also reported a genuine incident in which a group of youths assaulted three National Police officers inside the station. No evidence of organized muggings or a broader no-go reputation was found; the dominant, corroborated concern is opportunistic theft against travellers.",
+    "sources": [
+      "Tripadvisor traveller-forum threads (theft near Atocha)",
+      "Vozpopuli (police assault at Atocha station)",
+      "h50.es (corroborating report)"
+    ]
+  },
+  {
+    "nom": "Pacifico",
+    "day": "green",
+    "night": "green",
+    "text": "Targeted searches turned up no specific safety-relevant incidents, crime waves, or resident safety complaints tied to Pacifico in the last few years. No particular safety concern found in press research for either day or night.",
+    "sources": [
+      "General Retiro-district safety/real-estate roundups (no Pacifico-specific incidents)",
+      "No specific press coverage found"
+    ]
+  },
+  {
+    "nom": "Adelfas",
+    "day": "green",
+    "night": "green",
+    "text": "No recent (2022-2026) press coverage of theft, drug dealing, or violent incidents was found for Adelfas. A retrospective feature on the long-running Centro Social Seco notes historic security and drug-related problems tied to a nearby settlement decades ago (1990s), since addressed by community organising -- dated background, not a current finding.",
+    "sources": [
+      "Madridiario, retrospective feature on Centro Social Seco (historic)",
+      "No recent (2022-2026) crime-specific coverage found"
+    ]
+  },
+  {
+    "nom": "Estrella",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Estrella has genuine, repeated recent press coverage of two issues: an October 2024 armed robbery of a photography-equipment shop on Calle Vandergoten, and a sustained homeless/informal-settlement problem at Parque Martin Luther King, reported repeatedly between December 2024 and April 2026, with residents afraid, unsanitary conditions, and at least one death from cold exposure among the settlement's occupants.",
+    "sources": [
+      "El Espanol, 24 Oct 2024 (armed robbery)",
+      "Telemadrid, 2 Dec 2024",
+      "Telemadrid, 27 Dec 2025",
+      "COPE, 13 Apr 2026"
+    ]
+  },
+  {
+    "nom": "Ibiza",
+    "day": "green",
+    "night": "green",
+    "text": "No crime, theft, drug, or violence coverage specific to the Ibiza barrio was found. The only recent news tied to this area concerned an asbestos-removal dispute and a minor pavement-obstruction complaint, neither a personal-safety issue. No particular safety concern found for day or night.",
+    "sources": [
+      "El Espanol, Jul 2025 (asbestos dispute, non-safety)",
+      "Telemadrid, Mar 2021 (pavement complaint, non-safety)"
+    ]
+  },
+  {
+    "nom": "Los Jeronimos",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage was found for Los Jeronimos. Available coverage is limited to its architectural/institutional character (Prado Museum, Retiro Park proximity) and real-estate profiles describing it as an affluent, quiet residential area.",
+    "sources": [
+      "Real-estate/neighbourhood profile pieces",
+      "No specific press coverage of crime found"
+    ]
+  },
+  {
+    "nom": "Nino Jesus",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage was found for the Nino Jesus barrio itself; results were dominated by coverage of the Hospital Infantil Universitario Nino Jesus on unrelated medical topics, with no crime or disorder reporting tied to the surrounding residential streets.",
+    "sources": [
+      "Telemadrid, Jun 2024 (hospital feature, non-safety)",
+      "No specific press coverage found for the residential barrio"
+    ]
+  },
+  {
+    "nom": "Recoletos",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Recoletos contains Madrid's 'Milla de Oro' shopping corridor (Serrano, Ortega y Gasset), which has repeated, multi-year press coverage of violent robbery gangs targeting luxury watch and jewellery buyers using chokehold and gunpoint techniques. Police operations were reported in 2023, 2024 and 2025. A 2021 report also described a wave of opportunistic pickpocketing on a nearby street.",
+    "sources": [
+      "El Espanol, 9 Aug 2024 (watch-theft gang)",
+      "El Espanol, 26 Jun 2025",
+      "Seguritecnia, 23 Feb 2023 ('Banda del Rolex')",
+      "Telemadrid, 26 Feb 2021"
+    ]
+  },
+  {
+    "nom": "Goya",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage specific to the Goya barrio was found. Search results consistently returned lifestyle/shopping guides describing Calle Goya as an elegant commercial street. The luxury-robbery gang coverage found elsewhere centers on the Serrano/Ortega y Gasset corridor in neighbouring Recoletos, not Goya.",
+    "sources": [
+      "Telemadrid, Apr 2024 (lifestyle, no crime content)",
+      "No specific incident coverage found beyond city-wide blog posts not naming Goya"
+    ]
+  },
+  {
+    "nom": "Fuente del Berro",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Fuente del Berro has recurring, multi-year coverage of clandestine brothels operating out of chalets: a November 2020 police raid found 14 people inside one property, and a June 2021 follow-up described resident concern about exploitation of women near their homes. Separately, squatting of a vacant multi-million-euro building was documented and later cleared by police.",
+    "sources": [
+      "Telemadrid, 10 Nov 2020",
+      "Telemadrid, 25 May & 16 Jun 2021",
+      "Zona Retiro (okupacion cases)"
+    ]
+  },
+  {
+    "nom": "Guindalera",
+    "day": "green",
+    "night": "yellow",
+    "text": "Telemadrid reported on 8 April 2025 an overnight wave of vandalism in La Guindalera, described as 'a calm neighbourhood': around a dozen cars had windows smashed, motorbikes knocked over, and thefts occurred during early-morning hours on two streets. Coverage framed the episode as unusual and isolated rather than a chronic pattern.",
+    "sources": [
+      "Telemadrid, 8 Apr 2025"
+    ]
+  },
+  {
+    "nom": "Lista",
+    "day": "green",
+    "night": "green",
+    "text": "No barrio-specific safety concerns were found in press research for Lista. Broader Madrid articles about covert prostitution networks discuss multiple districts generally but do not identify Lista specifically.",
+    "sources": [
+      "No specific incident coverage found for Lista beyond generic city-wide listicles"
+    ]
+  },
+  {
+    "nom": "Castellana",
+    "day": "green",
+    "night": "green",
+    "text": "No incidents were found tied specifically to the official Castellana barrio. Several 'barrio de Salamanca' crime stories found in this research use the name colloquially to refer to the wider district's Serrano/Ortega y Gasset corridor, which lies in neighbouring Recoletos, not Castellana itself.",
+    "sources": [
+      "No barrio-specific coverage found for Castellana"
+    ]
+  },
+  {
+    "nom": "El Viso",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage, police reports, or documented resident complaints were found for El Viso. Coverage is consistently about its status as one of Madrid's most exclusive, low-density garden-city residential areas. Chamartin district overall is repeatedly cited as one of Madrid's safest.",
+    "sources": [
+      "Idealista/news, Oct 2024 (real-estate profile)",
+      "Madridinforma/ElDiario.es, 2024 (district crime ranking, low)"
+    ]
+  },
+  {
+    "nom": "Prosperidad",
+    "day": "green",
+    "night": "yellow",
+    "text": "The one specific documented safety issue found is a wave of catalytic-converter thefts from parked cars, reported by Telemadrid in March 2021, typically an overnight phenomenon. No coverage of street robbery, drug dealing, or violent incidents was found.",
+    "sources": [
+      "Telemadrid, Mar 2021 (catalytic converter thefts)",
+      "Telemadrid, Jun 2023 (neutral feature)"
+    ]
+  },
+  {
+    "nom": "Ciudad Jardin",
+    "day": "green",
+    "night": "green",
+    "text": "No genuine press coverage of safety-relevant incidents specific to this Ciudad Jardin (Chamartin, Madrid) was found; unrelated results referred to a different Ciudad Jardin in Palma de Mallorca.",
+    "sources": [
+      "No specific incident coverage found",
+      "General district crime statistics (Chamartin ranks among Madrid's safest)"
+    ]
+  },
+  {
+    "nom": "Hispanoamerica",
+    "day": "green",
+    "night": "green",
+    "text": "No genuine press or police coverage of safety-relevant incidents for Hispanoamerica was found, consistent with the barrio's general profile as an affluent residential area.",
+    "sources": [
+      "No specific incident coverage found",
+      "General 'most dangerous Madrid neighbourhoods' round-ups do not list Hispanoamerica"
+    ]
+  },
+  {
+    "nom": "Nueva Espana",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage, police reports, or documented resident complaints were found for Nueva Espana, one of Madrid's highest-value residential barrios.",
+    "sources": [
+      "No specific incident coverage found",
+      "El Espanol round-up of okupacion risk names other districts, not Nueva Espana"
+    ]
+  },
+  {
+    "nom": "Castilla",
+    "day": "yellow",
+    "night": "green",
+    "text": "The one notable signal found concerns the Nuevos Ministerios transport interchange within Castilla: a May 2025 piece lists it among stations with elevated pickpocketing risk due to high footfall, though the underlying claim was weakly sourced. No reporting on violent crime or a no-go reputation was found; outside the station, the barrio is quiet at night.",
+    "sources": [
+      "El Espanol, May 2025 (Nuevos Ministerios pickpocket risk, weakly sourced)"
+    ]
+  },
+  {
+    "nom": "Bellas Vistas",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Bellas Vistas has drawn repeated resident complaints about street robberies and noise around specific streets, leading the district council to approve extra patrols and cameras in October 2024. Police figures cited in the same coverage show violent robbery is a small share of district crime, and insecurity ranked well below cleanliness/noise in a 2019 resident survey -- a localized, moderate concern rather than a broadly dangerous neighbourhood.",
+    "sources": [
+      "El Espanol, Dec 2024",
+      "elDiario.es 'Somos Tetuan'",
+      "El Salto Diario",
+      "Vice.es"
+    ]
+  },
+  {
+    "nom": "Cuatro Caminos",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Cuatro Caminos, the busy commercial/transit hub, was the subject of a Telemadrid feature (Jul 2026) on two years of resident complaints about fights, robberies and small-scale drug dealing. A narcopiso bust was also reported in 2022-2023. Together these point to a moderate, persistent concern rather than confirmed serious violence.",
+    "sources": [
+      "Telemadrid, Jul 2026",
+      "Court report, Mar 2023 (narcopiso bust)",
+      "El Espanol, May 2025 (metro pickpocket mention)"
+    ]
+  },
+  {
+    "nom": "Castillejos",
+    "day": "green",
+    "night": "green",
+    "text": "No specific safety-relevant press coverage was found for Castillejos (Cuzco-Castillejos, adjacent to the AZCA business district). Results were dominated by real-estate listings, consistent with an affluent, low-turnover area.",
+    "sources": [
+      "No specific safety incident coverage found beyond real-estate listings"
+    ]
+  },
+  {
+    "nom": "Almenara",
+    "day": "green",
+    "night": "green",
+    "text": "Almenara (historically La Ventilla) underwent major urban remodeling decades ago; the Ayuntamiento runs an ongoing social/investment programme there addressing socioeconomic vulnerability, but no current press coverage of robbery, drug-market activity, or violent incidents specific to Almenara was found.",
+    "sources": [
+      "Ayuntamiento de Madrid, Plan Integral de Barrio La Ventilla-Almenara",
+      "Madridiario (historical redevelopment context)"
+    ]
+  },
+  {
+    "nom": "Valdeacederas",
+    "day": "green",
+    "night": "green",
+    "text": "Coverage found for Valdeacederas centers on quality-of-life and urban-works complaints (construction, noise, rats) rather than crime. No robbery, drug-dealing, or violent-incident coverage specific to Valdeacederas was found.",
+    "sources": [
+      "elDiario.es 'Somos Tetuan'",
+      "Tetuan30dias.com"
+    ]
+  },
+  {
+    "nom": "Berruguete",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Berruguete has a recurring pattern of resident complaints about insecurity, noise and cleanliness, including witnessed robberies and late-night disturbances tied to a nightlife venue with numerous licensing infractions. These complaints recur across several years, suggesting a persistent but moderate, localized concern.",
+    "sources": [
+      "El Distrito, Oct 2021",
+      "Tetuan30dias.com",
+      "Decide Madrid citizen proposals"
+    ]
+  },
+  {
+    "nom": "Gaztambide",
+    "day": "green",
+    "night": "green",
+    "text": "No press coverage, police statements, or resident reports describing street robbery, drug dealing, violent incidents, or other safety-relevant problems specific to Gaztambide were found. Chamberi district overall ranks consistently low for arrests/crime among Madrid's 21 districts.",
+    "sources": [
+      "El Espanol, Oct 2024 (district crime-ranking table, Chamberi low)",
+      "General searches: no specific incidents found"
+    ]
+  },
+  {
+    "nom": "Arapiles",
+    "day": "green",
+    "night": "green",
+    "text": "No genuine press or police coverage of street robbery, drug-market activity, or violent incidents specific to Arapiles turned up. General Madrid danger-ranking blogs do not flag this barrio, and Chamberi overall is consistently reported as low-crime.",
+    "sources": [
+      "El Espanol, Oct 2024 (district ranking)",
+      "General searches: no specific incidents found"
+    ]
+  },
+  {
+    "nom": "Trafalgar",
+    "day": "green",
+    "night": "green",
+    "text": "No specific safety incidents, crime reports, or resident-complaint coverage were found for Trafalgar. Press coverage is dominated by lifestyle pieces describing it as a popular, gentrified area with no mention of theft, drug activity, or violence.",
+    "sources": [
+      "Madrid es Noticia, descriptive profile",
+      "The Sibarist / Todo Esta en Madrid (lifestyle, no crime content)"
+    ]
+  },
+  {
+    "nom": "Almagro",
+    "day": "yellow",
+    "night": "green",
+    "text": "A documented daytime pattern: in April 2022 scooter-riding thieves were snatching luxury watches from pedestrians at outdoor cafes on Calle Almagro and nearby Claudio Coello, occurring roughly between noon and 5pm. This is an occasional daytime opportunistic-robbery pattern rather than a chronic or violent one; no comparable night-time incidents were found.",
+    "sources": [
+      "Telemadrid, 29 Apr 2022"
+    ]
+  },
+  {
+    "nom": "Rios Rosas",
+    "day": "green",
+    "night": "yellow",
+    "text": "Rios Rosas is repeatedly described as one of the calmest, most elegant residential barrios in central Madrid, with no daytime safety concerns found. However, well-documented nightlife-related disorder is tied to Calle Ponzano's roughly 70+ bars, with chronic late-night noise, crowding and public disturbances prompting a 2022 special acoustic-protection zone designation.",
+    "sources": [
+      "Telemadrid, 2019 & Apr 2022 (Ponzano ZPAE designation)",
+      "El Diario / Somos Chamberi"
+    ]
+  },
+  {
+    "nom": "Vallehermoso",
+    "day": "green",
+    "night": "green",
+    "text": "No genuine press, police, or resident-association coverage describing robbery, drug dealing, violence, or other safety-relevant incidents specific to Vallehermoso was found. General Madrid danger-ranking sources do not flag it, consistent with Chamberi's overall low-crime reputation.",
+    "sources": [
+      "El Espanol, Oct 2024 (district ranking)",
+      "General searches: no specific incidents found (only unrelated Vallecas results)"
+    ]
+  },
+  {
+    "nom": "El Pardo",
+    "day": "green",
+    "night": "green",
+    "text": "No current press coverage of street robbery, drug dealing, or violent incidents was found for El Pardo. This is a very low-density, semi-rural area dominated by the royal estate and woodland, with little crime coverage beyond an old, minor bar-till robbery item.",
+    "sources": [
+      "Ayuntamiento de Madrid Consejo de Seguridad Fuencarral-El Pardo minutes",
+      "No current (2022-2026) coverage of robbery, drugs or violence found"
+    ]
+  },
+  {
+    "nom": "Fuentelarreina",
+    "day": "green",
+    "night": "green",
+    "text": "Multiple searches for crime, insecurity, or robbery specifically in Fuentelarreina returned no relevant news coverage. General 'most dangerous neighbourhoods of Madrid' ranking articles do not name it. Small, low-density, mostly single-family-home barrio with no documented safety concerns.",
+    "sources": [
+      "General Madrid danger-ranking articles checked, Fuentelarreina not listed"
+    ]
+  },
+  {
+    "nom": "Penagrande",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A documented incident: in December 2024, a man in Penagrande was threatened by assailants in his garage and forced to a cash machine in what several outlets described as an 'express kidnapping' netting about 1,000 euros, reported independently by three outlets. The neighbourhood association maintains an ongoing security-news category, suggesting sustained resident attention, though no pattern of repeated similarly serious events was found.",
+    "sources": [
+      "Telemadrid, 19 Dec 2024",
+      "Libertad Digital, 19 Dec 2024",
+      "El Espanol Madrid, 19 Dec 2024",
+      "A.V. Penagrande neighbourhood association"
+    ]
+  },
+  {
+    "nom": "Pilar",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Barrio del Pilar has a recurring local-media theme of robbery waves in Telemadrid and Madridiario coverage, and a resident petition calling for the reopening of the neighbourhood's police station. Most dated robbery-wave articles found were from 2016-2017 rather than the last two to four years, so this reads as a longstanding, moderate concern rather than newly escalating.",
+    "sources": [
+      "Telemadrid, 2016 & 2017",
+      "Change.org petition (reapertura comisaria)",
+      "barriodelpilar.com"
+    ]
+  },
+  {
+    "nom": "La Paz",
+    "day": "green",
+    "night": "green",
+    "text": "No specific safety-relevant press coverage was found for La Paz. Results were limited to real-estate/demographic profile pages and official district statistical sheets.",
+    "sources": [
+      "Ayuntamiento de Madrid barrio statistical profile",
+      "No specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Valverde",
+    "day": "green",
+    "night": "green",
+    "text": "No coverage of robbery, drug activity, or violent incidents was found for Valverde. The only locally-specific hit concerned repairing physical disrepair in the old Fuencarral village area, an infrastructure issue rather than crime.",
+    "sources": [
+      "Decide Madrid participatory debate (infrastructure, not crime)",
+      "Consejo de Seguridad Fuencarral-El Pardo minutes"
+    ]
+  },
+  {
+    "nom": "Mirasierra",
+    "day": "green",
+    "night": "green",
+    "text": "Mirasierra is one of Madrid's wealthiest, low-density residential areas, referenced in general 'safest neighbourhoods of Madrid' round-ups. The only barrio-specific item found was a 2021 tenant/squatter tenancy dispute, not street crime.",
+    "sources": [
+      "Telemadrid, Sept 2021 (tenancy dispute, not street crime)",
+      "General 'barrios mas seguros' round-ups"
+    ]
+  },
+  {
+    "nom": "El Goloso",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage was found for El Goloso specifically. Generic city-wide 'most dangerous neighbourhoods' listicles do not mention the barrio. Smaller, newer-development barrio with no documented pattern of crime.",
+    "sources": [
+      "General Madrid danger listicles checked, El Goloso not named"
+    ]
+  },
+  {
+    "nom": "Casa de Campo",
+    "day": "yellow",
+    "night": "red",
+    "text": "Casa de Campo park has a long, well-documented history of street prostitution stretching back over a decade, covered repeatedly by local outlets and the subject of a formal citizen petition. In 2025 a wave of robberies targeting cars and visitors in parking areas was reported, including a first-person victim account. From around 2020 onward, resident complaints of robberies, threats and assaults were also linked to a former minors' shelter near the park. Daytime family/jogger use is largely uneventful, but night-time concerns are well documented.",
+    "sources": [
+      "Telemadrid, 'Prostitucion en la Casa de Campo' series",
+      "Decide Madrid citizen petition",
+      "Telemadrid & El Espanol, Jun 2025 (robbery wave)",
+      "Vozpopuli, 2020-2021"
+    ]
+  },
+  {
+    "nom": "Arguelles",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern was found in press research specific to Arguelles. Real-estate and lifestyle coverage describes it as a lively, youthful, well-regarded residential and student barrio, with no robbery, drug-market or violent-incident coverage found.",
+    "sources": [
+      "Idealista, Oct 2024",
+      "Fotocasa/Enalquiler barrio guides",
+      "No specific crime or disorder coverage found"
+    ]
+  },
+  {
+    "nom": "Ciudad Universitaria",
+    "day": "green",
+    "night": "yellow",
+    "text": "The Complutense University campus area is a well-documented recurring site of large student 'macrobotellones' (mass open-air drinking gatherings), with one post-exam event leaving four municipal police officers injured and three people requiring treatment for alcohol poisoning. These are night-time phenomena tied to the student calendar; daytime campus activity shows no comparable pattern of disorder.",
+    "sources": [
+      "El Independiente, Sept 2021",
+      "El Plural",
+      "Telemadrid, Apr 2022",
+      "ElDiario.es/Somos Madrid (EVAU botellon)"
+    ]
+  },
+  {
+    "nom": "Valdezarza",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern was found in press research for Valdezarza. The main current press theme is the city government's urban-regeneration programme for the barrio, addressing physical renewal rather than crime.",
+    "sources": [
+      "Ayuntamiento de Madrid, Sept 2025 (Plan Regenera)",
+      "No specific crime or safety coverage found"
+    ]
+  },
+  {
+    "nom": "Valdemarin",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern was found in press research for Valdemarin. The only notable recent coverage is of a 2024 rat-infestation complaint, a public-health/nuisance issue rather than crime.",
+    "sources": [
+      "El Debate, Oct 2024 (rat infestation)",
+      "No crime or safety coverage found"
+    ]
+  },
+  {
+    "nom": "El Plantio",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern was found in press research specific to El Plantio. General 'most dangerous Madrid neighbourhoods' listicles do not name it, and searches for robbery or crime coverage returned no genuine local/national press results.",
+    "sources": [
+      "Selectra danger-ranking listicle (El Plantio not listed)",
+      "No specific crime coverage found"
+    ]
+  },
+  {
+    "nom": "Aravaca",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern specific to Aravaca was found in press research. Some 2025 national coverage discusses a broader trend of squatting targeting empty luxury villas across Madrid and other regions in general terms, but no article documented a confirmed incident in Aravaca itself.",
+    "sources": [
+      "Infobae, Nov 2025 (general trend piece)",
+      "No Aravaca-specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Los Carmenes",
+    "day": "yellow",
+    "night": "red",
+    "text": "Local press has documented persistent narcopisos and street-level drug trafficking in Los Carmenes since at least 2015, with resident associations repeatedly protesting between 2018 and 2022. A November 2022 investigation found the problem 'is not a thing of the past', naming a specific street as a hotspot near the boundary with neighbouring Lucero. No reporting of muggings or violent street crime beyond drug-related activity was found specifically here.",
+    "sources": [
+      "Madridiario, Nov 2022",
+      "Telemadrid, Nov 2018",
+      "Guiadealuche.net, Apr 2018"
+    ]
+  },
+  {
+    "nom": "Puerta del Angel",
+    "day": "yellow",
+    "night": "red",
+    "text": "Several independent outlets report violent incidents in Puerta del Angel: a fatal stabbing of a young man in May 2023, an armed knifepoint-and-pistol robbery of a phone shop in December 2023 (at night), and a February 2024 report on a violent pickpocketing gang that had squatted premises and was intimidating residents. Real-estate and lifestyle sites, by contrast, ranked it among Madrid's calmer, more affordable barrios in 2025.",
+    "sources": [
+      "Telemadrid, Feb 2024",
+      "Madridiario, May 2023",
+      "OKDiario, Dec 2023",
+      "Viviendajoven.com, 2025 (counter-source)"
+    ]
+  },
+  {
+    "nom": "Lucero",
+    "day": "red",
+    "night": "red",
+    "text": "Lucero has the strongest press documentation in Latina district for recent, serious safety issues. Multiple 2024 reports describe entrenched narcopisos on and around a specific street, with a resident quoted saying conditions amount to 'terror, day, morning and night.' Police carried out a large raid in November 2020 (30 arrests) and a further macro-operation in September 2024 (around 40 arrests), yet the underlying problem reportedly persisted afterward.",
+    "sources": [
+      "Cuatro.com, May 2024",
+      "Telemadrid, May 2024",
+      "Telecinco/El Espanol, Sept 2024",
+      "Guiadealuche.net, Nov 2020"
+    ]
+  },
+  {
+    "nom": "Aluche",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Aluche shows a recurring pattern of theft-related press coverage: waves of burglaries and small-business robberies reported in 2020 and 2021, and a March 2024 report of arrests of a gang responsible for multiple flat break-ins including in Aluche. The documented concern is moderate and centred on property crime rather than a no-go reputation.",
+    "sources": [
+      "Telemadrid, Dec 2020 & May 2021",
+      "Gacetin Madrid, Mar 2024"
+    ]
+  },
+  {
+    "nom": "Campamento",
+    "day": "green",
+    "night": "green",
+    "text": "No specific, current (2022-2025) safety-relevant press coverage was found for Campamento beyond general district statistics. Older reports (2013, 2019) of assaults/robberies exist but fall well outside the recent-coverage window and were not corroborated by any more recent source. Current news instead concerns the large urban-regeneration project on former military land.",
+    "sources": [
+      "Search for 2022-2025 coverage: no substantive results found",
+      "Ayuntamiento de Madrid, 2023-2025 (Operacion Campamento, non-crime)"
+    ]
+  },
+  {
+    "nom": "Cuatro Vientos",
+    "day": "green",
+    "night": "green",
+    "text": "No recent (2022-2025) safety-relevant press coverage was found for Cuatro Vientos. The only crime-related data located was a dated 2017 insurance-industry statistic, uncorroborated by any subsequent reporting. Recent coverage instead concerns infrastructure and development.",
+    "sources": [
+      "Guiadealuche.net, Jan 2017 (outdated, no corroboration)",
+      "Search for 2022-2025 coverage: no substantive results found"
+    ]
+  },
+  {
+    "nom": "Aguilas",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage was found for Aguilas (Las Aguilas). Local resident-opinion pages describe it as a quiet, well-connected residential area, with the only resident complaint relating to street cleanliness rather than crime.",
+    "sources": [
+      "Barriosmadrid.net resident-opinion page",
+      "Search for 2022-2025 coverage: no substantive results found"
+    ]
+  },
+  {
+    "nom": "Comillas",
+    "day": "green",
+    "night": "green",
+    "text": "No significant recent press coverage (2022-2026) documenting specific safety problems in Comillas was found. Local barrio-opinion sites describe views as mixed but generally leaning toward the area being safe and quiet for residents.",
+    "sources": [
+      "barriosmadrid.net resident-opinion summary",
+      "General danger listicles checked, none singling out Comillas"
+    ]
+  },
+  {
+    "nom": "Opanel",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A 2022 report found residents near Opanel's municipal day centre for homeless people dealing with drug dealing occurring both day and night, fights and disturbances especially around midnight, and residents had formally petitioned for the centre's closure. The documented problems are localised (centred on the day-centre block) rather than district-wide.",
+    "sources": [
+      "Telemadrid Telenoticias, Aug 2022",
+      "barriosmadrid.net resident-opinion page"
+    ]
+  },
+  {
+    "nom": "San Isidro",
+    "day": "yellow",
+    "night": "red",
+    "text": "San Isidro (including Alto de San Isidro) has the most extensive documented safety coverage of Carabanchel's barrios: past reports of assaults on police officers, systematic car theft and vandalism, drug distribution and around 80 illegally squatted flats; a decade-long narcopiso at a specific address that was finally cleared by police in July 2021 after repeated reports of violence and theft including against schoolchildren. The recurrence of serious, independently reported incidents supports a red rating at night.",
+    "sources": [
+      "Madridiario, Jan 2013",
+      "Telemadrid, Jun 2017",
+      "Telemadrid, Oct 2020 & Jul 2021 (x2)",
+      "decide.madrid.es citizen proposal"
+    ]
+  },
+  {
+    "nom": "Vista Alegre",
+    "day": "green",
+    "night": "green",
+    "text": "Current resident-facing sources describe Vista Alegre as not considered a dangerous barrio; any security issues are described as belonging to 'some time ago' and since addressed. No barrio-specific incident coverage from 2022-2026 was found (narcopiso stories that surfaced initially were confirmed on address-checking to belong to neighbouring San Isidro, not Vista Alegre).",
+    "sources": [
+      "barriosmadrid.net resident-opinion page",
+      "Address-verification check ruling out San Isidro stories"
+    ]
+  },
+  {
+    "nom": "Puerta Bonita",
+    "day": "green",
+    "night": "yellow",
+    "text": "A January 2025 report described ongoing problems around a disused, informally occupied football field: illegal late-night parties, unlicensed alcohol sales, noise, rubbish accumulation and an improvised camp, described by a government delegate as 'degradation, filth and abandonment.' A resident-opinion page describes an improved overall trajectory, with past criminal-incident concerns having eased.",
+    "sources": [
+      "El Espanol, 22 Jan 2025",
+      "barriosmadrid.net resident-opinion page"
+    ]
+  },
+  {
+    "nom": "Buenavista",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Buenavista was the site of a well-documented organised-crime occupation racket: a criminal network sold illegal access to roughly 28-30 vacant flats in a residential building for 2,000-3,000 euros each, causing two months of tension (December 2024-February 2025) before ringleaders were arrested and the building cleared. A serious but contained and resolved episode rather than a persistent pattern.",
+    "sources": [
+      "El Espanol, 8 Jan 2025",
+      "El Diario/Somos Madrid, 7 Feb 2025"
+    ]
+  },
+  {
+    "nom": "Abrantes",
+    "day": "green",
+    "night": "green",
+    "text": "No specific, dated incident coverage (robbery, drug-market activity, violence) attributable to Abrantes itself was found for the 2022-2026 window. A resident-opinion aggregator shows a split of views but concludes overall perception leans toward it being a quiet barrio.",
+    "sources": [
+      "barriosmadrid.net resident-opinion page",
+      "General Carabanchel/Madrid-district danger listicles checked but non-specific to Abrantes"
+    ]
+  },
+  {
+    "nom": "Orcasitas",
+    "day": "red",
+    "night": "red",
+    "text": "Orcasitas has repeated, well-documented press coverage of active narcopisos. In November 2024, police dismantled two adjoining ground-floor narcopisos run by two siblings, seizing about 800g of cocaine, firearms, ammunition and over 600,000 euros in cash after months of observed heavy foot traffic. This follows an earlier documented narcopiso case in the same barrio in 2019, indicating a recurring rather than one-off problem.",
+    "sources": [
+      "El Espanol, Nov 2024",
+      "Telemadrid, Nov 2024",
+      "Gacetin Madrid, Nov 2024",
+      "Telemadrid, 2019 (earlier case)"
+    ]
+  },
+  {
+    "nom": "Orcasur",
+    "day": "green",
+    "night": "green",
+    "text": "Targeted searches for Orcasur-specific safety incidents turned up no genuine press coverage of particular safety problems. Available coverage concerns non-safety local issues such as the barrio losing its food shops. No particular safety concern found in press research for this specific barrio.",
+    "sources": [
+      "Madridiario (non-safety)",
+      "No specific safety-related press coverage found beyond generic city-wide lists"
+    ]
+  },
+  {
+    "nom": "San Fermin",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "San Fermin has moderate, credible documentation: in June 2025 a suspected narcopiso was exposed when paramedics responding to a sick baby found the home saturated with marijuana odor, and neighbours described constant unfamiliar foot traffic. Separately, a 2019 residents' association report on the barrio's 'Zona Mezquita' documented complaints of robberies of homes, cars and pedestrians, and poor street lighting contributing to insecurity, especially after dark.",
+    "sources": [
+      "Telemadrid, Jun 2025",
+      "Asociacion Vecinal San Fermin, 2019 report"
+    ]
+  },
+  {
+    "nom": "Almendrales",
+    "day": "green",
+    "night": "green",
+    "text": "No specific, credible press coverage of safety incidents in Almendrales was found. Results referencing the barrio in a 'danger' context come only from generic alarm-company marketing blogs listing broad district rankings without verifiable incidents tied to Almendrales itself.",
+    "sources": [
+      "No specific press coverage found beyond non-journalistic marketing blogs"
+    ]
+  },
+  {
+    "nom": "Moscardo",
+    "day": "green",
+    "night": "yellow",
+    "text": "Moscardo has one clear, specific press report: a January 2020 piece on a wave of car-related thefts, with one resident describing having a car battery stolen six times in under a year. Such thefts from parked cars typically occur overnight, so night is rated yellow while day is rated green absent daytime-specific incidents.",
+    "sources": [
+      "Telemadrid, Jan 2020"
+    ]
+  },
+  {
+    "nom": "Zofio",
+    "day": "green",
+    "night": "green",
+    "text": "No specific safety-relevant press coverage of Zofio was found. Searches returned only administrative pages and general city-wide narcopiso-map articles that mention Usera district as a whole without citing any incident located specifically in Zofio.",
+    "sources": [
+      "No specific safety coverage found for Zofio beyond district-level statistics"
+    ]
+  },
+  {
+    "nom": "Pradolongo",
+    "day": "red",
+    "night": "red",
+    "text": "Pradolongo park has extensive, repeated press coverage over nearly a decade documenting it as a safety hotspot, called 'the most dangerous park in Madrid' in 2015-2016 reports. Violent robbery-related stabbings have continued since: a 16-year-old was stabbed there in December 2022, and in December 2024 two teenagers stabbed a 45-year-old man during a daylight (around 5pm) robbery attempt. The city responded by installing 14 AI-monitored security cameras in late 2025.",
+    "sources": [
+      "Telemadrid, 2015 & 2016",
+      "Zona Retiro, Dec 2022",
+      "El Espanol, Dec 2024",
+      "Telemadrid, Dec 2025 (new cameras)"
+    ]
+  },
+  {
+    "nom": "Entrevias",
+    "day": "red",
+    "night": "red",
+    "text": "Entrevias has extensive, recurring press coverage over several years documenting open-air drug dealing and narcopisos, most concentrated around Pozo del Tio Raimundo and a long-occupied squat that was cleared in mid-2025. Residents have publicly said the barrio is 'degrading day after day' and voiced fear of a return to 1980s-era drug-market conditions. A June 2025 report described a drug operation that resumed selling within weeks of being dismantled, with residents reporting daily break-ins and buyers openly present.",
+    "sources": [
+      "Telemadrid, Feb 2025",
+      "Telemadrid, Jun 2025",
+      "Telemadrid, Jun-Jul 2025 (squat clearance series)",
+      "Telemadrid, Nov 2021"
+    ]
+  },
+  {
+    "nom": "San Diego",
+    "day": "red",
+    "night": "red",
+    "text": "An investigation found residents of San Diego describing frequent robberies, assaults and at least one stabbing, with a boulevard named as an open drug-dealing hotspot 'impossible to pass without seeing something,' and specific streets identified as trouble spots for assaults. The article also documented drug-facilitated sexual assaults in nightclubs and attacks on sex workers, alongside a high number of registered domestic-violence cases.",
+    "sources": [
+      "eldiario.es/Somos Madrid, 'Vecinos de San Diego denuncian problemas ligados a la droga y la delincuencia'",
+      "Telemadrid, 2018 (district context)"
+    ]
+  },
+  {
+    "nom": "Palomeras Bajas",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern found in press research. Searches turned up only generic listicles with no sourced incidents, plus a positive retrospective on the long-running neighbourhood association's community organising.",
+    "sources": [
+      "No specific incident coverage found beyond generic listicle sites",
+      "eldiario.es/Somos Madrid retrospective"
+    ]
+  },
+  {
+    "nom": "Palomeras Sureste",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern found in press research. Coverage located was limited to the local neighbourhood association's activities, with no reporting found on drug markets, robbery, violence, or other safety-relevant incidents.",
+    "sources": [
+      "vallecasweb.com (association activities, non-safety)",
+      "No specific safety-incident coverage found"
+    ]
+  },
+  {
+    "nom": "Portazgo",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern found in press research specific to Portazgo. District-wide narcopiso raid statistics exist for Puente de Vallecas as a whole, but no article tied specifically to the Portazgo barrio was located.",
+    "sources": [
+      "eldiariodemadrid.es, Apr 2025 (district-wide, not barrio-specific)",
+      "No barrio-specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Numancia",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern found in press research. Coverage located concerned a resident-driven urban renewal petition and minor upkeep complaints, with no reporting on drug dealing, robbery, or violence specific to this barrio.",
+    "sources": [
+      "decide.madrid.es citizen proposal",
+      "No specific safety-incident coverage found"
+    ]
+  },
+  {
+    "nom": "Pavones",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Local news outlet El Distrito reported that Pavones residents formally requested increased security from authorities, citing robberies and the presence of groups of petty criminals. This is a genuine, named-barrio finding describing moderate-level concern rather than serious or violent crime.",
+    "sources": [
+      "El Distrito (Moratalaz local news)",
+      "General Madrid danger listicles checked, Moratalaz/Pavones not listed"
+    ]
+  },
+  {
+    "nom": "Horcajo",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern was found in press research for Horcajo specifically. Searches returned only administrative pages and generic city-wide crime listicles that do not name this barrio.",
+    "sources": [
+      "Ayuntamiento de Madrid district/barrio map",
+      "No specific safety/crime coverage found"
+    ]
+  },
+  {
+    "nom": "Marroquina",
+    "day": "green",
+    "night": "green",
+    "text": "No particular safety concern was found in press research for Marroquina specifically. Real estate/neighbourhood-guide pages and general Madrid crime-ranking listicles surfaced but none named Marroquina in connection with a specific incident.",
+    "sources": [
+      "General Madrid danger-ranking articles checked, Marroquina not named"
+    ]
+  },
+  {
+    "nom": "Media Legua",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A criminal clan was reported to be running a drug-distribution operation out of four apartments near 'El Ruedo' building, including units belonging to the municipal housing authority, with neighbours reporting constant drug-related foot traffic. This reporting dates to November 2019; no more recent (2023-2026) follow-up confirming the situation persists was found, so the rating reflects a real but somewhat dated documented concern.",
+    "sources": [
+      "Telemadrid, Nov 2019 (x2 reports)",
+      "No more recent (2023-2026) coverage found"
+    ]
+  },
+  {
+    "nom": "Fontarron",
+    "day": "green",
+    "night": "green",
+    "text": "No specific crime or safety-incident press coverage was found for Fontarron. Official records show it is included in the city's socioeconomic-vulnerability improvement programme, targeting factors like an aging population rather than documented crime.",
+    "sources": [
+      "Ayuntamiento de Madrid, Plan Integral de Barrio Fontarron (2023 & 2025)",
+      "No specific crime/safety coverage found"
+    ]
+  },
+  {
+    "nom": "Vinateros",
+    "day": "green",
+    "night": "green",
+    "text": "No safety or crime-incident coverage specific to Vinateros was found. Recent coverage concerns a municipal urban-regeneration plan improving public space, lighting and drainage, explicitly not referencing any documented crime problem.",
+    "sources": [
+      "Madrid Actual, Mar 2026",
+      "La Cerca",
+      "No specific crime/safety coverage found"
+    ]
+  },
+  {
+    "nom": "Ventas",
+    "day": "green",
+    "night": "green",
+    "text": "A dedicated search for tourist theft or pickpocketing around the Plaza de Toros de Las Ventas turned up no specific press coverage of that phenomenon. City-wide 2024 crime statistics show robberies down but sexual assaults and drug trafficking up across Madrid, without singling out Ventas.",
+    "sources": [
+      "El Debate, 10 Feb 2025 (city-wide crime balance)",
+      "Telemadrid, 10 Feb 2025",
+      "No specific bullring-area theft coverage found"
+    ]
+  },
+  {
+    "nom": "Pueblo Nuevo",
+    "day": "yellow",
+    "night": "red",
+    "text": "Pueblo Nuevo is the most heavily documented barrio in this district for violent crime. In January 2024 a group of youths stabbed a 14-year-old at Pueblo Nuevo metro station; in May 2024 a young man was robbed and thrown onto the tracks at the same station. A nearby park is repeatedly named as a contested turf zone between two gangs, with further stabbings, a mass brawl with 14 arrests, and 8 further arrests including a gang leader across 2024.",
+    "sources": [
+      "Telecinco, 18 Jan 2024",
+      "El Espanol, 27 May 2024",
+      "El Espanol, 29 Oct 2024",
+      "El Debate, 1 Mar 2024"
+    ]
+  },
+  {
+    "nom": "Quintana",
+    "day": "green",
+    "night": "yellow",
+    "text": "No incident was found that press coverage places squarely inside Quintana itself, but the barrio sits directly adjacent to the documented Pueblo Nuevo gang-conflict zone, and is part of a district-wide 'uptick in insecurity' described in March 2024 coverage. Given proximity to well-documented gang activity but no incident specifically pinned to Quintana's interior, a moderate rating is warranted mainly for night-time.",
+    "sources": [
+      "El Debate, 1 Mar 2024 (district-wide insecurity)",
+      "El Espanol, 29 Oct 2024 (adjacent gang conflict)"
+    ]
+  },
+  {
+    "nom": "La Concepcion",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "La Concepcion has recurring, multi-year press coverage of an unauthorized informal settlement of vans and trucks used as dwellings, reported in November 2023 with an earlier version of the same story reported in 2019, indicating a persistent, unresolved situation. This is a documented quality-of-life and disorder issue rather than a violent-crime hotspot.",
+    "sources": [
+      "Telemadrid, 28 Nov 2023",
+      "Telecinco, 29 Nov 2023",
+      "Telemadrid, 6 Mar 2019"
+    ]
+  },
+  {
+    "nom": "San Pascual",
+    "day": "green",
+    "night": "green",
+    "text": "San Pascual appears in October 2024 coverage of the district's gang-violence response only in the context of a proposed youth centre as a preventive measure, not as the site of any documented incident. No specific robbery, drug-market or violent-incident coverage was found for San Pascual itself.",
+    "sources": [
+      "El Espanol, 29 Oct 2024 (proposed youth centre, no incident located there)",
+      "No specific safety incident found in this barrio"
+    ]
+  },
+  {
+    "nom": "San Juan Bautista",
+    "day": "green",
+    "night": "yellow",
+    "text": "A citizen petition on the city's participation platform is titled explicitly about insecurity in this barrio. Separately, a 2020 report described residents 'fed up' with insecurity generated by an illegal after-hours venue on a nearby street. Together these amount to documented resident-level concern about night-time disorder rather than confirmed serious violent crime.",
+    "sources": [
+      "Decide Madrid citizen proposal",
+      "Telemadrid, 28 Jan 2020"
+    ]
+  },
+  {
+    "nom": "Colina",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage was found for Colina. The only references located are administrative: activation of a regulated-parking zone and a district-councillor visit reported on the city government's website.",
+    "sources": [
+      "Ayuntamiento de Madrid press notices (administrative, non-safety)"
+    ]
+  },
+  {
+    "nom": "Atalaya",
+    "day": "green",
+    "night": "green",
+    "text": "No barrio-specific safety incidents were found for Atalaya. The only relevant item located is a July 2025 report that Ciudad Lineal residents district-wide voted for additional CCTV cameras, a general preventive measure rather than evidence of a specific problem in Atalaya itself.",
+    "sources": [
+      "Telemadrid, 29 Jul 2025 (district-wide vote for cameras)"
+    ]
+  },
+  {
+    "nom": "Costillares",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage of any kind was found for Costillares; search results returned only real-estate and housing-market listings. In a district where several other barrios are heavily documented for violent incidents, this absence is itself an honest indicator that Costillares is comparatively quiet.",
+    "sources": [
+      "No specific press coverage found beyond real-estate listings"
+    ]
+  },
+  {
+    "nom": "Palomas",
+    "day": "green",
+    "night": "green",
+    "text": "No specific press coverage of robberies, drug activity, or violent incidents tied to the Palomas barrio itself was found. Generic 'most dangerous Madrid neighbourhoods' listicles do not name Palomas among them.",
+    "sources": [
+      "General danger-ranking listicles checked, Palomas not named",
+      "No specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Piovera",
+    "day": "green",
+    "night": "yellow",
+    "text": "Piovera (often covered with the adjoining Conde de Orgaz area) is consistently described as one of Madrid's wealthiest, quietest neighbourhoods, with resident concerns centred on street/garden upkeep. The one documented safety-relevant issue found is a December 2019 report on a covert brothel operating out of a chalet, causing night-time noise and disputes; no more recent follow-up or additional incidents were found.",
+    "sources": [
+      "Hortaleza Periodico Vecinal, Jun 2019",
+      "Telemadrid, Dec 2019 (x2 reports)"
+    ]
+  },
+  {
+    "nom": "Canillas",
+    "day": "green",
+    "night": "green",
+    "text": "No pattern of street robbery, drug-market activity, or violent crime specific to Canillas was found. The only recent barrio-specific item located concerned a neighbour-on-neighbour financial scam, a fraud case rather than a street-safety issue. Broader Madrid-wide narcopiso mapping does not list Canillas among affected addresses.",
+    "sources": [
+      "Telemadrid, Feb 2025 (fraud case)",
+      "Telemadrid narcopiso mapping coverage, 2024-2025 (Canillas not named)"
+    ]
+  },
+  {
+    "nom": "Pinar del Rey",
+    "day": "green",
+    "night": "green",
+    "text": "Coverage of Pinar del Rey centres on urban neglect and infrastructure complaints rather than crime, with one local shopkeeper quoted as saying the area is 'more secure than many other Madrid neighbourhoods.' More recent coverage concerns a positive renovation project. No robbery, drug-dealing, or violent-incident coverage was found.",
+    "sources": [
+      "Madridiario, 2007 (infrastructure/neglect angle)",
+      "Ayuntamiento de Madrid, 2024 (renovation project)"
+    ]
+  },
+  {
+    "nom": "Apostol Santiago",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage was found for Apostol Santiago. Available material is limited to real-estate/neighbourhood-guide pages and municipal statistical documents, none flagging crime or disorder.",
+    "sources": [
+      "Fotocasa neighbourhood guide",
+      "Ayuntamiento de Madrid barrio statistical sheet"
+    ]
+  },
+  {
+    "nom": "Valdefuentes",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage was found for Valdefuentes. Search results were dominated by administrative bulletins and real-estate/neighbourhood profile pages, none reporting crime, drug activity, or violent incidents.",
+    "sources": [
+      "BOAM (Junta Municipal de Hortaleza session extracts)",
+      "MiraTuZona barrio profile"
+    ]
+  },
+  {
+    "nom": "Villaverde Alto - Casco Historico de Villaverde",
+    "day": "red",
+    "night": "red",
+    "text": "Villaverde Alto has extensive, multi-year press coverage of a proliferation of narcopisos: a 2022 investigation described 'a heroin plague' with roughly 20 new narcopisos increasing insecurity, hundreds of residents demonstrating against the trend, and a resident association mourning a murdered young man from the neighbourhood. Coverage continued into 2025-2026 with reports of a robbery wave using the 'butron' break-in technique, thefts from parked vehicles, and 31 people arrested for armed robberies in a related March 2026 operation.",
+    "sources": [
+      "El Mundo, 18 Oct 2022",
+      "ABC, 2 Oct 2022",
+      "La Razon, 2 Nov 2022",
+      "Publico, 7 Oct 2022",
+      "Telemadrid, Oct 2025 (robbery wave)",
+      "Telemadrid, Mar 2026 (31 arrests)"
+    ]
+  },
+  {
+    "nom": "San Cristobal",
+    "day": "red",
+    "night": "red",
+    "text": "San Cristobal (San Cristobal de los Angeles) is one of the most extensively documented barrios in this entire research: repeated narcopiso dismantlings through 2025-2026 (including a February 2026 police clearance of an entire block used for drug plantations), press descriptions of Latin gangs and narcopisos as an 'invisible' entrenched problem since at least 2023, a car-theft wave from February 2026 onward, and residents organising street patrols due to a wave of robberies as recently as May 2026. Vozpopuli named the barrio the 'zona cero' (ground zero) of Madrid Police's anti-narcopiso operations.",
+    "sources": [
+      "EL PAIS, 19 Feb 2026",
+      "ABC, 18 May 2023",
+      "Telemadrid, 24 Mar 2026 & 13 May 2026",
+      "gaceta.es, 14 May 2026",
+      "Vozpopuli, 28 Mar 2025"
+    ]
+  },
+  {
+    "nom": "Butarque",
+    "day": "green",
+    "night": "green",
+    "text": "Repeated targeted searches for Butarque specifically returned only general Villaverde-district narcopiso/robbery coverage (centred on San Cristobal, Villaverde Alto and Los Rosales) with no article naming Butarque itself as the location of an incident -- several results were explicitly flagged by the search engine as not matching the barrio name. No particular safety concern found in press research specific to this barrio.",
+    "sources": [
+      "Google search for 'Butarque Villaverde Madrid narcopiso/inseguridad/robos': results returned were district-wide, none Butarque-specific"
+    ]
+  },
+  {
+    "nom": "Los Rosales",
+    "day": "yellow",
+    "night": "red",
+    "text": "Los Rosales has genuine, repeated coverage: a robbery wave reported in October 2025 on the barrio's main avenue, narcopisos documented on specific streets as far back as 2018, and a 2020 report describing rival 'bandas' effectively controlling a park sitting on the boundary between Los Rosales and neighbouring San Cristobal. The pattern is serious enough, and repeated across years, to warrant caution particularly at night.",
+    "sources": [
+      "Telemadrid, Oct 2025 (robbery wave, Avenida de los Rosales)",
+      "20Minutos, Jun 2018 (narcopisos)",
+      "ABC, 30 May 2020 (gang-controlled park)"
+    ]
+  },
+  {
+    "nom": "Angeles",
+    "day": "green",
+    "night": "green",
+    "text": "Searches for the official 'Angeles' barrio specifically (distinct from the much more heavily covered 'San Cristobal de los Angeles', which is San Cristobal barrio's older/colloquial full name) returned no coverage genuinely distinct from San Cristobal's own narcopiso and robbery reporting. No particular safety concern found in press research specific to this exact barrio, and San Cristobal's own findings are not attributed here to avoid conflating the two.",
+    "sources": [
+      "Google search for barrio 'Angeles' Villaverde: results returned were about San Cristobal de los Angeles (a different official barrio), not Angeles itself"
+    ]
+  },
+  {
+    "nom": "Casco Historico de Vallecas",
+    "day": "green",
+    "night": "green",
+    "text": "No safety-relevant press coverage was found for Casco Historico de Vallecas. Search results were limited to real-estate listings, administrative/statistical municipal pages, and a note on a nearby former industrial area's redevelopment. No particular safety concern found in press research.",
+    "sources": [
+      "Idealista/Fotocasa real-estate listings",
+      "Ayuntamiento de Madrid, Madrid Salud barrio profile",
+      "No specific safety coverage found"
+    ]
+  },
+  {
+    "nom": "Santa Eugenia",
+    "day": "red",
+    "night": "red",
+    "text": "Santa Eugenia has substantial, recent and serious documented coverage: a clan-related shooting reported by ABC, a wave of pharmacy robberies in August 2025, vandalism against Mercado de Santa Eugenia shops in October 2025, and a stabbing/robbery of a 25-year-old man's shoes in October 2025. Older coverage documents an organised drug-trafficking group operating in the barrio (detected 2010, arrests reported 2018) and a historic robbery gang (1996), alongside a 2011 resident complaint about insecurity following a violent incident. The combination of very recent violent crime (shooting, stabbing) with a longer documented pattern supports a serious rating.",
+    "sources": [
+      "ABC (clan shooting, recent)",
+      "El Confidencial, 15 Aug 2025 (pharmacy robbery wave)",
+      "Telemadrid, Oct 2025 (market vandalism)",
+      "Telemadrid, Oct 2025 (stabbing/shoe robbery)",
+      "Telemadrid, 23 Aug 2018 (organised drug-trafficking group)",
+      "Europa Press, 5 Sept 2011 (resident insecurity complaint)"
+    ]
+  },
+  {
+    "nom": "Ensanche de Vallecas",
+    "day": "yellow",
+    "night": "red",
+    "text": "Ensanche de Vallecas has multiple genuine, recent findings: an armed robbery gang ('Fast & Furious') assaulting shops with pistols, an attempted robbery-and-kidnapping of a woman, repeated small-business robberies (one bar robbed seven times), an attempted robbery of a tobacconist's, and resident complaints of drug users ('toxicomanos') and discarded syringes found in the barrio's Pinar area. A squatting/occupation-mafia case affecting around 200 vulnerable families was also reported. The combination of armed robbery and an attempted kidnapping points to a serious night-time concern.",
+    "sources": [
+      "ABC (Fast & Furious armed shop robberies)",
+      "Telemadrid (attempted robbery/kidnapping of a woman)",
+      "Telemadrid (syringes in the Pinar area)",
+      "Facebook/Telemadrid (repeat bar robbery, tobacconist attempt)",
+      "Facebook/Telemadrid (occupation-mafia case, ~200 families)"
+    ]
+  },
+  {
+    "nom": "Casco Historico de Vicalvaro",
+    "day": "green",
+    "night": "green",
+    "text": "Searches for Vicalvaro's historic core specifically returned mostly administrative, cultural and real-estate content (municipal festival announcements, housing listings), plus one multi-district narcopiso operation from several months ago that named Vicalvaro district generally alongside Ciudad Lineal, Centro and Usera without pinpointing which barrio within Vicalvaro was affected. Given that ambiguity, no specific safety concern is attributed to this exact barrio.",
+    "sources": [
+      "Facebook/Noticias Para Municipios (multi-district narcopiso operation, not barrio-specific)",
+      "Ayuntamiento de Madrid, Noticias de Vicalvaro (administrative/cultural, non-safety)",
+      "No barrio-specific incident coverage found"
+    ]
+  },
+  {
+    "nom": "Valdebernardo",
+    "day": "red",
+    "night": "red",
+    "text": "Valdebernardo has extensive, serious and recent documented coverage: a November 2024 shooting in which three police officers were injured and three people arrested during a robbery-related confrontation (with gunshots heard by witnesses), a heroin-distribution gang operating from the barrio, seven people arrested for stealing goods from a truck, a narcopiso selling drugs to minors from a public-housing flat (raided October 2024), and a 'batalla campal' (pitched battle) between residents and police during an attempted arrest of minors involved in a knife robbery. An older (2008) report also documented a robbery-and-assault gang that began operating from Valdebernardo.",
+    "sources": [
+      "El Mundo, 19 Nov 2024 (shooting, 3 officers injured)",
+      "ABC (knife robbery by minors, battle with police)",
+      "Europa Press, 22 Oct 2024 (narcopiso selling to minors)",
+      "Telemadrid (heroin-gang, truck-cargo theft, x2 reports)",
+      "EL PAIS, 16 Jan 2008 (historic gang)"
+    ]
+  },
+  {
+    "nom": "Valderrivas",
+    "day": "green",
+    "night": "yellow",
+    "text": "The one specific finding for Valderrivas is a report of a man seriously wounded after being shot in a garage, sourced from a local community-news site without a clear recent date; given the uncertainty around timing and that this appears to be an isolated incident rather than a repeated pattern, it is treated as a moderate, night-time-only caution rather than a chronic concern. Other coverage found for Valderrivas concerns the Portland Valderrivas cement company (unrelated) and a cultural-heritage association, not personal safety.",
+    "sources": [
+      "todovicalvaro.es 'Sucesos' page (garage shooting, date unclear)",
+      "ABC, 29 Sept 2024 (cultural-heritage feature, non-safety)"
+    ]
+  },
+  {
+    "nom": "El Canaveral",
+    "day": "red",
+    "night": "red",
+    "text": "El Canaveral has extensive and very recent (2025-2026) documented coverage of serious organised crime: a robbery wave by the so-called 'banda de la alcantarilla' (July 2025) that led residents to demand a local police station, and multiple reports (November 2025 onward) of the Venezuelan organised-crime group 'Tren de Aragua' establishing a base in the neighbourhood involving occupied flats, drug production and prostitution, described by ABC as turning the development into 'la urbanizacion maldita' (the cursed development). Thirteen arrests were reported in one related operation.",
+    "sources": [
+      "Antena3, 23 Jul 2025",
+      "LaSexta, 22 Jul 2025",
+      "ABC, 19 Nov 2025 ('urbanizacion maldita')",
+      "gaceta.es, 18 Nov 2025 (Tren de Aragua)",
+      "Telemadrid, 8 Nov 2025",
+      "ABC, 15 Feb 2026"
+    ]
+  },
+  {
+    "nom": "Simancas",
+    "day": "red",
+    "night": "red",
+    "text": "Simancas has extensive, multi-year documented coverage centred on Parque Paraiso, described in press as 'the drug park', including a May 2025 murder in which a drug user killed a dealer following a dispute. Residents have staged repeated street demonstrations ('en pie de guerra') against narcopisos and open drug dealing continuing 'a plena luz del dia' (in broad daylight), with organised patrols and a formal complaint to the national ombudsman. Coverage spans from at least 2023 through mid-2026.",
+    "sources": [
+      "ABC, 12 May 2025 (murder in Parque Paraiso)",
+      "Telemadrid, Oct 2025 & 2026 (resident mobilisation)",
+      "FRAVM (San Blas neighbourhood movement)",
+      "El Periodico de Espana, 27 May 2026"
+    ]
+  },
+  {
+    "nom": "Hellin",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Hellin appears repeatedly alongside neighbouring Amposta and Simancas in coverage of drug-related degradation and uncollected rubbish in the wider Parque Paraiso area, and is named among the district's more vulnerable, lower-income barrios in an October 2025 report on residents having to pay out of pocket for a municipal benefit. It also features in coverage of the Ayuntamiento's Plan Regenera urban-improvement works. The documented concern is moderate and tied to the shared drug/degradation problem of the surrounding streets rather than a distinct, more severe pattern of its own.",
+    "sources": [
+      "20Minutos, 30 Oct 2025 (drug degradation and rubbish, Amposta and Hellin)",
+      "EL PAIS, 14 Oct 2025 (vulnerable barrios, Amposta/Hellin/Arcos)",
+      "La Razon, 19 Aug 2026 (Plan Regenera works)"
+    ]
+  },
+  {
+    "nom": "Amposta",
+    "day": "red",
+    "night": "red",
+    "text": "Calle Amposta is one of the most repeatedly and severely documented streets in this entire research: a stabbing witnessed by a resident on the street roughly 18 months before an April 2026 report, narcopisos that 'expanded' into the street from 2023 onward, residents forming night patrols 'en pie de guerra' out of fear, and press headlines describing the barrio's 'angustioso dia a dia' (anguished day-to-day life). Coverage is multi-year (2023-2026) and multi-source.",
+    "sources": [
+      "Articulo14, 8 May 2026 (stabbing witness)",
+      "La Razon, 8 May 2026",
+      "20Minutos, 13 Oct 2023 (narcopisos expand to Amposta)",
+      "Telemadrid, 10 Sept 2024",
+      "Noticias para Municipios, 27 May 2026 (resident mobilisation)"
+    ]
+  },
+  {
+    "nom": "Arcos",
+    "day": "green",
+    "night": "green",
+    "text": "Searches for Arcos barrio specifically mostly surfaced unrelated results referencing a street named 'Arcos de Jalon' (which appears grouped with cleanliness-report streets in the Simancas/Amposta area rather than confirmed as being within Arcos barrio itself) and narcopiso items whose location could not be confirmed as Arcos. Given this ambiguity, no specific incident is attributed to this exact barrio; it is mentioned once, alongside Amposta and Hellin, as one of the district's lower-income barrios in a benefits-access story unrelated to crime.",
+    "sources": [
+      "EL PAIS, 14 Oct 2025 (named among vulnerable barrios, non-safety)",
+      "Google search ambiguity: 'Arcos de Jalon' street references not confirmed as being within Arcos barrio"
+    ]
+  },
+  {
+    "nom": "Rosas",
+    "day": "red",
+    "night": "red",
+    "text": "Las Rosas has genuine, repeated recent coverage: a documented 'aumento de los robos' (robbery increase) with residents 'indignados' as of roughly a month before an August 2026 report, a narcopiso dismantled directly across from a local adult-education centre in February 2026, a report headlined 'Suciedad, drogas y peleas' (dirt, drugs and fights) describing residents' complaints, over ten years of a resident living alongside a narcopiso, and an August 2026 squatting incident in which a hospitalised woman's home was occupied by intruders.",
+    "sources": [
+      "Facebook/C9N Paraguay (robbery increase, ~Jul 2026)",
+      "Telemadrid, 26 Feb 2026 (narcopiso dismantled)",
+      "Telemadrid, 21 Jun 2026 ('Suciedad, drogas y peleas')",
+      "Telemadrid, Oct 2025 ('Mas de 10 anos conviviendo con un narcopiso')",
+      "ABC, 19 Aug 2026 (squatting incident)"
+    ]
+  },
+  {
+    "nom": "Rejas",
+    "day": "red",
+    "night": "red",
+    "text": "Rejas is the site of the well-documented 'hotel okupa de Rejas', a former apart-hotel complex that press describes as having been the scene of 'numerous criminal episodes' for years; an August 2026 police operation dismantled a criminal network of squatters who had been robbing VTC/rideshare drivers, and an October 2025 report described a Latvian organised-crime figure killed in a settling-of-scores in the same area, which investigators called strategically valuable to criminal networks. Narcopisos with reinforced armoured doors have also been raided in the district in connection with this zone.",
+    "sources": [
+      "Antena3, 6 Aug 2026",
+      "ABC, 5 Aug 2026",
+      "La Razon, 10 Oct 2025 (Latvian mobster killed)",
+      "El Mundo, 5 Sept 2025 (narcopiso raid, armoured doors)"
+    ]
+  },
+  {
+    "nom": "Canillejas",
+    "day": "green",
+    "night": "green",
+    "text": "Searches specific to Canillejas barrio (as distinct from the district-wide 'San Blas-Canillejas' name and from the heavily-covered Parque Paraiso/Simancas cluster) did not surface an incident clearly located within Canillejas' own historic core. A district-wide May 2026 headline describes San Blas-Canillejas overall as having had 130 stabbings and 2 deaths reported in recent years, but this figure applies to the district as a whole -- concentrated, per the more granular reporting above, around Simancas, Amposta and Rejas -- rather than being specific evidence for the Canillejas barrio itself.",
+    "sources": [
+      "El Espanol, 9 May 2026 (district-wide 'narcobarrio' headline, not Canillejas-specific)",
+      "No incident found specifically located within Canillejas' own barrio boundary"
+    ]
+  },
+  {
+    "nom": "El Salvador",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Search results for 'El Salvador' barrio were heavily diluted by unrelated coverage of the country of El Salvador. One relevant, genuine item was found: an El Mundo report on Madrid Municipal Police raiding occupied 'narcovestuarios' (drug-stash lockers) that references 'el Salvador' as a location where people can be detained -- a real but limited signal of drug-market activity touching this barrio, rather than the more extensive, dedicated coverage found for several neighbouring San Blas-Canillejas barrios.",
+    "sources": [
+      "El Mundo, 23 Feb 2024 (narcovestuarios raid, references El Salvador)",
+      "Search noise: most other 'El Salvador' results referred to the country, not the Madrid barrio"
+    ]
+  },
+  {
+    "nom": "Alameda de Osuna",
+    "day": "yellow",
+    "night": "red",
+    "text": "Alameda de Osuna has multiple genuine, recent findings: a documented 'oleada de robos y vandalismo' (robbery and vandalism wave) reported in October 2025 with residents describing '10 days of shock after shock', an arrest for exhibitionism and sexual assault reported in July 2026, car theft, and a longtime (26-year) resident describing having had people break into their home and attempt to steal their car on five separate occasions. A pattern of marking doors to identify targets for break-ins was also reported. The combination of a sexual-assault arrest and a repeated home-break-in pattern supports a serious night-time rating.",
+    "sources": [
+      "Telemadrid, Oct 2025 (robbery/vandalism wave)",
+      "OkDiario, 6 Jul 2026 (exhibitionism/sexual-assault arrest)",
+      "Facebook/laSexta (26-year resident's account of repeated break-ins)",
+      "EL PAIS (door-marking break-in scheme, referenced in a resident comment)"
+    ]
+  },
+  {
+    "nom": "Aeropuerto",
+    "day": "yellow",
+    "night": "red",
+    "text": "The Aeropuerto barrio has extensive, very recent (2025) documented coverage of a severe insecurity crisis linked to the displacement of homeless people from Madrid-Barajas Airport terminals into the surrounding neighbourhood: residents have organised citizen patrols, describing themselves as 'hartos de la inseguridad, amenazas, robos' (fed up with insecurity, threats, robberies), a large building was squatted by an estimated 40+ people including former airport rough-sleepers, and residents reported people 'volviendose locos' (becoming violent) around children, the elderly and families. Airport workers separately reported insecurity moving into the terminals themselves.",
+    "sources": [
+      "El Mundo, 17 Sept 2025 (resident mobilisation over squatted building)",
+      "Facebook/Telemadrid, ~Sept 2025 (citizen patrols)",
+      "Antena3, 12 Sept 2025 (40+ squatters)",
+      "El Confidencial, 27 Sept 2025",
+      "Libertad Digital, 24 Sept 2025",
+      "Telemadrid, Oct 2025 (airport worker insecurity)"
+    ]
+  },
+  {
+    "nom": "Casco Historico de Barajas",
+    "day": "green",
+    "night": "green",
+    "text": "No specific safety incidents, robbery, or drug-market coverage tied to Casco Historico de Barajas itself was found; the substantial press coverage of insecurity in the wider Barajas district (citizen patrols, squatting) that surfaced in these searches was specifically located in the neighbouring Aeropuerto barrio, not the historic core. Current coverage of Casco Historico de Barajas instead concerns a city-funded pedestrianisation and urban-renewal project.",
+    "sources": [
+      "El Confidencial, 27 Sept 2025 (identifies the insecurity concern as being in the Aeropuerto barrio, distinct from Casco Historico)",
+      "Ayuntamiento de Madrid / 20Minutos / La Razon, 2026 (pedestrianisation project, non-safety)"
+    ]
+  },
+  {
+    "nom": "Timon",
+    "day": "green",
+    "night": "green",
+    "text": "No specific safety-relevant press coverage was found for Timon. Available material concerns traffic-safety infrastructure (pedestrian-protection measures on a specific street), a bike-lane advocacy campaign describing gaps in cycling infrastructure, and a real-estate guide listing 'seguridad del barrio' as a topic without elaborating on any incident.",
+    "sources": [
+      "Ayuntamiento de Madrid (pedestrian-safety infrastructure, non-crime)",
+      "FRAVM, 2 Jun 2025 (bike-lane advocacy, non-crime)",
+      "Fotocasa neighbourhood guide"
+    ]
+  },
+  {
+    "nom": "Corralejos",
+    "day": "green",
+    "night": "green",
+    "text": "No specific safety-relevant press coverage was found for Corralejos. Available material is limited to administrative content (school locations), real-estate profiles, and its listing as one of Barajas district's five official barrios in local-media 'about us' pages.",
+    "sources": [
+      "Ayuntamiento de Madrid (school locations, non-safety)",
+      "Fotocasa neighbourhood guide",
+      "No specific safety-relevant coverage found"
+    ]
+  }
+]
