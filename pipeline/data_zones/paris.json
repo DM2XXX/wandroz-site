@@ -1,0 +1,4975 @@
+{
+  "label": "Paris, France",
+  "center": [
+    48.8566,
+    2.3522
+  ],
+  "zoom": 12,
+  "dataNote": "Paris: neighbourhood shapes are the real official administrative boundaries of Paris's 80 \"quartiers administratifs\" (4 per arrondissement x 20 arrondissements, the finest-grain official neighbourhood subdivision of the city), sourced directly from the City of Paris's own opendata.paris.fr open-data portal (\"quartier_paris\" dataset, ODbL license). Unlike London/Berlin/Amsterdam/Prague/Oslo/Munich/Stockholm's official crime statistics, France's SSMSI crime dataset is published only at commune level, and Paris is a single commune — so, like Rome, Milan, Turin, Barcelona, Madrid, Vienna and Lisbon, Paris's safety levels are Wandroz's Level 2 approach: genuine current local/national press research per quartier, honestly disclosed as press-based rather than official crime statistics. Where no specific news coverage was found for a quartier, that is stated plainly rather than assumed either way. See the methodology page for details and sources.",
+  "zones": [
+    {
+      "name": "Saint-Germain-l'Auxerrois (1e arr.)",
+      "slug": "saint-germain-l-auxerrois",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.85405,
+            2.344593
+          ],
+          [
+            48.858389,
+            2.337547
+          ],
+          [
+            48.860132,
+            2.329909
+          ],
+          [
+            48.863057,
+            2.320903
+          ],
+          [
+            48.866497,
+            2.323573
+          ],
+          [
+            48.858516,
+            2.34822
+          ],
+          [
+            48.85405,
+            2.344593
+          ]
+        ]
+      ],
+      "text": "No dated press coverage of a street-crime or safety problem specific to this quartier was found — it covers the Seine-facing wings of the Louvre, the Tuileries side and the Rivoli arcades, an area with heavy day and night police presence. Worth noting for context: the October 2025 crown-jewels heist at the Louvre (widely covered, e.g. franceinfo) took place in the Galerie d'Apollon on this quartier's side of the museum, but it was a professional, high-security-target robbery, not a street-crime pattern, and it doesn't reflect elevated everyday risk to visitors walking the area. Ordinary tourist-crowd vigilance applies as it does across central Paris. Sources checked: franceinfo, Oct 2025 (Louvre heist coverage); No quartier-specific street-crime coverage found.",
+      "query": "Saint-Germain-l'Auxerrois, Paris, France"
+    },
+    {
+      "name": "Halles (1e arr.)",
+      "slug": "halles",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.860576,
+            2.349366
+          ],
+          [
+            48.858516,
+            2.34822
+          ],
+          [
+            48.861478,
+            2.339123
+          ],
+          [
+            48.862135,
+            2.339466
+          ],
+          [
+            48.862218,
+            2.339184
+          ],
+          [
+            48.86575,
+            2.341178
+          ],
+          [
+            48.863406,
+            2.350949
+          ],
+          [
+            48.860576,
+            2.349366
+          ]
+        ]
+      ],
+      "text": "This quartier — especially the underground Châtelet–Les Halles RER/Métro hub and the tunnels beneath the Forum des Halles shopping centre — has recurring, well-documented problems. franceinfo (Nov 2025) described police dealing daily with fights, dealing and arrests at the station; Europe1 and France 3 régions (2024-2025) reported repeatedly on the residents' association ADRAQH protesting open crack consumption in the underground tunnels; Police & Réalités reported two RATP agents (one pregnant) violently assaulted there in May 2025; and CNews (Aug 2026) covered a shoplifting ring that had targeted Les Halles boutiques for over two years, alongside Actu17's coverage of a concert-related brawl at the Forum in 2025. Daytime shopping and sightseeing in the plaza/mall level is generally fine given the crowds and security, but the underground station and tunnel network see real, ongoing trouble that gets markedly worse after dark. Sources checked: franceinfo, Nov 2025; Europe1 / France 3 régions, 2024-2025 (tunnel crack use); Police & Réalités, May 2025; CNews, Aug 2026; Actu17, 2025 (Forum des Halles concert violence).",
+      "query": "Halles, Paris, France"
+    },
+    {
+      "name": "Palais-Royal (1e arr.)",
+      "slug": "palais-royal",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.862135,
+            2.339466
+          ],
+          [
+            48.861478,
+            2.339123
+          ],
+          [
+            48.863991,
+            2.331354
+          ],
+          [
+            48.867516,
+            2.333675
+          ],
+          [
+            48.86575,
+            2.341178
+          ],
+          [
+            48.863157,
+            2.339577
+          ],
+          [
+            48.862218,
+            2.339184
+          ],
+          [
+            48.862135,
+            2.339466
+          ]
+        ]
+      ],
+      "text": "No dated press coverage of a specific crime or safety problem was found for this compact, well-guarded quartier around the Palais-Royal gardens, the Comédie-Française and the Conseil d'État. It's an affluent, heavily monitored administrative and cultural area with no notable incident pattern turning up in local press searches. Sources checked: No safety-relevant coverage found in French press search.",
+      "query": "Palais-Royal, Paris, France"
+    },
+    {
+      "name": "Place-Vendôme (1e arr.)",
+      "slug": "place-vendome",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.864913,
+            2.331945
+          ],
+          [
+            48.863991,
+            2.331354
+          ],
+          [
+            48.86651,
+            2.323534
+          ],
+          [
+            48.869012,
+            2.32532
+          ],
+          [
+            48.869449,
+            2.325159
+          ],
+          [
+            48.869929,
+            2.327991
+          ],
+          [
+            48.868192,
+            2.330657
+          ],
+          [
+            48.867516,
+            2.333675
+          ],
+          [
+            48.864913,
+            2.331945
+          ]
+        ]
+      ],
+      "text": "No coverage was found of any risk to ordinary visitors in this quartier, home to the Ministry of Justice, the Ritz and several luxury jewellers. It has occasionally made news for rare, professional armed robberies of high-end jewellery boutiques (franceinfo and Europe1 have covered several such heists over the years), but these are brief, targeted commando-style raids on specific stores, not street crime affecting pedestrians or tourists in the square. Sources checked: franceinfo (place Vendôme jewellery-store robbery coverage); Europe1 (bijouterie robbery coverage).",
+      "query": "Place-Vendôme, Paris, France"
+    },
+    {
+      "name": "Gaillon (2e arr.)",
+      "slug": "gaillon",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.867971,
+            2.33632
+          ],
+          [
+            48.866997,
+            2.335869
+          ],
+          [
+            48.868192,
+            2.330657
+          ],
+          [
+            48.869917,
+            2.328007
+          ],
+          [
+            48.871459,
+            2.337009
+          ],
+          [
+            48.867971,
+            2.33632
+          ]
+        ]
+      ],
+      "text": "No safety-relevant press coverage was found for this small, quiet administrative and business quartier near the Opéra and Avenue de l'Opéra. Sources checked: No coverage found.",
+      "query": "Gaillon, Paris, France"
+    },
+    {
+      "name": "Vivienne (2e arr.)",
+      "slug": "vivienne",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.865802,
+            2.341233
+          ],
+          [
+            48.866997,
+            2.335869
+          ],
+          [
+            48.86884,
+            2.336689
+          ],
+          [
+            48.871459,
+            2.337009
+          ],
+          [
+            48.871981,
+            2.340044
+          ],
+          [
+            48.871489,
+            2.343069
+          ],
+          [
+            48.866381,
+            2.341021
+          ],
+          [
+            48.866054,
+            2.34149
+          ],
+          [
+            48.865802,
+            2.341233
+          ]
+        ]
+      ],
+      "text": "No safety-relevant coverage was found. This quartier (the historic Bibliothèque nationale site, Galerie Vivienne, the Bourse) is an affluent heritage and business district with no documented crime pattern in local press. Sources checked: No coverage found.",
+      "query": "Quartier Vivienne, Paris 2e, France"
+    },
+    {
+      "name": "Mail (2e arr.)",
+      "slug": "mail",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.86491,
+            2.346839
+          ],
+          [
+            48.864431,
+            2.346675
+          ],
+          [
+            48.86575,
+            2.341178
+          ],
+          [
+            48.866054,
+            2.34149
+          ],
+          [
+            48.866381,
+            2.341021
+          ],
+          [
+            48.871489,
+            2.343069
+          ],
+          [
+            48.870704,
+            2.34788
+          ],
+          [
+            48.86491,
+            2.346839
+          ]
+        ]
+      ],
+      "text": "No dated safety-specific coverage was found for this small quartier bordering the Sentier garment district — searches turned up only real-estate and heritage pages, no crime reporting tied to it. Sources checked: No coverage found.",
+      "query": "Quartier du Mail, Paris 2e, France"
+    },
+    {
+      "name": "Bonne-Nouvelle (2e arr.)",
+      "slug": "bonne-nouvelle",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.864426,
+            2.351518
+          ],
+          [
+            48.863406,
+            2.350949
+          ],
+          [
+            48.864431,
+            2.346675
+          ],
+          [
+            48.870704,
+            2.34788
+          ],
+          [
+            48.86933,
+            2.354261
+          ],
+          [
+            48.864426,
+            2.351518
+          ]
+        ]
+      ],
+      "text": "No quartier-specific, dated crime coverage was found. This quartier borders the Grands Boulevards and the Strasbourg-Saint-Denis crossroads, an area sometimes linked in older reporting to sex work and drug issues, but that intersection sits mostly in neighbouring quartiers/arrondissements, and no coverage was found that clearly and specifically places an incident inside quartier Bonne-Nouvelle itself — so, per the honest-default rule, it isn't attributed here. Sources checked: No quartier-specific coverage found; nearby Strasbourg-Saint-Denis reporting could not be confidently attributed to this quartier.",
+      "query": "Bonne-Nouvelle, Paris, France"
+    },
+    {
+      "name": "Arts-et-Métiers (3e arr.)",
+      "slug": "arts-et-metiers",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.86519,
+            2.36021
+          ],
+          [
+            48.863366,
+            2.358265
+          ],
+          [
+            48.864823,
+            2.35327
+          ],
+          [
+            48.864426,
+            2.351518
+          ],
+          [
+            48.86933,
+            2.354261
+          ],
+          [
+            48.867504,
+            2.363828
+          ],
+          [
+            48.866649,
+            2.361735
+          ],
+          [
+            48.86519,
+            2.36021
+          ]
+        ]
+      ],
+      "text": "No dated safety-specific coverage was found for this quartier around the Musée des Arts et Métiers and the northern edge of the Marais. Sources checked: No coverage found.",
+      "query": "Arts-et-Métiers, Paris, France"
+    },
+    {
+      "name": "Enfants-Rouges (3e arr.)",
+      "slug": "enfants-rouges",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.861628,
+            2.367101
+          ],
+          [
+            48.860949,
+            2.367265
+          ],
+          [
+            48.861795,
+            2.361225
+          ],
+          [
+            48.863366,
+            2.358265
+          ],
+          [
+            48.866617,
+            2.361691
+          ],
+          [
+            48.867504,
+            2.363828
+          ],
+          [
+            48.86317,
+            2.366703
+          ],
+          [
+            48.861628,
+            2.367101
+          ]
+        ]
+      ],
+      "text": "No safety-relevant coverage was found. This is a quiet residential Marais quartier best known for the historic Marché des Enfants Rouges food market. Sources checked: No coverage found.",
+      "query": "Enfants-Rouges, Paris, France"
+    },
+    {
+      "name": "Archives (3e arr.)",
+      "slug": "archives",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.855831,
+            2.36848
+          ],
+          [
+            48.856409,
+            2.36445
+          ],
+          [
+            48.857251,
+            2.361751
+          ],
+          [
+            48.858323,
+            2.359372
+          ],
+          [
+            48.860066,
+            2.356903
+          ],
+          [
+            48.862602,
+            2.359812
+          ],
+          [
+            48.861795,
+            2.361225
+          ],
+          [
+            48.860949,
+            2.367265
+          ],
+          [
+            48.855831,
+            2.36848
+          ]
+        ]
+      ],
+      "text": "No dated crime-specific coverage was found for this quartier, home to the Musée Carnavalet, the National Archives and much of the northern Marais. It's an affluent, heavily touristed residential and heritage area with no notable incident pattern reported in press searches. Sources checked: No coverage found.",
+      "query": "Quartier des Archives, Paris 3e, France"
+    },
+    {
+      "name": "Sainte-Avoie (3e arr.)",
+      "slug": "sainte-avoie",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.861225,
+            2.358218
+          ],
+          [
+            48.860066,
+            2.356903
+          ],
+          [
+            48.861991,
+            2.350156
+          ],
+          [
+            48.864426,
+            2.351518
+          ],
+          [
+            48.864823,
+            2.35327
+          ],
+          [
+            48.862602,
+            2.359812
+          ],
+          [
+            48.861225,
+            2.358218
+          ]
+        ]
+      ],
+      "text": "No safety-relevant coverage was found for this small central Marais quartier. Sources checked: No coverage found.",
+      "query": "Sainte-Avoie, Paris, France"
+    },
+    {
+      "name": "Saint-Merri (4e arr.)",
+      "slug": "saint-merri",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.854908,
+            2.352623
+          ],
+          [
+            48.854667,
+            2.352492
+          ],
+          [
+            48.856708,
+            2.346803
+          ],
+          [
+            48.857349,
+            2.347565
+          ],
+          [
+            48.861991,
+            2.350156
+          ],
+          [
+            48.86008,
+            2.356862
+          ],
+          [
+            48.856873,
+            2.353701
+          ],
+          [
+            48.854908,
+            2.352623
+          ]
+        ]
+      ],
+      "text": "No dated safety-specific coverage was found for this quartier, which includes the Centre Pompidou/Beaubourg and part of rue de Rivoli's eastern stretch. Large tourist crowds around Pompidou mean the usual pickpocket vigilance is sensible, as in any busy attraction, but no documented incident pattern was found for the quartier itself. Sources checked: No quartier-specific coverage found.",
+      "query": "Saint-Merri, Paris, France"
+    },
+    {
+      "name": "Saint-Gervais (4e arr.)",
+      "slug": "saint-gervais",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.855676,
+            2.363765
+          ],
+          [
+            48.854564,
+            2.362943
+          ],
+          [
+            48.852435,
+            2.360277
+          ],
+          [
+            48.851774,
+            2.360044
+          ],
+          [
+            48.854667,
+            2.352492
+          ],
+          [
+            48.856873,
+            2.353701
+          ],
+          [
+            48.86008,
+            2.356862
+          ],
+          [
+            48.858323,
+            2.359372
+          ],
+          [
+            48.856455,
+            2.364304
+          ],
+          [
+            48.855676,
+            2.363765
+          ]
+        ]
+      ],
+      "text": "No safety-relevant coverage was found for this quartier around the Hôtel de Ville and the Saint-Gervais church, a busy but well-monitored administrative and heritage area. Sources checked: No coverage found.",
+      "query": "Quartier Saint-Gervais, Paris 4e, France"
+    },
+    {
+      "name": "Arsenal (4e arr.)",
+      "slug": "arsenal",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.855734,
+            2.368512
+          ],
+          [
+            48.853163,
+            2.369138
+          ],
+          [
+            48.847371,
+            2.366503
+          ],
+          [
+            48.84614,
+            2.364433
+          ],
+          [
+            48.848232,
+            2.361515
+          ],
+          [
+            48.849774,
+            2.360685
+          ],
+          [
+            48.852234,
+            2.360107
+          ],
+          [
+            48.854564,
+            2.362943
+          ],
+          [
+            48.856455,
+            2.364304
+          ],
+          [
+            48.855734,
+            2.368512
+          ]
+        ]
+      ],
+      "text": "No dated safety-specific coverage was found for this quartier around the Bastille/Arsenal marina and the southern Marais; searches returned only heritage and real-estate pages. Sources checked: No coverage found.",
+      "query": "Quartier de l'Arsenal, Paris 4e, France"
+    },
+    {
+      "name": "Notre-Dame (4e arr.)",
+      "slug": "notre-dame",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.84858,
+            2.361314
+          ],
+          [
+            48.848232,
+            2.361515
+          ],
+          [
+            48.849709,
+            2.358545
+          ],
+          [
+            48.852,
+            2.350043
+          ],
+          [
+            48.854049,
+            2.344593
+          ],
+          [
+            48.856708,
+            2.346803
+          ],
+          [
+            48.855765,
+            2.349907
+          ],
+          [
+            48.851705,
+            2.360154
+          ],
+          [
+            48.84858,
+            2.361314
+          ]
+        ]
+      ],
+      "text": "No dated, quartier-specific incident coverage was found, even though this is one of the busiest tourist zones in Paris (the cathedral, reopened December 2024, plus Île Saint-Louis). The Paris police prefecture has issued general public warnings about common tourist scams (fake petitions, friendship bracelets, gold-ring tricks) across central Paris, but these weren't documented as concentrated specifically in this quartier, so general city-wide scam warnings aren't attributed here. Sources checked: ICI/France Bleu (préfecture de police tourist-scam warning, general — not quartier-specific).",
+      "query": "Notre-Dame, Paris, France"
+    },
+    {
+      "name": "Saint-Victor (5e arr.)",
+      "slug": "saint-victor",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.84378,
+            2.354922
+          ],
+          [
+            48.843694,
+            2.352757
+          ],
+          [
+            48.844516,
+            2.349245
+          ],
+          [
+            48.84854,
+            2.348495
+          ],
+          [
+            48.849728,
+            2.349002
+          ],
+          [
+            48.850342,
+            2.348778
+          ],
+          [
+            48.852057,
+            2.349874
+          ],
+          [
+            48.849594,
+            2.358873
+          ],
+          [
+            48.847622,
+            2.362493
+          ],
+          [
+            48.84378,
+            2.354922
+          ]
+        ]
+      ],
+      "text": "A quiet, historic Left Bank quartier around the Institut du Monde Arabe and the Seine embankments. No dated French press coverage of any notable crime pattern was found for this area; it reads as one of the calmer, more residential corners of the 5th arrondissement. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Quartier Saint-Victor, Paris 5e, France"
+    },
+    {
+      "name": "Jardin-des-Plantes (5e arr.)",
+      "slug": "jardin-des-plantes",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.843657,
+            2.364561
+          ],
+          [
+            48.839961,
+            2.361816
+          ],
+          [
+            48.836783,
+            2.351818
+          ],
+          [
+            48.837087,
+            2.348986
+          ],
+          [
+            48.839127,
+            2.349954
+          ],
+          [
+            48.844516,
+            2.349245
+          ],
+          [
+            48.843694,
+            2.352757
+          ],
+          [
+            48.843645,
+            2.354917
+          ],
+          [
+            48.847622,
+            2.362493
+          ],
+          [
+            48.84493,
+            2.366029
+          ],
+          [
+            48.843657,
+            2.364561
+          ]
+        ]
+      ],
+      "text": "Home to the botanical garden and natural history museum, this is a low-key, family-oriented quartier. No dated news coverage of crime or safety incidents specific to this area turned up in French press searches. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Jardin-des-Plantes, Paris, France"
+    },
+    {
+      "name": "Val-de-Grace (5e arr.)",
+      "slug": "val-de-grace",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.845073,
+            2.345484
+          ],
+          [
+            48.844429,
+            2.348092
+          ],
+          [
+            48.844516,
+            2.349245
+          ],
+          [
+            48.839127,
+            2.349954
+          ],
+          [
+            48.837087,
+            2.348986
+          ],
+          [
+            48.839653,
+            2.336729
+          ],
+          [
+            48.840703,
+            2.336789
+          ],
+          [
+            48.840926,
+            2.337304
+          ],
+          [
+            48.847344,
+            2.340838
+          ],
+          [
+            48.847101,
+            2.34197
+          ],
+          [
+            48.846665,
+            2.341621
+          ],
+          [
+            48.845073,
+            2.345484
+          ]
+        ]
+      ],
+      "text": "A quiet, largely residential and institutional quartier (military hospital, Panthéon area edges). No specific dated safety incidents were found in local or national press for this area. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Val-de-Grace, Paris, France"
+    },
+    {
+      "name": "Sorbonne (5e arr.)",
+      "slug": "sorbonne",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.844516,
+            2.349245
+          ],
+          [
+            48.844429,
+            2.348092
+          ],
+          [
+            48.845158,
+            2.345203
+          ],
+          [
+            48.846665,
+            2.341621
+          ],
+          [
+            48.847101,
+            2.34197
+          ],
+          [
+            48.847344,
+            2.340838
+          ],
+          [
+            48.854049,
+            2.344593
+          ],
+          [
+            48.852057,
+            2.349874
+          ],
+          [
+            48.850342,
+            2.348778
+          ],
+          [
+            48.849728,
+            2.349002
+          ],
+          [
+            48.84854,
+            2.348495
+          ],
+          [
+            48.844516,
+            2.349245
+          ]
+        ]
+      ],
+      "text": "Busy student and tourist heart of the Latin Quarter. The main documented safety-adjacent event is a pro-Palestinian student occupation of the Sorbonne courtyard cleared by police in April 2024 (France 24, Euronews) — a political demonstration, not a crime pattern against travellers. No robbery, drug-market or violence coverage specific to this quartier was found; treat it as a normal, well-trafficked area. Sources checked: France 24, April 2024; Euronews, April 2024.",
+      "query": "Sorbonne, Paris, France"
+    },
+    {
+      "name": "Monnaie (6e arr.)",
+      "slug": "monnaie",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.851389,
+            2.343169
+          ],
+          [
+            48.850358,
+            2.342678
+          ],
+          [
+            48.850877,
+            2.341184
+          ],
+          [
+            48.852423,
+            2.338941
+          ],
+          [
+            48.852902,
+            2.336989
+          ],
+          [
+            48.857229,
+            2.336497
+          ],
+          [
+            48.8576,
+            2.33608
+          ],
+          [
+            48.858583,
+            2.336609
+          ],
+          [
+            48.856563,
+            2.340855
+          ],
+          [
+            48.854897,
+            2.342805
+          ],
+          [
+            48.854049,
+            2.344593
+          ],
+          [
+            48.851389,
+            2.343169
+          ]
+        ]
+      ],
+      "text": "A small, affluent Left Bank quartier around the Institut de France and Pont Neuf area. No dated press coverage of crime or safety concerns specific to this area was found. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Quartier de la Monnaie, Paris 6e, France"
+    },
+    {
+      "name": "Odéon (6e arr.)",
+      "slug": "odeon",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.852902,
+            2.336989
+          ],
+          [
+            48.852423,
+            2.338941
+          ],
+          [
+            48.850877,
+            2.341184
+          ],
+          [
+            48.850358,
+            2.342678
+          ],
+          [
+            48.840926,
+            2.337304
+          ],
+          [
+            48.8407,
+            2.336843
+          ],
+          [
+            48.840977,
+            2.336159
+          ],
+          [
+            48.845791,
+            2.331497
+          ],
+          [
+            48.852477,
+            2.332017
+          ],
+          [
+            48.853129,
+            2.336061
+          ],
+          [
+            48.852902,
+            2.336989
+          ]
+        ]
+      ],
+      "text": "Home to the Odéon theatre and busy café/restaurant streets. Searches turned up nothing beyond old, unrelated protest history (a 2016 Nuit Debout police clearance at the theatre) and no dated crime coverage tied specifically to this quartier, day or night. Sources checked: No specific dated safety-relevant press coverage found for this quartier.",
+      "query": "Odéon, Paris, France"
+    },
+    {
+      "name": "Notre-Dame-des-Champs (6e arr.)",
+      "slug": "notre-dame-des-champs",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.840131,
+            2.336757
+          ],
+          [
+            48.839653,
+            2.336729
+          ],
+          [
+            48.844735,
+            2.321325
+          ],
+          [
+            48.846825,
+            2.316572
+          ],
+          [
+            48.851625,
+            2.327193
+          ],
+          [
+            48.852477,
+            2.332017
+          ],
+          [
+            48.845791,
+            2.331497
+          ],
+          [
+            48.840703,
+            2.336789
+          ],
+          [
+            48.840131,
+            2.336757
+          ]
+        ]
+      ],
+      "text": "A quiet, affluent residential quartier. The one dated local-press item found is unrelated to street safety: the Notre-Dame-des-Champs church itself was hit by two suspected arson fires in July 2025, with a suspect arrested days later. This was a targeted attack on the building, not a pattern affecting pedestrians or travellers in the area. Sources checked: France Bleu/ici, July 2025; Aleteia, July 2025.",
+      "query": "Notre-Dame-des-Champs, Paris, France"
+    },
+    {
+      "name": "Saint-Germain-des-Prés (6e arr.)",
+      "slug": "saint-germain-des-pres",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.853811,
+            2.33696
+          ],
+          [
+            48.852902,
+            2.336989
+          ],
+          [
+            48.853129,
+            2.336061
+          ],
+          [
+            48.851825,
+            2.328419
+          ],
+          [
+            48.858265,
+            2.333266
+          ],
+          [
+            48.858509,
+            2.332446
+          ],
+          [
+            48.85935,
+            2.33291
+          ],
+          [
+            48.858583,
+            2.336609
+          ],
+          [
+            48.8576,
+            2.33608
+          ],
+          [
+            48.857255,
+            2.336492
+          ],
+          [
+            48.853811,
+            2.33696
+          ]
+        ]
+      ],
+      "text": "One of Paris's most visited and most policed Left Bank quartiers, dense with cafés, boutiques and nightlife. No dated French press coverage of theft clusters, disorder or violence specific to this quartier was found; as in any busy tourist area, ordinary bag/pocket vigilance is sensible but no documented elevated risk exists here. Sources checked: No specific dated safety-relevant press coverage found for this quartier.",
+      "query": "Saint-Germain-des-Prés, Paris, France"
+    },
+    {
+      "name": "Saint-Thomas-d'Aquin (7e arr.)",
+      "slug": "saint-thomas-d-aquin",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.84925,
+            2.322134
+          ],
+          [
+            48.84842,
+            2.320541
+          ],
+          [
+            48.851744,
+            2.319011
+          ],
+          [
+            48.852755,
+            2.319103
+          ],
+          [
+            48.854949,
+            2.31995
+          ],
+          [
+            48.856475,
+            2.321121
+          ],
+          [
+            48.861478,
+            2.326102
+          ],
+          [
+            48.85935,
+            2.33291
+          ],
+          [
+            48.858509,
+            2.332446
+          ],
+          [
+            48.858265,
+            2.333266
+          ],
+          [
+            48.852614,
+            2.32931
+          ],
+          [
+            48.851825,
+            2.328419
+          ],
+          [
+            48.851625,
+            2.327193
+          ],
+          [
+            48.84925,
+            2.322134
+          ]
+        ]
+      ],
+      "text": "A calm, upscale quartier of antique dealers, publishers and the Sciences Po area. No dated safety-relevant press coverage specific to this quartier was found. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Saint-Thomas-d'Aquin, Paris, France"
+    },
+    {
+      "name": "Invalides (7e arr.)",
+      "slug": "invalides",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.851744,
+            2.319011
+          ],
+          [
+            48.851833,
+            2.314512
+          ],
+          [
+            48.853692,
+            2.314731
+          ],
+          [
+            48.853956,
+            2.309544
+          ],
+          [
+            48.863627,
+            2.310386
+          ],
+          [
+            48.86377,
+            2.318607
+          ],
+          [
+            48.861478,
+            2.326102
+          ],
+          [
+            48.854949,
+            2.31995
+          ],
+          [
+            48.851744,
+            2.319011
+          ]
+        ]
+      ],
+      "text": "Dominated by the Hôtel des Invalides and government/ministerial buildings, this is a heavily monitored, low-crime institutional quartier. No dated safety incidents specific to this area were found in press searches. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Invalides, Paris, France"
+    },
+    {
+      "name": "Ecole-Militaire (7e arr.)",
+      "slug": "ecole-militaire",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.84818,
+            2.320084
+          ],
+          [
+            48.845933,
+            2.31373
+          ],
+          [
+            48.847988,
+            2.310526
+          ],
+          [
+            48.847139,
+            2.30734
+          ],
+          [
+            48.85123,
+            2.300965
+          ],
+          [
+            48.854327,
+            2.305501
+          ],
+          [
+            48.853692,
+            2.314731
+          ],
+          [
+            48.851833,
+            2.314512
+          ],
+          [
+            48.851696,
+            2.319034
+          ],
+          [
+            48.84842,
+            2.320541
+          ],
+          [
+            48.84818,
+            2.320084
+          ]
+        ]
+      ],
+      "text": "A quiet, affluent residential and military-institutional quartier bordering the Champ de Mars. No dated crime coverage specific to this quartier (as distinct from the Champ de Mars/Eiffel Tower area itself, covered under Gros-Caillou) was found. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Ecole-Militaire, Paris, France"
+    },
+    {
+      "name": "Gros-Caillou (7e arr.)",
+      "slug": "gros-caillou",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.853956,
+            2.309544
+          ],
+          [
+            48.854327,
+            2.305501
+          ],
+          [
+            48.851176,
+            2.300884
+          ],
+          [
+            48.858241,
+            2.289839
+          ],
+          [
+            48.861521,
+            2.294196
+          ],
+          [
+            48.862984,
+            2.297921
+          ],
+          [
+            48.863451,
+            2.301118
+          ],
+          [
+            48.863627,
+            2.310386
+          ],
+          [
+            48.853956,
+            2.309544
+          ]
+        ]
+      ],
+      "text": "This quartier contains the Eiffel Tower and Champ de Mars, and is the one part of the 7th arrondissement with well-documented, recurring problems. By day, French press and police have repeatedly covered organised illegal souvenir vendors clashing with police and targeting/pickpocketing tourists around the tower, prompting a major municipal police operation with over 100 officers in August 2025 and prior crackdown efforts ahead of the 2024 Olympics. More seriously, French outlets reported sexual assaults on tourists at the Champ de Mars at night, serious enough that right-wing city councillors publicly called for the park to be closed after dark and security around the monument was questioned ahead of the Olympics. Extra caution after dark in this specific park area is warranted; the tower itself and surrounding streets by day are heavily patrolled. Sources checked: franceinfo, 2023 (report ahead of Paris 2024 on street vendors); policeetrealites.com, August 2025 (police operation vs. illegal vendors); ici/France Bleu, 2023 (\"soupçons de viol sur le Champ-de-Mars\", calls to close the park at night); Fox News, 2023 (\"Eiffel Tower crime wave\").",
+      "query": "Gros-Caillou, Paris, France"
+    },
+    {
+      "name": "Champs-Elysées (8e arr.)",
+      "slug": "champs-elysees",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.870148,
+            2.306464
+          ],
+          [
+            48.868977,
+            2.310115
+          ],
+          [
+            48.869929,
+            2.311968
+          ],
+          [
+            48.869036,
+            2.314765
+          ],
+          [
+            48.868386,
+            2.315141
+          ],
+          [
+            48.868346,
+            2.316489
+          ],
+          [
+            48.866177,
+            2.323327
+          ],
+          [
+            48.863057,
+            2.320903
+          ],
+          [
+            48.863777,
+            2.318473
+          ],
+          [
+            48.863474,
+            2.30159
+          ],
+          [
+            48.864525,
+            2.301517
+          ],
+          [
+            48.865326,
+            2.299899
+          ],
+          [
+            48.868558,
+            2.298913
+          ],
+          [
+            48.870925,
+            2.297526
+          ],
+          [
+            48.873779,
+            2.29504
+          ],
+          [
+            48.870148,
+            2.306464
+          ]
+        ]
+      ],
+      "text": "The avenue itself is heavily patrolled and generally fine to walk by day, but it is a genuine, recurring flashpoint. A luxury jewellery store just off the avenue was robbed in May 2024 (CNEWS, franceinfo), and the avenue has repeatedly been the epicentre of serious crowd violence tied to major events: the 2025 PSG Champions League celebrations turned into deadly riots with two deaths and hundreds of arrests nationally, centred on the Champs-Élysées, and similar large-scale disorder recurred there after a 2026 PSG-Arsenal match. Every New Year's Eve the Prefecture deploys thousands of officers specifically because of the avenue's known disorder risk. Travellers should be cautious here at night, especially around major football finals, New Year's Eve, or other mass celebrations. Sources checked: CNEWS, 18 May 2024 (jewellery store robbery); Wikipedia/AP coverage via Al Jazeera, Euronews, NPR, June 2025 (PSG celebration riots); fdesouche.com, June 2026 (repeat post-match riots); CNEWS, December 2025 (New Year's Eve security deployment).",
+      "query": "Champs-Elysées, Paris, France"
+    },
+    {
+      "name": "Faubourg-du-Roule (8e arr.)",
+      "slug": "faubourg-du-roule",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.869929,
+            2.311968
+          ],
+          [
+            48.868977,
+            2.310115
+          ],
+          [
+            48.873779,
+            2.29504
+          ],
+          [
+            48.878079,
+            2.298155
+          ],
+          [
+            48.879141,
+            2.303092
+          ],
+          [
+            48.877353,
+            2.306694
+          ],
+          [
+            48.873079,
+            2.311523
+          ],
+          [
+            48.87284,
+            2.310689
+          ],
+          [
+            48.872209,
+            2.312551
+          ],
+          [
+            48.871445,
+            2.311971
+          ],
+          [
+            48.870411,
+            2.312906
+          ],
+          [
+            48.869929,
+            2.311968
+          ]
+        ]
+      ],
+      "text": "An affluent, embassy- and office-dense quartier around Rue du Faubourg Saint-Honoré. No dated crime or safety incidents specific to this quartier were found in press searches. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Faubourg-du-Roule, Paris, France"
+    },
+    {
+      "name": "Madeleine (8e arr.)",
+      "slug": "madeleine",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.868585,
+            2.325031
+          ],
+          [
+            48.866177,
+            2.323327
+          ],
+          [
+            48.868346,
+            2.316489
+          ],
+          [
+            48.868376,
+            2.315169
+          ],
+          [
+            48.869036,
+            2.314765
+          ],
+          [
+            48.869929,
+            2.311968
+          ],
+          [
+            48.870411,
+            2.312906
+          ],
+          [
+            48.871445,
+            2.311971
+          ],
+          [
+            48.872209,
+            2.312551
+          ],
+          [
+            48.87284,
+            2.310689
+          ],
+          [
+            48.874909,
+            2.320221
+          ],
+          [
+            48.875583,
+            2.326576
+          ],
+          [
+            48.873736,
+            2.327053
+          ],
+          [
+            48.869562,
+            2.325836
+          ],
+          [
+            48.869449,
+            2.325159
+          ],
+          [
+            48.868585,
+            2.325031
+          ]
+        ]
+      ],
+      "text": "A upmarket shopping and business quartier around the Madeleine church. No dated coverage of drug dealing, theft clusters or violence specific to this quartier was found. Sources checked: No specific safety-relevant press coverage found for this quartier.",
+      "query": "Madeleine, Paris, France"
+    },
+    {
+      "name": "Europe (8e arr.)",
+      "slug": "europe",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.8733,
+            2.312293
+          ],
+          [
+            48.873079,
+            2.311523
+          ],
+          [
+            48.877353,
+            2.306694
+          ],
+          [
+            48.879141,
+            2.303092
+          ],
+          [
+            48.883481,
+            2.327181
+          ],
+          [
+            48.875626,
+            2.326847
+          ],
+          [
+            48.874909,
+            2.320221
+          ],
+          [
+            48.8733,
+            2.312293
+          ]
+        ]
+      ],
+      "text": "A largely residential and business quartier around Gare Saint-Lazare. Searches found only isolated, non-representative items (e.g. a single knife-possession arrest reported by an aggregator site) and no dated pattern of theft or violence specific to this quartier. As with any major train station, standard transit-hub vigilance is sensible, but no documented elevated risk was found. Sources checked: No specific dated safety-relevant press coverage found for this quartier beyond generic transit-hub advisories.",
+      "query": "Quartier de l'Europe, Paris 8e, France"
+    },
+    {
+      "name": "Saint-Georges (9e arr.)",
+      "slug": "saint-georges",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.876793,
+            2.339229
+          ],
+          [
+            48.876843,
+            2.332807
+          ],
+          [
+            48.87616,
+            2.331031
+          ],
+          [
+            48.875574,
+            2.326852
+          ],
+          [
+            48.883481,
+            2.327181
+          ],
+          [
+            48.884553,
+            2.329443
+          ],
+          [
+            48.882057,
+            2.339586
+          ],
+          [
+            48.880382,
+            2.340415
+          ],
+          [
+            48.876793,
+            2.339229
+          ]
+        ]
+      ],
+      "text": "No dated, safety-specific French press coverage turned up for this quartier. It's one of the 9th arrondissement's quietest, most residential corners (the Nouvelle-Athènes area around Place Saint-Georges), and nothing in current local or national media flags a theft, drug or violence pattern here. Ordinary big-city awareness is all that's warranted.",
+      "query": "Quartier Saint-Georges, Paris 9e, France"
+    },
+    {
+      "name": "Chaussée-d'Antin (9e arr.)",
+      "slug": "chaussee-d-antin",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.87683,
+            2.33545
+          ],
+          [
+            48.876666,
+            2.339311
+          ],
+          [
+            48.871475,
+            2.337096
+          ],
+          [
+            48.869562,
+            2.325836
+          ],
+          [
+            48.873736,
+            2.327053
+          ],
+          [
+            48.875583,
+            2.326576
+          ],
+          [
+            48.87616,
+            2.331031
+          ],
+          [
+            48.876843,
+            2.332807
+          ],
+          [
+            48.87683,
+            2.33545
+          ]
+        ]
+      ],
+      "text": "No specific incident or crime-pattern coverage was found for this quartier in current press searches. It's the daytime department-store district around Galeries Lafayette, Printemps and Opéra Garnier — busy and touristy, so the only realistic caution is the generic pickpocket risk of any crowded shopping area, not a documented local safety problem. It's largely commercial/office space that empties out and goes quiet at night.",
+      "query": "Chaussée-d'Antin, Paris, France"
+    },
+    {
+      "name": "Faubourg-Montmartre (9e arr.)",
+      "slug": "faubourg-montmartre",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.876601,
+            2.340255
+          ],
+          [
+            48.876634,
+            2.348661
+          ],
+          [
+            48.874024,
+            2.347912
+          ],
+          [
+            48.870704,
+            2.34788
+          ],
+          [
+            48.871981,
+            2.340044
+          ],
+          [
+            48.871475,
+            2.337096
+          ],
+          [
+            48.875965,
+            2.338766
+          ],
+          [
+            48.876666,
+            2.339311
+          ],
+          [
+            48.876601,
+            2.340255
+          ]
+        ]
+      ],
+      "text": "No dated safety-relevant press coverage was found for this quartier. It covers the Grands Boulevards stretch of the 9th (cinemas, brasseries, Musée Grévin) and shows up in nothing beyond routine tourism and real-estate writeups. Nothing here indicates a particular day or night concern.",
+      "query": "Faubourg-Montmartre, Paris, France"
+    },
+    {
+      "name": "Rochechouart (9e arr.)",
+      "slug": "rochechouart",
+      "day": "yellow",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.882223,
+            2.349709
+          ],
+          [
+            48.880626,
+            2.349859
+          ],
+          [
+            48.876634,
+            2.348661
+          ],
+          [
+            48.876793,
+            2.339229
+          ],
+          [
+            48.880382,
+            2.340415
+          ],
+          [
+            48.882057,
+            2.339586
+          ],
+          [
+            48.883725,
+            2.349506
+          ],
+          [
+            48.882223,
+            2.349709
+          ]
+        ]
+      ],
+      "text": "This quartier's southern edge is the boulevard de Rochechouart, directly facing the well-documented Barbès–Rochechouart problem zone (mostly technically in the 18th): a 2026 police 'quartier témoin' crackdown on illegal cigarette and counterfeit street-vending reported 1,000 fines and a 20,000-carton seizure in three months, with shopkeepers saying the trade persists. We could not find a dated incident specifically inside the 9th-side boundary, so this is flagged on proximity rather than a confirmed local pattern; the north end also touches Pigalle's nightlife strip, which adds normal after-dark crowd/pickpocket caution. Sources checked: Le Monde du Tabac, on the Barbès 'quartier témoin' crackdown, reporting ~June 2026.",
+      "query": "Rochechouart, Paris, France"
+    },
+    {
+      "name": "Saint-Vincent-de-Paul (10e arr.)",
+      "slug": "saint-vincent-de-paul",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.87599,
+            2.360513
+          ],
+          [
+            48.877423,
+            2.349085
+          ],
+          [
+            48.880626,
+            2.349859
+          ],
+          [
+            48.883725,
+            2.349506
+          ],
+          [
+            48.884426,
+            2.359299
+          ],
+          [
+            48.883961,
+            2.368702
+          ],
+          [
+            48.878522,
+            2.362018
+          ],
+          [
+            48.87599,
+            2.360513
+          ]
+        ]
+      ],
+      "text": "This quartier is essentially the Gare du Nord/Lariboisière area, and it is genuinely one of the most consistently documented problem zones in central Paris: it sits inside an official police 'zone de sécurité prioritaire' (bounded by boulevard de la Chapelle, rue La Fayette, boulevard de Magenta and rue Philippe-de-Girard), and press and resident accounts describe open crack use and dealing, syringes on the pavement and frequent assaults around the station. A knife attack injured six to seven people here in January 2023, though the attacker was later found to have been in psychiatric crisis rather than acting for gain — travellers should treat the area as a legitimate no-lingering zone after dark, with daytime risk mainly pickpocketing/petty theft given the huge passenger volume. Sources checked: franceinfo, 'Paris: la gare du Nord en proie à une forte insécurité?'; franceinfo, 'Attaque à l'arme blanche qui a fait six blessés à la gare du Nord', 11 Jan 2023; Mairie du 10e, Zone de Sécurité Prioritaire page.",
+      "query": "Quartier Saint-Vincent-de-Paul, Paris 10e, France"
+    },
+    {
+      "name": "Porte-Saint-Denis (10e arr.)",
+      "slug": "porte-saint-denis",
+      "day": "yellow",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.871263,
+            2.355345
+          ],
+          [
+            48.86933,
+            2.354261
+          ],
+          [
+            48.870704,
+            2.34788
+          ],
+          [
+            48.874024,
+            2.347912
+          ],
+          [
+            48.87602,
+            2.348321
+          ],
+          [
+            48.877423,
+            2.349085
+          ],
+          [
+            48.876163,
+            2.358084
+          ],
+          [
+            48.871263,
+            2.355345
+          ]
+        ]
+      ],
+      "text": "This quartier covers Boulevard de Strasbourg and rue du Château-d'Eau, where a prefectural order (issued December 2024, extended through May 2026) forces many shops — largely Afro-Caribbean hair salons — to close between 8pm and 5am, and bans off-premises alcohol sales overnight, citing 'repeated disturbances to public order,' unauthorised street occupation and unlicensed vending. The measure is genuinely controversial (Paris Council rejected a motion against it in October 2025, with critics saying it stigmatises the businesses rather than fixing the underlying disorder), but its existence confirms real, official-level nighttime nuisance concerns in this exact strip. Daytime is mostly just crowded and commercial. Sources checked: Mairie du 10e, 'Arrêté préfectoral: les commerces fermés dès 20h à Château d'Eau', Dec 2024; Groupe Écologiste de Paris, council motion on the closure order, Oct 2025.",
+      "query": "Porte-Saint-Denis, Paris, France"
+    },
+    {
+      "name": "Porte-Saint-Martin (10e arr.)",
+      "slug": "porte-saint-martin",
+      "day": "yellow",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.867541,
+            2.363917
+          ],
+          [
+            48.86933,
+            2.354261
+          ],
+          [
+            48.876163,
+            2.358084
+          ],
+          [
+            48.87592,
+            2.359546
+          ],
+          [
+            48.875253,
+            2.359216
+          ],
+          [
+            48.873708,
+            2.364896
+          ],
+          [
+            48.87266,
+            2.366677
+          ],
+          [
+            48.871807,
+            2.367874
+          ],
+          [
+            48.869461,
+            2.369333
+          ],
+          [
+            48.867541,
+            2.363917
+          ]
+        ]
+      ],
+      "text": "The same December 2024 prefectural closure order (see Porte-Saint-Denis) extends into this quartier, covering boulevard Saint-Denis, rue du Faubourg-Saint-Martin and rue de la Fidélité — the latter also has a longstanding, separately documented history as a street-prostitution area near Gare de l'Est. Together this points to genuine, officially-acknowledged nighttime disorder along these boulevards rather than a daytime problem; by day the area is a busy, ordinary commercial strip. Sources checked: Mairie du 10e, 'Arrêté préfectoral: les commerces fermés dès 20h à Château d'Eau', Dec 2024.",
+      "query": "Porte-Saint-Martin, Paris, France"
+    },
+    {
+      "name": "Hôpital-Saint-Louis (10e arr.)",
+      "slug": "hopital-saint-louis",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.876106,
+            2.372434
+          ],
+          [
+            48.872062,
+            2.376989
+          ],
+          [
+            48.869461,
+            2.369333
+          ],
+          [
+            48.871807,
+            2.367874
+          ],
+          [
+            48.873708,
+            2.364896
+          ],
+          [
+            48.875253,
+            2.359216
+          ],
+          [
+            48.87592,
+            2.359546
+          ],
+          [
+            48.87599,
+            2.360513
+          ],
+          [
+            48.878522,
+            2.362018
+          ],
+          [
+            48.883961,
+            2.368702
+          ],
+          [
+            48.882665,
+            2.37022
+          ],
+          [
+            48.877993,
+            2.370277
+          ],
+          [
+            48.876106,
+            2.372434
+          ]
+        ]
+      ],
+      "text": "No dated safety-specific press coverage was found for this quartier, which covers the canal Saint-Martin (quai de Valmy/quai de Jemmapes) and the hospital grounds. This is a popular, largely gentrified picnic-and-nightlife strip; the only relevant context is the ordinary crowd/noise of canal-side bars on warm evenings, not a documented crime problem.",
+      "query": "Quartier de l'Hôpital-Saint-Louis, Paris 10e, France"
+    },
+    {
+      "name": "Folie-Méricourt (11e arr.)",
+      "slug": "folie-mericourt",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.863765,
+            2.370103
+          ],
+          [
+            48.862457,
+            2.366901
+          ],
+          [
+            48.867504,
+            2.363828
+          ],
+          [
+            48.872062,
+            2.376989
+          ],
+          [
+            48.867076,
+            2.383136
+          ],
+          [
+            48.864518,
+            2.371847
+          ],
+          [
+            48.863765,
+            2.370103
+          ]
+        ]
+      ],
+      "text": "No dated safety-relevant press coverage was found for this quartier. It's a mixed residential/nightlife pocket of the 11th (touching Oberkampf) with nothing beyond routine neighbourhood-guide material turning up in searches.",
+      "query": "Folie-Méricourt, Paris, France"
+    },
+    {
+      "name": "Saint-Ambroise (11e arr.)",
+      "slug": "saint-ambroise",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.857795,
+            2.37094
+          ],
+          [
+            48.856924,
+            2.368227
+          ],
+          [
+            48.862457,
+            2.366901
+          ],
+          [
+            48.864518,
+            2.371847
+          ],
+          [
+            48.867076,
+            2.383136
+          ],
+          [
+            48.862908,
+            2.387435
+          ],
+          [
+            48.857795,
+            2.37094
+          ]
+        ]
+      ],
+      "text": "No dated safety-relevant press coverage was found for this quartier. It's one of the calmer, more residential parts of the 11th arrondissement, and nothing in current media flags a particular concern.",
+      "query": "Saint-Ambroise, Paris, France"
+    },
+    {
+      "name": "Roquette (11e arr.)",
+      "slug": "roquette",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.853441,
+            2.379721
+          ],
+          [
+            48.85326,
+            2.375221
+          ],
+          [
+            48.851865,
+            2.373787
+          ],
+          [
+            48.853251,
+            2.370351
+          ],
+          [
+            48.853163,
+            2.369138
+          ],
+          [
+            48.856924,
+            2.368227
+          ],
+          [
+            48.862908,
+            2.387435
+          ],
+          [
+            48.858554,
+            2.389558
+          ],
+          [
+            48.856536,
+            2.394461
+          ],
+          [
+            48.853441,
+            2.379721
+          ]
+        ]
+      ],
+      "text": "No current dated crime-specific press coverage was found for this quartier. An older (2014) opinion piece described disorder around rue de Lappe/rue de la Roquette, but it's too dated to reflect today's situation, and a 2025 report on rue de Lappe actually describes the bar scene there declining (post-Covid, post-Olympics) rather than any safety-driven exodus. This is Paris's well-known Bastille nightlife pocket, so normal weekend-crowd/pickpocket awareness applies, but nothing documented rises above that. Sources checked: Sortiraparis, on rue de Lappe's declining bar scene, Aug 2025.",
+      "query": "Roquette, Paris, France"
+    },
+    {
+      "name": "Sainte-Marguerite (11e arr.)",
+      "slug": "sainte-marguerite",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.854155,
+            2.396237
+          ],
+          [
+            48.851346,
+            2.398433
+          ],
+          [
+            48.848841,
+            2.399264
+          ],
+          [
+            48.848098,
+            2.399118
+          ],
+          [
+            48.85063,
+            2.378818
+          ],
+          [
+            48.851865,
+            2.373787
+          ],
+          [
+            48.852987,
+            2.374606
+          ],
+          [
+            48.853312,
+            2.375438
+          ],
+          [
+            48.853441,
+            2.379721
+          ],
+          [
+            48.856536,
+            2.394461
+          ],
+          [
+            48.854155,
+            2.396237
+          ]
+        ]
+      ],
+      "text": "No dated safety-relevant press coverage was found for this quartier, a quiet, largely residential corner of the 11th arrondissement around the Sainte-Marguerite church and market. Nothing in current media flags a particular concern.",
+      "query": "Quartier Sainte-Marguerite, Paris 11e, France"
+    },
+    {
+      "name": "Bel-Air (12e arr.)",
+      "slug": "bel-air",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.833571,
+            2.41388
+          ],
+          [
+            48.83395,
+            2.416987
+          ],
+          [
+            48.835689,
+            2.422251
+          ],
+          [
+            48.842484,
+            2.419423
+          ],
+          [
+            48.843427,
+            2.419882
+          ],
+          [
+            48.844498,
+            2.422106
+          ],
+          [
+            48.841774,
+            2.424741
+          ],
+          [
+            48.840891,
+            2.437191
+          ],
+          [
+            48.844569,
+            2.43794
+          ],
+          [
+            48.844345,
+            2.440512
+          ],
+          [
+            48.845916,
+            2.440767
+          ],
+          [
+            48.84575,
+            2.446528
+          ],
+          [
+            48.844931,
+            2.446411
+          ],
+          [
+            48.843454,
+            2.45807
+          ],
+          [
+            48.842551,
+            2.462206
+          ],
+          [
+            48.840612,
+            2.465815
+          ],
+          [
+            48.836409,
+            2.469761
+          ],
+          [
+            48.834047,
+            2.468989
+          ],
+          [
+            48.832469,
+            2.466354
+          ],
+          [
+            48.831336,
+            2.465323
+          ],
+          [
+            48.829356,
+            2.464639
+          ],
+          [
+            48.827221,
+            2.464606
+          ],
+          [
+            48.833443,
+            2.455731
+          ],
+          [
+            48.835813,
+            2.453095
+          ],
+          [
+            48.833925,
+            2.445201
+          ],
+          [
+            48.835562,
+            2.431396
+          ],
+          [
+            48.833898,
+            2.429864
+          ],
+          [
+            48.832183,
+            2.429257
+          ],
+          [
+            48.828875,
+            2.42682
+          ],
+          [
+            48.829739,
+            2.42026
+          ],
+          [
+            48.828019,
+            2.418969
+          ],
+          [
+            48.827895,
+            2.416423
+          ],
+          [
+            48.829335,
+            2.411951
+          ],
+          [
+            48.831736,
+            2.407731
+          ],
+          [
+            48.832456,
+            2.403754
+          ],
+          [
+            48.833424,
+            2.402186
+          ],
+          [
+            48.834235,
+            2.404456
+          ],
+          [
+            48.839613,
+            2.400283
+          ],
+          [
+            48.845116,
+            2.402312
+          ],
+          [
+            48.847373,
+            2.398971
+          ],
+          [
+            48.848098,
+            2.399118
+          ],
+          [
+            48.846613,
+            2.415994
+          ],
+          [
+            48.834549,
+            2.412274
+          ],
+          [
+            48.833859,
+            2.411217
+          ],
+          [
+            48.833571,
+            2.41388
+          ]
+        ]
+      ],
+      "text": "On the evening of 8 November 2025, a 14-year-old was attacked and cut by four assailants on avenue du Général-Michel-Bizot (around 7:50pm) as part of what press described as a 'rixe entre bandes' (rival-gang confrontation); a second teenager was stabbed in a related incident the same night, and several suspects were arrested. This falls within Bel-Air. It reads as an isolated, youth-gang-linked flare-up rather than a recurring pattern for the quartier as a whole, so it's flagged for evenings without pushing to red; daytime shows nothing of concern. Sources checked: Le Parisien (via CNews/Fdesouche relay), rixe entre bandes, rue/avenue Michel-Bizot, 8 Nov 2025.",
+      "query": "Quartier du Bel-Air, Paris 12e, France"
+    },
+    {
+      "name": "Picpus (12e arr.)",
+      "slug": "picpus",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.829657,
+            2.41125
+          ],
+          [
+            48.828396,
+            2.414351
+          ],
+          [
+            48.827778,
+            2.417356
+          ],
+          [
+            48.828089,
+            2.419095
+          ],
+          [
+            48.829739,
+            2.42026
+          ],
+          [
+            48.828875,
+            2.42682
+          ],
+          [
+            48.832183,
+            2.429257
+          ],
+          [
+            48.833898,
+            2.429864
+          ],
+          [
+            48.835562,
+            2.431396
+          ],
+          [
+            48.833925,
+            2.445201
+          ],
+          [
+            48.835813,
+            2.453095
+          ],
+          [
+            48.833443,
+            2.455731
+          ],
+          [
+            48.827235,
+            2.464432
+          ],
+          [
+            48.82767,
+            2.465229
+          ],
+          [
+            48.827332,
+            2.466176
+          ],
+          [
+            48.823278,
+            2.464718
+          ],
+          [
+            48.819267,
+            2.462524
+          ],
+          [
+            48.819029,
+            2.462805
+          ],
+          [
+            48.817012,
+            2.458631
+          ],
+          [
+            48.817248,
+            2.453209
+          ],
+          [
+            48.817962,
+            2.449635
+          ],
+          [
+            48.81822,
+            2.43735
+          ],
+          [
+            48.819104,
+            2.43747
+          ],
+          [
+            48.819385,
+            2.436906
+          ],
+          [
+            48.819648,
+            2.435159
+          ],
+          [
+            48.819281,
+            2.43418
+          ],
+          [
+            48.820156,
+            2.434303
+          ],
+          [
+            48.821421,
+            2.432475
+          ],
+          [
+            48.82169,
+            2.43289
+          ],
+          [
+            48.821619,
+            2.43219
+          ],
+          [
+            48.822882,
+            2.430371
+          ],
+          [
+            48.823234,
+            2.430692
+          ],
+          [
+            48.823755,
+            2.429073
+          ],
+          [
+            48.824242,
+            2.425754
+          ],
+          [
+            48.82415,
+            2.419969
+          ],
+          [
+            48.824805,
+            2.41661
+          ],
+          [
+            48.825148,
+            2.410393
+          ],
+          [
+            48.826135,
+            2.408236
+          ],
+          [
+            48.829003,
+            2.404065
+          ],
+          [
+            48.829647,
+            2.402487
+          ],
+          [
+            48.829366,
+            2.401494
+          ],
+          [
+            48.835332,
+            2.392725
+          ],
+          [
+            48.83725,
+            2.391277
+          ],
+          [
+            48.844853,
+            2.383382
+          ],
+          [
+            48.850132,
+            2.384343
+          ],
+          [
+            48.848098,
+            2.399118
+          ],
+          [
+            48.847373,
+            2.398971
+          ],
+          [
+            48.845116,
+            2.402312
+          ],
+          [
+            48.839613,
+            2.400283
+          ],
+          [
+            48.834235,
+            2.404456
+          ],
+          [
+            48.833424,
+            2.402186
+          ],
+          [
+            48.832456,
+            2.403754
+          ],
+          [
+            48.831736,
+            2.407731
+          ],
+          [
+            48.829657,
+            2.41125
+          ]
+        ]
+      ],
+      "text": "No dated safety-relevant press coverage was found for this quartier, a quiet, largely residential part of the 12th around rue de Picpus and the Nation area. Nothing in current media flags a particular concern.",
+      "query": "Picpus, Paris, France"
+    },
+    {
+      "name": "Bercy (12e arr.)",
+      "slug": "bercy",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.826113,
+            2.391141
+          ],
+          [
+            48.825727,
+            2.390258
+          ],
+          [
+            48.827583,
+            2.387587
+          ],
+          [
+            48.840171,
+            2.372414
+          ],
+          [
+            48.843151,
+            2.378533
+          ],
+          [
+            48.844853,
+            2.383382
+          ],
+          [
+            48.834063,
+            2.394173
+          ],
+          [
+            48.829366,
+            2.401494
+          ],
+          [
+            48.827513,
+            2.394352
+          ],
+          [
+            48.826113,
+            2.391141
+          ]
+        ]
+      ],
+      "text": "No dated safety-relevant press coverage was found for this quartier, which covers the modern Bercy Village/Parc de Bercy redevelopment along the Seine. Nothing in current French media flags a particular day or night concern here.",
+      "query": "Bercy, Paris, France"
+    },
+    {
+      "name": "Quinze-Vingts (12e arr.)",
+      "slug": "quinze-vingts",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.84057,
+            2.373205
+          ],
+          [
+            48.840171,
+            2.372414
+          ],
+          [
+            48.84614,
+            2.364433
+          ],
+          [
+            48.847371,
+            2.366503
+          ],
+          [
+            48.853163,
+            2.369138
+          ],
+          [
+            48.853251,
+            2.370351
+          ],
+          [
+            48.852396,
+            2.371969
+          ],
+          [
+            48.85063,
+            2.378818
+          ],
+          [
+            48.850132,
+            2.384343
+          ],
+          [
+            48.844853,
+            2.383382
+          ],
+          [
+            48.843151,
+            2.378533
+          ],
+          [
+            48.84057,
+            2.373205
+          ]
+        ]
+      ],
+      "text": "This quartier includes Place Henri-Frenay, immediately beside Gare de Lyon, which is a genuinely well-documented, recurring problem spot: residents describe daily open drug dealing, people sleeping rough on mattresses, public defecation and regular nighttime fights and screaming, and a family reported witnessing a shooting on nearby rue Roland-Barthes (recovered shell casings) roughly in 2022. A man attacked three people with a knife at Gare de Lyon on 4 February 2024 (one victim critically injured). As of an August 2025 city update, the square was still receiving 'exceptional' cleaning and coordinated police resources pending a redevelopment plan, meaning the disorder was still current more than a year after the attack. Daytime is visibly rougher than the surrounding area but not violent in the same way; after dark this specific corner (not the whole quartier) is best avoided. Sources checked: Europe1, 'Attaque gare de Lyon: les riverains pointent du doigt la place Henri Frenay', Feb 2024; France3 Paris Île-de-France, 'Le calvaire des riverains de la gare de Lyon à Paris'; Mairie du 12e, Place Henri-Frenay redevelopment update, Aug 2025.",
+      "query": "Quinze-Vingts, Paris, France"
+    },
+    {
+      "name": "Salpêtrière (13e arr.)",
+      "slug": "salpetriere",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.831039,
+            2.356363
+          ],
+          [
+            48.831425,
+            2.355577
+          ],
+          [
+            48.836796,
+            2.351869
+          ],
+          [
+            48.839961,
+            2.361816
+          ],
+          [
+            48.844262,
+            2.364946
+          ],
+          [
+            48.84493,
+            2.366029
+          ],
+          [
+            48.838107,
+            2.374807
+          ],
+          [
+            48.835484,
+            2.369661
+          ],
+          [
+            48.831039,
+            2.356363
+          ]
+        ]
+      ],
+      "text": "No dated French press coverage, prefecture communiqué, or documented safety incident specific to this quartier turned up in current research. It is a mostly institutional/residential riverside area (anchored by the Pitié-Salpêtrière hospital) with no notable crime pattern found. Treat it as a standard, low-concern Paris neighbourhood. Sources checked: No quartier-specific press coverage found (search conducted August 2026).",
+      "query": "Quartier de la Salpêtrière, Paris 13e, France"
+    },
+    {
+      "name": "Gare (13e arr.)",
+      "slug": "gare",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.817421,
+            2.367706
+          ],
+          [
+            48.817185,
+            2.366961
+          ],
+          [
+            48.830966,
+            2.356148
+          ],
+          [
+            48.835484,
+            2.369661
+          ],
+          [
+            48.838107,
+            2.374807
+          ],
+          [
+            48.825727,
+            2.390258
+          ],
+          [
+            48.822411,
+            2.381524
+          ],
+          [
+            48.821696,
+            2.380762
+          ],
+          [
+            48.817421,
+            2.367706
+          ]
+        ]
+      ],
+      "text": "This quartier (BnF, Tolbiac, Quai de la Gare) sometimes gets lumped into broader '13th arrondissement is dangerous' clickbait, but no dated, quartier-specific incident or official warning was found. Paris's well-documented open-air crack scenes are concentrated elsewhere (18th/19th arrondissements near Porte de la Chapelle/Stalingrad), not here. No particular concern identified for travellers. Sources checked: No dated quartier-specific incident found (search conducted August 2026).",
+      "query": "Quartier de la Gare, Paris 13e, France"
+    },
+    {
+      "name": "Maison-Blanche (13e arr.)",
+      "slug": "maison-blanche",
+      "day": "yellow",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.829597,
+            2.349115
+          ],
+          [
+            48.831425,
+            2.355577
+          ],
+          [
+            48.817185,
+            2.366961
+          ],
+          [
+            48.816058,
+            2.363401
+          ],
+          [
+            48.815972,
+            2.355917
+          ],
+          [
+            48.818535,
+            2.352401
+          ],
+          [
+            48.815865,
+            2.34692
+          ],
+          [
+            48.816106,
+            2.344434
+          ],
+          [
+            48.815577,
+            2.344497
+          ],
+          [
+            48.815766,
+            2.343975
+          ],
+          [
+            48.819542,
+            2.34463
+          ],
+          [
+            48.821194,
+            2.342679
+          ],
+          [
+            48.823669,
+            2.341437
+          ],
+          [
+            48.82788,
+            2.341629
+          ],
+          [
+            48.83179,
+            2.341149
+          ],
+          [
+            48.829597,
+            2.349115
+          ]
+        ]
+      ],
+      "text": "This quartier includes the Olympiades/Masséna tower estate and the Paris 'Chinatown' area around Porte de Choisy and Porte d'Italie. It has repeatedly been named in official Paris municipal security planning (the arrondissement's 'Contrat de Prévention et de Sécurité') and in parliamentary questions to the Interior Ministry about drug-trafficking-related public order problems, and independent local crime-watch trackers list the Masséna/Olympiades estate as a recurring flashpoint for rival-group tension. Nothing rises to a currently active open drug market on the scale seen in northern Paris, so this is a moderate, not severe, caution rather than a no-go area. Sources checked: Mairie de Paris, Contrat de Prévention et de Sécurité du 13e arrondissement (2023); Assemblée Nationale, written questions to the Interior Ministry on public order in drug-trafficking-affected quartiers; Cités sensibles de Paris (local crime-tracking blog), Olympiades/Masséna estate coverage.",
+      "query": "Maison-Blanche, Paris, France"
+    },
+    {
+      "name": "Croulebarbe (13e arr.)",
+      "slug": "croulebarbe",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.83678,
+            2.351663
+          ],
+          [
+            48.831425,
+            2.355577
+          ],
+          [
+            48.829555,
+            2.349537
+          ],
+          [
+            48.83179,
+            2.341149
+          ],
+          [
+            48.838364,
+            2.342071
+          ],
+          [
+            48.83678,
+            2.351663
+          ]
+        ]
+      ],
+      "text": "Covers the Butte-aux-Cailles village area and Square René-Le Gall. No dated safety incident or press coverage specific to this quartier was found; it is generally described as a quiet, villagey residential area popular for its bars. No particular concern. Sources checked: No quartier-specific press coverage found (search conducted August 2026).",
+      "query": "Quartier de la Croulebarbe, Paris 13e, France"
+    },
+    {
+      "name": "Montparnasse (14e arr.)",
+      "slug": "montparnasse",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.834814,
+            2.341585
+          ],
+          [
+            48.83179,
+            2.341149
+          ],
+          [
+            48.834206,
+            2.332358
+          ],
+          [
+            48.833244,
+            2.331533
+          ],
+          [
+            48.836228,
+            2.323447
+          ],
+          [
+            48.841009,
+            2.321491
+          ],
+          [
+            48.843615,
+            2.324712
+          ],
+          [
+            48.839653,
+            2.336729
+          ],
+          [
+            48.838364,
+            2.342071
+          ],
+          [
+            48.834814,
+            2.341585
+          ]
+        ]
+      ],
+      "text": "Home to Gare Montparnasse, one of Paris's busiest train stations. No dated quartier-specific crime incident was found in this research; general nationwide advisories about pickpocketing at major SNCF stations apply here as they do at any large Paris terminus, but that is a citywide travel-safety norm, not a documented local problem specific to this quartier. Sources checked: No quartier-specific dated incident found (search conducted August 2026).",
+      "query": "Montparnasse, Paris, France"
+    },
+    {
+      "name": "Parc-de-Montsouris (14e arr.)",
+      "slug": "parc-de-montsouris",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.816132,
+            2.343996
+          ],
+          [
+            48.815766,
+            2.343975
+          ],
+          [
+            48.81634,
+            2.341712
+          ],
+          [
+            48.817039,
+            2.331753
+          ],
+          [
+            48.818218,
+            2.332374
+          ],
+          [
+            48.818896,
+            2.329267
+          ],
+          [
+            48.827514,
+            2.332406
+          ],
+          [
+            48.833179,
+            2.336089
+          ],
+          [
+            48.83179,
+            2.341149
+          ],
+          [
+            48.82788,
+            2.341629
+          ],
+          [
+            48.823669,
+            2.341437
+          ],
+          [
+            48.821194,
+            2.342679
+          ],
+          [
+            48.819542,
+            2.34463
+          ],
+          [
+            48.816132,
+            2.343996
+          ]
+        ]
+      ],
+      "text": "A leafy, largely residential quartier around Parc Montsouris and the Cité Internationale Universitaire. No safety-relevant press coverage or incident specific to this area was found. No particular concern. Sources checked: No quartier-specific press coverage found (search conducted August 2026).",
+      "query": "Parc-de-Montsouris, Paris, France"
+    },
+    {
+      "name": "Petit-Montrouge (14e arr.)",
+      "slug": "petit-montrouge",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.834128,
+            2.329137
+          ],
+          [
+            48.833244,
+            2.331533
+          ],
+          [
+            48.834206,
+            2.332358
+          ],
+          [
+            48.833179,
+            2.336089
+          ],
+          [
+            48.827514,
+            2.332406
+          ],
+          [
+            48.818896,
+            2.329267
+          ],
+          [
+            48.822264,
+            2.314158
+          ],
+          [
+            48.824577,
+            2.319338
+          ],
+          [
+            48.824806,
+            2.318314
+          ],
+          [
+            48.830297,
+            2.323504
+          ],
+          [
+            48.834976,
+            2.326856
+          ],
+          [
+            48.834128,
+            2.329137
+          ]
+        ]
+      ],
+      "text": "A quiet residential quartier around Place Victor et Hélène Basch and Saint-Pierre de Montrouge church. No dated safety incident or press coverage specific to this quartier was found. No particular concern. Sources checked: No quartier-specific press coverage found (search conducted August 2026).",
+      "query": "Petit-Montrouge, Paris, France"
+    },
+    {
+      "name": "Plaisance (14e arr.)",
+      "slug": "plaisance",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.839901,
+            2.321133
+          ],
+          [
+            48.840168,
+            2.321837
+          ],
+          [
+            48.836228,
+            2.323447
+          ],
+          [
+            48.834976,
+            2.326856
+          ],
+          [
+            48.830297,
+            2.323504
+          ],
+          [
+            48.824806,
+            2.318314
+          ],
+          [
+            48.824577,
+            2.319338
+          ],
+          [
+            48.822264,
+            2.314158
+          ],
+          [
+            48.825154,
+            2.301201
+          ],
+          [
+            48.84052,
+            2.319928
+          ],
+          [
+            48.839901,
+            2.321133
+          ]
+        ]
+      ],
+      "text": "A mixed residential/former-industrial quartier in the southwest of the 14th. No dated safety incident or press coverage specific to this area was found. No particular concern. Sources checked: No quartier-specific press coverage found (search conducted August 2026).",
+      "query": "Plaisance, Paris, France"
+    },
+    {
+      "name": "Saint-Lambert (15e arr.)",
+      "slug": "saint-lambert",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.840408,
+            2.304249
+          ],
+          [
+            48.840613,
+            2.304969
+          ],
+          [
+            48.83754,
+            2.308026
+          ],
+          [
+            48.834762,
+            2.312903
+          ],
+          [
+            48.825154,
+            2.301201
+          ],
+          [
+            48.827136,
+            2.292223
+          ],
+          [
+            48.831919,
+            2.280492
+          ],
+          [
+            48.83433,
+            2.284
+          ],
+          [
+            48.835325,
+            2.280997
+          ],
+          [
+            48.835918,
+            2.281302
+          ],
+          [
+            48.838586,
+            2.289416
+          ],
+          [
+            48.840714,
+            2.290953
+          ],
+          [
+            48.842681,
+            2.294851
+          ],
+          [
+            48.843624,
+            2.295773
+          ],
+          [
+            48.843714,
+            2.29853
+          ],
+          [
+            48.842711,
+            2.30264
+          ],
+          [
+            48.840408,
+            2.304249
+          ]
+        ]
+      ],
+      "text": "A quiet residential quartier around Rue de Vaugirard and Rue de la Convention. No dated safety incident or press coverage specific to this area was found. No particular concern. Sources checked: No quartier-specific press coverage found (search conducted August 2026).",
+      "query": "Quartier Saint-Lambert, Paris 15e, France"
+    },
+    {
+      "name": "Necker (15e arr.)",
+      "slug": "necker",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.8479,
+            2.306149
+          ],
+          [
+            48.847139,
+            2.30734
+          ],
+          [
+            48.847988,
+            2.310526
+          ],
+          [
+            48.845933,
+            2.31373
+          ],
+          [
+            48.846825,
+            2.316572
+          ],
+          [
+            48.845506,
+            2.319153
+          ],
+          [
+            48.843615,
+            2.324712
+          ],
+          [
+            48.841009,
+            2.321491
+          ],
+          [
+            48.840168,
+            2.321837
+          ],
+          [
+            48.839777,
+            2.321375
+          ],
+          [
+            48.84052,
+            2.319928
+          ],
+          [
+            48.834762,
+            2.312903
+          ],
+          [
+            48.83754,
+            2.308026
+          ],
+          [
+            48.840613,
+            2.304969
+          ],
+          [
+            48.840408,
+            2.304249
+          ],
+          [
+            48.842711,
+            2.30264
+          ],
+          [
+            48.843714,
+            2.29853
+          ],
+          [
+            48.843624,
+            2.295773
+          ],
+          [
+            48.849439,
+            2.303746
+          ],
+          [
+            48.8479,
+            2.306149
+          ]
+        ]
+      ],
+      "text": "A residential/institutional quartier centred on the Necker children's hospital. No dated street-safety incident specific to this quartier was found (an isolated act of vandalism against the hospital during a 2024 protest was a one-off political/security event tied to the hospital itself, not an ongoing neighbourhood safety pattern for travellers). No particular concern. Sources checked: No quartier-specific street-safety incident found (search conducted August 2026).",
+      "query": "Quartier Necker, Paris 15e, France"
+    },
+    {
+      "name": "Grenelle (15e arr.)",
+      "slug": "grenelle",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.851176,
+            2.300884
+          ],
+          [
+            48.849439,
+            2.303746
+          ],
+          [
+            48.845234,
+            2.297672
+          ],
+          [
+            48.842883,
+            2.295048
+          ],
+          [
+            48.846046,
+            2.286973
+          ],
+          [
+            48.850356,
+            2.27996
+          ],
+          [
+            48.856121,
+            2.288106
+          ],
+          [
+            48.858241,
+            2.289839
+          ],
+          [
+            48.851176,
+            2.300884
+          ]
+        ]
+      ],
+      "text": "The Beaugrenelle shopping-centre esplanade ('dalle Beaugrenelle') has seen recurring evening group brawls: French outlets reported a fight in early October 2024 that left three people injured, one seriously, with three arrests, and coverage explicitly described it as 'a new' violent incident on the same esplanade, implying it was not an isolated event. This is localized to the Beaugrenelle complex rather than the whole quartier, so daytime and the wider Grenelle area remain low-concern. Sources checked: CNews, 'Paris : une rixe fait trois blessés dont un grave dans le 15e arrondissement', ~5 October 2024; France Bleu / ICI, 'Un mineur blessé, trois arrestations après un affrontement sur la dalle Beaugrenelle à Paris', October 2024; Laminute.info, 'Une nouvelle rixe violente à Beaugrenelle dans le 15e a fait trois blessés', October 2024.",
+      "query": "Grenelle, Paris, France"
+    },
+    {
+      "name": "Javel (15e arr.)",
+      "slug": "javel",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.834947,
+            2.282326
+          ],
+          [
+            48.83433,
+            2.284
+          ],
+          [
+            48.831919,
+            2.280492
+          ],
+          [
+            48.832457,
+            2.279028
+          ],
+          [
+            48.829591,
+            2.275507
+          ],
+          [
+            48.827928,
+            2.272745
+          ],
+          [
+            48.82796,
+            2.267631
+          ],
+          [
+            48.831492,
+            2.26732
+          ],
+          [
+            48.832997,
+            2.270042
+          ],
+          [
+            48.834562,
+            2.267855
+          ],
+          [
+            48.833897,
+            2.262959
+          ],
+          [
+            48.84696,
+            2.275715
+          ],
+          [
+            48.850356,
+            2.27996
+          ],
+          [
+            48.846046,
+            2.286973
+          ],
+          [
+            48.842883,
+            2.295048
+          ],
+          [
+            48.840737,
+            2.290983
+          ],
+          [
+            48.838586,
+            2.289416
+          ],
+          [
+            48.835918,
+            2.281302
+          ],
+          [
+            48.835325,
+            2.280997
+          ],
+          [
+            48.834947,
+            2.282326
+          ]
+        ]
+      ],
+      "text": "A riverside, largely modern residential/office quartier along the Seine near the André Citroën park. No dated safety incident or press coverage specific to this area was found. No particular concern. Sources checked: No quartier-specific press coverage found (search conducted August 2026).",
+      "query": "Javel, Paris, France"
+    },
+    {
+      "name": "Auteuil (16e arr.)",
+      "slug": "auteuil",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.857828,
+            2.249225
+          ],
+          [
+            48.858544,
+            2.257777
+          ],
+          [
+            48.858254,
+            2.261451
+          ],
+          [
+            48.857355,
+            2.264657
+          ],
+          [
+            48.856091,
+            2.263845
+          ],
+          [
+            48.852967,
+            2.275826
+          ],
+          [
+            48.850356,
+            2.27996
+          ],
+          [
+            48.84696,
+            2.275715
+          ],
+          [
+            48.833897,
+            2.262956
+          ],
+          [
+            48.834806,
+            2.255153
+          ],
+          [
+            48.838905,
+            2.25165
+          ],
+          [
+            48.842897,
+            2.251224
+          ],
+          [
+            48.845579,
+            2.252541
+          ],
+          [
+            48.845627,
+            2.250662
+          ],
+          [
+            48.847732,
+            2.242466
+          ],
+          [
+            48.850085,
+            2.23941
+          ],
+          [
+            48.853444,
+            2.224151
+          ],
+          [
+            48.855053,
+            2.224142
+          ],
+          [
+            48.857819,
+            2.224981
+          ],
+          [
+            48.865158,
+            2.228249
+          ],
+          [
+            48.866846,
+            2.229585
+          ],
+          [
+            48.865969,
+            2.232643
+          ],
+          [
+            48.863918,
+            2.236786
+          ],
+          [
+            48.861646,
+            2.23913
+          ],
+          [
+            48.859147,
+            2.243323
+          ],
+          [
+            48.858229,
+            2.246028
+          ],
+          [
+            48.857828,
+            2.249225
+          ]
+        ]
+      ],
+      "text": "One of Paris's wealthiest, most residential quartiers, with no notable street-crime pattern of its own — occasional high-value residential burglaries reported in the press are a wealth-targeting issue, not a traveller safety one. Its southern/western edge does run along the Bois de Boulogne, which is the subject of an official Paris city council security report and repeated press coverage of nighttime street prostitution and related safety incidents; that risk is real but concentrated along specific Bois roads and after dark, and is more centred on the Porte-Dauphine side of the wood. Sources checked: Mairie de Paris / Conseil de Paris, security report on the Bois de Boulogne, presented ~November 2024; No incident specific to Auteuil's built-up residential streets found (search conducted August 2026).",
+      "query": "Auteuil, Paris, France"
+    },
+    {
+      "name": "Muette (16e arr.)",
+      "slug": "muette",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.876355,
+            2.245625
+          ],
+          [
+            48.874153,
+            2.255058
+          ],
+          [
+            48.868744,
+            2.261516
+          ],
+          [
+            48.868292,
+            2.265413
+          ],
+          [
+            48.867854,
+            2.265714
+          ],
+          [
+            48.866837,
+            2.264965
+          ],
+          [
+            48.86613,
+            2.265087
+          ],
+          [
+            48.862883,
+            2.268148
+          ],
+          [
+            48.86431,
+            2.274567
+          ],
+          [
+            48.862965,
+            2.287047
+          ],
+          [
+            48.859909,
+            2.291954
+          ],
+          [
+            48.857594,
+            2.289057
+          ],
+          [
+            48.856121,
+            2.288106
+          ],
+          [
+            48.850356,
+            2.27996
+          ],
+          [
+            48.852967,
+            2.275826
+          ],
+          [
+            48.856091,
+            2.263845
+          ],
+          [
+            48.857355,
+            2.264657
+          ],
+          [
+            48.858254,
+            2.261451
+          ],
+          [
+            48.858544,
+            2.257777
+          ],
+          [
+            48.857828,
+            2.249225
+          ],
+          [
+            48.858678,
+            2.244494
+          ],
+          [
+            48.861201,
+            2.239755
+          ],
+          [
+            48.863918,
+            2.236786
+          ],
+          [
+            48.865969,
+            2.232643
+          ],
+          [
+            48.866846,
+            2.229585
+          ],
+          [
+            48.869555,
+            2.232124
+          ],
+          [
+            48.871943,
+            2.240545
+          ],
+          [
+            48.876355,
+            2.245625
+          ]
+        ]
+      ],
+      "text": "A quiet, affluent residential quartier (Ranelagh, La Muette) with no notable street-crime pattern found. Like Auteuil, part of its boundary touches the Bois de Boulogne, where an official Paris city report and press coverage document ongoing nighttime street prostitution and related safety concerns; this is a Bois de Boulogne-wide, after-dark issue rather than something documented within Muette's residential streets themselves. Sources checked: Mairie de Paris / Conseil de Paris, security report on the Bois de Boulogne, presented ~November 2024; No incident specific to Muette's built-up residential streets found (search conducted August 2026).",
+      "query": "Muette, Paris, France"
+    },
+    {
+      "name": "Porte-Dauphine (16e arr.)",
+      "slug": "porte-dauphine",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.878774,
+            2.270984
+          ],
+          [
+            48.877964,
+            2.277491
+          ],
+          [
+            48.878654,
+            2.279801
+          ],
+          [
+            48.877491,
+            2.283351
+          ],
+          [
+            48.862965,
+            2.287047
+          ],
+          [
+            48.86431,
+            2.274567
+          ],
+          [
+            48.862883,
+            2.268148
+          ],
+          [
+            48.86613,
+            2.265087
+          ],
+          [
+            48.866804,
+            2.264957
+          ],
+          [
+            48.867779,
+            2.265691
+          ],
+          [
+            48.868204,
+            2.265544
+          ],
+          [
+            48.868744,
+            2.261516
+          ],
+          [
+            48.874153,
+            2.255058
+          ],
+          [
+            48.874264,
+            2.255412
+          ],
+          [
+            48.8801,
+            2.25841
+          ],
+          [
+            48.880281,
+            2.258884
+          ],
+          [
+            48.878774,
+            2.270984
+          ]
+        ]
+      ],
+      "text": "This quartier sits at the northeast entrance to the Bois de Boulogne, the site of long-documented, recurring street prostitution and associated nighttime safety incidents (harassment, assault) along its access roads — covered repeatedly by French outlets and addressed in an official Paris city security report. In September 2024 a young woman, Philippine Le Noir de Carlan, was murdered with her body found in the Bois de Boulogne near this area, a case that received major national coverage and is a genuine, serious documented incident rather than routine crime-blotter material. Daytime use of the quartier's streets and the Bois's park areas is generally fine; after dark, caution around the Bois de Boulogne roads is well warranted. Sources checked: Gavroche Média, 'Au Bois de Boulogne, les prostituées face à l'insécurité'; Boulevard Voltaire, '\"Lieu de tous les dangers\": prostitution, viol, drogue au bois de Boulogne'; Mairie de Paris / Conseil de Paris, security report on the Bois de Boulogne, presented ~November 2024; France24, Public Sénat, Orange Actu — coverage of the September 2024 murder of Philippine Le Noir de Carlan, body found in the Bois de Boulogne.",
+      "query": "Porte-Dauphine, Paris, France"
+    },
+    {
+      "name": "Chaillot (16e arr.)",
+      "slug": "chaillot",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.860437,
+            2.292681
+          ],
+          [
+            48.859909,
+            2.291954
+          ],
+          [
+            48.862965,
+            2.287047
+          ],
+          [
+            48.877491,
+            2.283351
+          ],
+          [
+            48.873779,
+            2.29504
+          ],
+          [
+            48.870925,
+            2.297526
+          ],
+          [
+            48.868558,
+            2.298913
+          ],
+          [
+            48.865326,
+            2.299899
+          ],
+          [
+            48.864525,
+            2.301517
+          ],
+          [
+            48.863474,
+            2.30159
+          ],
+          [
+            48.86256,
+            2.296521
+          ],
+          [
+            48.860437,
+            2.292681
+          ]
+        ]
+      ],
+      "text": "Home to the Trocadéro/Eiffel Tower viewpoint, this quartier is among the most heavily touristed in Paris, and general 2026 French-press coverage names Paris overall as a pickpocketing hotspot for tourists at major landmarks — a citywide travel-safety norm rather than a documented quartier-specific crime problem. No dated incident specific to Chaillot beyond that generic tourist-area vigilance was found. Sources checked: Air Journal, 'Paris, capitale mondiale des pickpockets', ~28 June 2026 (citywide, not quartier-specific); No quartier-specific dated incident found (search conducted August 2026).",
+      "query": "Chaillot, Paris, France"
+    },
+    {
+      "name": "Ternes (17e arr.)",
+      "slug": "ternes",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.873779,
+            2.29504
+          ],
+          [
+            48.878654,
+            2.279801
+          ],
+          [
+            48.882879,
+            2.280908
+          ],
+          [
+            48.886572,
+            2.285662
+          ],
+          [
+            48.889454,
+            2.29154
+          ],
+          [
+            48.889586,
+            2.292661
+          ],
+          [
+            48.887552,
+            2.294702
+          ],
+          [
+            48.886124,
+            2.292367
+          ],
+          [
+            48.880484,
+            2.29965
+          ],
+          [
+            48.880048,
+            2.298857
+          ],
+          [
+            48.878684,
+            2.300969
+          ],
+          [
+            48.878079,
+            2.298155
+          ],
+          [
+            48.873779,
+            2.29504
+          ]
+        ]
+      ],
+      "text": "No dated French-press safety coverage specific to Ternes was found. This is one of Paris's more affluent, embassy-adjacent residential quartiers near the Arc de Triomphe and Avenue des Ternes market street, and it is consistently described as calm. No particular day or night concern is documented.",
+      "query": "Ternes, Paris, France"
+    },
+    {
+      "name": "Plaine de Monceaux (17e arr.)",
+      "slug": "plaine-de-monceaux",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.890057,
+            2.303897
+          ],
+          [
+            48.885409,
+            2.310325
+          ],
+          [
+            48.883773,
+            2.313712
+          ],
+          [
+            48.881317,
+            2.316504
+          ],
+          [
+            48.880415,
+            2.309138
+          ],
+          [
+            48.878684,
+            2.300969
+          ],
+          [
+            48.880048,
+            2.298857
+          ],
+          [
+            48.880484,
+            2.29965
+          ],
+          [
+            48.886124,
+            2.292367
+          ],
+          [
+            48.887552,
+            2.294702
+          ],
+          [
+            48.889586,
+            2.292661
+          ],
+          [
+            48.889869,
+            2.29506
+          ],
+          [
+            48.892669,
+            2.300606
+          ],
+          [
+            48.890057,
+            2.303897
+          ]
+        ]
+      ],
+      "text": "No dated safety-specific press coverage was found for this quartier. Built around Parc Monceau, it is one of Paris's wealthiest residential areas and is consistently described in local coverage of the 17th arrondissement as calm and low-crime. No particular concern is documented for day or night.",
+      "query": "Plaine de Monceaux, Paris, France"
+    },
+    {
+      "name": "Batignolles (17e arr.)",
+      "slug": "batignolles",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.89026,
+            2.31721
+          ],
+          [
+            48.886973,
+            2.323039
+          ],
+          [
+            48.888033,
+            2.324627
+          ],
+          [
+            48.887497,
+            2.32559
+          ],
+          [
+            48.883522,
+            2.327429
+          ],
+          [
+            48.881317,
+            2.316504
+          ],
+          [
+            48.883773,
+            2.313712
+          ],
+          [
+            48.885409,
+            2.310325
+          ],
+          [
+            48.892669,
+            2.300606
+          ],
+          [
+            48.896709,
+            2.309546
+          ],
+          [
+            48.894385,
+            2.313625
+          ],
+          [
+            48.893457,
+            2.311285
+          ],
+          [
+            48.89026,
+            2.31721
+          ]
+        ]
+      ],
+      "text": "No specific dated safety incidents were found in French press coverage for Batignolles. It's a family-oriented, gentrified quartier around Square des Batignolles and the newer Clichy-Batignolles/Martin Luther King park, generally considered one of the calmer parts of the 17th arrondissement. No particular concern is documented for day or night.",
+      "query": "Batignolles, Paris, France"
+    },
+    {
+      "name": "Epinettes (17e arr.)",
+      "slug": "epinettes",
+      "day": "green",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.888533,
+            2.325914
+          ],
+          [
+            48.887497,
+            2.32559
+          ],
+          [
+            48.888033,
+            2.324627
+          ],
+          [
+            48.886973,
+            2.323039
+          ],
+          [
+            48.893457,
+            2.311285
+          ],
+          [
+            48.894385,
+            2.313625
+          ],
+          [
+            48.896709,
+            2.309546
+          ],
+          [
+            48.899634,
+            2.318516
+          ],
+          [
+            48.900758,
+            2.320387
+          ],
+          [
+            48.901037,
+            2.33015
+          ],
+          [
+            48.888533,
+            2.325914
+          ]
+        ]
+      ],
+      "text": "In late July 2026, a knife attack injured three people at Porte de Clichy, within this quartier's official boundary, with a suspect arrested (CNews, franceinfo) — this reads as an isolated violent incident rather than a chronic pattern. Épinettes is otherwise a more modest, mixed residential quartier with no other significant documented safety issues found in current press, so ordinary night-time caution near Porte de Clichy is reasonable while daytime concern is low. Sources checked: CNews, 27 Jul 2026; franceinfo, Jul 2026.",
+      "query": "Quartier des Épinettes, Paris 17e, France"
+    },
+    {
+      "name": "Grandes-Carrières (18e arr.)",
+      "slug": "grandes-carrieres",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.893105,
+            2.340217
+          ],
+          [
+            48.89116,
+            2.339615
+          ],
+          [
+            48.89127,
+            2.340656
+          ],
+          [
+            48.887033,
+            2.339698
+          ],
+          [
+            48.886303,
+            2.338758
+          ],
+          [
+            48.886239,
+            2.338009
+          ],
+          [
+            48.885025,
+            2.337532
+          ],
+          [
+            48.883935,
+            2.339102
+          ],
+          [
+            48.882308,
+            2.337824
+          ],
+          [
+            48.884553,
+            2.329443
+          ],
+          [
+            48.883522,
+            2.327429
+          ],
+          [
+            48.887497,
+            2.32559
+          ],
+          [
+            48.901037,
+            2.33015
+          ],
+          [
+            48.901331,
+            2.344117
+          ],
+          [
+            48.897948,
+            2.344162
+          ],
+          [
+            48.897916,
+            2.34273
+          ],
+          [
+            48.894839,
+            2.340746
+          ],
+          [
+            48.893105,
+            2.340217
+          ]
+        ]
+      ],
+      "text": "No dated crime-specific press coverage was found for Grandes-Carrières itself. Worth noting: this quartier covers only the western, largely residential slope of the Montmartre hill — the famous tourist-pickpocketing hotspot around Sacré-Cœur and Place du Tertre officially falls in the neighboring Clignancourt quartier, not here. No particular day or night concern is documented for Grandes-Carrières proper.",
+      "query": "Quartier des Grandes-Carrières, Paris 18e, France"
+    },
+    {
+      "name": "Clignancourt (18e arr.)",
+      "slug": "clignancourt",
+      "day": "yellow",
+      "night": "yellow",
+      "coords": [
+        [
+          [
+            48.891388,
+            2.351678
+          ],
+          [
+            48.888369,
+            2.351571
+          ],
+          [
+            48.885327,
+            2.349512
+          ],
+          [
+            48.883725,
+            2.349506
+          ],
+          [
+            48.882024,
+            2.339816
+          ],
+          [
+            48.882308,
+            2.337824
+          ],
+          [
+            48.883935,
+            2.339102
+          ],
+          [
+            48.885025,
+            2.337532
+          ],
+          [
+            48.886239,
+            2.338009
+          ],
+          [
+            48.886303,
+            2.338758
+          ],
+          [
+            48.887033,
+            2.339698
+          ],
+          [
+            48.89127,
+            2.340656
+          ],
+          [
+            48.89116,
+            2.339615
+          ],
+          [
+            48.894839,
+            2.340746
+          ],
+          [
+            48.897916,
+            2.34273
+          ],
+          [
+            48.897948,
+            2.344162
+          ],
+          [
+            48.901331,
+            2.344117
+          ],
+          [
+            48.901492,
+            2.351957
+          ],
+          [
+            48.895602,
+            2.352965
+          ],
+          [
+            48.89318,
+            2.352618
+          ],
+          [
+            48.891388,
+            2.351678
+          ]
+        ]
+      ],
+      "text": "This quartier officially contains the Sacré-Cœur basilica and Place du Tertre, and Montmartre is repeatedly named among Paris's worst pickpocketing hotspots in recent press (Air Journal, Jun 2026, citing a large Google-reviews study; a similar pattern has been reported by Le JDD for over a decade). It also borders the Marché aux Puces flea market near Porte de Clignancourt, an area with a long-standing reputation for petty theft among visitors. These are theft/scam risks rather than violent crime — keep bags secure in crowds around the basilica and market, both by day and in the thinner evening crowds. Sources checked: Air Journal, 28 Jun 2026; Le JDD, 2012 (longstanding, still-cited pattern).",
+      "query": "Clignancourt, Paris, France"
+    },
+    {
+      "name": "Goutte-d'Or (18e arr.)",
+      "slug": "goutte-d-or",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.883738,
+            2.349668
+          ],
+          [
+            48.885327,
+            2.349512
+          ],
+          [
+            48.888369,
+            2.351571
+          ],
+          [
+            48.890428,
+            2.351451
+          ],
+          [
+            48.894312,
+            2.352862
+          ],
+          [
+            48.895602,
+            2.352965
+          ],
+          [
+            48.901492,
+            2.351957
+          ],
+          [
+            48.901625,
+            2.35885
+          ],
+          [
+            48.890043,
+            2.359924
+          ],
+          [
+            48.884426,
+            2.359307
+          ],
+          [
+            48.883738,
+            2.349668
+          ]
+        ]
+      ],
+      "text": "One of Paris's most heavily documented problem quartiers in the national press: Barbès and Château Rouge have long-running, repeatedly reported open-air dealing of cigarettes, drugs and counterfeit goods, and residents describe having to navigate around trafficking right outside their homes (Europe1, Dec 2025/updated Feb 2026). Daytime street life and markets are intense but generally manageable with normal caution; after dark the documented dealing and occasional violent incidents make this a genuinely higher-risk quartier at night. Sources checked: Europe1, 9 Dec 2025 (updated 9 Feb 2026).",
+      "query": "Goutte-d'Or, Paris, France"
+    },
+    {
+      "name": "La Chapelle (18e arr.)",
+      "slug": "la-chapelle",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.885544,
+            2.365804
+          ],
+          [
+            48.884369,
+            2.364686
+          ],
+          [
+            48.884426,
+            2.359307
+          ],
+          [
+            48.890043,
+            2.359924
+          ],
+          [
+            48.901625,
+            2.35885
+          ],
+          [
+            48.90186,
+            2.370293
+          ],
+          [
+            48.896632,
+            2.370388
+          ],
+          [
+            48.89541,
+            2.371789
+          ],
+          [
+            48.894029,
+            2.370024
+          ],
+          [
+            48.886641,
+            2.366793
+          ],
+          [
+            48.885544,
+            2.365804
+          ]
+        ]
+      ],
+      "text": "This quartier (Porte de la Chapelle, Marx-Dormoy) is extensively and recently documented as troubled: CNews reported in September 2025 on \"bagarres, meurtres, trafics\" affecting the area and on residents' anger over gang brawls at Place de la Chapelle, and local residents/shopkeepers have since formed an association against delinquency (ICI/France Bleu, 2025). Porte de la Chapelle itself has also repeatedly hosted large open-air drug-user encampments (the so-called \"colline du crack\"), evacuated by police multiple times between 2019 and 2024 and re-forming nearby each time. Real, well-documented risk exists here both day and night, worse after dark. Sources checked: CNews, 4 Sep 2025; CNews, 30 Aug 2025; ICI/France Bleu, 2025; Europe1, 9 Dec 2025.",
+      "query": "La Chapelle, Paris, France"
+    },
+    {
+      "name": "Villette (19e arr.)",
+      "slug": "villette",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.878198,
+            2.370499
+          ],
+          [
+            48.877993,
+            2.370277
+          ],
+          [
+            48.882723,
+            2.370191
+          ],
+          [
+            48.884092,
+            2.368385
+          ],
+          [
+            48.884369,
+            2.364686
+          ],
+          [
+            48.886641,
+            2.366793
+          ],
+          [
+            48.894523,
+            2.370424
+          ],
+          [
+            48.893745,
+            2.373335
+          ],
+          [
+            48.893504,
+            2.376778
+          ],
+          [
+            48.890728,
+            2.382129
+          ],
+          [
+            48.889281,
+            2.383779
+          ],
+          [
+            48.886618,
+            2.384832
+          ],
+          [
+            48.884527,
+            2.378755
+          ],
+          [
+            48.882015,
+            2.374169
+          ],
+          [
+            48.878198,
+            2.370499
+          ]
+        ]
+      ],
+      "text": "Most of this quartier — Parc de la Villette, Cité des Sciences, the Philharmonie — is a large, family-friendly public park and is not itself a documented trouble spot. But its northern edge at Porte de la Villette/Square Forceval has repeatedly hosted large open-air crack-use encampments: a 1,000-officer police operation dismantled one there in October 2022 (Le Journal du Grand Paris), and users have cyclically returned to nearby dealing points since, per ongoing tracking of the \"colline du crack\" phenomenon. Stick to the main park/museum areas and avoid the Porte de la Villette perimeter, especially at night. Sources checked: Le Journal du Grand Paris, 5 Oct 2022; Boulevard Voltaire, 8 Sep 2022.",
+      "query": "La Villette, Paris 19e, France"
+    },
+    {
+      "name": "Pont-de-Flandre (19e arr.)",
+      "slug": "pont-de-flandre",
+      "day": "yellow",
+      "night": "red",
+      "coords": [
+        [
+          [
+            48.886631,
+            2.384879
+          ],
+          [
+            48.889281,
+            2.383779
+          ],
+          [
+            48.890728,
+            2.382129
+          ],
+          [
+            48.893504,
+            2.376778
+          ],
+          [
+            48.893745,
+            2.373335
+          ],
+          [
+            48.894523,
+            2.370424
+          ],
+          [
+            48.89541,
+            2.371789
+          ],
+          [
+            48.896632,
+            2.370388
+          ],
+          [
+            48.90186,
+            2.370293
+          ],
+          [
+            48.902162,
+            2.384435
+          ],
+          [
+            48.900976,
+            2.39071
+          ],
+          [
+            48.898264,
+            2.39552
+          ],
+          [
+            48.894606,
+            2.397772
+          ],
+          [
+            48.890274,
+            2.398817
+          ],
+          [
+            48.886631,
+            2.384879
+          ]
+        ]
+      ],
+      "text": "This quartier includes the Avenue de Flandre/Stalingrad-Riquet canal corridor, one of the most persistently documented open-air crack-dealing zones in Paris: Sortiraparis described dealers arriving predictably around 6pm and running an \"Uber Eats du crack\"-style operation concentrated on just a few streets under residents' windows, and this Stalingrad-area problem was still being cited as an active concern in December 2025 press coverage (Europe1). The Bassin de la Villette waterfront itself is popular and generally fine by day; the Riquet-Stalingrad blocks are best avoided, especially after dark. Sources checked: Sortiraparis, 2021; Europe1, 9 Dec 2025.",
+      "query": "Quartier de Pont-de-Flandre, Paris 19e, France"
+    },
+    {
+      "name": "Amérique (19e arr.)",
+      "slug": "amerique",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.880192,
+            2.409402
+          ],
+          [
+            48.878423,
+            2.410839
+          ],
+          [
+            48.876007,
+            2.402567
+          ],
+          [
+            48.875254,
+            2.39533
+          ],
+          [
+            48.875446,
+            2.390397
+          ],
+          [
+            48.874671,
+            2.387441
+          ],
+          [
+            48.87587,
+            2.387413
+          ],
+          [
+            48.879566,
+            2.388375
+          ],
+          [
+            48.879554,
+            2.389504
+          ],
+          [
+            48.885868,
+            2.382269
+          ],
+          [
+            48.890274,
+            2.398817
+          ],
+          [
+            48.885416,
+            2.399214
+          ],
+          [
+            48.883812,
+            2.400108
+          ],
+          [
+            48.882617,
+            2.401491
+          ],
+          [
+            48.881227,
+            2.404628
+          ],
+          [
+            48.880192,
+            2.409402
+          ]
+        ]
+      ],
+      "text": "No dated, credible press coverage of specific safety incidents was found for this quartier, which includes the popular Parc des Buttes-Chaumont and Place des Fêtes. It sits near, but is administratively distinct from, the well-documented Stalingrad drug-dealing corridor in the neighboring Pont-de-Flandre quartier. No particular day or night concern is documented for Amérique itself.",
+      "query": "Quartier d'Amérique, Paris 19e, France"
+    },
+    {
+      "name": "Combat (19e arr.)",
+      "slug": "combat",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.880567,
+            2.388343
+          ],
+          [
+            48.879554,
+            2.389504
+          ],
+          [
+            48.879566,
+            2.388375
+          ],
+          [
+            48.87587,
+            2.387413
+          ],
+          [
+            48.874671,
+            2.387441
+          ],
+          [
+            48.873753,
+            2.384922
+          ],
+          [
+            48.872062,
+            2.376989
+          ],
+          [
+            48.877993,
+            2.370277
+          ],
+          [
+            48.882015,
+            2.374169
+          ],
+          [
+            48.884527,
+            2.378755
+          ],
+          [
+            48.885868,
+            2.382269
+          ],
+          [
+            48.880567,
+            2.388343
+          ]
+        ]
+      ],
+      "text": "No dated, credible press coverage of specific safety incidents was found for this quartier (Colonel-Fabien, Bolivar). It is mostly residential and administratively separate from the documented Stalingrad/canal drug-dealing corridor, which sits in the neighboring Pont-de-Flandre and Villette quartiers rather than here. No particular concern is documented.",
+      "query": "Quartier du Combat, Paris 19e, France"
+    },
+    {
+      "name": "Belleville (20e arr.)",
+      "slug": "belleville",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.867098,
+            2.383227
+          ],
+          [
+            48.872062,
+            2.376989
+          ],
+          [
+            48.873753,
+            2.384922
+          ],
+          [
+            48.874597,
+            2.386768
+          ],
+          [
+            48.875446,
+            2.390397
+          ],
+          [
+            48.875254,
+            2.39533
+          ],
+          [
+            48.872734,
+            2.396155
+          ],
+          [
+            48.870708,
+            2.39537
+          ],
+          [
+            48.870065,
+            2.395801
+          ],
+          [
+            48.867098,
+            2.383227
+          ]
+        ]
+      ],
+      "text": "No dated, credible press coverage of specific crime incidents was found for Belleville itself. It's a lively, multicultural market and nightlife quartier, and a local-press analysis of the wider 20th arrondissement (Mon Petit 20e, Apr 2026) found lower recorded drug-trafficking and violence rates there than in the 18th or 19th arrondissements. No particular concern is documented, though the busy market and bar streets warrant ordinary big-city awareness at night. Sources checked: Mon Petit 20e, 15 Apr 2026.",
+      "query": "Belleville, Paris, France"
+    },
+    {
+      "name": "Saint-Fargeau (20e arr.)",
+      "slug": "saint-fargeau",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.87081,
+            2.413813
+          ],
+          [
+            48.86517,
+            2.413895
+          ],
+          [
+            48.865151,
+            2.411719
+          ],
+          [
+            48.864383,
+            2.408323
+          ],
+          [
+            48.862345,
+            2.406332
+          ],
+          [
+            48.863477,
+            2.403962
+          ],
+          [
+            48.864448,
+            2.404331
+          ],
+          [
+            48.870785,
+            2.399255
+          ],
+          [
+            48.870065,
+            2.395801
+          ],
+          [
+            48.870708,
+            2.39537
+          ],
+          [
+            48.872734,
+            2.396155
+          ],
+          [
+            48.875254,
+            2.39533
+          ],
+          [
+            48.876007,
+            2.402567
+          ],
+          [
+            48.878423,
+            2.410839
+          ],
+          [
+            48.876382,
+            2.412497
+          ],
+          [
+            48.87081,
+            2.413813
+          ]
+        ]
+      ],
+      "text": "No dated safety-specific press coverage was found for Saint-Fargeau. Local-press analysis of the wider 20th arrondissement (Mon Petit 20e, Apr 2026) describes it as comparatively low in drug trafficking and street violence versus neighboring arrondissements. This quiet, largely residential quartier has no particular documented concern for day or night. Sources checked: Mon Petit 20e, 15 Apr 2026.",
+      "query": "Quartier Saint-Fargeau, Paris 20e, France"
+    },
+    {
+      "name": "Père-Lachaise (20e arr.)",
+      "slug": "pere-lachaise",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.856698,
+            2.395359
+          ],
+          [
+            48.856572,
+            2.394437
+          ],
+          [
+            48.858534,
+            2.389581
+          ],
+          [
+            48.862908,
+            2.387435
+          ],
+          [
+            48.867076,
+            2.383136
+          ],
+          [
+            48.869944,
+            2.394269
+          ],
+          [
+            48.870785,
+            2.399255
+          ],
+          [
+            48.864448,
+            2.404331
+          ],
+          [
+            48.863477,
+            2.403962
+          ],
+          [
+            48.862345,
+            2.406332
+          ],
+          [
+            48.860212,
+            2.404172
+          ],
+          [
+            48.85734,
+            2.398908
+          ],
+          [
+            48.856698,
+            2.395359
+          ]
+        ]
+      ],
+      "text": "No dated safety-specific press coverage was found for this quartier, home to the famous Père-Lachaise cemetery. Local-press analysis of the 20th arrondissement as a whole (Mon Petit 20e, Apr 2026) found it relatively safe compared to Paris's northern arrondissements. No particular concern is documented, and the cemetery itself closes before dark, so night-time visits aren't a practical issue. Sources checked: Mon Petit 20e, 15 Apr 2026.",
+      "query": "Père-Lachaise, Paris, France"
+    },
+    {
+      "name": "Charonne (20e arr.)",
+      "slug": "charonne",
+      "day": "green",
+      "night": "green",
+      "coords": [
+        [
+          [
+            48.846748,
+            2.416021
+          ],
+          [
+            48.848098,
+            2.399118
+          ],
+          [
+            48.848841,
+            2.399264
+          ],
+          [
+            48.851346,
+            2.398433
+          ],
+          [
+            48.856572,
+            2.394437
+          ],
+          [
+            48.85734,
+            2.398908
+          ],
+          [
+            48.860212,
+            2.404172
+          ],
+          [
+            48.864369,
+            2.408288
+          ],
+          [
+            48.865151,
+            2.411719
+          ],
+          [
+            48.86517,
+            2.413895
+          ],
+          [
+            48.848786,
+            2.416431
+          ],
+          [
+            48.846748,
+            2.416021
+          ]
+        ]
+      ],
+      "text": "No dated, credible press coverage of specific crime incidents was found for Charonne. It's a largely residential, increasingly gentrified part of the 20th arrondissement, which a recent local-press analysis (Mon Petit 20e, Apr 2026) found comparatively safe versus Paris's northern arrondissements for drug trafficking and street violence. No particular concern is documented. Sources checked: Mon Petit 20e, 15 Apr 2026.",
+      "query": "Charonne, Paris, France"
+    }
+  ]
+}
