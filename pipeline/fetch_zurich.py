@@ -56,6 +56,32 @@ WHAT THIS SCRIPT DOES
      a Kreis/year already saved (published data for a past year doesn't
      change), mirroring fetch_london.py's manifest pattern.
 
+FAILURE HANDLING (added 2 September 2026)
+  This is an optional bonus data layer on top of the site's core London
+  data, not core to the site itself — the docstring above has always
+  said so. Confirmed 2 September 2026: the upstream host moved/renamed
+  this exact file (KTZH_00002042_00004083.csv 404ing at the old
+  data.stadt-zuerich.ch/dataset/.../download/ URL below; the Open Data
+  Zürich CKAN catalog's own package_show metadata now points at
+  www.web.statistik.zh.ch/ogd/daten/ressourcen/KTZH_00002042_00004083.csv
+  instead, but as of this fix that new URL 404s too — the breakage is
+  upstream, on Kanton Zürich's own publishing side, not something a
+  different guessed URL reliably fixes). CSV_URL below was updated to
+  the current CKAN-registered URL anyway, since it's the more likely one
+  to start working again once Kanton Zürich republishes. Both failure
+  paths below (download failure, and a schema change producing zero
+  matching rows) now print a warning and exit 0 instead of exit 1, so a
+  broken/moved upstream file degrades this one bonus layer for a run
+  instead of blocking the rest of the monthly refresh pipeline (London's
+  core data fetch, the site rebuild, and the commit/push all live in the
+  same GitHub Actions job as later steps — see
+  .github/workflows/refresh-data.yml, which also now sets
+  continue-on-error: true on this step and the next as defense in
+  depth). Previously-fetched Zurich data already committed to
+  data/raw_zurich/ is left untouched either way, so the site keeps
+  showing the last successfully-fetched Zurich burglary figures rather
+  than losing them.
+
 USAGE
   python pipeline/fetch_zurich.py
 """
@@ -75,8 +101,8 @@ RAW_DIR = os.path.join(BASE_DIR, "..", "data", "raw_zurich")
 MANIFEST_PATH = os.path.join(RAW_DIR, "manifest.json")
 
 CSV_URL = (
-    "https://data.stadt-zuerich.ch/dataset/ktzh_pks_einbrueche_gemeinden_stadtkreise"
-    "/download/KTZH_00002042_00004083.csv"
+    "https://www.web.statistik.zh.ch/ogd/daten/ressourcen"
+    "/KTZH_00002042_00004083.csv"
 )
 USER_AGENT = "wandroz-site-fetch/0.1 (https://wandroz.com; automated annual refresh)"
 REQUEST_TIMEOUT = 30
@@ -148,18 +174,27 @@ def write_kreis_year_file(kreis_n, year, rows):
     return out_path
 
 
+def _skip_this_run(reason):
+    print(f"WARNING: skipping Zurich burglary refresh this run: {reason}")
+    print("This is an optional bonus data layer, not core to the site (see")
+    print("this script's docstring) — previously-fetched data in")
+    print("data/raw_zurich/ is left untouched, and the rest of the monthly")
+    print("refresh pipeline (London data, site rebuild, commit) continues.")
+    sys.exit(0)
+
+
 def main():
     print("Downloading Kantonspolizei Zürich burglary CSV ...")
     try:
         csv_text = _download_csv()
     except Exception as exc:
-        print(f"FATAL: could not download CSV: {exc}")
-        sys.exit(1)
+        _skip_this_run(f"could not download CSV: {exc}")
+        return
 
     grouped = parse_kreis_rows(csv_text)
     if not grouped:
-        print("FATAL: no Kreis-level Zürich rows found in CSV — schema may have changed")
-        sys.exit(1)
+        _skip_this_run("no Kreis-level Zürich rows found in CSV — schema may have changed")
+        return
 
     years_found = sorted({year for (_, year) in grouped})
     kreise_found = sorted({k for (k, _) in grouped})
