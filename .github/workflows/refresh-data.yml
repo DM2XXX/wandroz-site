@@ -43,9 +43,23 @@ jobs:
         # Narrow, real, genuinely-updated dataset (burglaries only, 12
         # Stadtkreise, not the 34-Quartier map) — see pipeline/fetch_zurich.py's
         # docstring for why this dataset and not Zurich's stale general PKS one.
+        continue-on-error: true
+        # This is an optional bonus data layer, not core to the site (see
+        # fetch_zurich.py's own docstring). The upstream host has moved/
+        # renamed this specific file before (confirmed 2 September 2026,
+        # KTZH_00002042_00004083.csv 404ing at both its old and its
+        # current CKAN-registered URL) — a failure here should never
+        # block London's core monthly refresh or the site rebuild/commit
+        # below. fetch_zurich.py itself also now exits 0 (not 1) on a
+        # download/schema failure for the same reason; continue-on-error
+        # here is defense in depth in case that ever regresses.
 
       - name: Recompute Zurich burglary scores
         run: python pipeline/score_zurich.py
+        continue-on-error: true
+        # Same reasoning as the fetch step above — if there was nothing
+        # new to fetch this run, this step should be a no-op, but this
+        # stays non-blocking regardless.
 
       - name: Rebuild static site
         run: python pipeline/build_site.py
