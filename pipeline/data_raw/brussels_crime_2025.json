@@ -1,0 +1,37 @@
+{
+  "source": "https://bisa.brussels/",
+  "title": "14.1.1.1 Geregistreerde misdaden en wanbedrijven, per gemeente (Federale Politie)",
+  "publisher": "BISA - Brussels Instituut voor Statistiek en Analyse / Institut bruxellois de statistique et d'analyse",
+  "extraction_method": "SheetJS (xlsx) parse run directly in-browser against BISA's published '14.1_veiligheid_crim_%26_PZ' workbook, table 14.1.1.1 (total registered crimes and misdemeanors, all categories combined)",
+  "note": "Figures are TOTAL registered crimes/misdemeanors (all offense categories combined) per commune per year, sourced from Federale Politie via BISA. Dutch commune names used as keys to match the source workbook; joined to geometry/population via NIS code, see nis_code_map below.",
+  "nis_code_map": {
+    "21001": "Anderlecht", "21002": "Oudergem", "21003": "Sint-Agatha-Berchem",
+    "21004": "Brussel", "21005": "Etterbeek", "21006": "Evere",
+    "21007": "Vorst", "21008": "Ganshoren", "21009": "Elsene",
+    "21010": "Jette", "21011": "Koekelberg", "21012": "Sint-Jans-Molenbeek",
+    "21013": "Sint-Gillis", "21014": "Sint-Joost-ten-Node", "21015": "Schaarbeek",
+    "21016": "Ukkel", "21017": "Watermaal-Bosvoorde", "21018": "Sint-Lambrechts-Woluwe",
+    "21019": "Sint-Pieters-Woluwe"
+  },
+  "totals_by_commune": {
+    "Anderlecht": {"2024": 14697, "2025": 14406},
+    "Oudergem": {"2024": 3220, "2025": 2951},
+    "Sint-Agatha-Berchem": {"2024": 2083, "2025": 2009},
+    "Brussel": {"2024": 54491, "2025": 47888},
+    "Etterbeek": {"2024": 4241, "2025": 4030},
+    "Evere": {"2024": 3112, "2025": 2828},
+    "Vorst": {"2024": 5437, "2025": 4919},
+    "Ganshoren": {"2024": 1767, "2025": 1583},
+    "Elsene": {"2024": 14672, "2025": 12693},
+    "Jette": {"2024": 4390, "2025": 3923},
+    "Koekelberg": {"2024": 1737, "2025": 1707},
+    "Sint-Jans-Molenbeek": {"2024": 9581, "2025": 9915},
+    "Sint-Gillis": {"2024": 15337, "2025": 11114},
+    "Sint-Joost-ten-Node": {"2024": 4851, "2025": 3862},
+    "Schaarbeek": {"2024": 14597, "2025": 13110},
+    "Ukkel": {"2024": 7580, "2025": 6724},
+    "Watermaal-Bosvoorde": {"2024": 2016, "2025": 2089},
+    "Sint-Lambrechts-Woluwe": {"2024": 4178, "2025": 4076},
+    "Sint-Pieters-Woluwe": {"2024": 2329, "2025": 2215}
+  }
+}

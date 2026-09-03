@@ -1,0 +1,31 @@
+{
+  "source": "https://statbel.fgov.be/nl/themas/bevolking/structuur-van-de-bevolking",
+  "download_file": "Bevolking_per_gemeente.xlsx",
+  "title": "Bevolking in 2025, per gemeente (Statbel)",
+  "publisher": "Statbel (Belgian national statistics office, Algemene Directie Statistiek - Statistics Belgium)",
+  "extraction_method": "SheetJS (xlsx) parse run directly in-browser against Statbel's published 'Bevolking_per_gemeente.xlsx', sheet 'Bevolking in 2025'",
+  "columns": ["nis_code", "name_nl", "men", "women", "total"],
+  "note": "Restricted to the 19 communes of the Brussels-Capital Region (NIS 21001-21019). NIS 21000 'Arrondissement Brussel-Hoofdstad' (the arrondissement-level aggregate row) is excluded as it is not a commune.",
+  "rows": [
+    ["21001", "Anderlecht", 64323, 64401, 128724],
+    ["21002", "Oudergem", 16978, 18720, 35698],
+    ["21003", "Sint-Agatha-Berchem", 12520, 13283, 25803],
+    ["21004", "Brussel", 101004, 97310, 198314],
+    ["21005", "Etterbeek", 23539, 25592, 49131],
+    ["21006", "Evere", 22171, 23721, 45892],
+    ["21007", "Vorst", 28449, 30226, 58675],
+    ["21008", "Ganshoren", 12400, 13293, 25693],
+    ["21009", "Elsene", 43195, 46702, 89897],
+    ["21010", "Jette", 26385, 28005, 54390],
+    ["21011", "Koekelberg", 11483, 11496, 22979],
+    ["21012", "Sint-Jans-Molenbeek", 49112, 49601, 98713],
+    ["21013", "Sint-Gillis", 24378, 24449, 48827],
+    ["21014", "Sint-Joost-ten-Node", 14354, 12904, 27258],
+    ["21015", "Schaarbeek", 64259, 65516, 129775],
+    ["21016", "Ukkel", 40617, 46577, 87194],
+    ["21017", "Watermaal-Bosvoorde", 11682, 13645, 25327],
+    ["21018", "Sint-Lambrechts-Woluwe", 28499, 32457, 60956],
+    ["21019", "Sint-Pieters-Woluwe", 19997, 22552, 42549]
+  ],
+  "citywide_total": 1005747
+}
