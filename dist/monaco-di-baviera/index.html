@@ -118,6 +118,8 @@
         
         <option value="https://www.wandroz.com/paris/" >Paris</option>
         
+        <option value="https://www.wandroz.com/brussels/" >Brussels</option>
+        
       </select>
     </div>
     
@@ -282,14 +284,17 @@
     var html = '<div class="zn">' + z.name + '</div>';
     if (SHOW_TOGGLE) {
       html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
-    } else if (z.covered) {
-      html += badge(tone, z.tone_label || tone);
+    } else if (z.day) {
+      // This city's data has no time-of-day split (day and night are
+      // identical for every zone), so the switch is hidden entirely and
+      // a single badge is shown instead of two redundant ones.
+      html += badge(tone, z.day_label || tone);
     } else {
-      html += badge('grey', z.tone_label || '');
+      html += badge('grey', L_NOTCOVERED || '');
     }
     if (z.text) {
       html += '<div class="body-text">' + z.text + '</div>';
-    } else if (!z.covered) {
+    } else if (!z.day) {
       html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
     }
     if (z.query) {
