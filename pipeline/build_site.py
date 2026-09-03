@@ -60,6 +60,7 @@ CITY_LINKS = [
     {"label": "Vienna", "url": f"{SITE_URL}/vienna/"},
     {"label": "Lisbon", "url": f"{SITE_URL}/lisbon/"},
     {"label": "Paris", "url": f"{SITE_URL}/paris/"},
+    {"label": "Brussels", "url": f"{SITE_URL}/brussels/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -580,6 +581,7 @@ def build_search_index(cities, city_cards):
         ("vienna", "vienna", "Vienna", True),
         ("lisbon", "lisbon", "Lisbon", True),
         ("paris", "paris", "Paris", True),
+        ("brussels", "brussels", "Brussels", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -646,6 +648,7 @@ def build_zone_boundaries(cities, city_cards):
         ("vienna", "vienna", "Vienna", True),
         ("lisbon", "lisbon", "Lisbon", True),
         ("paris", "paris", "Paris", True),
+        ("brussels", "brussels", "Brussels", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1114,6 +1117,37 @@ STOCKHOLM_NEIGH_NOTE = (
     "that meaning elevated risk per visit. See the methodology page for full sourcing."
 )
 
+BRUSSELS_UI = dict(TORINO_UI)
+BRUSSELS_UI.update({
+    "page_title": "Is my Brussels neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Brussels' 19 official communes with real official BISA/Federale Politie crime-rate data per commune.",
+    "page_h1": "Brussels neighbourhoods",
+    "neigh_title": "Is {name} in Brussels safe? | Wandroz",
+})
+
+BRUSSELS_BANNER = (
+    "Neighbourhood shapes are the Brussels-Capital Region's real official 19 communes (boundaries via "
+    "opendata.brussels.be). Like Berlin, Amsterdam, Prague, Oslo, Munich and Stockholm, Brussels' safety levels "
+    "come from a real official statistic — BISA (Brussels Institute for Statistics and Analysis), citing Federale "
+    "Politie figures, and their own published 2025 total registered crime counts per commune, converted to a rate "
+    "per 100,000 residents using Statbel's own 2025 population figures per commune — rather than a press-research "
+    "approach. This rate is calculated against registered residents, not footfall, so high-traffic central/"
+    "station/nightlife communes — especially the City of Brussels (the historic Pentagon centre, Gare Centrale, "
+    "Gare du Nord) and Saint-Gilles (Gare du Midi, Brussels' Eurostar/international rail hub) — can read higher "
+    "without that meaning elevated risk per visit. The source data has no time-of-day breakdown, so — like "
+    "Berlin, Amsterdam, Prague, Oslo, Munich and Stockholm — this map shows one consistent level per commune "
+    "rather than a day/night toggle; see the methodology page for details."
+)
+BRUSSELS_NEIGH_NOTE = (
+    "This rating for Brussels is a real official statistic — BISA (Brussels Institute for Statistics and "
+    "Analysis), citing Federale Politie figures, and their own published 2025 total registered crime count for "
+    "this commune, converted to a rate per 100,000 residents using Statbel's 2025 population figure for the "
+    "commune — not a qualitative or press-based judgment. It has no day/night split in the source data, so both "
+    "figures shown are the same. The rate counts against registered residents, not footfall, so a busy central, "
+    "station or nightlife commune can read higher without that meaning elevated risk per visit. See the "
+    "methodology page for full sourcing."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1274,6 +1308,10 @@ def main():
          "blurb": "All 80 official quartiers administratifs mapped, real council boundaries, safety ratings from genuine current local press research.",
          "lat": 48.8566, "lon": 2.3522, "color": "#3468c0",
          "zone_count": _zone_count("paris"), "data_tag": "Official boundaries"},
+        {"name": "Brussels", "url": "brussels/index.html", "flag": "🇧🇪",
+         "blurb": "All 19 official communes mapped, safety levels from BISA/Federale Politie's real official 2025 crime and Statbel population statistics.",
+         "lat": 50.8503, "lon": 4.3517, "color": "#34495e",
+         "zone_count": _zone_count("brussels"), "data_tag": "Official police data"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1368,7 +1406,9 @@ def main():
     sitemap_urls.extend(lisbon_urls)
     paris_urls = render_illustrative_city("paris", "paris", PARIS_UI, EN_TONE_BADGE, PARIS_BANNER, PARIS_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(paris_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)})")
+    brussels_urls = render_illustrative_city("brussels", "brussels", BRUSSELS_UI, EN_TONE_BADGE, BRUSSELS_BANNER, BRUSSELS_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(brussels_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
