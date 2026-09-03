@@ -551,6 +551,45 @@
   concerns — each quartier's page states plainly which kind of concern (if any) the research actually found.
 </div>
 
+<h2>Brussels: real official BISA/Federale Politie and Statbel data</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Brussels (3 September 2026) is the ninth city on the site whose ratings come from an official, geolocated
+  government dataset rather than press research or general knowledge, and the first built on a Belgian source.
+  The zone boundaries are the Brussels-Capital Region's own official 19 communes, none excluded, sourced directly
+  from opendata.brussels.be's own boundary dataset. Each commune's rating is computed from two real official
+  sources: BISA (Brussels Institute for Statistics and Analysis)'s own published workbook of total registered
+  crimes and misdemeanours per commune for 2025, citing Federale Politie (federal police) figures, and Statbel
+  (Belgium's national statistics office)'s own population-per-commune figures, also for 2025. Every zone is rated
+  red/yellow/green against the population-weighted citywide average rate, the same 1.3×/0.8× thresholds used for
+  London, Berlin, Amsterdam, Prague, Oslo, Munich and Stockholm.
+</p>
+<div class="note" style="margin-bottom:10px;">
+  <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin, Amsterdam, Prague, Oslo,
+  Munich and Stockholm, this is a snapshot of 2025 crime figures against a 2025 population figure, not something
+  re-pulled on a schedule yet, and the source data has no time-of-day breakdown — so every Brussels zone shows the
+  same level for both day and night, disclosed plainly on each zone's page.
+</div>
+<div class="note" style="margin-bottom:10px;">
+  <strong>The rate counts residents, not footfall — read high numbers carefully.</strong> The City of Brussels
+  (the commune containing the historic Pentagon centre, Gare Centrale and Gare du Nord) shows a rate roughly
+  double the citywide average, and Saint-Gilles (home to Gare du Midi, Brussels' Eurostar/international rail hub,
+  plus the Barrière/Parvis nightlife area) follows close behind — both a comparatively modest resident base next
+  to some of the region's densest station, tourism and nightlife traffic, the same footfall effect already
+  documented for London's West End, Prague, Amsterdam, Berlin, Oslo's Sentrum, Munich's Altstadt-Lehel and
+  Stockholm's Norra innerstaden. That is not the same claim as "unusually dangerous to visit," and this caveat is
+  repeated on both communes' own zone pages, not just here.
+</div>
+<div class="note">
+  <strong>Two communes' boundary shapes are simplified to their largest polygon part.</strong> Saint-Gilles and
+  Ixelles came back from the boundary source as a GeoJSON MultiPolygon with a second, smaller polygon part —
+  Saint-Gilles' second part is a roughly 440x-smaller sliver entirely inside the main polygon's bounding box (very
+  likely a simplification artifact); Ixelles' second part overlaps the main polygon's bounding box rather than
+  being a genuinely separate landmass. For both, only the larger polygon part is kept for the map shape shown here
+  — the same "keep the larger part, drop the tiny/duplicate fragment" handling already used for two of Munich's
+  Stadtbezirke. This affects only the drawn boundary shape, not which communes are included (all 19 are mapped)
+  or their real crime/population figures, which cover the whole commune either way.
+</div>
+
 <h2>How this scales beyond London</h2>
 <p style="font-size:13.5px;color:var(--muted);">Wandroz is meant to eventually cover neighbourhoods across Europe, not just London. Getting there honestly means being upfront about which of three tiers a city's data currently sits at:</p>
 <table class="breakdown" style="margin-top:10px;">
