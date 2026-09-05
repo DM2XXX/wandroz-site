@@ -63,6 +63,7 @@ CITY_LINKS = [
     {"label": "Brussels", "url": f"{SITE_URL}/brussels/"},
     {"label": "Athens", "url": f"{SITE_URL}/athens/"},
     {"label": "Venice", "url": f"{SITE_URL}/venezia/"},
+    {"label": "Dublin", "url": f"{SITE_URL}/dublin/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -586,6 +587,7 @@ def build_search_index(cities, city_cards):
         ("brussels", "brussels", "Brussels", True),
         ("athens", "athens", "Athens", True),
         ("venezia", "venezia", "Venice", True),
+        ("dublin", "dublin", "Dublin", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -655,6 +657,7 @@ def build_zone_boundaries(cities, city_cards):
         ("brussels", "brussels", "Brussels", True),
         ("athens", "athens", "Athens", True),
         ("venezia", "venezia", "Venice", True),
+        ("dublin", "dublin", "Dublin", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1208,6 +1211,33 @@ VENEZIA_NEIGH_NOTE = (
     "pipeline."
 )
 
+DUBLIN_UI = dict(TORINO_UI)
+DUBLIN_UI.update({
+    "page_title": "Is my Dublin neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Dublin City's 11 official Local Electoral Areas (real Dublin City Council electoral geography) with day/night safety levels based on current local press research.",
+    "page_h1": "Dublin neighbourhoods",
+    "neigh_title": "Is {name} in Dublin safe? | Wandroz",
+})
+
+DUBLIN_BANNER = (
+    "District shapes are Dublin City Council's real official Local Electoral Areas (LEAs) — the government "
+    "electoral geography used for Dublin City Council elections. Like Milan, Rome, Turin, Barcelona, Madrid, "
+    "Vienna, Lisbon, Paris, Athens and Venice, Dublin's safety levels are Wandroz's Level 2 approach: genuine "
+    "current local/national press research per district, honestly disclosed as press-based rather than "
+    "official crime statistics — Ireland has no current, live, geolocated neighbourhood-level crime dataset "
+    "(the only near-candidate, a historical Garda-station dataset, is confirmed to cover only 2003-2015 with "
+    "no live update). Where no specific news coverage was found for part of a district, that is stated "
+    "plainly rather than assumed either way. All 11 official Local Electoral Areas are mapped, none excluded. "
+    "See the methodology page for details and sources."
+)
+DUBLIN_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Dublin: genuine current local/national press research for "
+    "this specific Local Electoral Area (not blind guessing, not fabricated crime statistics), honestly "
+    "disclosed as press-based rather than official data — Ireland has no current, live, geolocated "
+    "neighbourhood-level crime dataset. See the methodology page for what was checked and how this differs "
+    "from London's automated official-data pipeline."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1380,6 +1410,10 @@ def main():
          "blurb": "All 6 official Municipalità mapped, mainland included, safety ratings from genuine current local press research.",
          "lat": 45.4408, "lon": 12.3155, "color": "#7a2048",
          "zone_count": _zone_count("venezia"), "data_tag": "Official boundaries"},
+        {"name": "Dublin", "url": "dublin/index.html", "flag": "🇮🇪",
+         "blurb": "All 11 official Local Electoral Areas mapped, real council electoral boundaries, safety ratings from genuine current local press research.",
+         "lat": 53.3498, "lon": -6.2603, "color": "#4b0082",
+         "zone_count": _zone_count("dublin"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1480,7 +1514,9 @@ def main():
     sitemap_urls.extend(athens_urls)
     venezia_urls = render_illustrative_city("venezia", "venezia", VENEZIA_UI, EN_TONE_BADGE, VENEZIA_BANNER, VENEZIA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(venezia_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)})")
+    dublin_urls = render_illustrative_city("dublin", "dublin", DUBLIN_UI, EN_TONE_BADGE, DUBLIN_BANNER, DUBLIN_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(dublin_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
