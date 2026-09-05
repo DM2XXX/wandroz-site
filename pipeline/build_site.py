@@ -61,6 +61,7 @@ CITY_LINKS = [
     {"label": "Lisbon", "url": f"{SITE_URL}/lisbon/"},
     {"label": "Paris", "url": f"{SITE_URL}/paris/"},
     {"label": "Brussels", "url": f"{SITE_URL}/brussels/"},
+    {"label": "Athens", "url": f"{SITE_URL}/athens/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -582,6 +583,7 @@ def build_search_index(cities, city_cards):
         ("lisbon", "lisbon", "Lisbon", True),
         ("paris", "paris", "Paris", True),
         ("brussels", "brussels", "Brussels", True),
+        ("athens", "athens", "Athens", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -649,6 +651,7 @@ def build_zone_boundaries(cities, city_cards):
         ("lisbon", "lisbon", "Lisbon", True),
         ("paris", "paris", "Paris", True),
         ("brussels", "brussels", "Brussels", True),
+        ("athens", "athens", "Athens", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1148,6 +1151,33 @@ BRUSSELS_NEIGH_NOTE = (
     "methodology page for full sourcing."
 )
 
+ATHENS_UI = dict(TORINO_UI)
+ATHENS_UI.update({
+    "page_title": "Is my Athens neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Athens' 7 official Δημοτικές Κοινότητες (Municipal Districts, real official City of Athens boundaries) with day/night safety levels based on current local press research.",
+    "page_h1": "Athens neighbourhoods",
+    "neigh_title": "Is {name} in Athens safe? | Wandroz",
+})
+
+ATHENS_BANNER = (
+    "District shapes are Athens' real official administrative boundaries (the 7 \"Δημοτικές Κοινότητες\", "
+    "Municipal Districts, a holdover unit from the 2011 \"Kallikratis\" local-government reform), sourced "
+    "directly from the City of Athens' own official GIS portal (gis.cityofathens.gr). Like Milan, Rome, Turin, "
+    "Barcelona, Madrid, Vienna, Lisbon and Paris, Athens' safety levels are Wandroz's Level 2 approach: genuine "
+    "current local/national press research per district, honestly disclosed as press-based rather than official "
+    "crime statistics — Greece has no open, geolocated neighbourhood-level crime dataset (the Hellenic Police "
+    "publish only national and regional aggregate statistics). Where no specific news coverage was found for "
+    "part of a district, that is stated plainly rather than assumed either way. All 7 official Municipal "
+    "Districts are mapped, none excluded. See the methodology page for details and sources."
+)
+ATHENS_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Athens: genuine current local/national press research for "
+    "this specific Municipal District (not blind guessing, not fabricated crime statistics), honestly disclosed "
+    "as press-based rather than official data — Greece has no open, geolocated neighbourhood-level crime "
+    "dataset. See the methodology page for what was checked and how this differs from London's automated "
+    "official-data pipeline."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1312,6 +1342,10 @@ def main():
          "blurb": "All 19 official communes mapped, safety levels from BISA/Federale Politie's real official 2025 crime and Statbel population statistics.",
          "lat": 50.8503, "lon": 4.3517, "color": "#34495e",
          "zone_count": _zone_count("brussels"), "data_tag": "Official police data"},
+        {"name": "Athens", "url": "athens/index.html", "flag": "🇬🇷",
+         "blurb": "All 7 official Municipal Districts mapped, real council boundaries, safety ratings from genuine current local press research.",
+         "lat": 37.9838, "lon": 23.7275, "color": "#1477a6",
+         "zone_count": _zone_count("athens"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1408,7 +1442,9 @@ def main():
     sitemap_urls.extend(paris_urls)
     brussels_urls = render_illustrative_city("brussels", "brussels", BRUSSELS_UI, EN_TONE_BADGE, BRUSSELS_BANNER, BRUSSELS_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(brussels_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)})")
+    athens_urls = render_illustrative_city("athens", "athens", ATHENS_UI, EN_TONE_BADGE, ATHENS_BANNER, ATHENS_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(athens_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
