@@ -62,6 +62,7 @@ CITY_LINKS = [
     {"label": "Paris", "url": f"{SITE_URL}/paris/"},
     {"label": "Brussels", "url": f"{SITE_URL}/brussels/"},
     {"label": "Athens", "url": f"{SITE_URL}/athens/"},
+    {"label": "Venice", "url": f"{SITE_URL}/venezia/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -584,6 +585,7 @@ def build_search_index(cities, city_cards):
         ("paris", "paris", "Paris", True),
         ("brussels", "brussels", "Brussels", True),
         ("athens", "athens", "Athens", True),
+        ("venezia", "venezia", "Venice", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -652,6 +654,7 @@ def build_zone_boundaries(cities, city_cards):
         ("paris", "paris", "Paris", True),
         ("brussels", "brussels", "Brussels", True),
         ("athens", "athens", "Athens", True),
+        ("venezia", "venezia", "Venice", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1178,6 +1181,33 @@ ATHENS_NEIGH_NOTE = (
     "official-data pipeline."
 )
 
+VENEZIA_UI = dict(TORINO_UI)
+VENEZIA_UI.update({
+    "page_title": "Is my Venice neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Venice's 6 official Municipalità (real official Comune di Venezia administrative districts, mainland included) with day/night safety levels based on current local press research.",
+    "page_h1": "Venice neighbourhoods",
+    "neigh_title": "Is {name} in Venice safe? | Wandroz",
+})
+
+VENEZIA_BANNER = (
+    "District shapes are Venice's real official administrative boundaries (the 6 \"Municipalità\" established in "
+    "2005), covering the whole Comune di Venezia — the historic lagoon islands (Venezia-Murano-Burano, "
+    "Lido-Pellestrina) as well as the mainland districts (Mestre-Carpenedo, Marghera, Favaro Veneto, "
+    "Chirignago-Zelarino). Like Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris and Athens, Venice's "
+    "safety levels are Wandroz's Level 2 approach: genuine current local/national press research per district, "
+    "honestly disclosed as press-based rather than official crime statistics — Italy has no open, geolocated "
+    "neighbourhood-level crime dataset. Where no specific news coverage was found for part of a district, that "
+    "is stated plainly rather than assumed either way. All 6 official Municipalità are mapped, none excluded. "
+    "See the methodology page for details and sources."
+)
+VENEZIA_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Venice: genuine current local/national press research for "
+    "this specific Municipalità (not blind guessing, not fabricated crime statistics), honestly disclosed as "
+    "press-based rather than official data — Italy has no open, geolocated neighbourhood-level crime dataset. "
+    "See the methodology page for what was checked and how this differs from London's automated official-data "
+    "pipeline."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1346,6 +1376,10 @@ def main():
          "blurb": "All 7 official Municipal Districts mapped, real council boundaries, safety ratings from genuine current local press research.",
          "lat": 37.9838, "lon": 23.7275, "color": "#1477a6",
          "zone_count": _zone_count("athens"), "data_tag": "Official boundaries"},
+        {"name": "Venice", "url": "venezia/index.html", "flag": "🇮🇹",
+         "blurb": "All 6 official Municipalità mapped, mainland included, safety ratings from genuine current local press research.",
+         "lat": 45.4408, "lon": 12.3155, "color": "#7a2048",
+         "zone_count": _zone_count("venezia"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1444,7 +1478,9 @@ def main():
     sitemap_urls.extend(brussels_urls)
     athens_urls = render_illustrative_city("athens", "athens", ATHENS_UI, EN_TONE_BADGE, ATHENS_BANNER, ATHENS_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(athens_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)})")
+    venezia_urls = render_illustrative_city("venezia", "venezia", VENEZIA_UI, EN_TONE_BADGE, VENEZIA_BANNER, VENEZIA_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(venezia_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
