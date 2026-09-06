@@ -75,7 +75,7 @@
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
     London borough scores come from the UK Home Office's official street-level crime data, published monthly at
     <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>, and are recomputed automatically
-    every time the pipeline runs — no manual editing. 5 of 33 London
+    every time the pipeline runs — no manual editing. 5 of 32 London
     boroughs are on this automated pipeline.
   </p>
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
@@ -132,15 +132,18 @@
   Boroughs are then rated against the <em>average of the other London boroughs currently on the automated
   pipeline</em> (5 today) — not a fixed, borough-independent scale, and
   
-  not yet a full London average, since only 5 of 33 boroughs are covered so far.
+  not yet a full London average, since only 5 of 32 boroughs are covered so far.
   
 </p>
 
 <h2>What this method gets wrong today</h2>
 <div class="note" style="margin-bottom:10px;">
-  <strong>Extended 15 August 2026 — from 5 to 5 of 33 boroughs.</strong>
-  The automated pipeline originally covered only 5 boroughs; it now covers 5, using
-  population and workday-correction data researched and added for the rest. The "average" every covered borough
+  
+  <strong>Currently covers 5 of 32 London boroughs.</strong>
+  The automated pipeline started with these 5 boroughs; more will be added as population
+  and workday-correction data is researched for the rest.
+  
+  The "average" every covered borough
   is rated against is the average of those 5 boroughs — it will keep shifting slightly as
   new monthly data comes in.
 </div>
@@ -371,10 +374,9 @@
   boundary WFS. Each district's rating is computed from two real official sources: Polizeipräsidium München and the
   Statistisches Amt München's own published "Straftaten in den Stadtbezirken 2025" table (total recorded offences
   per district) and the Statistisches Amt München's population-per-Stadtbezirk figures as of 31 December 2024. The
-  crime figures were independently extracted twice before being used for a published rating — once via an automated
-  summary of the source PDF, once from scratch by loading the PDF's raw bytes and running pdf.js against them
-  directly in the browser (Chrome's built-in PDF viewer failed to render this particular file) — and both
-  extractions agreed. The population figures were checked by confirming the 25 district populations sum exactly to
+  crime figures were independently extracted twice from the source PDF, using two different extraction
+  methods, before being used for a published rating, and both extractions agreed. The population figures were
+  checked by confirming the 25 district populations sum exactly to
   the dataset's own published citywide total (1,603,776). Every zone is rated red/yellow/green against the
   population-weighted citywide average rate, the same 1.3×/0.8× thresholds used for London, Berlin, Amsterdam,
   Prague and Oslo.
@@ -728,6 +730,42 @@
   association with the busier districts nearby.
 </div>
 
+<h2>Dublin: Tier 2 — genuine local press research, not a guess</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Dublin was researched the same way Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens and Venice
+  were: checked for an open, geolocated neighbourhood-level crime dataset first. Ireland's only near-candidate — a
+  historical AIRO/data.gov.ie dataset of crimes recorded at each Garda station — was checked directly: it covers only
+  2003-2015, its own documentation describes the underlying project as "effectively completed," and no current
+  download or live update exists, so it was not usable. The zone boundaries used are Dublin City Council's 11
+  official Local Electoral Areas (LEAs) — the government electoral geography used for Dublin City Council elections,
+  most recently in 2024 — sourced from Ordnance Survey Ireland (OSi)'s official boundary dataset. Each LEA was
+  individually researched — real, current local and national press coverage (The Irish Times, RTE, TheJournal.ie,
+  the Irish Examiner, Dublin People, BreakingNews.ie, and others) — with the reasoning and sources disclosed on each
+  district's own page rather than compressed into a single colour.
+</p>
+<div class="note" style="margin-bottom:10px;">
+  <strong>All 11 official Local Electoral Areas covered, none skipped.</strong> The 11 LEAs are Dublin City
+  Council's finest official government-published electoral geography, so all 11 are mapped, not just the tourist
+  core. Each district's page names the specific streets, stations or areas the research actually found evidence
+  for, rather than implying the whole district shares one uniform risk.
+</div>
+<div class="note">
+  <strong>Dublin's documented pattern is a genuine split between a handful of LEAs with serious, repeated,
+  well-sourced problems and a majority with only isolated incidents.</strong> North Inner City (O'Connell Street,
+  Smithfield, docklands) combines open drug dealing and gang intimidation with a fatal 2024 unprovoked assault on a
+  tourist on O'Connell Street itself. South East Inner City (Temple Bar, Grafton Street, Trinity College, St
+  Stephen's Green) pairs a long-running daytime pickpocketing problem with two separate fatal or near-fatal
+  nighttime attacks in 2026. South West Inner City (the Liberties, Kilmainham, Rialto) has an academically
+  documented crime rate more than double the national average alongside long-running open drug-dealing hotspots,
+  even though its marquee tourist sites (Guinness Storehouse, Kilmainham Gaol) show no particular daytime concern.
+  Ballymun-Finglas has an active, ongoing gang and drugs feud with multiple shootings and a 2026 incident in which a
+  child discharged a dropped firearm, and Ballyfermot-Drimnagh has a well-documented pattern of gun and gang crime
+  including a fatal 2024 shooting. By contrast, Clontarf, Pembroke (Ballsbridge, Donnybrook, Ranelagh, Sandymount),
+  Cabra-Glasnevin, Donaghmede, Kimmage-Rathmines and Artane-Whitehall show no pattern of muggings, gang activity or
+  no-go streets — only isolated, dated incidents — and are rated accordingly rather than tarred by association with
+  the more serious districts nearby.
+</div>
+
 <h2>How this scales beyond London</h2>
 <p style="font-size:13.5px;color:var(--muted);">Wandroz is meant to eventually cover neighbourhoods across Europe, not just London. Getting there honestly means being upfront about which of three tiers a city's data currently sits at:</p>
 <table class="breakdown" style="margin-top:10px;">
@@ -756,6 +794,6 @@
 <p><a href="/">← Back to the borough rankings</a></p>
 
 </div>
-<footer class="wz-footer">Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
+<footer class="wz-footer">Wandroz — public official data, not just reviews. Currently in beta — data coverage and methodology are continuously improving. · <a href="/methodology.html">Methodology</a></footer>
 </body>
 </html>
