@@ -1,0 +1,121 @@
+[
+  {
+    "nom": "City Centre",
+    "day": "red",
+    "night": "red",
+    "text": "By far Edinburgh's highest-crime ward: 267.7 crimes per 1,000 population in 2023/24, more than double the next-highest ward and driven by the dense concentration of pubs, clubs, tourist footfall and retail theft in the Old Town/New Town core. Genuine, dated local press coverage also documents recurring nightlife-related disturbances specifically around the Cowgate/Grassmarket area: on the night of 20 September 2025 police responded to a disturbance outside a Grassmarket bar in which a 28-year-old man was hospitalised and a 39-year-old man was arrested and charged (Edinburgh News, 21 Sep 2025). Day and night are both red here on the strength of the underlying rate alone; the Cowgate/Grassmarket incident is additional, specific corroboration for the night rating rather than the basis for it.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024", "datamap-scotland.co.uk Police Scotland ward crime map, data to end 2025", "Edinburgh News, 21 Sep 2025 (Grassmarket/Cowgate disturbance)"]
+  },
+  {
+    "nom": "Leith",
+    "day": "red",
+    "night": "red",
+    "text": "106.9 crimes per 1,000 population in 2023/24, the second-highest of Edinburgh's 17 wards, and independently placed in the highest of five crime-rate bands by a second analysis of Police Scotland's own published data through end of 2025. No ward-specific incident beyond the rate itself was found in local press, so the tone here follows the numeric rate plainly rather than any invented detail.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024", "datamap-scotland.co.uk Police Scotland ward crime map, data to end 2025"]
+  },
+  {
+    "nom": "Sighthill / Gorgie",
+    "day": "red",
+    "night": "red",
+    "text": "102.2 crimes per 1,000 population in 2023/24, the third-highest of Edinburgh's 17 wards, and independently placed in the highest of five crime-rate bands by a second analysis of Police Scotland's own published data through end of 2025. No ward-specific incident beyond the rate itself was found in local press, so the tone here follows the numeric rate plainly rather than any invented detail.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024", "datamap-scotland.co.uk Police Scotland ward crime map, data to end 2025"]
+  },
+  {
+    "nom": "Almond",
+    "day": "red",
+    "night": "red",
+    "text": "87.3 crimes per 1,000 population in 2023/24, the fourth-highest of Edinburgh's 17 wards, and independently placed in the highest of five crime-rate bands by a second analysis of Police Scotland's own published data through end of 2025. No ward-specific incident beyond the rate itself was found in local press, so the tone here follows the numeric rate plainly rather than any invented detail.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024", "datamap-scotland.co.uk Police Scotland ward crime map, data to end 2025"]
+  },
+  {
+    "nom": "Portobello / Craigmillar",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "84.0 crimes per 1,000 population in 2023/24, in the middle of Edinburgh's 17-ward range — meaningfully below the top four wards but above the citywide median. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Liberton / Gilmerton",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "82.9 crimes per 1,000 population in 2023/24, in the middle of Edinburgh's 17-ward range. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Southside / Newington",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "78.9 crimes per 1,000 population in 2023/24, in the middle of Edinburgh's 17-ward range — a dense, largely residential and student area near the university. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Forth",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "73.9 crimes per 1,000 population in 2023/24, in the middle of Edinburgh's 17-ward range. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Craigentinny / Duddingston",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "70.6 crimes per 1,000 population in 2023/24, in the middle of Edinburgh's 17-ward range. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Fountainbridge / Craiglockhart",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "68.3 crimes per 1,000 population in 2023/24, in the middle of Edinburgh's 17-ward range. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Leith Walk",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "66.3 crimes per 1,000 population in 2023/24, in the middle of Edinburgh's 17-ward range — a busy, mixed residential and commercial corridor connecting the City Centre and Leith wards, both of which carry red ratings. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Pentland Hills",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "64.7 crimes per 1,000 population in 2023/24, in the middle of Edinburgh's 17-ward range — Edinburgh's largest and most rural ward by area. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Inverleith",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "59.7 crimes per 1,000 population in 2023/24, in the lower-middle of Edinburgh's 17-ward range. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Corstorphine / Murrayfield",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "47.0 crimes per 1,000 population in 2023/24, in the lower-middle of Edinburgh's 17-ward range — a mostly residential western suburb. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Drum Brae / Gyle",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "44.8 crimes per 1,000 population in 2023/24, in the lower-middle of Edinburgh's 17-ward range. No specific incidents beyond the rate itself were found in local press, so the tone follows the numeric rate plainly.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024"]
+  },
+  {
+    "nom": "Colinton / Fairmilehead",
+    "day": "green",
+    "night": "green",
+    "text": "40.5 crimes per 1,000 population in 2023/24, the second-lowest of Edinburgh's 17 wards, and independently placed in the lowest of five crime-rate bands by a second analysis of Police Scotland's own published data through end of 2025 — a quiet, largely residential southern suburb.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024", "datamap-scotland.co.uk Police Scotland ward crime map, data to end 2025"]
+  },
+  {
+    "nom": "Morningside",
+    "day": "green",
+    "night": "green",
+    "text": "36.2 crimes per 1,000 population in 2023/24, the lowest of all 17 Edinburgh wards, and independently confirmed as the lowest-crime ward by a second analysis of Police Scotland's own published data through end of 2025 — a well-known quiet, affluent residential suburb.",
+    "sources": ["Churchill Support Services / Scottish Daily Express, 28 Nov 2024", "datamap-scotland.co.uk Police Scotland ward crime map, data to end 2025"]
+  }
+]
