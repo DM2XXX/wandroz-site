@@ -64,6 +64,8 @@ CITY_LINKS = [
     {"label": "Athens", "url": f"{SITE_URL}/athens/"},
     {"label": "Venice", "url": f"{SITE_URL}/venezia/"},
     {"label": "Dublin", "url": f"{SITE_URL}/dublin/"},
+    {"label": "Florence", "url": f"{SITE_URL}/firenze/"},
+    {"label": "Edinburgh", "url": f"{SITE_URL}/edinburgh/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -588,6 +590,7 @@ def build_search_index(cities, city_cards):
         ("athens", "athens", "Athens", True),
         ("venezia", "venezia", "Venice", True),
         ("dublin", "dublin", "Dublin", True),
+        ("edinburgh", "edinburgh", "Edinburgh", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -658,6 +661,7 @@ def build_zone_boundaries(cities, city_cards):
         ("athens", "athens", "Athens", True),
         ("venezia", "venezia", "Venice", True),
         ("dublin", "dublin", "Dublin", True),
+        ("edinburgh", "edinburgh", "Edinburgh", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1238,6 +1242,36 @@ DUBLIN_NEIGH_NOTE = (
     "from London's automated official-data pipeline."
 )
 
+EDINBURGH_UI = dict(TORINO_UI)
+EDINBURGH_UI.update({
+    "page_title": "Is my Edinburgh neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Edinburgh's 17 official City of Edinburgh Council wards with day/night safety levels anchored to real crimes-per-1,000-population figures per ward.",
+    "page_h1": "Edinburgh neighbourhoods",
+    "neigh_title": "Is {name} in Edinburgh safe? | Wandroz",
+})
+
+EDINBURGH_BANNER = (
+    "Ward shapes are the real official administrative boundaries of the City of Edinburgh Council's 17 wards, "
+    "sourced directly from the Council's own ArcGIS map service (edinburghcouncilmaps.info, Open Government "
+    "Licence v3.0). Unlike most other Level 2 cities on Wandroz, Edinburgh's safety levels here are anchored "
+    "to genuine, real, numeric crimes-per-1,000-population figures per ward for 2023/24 (Churchill Support "
+    "Services' analysis of Scottish Government data, published via the Scottish Daily Express), independently "
+    "corroborated by a second analysis of Police Scotland's own published crime data through end of 2025 "
+    "(datamap-scotland.co.uk) — both agree on the same highest- and lowest-crime wards. Neither official "
+    "source splits crime by time of day, so day and night ratings are the same for every ward unless specific, "
+    "dated local press coverage documented a night-specific pattern (as for City Centre's Cowgate/Grassmarket "
+    "nightlife area). Where no such specific incident was found, that is stated plainly rather than assumed "
+    "either way. All 17 official wards are mapped, none excluded. See the methodology page for details and "
+    "sources."
+)
+EDINBURGH_NEIGH_NOTE = (
+    "This rating for Edinburgh is anchored to a genuine, real, numeric crimes-per-1,000-population figure for "
+    "this specific ward (not blind guessing, not fabricated crime statistics), cross-checked against a second "
+    "independent analysis of Police Scotland's own published data. Day and night show the same tone unless "
+    "specific, dated local press coverage documented a night-specific pattern. See the methodology page for "
+    "what was checked and how this differs from London's automated official-data pipeline."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1414,6 +1448,14 @@ def main():
          "blurb": "All 11 official Local Electoral Areas mapped, real council electoral boundaries, safety ratings from genuine current local press research.",
          "lat": 53.3498, "lon": -6.2603, "color": "#4b0082",
          "zone_count": _zone_count("dublin"), "data_tag": "Official boundaries"},
+        {"name": "Florence", "url": "firenze/index.html", "flag": "🇮🇹",
+         "blurb": "All 74 official quartieri/zone mapped, real Comune di Firenze boundaries, safety ratings from genuine current local press research.",
+         "lat": 43.7696, "lon": 11.2558, "color": "#9c6b3e",
+         "zone_count": 74, "data_tag": "Official boundaries"},
+        {"name": "Edinburgh", "url": "edinburgh/index.html", "flag": "🇬🇧",
+         "blurb": "All 17 official City of Edinburgh Council wards mapped, safety ratings anchored to real crimes-per-1,000-population figures per ward.",
+         "lat": 55.9533, "lon": -3.1883, "color": "#0f4c81",
+         "zone_count": _zone_count("edinburgh"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1516,7 +1558,9 @@ def main():
     sitemap_urls.extend(venezia_urls)
     dublin_urls = render_illustrative_city("dublin", "dublin", DUBLIN_UI, EN_TONE_BADGE, DUBLIN_BANNER, DUBLIN_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(dublin_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)})")
+    edinburgh_urls = render_illustrative_city("edinburgh", "edinburgh", EDINBURGH_UI, EN_TONE_BADGE, EDINBURGH_BANNER, EDINBURGH_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(edinburgh_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
