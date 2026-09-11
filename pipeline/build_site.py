@@ -66,6 +66,7 @@ CITY_LINKS = [
     {"label": "Dublin", "url": f"{SITE_URL}/dublin/"},
     {"label": "Florence", "url": f"{SITE_URL}/firenze/"},
     {"label": "Edinburgh", "url": f"{SITE_URL}/edinburgh/"},
+    {"label": "Naples", "url": f"{SITE_URL}/napoli/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -591,6 +592,7 @@ def build_search_index(cities, city_cards):
         ("venezia", "venezia", "Venice", True),
         ("dublin", "dublin", "Dublin", True),
         ("edinburgh", "edinburgh", "Edinburgh", True),
+        ("napoli", "napoli", "Naples", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -662,6 +664,7 @@ def build_zone_boundaries(cities, city_cards):
         ("venezia", "venezia", "Venice", True),
         ("dublin", "dublin", "Dublin", True),
         ("edinburgh", "edinburgh", "Edinburgh", True),
+        ("napoli", "napoli", "Naples", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1272,6 +1275,36 @@ EDINBURGH_NEIGH_NOTE = (
     "what was checked and how this differs from London's automated official-data pipeline."
 )
 
+NAPOLI_UI = dict(TORINO_UI)
+NAPOLI_UI.update({
+    "page_title": "Is my Naples neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Naples's 10 official Municipalità (real official administrative boundaries) with day/night safety levels based on current local press research.",
+    "page_h1": "Naples neighbourhoods",
+    "neigh_title": "Is {name} in Naples safe? | Wandroz",
+})
+
+NAPOLI_BANNER = (
+    "Zone shapes are the real official administrative boundaries of Naples's 10 \"Municipalità\" (established "
+    "2005, each grouping several traditional quartieri) — the finest official government-defined neighbourhood "
+    "unit for the city. The Comune di Napoli's own GIS portal (sit.comune.napoli.it) has a broken server-side "
+    "SSL certificate that makes it unreachable, so these boundaries were instead sourced from OpenStreetMap's "
+    "own tagged administrative-boundary relations for each Municipalità (admin_level 10, cross-checked against "
+    "Wikidata/Wikipedia references) — the same genuine, officially-modelled geometry, reached through a working "
+    "channel. Like Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, Venice and Dublin, "
+    "Naples's safety levels are Wandroz's Level 2 approach: genuine current local/national press research per "
+    "Municipalità, honestly disclosed as press-based rather than official crime statistics — Italy does not "
+    "publish an open, geolocated crime dataset at this level of detail. Where no specific news coverage was "
+    "found for a Municipalità, that is stated plainly rather than assumed either way. All 10 official "
+    "Municipalità are mapped, none excluded. See the methodology page for details and sources."
+)
+NAPOLI_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Naples: genuine current local/national press research for "
+    "this specific Municipalità (not blind guessing, not fabricated crime statistics), honestly disclosed as "
+    "press-based rather than official data — Italy does not publish an open, geolocated crime dataset at "
+    "Municipalità level. See the methodology page for what was checked and how this differs from London's "
+    "automated official-data pipeline."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1456,6 +1489,10 @@ def main():
          "blurb": "All 17 official City of Edinburgh Council wards mapped, safety ratings anchored to real crimes-per-1,000-population figures per ward.",
          "lat": 55.9533, "lon": -3.1883, "color": "#0f4c81",
          "zone_count": _zone_count("edinburgh"), "data_tag": "Official boundaries"},
+        {"name": "Naples", "url": "napoli/index.html", "flag": "🇮🇹",
+         "blurb": "All 10 official Municipalità mapped, real OpenStreetMap administrative boundaries, safety ratings from genuine current local press research.",
+         "lat": 40.8518, "lon": 14.2681, "color": "#c0392b",
+         "zone_count": _zone_count("napoli"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1560,7 +1597,9 @@ def main():
     sitemap_urls.extend(dublin_urls)
     edinburgh_urls = render_illustrative_city("edinburgh", "edinburgh", EDINBURGH_UI, EN_TONE_BADGE, EDINBURGH_BANNER, EDINBURGH_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(edinburgh_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)})")
+    napoli_urls = render_illustrative_city("napoli", "napoli", NAPOLI_UI, EN_TONE_BADGE, NAPOLI_BANNER, NAPOLI_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(napoli_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
