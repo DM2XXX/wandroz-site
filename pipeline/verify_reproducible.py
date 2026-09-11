@@ -81,10 +81,38 @@ VINTAGE_MARKERS = [
     ("not a finished product",           "footer normalisation",             0),
     ("areas covered on Wandroz",         "FAQ modernisation",                0),
     ("qualitative first-pass",           "methodology tier scoping",         None),
+    ("🟡 Local press research",          "evidence tag (superseded label)",  0),
+    ("🟢 Official neighbourhood crime data", "evidence tag (superseded label)", 0),
+    ("🟡 Local source research",         "evidence tag (canonical)",         None),
+    ("🟢 Official crime data",           "evidence tag (canonical)",         None),
+    ("⚪ Manual first-pass rating",      "evidence tag (canonical)",         57),
 ]
 
+# Every marker here corresponds to a change that has been reviewed and
+# approved. A page landing in "unexpected difference" is therefore a genuine
+# signal, not a gap in this list — which is what it was on run #10, where 726
+# pages were reported unexplained purely because the list predated the
+# evidence tag and the canonical FAQ wording.
 ROOT_CAUSE_RULES = [
     ("email normalisation",                 ("dadenuoto@gmail.com", "hellowandroz@gmail.com")),
+    ("evidence tag introduction/normalisation",
+                                            ("🟢 Official crime data", "🟡 Local source research",
+                                             "⚪ Manual first-pass rating",
+                                             "🟡 Local press research",
+                                             "🟢 Official neighbourhood crime data")),
+    ("canonical FAQ wording",               ("other areas of", "on Wandroz",
+                                             "other neighbourhoods in",
+                                             "Wandroz's data suggests",
+                                             "Wandroz&#39;s data suggests",
+                                             "the data suggests extra caution")),
+    ("FAQ sourcing answer rewrite",         ("genuine, dated local/national press research",
+                                             "not blind guessing, and not a fabricated statistic",
+                                             "current local and national press",
+                                             "official survey) research",
+                                             "Not at neighbourhood level",
+                                             "Not an official government crime feed",
+                                             "An absence of recent negative coverage is treated as inconclusive")),
+    ("Edinburgh tier reclassification",     ("Official police/crime data", "Press & survey research")),
     ("FAQ modernisation",                   ("both figures shown are the same",
                                              "areas covered on Wandroz",
                                              "single rating applies at any time of day")),

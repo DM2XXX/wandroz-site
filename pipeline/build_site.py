@@ -116,7 +116,13 @@ CITY_METHODOLOGY = {
     "munich": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizeipräsidium München's official recorded-offence statistics"},
     "stockholm": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Brå (Brottsförebyggande rådet)'s official crime statistics"},
     "brussels": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "BISA / Federale Politie's official crime statistics"},
-    "edinburgh": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "a numeric crimes-per-1,000-population analysis of Scottish Government/Police Scotland data, independently corroborated by a second analysis"},
+    # Edinburgh is deliberately NOT OFFICIAL_SNAPSHOT. Its figures are a secondary
+    # analysis of Scottish Government/Police Scotland data (Churchill Support
+    # Services, corroborated by datamap-scotland), not a first-party official
+    # neighbourhood crime feed like Berlin's or Amsterdam's. crime_source is kept
+    # for provenance even though the RESEARCH_BASED branch does not cite it: the
+    # conservative user-facing claim is worth more than another green city.
+    "edinburgh": {"tier": RESEARCH_BASED, "crime_source": "a numeric crimes-per-1,000-population analysis of Scottish Government/Police Scotland data, independently corroborated by a second analysis"},
     "milano": {"tier": RESEARCH_BASED},
     "roma": {"tier": RESEARCH_BASED},
     "barcelona": {"tier": RESEARCH_BASED},

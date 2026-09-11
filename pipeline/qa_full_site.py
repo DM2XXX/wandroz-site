@@ -42,6 +42,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 import urllib.parse
 from collections import Counter, defaultdict
 
@@ -197,6 +198,21 @@ class Findings:
 def read(path):
     with open(path, encoding="utf-8", errors="replace") as f:
         return f.read()
+
+
+def _fold(s):
+    """Accent- and case-insensitive form, for comparing place names.
+
+    Booking destinations are written ASCII ("Krakow, Poland") while the city
+    label carries its diacritics ("Krak\u00f3w"). A raw substring test made 19
+    Krak\u00f3w zones look ambiguous when nothing was wrong with them — a checker
+    bug, not a site issue, and exactly the kind of noise that trains people to
+    ignore warnings.
+    """
+    return "".join(
+        c for c in unicodedata.normalize("NFKD", s or "")
+        if not unicodedata.combining(c)
+    ).casefold()
 
 
 def load_zone_source(key):
@@ -667,7 +683,7 @@ def check_booking(dist, reg, F, booking_rows):
                            "reviewed and rejected: %s" % verdict.get("note", "no note"))
             else:
                 row["BOOKING_DESTINATION_VERIFIED"] = "MANUAL_VERIFICATION_REQUIRED"
-                if city_label and city_label.lower() not in (ss or "").lower():
+                if city_label and _fold(city_label) not in _fold(ss):
                     F.warn("BOOKING", "destination-ambiguity", target,
                            "`ss`=%r does not name %s — a generic or duplicated place name can "
                            "resolve to another city or country" % (ss, city_label))
