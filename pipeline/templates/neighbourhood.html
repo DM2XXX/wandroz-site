@@ -50,8 +50,12 @@
 <main>
   <h1 class="page-title">{{ zone.name }} &mdash; {{ city_label }}</h1>
   <div class="badges">
+    {% if show_toggle %}
     <span class="badge {{ zone.day }}">{{ zone.day_label }}</span> <span class="badge-label">{{ label_day }}</span>
     <span class="badge {{ zone.night }}">{{ zone.night_label }}</span> <span class="badge-label">{{ label_night }}</span>
+    {% else %}
+    <span class="badge {{ zone.day }}">{{ zone.day_label }}</span> <span class="badge-label">Safety level (no day/night split in the source data)</span>
+    {% endif %}
   </div>
   <div id="minimap"></div>
   <h2>{{ label_detail }}</h2>

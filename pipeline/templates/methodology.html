@@ -8,30 +8,45 @@
 <p class="subtitle">Wandroz is early. This page explains exactly what today's scores are based on, what they leave out, and what changes as coverage grows — so you can decide how much to trust them.</p>
 
 <div class="card">
-  <strong>Right now: London is the only automated, data-driven city</strong>
+  <strong>Wandroz uses three different kinds of evidence, and is honest about which one each city is on</strong>
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    London borough scores come from the UK Home Office's official street-level crime data, published monthly at
-    <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>, and are recomputed automatically
-    every time the pipeline runs — no manual editing. {{ london_covered_count }} of {{ london_total_boroughs }} London
-    boroughs are on this automated pipeline{% if london_covered_count and london_total_boroughs and london_covered_count >= london_total_boroughs - 1 %} — every borough except the City of London, which is policed separately and isn't covered by this dataset{% endif %}.
+    <strong>London</strong> is the only city on a live, automated pipeline: borough scores come from the UK Home
+    Office's official street-level crime data, published monthly at
+    <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>, and are recomputed
+    automatically every time the pipeline runs — no manual editing. {{ london_covered_count }} of
+    {{ london_total_boroughs }} London boroughs are on this automated pipeline{% if london_covered_count and london_total_boroughs and london_covered_count >= london_total_boroughs - 1 %} — every borough except the City of London, which is policed separately and isn't covered by this dataset{% endif %}.
   </p>
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    <a href="/torino/index.html">Turin</a> and <a href="/zurigo/index.html">Zurich</a> are also on the site, with
-    interactive maps using each city's real official neighbourhood boundaries (Città di Torino's "Quartieri" dataset;
-    Stadt Zürich's "Statistische Quartiere" dataset) — but their day/night safety ratings are still a manual,
-    illustrative first pass, not an automated open-data feed the way London's is. Zurich now has one additional,
-    narrow real data layer on top of that (see below); Turin doesn't, and — per research described below — currently
-    can't, for reasons outside Wandroz's control. Treat the day/night ratings for both as a preview of the map
-    experience, not a verified score, until (or unless) a real per-city pipeline exists for them.
+    <strong>8 further cities — Berlin, Amsterdam, Prague, Oslo, Munich, Stockholm, Brussels and Edinburgh</strong> —
+    have safety ratings driven by a real official government or police crime statistic (Polizei Berlin's
+    Häufigkeitszahl, CBS's registered-crime figures, Policie ČR's data, Oslo kommune's Statistikkbanken, and so on
+    — each city's own map page names its exact source). These are snapshot statistics, not a live monthly-refreshed
+    feed like London's, and none of them split crime by time of day, so every zone shows one consistent level
+    rather than a genuine day/night rating — that's disclosed on the zone itself rather than shown as false
+    precision. See each city's section below for its exact source, year and any caveats (several are normalised
+    against resident population rather than footfall, which can read high-traffic tourist areas as riskier than
+    they are for a visitor — see "What this method gets wrong" for that caveat generally).
   </p>
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    <a href="/milano/index.html">Milan</a> is the newest city on the site, using the Comune di Milano's real
-    official neighbourhood boundaries (the "Nuclei d'Identità Locale" dataset) — all 88 official zones. It sits
-    one step above Turin and Zurich's "general knowledge" ratings: every zone has a safety rating grounded in
-    genuine, current local and national press research (Tier 2 below), not fabricated statistics and not blind
-    guessing — but still not an official crime dataset the way London's is, since none exists for Milan. Where
-    research turned up nothing specific for a zone, that's stated plainly rather than assumed either way. See the
-    dedicated section below for what was checked and how ratings were built.
+    <strong>13 cities — Milan, Rome, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, Venice, Dublin, Naples,
+    Budapest and Kraków</strong> — use Wandroz's "Level 2" approach: genuine, current, dated local and national
+    press research (plus official surveys where they exist) for each specific area, honestly disclosed as
+    press/survey-based rather than an official crime feed, because none of these countries publishes an open,
+    geolocated crime dataset at neighbourhood level. Where no specific coverage was found for an area, that's
+    stated plainly rather than assumed either way — an absence of negative news is treated as inconclusive, not
+    as evidence the area is safe.
+  </p>
+  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
+    <strong>Turin and Zurich</strong> remain a manual, illustrative first pass — general local knowledge and public
+    reputation, not sourced research and not an official dataset. Zurich additionally carries one narrow real data
+    layer (Kantonspolizei Zürich's district-level burglary rate) shown alongside, but not driving, its day/night
+    rating. Treat these two cities' ratings as a preview of the map experience rather than a verified score.
+  </p>
+  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
+    Every city's boundaries are always real official administrative geometry, regardless of tier — it's specifically
+    the safety <em>rating</em> that varies in how it's evidenced. Ratings are also only ever compared within the
+    same city, never across cities: a "green" in Turin and a "green" in Berlin come from two entirely unrelated
+    scales, not one shared, cross-city ranking.
   </p>
 </div>
 
@@ -186,8 +201,7 @@
   <strong>Real data, but not a live pipeline, and no day/night split.</strong> Unlike London's monthly automated
   refresh, the Kriminalitätsatlas publishes one annual figure per zone, so Berlin's ratings here are a snapshot of
   the 2025 HZ table, not something re-pulled on a schedule yet. The source data also has no time-of-day breakdown,
-  so — rather than inventing a day/night difference that isn't in the data — every Berlin zone shows the same
-  level for both, disclosed plainly on each zone's page.
+  so — rather than inventing a day/night difference that isn't in the data — every Berlin zone shows one single level rather than a day/night pair, disclosed plainly on each zone's page.
 </div>
 <div class="note">
   <strong>HZ counts residents, not footfall — read high numbers carefully.</strong> Häufigkeitszahl is defined
@@ -213,7 +227,7 @@
 <div class="note" style="margin-bottom:10px;">
   <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin, this is a snapshot of
   CBS's 2025 tables, not something re-pulled on a schedule yet, and the source data has no time-of-day breakdown —
-  so every Amsterdam zone shows the same level for both day and night, disclosed plainly on each zone's page.
+  so every Amsterdam zone shows one single level rather than a day/night pair, disclosed plainly on each zone's page.
 </div>
 <div class="note">
   <strong>The rate counts residents, not footfall — read high numbers carefully.</strong> A wijk with heavy
@@ -241,7 +255,7 @@
 <div class="note" style="margin-bottom:10px;">
   <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin and Amsterdam, this is
   a snapshot of 2024 figures, not something re-pulled on a schedule yet, and the source data has no time-of-day
-  breakdown — so every Prague zone shows the same level for both day and night, disclosed plainly on each zone's
+  breakdown — so every Prague zone shows one single level rather than a day/night pair, disclosed plainly on each zone's
   page.
 </div>
 <div class="note">
@@ -276,7 +290,7 @@
 <div class="note" style="margin-bottom:10px;">
   <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin, Amsterdam and Prague,
   this is a snapshot of 2024 figures, not something re-pulled on a schedule yet, and the source data has no
-  time-of-day breakdown — so every Oslo zone shows the same level for both day and night, disclosed plainly on each
+  time-of-day breakdown — so every Oslo zone shows one single level rather than a day/night pair, disclosed plainly on each
   zone's page.
 </div>
 <div class="note" style="margin-bottom:10px;">
@@ -321,8 +335,7 @@
 <div class="note" style="margin-bottom:10px;">
   <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin, Amsterdam, Prague and
   Oslo, this is a snapshot of 2025 crime figures against a 2024 population figure, not something re-pulled on a
-  schedule yet, and the source data has no time-of-day breakdown — so every Munich zone shows the same level for
-  both day and night, disclosed plainly on each zone's page.
+  schedule yet, and the source data has no time-of-day breakdown — so every Munich zone shows one single level rather than a day/night pair, disclosed plainly on each zone's page.
 </div>
 <div class="note">
   <strong>The rate counts residents, not footfall — read high numbers carefully.</strong> Altstadt-Lehel (Munich's
@@ -353,8 +366,7 @@
 <div class="note" style="margin-bottom:10px;">
   <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin, Amsterdam, Prague, Oslo
   and Munich, this is a snapshot of 2025 crime figures against a 2024 population figure, not something re-pulled on
-  a schedule yet, and the source data has no time-of-day breakdown — so every Stockholm zone shows the same level
-  for both day and night, disclosed plainly on each zone's page.
+  a schedule yet, and the source data has no time-of-day breakdown — so every Stockholm zone shows one single level rather than a day/night pair, disclosed plainly on each zone's page.
 </div>
 <div class="note" style="margin-bottom:10px;">
   <strong>The rate counts residents, not footfall — read high numbers carefully.</strong> Norra innerstaden
@@ -566,8 +578,7 @@
 <div class="note" style="margin-bottom:10px;">
   <strong>Real data, but not a live pipeline, and no day/night split.</strong> Like Berlin, Amsterdam, Prague, Oslo,
   Munich and Stockholm, this is a snapshot of 2025 crime figures against a 2025 population figure, not something
-  re-pulled on a schedule yet, and the source data has no time-of-day breakdown — so every Brussels zone shows the
-  same level for both day and night, disclosed plainly on each zone's page.
+  re-pulled on a schedule yet, and the source data has no time-of-day breakdown — so every Brussels zone shows one single level rather than a day/night pair, disclosed plainly on each zone's page.
 </div>
 <div class="note" style="margin-bottom:10px;">
   <strong>The rate counts residents, not footfall — read high numbers carefully.</strong> The City of Brussels
