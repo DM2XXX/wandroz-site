@@ -1835,13 +1835,14 @@ def main():
         "Stockholm": "stockholm", "Barcelona": "barcelona", "Madrid": "madrid", "Vienna": "vienna",
         "Lisbon": "lisbon", "Paris": "paris", "Brussels": "brussels", "Athens": "athens",
         "Venice": "venezia", "Dublin": "dublin", "Edinburgh": "edinburgh", "Naples": "napoli",
-        "Budapest": "budapest", "Kraków": "krakow",
+        "Budapest": "budapest", "Kraków": "krakow", "Florence": "firenze",
         # London already has its own correct "Official police data" tag above (a real
         # automated data.police.uk pipeline, not this dict's illustrative-city tiers).
-        # Florence has no CITY_METHODOLOGY entry because it isn't rendered by this
-        # pipeline at all (dist/firenze/ is a hand-built page, not generated from
-        # data_zones/) — flagged separately as an architectural gap, not silently
-        # covered up with a borrowed tag here.
+        # Florence IS in CITY_METHODOLOGY now (RESEARCH_BASED, recovered from
+        # dist/firenze/ into data_zones/firenze.json), so its card tag derives from
+        # the tier like every other city instead of the stale hardcoded "Official
+        # boundaries" — which described the boundary provenance, not the evidence
+        # behind the rating.
     }
     _EVIDENCE_TAG_BY_TIER = {
         OFFICIAL_SNAPSHOT: "Official police/crime data",
