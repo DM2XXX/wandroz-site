@@ -71,6 +71,69 @@ CITY_LINKS = [
     {"label": "Kraków", "url": f"{SITE_URL}/krakow/"},
 ]
 
+# --- Central methodology classification -----------------------------------
+#
+# Every "illustrative" city (everything render_illustrative_city renders —
+# i.e. every city except London, which has its own real automated
+# data.police.uk pipeline) actually falls into one of three genuinely
+# different evidence tiers, even though a single FAQ generator used to talk
+# about all of them the same way ("qualitative first-pass... general local
+# knowledge and public reputation") regardless of which tier applied. That
+# mismatch is exactly the contradiction flagged in the September 2026 deep
+# QA review: e.g. Berlin/Amsterdam/Prague/Oslo/Munich/Stockholm/Brussels/
+# Edinburgh are driven by a real official police/government statistic (see
+# each city's own *_BANNER text below, which already discloses this
+# correctly) yet their FAQ implied a guess. This dict is the single source
+# of truth for that classification — build_faq_illustrative(), the legend
+# text and the homepage's per-city evidence tag all read from it, so a
+# newly added city only needs one correct entry here instead of getting
+# fixed in three separate places later.
+#
+# Tiers:
+#   OFFICIAL_SNAPSHOT   — a real official government/police crime statistic
+#                         (usually one annual figure, no time-of-day split)
+#                         actually drives the zone ratings.
+#   RESEARCH_BASED      — Wandroz's "Level 2" approach: genuine, current,
+#                         dated local/national press and/or official-survey
+#                         research per area, honestly disclosed as such
+#                         (not an official crime feed).
+#   MANUAL_EXPERIMENTAL — a first manual pass based on general local
+#                         knowledge/public reputation, not a geolocated
+#                         crime dataset and not sourced research per area.
+#
+# crime_source, where given, is a short human-readable citation used in FAQ
+# copy for OFFICIAL_SNAPSHOT cities — kept short deliberately; the full
+# citation with dataset names/years lives in each city's *_BANNER text.
+OFFICIAL_SNAPSHOT = "OFFICIAL_SNAPSHOT"
+RESEARCH_BASED = "RESEARCH_BASED"
+MANUAL_EXPERIMENTAL = "MANUAL_EXPERIMENTAL"
+
+CITY_METHODOLOGY = {
+    "berlin": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizei Berlin's official Häufigkeitszahl crime statistic (Kriminalitätsatlas Berlin)"},
+    "amsterdam": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "CBS (Statistics Netherlands)'s official registered-crime statistics"},
+    "praha": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Policie ČR's official crime statistics (kriminalita.policie.gov.cz)"},
+    "oslo": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Oslo kommune's official Statistikkbanken crime statistics"},
+    "munich": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizeipräsidium München's official recorded-offence statistics"},
+    "stockholm": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Brå (Brottsförebyggande rådet)'s official crime statistics"},
+    "brussels": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "BISA / Federale Politie's official crime statistics"},
+    "edinburgh": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "a numeric crimes-per-1,000-population analysis of Scottish Government/Police Scotland data, independently corroborated by a second analysis"},
+    "milano": {"tier": RESEARCH_BASED},
+    "roma": {"tier": RESEARCH_BASED},
+    "barcelona": {"tier": RESEARCH_BASED},
+    "madrid": {"tier": RESEARCH_BASED},
+    "vienna": {"tier": RESEARCH_BASED},
+    "lisbon": {"tier": RESEARCH_BASED},
+    "paris": {"tier": RESEARCH_BASED},
+    "athens": {"tier": RESEARCH_BASED},
+    "venezia": {"tier": RESEARCH_BASED},
+    "dublin": {"tier": RESEARCH_BASED},
+    "napoli": {"tier": RESEARCH_BASED},
+    "budapest": {"tier": RESEARCH_BASED},
+    "krakow": {"tier": RESEARCH_BASED},
+    "torino": {"tier": MANUAL_EXPERIMENTAL},
+    "zurigo": {"tier": MANUAL_EXPERIMENTAL},
+}
+
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
 
 
@@ -117,12 +180,22 @@ EN_TONE_BADGE = {"green": "Relatively safer", "yellow": "Average", "red": "Highe
 # Short, plain-language descriptor for each tone, used inside FAQ answer
 # sentences below (EN_TONE_BADGE is a label for a UI badge, not a sentence
 # fragment — this is worded to read naturally in a sentence instead).
-TONE_DESCRIPTOR = {
-    "green": "relatively safer than most other areas covered on Wandroz",
-    "yellow": "roughly average compared to other areas covered on Wandroz",
-    "red": "an area where Wandroz's data suggests extra caution relative to other areas covered",
-    "grey": "not yet covered by a comparative rating",
-}
+#
+# Deliberately city-scoped ("other West-Endname areas in London", not
+# "other areas covered on Wandroz"): tones are assigned independently per
+# city (a "green" in Turin and a "green" in Zurich come from two unrelated
+# datasets/judgment calls, not one shared scale), so wording that read as a
+# cross-city ranking overstated what the data actually supports. See the
+# methodology page's comparability note for the same caveat spelled out in
+# full.
+def tone_descriptor(tone, city_label):
+    phrase = {
+        "green": "relatively safer than most other areas of {city} on Wandroz",
+        "yellow": "roughly average compared to other areas of {city} on Wandroz",
+        "red": "an area where Wandroz's data suggests extra caution relative to other areas of {city}",
+        "grey": "not yet covered by a comparative rating",
+    }.get(tone, tone)
+    return phrase.format(city=city_label) if "{city}" in phrase else phrase
 
 
 def _faq_jsonld(items):
@@ -147,33 +220,91 @@ def _faq_jsonld(items):
     }
 
 
-def build_faq_illustrative(zone, city_label, burglary=None):
-    """FAQ content for a Turin/Zurich neighbourhood page — honest about the
-    fact that the underlying rating is a qualitative first pass, not a
-    geolocated crime dataset (unlike London). If burglary is given (Zurich
-    only), a 4th question surfaces that one real, narrowly-scoped official
-    data point instead of just saying "no data exists"."""
+def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIMENTAL,
+                            crime_source=None, has_time_of_day=True):
+    """FAQ content for a non-London, non-automated neighbourhood page.
+
+    tier is one of the CITY_METHODOLOGY constants (OFFICIAL_SNAPSHOT /
+    RESEARCH_BASED / MANUAL_EXPERIMENTAL) and controls the actual claim
+    made about where the rating comes from — this used to be one fixed
+    "qualitative first-pass... general local knowledge and public
+    reputation" text for every non-London city, which was accurate for
+    Turin/Zurich but false for the 8 cities whose ratings are actually
+    driven by a real official police/government statistic, and understated
+    the 13 press/survey-research cities (which do have genuine, dated,
+    per-area sourcing, just not an official crime feed). See
+    CITY_METHODOLOGY's docstring above for the full tier definitions.
+
+    has_time_of_day should be False when the underlying source has no
+    day/night split at all (every zone's day and night tone identical by
+    construction, e.g. Berlin's HZ or Amsterdam's CBS rate) — this drops
+    the separate "is X safe at night?" question, which otherwise implies a
+    distinct night-specific data point that doesn't exist, and answers the
+    "safe at night" framing honestly instead.
+
+    If burglary is given (Zurich only), a data-availability question
+    surfaces that one real, narrowly-scoped official data point instead of
+    just saying "no data exists"."""
     name = zone["name"]
-    day_desc = TONE_DESCRIPTOR.get(zone["day"], zone["day"])
-    night_desc = TONE_DESCRIPTOR.get(zone["night"], zone["night"])
-    faqs = [
-        {
-            "q": f"Is {name} safe?",
-            "a": (
-                f"Wandroz currently rates {name} in {city_label} as {day_desc} during the day and "
-                f"{night_desc} at night. This is a qualitative first-pass assessment based on general "
-                f"local knowledge and public reputation, not an official geolocated crime dataset — see "
-                f"the note on data limitations below before treating it as more precise than it is."
-            ),
-        },
-        {
+    day_desc = tone_descriptor(zone["day"], city_label)
+    night_desc = tone_descriptor(zone["night"], city_label)
+
+    if tier == OFFICIAL_SNAPSHOT:
+        source_phrase = crime_source or "a real official crime statistic"
+        basis_sentence = (
+            f"This rating is based on {source_phrase}, not a qualitative guess. High-footfall tourist, "
+            f"transit or shopping areas can read higher on this kind of measure without that meaning "
+            f"elevated risk per visit, since these statistics are normalised against registered residents "
+            f"rather than footfall — see the note on this page and the methodology page for the full "
+            f"caveats."
+        )
+    elif tier == RESEARCH_BASED:
+        basis_sentence = (
+            f"This is Wandroz's Level 2 approach: genuine, current local and national press (and, where "
+            f"available, official survey) research for this specific area, honestly disclosed as "
+            f"press/survey-based rather than an official government crime statistic — see the note on "
+            f"this page and the methodology page for what was checked and how this differs from cities "
+            f"with a real official crime feed."
+        )
+    else:
+        basis_sentence = (
+            f"This is a qualitative first-pass assessment based on general local knowledge and public "
+            f"reputation, not an official geolocated crime dataset and not individually sourced research "
+            f"per area — see the note on data limitations below before treating it as more precise than "
+            f"it is."
+        )
+
+    if has_time_of_day:
+        rating_sentence = (
+            f"Wandroz currently rates {name} in {city_label} as {day_desc} during the day and "
+            f"{night_desc} at night. {basis_sentence}"
+        )
+        night_faq = {
             "q": f"Is {name} safe at night?",
             "a": (
                 f"At night, {name} is rated as {night_desc}. If you're unsure, it's worth checking recent "
                 f"local reviews for your specific street or block, since a neighbourhood-wide rating can't "
                 f"capture block-by-block variation."
             ),
-        },
+        }
+    else:
+        rating_sentence = (
+            f"Wandroz currently rates {name} in {city_label} as {day_desc}. {basis_sentence} The source "
+            f"data has no day/night breakdown, so this single rating applies at any time of day rather "
+            f"than being a distinct night-specific figure."
+        )
+        night_faq = {
+            "q": f"Does {name}'s rating differ between day and night?",
+            "a": (
+                f"No — {name}'s source data has no time-of-day breakdown, so the same rating ({day_desc}) "
+                f"is shown for both day and night rather than Wandroz inventing a separate night figure "
+                f"it doesn't actually have."
+            ),
+        }
+
+    faqs = [
+        {"q": f"Is {name} safe?", "a": rating_sentence},
+        night_faq,
         {
             "q": f"Is {name} a good area to stay in as a tourist?",
             "a": (
@@ -195,7 +326,29 @@ def build_faq_illustrative(zone, city_label, burglary=None):
                     if burglary.get("city_average_rate_per_1000") else ""
                 )
                 + f". This covers burglaries only, not all crime types, and is reported at district level, "
-                  f"not specifically for {name} — see the box below for the full figure and caveats."
+                  f"not specifically for {name} — see the box below for the full figure and caveats. The "
+                  f"neighbourhood-wide rating above is still the qualitative first-pass described above, "
+                  f"not derived from this burglary figure."
+            ),
+        })
+    elif tier == OFFICIAL_SNAPSHOT:
+        faqs.append({
+            "q": f"Is there official crime data for {name}?",
+            "a": (
+                f"Yes. {name}'s rating is derived from {crime_source or 'a real official crime statistic'}, "
+                f"not a qualitative guess or press research — see the note on this page for the exact "
+                f"figure and the methodology page for full sourcing."
+            ),
+        })
+    elif tier == RESEARCH_BASED:
+        faqs.append({
+            "q": f"Is there official crime data for {name}?",
+            "a": (
+                f"Not an official government crime feed — {name}'s rating comes from Wandroz's own current "
+                f"local/national press and survey research for this specific area instead (see the note on "
+                f"this page for what was checked and the sources used). An absence of recent negative "
+                f"coverage is treated as inconclusive, not as proof the area is safe. If you live in or "
+                f"know {name} well, you can suggest a correction using the link below."
             ),
         })
     else:
@@ -218,8 +371,8 @@ def build_faq_london(b, city_label="London"):
     category mix, workday-population normalisation), unlike the
     illustrative Turin/Zurich version above."""
     name = b["borough"]
-    day_desc = TONE_DESCRIPTOR.get(b.get("day_tone"), b.get("day_tone"))
-    night_desc = TONE_DESCRIPTOR.get(b.get("night_tone"), b.get("night_tone"))
+    day_desc = tone_descriptor(b.get("day_tone"), city_label)
+    night_desc = tone_descriptor(b.get("night_tone"), city_label)
     window = (
         f"{len(b['months_included'])} months ({b['months_included'][-1]} to {b['months_included'][0]})"
         if b.get("months_included") and len(b["months_included"]) > 1
@@ -365,6 +518,22 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
     # city, so it stays correct automatically if a city's data changes.
     show_toggle = any(z["day"] != z["night"] for z in zones)
 
+    methodology = CITY_METHODOLOGY.get(city_key, {"tier": MANUAL_EXPERIMENTAL})
+    tier = methodology["tier"]
+    crime_source = methodology.get("crime_source")
+
+    # The shared legend's yellow line ("Caution — fine by day, be more
+    # careful in the evening/night", inherited from TORINO_UI by every
+    # city) implies a real day/night distinction. That's true for cities
+    # where show_toggle is on, but false-precision for the ones where every
+    # zone's day and night tone is identical by construction (no
+    # time-of-day data in the source at all) — so this swaps in wording
+    # that doesn't claim a day/night split that isn't there, driven by the
+    # same real show_toggle signal the map's own toggle switch already
+    # uses, rather than a second hardcoded flag that could drift out of
+    # sync with it.
+    legend_yellow = ui["legend_yellow"] if show_toggle else "Caution — some risk factors reported, no particular time-of-day pattern in the data"
+
     city_dir = os.path.join(OUT_DIR, url_slug)
     os.makedirs(city_dir, exist_ok=True)
 
@@ -393,7 +562,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         page_h1=ui["page_h1"], page_lead=ui["page_lead"],
         data_note=data_note_banner, show_toggle=show_toggle,
         label_day=ui["label_day"], label_night=ui["label_night"],
-        legend_green=ui["legend_green"], legend_yellow=ui["legend_yellow"],
+        legend_green=ui["legend_green"], legend_yellow=legend_yellow,
         legend_red=ui["legend_red"], legend_grey=ui["legend_grey"],
         label_zone_detail=ui["label_zone_detail"], label_click_hint=ui["label_click_hint"],
         label_all_zones=ui["label_all_zones"], label_booking=ui["label_booking"],
@@ -422,13 +591,17 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         zone_ctx["night_label"] = tone_badge.get(z["night"], z["night"])
         if extra_zone_data:
             zone_ctx["burglary"] = extra_zone_data.get(z["name"])
-        faq_items = build_faq_illustrative(zone_ctx, data["label"], burglary=zone_ctx.get("burglary"))
+        faq_items = build_faq_illustrative(
+            zone_ctx, data["label"], burglary=zone_ctx.get("burglary"),
+            tier=tier, crime_source=crime_source, has_time_of_day=show_toggle,
+        )
         page = neigh_tpl.render(
             lang="en", city_label=data["label"], tagline=ui["tagline"],
             nav_home=ui["nav_home"], canonical_url=z_canonical,
             page_title=ui["neigh_title"].format(name=z["name"], city=data["label"]),
             page_description=z["text"][:160],
-            zone=zone_ctx, label_day=ui["label_day"], label_night=ui["label_night"],
+            zone=zone_ctx, show_toggle=show_toggle,
+            label_day=ui["label_day"], label_night=ui["label_night"],
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
             label_booking_note=ui["label_booking_note"], data_note=neigh_note,
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
@@ -542,7 +715,7 @@ def render_london_map(cities):
         label_all_zones="All boroughs", label_booking="Search accommodation here on Booking.com →",
         label_more="See the auto-updating live data →",
         label_not_covered="",
-        footer_note="public official data, not just reviews. Prototype build.",
+        footer_note="public official data, not just reviews. In beta — coverage is expanding.",
         zones=js_zones, center=[51.509, -0.118], zoom=10,
     )
     with open(os.path.join(london_dir, "index.html"), "w") as f:
@@ -747,7 +920,7 @@ TORINO_UI = {
     "label_zone_detail": "Zone detail", "label_click_hint": "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.",
     "label_all_zones": "All neighbourhoods", "label_booking": "Search accommodation here on Booking.com →",
     "label_more": "See the full page →",
-    "footer_note": "prototype build, not a finished product",
+    "footer_note": "in beta — coverage is expanding",
     "neigh_title": "Is {name} in Turin safe? | Wandroz",
     "label_detail": "In detail", "label_booking_note": "This link is already scoped to this area (not the whole city), using the neighbourhood's real coordinates.",
 }
@@ -983,7 +1156,7 @@ BERLIN_BANNER = (
 BERLIN_NEIGH_NOTE = (
     "This rating for Berlin is a real official police statistic — Polizei Berlin's 2025 Häufigkeitszahl (total "
     "recorded offences per 100,000 registered residents) for this Bezirksregion — not a qualitative or "
-    "press-based judgment. It has no day/night split in the source data, so both figures shown are the same. HZ "
+    "press-based judgment. It has no day/night split in the source data, so this single rating applies at any time of day rather than there being a separate night figure. HZ "
     "counts against registered residents, not footfall, so a busy tourist, shopping or transit area can read "
     "higher without that meaning elevated risk per visit. See the methodology page for full sourcing."
 )
@@ -1010,7 +1183,7 @@ AMSTERDAM_BANNER = (
 AMSTERDAM_NEIGH_NOTE = (
     "This rating for Amsterdam is a real official statistic — CBS's 2025 registered crimes for this wijk, "
     "converted to a rate per 100,000 residents using CBS's own 2025 population figures — not a qualitative or "
-    "press-based judgment. It has no day/night split in the source data, so both figures shown are the same. The "
+    "press-based judgment. It has no day/night split in the source data, so this single rating applies at any time of day rather than there being a separate night figure. The "
     "rate counts against registered residents, not footfall, so a busy tourist, shopping or transit area can "
     "read higher without that meaning elevated risk per visit, and a very sparsely populated wijk can swing "
     "sharply from a handful of cases. See the methodology page for full sourcing."
@@ -1040,7 +1213,7 @@ PRAHA_NEIGH_NOTE = (
     "This rating for Prague is a real official statistic — Policie CR's total registered incidents for this "
     "district in 2024 (via kriminalita.policie.gov.cz), converted to a rate per 100,000 residents using CSU's "
     "2024 population figures for the district — not a qualitative or press-based judgment. It has no day/night "
-    "split in the source data, so both figures shown are the same. The rate counts against registered residents, "
+    "split in the source data, so this single rating applies at any time of day rather than there being a separate night figure. The rate counts against registered residents, "
     "not footfall, so a busy tourist, shopping or transit area can read higher without that meaning elevated risk "
     "per visit, and a very sparsely populated district can swing sharply from a handful of cases. See the "
     "methodology page for full sourcing."
@@ -1074,7 +1247,7 @@ OSLO_NEIGH_NOTE = (
     "This rating for Oslo is a real official statistic — Oslo kommune's own Statistikkbanken figure for reported "
     "offences by place of occurrence in this bydel in 2024, converted to a rate per 100,000 residents using the "
     "same source's 2024 population figure for the bydel — not a qualitative or press-based judgment. It has no "
-    "day/night split in the source data, so both figures shown are the same. The rate counts against registered "
+    "day/night split in the source data, so this single rating applies at any time of day rather than there being a separate night figure. The rate counts against registered "
     "residents, not footfall, so a busy central, nightlife or shopping bydel can read higher without that meaning "
     "elevated risk per visit. See the methodology page for full sourcing."
 )
@@ -1134,7 +1307,7 @@ STOCKHOLM_NEIGH_NOTE = (
     "This rating for Stockholm is a real official statistic — Brå (Brottsförebyggande rådet)'s own published 2025 "
     "total reported-offence count for this district, converted to a rate per 100,000 residents using Stockholms "
     "stad's 31 December 2024 population figure for the district — not a qualitative or press-based judgment. It "
-    "has no day/night split in the source data, so both figures shown are the same. The rate counts against "
+    "has no day/night split in the source data, so this single rating applies at any time of day rather than there being a separate night figure. The rate counts against "
     "registered residents, not footfall, so a busy central, station or nightlife district can read higher without "
     "that meaning elevated risk per visit. See the methodology page for full sourcing."
 )
@@ -1577,6 +1750,43 @@ def main():
          "lat": 50.0619, "lon": 19.9368, "color": "#a23b72",
          "zone_count": _zone_count("krakow"), "data_tag": "Official boundaries"},
     ]
+    # Homepage city-card "evidence" tag: this used to be a hand-typed
+    # "Official boundaries" string on every non-London card, which only
+    # ever spoke to the shapes being real, never to how the safety RATING
+    # itself was actually produced — so a real official-police-statistic
+    # city (Berlin) and a first-manual-pass city (Turin) showed the same
+    # kind of claim. This derives the tag from CITY_METHODOLOGY instead —
+    # the same single source of truth the FAQ/legend fixes above use — so
+    # it can't drift out of sync and a newly added city gets a correct tag
+    # automatically as soon as it has one CITY_METHODOLOGY entry.
+    _CITY_CARD_TO_METHOD_KEY = {
+        "Berlin": "berlin", "Amsterdam": "amsterdam", "Turin": "torino", "Zurich": "zurigo",
+        "Milan": "milano", "Rome": "roma", "Prague": "praha", "Oslo": "oslo", "Munich": "munich",
+        "Stockholm": "stockholm", "Barcelona": "barcelona", "Madrid": "madrid", "Vienna": "vienna",
+        "Lisbon": "lisbon", "Paris": "paris", "Brussels": "brussels", "Athens": "athens",
+        "Venice": "venezia", "Dublin": "dublin", "Edinburgh": "edinburgh", "Naples": "napoli",
+        "Budapest": "budapest", "Kraków": "krakow",
+        # London already has its own correct "Official police data" tag above (a real
+        # automated data.police.uk pipeline, not this dict's illustrative-city tiers).
+        # Florence has no CITY_METHODOLOGY entry because it isn't rendered by this
+        # pipeline at all (dist/firenze/ is a hand-built page, not generated from
+        # data_zones/) — flagged separately as an architectural gap, not silently
+        # covered up with a borrowed tag here.
+    }
+    _EVIDENCE_TAG_BY_TIER = {
+        OFFICIAL_SNAPSHOT: "Official police/crime data",
+        RESEARCH_BASED: "Press & survey research",
+        MANUAL_EXPERIMENTAL: "Manual first-pass rating",
+    }
+    for _card in city_cards:
+        _mkey = _CITY_CARD_TO_METHOD_KEY.get(_card["name"])
+        _method = CITY_METHODOLOGY.get(_mkey) if _mkey else None
+        if _method:
+            _tag = _EVIDENCE_TAG_BY_TIER[_method["tier"]]
+            if _mkey == "zurigo":
+                _tag += " + official burglary data"
+            _card["data_tag"] = _tag
+
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
         f.write(index_tpl.render(city_cards=city_cards, preview_zone=preview_zone, canonical_url=SITE_URL + "/"))
