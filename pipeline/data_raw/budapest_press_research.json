@@ -1,0 +1,186 @@
+[
+  {
+    "nom": "I. kerület",
+    "quartieri": "Budavár (Castle District, Víziváros, Tabán, Krisztinaváros)",
+    "day": "green",
+    "night": "green",
+    "text": "Budapest's historic Castle District, one of the city's two districts repeatedly named as its safest. A 2022 police-data comparison found District I had the lowest residential-burglary count of any of Budapest's 23 districts (12 cases, versus 113 in the worst-affected district), and a July 2025 crime-hotspot map (based on the prior 30 days of citywide police data) named Districts I and XII explicitly as \"exceptionally safe.\" It is not named in any of the theft, burglary, or nightlife-disorder hotspot lists checked for this build.",
+    "sources": ["Index.hu, 16 May 2022 (district burglary comparison, PRE-STAT data)", "Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "II. kerület",
+    "quartieri": "Rózsadomb-Pasarét",
+    "day": "green",
+    "night": "green",
+    "text": "An affluent, mostly residential hill district on the Buda side. It does not appear in any theft, burglary, violent-crime, or nightlife-disorder hotspot list checked for this build, consistent with its long-standing reputation as one of Budapest's quieter, more expensive residential areas.",
+    "sources": ["BPhirek.hu, 1 Jun 2023 (district-by-district crime comparison, no negative naming for District II)"]
+  },
+  {
+    "nom": "III. kerület",
+    "quartieri": "Óbuda-Békásmegyer",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A large district combining the historic, touristed Óbuda old town (Roman ruins, riverside) with the big Békásmegyer housing-estate area. A 2022 police-data comparison found District III had the third-highest residential-burglary count in the city (101 cases, behind Zugló's 113 and just ahead of Újbuda's 99) — a genuine, sourced property-crime signal, though it is not named in any violent-crime or nightlife-disorder hotspot list.",
+    "sources": ["Index.hu, 16 May 2022 (district burglary comparison, PRE-STAT data)"]
+  },
+  {
+    "nom": "IV. kerület",
+    "quartieri": "Újpest",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A dense, mixed residential-industrial district on the northern Pest side. No single dramatic incident or hotspot ranking was found for Újpest in this research, but district-council crime reports and recurring police bulletins about drug offences (\"kábítószer\") in the area point to an ongoing, unremarkable-but-real level of drug-related enforcement activity, rather than either a standout safe or standout dangerous profile. Rated with the caution this mixed picture warrants rather than assumed either way.",
+    "sources": ["Ujpest.hu district council public-safety committee reports, 2024-2026 (recurring drug-enforcement items)"]
+  },
+  {
+    "nom": "V. kerület",
+    "quartieri": "Belváros-Lipótváros",
+    "day": "yellow",
+    "night": "red",
+    "text": "Budapest's historic downtown core — Váci utca, the Parliament, the riverside promenade — and by a wide margin the single most tourist-trafficked district in the city. A July 2025 crime-hotspot map built from the prior month's citywide police data named District V alongside VI, VII, VIII, IX, X and XV as the districts with the most recorded thefts, and specifically flagged Váci utca, Deák Ferenc tér and the Great Ring Road as frequent hotspots for theft and pickpocketing; roughly 500 thefts and 36 robberies were recorded across Budapest in the preceding month. Heavy legitimate foot traffic all day keeps this at caution level in daylight, but the sheer concentration of tourists and reported theft activity pushes the rating to red after dark.",
+    "sources": ["Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map, thefts/robberies)"]
+  },
+  {
+    "nom": "VI. kerület",
+    "quartieri": "Terézváros",
+    "day": "yellow",
+    "night": "red",
+    "text": "The Oktogon/Andrássy út end of Budapest's \"Bulinegyed\" (party district) and one of the districts named in the July 2025 citywide theft-hotspot map alongside V, VII, VIII, IX, X and XV. The scale of the nightlife-related disorder problem led the police to open a dedicated party-district police station in January 2025, specifically to give a faster response to the crowds, theft and disorder concentrated around this area at night.",
+    "sources": ["Index.hu, 31 Jan 2025 (dedicated Bulinegyed police station opens)", "Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "VII. kerület",
+    "quartieri": "Erzsébetváros",
+    "day": "yellow",
+    "night": "red",
+    "text": "The heart of Budapest's \"romkocsma\" (ruin bar) scene and the core of the \"Bulinegyed\" party district, named in the July 2025 citywide theft-hotspot map. This is also where, in February 2025, Hungarian police (nearly 200 officers, 10 simultaneous raids) dismantled an organised fraud ring that used dating apps to lure foreign male tourists to bars in the VII-VIII district area and inflate their drink bills by huge margins — 33 identified victims, over 1 billion forints in damage, more than 30 charges per suspect. Residents also complained in May 2025 about worsening street-level disorder (public vomiting, bars expanding into former parking areas) linked to the same nightlife concentration. The same January 2025 dedicated party-district police station covers this area.",
+    "sources": ["Police.hu, 13 Feb 2025 (organised tourist-scam bar-tab fraud ring, 10 arrests)", "Metropol.hu, May 2025 (resident complaints, nightlife expansion)", "Index.hu, 31 Jan 2025 (dedicated Bulinegyed police station)", "Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "VIII. kerület",
+    "quartieri": "Józsefváros",
+    "day": "yellow",
+    "night": "red",
+    "text": "Historically one of Budapest's most discussed districts for public safety, and named in the July 2025 citywide theft-hotspot map. The picture here is genuinely mixed rather than one-directional: registered crime stayed roughly stable in 2025 (4,047 cases) versus 2024's five-year peak (4,234), and a permanent police presence installed at Blaha Lujza Square helped cut assault cases nearly in half (192 to 132) — but residential burglaries rose about 50% in the first quarter of 2025 (19 cases versus 13 a year earlier), and residents report ongoing problems with homeless people and drug users occupying stairwells (\"drogosok beslisszolnak az ajtón\"). The district's case-resolution rate for serious crime (56%) is the best of the five inner districts compared in a 2023 study, but its overall case-clearance rate has fallen from near 70% in 2021 to about 55% by 2025.",
+    "sources": ["Jozsefvarosujsag.hu, 10 Jul 2023 / updated 23 Feb 2024 (five-district crime-density comparison)", "Metropol.hu, 12 May 2025 (Q1 2025 burglary surge, resident complaints)", "Jozsefvarosujsag.hu, 2025 (five-year public-safety review, Blaha Lujza Square police presence)", "Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "IX. kerület",
+    "quartieri": "Ferencváros",
+    "day": "yellow",
+    "night": "red",
+    "text": "A large riverside district (the National Theatre, MOME campus, and a substantial residential core) named in the July 2025 citywide theft-hotspot map. A 2023 comparison of five inner districts (V, VII, VIII, IX, X) found Ferencváros had the second-highest crime density per capita after Kőbánya, with a roughly 50% increase in crimes-per-100,000-residents from 2021 to 2022; separately, it is also named as one of the two leading districts for vehicle theft in Budapest.",
+    "sources": ["Jozsefvarosujsag.hu, 10 Jul 2023 (five-district crime-density comparison)", "BPhirek.hu, 1 Jun 2023 (district vehicle-theft leaders)", "Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "X. kerület",
+    "quartieri": "Kőbánya",
+    "day": "yellow",
+    "night": "red",
+    "text": "A large, mixed residential-industrial district named in the July 2025 citywide theft-hotspot map. The same 2023 comparison of five inner districts (V, VII, VIII, IX, X) found Kőbánya had the single highest crime density per capita of the five, ahead of Ferencváros and Józsefváros.",
+    "sources": ["Jozsefvarosujsag.hu, 10 Jul 2023 (five-district crime-density comparison)", "Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "XI. kerület",
+    "quartieri": "Újbuda",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A large, mostly middle-class and university district on the Buda side (technical university campus, Gellért Hill's southern slopes). It is not named among the nightlife or violent-crime hotspots, but a 2022 police-data comparison found District XI led the city in the broader \"burglary theft\" legal category (161 cases) and was a close third for narrow residential burglary (99 cases, just behind Óbuda's 101); it is also separately named as Budapest's leading district for car theft. A genuine property-crime caution area rather than a violent one.",
+    "sources": ["Index.hu, 16 May 2022 (district burglary comparison, PRE-STAT data)", "BPhirek.hu, 1 Jun 2023 (district vehicle-theft leaders)"]
+  },
+  {
+    "nom": "XII. kerület",
+    "quartieri": "Hegyvidék",
+    "day": "green",
+    "night": "green",
+    "text": "An affluent, hilly, mostly residential Buda district (Svábhegy, Normafa). A July 2025 crime-hotspot map built from the prior month's citywide police data named Districts I and XII explicitly as \"exceptionally safe,\" and it does not appear in any theft, burglary, or disorder hotspot list checked for this build.",
+    "sources": ["Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "XIII. kerület",
+    "quartieri": "Angyalföld-Újlipótváros",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A large riverside district split between the more upscale Újlipótváros (bordering District V) and the more industrial Angyalföld. A March 2023 police residential-burglary map named District XIII as a specific hotspot, with eight burglaries recorded in a single corridor between Béke utca and Reitter Ferenc utca since the previous August alone. Not named among the nightlife or violent-crime hotspots.",
+    "sources": ["Infostart.hu, 21 Mar 2023 (police burglary-hotspot map)"]
+  },
+  {
+    "nom": "XIV. kerület",
+    "quartieri": "Zugló",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A large, mostly middle-class residential district (Városliget's eastern edge, Bosnyák tér). A 2022 police-data comparison found Zugló had the single highest residential-burglary count of any Budapest district (113 cases, roughly one burglary every three days), and a separate 2023 police map named the VII/XIV border area near Kerepesi Road and the Hungária Ring as a specific recurring burglary hotspot. Not named among the nightlife or violent-crime hotspots — a property-crime caution area.",
+    "sources": ["Index.hu, 16 May 2022 (district burglary comparison, PRE-STAT data)", "Infostart.hu, 21 Mar 2023 (police burglary-hotspot map)"]
+  },
+  {
+    "nom": "XV. kerület",
+    "quartieri": "Rákospalota-Pestújhely-Újpalota",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A large outer-Pest district with a genuinely mixed record in the sources checked for this build: a June 2023 district safety comparison named it among Budapest's comparatively safe districts where \"residents can feel secure,\" while a later, July 2025 citywide theft-hotspot map (built from the prior month's police data) named District XV alongside the inner Bulinegyed districts as one of the areas with the most recorded thefts. Both findings are disclosed here rather than picking one, consistent with this rating sitting between the two.",
+    "sources": ["BPhirek.hu, 1 Jun 2023 (comparatively safe districts)", "Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "XVI. kerület",
+    "quartieri": "Cinkota-Mátyásföld-Rákosszentmihály-Sashalom",
+    "day": "green",
+    "night": "green",
+    "text": "A quiet, mostly single-family-home outer district on the Pest side. A June 2023 district safety comparison named District XVI among Budapest's comparatively safe districts, and it does not appear in the July 2025 citywide theft-hotspot map or in any burglary, violent-crime, or nightlife-disorder hotspot list checked for this build.",
+    "sources": ["BPhirek.hu, 1 Jun 2023 (comparatively safe districts)"]
+  },
+  {
+    "nom": "XVII. kerület",
+    "quartieri": "Rákosmente",
+    "day": "yellow",
+    "night": "red",
+    "text": "A large, mostly single-family-home outer district that saw a genuine, well-documented burglary wave from December 2024 into January 2025: residents on streets including Dallamos utca, Algír utca and Nemesbük utca reported repeated break-ins (crowbars on windows, fence-climbing, some incidents in daylight), and a 34,000-member local Facebook group organised informal resident street patrols in response — which themselves then created friction, including one reported incident of a volunteer aggressively pursuing an innocent commuter. Official police and neighbourhood-watch bodies had not publicly addressed the wave at the time of the main report. A genuinely current, still-unresolved property-crime concern rather than a violent one.",
+    "sources": ["Index.hu, 28 Dec 2024 (burglary wave, resident vigilante patrols)", "Metropol.hu, Jan 2025 (continuing burglary attempts)"]
+  },
+  {
+    "nom": "XVIII. kerület",
+    "quartieri": "Pestszentlőrinc-Pestszentimre",
+    "day": "green",
+    "night": "green",
+    "text": "A large, mostly residential outer district near Budapest Airport. A June 2023 district safety comparison named District XVIII among Budapest's comparatively safe districts, and it does not appear in the July 2025 citywide theft-hotspot map or in any burglary, violent-crime, or nightlife-disorder hotspot list checked for this build.",
+    "sources": ["BPhirek.hu, 1 Jun 2023 (comparatively safe districts)"]
+  },
+  {
+    "nom": "XIX. kerület",
+    "quartieri": "Kispest",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A working-class outer-Pest district. No single standout current incident or hotspot ranking was found for Kispest in this research beyond routine, recurring drug-dealer arrest reports (a normal feature of policing across most Budapest districts, not a distinguishing signal on its own). Rated with the caution this thin evidence base warrants rather than assumed either way.",
+    "sources": ["Police.hu, various 2024-2026 (routine drug-enforcement arrest reports, Kispest)"]
+  },
+  {
+    "nom": "XX. kerület",
+    "quartieri": "Pesterzsébet",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "An outer-Pest district that reintroduced funded foot patrols in summer 2023 after residents reported rising break-ins and car thefts, which local coverage linked partly to the period's inflation and economic pressure; the patrols (46 days, 2pm-10pm around the Kossuth promenade and parks) logged 424 person-checks and 41 violation reports, mostly for public drinking, with residents giving mixed feedback and continuing to flag homelessness and street issues around the Pacsirta housing estate.",
+    "sources": ["Mach.hu, 27 Sep 2023 (reintroduced foot patrols, resident feedback)"]
+  },
+  {
+    "nom": "XXI. kerület",
+    "quartieri": "Csepel",
+    "day": "yellow",
+    "night": "red",
+    "text": "Budapest's Danube-island industrial district. A January 2023 analysis of citywide homicide data (2018-2021) found Csepel tied for the highest number of completed homicides of any Budapest district (5, plus 3 attempted) — though the same analysis stressed that Budapest homicides overall are rare and mostly domestic/acquaintance-related rather than street violence against strangers. Separately, and far more recently, an April 2025 operation uncovered a clandestine drug laboratory in Csepel, seizing roughly 100kg of crystalline substances (about 500 million forints) and 7.5 tons of precursor chemicals with an estimated street value of 12 billion forints — a genuinely serious organised-crime finding. The district government responded the same month with a major public-safety investment, raising municipal law-enforcement officer pay substantially from May 2025, framing safety as \"not a luxury, but a basic necessity.\"",
+    "sources": ["Index.hu, 25 Jan 2023 (citywide homicide statistics 2018-2021, by district)", "Index.hu, 18 Apr 2025 (clandestine drug lab bust, public-safety pay raises)"]
+  },
+  {
+    "nom": "XXII. kerület",
+    "quartieri": "Budafok-Tétény",
+    "day": "green",
+    "night": "green",
+    "text": "A quiet Buda-side district known for its historic wine cellars and mostly residential character. A July 2025 crime-hotspot map named Districts I, II, XII, XVI and XXII together as showing significantly lower crime rates than the rest of the city, and District XXII does not appear in any burglary, violent-crime, or nightlife-disorder hotspot list checked for this build.",
+    "sources": ["Metropol.hu, 20 Jul 2025 (30-day crime-hotspot map)"]
+  },
+  {
+    "nom": "XXIII. kerület",
+    "quartieri": "Soroksár",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Budapest's southernmost district, sharing a single police precinct with neighbouring Pesterzsébet. No specific incident, hotspot ranking, or safety-committee finding was located for Soroksár in this research — a genuinely thin evidence base rather than a confirmed-safe or confirmed-risky one, so it is rated with the caution that absence of coverage warrants rather than assumed either way.",
+    "sources": ["Research search performed, no specific dated coverage found for this district"]
+  }
+]
