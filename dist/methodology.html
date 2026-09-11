@@ -75,8 +75,8 @@
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
     London borough scores come from the UK Home Office's official street-level crime data, published monthly at
     <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>, and are recomputed automatically
-    every time the pipeline runs — no manual editing. 5 of 32 London
-    boroughs are on this automated pipeline.
+    every time the pipeline runs — no manual editing. 32 of 33 London
+    boroughs are on this automated pipeline — every borough except the City of London, which is policed separately and isn't covered by this dataset.
   </p>
   <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
     <a href="/torino/index.html">Turin</a> and <a href="/zurigo/index.html">Zurich</a> are also on the site, with
@@ -130,21 +130,18 @@
 </p>
 <p style="font-size:13.5px;color:var(--muted);">
   Boroughs are then rated against the <em>average of the other London boroughs currently on the automated
-  pipeline</em> (5 today) — not a fixed, borough-independent scale, and
+  pipeline</em> (32 today) — not a fixed, borough-independent scale, and
   
-  not yet a full London average, since only 5 of 32 boroughs are covered so far.
+  effectively a full London average now that every borough except the City of London is covered.
   
 </p>
 
 <h2>What this method gets wrong today</h2>
 <div class="note" style="margin-bottom:10px;">
-  
-  <strong>Currently covers 5 of 32 London boroughs.</strong>
-  The automated pipeline started with these 5 boroughs; more will be added as population
-  and workday-correction data is researched for the rest.
-  
-  The "average" every covered borough
-  is rated against is the average of those 5 boroughs — it will keep shifting slightly as
+  <strong>Extended 15 August 2026 — from 5 to 32 of 33 boroughs.</strong>
+  The automated pipeline originally covered only 5 boroughs; it now covers 32, using
+  population and workday-correction data researched and added for the rest. The "average" every covered borough
+  is rated against is the average of those 32 boroughs — it will keep shifting slightly as
   new monthly data comes in.
 </div>
 <div class="note" style="margin-bottom:10px;">
@@ -374,9 +371,10 @@
   boundary WFS. Each district's rating is computed from two real official sources: Polizeipräsidium München and the
   Statistisches Amt München's own published "Straftaten in den Stadtbezirken 2025" table (total recorded offences
   per district) and the Statistisches Amt München's population-per-Stadtbezirk figures as of 31 December 2024. The
-  crime figures were independently extracted twice from the source PDF, using two different extraction
-  methods, before being used for a published rating, and both extractions agreed. The population figures were
-  checked by confirming the 25 district populations sum exactly to
+  crime figures were independently extracted twice before being used for a published rating — once via an automated
+  summary of the source PDF, once from scratch by loading the PDF's raw bytes and running pdf.js against them
+  directly in the browser (Chrome's built-in PDF viewer failed to render this particular file) — and both
+  extractions agreed. The population figures were checked by confirming the 25 district populations sum exactly to
   the dataset's own published citywide total (1,603,776). Every zone is rated red/yellow/green against the
   population-weighted citywide average rate, the same 1.3×/0.8× thresholds used for London, Berlin, Amsterdam,
   Prague and Oslo.
@@ -766,43 +764,39 @@
   the more serious districts nearby.
 </div>
 
-<h2>Florence: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Kraków: Tier 2 — genuine local press and official-survey research, not a guess</h2>
 <p style="font-size:13.5px;color:var(--muted);">
-  Florence was researched the same way Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, Venice
-  and Dublin were: checked for an open, geolocated neighbourhood-level crime dataset first — Italy has none, as
-  already established for Rome, Milan, Turin, Venice and Dublin. The zone boundaries used are Comune di Firenze's
-  own official "Aree elementari 2021" — 74 elementary statistical zones published by the Comune's Planning/Control/
-  Statistics Service, a far finer subdivision than the city's 5 coarse administrative Quartieri. Each zone was
-  individually researched — real, current local and national press coverage (La Nazione, FirenzeToday, ANSA
-  Toscana, La Repubblica Firenze, Controradio, 055firenze, Il Fatto Quotidiano and others), plus the Prefettura di
-  Firenze's own official "zona rossa" reinforced-patrol ordinance, which names 17 specific streets and piazzas
-  targeted for organised drug dealing and theft — with the reasoning and sources disclosed on each zone's own page
-  rather than compressed into a single colour.
+  Kraków was researched the same way Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, Venice,
+  Dublin, Naples and Budapest were: checked for an open, geolocated neighbourhood-level crime dataset first.
+  Poland's national Krajowa Mapa Zagrożeń Bezpieczeństwa (National Security Threat Map) was checked directly — it
+  turned out to be a crowd-sourced map of individual citizen-reported nuisances (speeding, public drinking, stray
+  animals), not aggregated crime statistics, with no per-district breakdown or export, so it was not usable. The
+  zone boundaries used are Kraków's 18 official dzielnice — the city's own government-defined administrative
+  districts, each with its own local council (rada dzielnicy) — sourced from OpenStreetMap's tagged
+  administrative-boundary relations, each cross-checked against its own Polish Wikipedia "Dzielnica N" article.
+  Each dzielnica was individually researched using local press (Kraków Nasze Miasto, Portal Samorządowy, Gazeta
+  Krakowska) and, notably, the City of Kraków's own official resident-safety survey (conducted end of 2022,
+  published January 2023 on krakow.pl) — a genuine official government source, even though it measures resident
+  perception rather than recorded crime counts.
 </p>
 <div class="note" style="margin-bottom:10px;">
-  <strong>All 74 official Aree elementari covered, none skipped.</strong> The 74 Aree elementari are Florence's
-  finest official government-published statistical geography, so all 74 are mapped, not just the tourist core. Most
-  are ordinary residential or suburban zones (Settignano, Careggi, Arcetri, Galluzzo, Trespiano and similar) with no
-  documented pattern of crime found in local coverage, and are rated green/green accordingly rather than assumed
-  otherwise.
+  <strong>All 18 official dzielnice covered, none skipped.</strong> Two of the local-press sources used report
+  figures only in police-defined groupings spanning two or three dzielnice at once, rather than one figure per
+  district — this is disclosed on the affected districts' own pages rather than presented as a precise
+  single-district statistic.
 </div>
 <div class="note">
-  <strong>Florence's documented pattern concentrates in a handful of well-known spots — the historic-center tourist
-  core, the station, the market, the park, and a few public-housing districts — not a citywide problem.</strong> The
-  area around Santa Maria Novella station (Stazione - Il Prato) is named across multiple 2025-2026 press reports and
-  is one of the Prefecture's official "zone rosse," with the station underpass repeatedly described as an open-air
-  drug market. The San Lorenzo market district (Mercato Centrale) sits inside the same zona rossa and is a
-  consistently reported organised-pickpocketing hotspot for tourists. Le Cascine park (Cascine) has a long-documented
-  pattern of drug dealing and street prostitution. The Isolotto public-housing district (Isolotto Nord and Sud) saw
-  genuine, serious 2025-2026 incidents — an armed gang confrontation and a knife attack on a father in front of his
-  young son during a robbery — though local press generally doesn't distinguish which administrative sub-zone the
-  incidents occurred in, a caveat disclosed honestly on both zones' pages rather than picking one arbitrarily.
-  San Jacopino, Brozzi - Le Piagge, Sorgane - Cinque Vie and Campo di Marte each carry their own separately
-  documented, recurring concerns (years of resident protests and gang score-settling, public-housing-linked
-  incidents, and a rising local crime index respectively). The historic-center tourist streets themselves (Centro,
-  Santa Croce) see recurring pickpocketing and occasional weekend-nightlife violence rather than a citywide crime
-  wave, and the large majority of Florence's 74 zones — including the hills, the university district, and most
-  ordinary residential neighbourhoods — show no comparable pattern at all.
+  <strong>Kraków's most consistent finding is that its historic centre, not its outer estates, carries the city's
+  highest recorded crime.</strong> Stare Miasto (the Old Town) recorded the highest theft, robbery and assault
+  counts of any district in both the most recent (2024) and an earlier (2022) police breakdown, which a police
+  spokesperson attributed directly to its concentration of nightlife venues — while Grzegórzki, Kraków's
+  administrative and business district, was the single safest district in both years running. Three district pairs
+  produced genuinely conflicting evidence between the City of Kraków's own official survey or a private
+  120,000-respondent resident survey on one hand and raw police theft counts on the other — Bronowice, Bieńczyce
+  and Wzgórza Krzesławickie — and rather than pick a side, both findings are disclosed on each district's own page.
+  Bieżanów-Prokocim stands out as the one district where an official government survey and an independent private
+  survey agree: both rate it the city's least safe by resident perception, even though its raw theft figures are
+  only moderate.
 </div>
 
 <h2>How this scales beyond London</h2>
@@ -833,6 +827,6 @@
 <p><a href="/">← Back to the borough rankings</a></p>
 
 </div>
-<footer class="wz-footer">Wandroz — public official data, not just reviews. Currently in beta — data coverage and methodology are continuously improving. · <a href="/methodology.html">Methodology</a></footer>
+<footer class="wz-footer">Wandroz — public official data, not just reviews. Prototype build. · <a href="/methodology.html">Methodology</a></footer>
 </body>
 </html>
