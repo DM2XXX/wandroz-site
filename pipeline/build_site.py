@@ -38,7 +38,7 @@ SITE_URL = "https://www.wandroz.com"
 # "Report a correction" mailto target, shown on every neighbourhood/borough
 # detail page. Update this if the project ever gets a dedicated address
 # (e.g. corrections@wandroz.com) instead of a personal inbox.
-CORRECTION_EMAIL = "dadenuoto@gmail.com"
+CORRECTION_EMAIL = "hellowandroz@gmail.com"
 
 # Every city with a map page, used to populate the "City" switcher shown on
 # every map page (top-right, next to the Day/Night toggle) so a visitor can
@@ -130,6 +130,7 @@ CITY_METHODOLOGY = {
     "napoli": {"tier": RESEARCH_BASED},
     "budapest": {"tier": RESEARCH_BASED},
     "krakow": {"tier": RESEARCH_BASED},
+    "firenze": {"tier": RESEARCH_BASED},
     "torino": {"tier": MANUAL_EXPERIMENTAL},
     "zurigo": {"tier": MANUAL_EXPERIMENTAL},
 }
@@ -770,6 +771,7 @@ def build_search_index(cities, city_cards):
         ("napoli", "napoli", "Naples", True),
         ("budapest", "budapest", "Budapest", True),
         ("krakow", "krakow", "Kraków", True),
+        ("firenze", "firenze", "Florence", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -844,6 +846,7 @@ def build_zone_boundaries(cities, city_cards):
         ("napoli", "napoli", "Naples", True),
         ("budapest", "budapest", "Budapest", True),
         ("krakow", "krakow", "Kraków", True),
+        ("firenze", "firenze", "Florence", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1397,6 +1400,44 @@ VENEZIA_NEIGH_NOTE = (
     "pipeline."
 )
 
+
+FIRENZE_UI = dict(TORINO_UI)
+FIRENZE_UI.update({
+    "page_title": "Is my Florence neighbourhood safe? — Wandroz",
+    "page_description": (
+        "Interactive map of Florence's 74 official Aree elementari (real Comune di "
+        "Firenze statistical zones) with day/night safety levels based on current "
+        "local press research."
+    ),
+    "page_h1": "Florence neighbourhoods",
+    "neigh_title": "Is {name} in Florence safe? | Wandroz",
+})
+
+# Carried over verbatim from the hand-built dist/firenze/index.html that this
+# city was recovered from — it is Florence's honesty disclosure, so migrating
+# it must not paraphrase it. Same text as firenze.json's dataNote.
+FIRENZE_BANNER = (
+    "Neighbourhood shapes are the real official 'Aree elementari 2021' (elementary "
+    "statistical zones) published by Comune di Firenze's own Planning/Control/Statistics "
+    "Service — 74 zones covering the whole comune, the finest official government-published "
+    "neighbourhood-equivalent unit for the city. Like Milan, Rome, Turin, Barcelona, Madrid, "
+    "Vienna, Lisbon, Paris, Athens, Venice and Dublin, Florence's safety levels are Wandroz's "
+    "Level 2 approach: genuine current local/national press research per zone, honestly "
+    "disclosed as press-based rather than official crime statistics — Italy has no open, "
+    "geolocated neighbourhood-level crime dataset. Where no specific news coverage was found "
+    "for a zone, that is stated plainly rather than assumed either way — most of Florence's 74 "
+    "zones are ordinary residential or suburban areas with nothing notable in local coverage. "
+    "All 74 official Aree elementari are mapped, none excluded. See the methodology page for "
+    "details and sources."
+)
+
+FIRENZE_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Florence: genuine current local/national "
+    "press research for this specific Area elementare (not blind guessing, not fabricated "
+    "crime statistics), honestly disclosed as press-based rather than official data — Italy "
+    "has no open, geolocated neighbourhood-level crime dataset. See the methodology page for "
+    "what was checked and how this differs from London's automated official-data pipeline."
+)
 DUBLIN_UI = dict(TORINO_UI)
 DUBLIN_UI.update({
     "page_title": "Is my Dublin neighbourhood safe? — Wandroz",
@@ -1896,7 +1937,12 @@ def main():
     sitemap_urls.extend(budapest_urls)
     krakow_urls = render_illustrative_city("krakow", "krakow", KRAKOW_UI, EN_TONE_BADGE, KRAKOW_BANNER, KRAKOW_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(krakow_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)})")
+    firenze_urls = render_illustrative_city(
+        "firenze", "firenze", FIRENZE_UI, EN_TONE_BADGE,
+        FIRENZE_BANNER, FIRENZE_NEIGH_NOTE, flat=True,
+    )
+    sitemap_urls.extend(firenze_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)}), Firenze ({len(firenze_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
