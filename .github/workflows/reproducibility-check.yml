@@ -25,13 +25,11 @@ name: Reproducibility check (Phase 1 — validation only)
 #   will deploy. Land these files on a side branch, or gate Vercel first.
 
 on:
+  # Manual only. Auto-running on every push meant one failing-gate email per
+  # commit while the gate is legitimately red, and one Vercel preview build per
+  # push on an account already over its deployment-storage quota. Run it
+  # deliberately from the Actions tab instead.
   workflow_dispatch: {}
-  push:
-    branches:
-      - 'reproducibility/**'
-      - 'phase1/**'
-  pull_request:
-    branches: [main]
 
 # Read-only. The refresh workflow needs contents:write to push its results;
 # this one must never be able to.
