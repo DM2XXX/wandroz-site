@@ -68,6 +68,7 @@ CITY_LINKS = [
     {"label": "Edinburgh", "url": f"{SITE_URL}/edinburgh/"},
     {"label": "Naples", "url": f"{SITE_URL}/napoli/"},
     {"label": "Budapest", "url": f"{SITE_URL}/budapest/"},
+    {"label": "Kraków", "url": f"{SITE_URL}/krakow/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -595,6 +596,7 @@ def build_search_index(cities, city_cards):
         ("edinburgh", "edinburgh", "Edinburgh", True),
         ("napoli", "napoli", "Naples", True),
         ("budapest", "budapest", "Budapest", True),
+        ("krakow", "krakow", "Kraków", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -668,6 +670,7 @@ def build_zone_boundaries(cities, city_cards):
         ("edinburgh", "edinburgh", "Edinburgh", True),
         ("napoli", "napoli", "Naples", True),
         ("budapest", "budapest", "Budapest", True),
+        ("krakow", "krakow", "Kraków", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1341,6 +1344,42 @@ BUDAPEST_NEIGH_NOTE = (
     "what was checked and how this differs from London's automated official-data pipeline."
 )
 
+KRAKOW_UI = dict(TORINO_UI)
+KRAKOW_UI.update({
+    "page_title": "Is my Kraków neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Kraków's 18 official dzielnice (real official administrative boundaries) with day/night safety levels based on current local press and official survey research.",
+    "page_h1": "Kraków neighbourhoods",
+    "neigh_title": "Is {name} in Kraków safe? | Wandroz",
+})
+
+KRAKOW_BANNER = (
+    "Zone shapes are the real official administrative boundaries of Kraków's 18 \"dzielnice\" (districts) — "
+    "each with its own local government — the finest official government-defined neighbourhood unit for the "
+    "city. Poland's national Krajowa Mapa Zagrożeń Bezpieczeństwa (National Security Threat Map) was checked "
+    "first as a possible official per-district data source, but it turned out not to be usable: it is a "
+    "crowd-sourced map of individual citizen-reported nuisances (speeding, public drinking, stray animals), "
+    "not aggregated crime statistics, with no per-district breakdown or export. No other official open, "
+    "geolocated crime dataset at dzielnica level could be found, so boundaries were instead sourced from "
+    "OpenStreetMap's own tagged administrative-boundary relations for each dzielnica (admin_level 9), each "
+    "cross-checked against its own Polish Wikipedia \"Dzielnica N\" article — the same genuine, "
+    "officially-modelled geometry used for every other city here. Like Milan, Rome, Turin, Barcelona, Madrid, "
+    "Vienna, Lisbon, Paris, Athens, Venice, Dublin, Naples and Budapest, Kraków's safety levels are Wandroz's "
+    "Level 2 approach: genuine current local press reporting and the City of Kraków's own official "
+    "resident-safety survey, honestly disclosed as press- and survey-based rather than an official crime feed. "
+    "Two of the sources used report figures only in police-defined groupings spanning two or three dzielnice "
+    "at once, disclosed per zone rather than presented as a precise single-district figure. Where sources "
+    "genuinely disagreed, that is stated plainly rather than assumed either way. All 18 official dzielnice are "
+    "mapped, none excluded. See the methodology page for details and sources."
+)
+KRAKOW_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Kraków: genuine current local press reporting and the City "
+    "of Kraków's own official resident-safety survey for this specific dzielnica (not blind guessing, not "
+    "fabricated crime statistics), honestly disclosed as press- and survey-based rather than an official crime "
+    "feed — Poland's national threat-report map does not break data down to dzielnica level and is a "
+    "citizen-nuisance pin map, not a crime dataset, in any case. See the methodology page for what was checked "
+    "and how this differs from London's automated official-data pipeline."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1533,6 +1572,10 @@ def main():
          "blurb": "All 23 official kerületek mapped, real OpenStreetMap administrative boundaries, safety ratings from genuine current local press research.",
          "lat": 47.4979, "lon": 19.0402, "color": "#477050",
          "zone_count": _zone_count("budapest"), "data_tag": "Official boundaries"},
+        {"name": "Kraków", "url": "krakow/index.html", "flag": "🇵🇱",
+         "blurb": "All 18 official dzielnice mapped, real OpenStreetMap administrative boundaries, safety ratings from genuine current local press and official survey research.",
+         "lat": 50.0619, "lon": 19.9368, "color": "#a23b72",
+         "zone_count": _zone_count("krakow"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1641,7 +1684,9 @@ def main():
     sitemap_urls.extend(napoli_urls)
     budapest_urls = render_illustrative_city("budapest", "budapest", BUDAPEST_UI, EN_TONE_BADGE, BUDAPEST_BANNER, BUDAPEST_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(budapest_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)})")
+    krakow_urls = render_illustrative_city("krakow", "krakow", KRAKOW_UI, EN_TONE_BADGE, KRAKOW_BANNER, KRAKOW_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(krakow_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
