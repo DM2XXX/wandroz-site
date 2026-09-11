@@ -134,6 +134,8 @@
         
         <option value="https://www.wandroz.com/budapest/" >Budapest</option>
         
+        <option value="https://www.wandroz.com/krakow/" >Kraków</option>
+        
       </select>
     </div>
     
@@ -153,7 +155,7 @@
   <div id="map"></div>
   <div class="map-legend" id="legendBox">
     <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
-    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
+    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — some risk factors reported, no particular time-of-day pattern in the data</span></div>
     <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
     <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Not rated — data not comparable for this zone</span></div>
   </div>
@@ -205,7 +207,7 @@
 </div>
 
 <footer class="wz-footer">
-  Wandroz &middot; prototype build, not a finished product &middot; map data: OpenStreetMap contributors<br>
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
   <a href="/">Home</a>
 </footer>
 
@@ -221,7 +223,7 @@
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
-  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 some risk factors reported, no particular time-of-day pattern in the data", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
     yellow: "Burglary rate close to the 12-district average",
