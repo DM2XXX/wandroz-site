@@ -1,0 +1,82 @@
+[
+  {
+    "nom": "Municipalità 1",
+    "quartieri": "Chiaia, Posillipo, San Ferdinando",
+    "day": "green",
+    "night": "green",
+    "text": "Naples' wealthiest and most tourist-oriented central-western area: Chiaia is described by local crime reporters as the city's \"salotto buono\" (its elegant drawing room), centred on Via San Carlo and Piazza Trieste e Trento, while Mergellina and Posillipo are characterised as \"lussuoso e tranquillo\" (luxurious and tranquil). This is consistently the part of Naples local press points travellers toward rather than away from, and it was not named among the areas flagged for recurring \"stese\" (gang territorial-conflict) violence in the Naples Court of Appeal's own district report.",
+    "sources": ["Fanpage.it, 26/28 Jun 2023, crime reporter Ciro Pellegrino, citing the Naples Court of Appeal report"]
+  },
+  {
+    "nom": "Municipalità 2",
+    "quartieri": "Avvocata, Montecalvario, Pendino, Mercato, Porto, San Giuseppe",
+    "day": "yellow",
+    "night": "red",
+    "text": "Covers the historic centre's southern half, the port, and the Quartieri Spagnoli (in Montecalvario). The Naples Court of Appeal's own district report names \"Avvocata-Pendino-Porto-Montecalvario\" specifically among the areas with the highest concentration of \"stese\" (armed gang territorial-conflict incidents). The Quartieri Spagnoli themselves are mid-way through a genuine, funded regeneration: a Federico II University/Foqus urban-mobility plan (pedestrianisation, a revamped Piazzetta Montecalvario, new school capacity) began rolling out from September 2024, and tourism there has grown sharply — but the area is still routinely described in current visitor reviews as \"caratteristico e pericoloso\" (characterful and dangerous), and the underlying stese pattern documented by the Court of Appeal has not been reported resolved.",
+    "sources": ["Fanpage.it, 26/28 Jun 2023, citing the Naples Court of Appeal report", "GrandeNapoli.it, 8 May 2024 (Quartieri Spagnoli regeneration plan)"]
+  },
+  {
+    "nom": "Municipalità 3",
+    "quartieri": "Stella, San Carlo all'Arena",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Home to Rione Sanità, historically one of Naples' most stigmatised neighbourhoods and now in the middle of a genuine, widely covered cultural revival — community-led tours, restored catacombs and churches, and a growing arts scene (the 2025 \"Sanità TàTà\" festival among other initiatives). Coverage is honest about the area still being in transition rather than fully resolved: at least one investigative piece from 2024 reports organised crime interests moving into the same tourism economy that is driving the neighbourhood's rebirth, rather than disappearing outright. No specific stese hotspot naming for this Municipalità was found (unlike Municipalità 2, 4, 6, 7 and 9), consistent with a genuinely improving but not yet fully resolved picture.",
+    "sources": ["BuoneNotizie.it, 10 May 2024 (Rione Sanità revival)", "CronacheDi.it, 2024 (camorra and tourism economy in Rione Sanità)"]
+  },
+  {
+    "nom": "Municipalità 4",
+    "quartieri": "San Lorenzo, Vicaria, Poggioreale, Zona Industriale",
+    "day": "yellow",
+    "night": "red",
+    "text": "Contains Napoli Centrale station and Piazza Garibaldi, the arrival point for most rail travellers, plus Poggioreale's prison and industrial zone. The Naples Court of Appeal's district report specifically names \"San Lorenzo-Poggioreale\" among the highest-stese areas. Separately, and specifically because of station-area crime against travellers, the State Police run an ongoing \"Stazioni Sicure\" heightened-security operation around Piazza Garibaldi: one reported control period (12-17 May) alone produced four arrests for theft, robbery and an aggravated-battery incident at or near the station's shops and platforms. The heavy, continuous police presence brings the daytime/transit risk down to caution level, but the underlying stese pattern keeps the area red after dark.",
+    "sources": ["Fanpage.it, 26/28 Jun 2023, citing the Naples Court of Appeal report", "TeleClubItalia.it, May 2025 (Stazioni Sicure operation, Piazza Garibaldi)"]
+  },
+  {
+    "nom": "Municipalità 5",
+    "quartieri": "Arenella, Vomero",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A mostly residential, middle-class hill district. Local press in January 2025 documented a real cluster of incidents in a two-week span — an attempted double burglary on Epiphany night near Mercato De Bustis, a violent phone-snatching assault on a young couple in Piazza Leonardo, a smash-and-grab at a bank branch on Via Cimarosa, and thefts from a pub and a church sacristy — prompting a public appeal from a local residents' association for better police coordination. At the same time, the local prefetto's own official year-end tally reported recorded crime in Vomero as down, not up. Both of these genuine, dated data points are disclosed here rather than picking one: a residential area with a real recent theft cluster, but not one where official figures show it getting worse overall.",
+    "sources": ["InterNapoli.it, 23 Jan 2025 (Vomero crime cluster and resident appeal)", "NapoliToday.it (prefetto's year-end report: recorded crime down in Vomero)"]
+  },
+  {
+    "nom": "Municipalità 6",
+    "quartieri": "Ponticelli, Barra, San Giovanni a Teduccio",
+    "day": "red",
+    "night": "red",
+    "text": "Naples' eastern periphery and, on the current evidence, the most consistently dangerous part of the city. The Court of Appeal names \"Barra-Ponticelli\" among the highest-stese areas; a citywide count found 92 stese episodes across Naples and its province in 2024 (up from 59 in 2023), with San Giovanni a Teduccio named among the five most-affected zones. On 24 April 2025, in broad daylight, two gunmen fired twelve shots at Piazza Capri in San Giovanni a Teduccio in an ongoing feud between the Rinaldi and D'Amico clans (linked to the Mazzarella organisation) — days after gunfire had already interrupted a Good Friday procession in the same area. In April 2026 a 20-year-old was murdered in Ponticelli, triggering intensified Prefettura enforcement across the area on top of an already substantial 2025 campaign there (over 65 operations, 11,384 people checked, 237 reported, 76 arrests). This is red both day and night on the strength of a documented daylight shooting and a 2026 homicide, not a night-only judgement call.",
+    "sources": ["Fanpage.it, 26/28 Jun 2023, citing the Naples Court of Appeal report", "Napolitan.it, 13 Apr 2025 (92 stese in 2024, zones named)", "Pupia.tv, 24 Apr 2025 (Piazza Capri daylight shooting)", "Positanonews.it, May 2024 (electoral exchange arrests, Ponticelli-Barra-San Giovanni)", "Fanpage.it, 7 Apr 2026 (Ponticelli homicide and 2025 enforcement statistics)"]
+  },
+  {
+    "nom": "Municipalità 7",
+    "quartieri": "Miano, Secondigliano, San Pietro a Patierno",
+    "day": "yellow",
+    "night": "red",
+    "text": "Secondigliano is one of the historical strongholds of organised crime in Naples (the base of the Di Lauro clan and, after its 2005 split, the \"Scissionisti di Secondigliano\"), and the Court of Appeal names \"Miano-San Pietro a Patierno\" among the highest-stese areas; Secondigliano is also named among the five zones most affected by the 92 stese recorded across the city in 2024. A genuine, funded 2025 regeneration programme for Scampia and Secondigliano together, backed by the national government and the Comune, is under way, which is a real and positive development — but it is a multi-year plan still in its early stages, not a change already reflected in the crime pattern.",
+    "sources": ["Fanpage.it, 26/28 Jun 2023, citing the Naples Court of Appeal report", "Napolitan.it, 13 Apr 2025 (92 stese in 2024, zones named)", "Ottopagine.it / Periferiamonews.org, May 2025 (Scampia-Secondigliano regeneration plan)"]
+  },
+  {
+    "nom": "Municipalità 8",
+    "quartieri": "Piscinola, Scampia, Marianella, Chiaiano",
+    "day": "yellow",
+    "night": "red",
+    "text": "Scampia is internationally known through \"Gomorrah\" as a centre of organised crime, and it is named among the five zones most affected by the 92 stese recorded across Naples in 2024. The demolition of the last of the notorious \"Vele di Scampia\" towers was completed in February 2025, with mayor Gaetano Manfredi stating publicly \"non è più Gomorra\" (it isn't Gomorrah any more) — a genuine and significant milestone, paired with the same 2025 government-backed regeneration plan covering Secondigliano. That statement is an aspiration for where the area is heading, not yet a confirmed change in the current crime pattern, so the night rating here stays red pending evidence the improvement has actually taken hold.",
+    "sources": ["Napolitan.it, 13 Apr 2025 (92 stese in 2024, zones named)", "TGCOM24, Feb 2025 (Vele di Scampia demolition completed, mayor Manfredi's statement)", "RecoverWeb.it (Vele di Scampia demolition and regeneration)"]
+  },
+  {
+    "nom": "Municipalità 9",
+    "quartieri": "Soccavo, Pianura",
+    "day": "yellow",
+    "night": "red",
+    "text": "Naples' western periphery, and the site of a long-running camorra territorial war between the Carillo and Esposito-Marsicano clans (based in Pianura) and the Vigilia and Grimaldi families (based in Soccavo). Police documented 22 significant violent incidents here between August 2022 and May 2024 alone — shootings, bombings, arson and murders — and a further anti-camorra operation on 25 November 2024 resulted in 15 suspects charged (13 jailed, 2 under house arrest) for mafia association, attempted murder, weapons offences, extortion and drug trafficking. Investigators describe the area as a neglected periphery living under a persistent climate of fear despite repeated crackdowns.",
+    "sources": ["Anteprima24.it, 25 Nov 2024 (Soccavo-Pianura camorra war, 15 arrests, incident count)"]
+  },
+  {
+    "nom": "Municipalità 10",
+    "quartieri": "Bagnoli, Fuorigrotta",
+    "day": "yellow",
+    "night": "red",
+    "text": "A former industrial waterfront (Bagnoli's old ILVA steelworks site, now under long-term brownfield redevelopment) and a university/exhibition district (Fuorigrotta, home to the Mostra d'Oltremare and Città della Scienza) that draws heavy daytime foot traffic. On 7 April 2026 the Prefettura of Naples decided to designate Fuorigrotta a \"zona rossa\" (red zone) for three months, citing \"degrado, violenza e microcriminalità\" and expected to bar people with relevant criminal records and violent offenders from parts of the public street — a genuine, current, official public-order measure, not a press estimate. The decision was taken at the same public-safety committee meeting called after the murder of a 20-year-old in nearby Ponticelli that same morning; separately, anti-drug operations have also targeted both Bagnoli and Fuorigrotta. Daytime remains yellow given the heavy legitimate foot traffic and the still-pending (not yet finalised) exact boundaries of the measure; night is red given the official red-zone designation itself.",
+    "sources": ["Fanpage.it, 7 Apr 2026 (Fuorigrotta zona rossa decision, Ponticelli homicide same day)", "Gaeta.it (anti-drug operations, Bagnoli and Fuorigrotta)"]
+  }
+]
