@@ -1,0 +1,146 @@
+[
+  {
+    "nom": "Stare Miasto",
+    "quartieri": "Stare Miasto (Old Town)",
+    "day": "yellow",
+    "night": "red",
+    "text": "Kraków's historic centre and by far its highest-crime district on raw police counts, in both the most recent (2024) and earlier (2022) district-level breakdowns reported by local media: 764 property thefts, 25 robberies, 50 bodily injuries and 20 street fights in 2024 alone (up from 1,030 thefts, 57 burglaries, 38 robberies, 64 assaults, 27 fights and 7 sexual offences in 2022) — in both years easily the highest of any district grouping in the city. A police spokesperson quoted by Nasze Miasto Kraków attributed this directly to the concentration of restaurants, pubs and nightlife venues that keep the district busy day and night, drawing tourist-focused pickpocketing during the day and a heavier concentration of fights, assaults and robberies once the bars and clubs fill up at night. The 2020 Otodom resident-safety survey (120,000+ respondents) rated the district 3.61/5, explicitly noting its long-standing reputation, going back to a 2017 finding, as recording \"the largest number of crimes in the city.\"",
+    "sources": ["Kraków Nasze Miasto (2024 police district data)", "Portal Samorządowy (2022 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Grzegórzki",
+    "quartieri": "Grzegórzki",
+    "day": "green",
+    "night": "green",
+    "text": "Consistently identified as Kraków's safest district across every source checked. In the 2024 police breakdown it recorded the lowest counts of any district grouping in the city (154 property thefts, 4 vehicle thefts, 8 burglaries, 8 robberies, 4 bodily injuries, 4 fights); the 2022 breakdown found the same pattern (256 thefts, 3 vehicle thefts, 26 burglaries, 2 sexual offences, 4 fights, again the lowest citywide). The 2020 Otodom resident-safety survey independently corroborates this with one of the city's highest ratings, 4.04/5.",
+    "sources": ["Kraków Nasze Miasto (2024 police district data)", "Portal Samorządowy (2022 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Prądnik Czerwony",
+    "quartieri": "Prądnik Czerwony",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "The 2022 police breakdown grouped Prądnik Czerwony with neighbouring Prądnik Biały as the pairing with the city's highest recorded sexual-offence count (8) and highest vehicle-theft count (19) of any district grouping that year. The 2020 Otodom resident-safety survey rated it 3.68/5, a middling score, with no specific incident pattern beyond the police figures above. No 2025-2026 dated news coverage specific to this district was found beyond the routine city-wide trend (crime falling citywide, see the Kraków-wide note in the methodology).",
+    "sources": ["Portal Samorządowy (2022 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Prądnik Biały",
+    "quartieri": "Prądnik Biały",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Grouped with neighbouring Prądnik Czerwony in the 2022 police breakdown as the pairing with the city's highest recorded sexual-offence count (8) and highest vehicle-theft count (19) of any district grouping that year. The 2020 Otodom resident-safety survey rated it 3.70/5, a middling score. No specific 2025-2026 incident coverage was found for this district beyond the figures above.",
+    "sources": ["Portal Samorządowy (2022 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Krowodrza",
+    "quartieri": "Krowodrza",
+    "day": "green",
+    "night": "green",
+    "text": "The City of Kraków's own official resident-safety survey (conducted end of 2022, published January 2023 on the city's krakow.pl portal) found Krowodrza to be the second-best-rated district in the city, with 87.6% of its residents describing their district as safe — among the strongest results of any district in an official, city-run survey. No specific negative incident coverage was found for this district in any source checked.",
+    "sources": ["City of Kraków official resident-safety survey, krakow.pl (published January 2023)"]
+  },
+  {
+    "nom": "Bronowice",
+    "quartieri": "Bronowice",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Sources genuinely disagree on this district and both are disclosed rather than one being picked. A private 2020 Otodom resident-safety survey (120,000+ respondents) rated Bronowice the single safest district in the city (4.05/5), citing its guarded, monitored residential developments popular with families. The City of Kraków's own official resident-safety survey (end of 2022, published January 2023) found the opposite: only 75.1% of Bronowice residents rated their own district as safe, placing it among the lowest-rated districts in that official survey — a marked reversal from the private survey two years earlier. No specific dated incident reporting was found to explain the shift either way.",
+    "sources": ["Otodom District Ranking 2020", "City of Kraków official resident-safety survey, krakow.pl (published January 2023)"]
+  },
+  {
+    "nom": "Zwierzyniec",
+    "quartieri": "Zwierzyniec",
+    "day": "green",
+    "night": "green",
+    "text": "Rated the second-safest district in the city by the 2020 Otodom resident-safety survey (4.04/5), described as having a \"prestigious residential character\" with a strong evening-safety score specifically (also 4.04/5). This district was not named in the City of Kraków's own 2022/2023 official safety survey's best- or worst-rated lists, so this rating rests on a single source — disclosed here rather than treated as fully corroborated.",
+    "sources": ["Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Dębniki",
+    "quartieri": "Dębniki",
+    "day": "green",
+    "night": "green",
+    "text": "The City of Kraków's own official resident-safety survey (end of 2022, published January 2023) rated Dębniki the single best district in the city: 88.0% of residents called their district safe, and Dębniki tied for the lowest share of residents able to name a specific \"dangerous spot\" in their district (just 1%). The 2020 Otodom survey independently rated the broader Dębniki/Łagiewniki/Borek Fałęcki/Swoszowice evening-safety group 3.99/5, also solidly positive.",
+    "sources": ["City of Kraków official resident-safety survey, krakow.pl (published January 2023)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Łagiewniki-Borek Fałęcki",
+    "quartieri": "Łagiewniki-Borek Fałęcki",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Grouped with Dębniki and Podgórze in the 2024 police district breakdown (235 property thefts, 17 vehicle thefts, 20 burglaries, 10 robberies, 36 bodily injuries, 8 fights across the three combined — a moderate, mid-table result). The 2020 Otodom survey placed the broader Dębniki/Łagiewniki/Borek Fałęcki/Swoszowice evening-safety group at 3.99/5. No incident coverage specific to this individual district (rather than the wider grouping) was found, so this is rated with the caution that comes from thin, grouped-only evidence.",
+    "sources": ["Kraków Nasze Miasto (2024 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Swoszowice",
+    "quartieri": "Swoszowice",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Grouped with Podgórze Duchackie and Bieżanów-Prokocim in the 2024 police district breakdown (232 property thefts, 18 vehicle thefts, 23 burglaries, 7 robberies, 20 bodily injuries, 3 fights across the three combined — a moderate, mid-table result). The 2020 Otodom survey placed the broader Dębniki/Łagiewniki/Borek Fałęcki/Swoszowice evening-safety group at 3.99/5, a solidly positive score. No incident coverage specific to this individual district was found beyond these grouped figures.",
+    "sources": ["Kraków Nasze Miasto (2024 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Podgórze Duchackie",
+    "quartieri": "Podgórze Duchackie",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Grouped with Swoszowice and Bieżanów-Prokocim in the 2024 police district breakdown (232 property thefts, 18 vehicle thefts, 23 burglaries, 7 robberies, 20 bodily injuries, 3 fights across the three combined — a moderate, mid-table result). No incident coverage or survey score specific to this individual district was found; rated with the caution appropriate to thin, grouped-only evidence.",
+    "sources": ["Kraków Nasze Miasto (2024 police district data)"]
+  },
+  {
+    "nom": "Bieżanów-Prokocim",
+    "quartieri": "Bieżanów-Prokocim",
+    "day": "yellow",
+    "night": "red",
+    "text": "The single worst-rated district in the City of Kraków's own official resident-safety survey (end of 2022, published January 2023): only 69% of residents said Kraków overall felt safe to them (the lowest of any district in the survey) and 74.0% rated their own district as safe — also the lowest district-specific figure recorded. This is corroborated by the independent 2020 Otodom survey, which rated Bieżanów-Prokocim 3.48/5, in the lower bracket of districts surveyed. It is also grouped with Swoszowice and Podgórze Duchackie in the 2024 police breakdown at a moderate (not exceptional) raw theft/burglary count, so the concern here is specifically about resident-perceived safety rather than a documented violent-crime spike.",
+    "sources": ["City of Kraków official resident-safety survey, krakow.pl (published January 2023)", "Otodom District Ranking 2020", "Kraków Nasze Miasto (2024 police district data)"]
+  },
+  {
+    "nom": "Podgórze",
+    "quartieri": "Podgórze",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Grouped with Dębniki and Łagiewniki-Borek Fałęcki in the 2024 police district breakdown (235 property thefts, 17 vehicle thefts, 20 burglaries, 10 robberies, 36 bodily injuries, 8 fights across the three combined — a moderate, mid-table result). The 2020 Otodom survey rated it 3.64/5 individually, a middling score. No specific 2025-2026 incident coverage was found for this district beyond these figures.",
+    "sources": ["Kraków Nasze Miasto (2024 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Czyżyny",
+    "quartieri": "Czyżyny",
+    "day": "green",
+    "night": "yellow",
+    "text": "Grouped with Nowa Huta in the 2022 police breakdown as one of the two safer district pairings citywide (just 2 sexual offences and 404 total thefts combined, among the lowest groupings that year). The 2020 Otodom survey rated it individually at 3.73/5, above the city median. No specific negative incident coverage was found.",
+    "sources": ["Portal Samorządowy (2022 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Mistrzejowice",
+    "quartieri": "Mistrzejowice",
+    "day": "green",
+    "night": "green",
+    "text": "The City of Kraków's own official resident-safety survey (end of 2022, published January 2023) found Mistrzejowice tied for the lowest share of residents able to name a specific \"dangerous spot\" in their district (1.9%, second only to Dębniki's 1%). It was also grouped with Bieńczyce and Wzgórza Krzesławickie in the 2022 police breakdown as one of the lowest-crime groupings citywide (just 1 sexual offence and 377 total thefts combined). Both signals point the same direction for this specific district.",
+    "sources": ["City of Kraków official resident-safety survey, krakow.pl (published January 2023)", "Portal Samorządowy (2022 police district data)"]
+  },
+  {
+    "nom": "Bieńczyce",
+    "quartieri": "Bieńczyce",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "Sources genuinely disagree here and both are disclosed rather than one being picked. The 2022 police breakdown grouped Bieńczyce with Mistrzejowice and Wzgórza Krzesławickie as one of the lowest-crime pairings citywide on raw counts (just 1 sexual offence and 377 total thefts combined). But the independent 2020 Otodom resident-perception survey rated Bieńczyce individually at only 3.32/5, in the lower bracket of districts surveyed — likely reflecting the area's Soviet-era mass-housing-block reputation more than documented crime, since the raw police figures for the grouping are genuinely low.",
+    "sources": ["Portal Samorządowy (2022 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Wzgórza Krzesławickie",
+    "quartieri": "Wzgórza Krzesławickie",
+    "day": "yellow",
+    "night": "red",
+    "text": "The most pronounced conflicting-evidence case found in this research, and both sides are disclosed rather than one being picked. The 2022 police breakdown grouped Wzgórza Krzesławickie with Mistrzejowice and Bieńczyce as one of the lowest-crime pairings citywide on raw theft counts. Yet the independent 2020 Otodom resident-perception survey (120,000+ respondents) rated it the single worst district in the entire city (3.20/5), with a specifically alarming children's-safety subscore of just 2.74/5 — the weakest individual figure recorded anywhere in that survey. Given the severity and specificity of that children's-safety finding in a large-sample survey, and that a night-time/evening safety concern is exactly what a low overall perception score of this kind tends to track, the night rating here follows the perception data rather than the raw grouped theft count.",
+    "sources": ["Portal Samorządowy (2022 police district data)", "Otodom District Ranking 2020"]
+  },
+  {
+    "nom": "Nowa Huta",
+    "quartieri": "Nowa Huta",
+    "day": "yellow",
+    "night": "yellow",
+    "text": "A district with a well-known split reputation, and the evidence itself is mixed. The City of Kraków's own official resident-safety survey (end of 2022, published January 2023) found Nowa Huta residents reported the highest concern citywide about specific \"dangerous spots\" in their district (10.3%, the worst figure in the survey) — a current, official signal. Yet the same-year police breakdown grouped Nowa Huta with Czyżyny as one of the two safer pairings citywide on raw theft/sexual-offence counts, and the 2020 Otodom survey rated it a middling 3.64/5, explicitly noting it had ranked as the single safest district as recently as 2017 before declining. Historically associated with 1990s-2000s football-hooligan (\"kibole\") culture tied to its heavy-industry, communist-era planned-town origins, but no specific dated 2025-2026 incident matching that old reputation was found in this research — the most current, official signal (the \"dangerous spots\" concern share) is the one given most weight here.",
+    "sources": ["City of Kraków official resident-safety survey, krakow.pl (published January 2023)", "Portal Samorządowy (2022 police district data)", "Otodom District Ranking 2020"]
+  }
+]
