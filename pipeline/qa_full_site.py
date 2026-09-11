@@ -156,6 +156,11 @@ BADGE_RE = re.compile(r'class="badge (green|yellow|red|grey)"')
 ZONES_RE = re.compile(r"var ZONES\s*=\s*(\[.*?\]);\s*$", re.M | re.S)
 TOGGLE_RE = re.compile(r"var SHOW_TOGGLE\s*=\s*(true|false)")
 BOOKING_RE = re.compile(r'href="(https?://[^"]*booking\.com[^"]*)"')
+SCRIPT_RE = re.compile(r"<script\b.*?</script>", re.S | re.I)
+# A city claiming Level 2 press research about its own rating. Deliberately a
+# positive-claim pattern: official pages mention press research only to deny it.
+RESEARCH_CLAIM_RE = re.compile(
+    r"(Level 2 approach|press research per (zone|area|Municipalit))", re.I)
 # The correction component specifically: a mailto whose subject is a Wandroz
 # correction. Both templates that emit it (borough.html:79,
 # neighbourhood.html:93) build the subject as "Wandroz correction: <area>",
@@ -411,9 +416,18 @@ def check_methodology(dist, reg, F):
                     r"official (crime|police) statistics for this", text, re.I):
                 F.fail("METHODOLOGY", "research-page-not-claiming-official", target,
                        "research-based page claims official crime statistics")
-            if tier == BS.OFFICIAL_SNAPSHOT and "press research" in text.lower():
+
+            # Polarity matters. Official-statistics pages legitimately mention
+            # press research in order to DENY it — "not a qualitative guess or
+            # press research". A bare substring test fired on all 398
+            # OFFICIAL_SNAPSHOT pages on the first CI run, which is a defect in
+            # the assertion, not in the site. So match the positive claim
+            # instead: the Level 2 self-description that only a research-based
+            # city should carry.
+            if tier == BS.OFFICIAL_SNAPSHOT and RESEARCH_CLAIM_RE.search(text):
                 F.fail("METHODOLOGY", "official-page-not-claiming-press", target,
-                       "official-statistics page describes itself as press research")
+                       "official-statistics page makes a Level 2 press-research claim "
+                       "about its own rating")
 
 
 def check_forbidden_copy(dist, F):
@@ -497,10 +511,19 @@ def check_seo(dist, reg, F):
 
 
 def check_links(dist, F):
-    """Internal links must resolve to something the build actually produced."""
+    """Internal links must resolve to something the build actually produced.
+
+    <script> blocks are stripped first. The city-map JS builds hrefs by string
+    concatenation (`'<a href="' + z.url + '">'`), and a naive href scan reads
+    `' + z.url + '` as a literal path and reports 27 broken links that do not
+    exist. Those are template fragments, not links.
+    """
     for path, rel in walk_html(dist):
         base = os.path.dirname(path)
-        for href in set(HREF_RE.findall(read(path))):
+        html = SCRIPT_RE.sub(" ", read(path))
+        for href in set(HREF_RE.findall(html)):
+            if "' +" in href or '" +' in href or "{{" in href:
+                continue  # belt and braces: any templating that survived
             if href.startswith(("http://", "https://", "mailto:", "#", "tel:", "data:")):
                 continue
             clean = href.split("#", 1)[0].split("?", 1)[0]
@@ -716,8 +739,13 @@ def write_reports(F, counts, dist, report_dir, booking_rows, reg):
         "zones_in_source": sum(counts.values()),
         "florence": {
             "expected": 75,
-            "generated": (1 if os.path.isfile(os.path.join(dist, "firenze", "index.html")) else 0)
-                         + counts.get("firenze", 0),
+            # Count pages that actually exist on disk. The first CI run
+            # reported "generated 74" for a city the build had not produced at
+            # all, because this read the SOURCE zone count. Counting source as
+            # output is precisely the confusion this whole milestone exists to
+            # remove, so it is counted from the filesystem now.
+            "generated": sum(1 for _p, rel in walk_html(dist)
+                             if rel.split(os.sep)[0] == "firenze"),
         },
         "navigation": {
             "expected_cities_per_hub": len(BS.CITY_LINKS),
