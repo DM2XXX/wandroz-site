@@ -1,0 +1,114 @@
+name: Reproducibility check (Phase 1 — validation only)
+
+# WHAT THIS IS
+#   A build/QA harness that proves a clean rebuild from canonical source is
+#   correct, WITHOUT touching production. It is deliberately incapable of
+#   deploying: read-only token, no commit, no push, no write to dist/.
+#
+# WHY IT BUILDS INTO A COPY
+#   build_site.py resolves its output as <pipeline>/../dist. So instead of
+#   overriding anything, this copies pipeline/ and data/ into candidate/ and
+#   runs the generator from there — the output lands in candidate/dist/,
+#   which starts EMPTY. That matters: building over the committed dist/ would
+#   leave stale files in place and hide exactly the gaps we are hunting for
+#   (Florence's 75 hand-built pages would survive and look reproducible).
+#   The repository's real dist/ is never written to, and stays available as
+#   the comparison baseline.
+#
+# WHY IT IS SAFE TO RUN REPEATEDLY
+#   No push means no commit on any branch, which means Vercel is never
+#   triggered. Running this a hundred times creates zero deployments and
+#   consumes zero deployment storage.
+#
+#   Note the one thing this file cannot protect you from: *adding* it to the
+#   repository is itself a commit, and a commit to a branch Vercel watches
+#   will deploy. Land these files on a side branch, or gate Vercel first.
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - 'reproducibility/**'
+      - 'phase1/**'
+  pull_request:
+    branches: [main]
+
+# Read-only. The refresh workflow needs contents:write to push its results;
+# this one must never be able to.
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Stage a clean build tree
+        # candidate/dist does not exist yet, so the generator writes into an
+        # empty directory and anything it fails to produce is visibly absent.
+        run: |
+          mkdir -p candidate
+          cp -R pipeline candidate/pipeline
+          cp -R data candidate/data
+          echo "staged $(find candidate -type f | wc -l) source files"
+
+      - name: Clean build into candidate/dist
+        run: python3 candidate/pipeline/build_site.py
+
+      - name: Build summary
+        run: |
+          echo "candidate pages: $(find candidate/dist -name '*.html' | wc -l)"
+          echo "committed pages: $(find dist -name '*.html' | wc -l)"
+          echo "cities built:    $(find candidate/dist -mindepth 1 -maxdepth 1 -type d | wc -l)"
+
+      - name: Full-site QA on the candidate
+        id: qa
+        continue-on-error: true
+        # continue-on-error so a failing gate still uploads its reports — the
+        # findings are the point of the run. The gate result is enforced in
+        # the final step instead.
+        run: python3 candidate/pipeline/qa_full_site.py --dist candidate/dist --report-dir qa_output
+
+      - name: Reproducibility check + classified diff vs current dist
+        id: repro
+        continue-on-error: true
+        run: |
+          python3 candidate/pipeline/verify_reproducible.py \
+            --dist candidate/dist \
+            --compare-against dist \
+            --report-dir qa_output
+
+      - name: Upload QA + diff reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-reports
+          path: qa_output/
+          if-no-files-found: warn
+
+      - name: Upload candidate site
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-site
+          path: candidate/dist/
+          retention-days: 14
+
+      - name: Gate
+        # Reports are uploaded above regardless; this decides pass/fail.
+        run: |
+          echo "QA:              ${{ steps.qa.outcome }}"
+          echo "Reproducibility: ${{ steps.repro.outcome }}"
+          if [ "${{ steps.qa.outcome }}" != "success" ] || [ "${{ steps.repro.outcome }}" != "success" ]; then
+            echo "::error::Clean-build validation failed — download the qa-reports artifact for details."
+            exit 1
+          fi
+          echo "Clean build passes QA and reproducibility."
