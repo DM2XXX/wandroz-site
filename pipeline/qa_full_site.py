@@ -407,6 +407,24 @@ def check_methodology(dist, reg, F):
             text = TAG_RE.sub(" ", read(page))
             target = "%s/%s" % (city, z["slug"])
 
+            # The evidence tag must match the city's declared tier. Read the
+            # expected label from the generator's own EVIDENCE_TAG map rather
+            # than restating it here, so the label and the assertion cannot
+            # drift apart — and fail if the tag is missing entirely, which is
+            # how it silently vanished from 1,053 pages.
+            expected_tag = getattr(BS, "EVIDENCE_TAG", {}).get(tier)
+            if expected_tag:
+                present = [lbl for lbl in getattr(BS, "EVIDENCE_TAG", {}).values()
+                           if lbl in text]
+                if not present:
+                    F.fail("METHODOLOGY", "evidence-tag-present", target,
+                           "no evidence tag on the page; expected %r for tier %s"
+                           % (expected_tag, tier))
+                elif expected_tag not in present:
+                    F.fail("METHODOLOGY", "evidence-tag-matches-tier", target,
+                           "evidence tag is %r but tier %s requires %r"
+                           % (present[0], tier, expected_tag))
+
             for phrase in QUALITATIVE_PHRASES:
                 if phrase in text and tier != BS.MANUAL_EXPERIMENTAL:
                     F.fail("METHODOLOGY", "no-qualitative-claim-off-tier", target,

@@ -135,6 +135,28 @@ CITY_METHODOLOGY = {
     "zurigo": {"tier": MANUAL_EXPERIMENTAL},
 }
 
+
+# The per-page evidence tag shown at the top of every neighbourhood/borough
+# page. Derived from CITY_METHODOLOGY so a city's label can never drift from
+# its declared tier — which is exactly how this element went missing from
+# source in the first place: it was hand-patched into dist/ for 19 of 25
+# cities and never existed in the generator, so a clean rebuild silently
+# dropped it from 1,053 live pages.
+#
+# Wording is deliberately conservative. MANUAL_EXPERIMENTAL gets a neutral
+# label rather than anything implying a data source, because Turin and Zurich
+# have none: their ratings are a qualitative first pass.
+EVIDENCE_TAG = {
+    OFFICIAL_SNAPSHOT: "🟢 Official crime data",
+    RESEARCH_BASED: "🟡 Local source research",
+    MANUAL_EXPERIMENTAL: "⚪ Manual first-pass rating",
+}
+
+# London is not in CITY_METHODOLOGY — it has its own automated pipeline built
+# directly on data.police.uk, which is the strongest source on the site, so it
+# carries the official-data label on its own terms rather than by inheritance.
+LONDON_EVIDENCE_TAG = "🟢 Official crime data"
+
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
 
 
@@ -191,9 +213,9 @@ EN_TONE_BADGE = {"green": "Relatively safer", "yellow": "Average", "red": "Highe
 # full.
 def tone_descriptor(tone, city_label):
     phrase = {
-        "green": "relatively safer than most other areas of {city} on Wandroz",
-        "yellow": "roughly average compared to other areas of {city} on Wandroz",
-        "red": "an area where Wandroz's data suggests extra caution relative to other areas of {city}",
+        "green": "relatively safer than most other neighbourhoods in {city}",
+        "yellow": "roughly average compared to other neighbourhoods in {city}",
+        "red": "an area where the data suggests extra caution relative to other neighbourhoods in {city}",
         "grey": "not yet covered by a comparative rating",
     }.get(tone, tone)
     return phrase.format(city=city_label) if "{city}" in phrase else phrase
@@ -606,6 +628,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
             label_booking_note=ui["label_booking_note"], data_note=neigh_note,
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
+            evidence_tag=EVIDENCE_TAG.get(tier),
             faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
         )
         with open(out_path, "w") as f:
@@ -1280,8 +1303,8 @@ MUNICH_NEIGH_NOTE = (
     "This rating for Munich is a real official statistic — Polizeipräsidium München and the Statistisches Amt "
     "München's own published 2025 total recorded-offence count for this Stadtbezirk, converted to a rate per "
     "100,000 residents using the same source's 31 December 2024 population figure for the district — not a "
-    "qualitative or press-based judgment. It has no day/night split in the source data, so both figures shown are "
-    "the same. The rate counts against registered residents, not footfall, so a busy central, station or "
+    "qualitative or press-based judgment. It has no day/night split in the source data, so this single rating "
+    "applies at any time of day rather than there being a separate night figure. The rate counts against registered residents, not footfall, so a busy central, station or "
     "nightlife district can read higher without that meaning elevated risk per visit. See the methodology page "
     "for full sourcing."
 )
@@ -1340,8 +1363,8 @@ BRUSSELS_NEIGH_NOTE = (
     "This rating for Brussels is a real official statistic — BISA (Brussels Institute for Statistics and "
     "Analysis), citing Federale Politie figures, and their own published 2025 total registered crime count for "
     "this commune, converted to a rate per 100,000 residents using Statbel's 2025 population figure for the "
-    "commune — not a qualitative or press-based judgment. It has no day/night split in the source data, so both "
-    "figures shown are the same. The rate counts against registered residents, not footfall, so a busy central, "
+    "commune — not a qualitative or press-based judgment. It has no day/night split in the source data, so this single "
+    "rating applies at any time of day rather than there being a separate night figure. The rate counts against registered residents, not footfall, so a busy central, "
     "station or nightlife commune can read higher without that meaning elevated risk per visit. See the "
     "methodology page for full sourcing."
 )
@@ -1871,6 +1894,7 @@ def main():
             page = borough_tpl.render(
                 city=city, b=b, day_label=day_label, night_label=night_label,
                 canonical_url=page_url, correction_email=CORRECTION_EMAIL,
+                evidence_tag=LONDON_EVIDENCE_TAG,
                 faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
             )
             out_path = os.path.join(city_dir, f"{b['slug']}.html")
