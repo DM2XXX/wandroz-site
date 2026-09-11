@@ -67,6 +67,7 @@ CITY_LINKS = [
     {"label": "Florence", "url": f"{SITE_URL}/firenze/"},
     {"label": "Edinburgh", "url": f"{SITE_URL}/edinburgh/"},
     {"label": "Naples", "url": f"{SITE_URL}/napoli/"},
+    {"label": "Budapest", "url": f"{SITE_URL}/budapest/"},
 ]
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -593,6 +594,7 @@ def build_search_index(cities, city_cards):
         ("dublin", "dublin", "Dublin", True),
         ("edinburgh", "edinburgh", "Edinburgh", True),
         ("napoli", "napoli", "Naples", True),
+        ("budapest", "budapest", "Budapest", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -665,6 +667,7 @@ def build_zone_boundaries(cities, city_cards):
         ("dublin", "dublin", "Dublin", True),
         ("edinburgh", "edinburgh", "Edinburgh", True),
         ("napoli", "napoli", "Naples", True),
+        ("budapest", "budapest", "Budapest", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1305,6 +1308,39 @@ NAPOLI_NEIGH_NOTE = (
     "automated official-data pipeline."
 )
 
+BUDAPEST_UI = dict(TORINO_UI)
+BUDAPEST_UI.update({
+    "page_title": "Is my Budapest neighbourhood safe? — Wandroz",
+    "page_description": "Interactive map of Budapest's 23 official kerületek (real official administrative boundaries) with day/night safety levels based on current local press research.",
+    "page_h1": "Budapest neighbourhoods",
+    "neigh_title": "Is {name} in Budapest safe? | Wandroz",
+})
+
+BUDAPEST_BANNER = (
+    "Zone shapes are the real official administrative boundaries of Budapest's 23 \"kerületek\" (districts) — "
+    "each with its own local government — the finest official government-defined neighbourhood unit for the "
+    "city. Hungary's own PRE-STAT crime-statistics portal was checked first as a possible official per-district "
+    "data source, but it turned out not to be usable: citizen access requires an authenticated Hungarian "
+    "government-portal (Ügyfélkapu) login this build could not obtain, and its own documentation says it does "
+    "not break data down to kerület level in any case. No other official open, geolocated crime dataset at "
+    "kerület level could be found (Hungary's national statistics office only publishes county- and national-"
+    "level figures), so boundaries were instead sourced from OpenStreetMap's own tagged administrative-boundary "
+    "relations for each kerület (admin_level 9) — the same genuine, officially-modelled geometry, reached "
+    "through a working channel. Like Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, "
+    "Venice, Dublin and Naples, Budapest's safety levels are Wandroz's Level 2 approach: genuine current local/"
+    "national press research per kerület, honestly disclosed as press-based rather than official crime "
+    "statistics. Where no specific news coverage was found for a kerület, or where sources genuinely "
+    "disagreed, that is stated plainly rather than assumed either way. All 23 official kerületek are mapped, "
+    "none excluded. See the methodology page for details and sources."
+)
+BUDAPEST_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Budapest: genuine current local/national press research for "
+    "this specific kerület (not blind guessing, not fabricated crime statistics), honestly disclosed as "
+    "press-based rather than official data — Hungary's own PRE-STAT crime portal does not break data down to "
+    "kerület level and requires an authenticated government login in any case. See the methodology page for "
+    "what was checked and how this differs from London's automated official-data pipeline."
+)
+
 
 # NOTE: the homepage used to carry a large static SVG landmass path here for
 # a hand-tuned decorative "flight map" hero. That hero (fixed equirectangular
@@ -1493,6 +1529,10 @@ def main():
          "blurb": "All 10 official Municipalità mapped, real OpenStreetMap administrative boundaries, safety ratings from genuine current local press research.",
          "lat": 40.8518, "lon": 14.2681, "color": "#c0392b",
          "zone_count": _zone_count("napoli"), "data_tag": "Official boundaries"},
+        {"name": "Budapest", "url": "budapest/index.html", "flag": "🇭🇺",
+         "blurb": "All 23 official kerületek mapped, real OpenStreetMap administrative boundaries, safety ratings from genuine current local press research.",
+         "lat": 47.4979, "lon": 19.0402, "color": "#477050",
+         "zone_count": _zone_count("budapest"), "data_tag": "Official boundaries"},
     ]
     preview_zone = build_homepage_preview()
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
@@ -1599,7 +1639,9 @@ def main():
     sitemap_urls.extend(edinburgh_urls)
     napoli_urls = render_illustrative_city("napoli", "napoli", NAPOLI_UI, EN_TONE_BADGE, NAPOLI_BANNER, NAPOLI_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(napoli_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)})")
+    budapest_urls = render_illustrative_city("budapest", "budapest", BUDAPEST_UI, EN_TONE_BADGE, BUDAPEST_BANNER, BUDAPEST_NEIGH_NOTE, flat=True)
+    sitemap_urls.extend(budapest_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
