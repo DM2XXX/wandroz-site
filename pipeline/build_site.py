@@ -240,6 +240,18 @@ EVIDENCE_TAG = {
 # carries the official-data label on its own terms rather than by inheritance.
 LONDON_EVIDENCE_TAG = "🟢 Official crime data"
 
+# Shown instead of the usual "this link is already scoped to this area" note on
+# zones whose booking_scope is "city". Booking has no district-level listing
+# area for a handful of neighbourhoods — verified case by case against live
+# searches on 13 Sep 2026 — and for those the link genuinely searches the whole
+# city. Claiming a neighbourhood filter there would be exactly the kind of
+# unverified assertion this project has spent its time removing, so the page
+# says what the link actually does.
+BOOKING_CITY_SCOPE_NOTE = (
+    "Booking.com has no separate search area for this neighbourhood, so this link "
+    "searches the whole city rather than just this area."
+)
+
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
 
 
@@ -709,7 +721,10 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
             zone=zone_ctx, show_toggle=show_toggle,
             label_day=ui["label_day"], label_night=ui["label_night"],
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
-            label_booking_note=ui["label_booking_note"], data_note=neigh_note,
+            label_booking_note=(ui["label_booking_note"]
+                                if z.get("booking_scope", "area") == "area"
+                                else BOOKING_CITY_SCOPE_NOTE),
+            data_note=neigh_note,
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
             evidence_tag=EVIDENCE_TAG.get(tier),
             faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
