@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="5DCj9gpYkJtNZmnLGFZkmzduyZr8bO2YDMeZ5vhS8nI" />
 <title>Wandroz — Neighbourhood safety for travellers</title>
-<meta name="description" content="Wandroz shows travellers which city neighbourhoods are genuinely safe, using public official data instead of just reviews.">
+<meta name="description" content="Compare neighbourhood safety across European cities using official data and transparent local research, before you book.">
 <link rel="canonical" href="https://www.wandroz.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wandroz">
 <meta property="og:title" content="Wandroz — Neighbourhood safety for travellers">
-<meta property="og:description" content="Wandroz shows travellers which city neighbourhoods are genuinely safe, using public official data instead of just reviews.">
+<meta property="og:description" content="Compare neighbourhood safety across European cities using official data and transparent local research, before you book.">
 <meta property="og:url" content="https://www.wandroz.com/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wandroz — Neighbourhood safety for travellers">
-<meta name="twitter:description" content="Wandroz shows travellers which city neighbourhoods are genuinely safe, using public official data instead of just reviews.">
+<meta name="twitter:description" content="Compare neighbourhood safety across European cities using official data and transparent local research, before you book.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -121,16 +121,41 @@
   .preview-card:hover { text-decoration:none; border-color:var(--accent-bright); box-shadow: var(--shadow-lift); }
   .preview-card:hover .preview-cta { text-decoration:underline; }
 
-  /* ---------- Explore cities ---------- */
+  /* ---------- Explore destinations (country-grouped, 11 Sep 2026) ----------
+     Cities are grouped visually by country so the ~25-city list scales —
+     see group_cities_by_country() in build_site.py, the single source both
+     this grid and the per-city-page <select> switcher read from. Grouping
+     is a presentation layer only: every city card below is still a direct
+     link straight to that city's map, never gated behind a country page. */
   .explore-section { padding: 26px 0 6px; }
-  .city-card-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:10px; }
-  .city-card-link { display:flex; flex-direction:column; gap:6px; background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); padding:15px 16px; text-decoration:none; color:var(--navy); box-shadow: var(--shadow-sm); transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease; }
-  .city-card-link:hover { text-decoration:none; border-color: var(--accent-bright); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .country-groups { display:grid; grid-template-columns: 1fr; gap:16px; align-items:start; }
+  .country-group { background:#fff; border:1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding:16px 18px; }
+  /* summary, so the whole header row is the tap target. The default disclosure
+     triangle is removed in favour of the chevron on the right — two markers
+     pointing at the same thing reads as clutter, and WebKit needs its own rule
+     to drop it. min-height keeps the row at a comfortable touch size. */
+  .country-header { display:flex; align-items:baseline; gap:8px; margin-bottom:12px;
+                    cursor:pointer; list-style:none; min-height:28px; user-select:none;
+                    -webkit-tap-highlight-color: transparent; }
+  .country-header::-webkit-details-marker { display:none; }
+  .country-header::marker { content:""; }
+  .country-header:focus-visible { outline:2px solid var(--brand, #1f6f5c); outline-offset:3px; border-radius:6px; }
+  .country-chevron { font-size:17px; line-height:1; color:var(--muted-soft); margin-left:6px;
+                     transition: transform .18s ease; transform: rotate(90deg); }
+  details[open] > .country-header > .country-chevron { transform: rotate(-90deg); }
+  /* Collapsed, the header is the whole card, so its bottom margin would leave a
+     dead strip under the text. */
+  details:not([open]) > .country-header { margin-bottom:0; }
+  .country-flag { font-size:19px; line-height:1; }
+  .country-name { font-weight:800; color:var(--navy); font-size:14.5px; }
+  .country-count { margin-left:auto; font-size:11px; color:var(--muted-soft); font-weight:600; white-space:nowrap; }
+  .country-city-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:8px; }
+  .city-card-link { display:flex; flex-direction:column; gap:6px; background:var(--panel, #f7f8fa); border:1px solid var(--line); border-radius: var(--radius-md); padding:12px 13px; text-decoration:none; color:var(--navy); transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease; }
+  .city-card-link:hover { text-decoration:none; border-color: var(--accent-bright); background:#fff; transform: translateY(-2px); box-shadow: var(--shadow-md); }
   .city-card-top { display:flex; align-items:center; gap:8px; }
-  .city-card-flag { font-size:18px; line-height:1; }
-  .city-card-name { flex:1; font-size:14.5px; font-weight:700; }
+  .city-card-name { flex:1; font-size:13.5px; font-weight:700; }
   .city-card-arrow { color:var(--muted); font-weight:400; }
-  .city-card-meta { font-size:11.5px; color:var(--muted); padding-left:26px; }
+  .city-card-meta { font-size:11px; color:var(--muted); }
 
   .beta-footnote { padding: 18px 0 8px; max-width:900px; font-size:12px; color:var(--muted-soft); margin:0 auto; }
   .beta-footnote a { color:var(--muted-soft); text-decoration:underline; }
@@ -139,10 +164,10 @@
   @media (max-width: 640px){
     #homeMap { height: 340px; }
     .wz-pin-chip { display:none; }
-    .city-card-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 420px){
-    .city-card-grid { grid-template-columns: 1fr; }
+    .country-city-grid { grid-template-columns: 1fr; }
+    .country-count { font-size:10.5px; }
   }
 
   /* ---------- Desktop / large screens ---------- */
@@ -179,11 +204,13 @@
     .preview-text { font-size:14.5px; }
 
     .explore-section { padding: 46px 0 12px; }
-    .city-card-grid { grid-template-columns: repeat(3,1fr); gap:18px; }
-    .city-card-link { padding:22px 24px; }
-    .city-card-flag { font-size:22px; }
-    .city-card-name { font-size:16.5px; }
-    .city-card-meta { font-size:12.5px; padding-left:30px; }
+    .country-groups { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap:20px; }
+    .country-group { padding:20px 22px; }
+    .country-flag { font-size:22px; }
+    .country-name { font-size:16px; }
+    .city-card-link { padding:14px 15px; }
+    .city-card-name { font-size:14.5px; }
+    .city-card-meta { font-size:12px; }
 
     .beta-footnote { padding:26px 40px 12px; }
   }
@@ -219,7 +246,7 @@
   <div class="hero-inner">
     <div class="hero-copy">
       <h1>Know the neighbourhood before you book.</h1>
-      <p class="hero-subtitle">Check safety using official public data.</p>
+      <p class="hero-subtitle">Compare neighbourhood safety using official data and transparent local research.</p>
 
       <form id="wzSearchForm" class="search-wrap" autocomplete="off">
         <label class="search-label" for="wzSearch">Where are you staying?</label>
@@ -235,7 +262,7 @@
 
       <div class="hero-quicklinks">
         <span class="quicklinks-label">Popular:</span>
-        <a class="quicklink" href="london/index.html"><span class="quicklink-dot" style="background:#2f6fed;"></span>London</a><span class="quicklink-sep">·</span><a class="quicklink" href="berlin/index.html"><span class="quicklink-dot" style="background:#1f9e89;"></span>Berlin</a><span class="quicklink-sep">·</span><a class="quicklink" href="amsterdam/index.html"><span class="quicklink-dot" style="background:#f2994a;"></span>Amsterdam</a><span class="quicklink-sep">·</span><a class="quicklink" href="torino/index.html"><span class="quicklink-dot" style="background:#e2a33d;"></span>Turin</a>
+        <a class="quicklink" href="london/index.html"><span class="quicklink-dot" style="background:#2f6fed;"></span>London</a><span class="quicklink-sep">·</span><a class="quicklink" href="paris/index.html"><span class="quicklink-dot" style="background:#3468c0;"></span>Paris</a><span class="quicklink-sep">·</span><a class="quicklink" href="roma/index.html"><span class="quicklink-dot" style="background:#8e44ad;"></span>Rome</a><span class="quicklink-sep">·</span><a class="quicklink" href="barcelona/index.html"><span class="quicklink-dot" style="background:#c94f7c;"></span>Barcelona</a><span class="quicklink-sep">·</span><a class="quicklink" href="amsterdam/index.html"><span class="quicklink-dot" style="background:#f2994a;"></span>Amsterdam</a><span class="quicklink-sep">·</span><a class="quicklink" href="berlin/index.html"><span class="quicklink-dot" style="background:#1f9e89;"></span>Berlin</a>
       </div>
     </div>
 
@@ -251,18 +278,18 @@
   <div class="section-inner benefits-grid">
     <div class="benefit-card">
       <div class="benefit-icon">🏛️</div>
-      <div class="benefit-title">Official public data</div>
-      <p class="benefit-desc">Based on government and public sources.</p>
+      <div class="benefit-title">Safety context</div>
+      <p class="benefit-desc">Official data and transparent local research.</p>
     </div>
     <div class="benefit-card">
       <div class="benefit-icon">📍</div>
-      <div class="benefit-title">Neighbourhood-level insights</div>
-      <p class="benefit-desc">Understand individual areas, not just entire cities.</p>
+      <div class="benefit-title">Neighbourhood-level</div>
+      <p class="benefit-desc">Understand the actual area around your hotel.</p>
     </div>
     <div class="benefit-card">
       <div class="benefit-icon">✈️</div>
       <div class="benefit-title">Built for travellers</div>
-      <p class="benefit-desc">Check an area before choosing where to stay.</p>
+      <p class="benefit-desc">Decide where to stay before you book.</p>
     </div>
   </div>
 </section>
@@ -288,237 +315,447 @@
 
 <section class="explore-section">
   <div class="section-inner">
-    <h2 class="section-title">Explore cities</h2>
-    <div class="city-card-grid">
+    <h2 class="section-title">Explore destinations</h2>
+    <p class="section-lede">25 cities across 17 countries, grouped by country — click straight through to any city.</p>
+    <div class="country-groups">
       
-      <a class="city-card-link" href="london/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇬🇧</span>
-          <span class="city-card-name">London</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">33 neighbourhoods · Official police data</span>
-      </a>
       
-      <a class="city-card-link" href="berlin/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇩🇪</span>
-          <span class="city-card-name">Berlin</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">143 neighbourhoods · Official police/crime data</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇮🇹</span>
+          <span class="country-name">Italy</span>
+          <span class="country-count">6 cities</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="torino/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Turin</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">23 neighbourhoods · Manual first-pass rating</span>
+          </a>
+          
+          <a class="city-card-link" href="milano/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Milan</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">88 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+          <a class="city-card-link" href="roma/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Rome</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">155 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+          <a class="city-card-link" href="venezia/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Venice</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">6 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+          <a class="city-card-link" href="firenze/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Florence</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">74 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+          <a class="city-card-link" href="napoli/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Naples</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">10 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="amsterdam/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇳🇱</span>
-          <span class="city-card-name">Amsterdam</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">110 neighbourhoods · Official police/crime data</span>
-      </a>
       
-      <a class="city-card-link" href="torino/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇮🇹</span>
-          <span class="city-card-name">Turin</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">23 neighbourhoods · Manual first-pass rating</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇬🇧</span>
+          <span class="country-name">United Kingdom</span>
+          <span class="country-count">2 cities</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="london/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">London</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">33 neighbourhoods · Official police data</span>
+          </a>
+          
+          <a class="city-card-link" href="edinburgh/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Edinburgh</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">17 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="zurigo/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇨🇭</span>
-          <span class="city-card-name">Zurich</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">34 neighbourhoods · Manual first-pass rating + official burglary data</span>
-      </a>
       
-      <a class="city-card-link" href="milano/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇮🇹</span>
-          <span class="city-card-name">Milan</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">88 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇩🇪</span>
+          <span class="country-name">Germany</span>
+          <span class="country-count">2 cities</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="berlin/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Berlin</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">143 neighbourhoods · Official police/crime data</span>
+          </a>
+          
+          <a class="city-card-link" href="monaco-di-baviera/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Munich</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">25 neighbourhoods · Official police/crime data</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="roma/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇮🇹</span>
-          <span class="city-card-name">Rome</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">155 neighbourhoods · Press &amp; survey research</span>
-      </a>
       
-      <a class="city-card-link" href="praha/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇨🇿</span>
-          <span class="city-card-name">Prague</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">57 neighbourhoods · Official police/crime data</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇪🇸</span>
+          <span class="country-name">Spain</span>
+          <span class="country-count">2 cities</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="barcelona/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Barcelona</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">73 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+          <a class="city-card-link" href="madrid/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Madrid</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">131 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="oslo/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇳🇴</span>
-          <span class="city-card-name">Oslo</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">16 neighbourhoods · Official police/crime data</span>
-      </a>
       
-      <a class="city-card-link" href="monaco-di-baviera/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇩🇪</span>
-          <span class="city-card-name">Munich</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">25 neighbourhoods · Official police/crime data</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇳🇱</span>
+          <span class="country-name">Netherlands</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="amsterdam/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Amsterdam</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">110 neighbourhoods · Official police/crime data</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="stockholm/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇸🇪</span>
-          <span class="city-card-name">Stockholm</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">11 neighbourhoods · Official police/crime data</span>
-      </a>
       
-      <a class="city-card-link" href="barcelona/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇪🇸</span>
-          <span class="city-card-name">Barcelona</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">73 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇨🇭</span>
+          <span class="country-name">Switzerland</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="zurigo/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Zurich</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">34 neighbourhoods · Manual first-pass rating + official burglary data</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="madrid/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇪🇸</span>
-          <span class="city-card-name">Madrid</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">131 neighbourhoods · Press &amp; survey research</span>
-      </a>
       
-      <a class="city-card-link" href="vienna/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇦🇹</span>
-          <span class="city-card-name">Vienna</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">23 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇨🇿</span>
+          <span class="country-name">Czechia</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="praha/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Prague</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">57 neighbourhoods · Official police/crime data</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="lisbon/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇵🇹</span>
-          <span class="city-card-name">Lisbon</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">24 neighbourhoods · Press &amp; survey research</span>
-      </a>
       
-      <a class="city-card-link" href="paris/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇫🇷</span>
-          <span class="city-card-name">Paris</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">80 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇳🇴</span>
+          <span class="country-name">Norway</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="oslo/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Oslo</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">16 neighbourhoods · Official police/crime data</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="brussels/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇧🇪</span>
-          <span class="city-card-name">Brussels</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">19 neighbourhoods · Official police/crime data</span>
-      </a>
       
-      <a class="city-card-link" href="athens/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇬🇷</span>
-          <span class="city-card-name">Athens</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">7 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇸🇪</span>
+          <span class="country-name">Sweden</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="stockholm/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Stockholm</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">11 neighbourhoods · Official police/crime data</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="venezia/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇮🇹</span>
-          <span class="city-card-name">Venice</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">6 neighbourhoods · Press &amp; survey research</span>
-      </a>
       
-      <a class="city-card-link" href="dublin/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇮🇪</span>
-          <span class="city-card-name">Dublin</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">11 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇦🇹</span>
+          <span class="country-name">Austria</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="vienna/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Vienna</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">23 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="firenze/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇮🇹</span>
-          <span class="city-card-name">Florence</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">74 neighbourhoods · Press &amp; survey research</span>
-      </a>
       
-      <a class="city-card-link" href="edinburgh/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇬🇧</span>
-          <span class="city-card-name">Edinburgh</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">17 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇵🇹</span>
+          <span class="country-name">Portugal</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="lisbon/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Lisbon</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">24 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="napoli/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇮🇹</span>
-          <span class="city-card-name">Naples</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">10 neighbourhoods · Press &amp; survey research</span>
-      </a>
       
-      <a class="city-card-link" href="budapest/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇭🇺</span>
-          <span class="city-card-name">Budapest</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">23 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇫🇷</span>
+          <span class="country-name">France</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="paris/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Paris</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">80 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
       
-      <a class="city-card-link" href="krakow/index.html">
-        <span class="city-card-top">
-          <span class="city-card-flag">🇵🇱</span>
-          <span class="city-card-name">Kraków</span>
-          <span class="city-card-arrow">→</span>
-        </span>
-        <span class="city-card-meta">18 neighbourhoods · Press &amp; survey research</span>
-      </a>
+      
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇧🇪</span>
+          <span class="country-name">Belgium</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="brussels/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Brussels</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">19 neighbourhoods · Official police/crime data</span>
+          </a>
+          
+        </div>
+      </details>
+      
+      
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇬🇷</span>
+          <span class="country-name">Greece</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="athens/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Athens</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">7 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
+      
+      
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇮🇪</span>
+          <span class="country-name">Ireland</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="dublin/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Dublin</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">11 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
+      
+      
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇭🇺</span>
+          <span class="country-name">Hungary</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="budapest/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Budapest</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">23 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
+      
+      
+      <details class="country-group">
+        <summary class="country-header">
+          <span class="country-flag">🇵🇱</span>
+          <span class="country-name">Poland</span>
+          <span class="country-count">1 city</span>
+          <span class="country-chevron" aria-hidden="true">›</span>
+        </summary>
+        <div class="country-city-grid">
+          
+          <a class="city-card-link" href="krakow/index.html">
+            <span class="city-card-top">
+              <span class="city-card-name">Kraków</span>
+              <span class="city-card-arrow">→</span>
+            </span>
+            <span class="city-card-meta">18 neighbourhoods · Press &amp; survey research</span>
+          </a>
+          
+        </div>
+      </details>
       
     </div>
   </div>
 </section>
+
+<script>
+  // Countries start collapsed in the markup so a phone gets a short, tappable
+  // list. On a wide screen there is room for the full grid and scanning is
+  // faster than clicking, so open them all there. Done in JS because `open`
+  // is an attribute, not something CSS can set — and doing it on load (not on
+  // resize) avoids yanking a section shut under someone who just opened it.
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    document.querySelectorAll("details.country-group").forEach(function (d) {
+      d.open = true;
+    });
+  }
+</script>
 
 <p class="beta-footnote"><em>Wandroz is currently in beta — coverage is expanding.</em> <a href="/methodology.html">Methodology →</a></p>
 

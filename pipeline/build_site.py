@@ -71,6 +71,83 @@ CITY_LINKS = [
     {"label": "Kraków", "url": f"{SITE_URL}/krakow/"},
 ]
 
+# --- Country grouping (homepage "Explore destinations" + city switcher) ---
+#
+# Single source of truth for which country each city belongs to and which
+# flag represents that country — both the homepage's grouped city grid and
+# the per-city-page <select> switcher derive their grouping from this one
+# dict via group_cities_by_country() below, so neither view can drift out
+# of sync with the other and a newly added city only needs one line here.
+COUNTRY_FLAGS = {
+    "Italy": "🇮🇹", "Germany": "🇩🇪", "United Kingdom": "🇬🇧", "Spain": "🇪🇸",
+    "Netherlands": "🇳🇱", "Switzerland": "🇨🇭", "Czechia": "🇨🇿", "Norway": "🇳🇴",
+    "Sweden": "🇸🇪", "Austria": "🇦🇹", "Portugal": "🇵🇹", "France": "🇫🇷",
+    "Belgium": "🇧🇪", "Greece": "🇬🇷", "Ireland": "🇮🇪", "Hungary": "🇭🇺",
+    "Poland": "🇵🇱",
+}
+CITY_COUNTRY = {
+    "London": "United Kingdom", "Berlin": "Germany", "Amsterdam": "Netherlands",
+    "Turin": "Italy", "Zurich": "Switzerland", "Milan": "Italy", "Rome": "Italy",
+    "Prague": "Czechia", "Oslo": "Norway", "Munich": "Germany", "Stockholm": "Sweden",
+    "Barcelona": "Spain", "Madrid": "Spain", "Vienna": "Austria", "Lisbon": "Portugal",
+    "Paris": "France", "Brussels": "Belgium", "Athens": "Greece", "Venice": "Italy",
+    "Dublin": "Ireland", "Florence": "Italy", "Edinburgh": "United Kingdom",
+    "Naples": "Italy", "Budapest": "Hungary", "Kraków": "Poland",
+}
+
+# Curated "Popular destinations" shortcut shown near the homepage search box
+# — major traveller destinations rather than whichever cities happened to
+# launch first. Deliberately a short, explicit, single list (not derived
+# from zone count or launch order, which don't track traveller popularity)
+# so it's obvious where to edit it; group_cities_by_country() below still
+# pulls the actual card data (url, flag, counts) from city_cards/CITY_LINKS
+# rather than this list duplicating it.
+POPULAR_CITY_NAMES = ["London", "Paris", "Rome", "Barcelona", "Amsterdam", "Berlin"]
+
+
+def group_cities_by_country(items, name_key="name"):
+    """Group a list of city dicts (city_cards or CITY_LINKS) into country
+    buckets, using CITY_COUNTRY/COUNTRY_FLAGS as the single source of truth.
+
+    Ordering: countries with more cities first (Italy's 6 cities lead the
+    homepage rather than a single-city country), ties broken by the
+    position of that country's first city in `items` — so the grouping
+    stays deterministic and reflects the existing rollout order rather
+    than an arbitrary alphabetical list. Raises if any item's name has no
+    CITY_COUNTRY entry, so a newly added city can't silently vanish from
+    the grouped view instead of erroring loudly at build time.
+    """
+    buckets = {}
+    first_index = {}
+    for i, item in enumerate(items):
+        name = item[name_key]
+        country = CITY_COUNTRY.get(name)
+        if country is None:
+            raise ValueError(
+                f"'{name}' has no CITY_COUNTRY entry — add one or it will "
+                f"silently disappear from the country-grouped homepage/city "
+                f"switcher instead of just showing ungrouped."
+            )
+        buckets.setdefault(country, []).append(item)
+        first_index.setdefault(country, i)
+
+    ordered = sorted(buckets.items(), key=lambda kv: (-len(kv[1]), first_index[kv[0]]))
+    groups = [
+        {"name": country, "flag": COUNTRY_FLAGS[country], "count": len(cities), "cities": cities}
+        for country, cities in ordered
+    ]
+    total = sum(g["count"] for g in groups)
+    assert total == len(items), (
+        f"group_cities_by_country lost or duplicated cities: {total} grouped vs {len(items)} input"
+    )
+    return groups
+
+
+# Country-grouped version of CITY_LINKS for the per-city-page <select>
+# switcher (rendered as <optgroup>s — see city_map.html). Computed once at
+# import time since CITY_LINKS is static.
+CITY_LINKS_BY_COUNTRY = group_cities_by_country(CITY_LINKS, name_key="label")
+
 # --- Central methodology classification -----------------------------------
 #
 # Every "illustrative" city (everything render_illustrative_city renders —
@@ -587,7 +664,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         lang="en", city_label=data["label"], tagline=ui["tagline"],
         nav_home=ui["nav_home"], nav_methodology=ui["nav_methodology"],
         page_title=ui["page_title"], page_description=ui["page_description"],
-        canonical_url=canonical, city_links=CITY_LINKS,
+        canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
         page_h1=ui["page_h1"], page_lead=ui["page_lead"],
         data_note=data_note_banner, show_toggle=show_toggle,
         label_day=ui["label_day"], label_night=ui["label_night"],
@@ -733,7 +810,7 @@ def render_london_map(cities):
     )
     html = map_tpl.render(
         lang="en", city_label="London", tagline="Neighbourhood safety for travellers",
-        nav_home="Home", nav_methodology="Methodology", canonical_url=canonical, city_links=CITY_LINKS,
+        nav_home="Home", nav_methodology="Methodology", canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
         page_title="Is my London borough safe? — Wandroz",
         page_description="Interactive map of all 33 London boroughs, day/night ratings from real Metropolitan Police data, 5 refreshed automatically every month.",
         page_h1="London boroughs", page_lead="Click a borough on the map to see its level, the reasoning, and a Booking.com link for that area.",
@@ -1857,10 +1934,32 @@ def main():
             if _mkey == "zurigo":
                 _tag += " + official burglary data"
             _card["data_tag"] = _tag
+    # Florence has no CITY_METHODOLOGY entry (it's a hand-built page, not
+    # rendered by this pipeline — see the comment above), so it falls
+    # through the loop above and would otherwise keep the old, boundary-only
+    # "Official boundaries" tag. Its own blurb already says the ratings come
+    # from "genuine current local press research", i.e. the same evidence
+    # tier as the other RESEARCH_BASED cities — set the homepage tag to
+    # match honestly instead of leaving a stale provenance-only label. This
+    # is a homepage-presentation fix only; it does not add Florence to
+    # CITY_METHODOLOGY or touch its generation.
+    for _card in city_cards:
+        if _card["name"] == "Florence":
+            _card["data_tag"] = _EVIDENCE_TAG_BY_TIER[RESEARCH_BASED]
 
     preview_zone = build_homepage_preview()
+    # Country-grouped view of the same city_cards data (no separate
+    # hand-maintained destination list — see group_cities_by_country()) plus
+    # a small curated "Popular destinations" shortcut, ordered to match
+    # POPULAR_CITY_NAMES rather than city_cards' launch order.
+    countries = group_cities_by_country(city_cards)
+    _popular_by_name = {c["name"]: c for c in city_cards}
+    popular_cities = [_popular_by_name[n] for n in POPULAR_CITY_NAMES if n in _popular_by_name]
     with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
-        f.write(index_tpl.render(city_cards=city_cards, preview_zone=preview_zone, canonical_url=SITE_URL + "/"))
+        f.write(index_tpl.render(
+            city_cards=city_cards, countries=countries, popular_cities=popular_cities,
+            preview_zone=preview_zone, canonical_url=SITE_URL + "/",
+        ))
 
     # Homepage search bar's data — built fresh from real content on every
     # run (see build_search_index docstring), never hand-maintained.
