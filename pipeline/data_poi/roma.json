@@ -154,6 +154,28 @@
    "lon": 12.485104,
    "qid": "Q678313",
    "rank": 14
+  },
+  {
+   "name": "Janiculum Hill",
+   "category": "view",
+   "qid": "Q303001",
+   "lat": 41.891666666667,
+   "lon": 12.461111111111,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Campo de' Fiori",
+   "category": "food",
+   "qid": "Q28303",
+   "lat": 41.89566377508,
+   "lon": 12.472046538447,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
   }
  ]
 }

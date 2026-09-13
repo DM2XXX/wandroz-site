@@ -143,6 +143,39 @@
    "lon": 16.3636,
    "qid": "Q417645",
    "rank": 13
+  },
+  {
+   "name": "Graben",
+   "category": "square",
+   "qid": "Q699937",
+   "lat": 48.208613,
+   "lon": 16.369913,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Schwedenplatz",
+   "category": "night",
+   "qid": "Q874951",
+   "lat": 48.2114,
+   "lon": 16.3789,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Stadtpark",
+   "category": "green",
+   "qid": "Q688588",
+   "lat": 48.204722222222,
+   "lon": 16.380555555556,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
   }
  ]
 }

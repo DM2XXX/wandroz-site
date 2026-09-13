@@ -112,6 +112,17 @@
    "rank": 10
   },
   {
+   "name": "Södermalm",
+   "category": "night",
+   "qid": "Q740149",
+   "lat": 59.3136,
+   "lon": 18.0711,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
    "name": "Drottningholm Palace",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -120,7 +131,7 @@
    "lat": 59.321694,
    "lon": 17.886383,
    "qid": "Q208559",
-   "rank": 11
+   "rank": 12
   }
  ]
 }

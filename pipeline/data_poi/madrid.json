@@ -123,6 +123,17 @@
    "rank": 11
   },
   {
+   "name": "Malasaña",
+   "category": "night",
+   "qid": "Q2521757",
+   "lat": 40.425130555556,
+   "lon": -3.7039222222222,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
    "name": "Santiago Bernabéu Stadium",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -131,7 +142,7 @@
    "lat": 40.45306,
    "lon": -3.68835,
    "qid": "Q164027",
-   "rank": 12
+   "rank": 13
   }
  ]
 }

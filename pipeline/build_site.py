@@ -274,6 +274,26 @@ POI_TYPE_ICON = {
 }
 
 
+# Munich renders under the city key "munich" while every file about it — its
+# zones, its sights — is named after the Italian "monaco-di-baviera". The two
+# were left to line up by luck, and for the sights they did not: load_pois()
+# looked for munich.json, found nothing, and Munich shipped an empty map
+# without a word. The mapping is written down here, and a sights file that no
+# page asks for now fails the build instead of disappearing quietly.
+POI_FILE_FOR_KEY = {"munich": "monaco-di-baviera"}
+_POI_FILES_ASKED = set()
+
+
+def assert_every_poi_file_is_used():
+    on_disk = {f[:-5] for f in os.listdir(POI_DIR) if f.endswith(".json")}
+    orphan = sorted(on_disk - _POI_FILES_ASKED)
+    if orphan:
+        raise SystemExit(
+            "sights files that no page loaded: %s — a city renders under a key, "
+            "and the file has to be that key or listed in POI_FILE_FOR_KEY."
+            % ", ".join(orphan))
+
+
 def load_pois(city_key):
     """Sights for a city, or nothing if it has none yet.
 
@@ -281,7 +301,9 @@ def load_pois(city_key):
     notability score that decided which places made the cut are editorial
     tools; a visitor has no use for them, so they stay out of the HTML.
     """
-    path = os.path.join(POI_DIR, f"{city_key}.json")
+    stem = POI_FILE_FOR_KEY.get(city_key, city_key)
+    _POI_FILES_ASKED.add(stem)
+    path = os.path.join(POI_DIR, f"{stem}.json")
     if not os.path.isfile(path):
         return []
     with open(path) as f:
@@ -2138,6 +2160,7 @@ def main():
     sitemap_urls.extend(firenze_urls)
     print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)}), Firenze ({len(firenze_urls)})")
 
+    assert_every_poi_file_is_used()
     write_robots_and_sitemap(sitemap_urls)
 
 

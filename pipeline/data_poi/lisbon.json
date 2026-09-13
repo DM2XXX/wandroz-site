@@ -102,6 +102,17 @@
    "rank": 9
   },
   {
+   "name": "Eduardo VII Park",
+   "category": "green",
+   "qid": "Q2034183",
+   "lat": 38.72825,
+   "lon": -9.152833,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
    "name": "Belém Tower",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -110,7 +121,7 @@
    "lat": 38.691389,
    "lon": -9.215833,
    "qid": "Q215003",
-   "rank": 10
+   "rank": 11
   },
   {
    "name": "Jerónimos Monastery",
@@ -121,7 +132,7 @@
    "lat": 38.697846,
    "lon": -9.205601,
    "qid": "Q272781",
-   "rank": 11
+   "rank": 12
   },
   {
    "name": "Padrão dos Descobrimentos",
@@ -132,7 +143,7 @@
    "lat": 38.693676,
    "lon": -9.20569,
    "qid": "Q1133712",
-   "rank": 12
+   "rank": 13
   }
  ]
 }

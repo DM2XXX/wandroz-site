@@ -110,6 +110,39 @@
    "lon": -6.286709,
    "qid": "Q261012",
    "rank": 10
+  },
+  {
+   "name": "Grafton Street",
+   "category": "square",
+   "qid": "Q135501",
+   "lat": 53.341388888889,
+   "lon": -6.2602777777778,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "St Stephen's Green",
+   "category": "green",
+   "qid": "Q1432605",
+   "lat": 53.338055555556,
+   "lon": -6.2591666666667,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "George's Street Arcade",
+   "category": "food",
+   "qid": "Q5535867",
+   "lat": 53.342618,
+   "lon": -6.264347,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
   }
  ]
 }

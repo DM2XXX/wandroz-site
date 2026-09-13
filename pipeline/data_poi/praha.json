@@ -121,6 +121,39 @@
    "lon": 14.406947,
    "qid": "Q1630131",
    "rank": 11
+  },
+  {
+   "name": "Letná Park",
+   "category": "green",
+   "qid": "Q3500624",
+   "lat": 50.093736,
+   "lon": 14.412533,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Žižkov",
+   "category": "night",
+   "qid": "Q378120",
+   "lat": 50.0872,
+   "lon": 14.4628,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Havelské tržiště market",
+   "category": "food",
+   "qid": "Q31519093",
+   "lat": 50.08467,
+   "lon": 14.42088,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
   }
  ]
 }

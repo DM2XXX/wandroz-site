@@ -78,6 +78,11 @@ jobs:
           # Source of truth only. dist/ is NOT taken from the branch — it is
           # rebuilt below, so the published output cannot be a stale artefact
           # someone committed by hand.
+          # The branch's trees replace main's, deletions included. Checking out
+          # paths on top of main only adds and updates: a file the branch
+          # deleted survived into the build, which is how a renamed sights file
+          # came back as an orphan and failed the gate.
+          rm -rf pipeline .github
           git checkout "$SRC" -- pipeline .github
           echo "Source taken from $SRC"
 

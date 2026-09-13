@@ -121,6 +121,28 @@
    "lon": 4.89,
    "qid": "Q1629214",
    "rank": 11
+  },
+  {
+   "name": "De Wallen",
+   "category": "night",
+   "qid": "Q447664",
+   "lat": 52.373416666667,
+   "lon": 4.8980555555556,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Albert Cuyp Market",
+   "category": "food",
+   "qid": "Q2342892",
+   "lat": 52.356111,
+   "lon": 4.896944,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
   }
  ]
 }

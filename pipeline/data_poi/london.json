@@ -145,6 +145,39 @@
    "rank": 13
   },
   {
+   "name": "Soho",
+   "category": "night",
+   "qid": "Q124010",
+   "lat": 51.513,
+   "lon": -0.131,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Borough Market",
+   "category": "food",
+   "qid": "Q894072",
+   "lat": 51.505555555556,
+   "lon": -0.090833333333333,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "South Bank",
+   "category": "square",
+   "qid": "Q154322",
+   "lat": 51.504166666667,
+   "lon": -0.11666666666667,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
    "name": "Natural History Museum",
    "category": "art",
    "poi_type": "MUSEUM",
@@ -153,7 +186,7 @@
    "lat": 51.496111,
    "lon": -0.176111,
    "qid": "Q309388",
-   "rank": 14
+   "rank": 17
   }
  ]
 }

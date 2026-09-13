@@ -132,6 +132,39 @@
    "lon": 14.25764,
    "qid": "Q1255785",
    "rank": 12
+  },
+  {
+   "name": "Chiaia",
+   "category": "night",
+   "qid": "Q1071579",
+   "lat": 40.83416667,
+   "lon": 14.22583333,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Villa Comunale",
+   "category": "green",
+   "qid": "Q1415098",
+   "lat": 40.833,
+   "lon": 14.2322,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Mercato di Porta Nolana",
+   "category": "food",
+   "qid": "Q17511660",
+   "lat": 40.85038361282505,
+   "lon": 14.268215026680638,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
   }
  ]
 }

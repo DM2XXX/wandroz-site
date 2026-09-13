@@ -154,6 +154,39 @@
    "lon": 2.36083,
    "qid": "Q749573",
    "rank": 14
+  },
+  {
+   "name": "Latin Quarter",
+   "category": "square",
+   "qid": "Q321621",
+   "lat": 48.85,
+   "lon": 2.3425,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Canal Saint-Martin",
+   "category": "night",
+   "qid": "Q860172",
+   "lat": 48.847222222222,
+   "lon": 2.3666666666667,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Marché des Enfants Rouges",
+   "category": "food",
+   "qid": "Q3289922",
+   "lat": 48.862805555556,
+   "lon": 2.362,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
   }
  ]
 }

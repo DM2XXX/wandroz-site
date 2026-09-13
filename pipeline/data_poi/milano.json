@@ -122,6 +122,39 @@
    "lon": 9.189387,
    "qid": "Q3906910",
    "rank": 11
+  },
+  {
+   "name": "Brera district",
+   "category": "square",
+   "qid": "Q426609",
+   "lat": 45.471282,
+   "lon": 9.184999,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Torre Branca",
+   "category": "view",
+   "qid": "Q2444521",
+   "lat": 45.47329,
+   "lon": 9.17289,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Mercato Centrale Milano",
+   "category": "food",
+   "qid": "Q123385015",
+   "lat": 45.48729,
+   "lon": 9.20406,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 2,
+   "rank": 14
   }
  ]
 }

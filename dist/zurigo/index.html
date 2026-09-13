@@ -54,7 +54,17 @@
                 padding:2px 7px; font-size:11.5px; font-weight:700; color:#16232b;
                 box-shadow:0 1px 4px rgba(0,0,0,.18); }
   .poi-lab-tt::before { display:none; }
-  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; }
+  /* I filtri restano raggiungibili mentre si guarda la mappa, invece di finire
+     fuori schermo appena si scorre: prima non si poteva cambiare filtro senza
+     prima uscire dalla mappa, che sul telefono e' il gesto piu' difficile. */
+  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
+             position:sticky; top:0; z-index:1100; background:rgba(247,248,250,.94);
+             backdrop-filter:blur(6px); }
+  .poi-reset { position:absolute; left:36px; bottom:40px; z-index:1000; border:1px solid var(--line);
+               background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
+               font-size:12.5px; font-weight:600; color:#3a4750; cursor:pointer;
+               box-shadow:0 1px 5px rgba(0,0,0,.18); -webkit-tap-highlight-color:transparent; }
+  .poi-reset:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
   .poi-chip { border:1px solid var(--line); background:#fff; color:#4a5a63; border-radius:999px;
               padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
               -webkit-tap-highlight-color:transparent; }
@@ -92,9 +102,21 @@
   .zone-list a { color: var(--ink); text-decoration:none; }
   .zone-list a:hover { color: var(--accent); text-decoration:underline; }
   @media (max-width: 720px){
-    #map{ height:520px; }
+    /* 520px su un telefono riempiva quasi tutto lo schermo: qualunque tentativo
+       di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
+       400px lascia pagina sopra e sotto su cui appoggiare il pollice. */
+    #map{ height:400px; }
     .map-wrap { padding: 0 12px 24px; }
-    .map-legend { right:10px; top:10px; font-size:11px; max-width:170px; padding:8px 10px; }
+    /* Sovrapposta, la legenda copriva meta' di una mappa larga 351px, e i pin
+       che finivano sotto erano semplicemente invisibili. Su telefono scende
+       quindi sotto la mappa, su una riga sola, e non nasconde piu' niente. */
+    .map-legend { position:static; max-width:none; margin-top:10px; padding:10px 2px 0;
+                  background:none; backdrop-filter:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
+                  flex-direction:row; flex-wrap:wrap; gap:6px 16px; font-size:11px; }
+    /* Con la legenda spostata sotto, l'angolo in alto a destra della mappa e'
+       libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
+       invece di finire in fondo alla pagina sopra la legenda. */
+    .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
     .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
     .zone-list ul { columns:2; }
   }
@@ -215,6 +237,7 @@
     <div class="legend-poi-sep" id="legendPoiSep"></div>
     <div id="legendPoi"></div>
   </div>
+  <button type="button" class="poi-reset" id="poiReset">Reset view</button>
   <div class="map-detail" id="detailBox">
     <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
     <div id="detail"></div>
@@ -319,7 +342,7 @@
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
-  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.37, "lon": 8.544167, "name": "Grossm\u00fcnster", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.365, "lon": 8.546944, "name": "Z\u00fcrich Opera House", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.370278, "lon": 8.548056, "name": "Kunsthaus Z\u00fcrich", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.379167, "lon": 8.539722, "name": "Swiss National Museum", "rank": 4}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.349722, "lon": 8.490278, "name": "Uetliberg", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.369722, "lon": 8.541111, "name": "Fraum\u00fcnster", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.371097, "lon": 8.540687, "name": "St. Peter, Zurich", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 47.373681, "lon": 8.538523, "name": "Bahnhofstrasse", "rank": 8}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.373, "lon": 8.5412, "name": "Lindenhof", "rank": 9}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.36694, "lon": 8.54083, "name": "Lake Zurich", "rank": 10}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.3733, "lon": 8.545, "name": "Niederdorf", "rank": 11}];
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.37, "lon": 8.544167, "name": "Grossm\u00fcnster", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.365, "lon": 8.546944, "name": "Z\u00fcrich Opera House", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.370278, "lon": 8.548056, "name": "Kunsthaus Z\u00fcrich", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.379167, "lon": 8.539722, "name": "Swiss National Museum", "rank": 4}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.349722, "lon": 8.490278, "name": "Uetliberg", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.369722, "lon": 8.541111, "name": "Fraum\u00fcnster", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.371097, "lon": 8.540687, "name": "St. Peter, Zurich", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 47.373681, "lon": 8.538523, "name": "Bahnhofstrasse", "rank": 8}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.373, "lon": 8.5412, "name": "Lindenhof", "rank": 9}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.36694, "lon": 8.54083, "name": "Lake Zurich", "rank": 10}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.3733, "lon": 8.545, "name": "Niederdorf", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.3763, "lon": 8.52667, "name": "Langstrasse", "rank": 12}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 47.3536, "lon": 8.55211, "name": "Z\u00fcrichhorn lakeside", "rank": 13}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 47.380277777778, "lon": 8.54, "name": "Platzspitz park", "rank": 14}];
   var POI_ALL = "All";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
   var L_LEGEND_BURGLARY = {
@@ -330,6 +353,19 @@
   };
 
   var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+
+  // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi
+  // dalla citta' e non trovare piu' la strada indietro — con l'unico rimedio di
+  // ricaricare la pagina. Questo e' il fondo di ripiego, per le citta' che non
+  // hanno ancora sights; dove ci sono, lo rifissa poiFitAll() sulla vista che
+  // li contiene tutti.
+  var POI_HOME = null;
+  map.setMinZoom(Math.max(3, ZOOM - 2));
+  map.setMaxBounds(L.latLngBounds(
+    L.latLng(CENTER[0] - 0.55, CENTER[1] - 0.75),
+    L.latLng(CENTER[0] + 0.55, CENTER[1] + 0.75)
+  ));
+  map.options.maxBoundsViscosity = 0.7;
   // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
   // feedback that the light/muted basemap made city maps feel too bare.
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
@@ -461,10 +497,10 @@
   //
   // The point of the pairing is that a visitor sees what is worth going to
   // AND which safety area it sits in, on one map. So the pins carry no colour
-  // of their own — colour belongs to safety — and they never touch the
-  // opening view: CENTER and ZOOM stay driven by the safety geography, so a
-  // distant sight like Superga or Burano can sit on the map without forcing
-  // it to zoom out past the point where neighbourhoods are readable.
+  // of their own — colour belongs to safety. The opening view used to be the
+  // safety geography alone, which left a distant sight like Superga or
+  // Stupinigi off screen: a pin nobody can see is a pin that does not exist.
+  // The view now covers every sight as well as every zone.
   // ---------------------------------------------------------------------
   var poiMarkers = [];
   var poiLeaders = [];
@@ -482,12 +518,41 @@
       m.poiCat = p.cat; m.poiRank = p.rank; m.poiName = p.name;
       m.addTo(map); poiMarkers.push(m);
     });
+    poiFitAll();
     poiChips();
     poiLegend(null);
     poiListing();
     map.on('zoomend moveend', poiRefresh);
-    window.addEventListener('resize', poiRefresh);
+    window.addEventListener('resize', function () { poiHome(false); poiRefresh(); });
     poiRefresh();
+  }
+
+  // Tutti i sights devono stare nella vista d'apertura, e quella vista diventa
+  // anche il limite: non si rimpicciolisce oltre, non ci si allontana oltre, e
+  // "Reset view" riporta esattamente qui. Cosi' da telefono non si finisce mai
+  // in un punto da cui non si sa tornare.
+  function poiFitAll() {
+    // Si parte dalla vista decisa dalla sicurezza e la si allarga solo quanto
+    // basta a farci stare i pin: dove sono gia' tutti dentro, l'inquadratura
+    // resta esattamente quella di prima.
+    var b = map.getBounds();
+    poiMarkers.forEach(function (m) { b.extend(m.poiReal || m.getLatLng()); });
+    POI_HOME = b;
+    poiHome(true);
+  }
+
+  // Il fondo dipende da quanto e' grande la mappa, che cambia ruotando il
+  // telefono, quindi si ricalcola anche al resize. Fissarlo una volta sola
+  // lasciava un minZoom piu' stretto della vista d'apertura: cioe' proprio il
+  // caso in cui, dopo aver zoomato, non si riusciva piu' a tornare indietro.
+  function poiHome(recenter) {
+    if (!POI_HOME) return;
+    map.setMinZoom(3);
+    map.invalidateSize(false);
+    var z = map.getBoundsZoom(POI_HOME, false, L.point(28, 28));
+    if (recenter) map.setView(POI_HOME.getCenter(), z, { animate: false });
+    map.setMinZoom(z);
+    map.setMaxBounds(POI_HOME.pad(0.35));
   }
 
   // Pins closer than POI_SPREAD px are fanned onto a small circle with a
@@ -609,6 +674,7 @@
           if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
         });
         poiLegend(c);
+        poiListFilter(c);
         poiRefresh();
       });
       bar.appendChild(b);
@@ -623,10 +689,31 @@
     if (!ol) return;
     POIS.forEach(function (p) {
       var li = document.createElement('li');
+      li.setAttribute('data-cat', p.cat);
       li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name +
                      '</span><span class="c">' + p.icon + '</span>';
       li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
       ol.appendChild(li);
+    });
+  }
+
+  // Filtrando su "Art & history" la mappa mostra solo quei pin: l'elenco qui
+  // sotto e' la stessa cosa scritta, quindi si filtra con lei. I numeri non si
+  // rinumerano, altrimenti non corrisponderebbero piu' ai pin.
+  function poiListFilter(c) {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    Array.prototype.forEach.call(ol.children, function (li) {
+      var show = c === null || li.getAttribute('data-cat') === c;
+      li.style.display = show ? 'flex' : 'none';
+    });
+  }
+
+  var poiResetBtn = document.getElementById('poiReset');
+  if (poiResetBtn) {
+    poiResetBtn.addEventListener('click', function () {
+      if (POI_HOME) { poiHome(true); } else { map.setView(CENTER, ZOOM); }
+      hidePanel();
     });
   }
 

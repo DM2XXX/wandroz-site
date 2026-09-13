@@ -101,6 +101,28 @@
    "rank": 9
   },
   {
+   "name": "Place du Jeu de Balle",
+   "category": "food",
+   "qid": "Q2217006",
+   "lat": 50.837024,
+   "lon": 4.345806,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Place Saint-Géry",
+   "category": "night",
+   "qid": "Q7400647",
+   "lat": 50.84796,
+   "lon": 4.347276,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
    "name": "Atomium",
    "category": "view",
    "poi_type": "LANDMARK",
@@ -109,7 +131,7 @@
    "lat": 50.895,
    "lon": 4.341389,
    "qid": "Q180901",
-   "rank": 10
+   "rank": 12
   }
  ]
 }

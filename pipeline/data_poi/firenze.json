@@ -143,6 +143,28 @@
    "lon": 11.26516,
    "qid": "Q1348158",
    "rank": 13
+  },
+  {
+   "name": "Mercato Centrale",
+   "category": "food",
+   "qid": "Q3854843",
+   "lat": 43.77666667,
+   "lon": 11.25333333,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Piazza Santo Spirito",
+   "category": "night",
+   "qid": "Q3902330",
+   "lat": 43.76657778,
+   "lon": 11.24728889,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
   }
  ]
 }

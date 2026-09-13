@@ -90,6 +90,28 @@
    "rank": 8
   },
   {
+   "name": "Grünerløkka",
+   "category": "night",
+   "qid": "Q1552151",
+   "lat": 59.92307,
+   "lon": 10.75622,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Karl Johans gate",
+   "category": "square",
+   "qid": "Q1490775",
+   "lat": 59.913055555556,
+   "lon": 10.740833333333,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
    "name": "Viking Ship Museum",
    "category": "art",
    "poi_type": "MUSEUM",
@@ -98,7 +120,7 @@
    "lat": 59.90475,
    "lon": 10.684444,
    "qid": "Q961220",
-   "rank": 9,
+   "rank": 11,
    "note": "Closed since September 2021, reopening as the Museum of the Viking Age in 2027. Verified on Wikipedia."
   },
   {
@@ -110,7 +132,7 @@
    "lat": 59.963889,
    "lon": 10.667778,
    "qid": "Q33572",
-   "rank": 10
+   "rank": 12
   }
  ]
 }

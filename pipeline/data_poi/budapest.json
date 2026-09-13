@@ -132,6 +132,28 @@
    "lon": 19.04478,
    "qid": "Q473811",
    "rank": 12
+  },
+  {
+   "name": "Margaret Island",
+   "category": "green",
+   "qid": "Q18816",
+   "lat": 47.5275,
+   "lon": 19.0475,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Erzsébetváros (Jewish Quarter)",
+   "category": "night",
+   "qid": "Q284541",
+   "lat": 47.5,
+   "lon": 19.066666666666666,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
   }
  ]
 }

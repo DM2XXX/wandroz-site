@@ -112,6 +112,39 @@
    "rank": 10
   },
   {
+   "name": "Porta Palazzo market",
+   "category": "food",
+   "qid": "Q3908757",
+   "lat": 45.076772,
+   "lon": 7.683646,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Monte dei Cappuccini",
+   "category": "view",
+   "qid": "Q2902818",
+   "lat": 45.0597,
+   "lon": 7.69722,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Murazzi del Po",
+   "category": "night",
+   "qid": "Q3867374",
+   "lat": 45.062902,
+   "lon": 7.695519,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
    "name": "Basilica of Superga",
    "category": "view",
    "poi_type": "LANDMARK",
@@ -120,7 +153,7 @@
    "lat": 45.08062,
    "lon": 7.767366,
    "qid": "Q1145261",
-   "rank": 11
+   "rank": 14
   },
   {
    "name": "Palazzina di caccia of Stupinigi",
@@ -131,7 +164,7 @@
    "lat": 44.995,
    "lon": 7.603889,
    "qid": "Q19834",
-   "rank": 12
+   "rank": 15
   }
  ]
 }

@@ -122,6 +122,39 @@
    "lon": 8.545,
    "qid": "Q455735",
    "rank": 11
+  },
+  {
+   "name": "Langstrasse",
+   "category": "night",
+   "qid": "Q1805410",
+   "lat": 47.3763,
+   "lon": 8.52667,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Zürichhorn lakeside",
+   "category": "square",
+   "qid": "Q248693",
+   "lat": 47.3536,
+   "lon": 8.55211,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Platzspitz park",
+   "category": "green",
+   "qid": "Q2098914",
+   "lat": 47.380277777778,
+   "lon": 8.54,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
   }
  ]
 }

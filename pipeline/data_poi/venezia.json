@@ -112,6 +112,28 @@
    "rank": 10
   },
   {
+   "name": "Cannaregio",
+   "category": "night",
+   "qid": "Q52423",
+   "lat": 45.446,
+   "lon": 12.327,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Rialto Market",
+   "category": "food",
+   "qid": "Q1921148",
+   "lat": 45.43968582,
+   "lon": 12.33452415,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
    "name": "Murano",
    "category": "square",
    "poi_type": "AREA",
@@ -120,7 +142,18 @@
    "lat": 45.4575,
    "lon": 12.353611,
    "qid": "Q52437",
-   "rank": 11
+   "rank": 13
+  },
+  {
+   "name": "Giardini della Biennale",
+   "category": "green",
+   "qid": "Q724170",
+   "lat": 45.429017,
+   "lon": 12.357934,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 2,
+   "rank": 14
   },
   {
    "name": "Burano",
@@ -131,7 +164,7 @@
    "lat": 45.485556,
    "lon": 12.4175,
    "qid": "Q52439",
-   "rank": 12
+   "rank": 15
   }
  ]
 }

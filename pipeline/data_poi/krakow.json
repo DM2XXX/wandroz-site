@@ -121,6 +121,28 @@
    "lon": 19.95417,
    "qid": "Q134445262",
    "rank": 11
+  },
+  {
+   "name": "Kościuszko Mound",
+   "category": "view",
+   "qid": "Q641398",
+   "lat": 50.0549,
+   "lon": 19.89328,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Stary Kleparz market",
+   "category": "food",
+   "qid": "Q116663895",
+   "lat": 50.06618,
+   "lon": 19.93843,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
   }
  ]
 }
