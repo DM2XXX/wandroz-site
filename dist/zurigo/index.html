@@ -38,6 +38,9 @@
   #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
   .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
   .legend-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
+  .legend-poi-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-item.off { display:none; }
   /* Sights sit on top of the safety colours, so they carry none of their own:
      a white disc with a dark edge reads on green, amber and red alike, and the
      icon does the work of saying what the place is. */
@@ -56,10 +59,15 @@
               padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
               -webkit-tap-highlight-color:transparent; }
   .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
-  ol.poi-list { list-style:none; margin:14px 0 0; padding:0; display:grid;
-                grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:0 20px; }
-  ol.poi-list li { display:flex; align-items:center; gap:9px; padding:6px 0; font-size:14px;
-                   border-bottom:1px solid var(--line); cursor:pointer; }
+  /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
+     una griglia auto-fill produceva una singola fascia orizzontale di dodici
+     voci, illeggibile e slegata dal resto della pagina. */
+  .poi-list-wrap { margin-top:22px; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:15px; margin:0 0 10px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; }
+  ol.poi-list li { display:flex; align-items:center; gap:9px; padding:5px 0; font-size:13px;
+                   break-inside:avoid; border-bottom:1px solid var(--line); cursor:pointer; }
+  @media (max-width: 720px){ ol.poi-list { columns:1; } }
   ol.poi-list .n { flex:none; width:20px; height:20px; border-radius:50%; background:#16232b; color:#fff;
                    font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; }
   ol.poi-list .c { margin-left:auto; font-size:15px; }
@@ -204,13 +212,20 @@
     <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
     <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
     <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Not rated — data not comparable for this zone</span></div>
+    <div class="legend-poi-sep" id="legendPoiSep"></div>
+    <div id="legendPoi"></div>
   </div>
   <div class="map-detail" id="detailBox">
     <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
     <div id="detail"></div>
   </div>
 </div>
-<ol class="poi-list" id="poiList"></ol>
+
+<div class="poi-list-wrap">
+  <h2>Sights on this map</h2>
+  <ol class="poi-list" id="poiList"></ol>
+</div>
+
 
 <div class="zone-list">
   <h2>All neighbourhoods</h2>
@@ -468,6 +483,7 @@
       m.addTo(map); poiMarkers.push(m);
     });
     poiChips();
+    poiLegend(null);
     poiListing();
     map.on('zoomend moveend', poiRefresh);
     window.addEventListener('resize', poiRefresh);
@@ -556,6 +572,23 @@
 
   function poiRefresh() { poiDeclutter(); poiLabels(); }
 
+  // La legenda deve dire quello che si vede. Filtrando su "Green space" le
+  // altre voci descrivono pin che in quel momento non ci sono, quindi
+  // spariscono con loro invece di restare a promettere icone assenti.
+  function poiLegend(active) {
+    var box = document.getElementById('legendPoi');
+    if (!box) return;
+    var seen = {};
+    POIS.forEach(function (p) { seen[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    box.innerHTML = '';
+    Object.keys(seen).forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'legend-poi-item' + (active && active !== c ? ' off' : '');
+      row.textContent = seen[c];
+      box.appendChild(row);
+    });
+  }
+
   function poiChips() {
     var bar = document.getElementById('poiBar');
     if (!bar) return;
@@ -575,6 +608,7 @@
         poiMarkers.forEach(function (m) {
           if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
         });
+        poiLegend(c);
         poiRefresh();
       });
       bar.appendChild(b);
