@@ -665,6 +665,25 @@ def check_booking(dist, reg, F, booking_rows):
             # ---- Layer B: does the URL carry OUR query verbatim? -------------
             # This is an internal-consistency check between the generated page
             # and data_zones. It says nothing about Booking.
+            # The note under the button must match what the link really does.
+            # A zone flagged booking_scope="city" searches the whole city —
+            # Booking has no listing area for it — so a page promising "scoped
+            # to this area (not the whole city)" would be stating something
+            # verified to be false. Checked here so the copy and the flag
+            # cannot drift apart later.
+            page_html = read(page)
+            scope = z.get("booking_scope", "area")
+            claims_area = "not the whole city" in page_html
+            says_city = "no separate search area for this neighbourhood" in page_html
+            if scope == "city" and claims_area:
+                F.fail("BOOKING", "scope-claim-matches-reality", target,
+                       "booking_scope is 'city' but the page claims the link is scoped "
+                       "to this area")
+            if scope == "area" and says_city:
+                F.fail("BOOKING", "scope-claim-matches-reality", target,
+                       "booking_scope is 'area' but the page says Booking has no area "
+                       "for this neighbourhood")
+
             if ss and ss == z.get("query"):
                 row["WANDROZ_QUERY_MATCH"] = "PASS"
             elif ss:
