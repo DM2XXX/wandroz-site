@@ -5,9 +5,20 @@ name: Refresh Wandroz safety data
 # Cowork sandbox this pipeline was originally prototyped in) — so this is
 # where the FULL, unrestricted data pull to data.police.uk should happen,
 # not in a Claude session.
+#
+# SCHEDULE DISABLED 11 September 2026 — deliberate, not an accident.
+# The "Rebuild static site" step below runs pipeline/build_site.py and the
+# final step commits dist/ to main, which Vercel auto-deploys. Production is
+# not yet reproducible from source: dist/firenze/ (75 pages) has no generator
+# source at all, and the correction address hellowandroz@gmail.com exists only
+# in committed HTML, never in the generator. An unattended run would therefore
+# publish unreviewed changes across ~1,200 live pages with no QA gate.
+# Manual runs via workflow_dispatch remain available and are the intended way
+# to refresh data until the reproducibility milestone is met; re-enable the
+# cron by uncommenting the two lines below once it is.
 on:
-  schedule:
-    - cron: "0 6 2 * *"   # 06:00 UTC on the 2nd of each month
+  # schedule:
+  #   - cron: "0 6 2 * *"   # 06:00 UTC on the 2nd of each month
   workflow_dispatch: {}
 
 permissions:

@@ -38,7 +38,7 @@ SITE_URL = "https://www.wandroz.com"
 # "Report a correction" mailto target, shown on every neighbourhood/borough
 # detail page. Update this if the project ever gets a dedicated address
 # (e.g. corrections@wandroz.com) instead of a personal inbox.
-CORRECTION_EMAIL = "dadenuoto@gmail.com"
+CORRECTION_EMAIL = "hellowandroz@gmail.com"
 
 # Every city with a map page, used to populate the "City" switcher shown on
 # every map page (top-right, next to the Day/Night toggle) so a visitor can
@@ -116,7 +116,13 @@ CITY_METHODOLOGY = {
     "munich": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizeipräsidium München's official recorded-offence statistics"},
     "stockholm": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Brå (Brottsförebyggande rådet)'s official crime statistics"},
     "brussels": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "BISA / Federale Politie's official crime statistics"},
-    "edinburgh": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "a numeric crimes-per-1,000-population analysis of Scottish Government/Police Scotland data, independently corroborated by a second analysis"},
+    # Edinburgh is deliberately NOT OFFICIAL_SNAPSHOT. Its figures are a secondary
+    # analysis of Scottish Government/Police Scotland data (Churchill Support
+    # Services, corroborated by datamap-scotland), not a first-party official
+    # neighbourhood crime feed like Berlin's or Amsterdam's. crime_source is kept
+    # for provenance even though the RESEARCH_BASED branch does not cite it: the
+    # conservative user-facing claim is worth more than another green city.
+    "edinburgh": {"tier": RESEARCH_BASED, "crime_source": "a numeric crimes-per-1,000-population analysis of Scottish Government/Police Scotland data, independently corroborated by a second analysis"},
     "milano": {"tier": RESEARCH_BASED},
     "roma": {"tier": RESEARCH_BASED},
     "barcelona": {"tier": RESEARCH_BASED},
@@ -130,9 +136,32 @@ CITY_METHODOLOGY = {
     "napoli": {"tier": RESEARCH_BASED},
     "budapest": {"tier": RESEARCH_BASED},
     "krakow": {"tier": RESEARCH_BASED},
+    "firenze": {"tier": RESEARCH_BASED},
     "torino": {"tier": MANUAL_EXPERIMENTAL},
     "zurigo": {"tier": MANUAL_EXPERIMENTAL},
 }
+
+
+# The per-page evidence tag shown at the top of every neighbourhood/borough
+# page. Derived from CITY_METHODOLOGY so a city's label can never drift from
+# its declared tier — which is exactly how this element went missing from
+# source in the first place: it was hand-patched into dist/ for 19 of 25
+# cities and never existed in the generator, so a clean rebuild silently
+# dropped it from 1,053 live pages.
+#
+# Wording is deliberately conservative. MANUAL_EXPERIMENTAL gets a neutral
+# label rather than anything implying a data source, because Turin and Zurich
+# have none: their ratings are a qualitative first pass.
+EVIDENCE_TAG = {
+    OFFICIAL_SNAPSHOT: "🟢 Official crime data",
+    RESEARCH_BASED: "🟡 Local source research",
+    MANUAL_EXPERIMENTAL: "⚪ Manual first-pass rating",
+}
+
+# London is not in CITY_METHODOLOGY — it has its own automated pipeline built
+# directly on data.police.uk, which is the strongest source on the site, so it
+# carries the official-data label on its own terms rather than by inheritance.
+LONDON_EVIDENCE_TAG = "🟢 Official crime data"
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
 
@@ -190,9 +219,9 @@ EN_TONE_BADGE = {"green": "Relatively safer", "yellow": "Average", "red": "Highe
 # full.
 def tone_descriptor(tone, city_label):
     phrase = {
-        "green": "relatively safer than most other areas of {city} on Wandroz",
-        "yellow": "roughly average compared to other areas of {city} on Wandroz",
-        "red": "an area where Wandroz's data suggests extra caution relative to other areas of {city}",
+        "green": "relatively safer than most other neighbourhoods in {city}",
+        "yellow": "roughly average compared to other neighbourhoods in {city}",
+        "red": "an area where the data suggests extra caution relative to other neighbourhoods in {city}",
         "grey": "not yet covered by a comparative rating",
     }.get(tone, tone)
     return phrase.format(city=city_label) if "{city}" in phrase else phrase
@@ -605,6 +634,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
             label_booking_note=ui["label_booking_note"], data_note=neigh_note,
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
+            evidence_tag=EVIDENCE_TAG.get(tier),
             faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
         )
         with open(out_path, "w") as f:
@@ -770,6 +800,7 @@ def build_search_index(cities, city_cards):
         ("napoli", "napoli", "Naples", True),
         ("budapest", "budapest", "Budapest", True),
         ("krakow", "krakow", "Kraków", True),
+        ("firenze", "firenze", "Florence", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -844,6 +875,7 @@ def build_zone_boundaries(cities, city_cards):
         ("napoli", "napoli", "Naples", True),
         ("budapest", "budapest", "Budapest", True),
         ("krakow", "krakow", "Kraków", True),
+        ("firenze", "firenze", "Florence", True),
     ]
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -1277,8 +1309,8 @@ MUNICH_NEIGH_NOTE = (
     "This rating for Munich is a real official statistic — Polizeipräsidium München and the Statistisches Amt "
     "München's own published 2025 total recorded-offence count for this Stadtbezirk, converted to a rate per "
     "100,000 residents using the same source's 31 December 2024 population figure for the district — not a "
-    "qualitative or press-based judgment. It has no day/night split in the source data, so both figures shown are "
-    "the same. The rate counts against registered residents, not footfall, so a busy central, station or "
+    "qualitative or press-based judgment. It has no day/night split in the source data, so this single rating "
+    "applies at any time of day rather than there being a separate night figure. The rate counts against registered residents, not footfall, so a busy central, station or "
     "nightlife district can read higher without that meaning elevated risk per visit. See the methodology page "
     "for full sourcing."
 )
@@ -1337,8 +1369,8 @@ BRUSSELS_NEIGH_NOTE = (
     "This rating for Brussels is a real official statistic — BISA (Brussels Institute for Statistics and "
     "Analysis), citing Federale Politie figures, and their own published 2025 total registered crime count for "
     "this commune, converted to a rate per 100,000 residents using Statbel's 2025 population figure for the "
-    "commune — not a qualitative or press-based judgment. It has no day/night split in the source data, so both "
-    "figures shown are the same. The rate counts against registered residents, not footfall, so a busy central, "
+    "commune — not a qualitative or press-based judgment. It has no day/night split in the source data, so this single "
+    "rating applies at any time of day rather than there being a separate night figure. The rate counts against registered residents, not footfall, so a busy central, "
     "station or nightlife commune can read higher without that meaning elevated risk per visit. See the "
     "methodology page for full sourcing."
 )
@@ -1397,6 +1429,44 @@ VENEZIA_NEIGH_NOTE = (
     "pipeline."
 )
 
+
+FIRENZE_UI = dict(TORINO_UI)
+FIRENZE_UI.update({
+    "page_title": "Is my Florence neighbourhood safe? — Wandroz",
+    "page_description": (
+        "Interactive map of Florence's 74 official Aree elementari (real Comune di "
+        "Firenze statistical zones) with day/night safety levels based on current "
+        "local press research."
+    ),
+    "page_h1": "Florence neighbourhoods",
+    "neigh_title": "Is {name} in Florence safe? | Wandroz",
+})
+
+# Carried over verbatim from the hand-built dist/firenze/index.html that this
+# city was recovered from — it is Florence's honesty disclosure, so migrating
+# it must not paraphrase it. Same text as firenze.json's dataNote.
+FIRENZE_BANNER = (
+    "Neighbourhood shapes are the real official 'Aree elementari 2021' (elementary "
+    "statistical zones) published by Comune di Firenze's own Planning/Control/Statistics "
+    "Service — 74 zones covering the whole comune, the finest official government-published "
+    "neighbourhood-equivalent unit for the city. Like Milan, Rome, Turin, Barcelona, Madrid, "
+    "Vienna, Lisbon, Paris, Athens, Venice and Dublin, Florence's safety levels are Wandroz's "
+    "Level 2 approach: genuine current local/national press research per zone, honestly "
+    "disclosed as press-based rather than official crime statistics — Italy has no open, "
+    "geolocated neighbourhood-level crime dataset. Where no specific news coverage was found "
+    "for a zone, that is stated plainly rather than assumed either way — most of Florence's 74 "
+    "zones are ordinary residential or suburban areas with nothing notable in local coverage. "
+    "All 74 official Aree elementari are mapped, none excluded. See the methodology page for "
+    "details and sources."
+)
+
+FIRENZE_NEIGH_NOTE = (
+    "This rating is Wandroz's Level 2 approach for Florence: genuine current local/national "
+    "press research for this specific Area elementare (not blind guessing, not fabricated "
+    "crime statistics), honestly disclosed as press-based rather than official data — Italy "
+    "has no open, geolocated neighbourhood-level crime dataset. See the methodology page for "
+    "what was checked and how this differs from London's automated official-data pipeline."
+)
 DUBLIN_UI = dict(TORINO_UI)
 DUBLIN_UI.update({
     "page_title": "Is my Dublin neighbourhood safe? — Wandroz",
@@ -1765,13 +1835,14 @@ def main():
         "Stockholm": "stockholm", "Barcelona": "barcelona", "Madrid": "madrid", "Vienna": "vienna",
         "Lisbon": "lisbon", "Paris": "paris", "Brussels": "brussels", "Athens": "athens",
         "Venice": "venezia", "Dublin": "dublin", "Edinburgh": "edinburgh", "Naples": "napoli",
-        "Budapest": "budapest", "Kraków": "krakow",
+        "Budapest": "budapest", "Kraków": "krakow", "Florence": "firenze",
         # London already has its own correct "Official police data" tag above (a real
         # automated data.police.uk pipeline, not this dict's illustrative-city tiers).
-        # Florence has no CITY_METHODOLOGY entry because it isn't rendered by this
-        # pipeline at all (dist/firenze/ is a hand-built page, not generated from
-        # data_zones/) — flagged separately as an architectural gap, not silently
-        # covered up with a borrowed tag here.
+        # Florence IS in CITY_METHODOLOGY now (RESEARCH_BASED, recovered from
+        # dist/firenze/ into data_zones/firenze.json), so its card tag derives from
+        # the tier like every other city instead of the stale hardcoded "Official
+        # boundaries" — which described the boundary provenance, not the evidence
+        # behind the rating.
     }
     _EVIDENCE_TAG_BY_TIER = {
         OFFICIAL_SNAPSHOT: "Official police/crime data",
@@ -1830,6 +1901,7 @@ def main():
             page = borough_tpl.render(
                 city=city, b=b, day_label=day_label, night_label=night_label,
                 canonical_url=page_url, correction_email=CORRECTION_EMAIL,
+                evidence_tag=LONDON_EVIDENCE_TAG,
                 faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
             )
             out_path = os.path.join(city_dir, f"{b['slug']}.html")
@@ -1896,7 +1968,12 @@ def main():
     sitemap_urls.extend(budapest_urls)
     krakow_urls = render_illustrative_city("krakow", "krakow", KRAKOW_UI, EN_TONE_BADGE, KRAKOW_BANNER, KRAKOW_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(krakow_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)})")
+    firenze_urls = render_illustrative_city(
+        "firenze", "firenze", FIRENZE_UI, EN_TONE_BADGE,
+        FIRENZE_BANNER, FIRENZE_NEIGH_NOTE, flat=True,
+    )
+    sitemap_urls.extend(firenze_urls)
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)}), Firenze ({len(firenze_urls)})")
 
     write_robots_and_sitemap(sitemap_urls)
 
