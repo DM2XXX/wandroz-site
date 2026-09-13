@@ -1,0 +1,137 @@
+{
+ "city": "barcelona",
+ "pois": [
+  {
+   "name": "Sagrada Família",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.40369,
+   "lon": 2.17433,
+   "qid": "Q48435",
+   "rank": 1
+  },
+  {
+   "name": "Park Güell",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.413611,
+   "lon": 2.152778,
+   "qid": "Q212867",
+   "rank": 2
+  },
+  {
+   "name": "Casa Milà",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.395278,
+   "lon": 2.161667,
+   "qid": "Q207870",
+   "rank": 3
+  },
+  {
+   "name": "Casa Batlló",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.39158,
+   "lon": 2.16492,
+   "qid": "Q461371",
+   "rank": 4
+  },
+  {
+   "name": "Barcelona Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.383889,
+   "lon": 2.176389,
+   "qid": "Q17155",
+   "rank": 5
+  },
+  {
+   "name": "Palau de la Música Catalana",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.387667,
+   "lon": 2.175278,
+   "qid": "Q327940",
+   "rank": 6
+  },
+  {
+   "name": "La Rambla",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.381389,
+   "lon": 2.173056,
+   "qid": "Q850593",
+   "rank": 7
+  },
+  {
+   "name": "Montjuïc",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.3372,
+   "lon": 2.1406,
+   "qid": "Q753075",
+   "rank": 8
+  },
+  {
+   "name": "Gothic Quarter, Barcelona",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.382778,
+   "lon": 2.176944,
+   "qid": "Q17154",
+   "rank": 9
+  },
+  {
+   "name": "La Boqueria",
+   "category": "food",
+   "poi_type": "MARKET",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.381796,
+   "lon": 2.171549,
+   "qid": "Q1334899",
+   "rank": 10
+  },
+  {
+   "name": "Barceloneta",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.37944,
+   "lon": 2.18917,
+   "qid": "Q377070",
+   "rank": 11
+  },
+  {
+   "name": "Camp Nou",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 41.380833,
+   "lon": 2.122778,
+   "qid": "Q159848",
+   "rank": 12
+  }
+ ]
+}

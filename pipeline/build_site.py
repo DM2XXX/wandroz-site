@@ -29,6 +29,7 @@ DATA_DIR = os.path.join(BASE_DIR, "..", "data", "scores")
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 ZONES_DIR = os.path.join(BASE_DIR, "data_zones")
+POI_DIR = os.path.join(BASE_DIR, "data_poi")
 OUT_DIR = os.path.join(BASE_DIR, "..", "dist")
 
 # Canonical public URL — apex wandroz.com 308-redirects to this host on
@@ -251,6 +252,52 @@ BOOKING_CITY_SCOPE_NOTE = (
     "Booking.com has no separate search area for this neighbourhood, so this link "
     "searches the whole city rather than just this area."
 )
+
+# Categories a visitor filters by (why you would go) and the icon each pin
+# takes (what the place is) are kept apart on purpose: they diverge on areas —
+# Kazimierz, Navigli and Bairro Alto are all AREA, but people look for them
+# under nightlife.
+POI_CATEGORY_LABEL = {
+    "art": "Art & history", "view": "Views", "green": "Green space",
+    "square": "Squares & walks", "food": "Food markets", "night": "Nightlife",
+}
+# The filter chips are grouped by interest, so their icon has to come from the
+# category. Taking it from poi_type gave the "Views" chip a temple, because
+# Superga is a view you go to but a landmark by form.
+POI_CATEGORY_ICON = {
+    "art": "\U0001F3DB", "view": "\U0001F3D4", "green": "\U0001F333",
+    "square": "\U0001F6B6", "food": "\U0001F37D", "night": "\U0001F309",
+}
+POI_TYPE_ICON = {
+    "LANDMARK": "\U0001F3DB", "MUSEUM": "\U0001F5BC", "AREA": "\U0001F6B6",
+    "VIEWPOINT": "\U0001F3D4", "PARK": "\U0001F333", "MARKET": "\U0001F37D",
+}
+
+
+def load_pois(city_key):
+    """Sights for a city, or nothing if it has none yet.
+
+    Only what the page needs reaches the template. The Wikidata id and the
+    notability score that decided which places made the cut are editorial
+    tools; a visitor has no use for them, so they stay out of the HTML.
+    """
+    path = os.path.join(POI_DIR, f"{city_key}.json")
+    if not os.path.isfile(path):
+        return []
+    with open(path) as f:
+        raw = json.load(f).get("pois", [])
+    out = []
+    for p in sorted(raw, key=lambda x: x["rank"]):
+        if p.get("status") == "TEMPORARILY_CLOSED":
+            continue          # not somewhere to send a visitor today
+        out.append({
+            "name": p["name"], "lat": p["lat"], "lon": p["lon"],
+            "cat": p["category"], "cat_label": POI_CATEGORY_LABEL[p["category"]],
+            "icon": POI_TYPE_ICON[p["poi_type"]],
+            "cat_icon": POI_CATEGORY_ICON[p["category"]], "rank": p["rank"],
+        })
+    return out
+
 
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
 
@@ -685,6 +732,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         label_zone_detail=ui["label_zone_detail"], label_click_hint=ui["label_click_hint"],
         label_all_zones=ui["label_all_zones"], label_booking=ui["label_booking"],
         label_more=ui["label_more"], label_not_covered="",
+        pois=load_pois(city_key), poi_filter_all="All",
         footer_note=ui["footer_note"],
         zones=js_zones, center=data["center"], zoom=data["zoom"],
         show_burglary_toggle=bool(extra_zone_data),
@@ -837,6 +885,7 @@ def render_london_map(cities):
         label_all_zones="All boroughs", label_booking="Search accommodation here on Booking.com →",
         label_more="See the auto-updating live data →",
         label_not_covered="",
+        pois=load_pois("london"), poi_filter_all="All",
         footer_note="public official data, not just reviews. In beta — coverage is expanding.",
         zones=js_zones, center=[51.509, -0.118], zoom=10,
     )

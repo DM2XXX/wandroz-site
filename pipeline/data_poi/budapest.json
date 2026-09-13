@@ -1,0 +1,137 @@
+{
+ "city": "budapest",
+ "pois": [
+  {
+   "name": "Hungarian Parliament Building",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.506944,
+   "lon": 19.045556,
+   "qid": "Q11819",
+   "rank": 1
+  },
+  {
+   "name": "Buda Castle",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.496111,
+   "lon": 19.039722,
+   "qid": "Q46313",
+   "rank": 2
+  },
+  {
+   "name": "Széchenyi Chain Bridge",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.49891,
+   "lon": 19.04353,
+   "qid": "Q465534",
+   "rank": 3
+  },
+  {
+   "name": "Heroes' Square",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.51528,
+   "lon": 19.07806,
+   "qid": "Q299973",
+   "rank": 4
+  },
+  {
+   "name": "St. Stephen's Basilica",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.500833,
+   "lon": 19.053889,
+   "qid": "Q338665",
+   "rank": 5
+  },
+  {
+   "name": "Matthias Church",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.501944,
+   "lon": 19.034167,
+   "qid": "Q493133",
+   "rank": 6
+  },
+  {
+   "name": "Fisherman's Bastion",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.50222,
+   "lon": 19.03472,
+   "qid": "Q493117",
+   "rank": 7
+  },
+  {
+   "name": "Dohány Street Synagogue",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.4959,
+   "lon": 19.0607,
+   "qid": "Q754397",
+   "rank": 8
+  },
+  {
+   "name": "Gellért Hill",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.486389,
+   "lon": 19.045833,
+   "qid": "Q577122",
+   "rank": 9
+  },
+  {
+   "name": "Széchenyi thermal bath",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.518333,
+   "lon": 19.082222,
+   "qid": "Q194783",
+   "rank": 10
+  },
+  {
+   "name": "Great Market Hall, Budapest",
+   "category": "food",
+   "poi_type": "MARKET",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.48669,
+   "lon": 19.0588,
+   "qid": "Q195344",
+   "rank": 11
+  },
+  {
+   "name": "Shoes on the Danube Bank",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.5039,
+   "lon": 19.04478,
+   "qid": "Q473811",
+   "rank": 12
+  }
+ ]
+}

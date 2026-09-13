@@ -38,6 +38,31 @@
   #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
   .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
   .legend-item { display:flex; align-items:center; gap:8px; }
+  /* Sights sit on top of the safety colours, so they carry none of their own:
+     a white disc with a dark edge reads on green, amber and red alike, and the
+     icon does the work of saying what the place is. */
+  .poi-ico { display:flex; align-items:center; justify-content:center; width:26px; height:26px;
+             background:#fff; border:2px solid #16232b; border-radius:50%;
+             box-shadow:0 1px 5px rgba(0,0,0,.38); font-size:13px; position:relative; }
+  .poi-num { position:absolute; right:-6px; top:-6px; width:16px; height:16px; border-radius:50%;
+             background:#16232b; color:#fff; border:1.5px solid #fff; font-size:10px; font-weight:800;
+             display:flex; align-items:center; justify-content:center; }
+  .poi-lab-tt { background:rgba(255,255,255,.96); border:1px solid rgba(22,35,43,.18); border-radius:5px;
+                padding:2px 7px; font-size:11.5px; font-weight:700; color:#16232b;
+                box-shadow:0 1px 4px rgba(0,0,0,.18); }
+  .poi-lab-tt::before { display:none; }
+  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; }
+  .poi-chip { border:1px solid var(--line); background:#fff; color:#4a5a63; border-radius:999px;
+              padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
+  ol.poi-list { list-style:none; margin:14px 0 0; padding:0; display:grid;
+                grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:0 20px; }
+  ol.poi-list li { display:flex; align-items:center; gap:9px; padding:6px 0; font-size:14px;
+                   border-bottom:1px solid var(--line); cursor:pointer; }
+  ol.poi-list .n { flex:none; width:20px; height:20px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  ol.poi-list .c { margin-left:auto; font-size:15px; }
   .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
   .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
   .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
@@ -159,6 +184,8 @@
 <p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
 <div class="notice">Neighbourhood shapes are Prague&#39;s real official 57 &#34;mestske casti&#34; (city districts, boundaries via OpenStreetMap&#39;s administrative-boundary data). Like Berlin and Amsterdam, Prague&#39;s safety levels come from a real official statistic — Policie CR&#39;s (Czech Police) total registered incidents per district for 2024, via the official kriminalita.policie.gov.cz portal, converted to a rate per 100,000 residents using CSU (Czech Statistical Office) 2024 population figures per district — rather than Milan/Rome&#39;s press-research approach. This rate is calculated against registered residents, not footfall, so high-traffic tourist/shopping/transit areas (like Praha 1&#39;s historic centre) can read higher without that meaning elevated risk per visit, and a few very sparsely populated outer districts can swing sharply from a handful of cases. The source data has no time-of-day breakdown, so — like Berlin and Amsterdam — this map shows one consistent level per district rather than a day/night toggle; see the methodology page for details.</div>
 
+<div class="poi-bar" id="poiBar"></div>
+
 <div class="map-wrap">
   <div id="map"></div>
   <div class="map-legend" id="legendBox">
@@ -172,6 +199,7 @@
     <div id="detail"></div>
   </div>
 </div>
+<ol class="poi-list" id="poiList"></ol>
 
 <div class="zone-list">
   <h2>All neighbourhoods</h2>
@@ -311,6 +339,8 @@
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.09, "lon": 14.4, "name": "Prague Castle", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.086389, "lon": 14.411944, "name": "Charles Bridge", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.090833, "lon": 14.400556, "name": "St. Vitus Cathedral", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.075556, "lon": 14.414167, "name": "Dancing House", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.08699, "lon": 14.4207, "name": "Prague astronomical clock", "rank": 5}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 50.082308, "lon": 14.426141, "name": "Wenceslas Square", "rank": 6}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfdb", "lat": 50.064427, "lon": 14.417644, "name": "Vy\u0161ehrad", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 50.0875, "lon": 14.421389, "name": "Old Town Square", "rank": 8}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 50.090278, "lon": 14.419444, "name": "Josefov", "rank": 9}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udf33", "lat": 50.081667, "lon": 14.394444, "name": "Pet\u0159\u00edn", "rank": 10}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.086242, "lon": 14.406947, "name": "Lennon Wall", "rank": 11}];
+  var POI_ALL = "All";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 some risk factors reported, no particular time-of-day pattern in the data", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
@@ -445,6 +475,164 @@
       if (lastZone) renderDetail(lastZone);
     });
   }
+
+  // ---------------------------------------------------------------------
+  // Sights, laid over the safety map
+  //
+  // The point of the pairing is that a visitor sees what is worth going to
+  // AND which safety area it sits in, on one map. So the pins carry no colour
+  // of their own — colour belongs to safety — and they never touch the
+  // opening view: CENTER and ZOOM stay driven by the safety geography, so a
+  // distant sight like Superga or Burano can sit on the map without forcing
+  // it to zoom out past the point where neighbourhoods are readable.
+  // ---------------------------------------------------------------------
+  var poiMarkers = [];
+  var poiLeaders = [];
+  var POI_SPREAD = 34;
+
+  function poiBuild() {
+    if (!POIS || !POIS.length) return;
+    POIS.forEach(function (p) {
+      var m = L.marker([p.lat, p.lon], { icon: L.divIcon({
+        className: '', iconSize: [26, 26], iconAnchor: [13, 13],
+        html: '<div class="poi-ico">' + p.icon + '<span class="poi-num">' + p.rank + '</span></div>'
+      })});
+      m.bindTooltip(p.name, { direction: 'right', offset: [15, 0], className: 'poi-lab-tt' });
+      m.bindPopup('<b>' + p.name + '</b><br><span style="color:#5b6670">' + p.cat_label + '</span>');
+      m.poiCat = p.cat; m.poiRank = p.rank; m.poiName = p.name;
+      m.addTo(map); poiMarkers.push(m);
+    });
+    poiChips();
+    poiListing();
+    map.on('zoomend moveend', poiRefresh);
+    window.addEventListener('resize', poiRefresh);
+    poiRefresh();
+  }
+
+  // Pins closer than POI_SPREAD px are fanned onto a small circle with a
+  // hairline back to the true spot: all of them stay clickable instead of
+  // stacking, and none of them lies about where it is.
+  function poiDeclutter() {
+    poiLeaders.forEach(function (l) { map.removeLayer(l); });
+    poiLeaders = [];
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    vis.forEach(function (m) {
+      if (!m.poiReal) m.poiReal = m.getLatLng();
+      m.setLatLng(m.poiReal);
+    });
+    vis.forEach(function (m) { m.poiPt = map.latLngToLayerPoint(m.getLatLng()); });
+    var groups = [];
+    vis.forEach(function (m) {
+      var g = null;
+      groups.forEach(function (gr) {
+        if (!g && gr.some(function (o) { return o.poiPt.distanceTo(m.poiPt) < POI_SPREAD; })) g = gr;
+      });
+      if (g) { g.push(m); } else { groups.push([m]); }
+    });
+    groups.forEach(function (g) {
+      if (g.length === 1) return;
+      var cx = 0, cy = 0;
+      g.forEach(function (m) { cx += m.poiPt.x; cy += m.poiPt.y; });
+      cx /= g.length; cy /= g.length;
+      var R = Math.max(26, 12 + g.length * 6);
+      g.sort(function (a, b) { return a.poiRank - b.poiRank; });
+      g.forEach(function (m, i) {
+        var ang = (2 * Math.PI * i) / g.length - Math.PI / 2;
+        m.setLatLng(map.layerPointToLatLng(L.point(cx + R * Math.cos(ang), cy + R * Math.sin(ang))));
+        poiLeaders.push(L.polyline([m.poiReal, m.getLatLng()],
+          { color: '#16232b', weight: 1, opacity: .38, interactive: false }).addTo(map));
+      });
+    });
+  }
+
+  function poiOverlap(a, b) { return !(a.r < b.l || b.r < a.l || a.b < b.t || b.b < a.t); }
+
+  // A name stays on screen only where it collides with nothing — not with
+  // another name, not with another pin, not with the edge. Names are tried in
+  // rank order, so when two compete the better-known place keeps its label.
+  // Filtering to one category empties the map, which is exactly when someone
+  // who does not know the city needs the names, so the zoom bar drops too.
+  function poiLabels() {
+    poiMarkers.forEach(function (m) {
+      if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
+    });
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    if (!vis.length) return;
+    var z = map.getZoom();
+    var minZoom = vis.length <= 5 ? 11 : (vis.length <= 8 ? 13 : 14);
+    if (z < minZoom) return;
+    var size = map.getSize();
+    var taken = vis.map(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      return { l: pt.x - 15, r: pt.x + 15, t: pt.y - 15, b: pt.y + 15 };
+    });
+    vis.slice().sort(function (a, b) { return a.poiRank - b.poiRank; }).forEach(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      var w = 10 + m.poiName.length * 6.6, h = 18;
+      var cand = [
+        { d: 'right', o: [15, 0],  b: { l: pt.x + 16, r: pt.x + 16 + w, t: pt.y - h / 2, b: pt.y + h / 2 } },
+        { d: 'left',  o: [-15, 0], b: { l: pt.x - 16 - w, r: pt.x - 16, t: pt.y - h / 2, b: pt.y + h / 2 } }
+      ];
+      var ok = null;
+      cand.forEach(function (c) {
+        if (ok) return;
+        if (c.b.l < 8 || c.b.r > size.x - 8) return;
+        var clash = false;
+        taken.forEach(function (t) { if (poiOverlap(c.b, t)) clash = true; });
+        if (!clash) ok = c;
+      });
+      if (!ok) return;
+      taken.push(ok.b);
+      m.poiPerm = L.tooltip({ permanent: true, direction: ok.d, offset: ok.o,
+                              className: 'poi-lab-tt', interactive: false })
+                   .setLatLng(m.getLatLng()).setContent(m.poiName).addTo(map);
+    });
+  }
+
+  function poiRefresh() { poiDeclutter(); poiLabels(); }
+
+  function poiChips() {
+    var bar = document.getElementById('poiBar');
+    if (!bar) return;
+    var cats = [null];
+    POIS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); });
+    var labelOf = {};
+    POIS.forEach(function (p) { labelOf[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    cats.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'poi-chip';
+      b.textContent = c === null ? POI_ALL : labelOf[c];
+      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(bar.children, function (x, k) {
+          x.setAttribute('aria-pressed', cats[k] === c ? 'true' : 'false');
+        });
+        poiMarkers.forEach(function (m) {
+          if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
+        });
+        poiRefresh();
+      });
+      bar.appendChild(b);
+    });
+  }
+
+  // On a narrow screen a twenty-character label has nowhere to go, so the
+  // numbered list is where the names live: the pin shows the number, the list
+  // gives the name, and tapping one flies the map there.
+  function poiListing() {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    POIS.forEach(function (p) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name +
+                     '</span><span class="c">' + p.icon + '</span>';
+      li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
+      ol.appendChild(li);
+    });
+  }
+
+  poiBuild();
+
 </script>
 </body>
 </html>

@@ -1,0 +1,116 @@
+{
+ "city": "oslo",
+ "pois": [
+  {
+   "name": "Oslo Opera House",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.906944,
+   "lon": 10.753611,
+   "qid": "Q43280",
+   "rank": 1
+  },
+  {
+   "name": "Munch Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.90575,
+   "lon": 10.755306,
+   "qid": "Q844926",
+   "rank": 2
+  },
+  {
+   "name": "Akershus Fortress",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.906606,
+   "lon": 10.736248,
+   "qid": "Q644464",
+   "rank": 3
+  },
+  {
+   "name": "Royal Palace, Oslo",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.917222,
+   "lon": 10.7275,
+   "qid": "Q863932",
+   "rank": 4
+  },
+  {
+   "name": "Vigeland installation",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.927667,
+   "lon": 10.698889,
+   "qid": "Q7460945",
+   "rank": 5
+  },
+  {
+   "name": "Fram Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.903333,
+   "lon": 10.699444,
+   "qid": "Q941250",
+   "rank": 6
+  },
+  {
+   "name": "National Museum of Art, Architecture and Design",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.911667,
+   "lon": 10.729167,
+   "qid": "Q1132918",
+   "rank": 7
+  },
+  {
+   "name": "Aker Brygge",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.909722,
+   "lon": 10.726667,
+   "qid": "Q417409",
+   "rank": 8
+  },
+  {
+   "name": "Viking Ship Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 2,
+   "status": "TEMPORARILY_CLOSED",
+   "lat": 59.90475,
+   "lon": 10.684444,
+   "qid": "Q961220",
+   "rank": 9,
+   "note": "Closed since September 2021, reopening as the Museum of the Viking Age in 2027. Verified on Wikipedia."
+  },
+  {
+   "name": "Holmenkollbakken",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 59.963889,
+   "lon": 10.667778,
+   "qid": "Q33572",
+   "rank": 10
+  }
+ ]
+}

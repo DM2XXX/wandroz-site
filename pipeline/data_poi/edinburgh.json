@@ -1,0 +1,115 @@
+{
+ "city": "edinburgh",
+ "pois": [
+  {
+   "name": "Edinburgh Castle",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.9487,
+   "lon": -3.20073,
+   "qid": "Q212065",
+   "rank": 1
+  },
+  {
+   "name": "Holyrood Palace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.9527,
+   "lon": -3.17229,
+   "qid": "Q505950",
+   "rank": 2
+  },
+  {
+   "name": "Scottish National Gallery",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.950902,
+   "lon": -3.195686,
+   "qid": "Q942713",
+   "rank": 3
+  },
+  {
+   "name": "National Museum of Scotland",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.946944,
+   "lon": -3.19,
+   "qid": "Q1633842",
+   "rank": 4
+  },
+  {
+   "name": "Arthur's Seat",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.944167,
+   "lon": -3.161944,
+   "qid": "Q712311",
+   "rank": 5
+  },
+  {
+   "name": "St Giles' Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.949444,
+   "lon": -3.190833,
+   "qid": "Q1547466",
+   "rank": 6
+  },
+  {
+   "name": "Royal Mile",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.950556,
+   "lon": -3.185556,
+   "qid": "Q852908",
+   "rank": 7
+  },
+  {
+   "name": "Calton Hill",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.955278,
+   "lon": -3.182222,
+   "qid": "Q1199959",
+   "rank": 8
+  },
+  {
+   "name": "Princes Street Gardens",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.95005,
+   "lon": -3.202994,
+   "qid": "Q980646",
+   "rank": 9
+  },
+  {
+   "name": "Dean Village",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 55.952006,
+   "lon": -3.217297,
+   "qid": "Q5246524",
+   "rank": 10
+  }
+ ]
+}

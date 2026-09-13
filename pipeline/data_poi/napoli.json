@@ -1,0 +1,137 @@
+{
+ "city": "napoli",
+ "pois": [
+  {
+   "name": "Teatro di San Carlo",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.837388,
+   "lon": 14.249687,
+   "qid": "Q628491",
+   "rank": 1
+  },
+  {
+   "name": "National Archaeological Museum, Naples",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.853611,
+   "lon": 14.250556,
+   "qid": "Q637248",
+   "rank": 2
+  },
+  {
+   "name": "Castel Nuovo",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.838376,
+   "lon": 14.253807,
+   "qid": "Q781219",
+   "rank": 3
+  },
+  {
+   "name": "Naples Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.852606,
+   "lon": 14.259528,
+   "qid": "Q256486",
+   "rank": 4
+  },
+  {
+   "name": "Royal Palace of Naples",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.836136,
+   "lon": 14.249283,
+   "qid": "Q426339",
+   "rank": 5
+  },
+  {
+   "name": "Castel dell'Ovo",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.828315,
+   "lon": 14.247656,
+   "qid": "Q645041",
+   "rank": 6
+  },
+  {
+   "name": "Certosa di San Martino",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.84341,
+   "lon": 14.241129,
+   "qid": "Q859732",
+   "rank": 7
+  },
+  {
+   "name": "Cappella Sansevero",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.84919,
+   "lon": 14.25488,
+   "qid": "Q897839",
+   "rank": 8
+  },
+  {
+   "name": "Galleria Umberto I",
+   "category": "square",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.838441,
+   "lon": 14.249482,
+   "qid": "Q1007726",
+   "rank": 9
+  },
+  {
+   "name": "Piazza del Plebiscito",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.8359,
+   "lon": 14.2488,
+   "qid": "Q1047594",
+   "rank": 10
+  },
+  {
+   "name": "Spaccanapoli",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.833333,
+   "lon": 14.25,
+   "qid": "Q718973",
+   "rank": 11
+  },
+  {
+   "name": "Via San Gregorio Armeno",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.85018,
+   "lon": 14.25764,
+   "qid": "Q1255785",
+   "rank": 12
+  }
+ ]
+}

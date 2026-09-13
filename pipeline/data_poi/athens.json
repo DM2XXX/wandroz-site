@@ -1,0 +1,137 @@
+{
+ "city": "athens",
+ "pois": [
+  {
+   "name": "Acropolis of Athens",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.971667,
+   "lon": 23.726111,
+   "qid": "Q131013",
+   "rank": 1
+  },
+  {
+   "name": "Panathenaic Stadium",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.968333,
+   "lon": 23.741111,
+   "qid": "Q208811",
+   "rank": 2
+  },
+  {
+   "name": "National Archaeological Museum, Athens",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.989167,
+   "lon": 23.732222,
+   "qid": "Q637187",
+   "rank": 3
+  },
+  {
+   "name": "Mount Lycabettus",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.983056,
+   "lon": 23.746944,
+   "qid": "Q1357713",
+   "rank": 4
+  },
+  {
+   "name": "Temple of Olympian Zeus, Athens",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.969372,
+   "lon": 23.733078,
+   "qid": "Q1123019",
+   "rank": 5
+  },
+  {
+   "name": "Acropolis Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.968417,
+   "lon": 23.728472,
+   "qid": "Q421084",
+   "rank": 6
+  },
+  {
+   "name": "Ancient Agora of Athens",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.975,
+   "lon": 23.7225,
+   "qid": "Q395367",
+   "rank": 7
+  },
+  {
+   "name": "Syntagma Square",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.975556,
+   "lon": 23.734722,
+   "qid": "Q1137997",
+   "rank": 8
+  },
+  {
+   "name": "Monastiraki",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.97639,
+   "lon": 23.72361,
+   "qid": "Q1235440",
+   "rank": 9
+  },
+  {
+   "name": "Plaka",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.972222,
+   "lon": 23.730556,
+   "qid": "Q1231816",
+   "rank": 10
+  },
+  {
+   "name": "Arch of Hadrian, Athens",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.970167,
+   "lon": 23.732,
+   "qid": "Q1567576",
+   "rank": 11
+  },
+  {
+   "name": "Psyri",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 37.97778,
+   "lon": 23.725,
+   "qid": "Q2984834",
+   "rank": 12
+  }
+ ]
+}

@@ -1,0 +1,159 @@
+{
+ "city": "roma",
+ "pois": [
+  {
+   "name": "Colosseum",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.890278,
+   "lon": 12.492222,
+   "qid": "Q10285",
+   "rank": 1
+  },
+  {
+   "name": "St. Peter's Basilica",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.902222,
+   "lon": 12.453417,
+   "qid": "Q12512",
+   "rank": 2
+  },
+  {
+   "name": "Sistine Chapel",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.902956,
+   "lon": 12.454433,
+   "qid": "Q2943",
+   "rank": 3
+  },
+  {
+   "name": "Pantheon",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.898611,
+   "lon": 12.476944,
+   "qid": "Q99309",
+   "rank": 4
+  },
+  {
+   "name": "Roman Forum",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.8922,
+   "lon": 12.4852,
+   "qid": "Q180212",
+   "rank": 5
+  },
+  {
+   "name": "Trevi Fountain",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.900833,
+   "lon": 12.483056,
+   "qid": "Q185382",
+   "rank": 6
+  },
+  {
+   "name": "Vatican Museums",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.906389,
+   "lon": 12.454444,
+   "qid": "Q182955",
+   "rank": 7
+  },
+  {
+   "name": "Palatine Hill",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.888333,
+   "lon": 12.486944,
+   "qid": "Q200642",
+   "rank": 8
+  },
+  {
+   "name": "Castel Sant'Angelo",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.903044,
+   "lon": 12.466307,
+   "qid": "Q486382",
+   "rank": 9
+  },
+  {
+   "name": "Piazza Navona",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.89871,
+   "lon": 12.47316,
+   "qid": "Q463400",
+   "rank": 10
+  },
+  {
+   "name": "Altare della Patria",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.894722,
+   "lon": 12.483056,
+   "qid": "Q506234",
+   "rank": 11
+  },
+  {
+   "name": "Trastevere",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.887222,
+   "lon": 12.465556,
+   "qid": "Q914255",
+   "rank": 12
+  },
+  {
+   "name": "Spanish Steps",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.90611,
+   "lon": 12.48278,
+   "qid": "Q848072",
+   "rank": 13
+  },
+  {
+   "name": "Villa Borghese",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 41.913647,
+   "lon": 12.485104,
+   "qid": "Q678313",
+   "rank": 14
+  }
+ ]
+}

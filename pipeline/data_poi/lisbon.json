@@ -1,0 +1,138 @@
+{
+ "city": "lisbon",
+ "pois": [
+  {
+   "name": "Alfama",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.710662,
+   "lon": -9.132385,
+   "qid": "Q985517",
+   "rank": 1
+  },
+  {
+   "name": "Praça do Comércio",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.7075,
+   "lon": -9.136389,
+   "qid": "Q999002",
+   "rank": 2
+  },
+  {
+   "name": "Lisbon Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.70985,
+   "lon": -9.132983,
+   "qid": "Q432290",
+   "rank": 3
+  },
+  {
+   "name": "São Jorge Castle",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.71389,
+   "lon": -9.13333,
+   "qid": "Q636780",
+   "rank": 4
+  },
+  {
+   "name": "Santa Justa Lift",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.71194,
+   "lon": -9.13917,
+   "qid": "Q168001",
+   "rank": 5
+  },
+  {
+   "name": "Bairro Alto",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.713746,
+   "lon": -9.145193,
+   "qid": "Q652613",
+   "rank": 6
+  },
+  {
+   "name": "Miradouro de Santa Luzia",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.711689,
+   "lon": -9.130209,
+   "qid": "Q6837314",
+   "rank": 7
+  },
+  {
+   "name": "LX Factory",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.70351,
+   "lon": -9.17882,
+   "qid": "Q112628482",
+   "rank": 8,
+   "note": "Only 3 sitelinks, so the ranking never surfaces it. Kept as an editorial call: it is one of the places visitors to Lisbon actually go."
+  },
+  {
+   "name": "Time Out Market Lisboa",
+   "category": "food",
+   "poi_type": "MARKET",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 38.706944,
+   "lon": -9.145556,
+   "qid": "Q28226115",
+   "rank": 9
+  },
+  {
+   "name": "Belém Tower",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 38.691389,
+   "lon": -9.215833,
+   "qid": "Q215003",
+   "rank": 10
+  },
+  {
+   "name": "Jerónimos Monastery",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 38.697846,
+   "lon": -9.205601,
+   "qid": "Q272781",
+   "rank": 11
+  },
+  {
+   "name": "Padrão dos Descobrimentos",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 38.693676,
+   "lon": -9.20569,
+   "qid": "Q1133712",
+   "rank": 12
+  }
+ ]
+}

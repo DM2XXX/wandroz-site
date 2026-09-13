@@ -1,0 +1,159 @@
+{
+ "city": "paris",
+ "pois": [
+  {
+   "name": "Eiffel Tower",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.858296,
+   "lon": 2.294479,
+   "qid": "Q243",
+   "rank": 1
+  },
+  {
+   "name": "Louvre",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.861111,
+   "lon": 2.335833,
+   "qid": "Q19675",
+   "rank": 2
+  },
+  {
+   "name": "Notre-Dame de Paris",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.853,
+   "lon": 2.3498,
+   "qid": "Q2981",
+   "rank": 3
+  },
+  {
+   "name": "Musée d'Orsay",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.859972,
+   "lon": 2.326527,
+   "qid": "Q23402",
+   "rank": 4
+  },
+  {
+   "name": "Champs-Élysées",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.86967,
+   "lon": 2.30786,
+   "qid": "Q550",
+   "rank": 5
+  },
+  {
+   "name": "Arc de Triomphe",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.87378,
+   "lon": 2.29504,
+   "qid": "Q64436",
+   "rank": 6
+  },
+  {
+   "name": "Montmartre",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.886944,
+   "lon": 2.341111,
+   "qid": "Q186115",
+   "rank": 7
+  },
+  {
+   "name": "Centre Pompidou",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.860642,
+   "lon": 2.352245,
+   "qid": "Q178065",
+   "rank": 8
+  },
+  {
+   "name": "Place de la Concorde",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.865633,
+   "lon": 2.321236,
+   "qid": "Q189503",
+   "rank": 9
+  },
+  {
+   "name": "Panthéon",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.846198,
+   "lon": 2.346105,
+   "qid": "Q188856",
+   "rank": 10
+  },
+  {
+   "name": "Sacré-Cœur, Paris",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.88665,
+   "lon": 2.34295,
+   "qid": "Q28785",
+   "rank": 11
+  },
+  {
+   "name": "Sainte-Chapelle",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.855369,
+   "lon": 2.345028,
+   "qid": "Q193193",
+   "rank": 12
+  },
+  {
+   "name": "Jardin du Luxembourg",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.846944,
+   "lon": 2.337222,
+   "qid": "Q309458",
+   "rank": 13
+  },
+  {
+   "name": "Le Marais",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.86,
+   "lon": 2.36083,
+   "qid": "Q749573",
+   "rank": 14
+  }
+ ]
+}

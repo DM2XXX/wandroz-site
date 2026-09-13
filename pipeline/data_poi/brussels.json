@@ -1,0 +1,115 @@
+{
+ "city": "brussels",
+ "pois": [
+  {
+   "name": "Manneken Pis",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.844984,
+   "lon": 4.349988,
+   "qid": "Q152072",
+   "rank": 1
+  },
+  {
+   "name": "Grand-Place",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.846708,
+   "lon": 4.352538,
+   "qid": "Q215429",
+   "rank": 2
+  },
+  {
+   "name": "St. Michael and St. Gudula Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.847778,
+   "lon": 4.360278,
+   "qid": "Q269654",
+   "rank": 3
+  },
+  {
+   "name": "Royal Palace of Brussels",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.841667,
+   "lon": 4.362222,
+   "qid": "Q635307",
+   "rank": 4
+  },
+  {
+   "name": "Palace of Justice, Brussels",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.836667,
+   "lon": 4.351667,
+   "qid": "Q850537",
+   "rank": 5
+  },
+  {
+   "name": "Parc du Cinquantenaire",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.840556,
+   "lon": 4.392778,
+   "qid": "Q1101790",
+   "rank": 6
+  },
+  {
+   "name": "Royal Galleries of Saint-Hubert",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.84778,
+   "lon": 4.355,
+   "qid": "Q1491935",
+   "rank": 7
+  },
+  {
+   "name": "Mont des Arts",
+   "category": "view",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.844212,
+   "lon": 4.357606,
+   "qid": "Q1865794",
+   "rank": 8
+  },
+  {
+   "name": "Magritte Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.842418,
+   "lon": 4.358796,
+   "qid": "Q943581",
+   "rank": 9
+  },
+  {
+   "name": "Atomium",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 50.895,
+   "lon": 4.341389,
+   "qid": "Q180901",
+   "rank": 10
+  }
+ ]
+}

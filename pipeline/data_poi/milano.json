@@ -1,0 +1,127 @@
+{
+ "city": "milano",
+ "pois": [
+  {
+   "name": "Milan Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.463968,
+   "lon": 9.190578,
+   "qid": "Q18068",
+   "rank": 1
+  },
+  {
+   "name": "La Scala",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.4675,
+   "lon": 9.189167,
+   "qid": "Q5471",
+   "rank": 2
+  },
+  {
+   "name": "Santa Maria delle Grazie",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.465833,
+   "lon": 9.171111,
+   "qid": "Q244952",
+   "rank": 3
+  },
+  {
+   "name": "Sforza Castle",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.471005,
+   "lon": 9.179693,
+   "qid": "Q23354",
+   "rank": 4
+  },
+  {
+   "name": "Galleria Vittorio Emanuele II",
+   "category": "square",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.465468,
+   "lon": 9.1897,
+   "qid": "Q51112",
+   "rank": 5
+  },
+  {
+   "name": "Pinacoteca di Brera",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.471955,
+   "lon": 9.187815,
+   "qid": "Q150066",
+   "rank": 6
+  },
+  {
+   "name": "Parco Sempione",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.473333,
+   "lon": 9.175278,
+   "qid": "Q133963",
+   "rank": 7
+  },
+  {
+   "name": "Cimitero Monumentale",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.485768,
+   "lon": 9.179072,
+   "qid": "Q608405",
+   "rank": 8
+  },
+  {
+   "name": "Arco della Pace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.475697,
+   "lon": 9.172408,
+   "qid": "Q776576",
+   "rank": 9
+  },
+  {
+   "name": "Navigli",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.45292,
+   "lon": 9.17669,
+   "qid": "Q41868039",
+   "rank": 10,
+   "note": "Was resolved to Cernusco sul Naviglio, a different town 12 km east, whose 56 sitelinks pushed it up the ranking. Now the Darsena, the heart of the Navigli district. Three sitelinks, so it is here on judgement."
+  },
+  {
+   "name": "Piazza Gae Aulenti",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.483484,
+   "lon": 9.189387,
+   "qid": "Q3906910",
+   "rank": 11
+  }
+ ]
+}

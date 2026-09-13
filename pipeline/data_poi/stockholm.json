@@ -1,0 +1,126 @@
+{
+ "city": "stockholm",
+ "pois": [
+  {
+   "name": "Gamla stan",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.325,
+   "lon": 18.070833,
+   "qid": "Q579854",
+   "rank": 1
+  },
+  {
+   "name": "Stockholm Palace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.326667,
+   "lon": 18.071667,
+   "qid": "Q750444",
+   "rank": 2
+  },
+  {
+   "name": "Vasa Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.32807,
+   "lon": 18.09139,
+   "qid": "Q901371",
+   "rank": 3
+  },
+  {
+   "name": "Skansen",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.32445,
+   "lon": 18.101,
+   "qid": "Q725108",
+   "rank": 4
+  },
+  {
+   "name": "Djurgården",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.325,
+   "lon": 18.116667,
+   "qid": "Q831527",
+   "rank": 5
+  },
+  {
+   "name": "Stockholm City Hall",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.3275,
+   "lon": 18.054722,
+   "qid": "Q648483",
+   "rank": 6
+  },
+  {
+   "name": "Moderna Museet",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.32639,
+   "lon": 18.08361,
+   "qid": "Q1274511",
+   "rank": 7
+  },
+  {
+   "name": "ABBA The Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.325,
+   "lon": 18.096389,
+   "qid": "Q2743819",
+   "rank": 8
+  },
+  {
+   "name": "Östermalm Market Hall",
+   "category": "food",
+   "poi_type": "MARKET",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.33597,
+   "lon": 18.07808,
+   "qid": "Q298475",
+   "rank": 9
+  },
+  {
+   "name": "Monteliusvägen",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 59.32072,
+   "lon": 18.06031,
+   "qid": "Q10588783",
+   "rank": 10
+  },
+  {
+   "name": "Drottningholm Palace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 1,
+   "status": "OPEN",
+   "lat": 59.321694,
+   "lon": 17.886383,
+   "qid": "Q208559",
+   "rank": 11
+  }
+ ]
+}

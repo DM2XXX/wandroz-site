@@ -1,0 +1,137 @@
+{
+ "city": "madrid",
+ "pois": [
+  {
+   "name": "Museo del Prado",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.413889,
+   "lon": -3.692222,
+   "qid": "Q160112",
+   "rank": 1
+  },
+  {
+   "name": "Museo Reina Sofía",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.408571,
+   "lon": -3.693996,
+   "qid": "Q460889",
+   "rank": 2
+  },
+  {
+   "name": "Royal Palace of Madrid",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.417955,
+   "lon": -3.714312,
+   "qid": "Q171517",
+   "rank": 3
+  },
+  {
+   "name": "Plaza Mayor, Madrid",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.415456,
+   "lon": -3.707381,
+   "qid": "Q1123493",
+   "rank": 4
+  },
+  {
+   "name": "Museo Thyssen-Bornemisza",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.416041,
+   "lon": -3.694925,
+   "qid": "Q176251",
+   "rank": 5
+  },
+  {
+   "name": "Puerta del Sol",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.41694,
+   "lon": -3.70361,
+   "qid": "Q427163",
+   "rank": 6
+  },
+  {
+   "name": "Buen Retiro Park",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.415,
+   "lon": -3.683889,
+   "qid": "Q1131807",
+   "rank": 7
+  },
+  {
+   "name": "Temple of Debod",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.424053,
+   "lon": -3.717778,
+   "qid": "Q1140249",
+   "rank": 8
+  },
+  {
+   "name": "Gran Vía",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.42,
+   "lon": -3.70361,
+   "qid": "Q1324163",
+   "rank": 9
+  },
+  {
+   "name": "Plaza de Cibeles",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.41917,
+   "lon": -3.69306,
+   "qid": "Q1537446",
+   "rank": 10
+  },
+  {
+   "name": "Mercado de San Miguel",
+   "category": "food",
+   "poi_type": "MARKET",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 40.415438,
+   "lon": -3.708869,
+   "qid": "Q6770825",
+   "rank": 11
+  },
+  {
+   "name": "Santiago Bernabéu Stadium",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 40.45306,
+   "lon": -3.68835,
+   "qid": "Q164027",
+   "rank": 12
+  }
+ ]
+}

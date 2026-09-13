@@ -1,0 +1,115 @@
+{
+ "city": "dublin",
+ "pois": [
+  {
+   "name": "Trinity College Dublin",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.3444,
+   "lon": -6.2577,
+   "qid": "Q258464",
+   "rank": 1
+  },
+  {
+   "name": "Dublin Castle",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.343109,
+   "lon": -6.267394,
+   "qid": "Q742767",
+   "rank": 2
+  },
+  {
+   "name": "St Patrick's Cathedral, Dublin",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.339444,
+   "lon": -6.271389,
+   "qid": "Q846365",
+   "rank": 3
+  },
+  {
+   "name": "Phoenix Park",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.355789,
+   "lon": -6.329792,
+   "qid": "Q377937",
+   "rank": 4
+  },
+  {
+   "name": "Christ Church Cathedral, Dublin",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.343056,
+   "lon": -6.271389,
+   "qid": "Q1067803",
+   "rank": 5
+  },
+  {
+   "name": "National Museum of Ireland",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.340278,
+   "lon": -6.254722,
+   "qid": "Q1672840",
+   "rank": 6
+  },
+  {
+   "name": "Kilmainham Gaol",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.341667,
+   "lon": -6.309444,
+   "qid": "Q1049842",
+   "rank": 7
+  },
+  {
+   "name": "Temple Bar",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.345588,
+   "lon": -6.262778,
+   "qid": "Q920229",
+   "rank": 8
+  },
+  {
+   "name": "Ha'penny Bridge",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.3461,
+   "lon": -6.263,
+   "qid": "Q1034624",
+   "rank": 9
+  },
+  {
+   "name": "Guinness Storehouse",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 53.341874,
+   "lon": -6.286709,
+   "qid": "Q261012",
+   "rank": 10
+  }
+ ]
+}

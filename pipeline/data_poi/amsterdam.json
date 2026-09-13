@@ -1,0 +1,126 @@
+{
+ "city": "amsterdam",
+ "pois": [
+  {
+   "name": "Rijksmuseum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.36,
+   "lon": 4.885278,
+   "qid": "Q190804",
+   "rank": 1
+  },
+  {
+   "name": "Van Gogh Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.358333,
+   "lon": 4.881111,
+   "qid": "Q224124",
+   "rank": 2
+  },
+  {
+   "name": "Anne Frank House",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.375344,
+   "lon": 4.884259,
+   "qid": "Q165366",
+   "rank": 3
+  },
+  {
+   "name": "Royal Palace of Amsterdam",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.373167,
+   "lon": 4.891361,
+   "qid": "Q1056152",
+   "rank": 4
+  },
+  {
+   "name": "Dam Square",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.373056,
+   "lon": 4.892778,
+   "qid": "Q839050",
+   "rank": 5
+  },
+  {
+   "name": "Rembrandt House Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.369444,
+   "lon": 4.901389,
+   "qid": "Q277316",
+   "rank": 6
+  },
+  {
+   "name": "Vondelpark",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.356944,
+   "lon": 4.866389,
+   "qid": "Q1419691",
+   "rank": 7
+  },
+  {
+   "name": "Jordaan",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.37917,
+   "lon": 4.88028,
+   "qid": "Q1401387",
+   "rank": 8
+  },
+  {
+   "name": "Grachtengordel",
+   "category": "view",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.366389,
+   "lon": 4.885833,
+   "qid": "Q478707",
+   "rank": 9
+  },
+  {
+   "name": "Heineken Experience",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.35778,
+   "lon": 4.89111,
+   "qid": "Q2087161",
+   "rank": 10
+  },
+  {
+   "name": "Begijnhof, Amsterdam",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.369444,
+   "lon": 4.89,
+   "qid": "Q1629214",
+   "rank": 11
+  }
+ ]
+}

@@ -1,0 +1,137 @@
+{
+ "city": "venezia",
+ "pois": [
+  {
+   "name": "St Mark's Basilica",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.434444,
+   "lon": 12.339722,
+   "qid": "Q172988",
+   "rank": 1
+  },
+  {
+   "name": "Doge's Palace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.433667,
+   "lon": 12.340417,
+   "qid": "Q189883",
+   "rank": 2
+  },
+  {
+   "name": "Piazza San Marco",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.434,
+   "lon": 12.338,
+   "qid": "Q217527",
+   "rank": 3
+  },
+  {
+   "name": "Grand Canal",
+   "category": "view",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.442222,
+   "lon": 12.326389,
+   "qid": "Q309243",
+   "rank": 4
+  },
+  {
+   "name": "Rialto Bridge",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.438008,
+   "lon": 12.335639,
+   "qid": "Q52505",
+   "rank": 5
+  },
+  {
+   "name": "Bridge of Sighs",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.434056,
+   "lon": 12.340861,
+   "qid": "Q52517",
+   "rank": 6
+  },
+  {
+   "name": "Santa Maria della Salute",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.43057,
+   "lon": 12.33473,
+   "qid": "Q52531",
+   "rank": 7
+  },
+  {
+   "name": "La Fenice",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.4337,
+   "lon": 12.3339,
+   "qid": "Q223942",
+   "rank": 8
+  },
+  {
+   "name": "Gallerie dell'Accademia",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.431078,
+   "lon": 12.328139,
+   "qid": "Q338330",
+   "rank": 9
+  },
+  {
+   "name": "Peggy Guggenheim Collection",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.430821,
+   "lon": 12.331537,
+   "qid": "Q1049033",
+   "rank": 10
+  },
+  {
+   "name": "Murano",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 45.4575,
+   "lon": 12.353611,
+   "qid": "Q52437",
+   "rank": 11
+  },
+  {
+   "name": "Burano",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 1,
+   "status": "OPEN",
+   "lat": 45.485556,
+   "lon": 12.4175,
+   "qid": "Q52439",
+   "rank": 12
+  }
+ ]
+}

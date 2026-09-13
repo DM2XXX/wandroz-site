@@ -1,0 +1,126 @@
+{
+ "city": "krakow",
+ "pois": [
+  {
+   "name": "Wawel Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.054639,
+   "lon": 19.935417,
+   "qid": "Q638519",
+   "rank": 1
+  },
+  {
+   "name": "St. Mary's Basilica, Kraków",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.061667,
+   "lon": 19.939167,
+   "qid": "Q1143171",
+   "rank": 2
+  },
+  {
+   "name": "Wawel Castle",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.0544,
+   "lon": 19.9366,
+   "qid": "Q18820",
+   "rank": 3
+  },
+  {
+   "name": "Main Square, Kraków",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.06167,
+   "lon": 19.93722,
+   "qid": "Q770631",
+   "rank": 4
+  },
+  {
+   "name": "Kazimierz",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.051667,
+   "lon": 19.944722,
+   "qid": "Q93706",
+   "rank": 5
+  },
+  {
+   "name": "Oskar Schindler's Enamel Factory",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.0475,
+   "lon": 19.961778,
+   "qid": "Q286522",
+   "rank": 6
+  },
+  {
+   "name": "Kraków Cloth Hall",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.061678,
+   "lon": 19.937384,
+   "qid": "Q1072350",
+   "rank": 7
+  },
+  {
+   "name": "Kraków Barbican",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.065531,
+   "lon": 19.941656,
+   "qid": "Q807309",
+   "rank": 8
+  },
+  {
+   "name": "St. Florian's Gate",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.06472,
+   "lon": 19.94139,
+   "qid": "Q1363724",
+   "rank": 9
+  },
+  {
+   "name": "Planty Park",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.065556,
+   "lon": 19.94,
+   "qid": "Q1945780",
+   "rank": 10
+  },
+  {
+   "name": "Ghetto Heroes Square",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.04667,
+   "lon": 19.95417,
+   "qid": "Q134445262",
+   "rank": 11
+  }
+ ]
+}

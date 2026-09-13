@@ -1,0 +1,126 @@
+{
+ "city": "praha",
+ "pois": [
+  {
+   "name": "Prague Castle",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.09,
+   "lon": 14.4,
+   "qid": "Q193369",
+   "rank": 1
+  },
+  {
+   "name": "Charles Bridge",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.086389,
+   "lon": 14.411944,
+   "qid": "Q204871",
+   "rank": 2
+  },
+  {
+   "name": "St. Vitus Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.090833,
+   "lon": 14.400556,
+   "qid": "Q5949",
+   "rank": 3
+  },
+  {
+   "name": "Dancing House",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.075556,
+   "lon": 14.414167,
+   "qid": "Q244816",
+   "rank": 4
+  },
+  {
+   "name": "Prague astronomical clock",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.08699,
+   "lon": 14.4207,
+   "qid": "Q729370",
+   "rank": 5
+  },
+  {
+   "name": "Wenceslas Square",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.082308,
+   "lon": 14.426141,
+   "qid": "Q847613",
+   "rank": 6
+  },
+  {
+   "name": "Vyšehrad",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.064427,
+   "lon": 14.417644,
+   "qid": "Q616334",
+   "rank": 7
+  },
+  {
+   "name": "Old Town Square",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.0875,
+   "lon": 14.421389,
+   "qid": "Q421678",
+   "rank": 8
+  },
+  {
+   "name": "Josefov",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.090278,
+   "lon": 14.419444,
+   "qid": "Q753292",
+   "rank": 9
+  },
+  {
+   "name": "Petřín",
+   "category": "view",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.081667,
+   "lon": 14.394444,
+   "qid": "Q427604",
+   "rank": 10
+  },
+  {
+   "name": "Lennon Wall",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 50.086242,
+   "lon": 14.406947,
+   "qid": "Q1630131",
+   "rank": 11
+  }
+ ]
+}

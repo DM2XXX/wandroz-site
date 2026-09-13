@@ -1,0 +1,127 @@
+{
+ "city": "zurigo",
+ "pois": [
+  {
+   "name": "Grossmünster",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.37,
+   "lon": 8.544167,
+   "qid": "Q684948",
+   "rank": 1
+  },
+  {
+   "name": "Zürich Opera House",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.365,
+   "lon": 8.546944,
+   "qid": "Q670406",
+   "rank": 2
+  },
+  {
+   "name": "Kunsthaus Zürich",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.370278,
+   "lon": 8.548056,
+   "qid": "Q685038",
+   "rank": 3
+  },
+  {
+   "name": "Swiss National Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.379167,
+   "lon": 8.539722,
+   "qid": "Q691896",
+   "rank": 4
+  },
+  {
+   "name": "Uetliberg",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.349722,
+   "lon": 8.490278,
+   "qid": "Q16524",
+   "rank": 5
+  },
+  {
+   "name": "Fraumünster",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.369722,
+   "lon": 8.541111,
+   "qid": "Q690944",
+   "rank": 6
+  },
+  {
+   "name": "St. Peter, Zurich",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.371097,
+   "lon": 8.540687,
+   "qid": "Q690687",
+   "rank": 7
+  },
+  {
+   "name": "Bahnhofstrasse",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.373681,
+   "lon": 8.538523,
+   "qid": "Q675026",
+   "rank": 8
+  },
+  {
+   "name": "Lindenhof",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.373,
+   "lon": 8.5412,
+   "qid": "Q10987378",
+   "rank": 9
+  },
+  {
+   "name": "Lake Zurich",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.36694,
+   "lon": 8.54083,
+   "qid": "Q1021608",
+   "rank": 10,
+   "note": "Was a generic point on the water. Bürkliplatz is the lakefront people actually walk to."
+  },
+  {
+   "name": "Niederdorf",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 47.3733,
+   "lon": 8.545,
+   "qid": "Q455735",
+   "rank": 11
+  }
+ ]
+}

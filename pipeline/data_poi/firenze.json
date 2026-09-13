@@ -1,0 +1,148 @@
+{
+ "city": "firenze",
+ "pois": [
+  {
+   "name": "Uffizi Gallery",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.768333,
+   "lon": 11.255278,
+   "qid": "Q51252",
+   "rank": 1
+  },
+  {
+   "name": "Florence Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.773056,
+   "lon": 11.256944,
+   "qid": "Q191739",
+   "rank": 2
+  },
+  {
+   "name": "Palazzo Pitti",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.765153,
+   "lon": 11.250008,
+   "qid": "Q29286",
+   "rank": 3
+  },
+  {
+   "name": "Ponte Vecchio",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.767989,
+   "lon": 11.253192,
+   "qid": "Q208633",
+   "rank": 4
+  },
+  {
+   "name": "Palazzo Vecchio",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.769444,
+   "lon": 11.256111,
+   "qid": "Q271928",
+   "rank": 5
+  },
+  {
+   "name": "Basilica of Santa Croce",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.76845,
+   "lon": 11.26274,
+   "qid": "Q51177",
+   "rank": 6
+  },
+  {
+   "name": "Florence Baptistery",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.773056,
+   "lon": 11.255,
+   "qid": "Q732511",
+   "rank": 7
+  },
+  {
+   "name": "Piazza della Signoria",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.769722,
+   "lon": 11.255556,
+   "qid": "Q849846",
+   "rank": 8
+  },
+  {
+   "name": "Boboli Gardens",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.765275,
+   "lon": 11.249968,
+   "qid": "Q888825",
+   "rank": 9
+  },
+  {
+   "name": "Galleria dell'Accademia",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.776944,
+   "lon": 11.258889,
+   "qid": "Q10855544",
+   "rank": 10
+  },
+  {
+   "name": "Giotto's Campanile",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.772806,
+   "lon": 11.255806,
+   "qid": "Q1140023",
+   "rank": 11
+  },
+  {
+   "name": "Medici Chapel",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.775204,
+   "lon": 11.253117,
+   "qid": "Q1357573",
+   "rank": 12
+  },
+  {
+   "name": "Piazzale Michelangelo",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 43.76292,
+   "lon": 11.26516,
+   "qid": "Q1348158",
+   "rank": 13
+  }
+ ]
+}

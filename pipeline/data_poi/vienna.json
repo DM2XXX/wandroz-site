@@ -1,0 +1,148 @@
+{
+ "city": "vienna",
+ "pois": [
+  {
+   "name": "Schönbrunn Palace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.18479,
+   "lon": 16.31227,
+   "qid": "Q131330",
+   "rank": 1
+  },
+  {
+   "name": "Belvedere, Vienna",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.1934,
+   "lon": 16.380519,
+   "qid": "Q211818",
+   "rank": 2
+  },
+  {
+   "name": "St. Stephen's Cathedral, Vienna",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.208427,
+   "lon": 16.373256,
+   "qid": "Q5943",
+   "rank": 3
+  },
+  {
+   "name": "Hofburg",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.206389,
+   "lon": 16.365278,
+   "qid": "Q46242",
+   "rank": 4
+  },
+  {
+   "name": "Vienna State Opera",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.203333,
+   "lon": 16.369167,
+   "qid": "Q209937",
+   "rank": 5
+  },
+  {
+   "name": "Kunsthistorisches Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.203881,
+   "lon": 16.3616,
+   "qid": "Q95569",
+   "rank": 6
+  },
+  {
+   "name": "Albertina",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.204722,
+   "lon": 16.368333,
+   "qid": "Q371908",
+   "rank": 7
+  },
+  {
+   "name": "Karlskirche",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.198281,
+   "lon": 16.371881,
+   "qid": "Q408847",
+   "rank": 8
+  },
+  {
+   "name": "Vienna City Hall",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.2108,
+   "lon": 16.3574,
+   "qid": "Q686468",
+   "rank": 9
+  },
+  {
+   "name": "Hundertwasserhaus",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.2075,
+   "lon": 16.3939,
+   "qid": "Q493126",
+   "rank": 10
+  },
+  {
+   "name": "MuseumsQuartier",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.20333,
+   "lon": 16.35889,
+   "qid": "Q699943",
+   "rank": 11
+  },
+  {
+   "name": "Wiener Riesenrad",
+   "category": "view",
+   "poi_type": "VIEWPOINT",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.216831,
+   "lon": 16.395919,
+   "qid": "Q697578",
+   "rank": 12
+  },
+  {
+   "name": "Naschmarkt",
+   "category": "food",
+   "poi_type": "MARKET",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.1989,
+   "lon": 16.3636,
+   "qid": "Q417645",
+   "rank": 13
+  }
+ ]
+}

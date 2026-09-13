@@ -1,0 +1,159 @@
+{
+ "city": "london",
+ "pois": [
+  {
+   "name": "British Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.519444,
+   "lon": -0.126944,
+   "qid": "Q6373",
+   "rank": 1
+  },
+  {
+   "name": "Buckingham Palace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.501,
+   "lon": -0.142,
+   "qid": "Q42182",
+   "rank": 2
+  },
+  {
+   "name": "Westminster Abbey",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.4994,
+   "lon": -0.127367,
+   "qid": "Q5933",
+   "rank": 3
+  },
+  {
+   "name": "Tower of London",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.5082,
+   "lon": -0.076198,
+   "qid": "Q62378",
+   "rank": 4
+  },
+  {
+   "name": "Big Ben",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.50067,
+   "lon": -0.12449,
+   "qid": "Q41225",
+   "rank": 5
+  },
+  {
+   "name": "Tower Bridge",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.505556,
+   "lon": -0.075278,
+   "qid": "Q83125",
+   "rank": 6
+  },
+  {
+   "name": "London Eye",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.503333,
+   "lon": -0.119722,
+   "qid": "Q160659",
+   "rank": 7
+  },
+  {
+   "name": "St Paul's Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.513778,
+   "lon": -0.098306,
+   "qid": "Q173882",
+   "rank": 8
+  },
+  {
+   "name": "Trafalgar Square",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.508056,
+   "lon": -0.128056,
+   "qid": "Q129143",
+   "rank": 9
+  },
+  {
+   "name": "National Gallery",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.508889,
+   "lon": -0.128333,
+   "qid": "Q180788",
+   "rank": 10
+  },
+  {
+   "name": "Hyde Park",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.508611,
+   "lon": -0.163611,
+   "qid": "Q123738",
+   "rank": 11
+  },
+  {
+   "name": "Tate Modern",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.507778,
+   "lon": -0.099444,
+   "qid": "Q193375",
+   "rank": 12
+  },
+  {
+   "name": "Covent Garden",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 51.5125,
+   "lon": -0.1225,
+   "qid": "Q55019",
+   "rank": 13
+  },
+  {
+   "name": "Natural History Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 51.496111,
+   "lon": -0.176111,
+   "qid": "Q309388",
+   "rank": 14
+  }
+ ]
+}

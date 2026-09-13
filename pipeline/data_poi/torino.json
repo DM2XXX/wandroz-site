@@ -1,0 +1,137 @@
+{
+ "city": "torino",
+ "pois": [
+  {
+   "name": "Museo Egizio",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.068333,
+   "lon": 7.684444,
+   "qid": "Q19877",
+   "rank": 1
+  },
+  {
+   "name": "Mole Antonelliana",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.06898,
+   "lon": 7.69324,
+   "qid": "Q201902",
+   "rank": 2
+  },
+  {
+   "name": "Turin Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.07332,
+   "lon": 7.685435,
+   "qid": "Q958699",
+   "rank": 3
+  },
+  {
+   "name": "Royal Palace of Turin",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.07283,
+   "lon": 7.686333,
+   "qid": "Q19824",
+   "rank": 4
+  },
+  {
+   "name": "Palazzo Madama",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.070944,
+   "lon": 7.685778,
+   "qid": "Q19826",
+   "rank": 5
+  },
+  {
+   "name": "Parco del Valentino",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.054,
+   "lon": 7.686,
+   "qid": "Q1061804",
+   "rank": 6
+  },
+  {
+   "name": "Piazza Castello",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.0708,
+   "lon": 7.6858,
+   "qid": "Q3902175",
+   "rank": 7
+  },
+  {
+   "name": "Palatine Towers",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.075,
+   "lon": 7.6847,
+   "qid": "Q1054755",
+   "rank": 8
+  },
+  {
+   "name": "Museo dell'Automobile",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.03185,
+   "lon": 7.67348,
+   "qid": "Q2836365",
+   "rank": 9
+  },
+  {
+   "name": "Piazza San Carlo",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 45.0677,
+   "lon": 7.68257,
+   "qid": "Q3902294",
+   "rank": 10
+  },
+  {
+   "name": "Basilica of Superga",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 45.08062,
+   "lon": 7.767366,
+   "qid": "Q1145261",
+   "rank": 11
+  },
+  {
+   "name": "Palazzina di caccia of Stupinigi",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 1,
+   "status": "OPEN",
+   "lat": 44.995,
+   "lon": 7.603889,
+   "qid": "Q19834",
+   "rank": 12
+  }
+ ]
+}

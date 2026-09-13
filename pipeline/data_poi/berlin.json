@@ -1,0 +1,137 @@
+{
+ "city": "berlin",
+ "pois": [
+  {
+   "name": "Brandenburg Gate",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.516272,
+   "lon": 13.377722,
+   "qid": "Q82425",
+   "rank": 1
+  },
+  {
+   "name": "Reichstag building",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.518611,
+   "lon": 13.376111,
+   "qid": "Q151897",
+   "rank": 2
+  },
+  {
+   "name": "Museum Island",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.521389,
+   "lon": 13.395556,
+   "qid": "Q151963",
+   "rank": 3
+  },
+  {
+   "name": "Fernsehturm Berlin",
+   "category": "view",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.520833,
+   "lon": 13.409444,
+   "qid": "Q151356",
+   "rank": 4
+  },
+  {
+   "name": "Berlin Cathedral",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.519167,
+   "lon": 13.401111,
+   "qid": "Q154563",
+   "rank": 5
+  },
+  {
+   "name": "Checkpoint Charlie",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.5075,
+   "lon": 13.390278,
+   "qid": "Q68689",
+   "rank": 6
+  },
+  {
+   "name": "Memorial to the Murdered Jews of Europe",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.513889,
+   "lon": 13.378889,
+   "qid": "Q160700",
+   "rank": 7
+  },
+  {
+   "name": "Tiergarten",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.516667,
+   "lon": 13.366667,
+   "qid": "Q694020",
+   "rank": 8
+  },
+  {
+   "name": "Gendarmenmarkt",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.513611,
+   "lon": 13.392778,
+   "qid": "Q170103",
+   "rank": 9
+  },
+  {
+   "name": "East Side Gallery",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.503056,
+   "lon": 13.444722,
+   "qid": "Q313746",
+   "rank": 10
+  },
+  {
+   "name": "Topography of Terror",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 52.5064,
+   "lon": 13.3837,
+   "qid": "Q819081",
+   "rank": 11
+  },
+  {
+   "name": "Charlottenburg Palace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 52.521111,
+   "lon": 13.295833,
+   "qid": "Q154996",
+   "rank": 12
+  }
+ ]
+}

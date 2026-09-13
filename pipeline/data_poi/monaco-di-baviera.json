@@ -1,0 +1,137 @@
+{
+ "city": "monaco-di-baviera",
+ "pois": [
+  {
+   "name": "Deutsches Museum",
+   "category": "art",
+   "poi_type": "MUSEUM",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.13,
+   "lon": 11.583333,
+   "qid": "Q131617",
+   "rank": 1
+  },
+  {
+   "name": "Alte Pinakothek",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.148291,
+   "lon": 11.569985,
+   "qid": "Q154568",
+   "rank": 2
+  },
+  {
+   "name": "Frauenkirche, Munich",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.138579,
+   "lon": 11.573616,
+   "qid": "Q167193",
+   "rank": 3
+  },
+  {
+   "name": "English Garden",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.152778,
+   "lon": 11.591944,
+   "qid": "Q260223",
+   "rank": 4
+  },
+  {
+   "name": "Marienplatz",
+   "category": "square",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.137222,
+   "lon": 11.575278,
+   "qid": "Q252648",
+   "rank": 5
+  },
+  {
+   "name": "New Town Hall, Munich",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.137778,
+   "lon": 11.575833,
+   "qid": "Q152979",
+   "rank": 6
+  },
+  {
+   "name": "Munich Residenz",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.141049,
+   "lon": 11.578714,
+   "qid": "Q686548",
+   "rank": 7
+  },
+  {
+   "name": "Olympiapark",
+   "category": "green",
+   "poi_type": "PARK",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.17,
+   "lon": 11.551667,
+   "qid": "Q383296",
+   "rank": 8
+  },
+  {
+   "name": "Viktualienmarkt",
+   "category": "food",
+   "poi_type": "MARKET",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.1353,
+   "lon": 11.5761,
+   "qid": "Q686629",
+   "rank": 9
+  },
+  {
+   "name": "Hofbräuhaus am Platzl",
+   "category": "night",
+   "poi_type": "AREA",
+   "map_priority": 3,
+   "status": "OPEN",
+   "lat": 48.137778,
+   "lon": 11.579722,
+   "qid": "Q152971",
+   "rank": 10
+  },
+  {
+   "name": "Nymphenburg Palace",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 48.158056,
+   "lon": 11.503611,
+   "qid": "Q131631",
+   "rank": 11
+  },
+  {
+   "name": "BMW Welt",
+   "category": "art",
+   "poi_type": "LANDMARK",
+   "map_priority": 2,
+   "status": "OPEN",
+   "lat": 48.17694,
+   "lon": 11.55667,
+   "qid": "Q699614",
+   "rank": 12
+  }
+ ]
+}
