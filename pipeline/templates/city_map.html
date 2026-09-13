@@ -85,9 +85,19 @@
     <div class="city-switch-wrap">
       <label for="citySwitch">City</label>
       <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
-        {% for c in city_links %}
+        {%- if city_country_links %}
+        {%- for country in city_country_links %}
+        <optgroup label="{{ country.flag }} {{ country.name }}">
+          {%- for c in country.cities %}
+          <option value="{{ c.url }}" {% if c.url == canonical_url %}selected{% endif %}>{{ c.label }}</option>
+          {%- endfor %}
+        </optgroup>
+        {%- endfor %}
+        {%- else %}
+        {%- for c in city_links %}
         <option value="{{ c.url }}" {% if c.url == canonical_url %}selected{% endif %}>{{ c.label }}</option>
-        {% endfor %}
+        {%- endfor %}
+        {%- endif %}
       </select>
     </div>
     {% if show_toggle %}
