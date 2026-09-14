@@ -96,8 +96,12 @@
   /* I filtri restano raggiungibili mentre si guarda la mappa, invece di finire
      fuori schermo appena si scorre: prima non si poteva cambiare filtro senza
      prima uscire dalla mappa, che sul telefono e' il gesto piu' difficile. */
+  /* Prima era sticky a top:0 con z-index 1100, cioe' piu' in alto dell'header:
+     appena si scorreva, si parcheggiava sopra il logo e la navigazione. Due
+     cose congelate che si coprivano a vicenda. Ora si ferma sotto l'header e
+     insieme fanno una fascia sola. */
   .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
-             position:sticky; top:0; z-index:1100; background:rgba(247,248,250,.94);
+             position:sticky; top:var(--hdr, 0px); z-index:25; background:rgba(247,248,250,.96);
              backdrop-filter:blur(6px); }
   .poi-reset { position:absolute; right:14px; top:14px; z-index:1000; border:1px solid var(--line);
                background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
@@ -816,6 +820,17 @@
   // livello buttato via vuol dire il 21% di dimensione in meno su entrambi i
   // lati — a mappa ferma, con lo stesso spazio a disposizione. Con lo zoom
   // frazionario l'inquadratura e' quella giusta e basta.
+  // Misura l'header e la pubblica come --hdr, cosi' la barra dei filtri sa
+  // dove fermarsi. Si rimisura al resize perche' l'altezza cambia con il
+  // gradino tipografico e quando la navigazione va a capo.
+  function syncHeaderHeight() {
+    var h = document.querySelector('.wz-header');
+    if (h) document.documentElement.style.setProperty('--hdr', h.offsetHeight + 'px');
+  }
+  syncHeaderHeight();
+  window.addEventListener('resize', syncHeaderHeight);
+  window.addEventListener('load', syncHeaderHeight);
+
   var map = L.map('map', { scrollWheelZoom:true, zoomSnap:0, zoomDelta:0.5 }).setView(CENTER, ZOOM);
 
   // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi

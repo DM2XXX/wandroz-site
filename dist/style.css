@@ -60,12 +60,15 @@ a:hover { text-decoration:underline; }
   border-bottom: 1px solid var(--line);
   display:flex; align-items:center; justify-content:space-between;
   flex-wrap:wrap; gap:14px;
-  z-index: 20;
+  position: sticky; top:0; z-index: 30;
+  /* L'ombra non e' decorazione: e' quello che fa leggere la barra come un
+     piano sopra la pagina invece che come un taglio netto nel titolo. Con il
+     solo bordo inferiore, il testo che ci passa sotto sembra tranciato. */
+  box-shadow: 0 1px 0 var(--line), 0 4px 14px rgba(12,29,57,.06);
 }
-/* Non e' piu' appiccicato in alto. Da sticky, tutto quello che scorreva gli
-   passava sotto e la barra opaca tagliava il titolo a meta' lettera: sembra
-   un errore di rendering, non una scelta. Sulle pagine citta' la barra dei
-   filtri resta sticky per conto suo, che e' dove serviva davvero. */
+/* Quanto e' alta la barra dipende dal gradino tipografico, quindi non si puo'
+   scrivere qui: la misura JS e la mette in --hdr, e tutto quello che si
+   congela sotto di lei ci si aggancia. Cosi' il blocco fisso e' uno solo. */
 .wz-brand { display:flex; align-items:center; gap:11px; text-decoration:none; color:inherit; }
 .wz-brand:hover { text-decoration:none; }
 .wz-logo { border-radius:10px; display:block; object-fit:cover; flex-shrink:0; box-shadow: var(--shadow-sm); }
