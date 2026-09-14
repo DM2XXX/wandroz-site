@@ -1,0 +1,532 @@
+{
+ "barcelona/sants": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Spain > Catalonia > Barcelona > Sants-Montjuïc, 417 properties — the district, shared by both barris"
+ },
+ "barcelona/sants-badal": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Spain > Catalonia > Barcelona > Sants-Montjuïc, 417 properties — the district, shared by both barris"
+ },
+ "firenze/novoli-baracca-est": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Tuscany > Florence > Careggi - Rifredi, 188 properties — Booking's own name for this part of Florence"
+ },
+ "firenze/novoli-baracca-ovest": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Tuscany > Florence > Careggi - Rifredi, 188 properties — Booking's own name for this part of Florence"
+ },
+ "firenze/novoli-fiat": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Tuscany > Florence > Careggi - Rifredi, 188 properties — Booking's own name for this part of Florence"
+ },
+ "firenze/novoli-lippi": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Tuscany > Florence > Careggi - Rifredi, 188 properties — Booking's own name for this part of Florence"
+ },
+ "firenze/rifredi": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Tuscany > Florence > Careggi - Rifredi, 188 properties — Booking's own name for this part of Florence"
+ },
+ "firenze/s-ambrogio": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Tuscany > Florence > Santa Croce, 478 properties"
+ },
+ "firenze/s-croce": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Tuscany > Florence > Santa Croce, 478 properties"
+ },
+ "madrid/chamberi": {
+  "class": "EXACT_AREA",
+  "checked": "2026-09-14",
+  "note": "Spain > Community of Madrid > Madrid > Chamberi, 290 properties"
+ },
+ "madrid/embajadores": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Spain > Community of Madrid > Madrid > Embajadores Metro Station, 4,901 properties — right place, station radius rather than the barrio"
+ },
+ "madrid/sol": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Spain > Community of Madrid > Madrid > Puerta del Sol, 5,187 properties — a landmark radius, wider than the barrio"
+ },
+ "madrid/universidad": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "the barrio is Malasana to a visitor; \"Universidad, Madrid, Spain\" resolved to Universidad Autonoma de Madrid, the campus 8 km north, so the query now says Malasana — 554 properties in the right place"
+ },
+ "napoli/municipalita-1": {
+  "class": "EXACT_AREA",
+  "checked": "2026-09-14",
+  "note": "Italy > Campania > Naples > Chiaia, 649 properties (with \"Napoli\" it returned one apartment called Napoli Street Chiaia)"
+ },
+ "napoli/municipalita-10": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Campania > Naples > Fuorigrotta - Zona Fiera, 144 properties"
+ },
+ "napoli/municipalita-2": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "no Booking area exists: Quartieri Spagnoli, Montecalvario, Sanità and Piazza Garibaldi each returned a single property, Scampia and Ponticelli returned nothing. Falls back to Naples, 7,175 properties, and the page says so"
+ },
+ "napoli/municipalita-3": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "no Booking area exists: Quartieri Spagnoli, Montecalvario, Sanità and Piazza Garibaldi each returned a single property, Scampia and Ponticelli returned nothing. Falls back to Naples, 7,175 properties, and the page says so"
+ },
+ "napoli/municipalita-4": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "no Booking area exists: Quartieri Spagnoli, Montecalvario, Sanità and Piazza Garibaldi each returned a single property, Scampia and Ponticelli returned nothing. Falls back to Naples, 7,175 properties, and the page says so"
+ },
+ "napoli/municipalita-5": {
+  "class": "EXACT_AREA",
+  "checked": "2026-09-14",
+  "note": "Italy > Campania > Naples > Vomero, 362 properties"
+ },
+ "napoli/municipalita-6": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "no Booking area exists: Quartieri Spagnoli, Montecalvario, Sanità and Piazza Garibaldi each returned a single property, Scampia and Ponticelli returned nothing. Falls back to Naples, 7,175 properties, and the page says so"
+ },
+ "napoli/municipalita-7": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "no Booking area exists: Quartieri Spagnoli, Montecalvario, Sanità and Piazza Garibaldi each returned a single property, Scampia and Ponticelli returned nothing. Falls back to Naples, 7,175 properties, and the page says so"
+ },
+ "napoli/municipalita-8": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "no Booking area exists: Quartieri Spagnoli, Montecalvario, Sanità and Piazza Garibaldi each returned a single property, Scampia and Ponticelli returned nothing. Falls back to Naples, 7,175 properties, and the page says so"
+ },
+ "napoli/municipalita-9": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "no Booking area exists: Quartieri Spagnoli, Montecalvario, Sanità and Piazza Garibaldi each returned a single property, Scampia and Ponticelli returned nothing. Falls back to Naples, 7,175 properties, and the page says so"
+ },
+ "paris/amerique": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/archives": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 3rd arr., 840 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/arsenal": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/arts-et-metiers": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 3rd arr., 840 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/auteuil": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/batignolles": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/bel-air": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/belleville": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 20th arr., 223 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/bercy": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/bonne-nouvelle": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/chaillot": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/champs-elysees": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/charonne": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 20th arr., 223 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/chaussee-d-antin": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/clignancourt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 18th arr., 722 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/combat": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/croulebarbe": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/ecole-militaire": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/enfants-rouges": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 3rd arr., 840 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/epinettes": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/europe": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/faubourg-du-roule": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/faubourg-montmartre": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/folie-mericourt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 11th arr., 750 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/gaillon": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/gare": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/goutte-d-or": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 18th arr., 722 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/grandes-carrieres": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 18th arr., 722 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/grenelle": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/gros-caillou": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/halles": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 1st arr., 474 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/hopital-saint-louis": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/invalides": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/jardin-des-plantes": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/javel": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/la-chapelle": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 18th arr., 722 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/madeleine": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/mail": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/maison-blanche": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/monnaie": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/montparnasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/muette": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/necker": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/notre-dame": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/notre-dame-des-champs": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/odeon": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/palais-royal": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 1st arr., 474 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/parc-de-montsouris": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/pere-lachaise": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 20th arr., 223 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/petit-montrouge": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/picpus": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/place-vendome": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 1st arr., 474 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/plaine-de-monceaux": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/plaisance": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/pont-de-flandre": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/porte-dauphine": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/porte-saint-denis": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/porte-saint-martin": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/quinze-vingts": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/rochechouart": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/roquette": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 11th arr., 750 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/saint-ambroise": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 11th arr., 750 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/saint-fargeau": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 20th arr., 223 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/saint-georges": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/saint-germain-des-pres": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/saint-germain-l-auxerrois": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 1st arr., 474 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/saint-gervais": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/saint-lambert": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/saint-merri": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/saint-thomas-d-aquin": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/saint-victor": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/saint-vincent-de-paul": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/sainte-avoie": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 3rd arr., 840 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/sainte-marguerite": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "France > Ile de France > Paris > 11th arr., 750 properties. The quartier itself is not a Booking destination — \"Halles, Paris, France\" returned the Novotel Paris Les Halles, one hotel."
+ },
+ "paris/salpetriere": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/sorbonne": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/ternes": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/val-de-grace": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/villette": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "paris/vivienne": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
+ },
+ "roma/acilia-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Lazio > Acilia, 40 properties — Acilia is its own Booking place, shared by both halves of the zone"
+ },
+ "roma/acilia-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "Italy > Lazio > Acilia, 40 properties — Acilia is its own Booking place, shared by both halves of the zone"
+ },
+ "roma/trastevere": {
+  "class": "EXACT_AREA",
+  "checked": "2026-09-14",
+  "note": "Italy > Lazio > Rome > Trastevere, 1,061 properties"
+ }
+}

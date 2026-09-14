@@ -63,6 +63,11 @@
   Rated against the average of the {{ b.covered_count }} boroughs currently on the automated pipeline{% if b.covered_count and b.total_boroughs and b.covered_count < b.total_boroughs %}, not yet a full London average{% endif %}.
 </div>
 
+{% if booking_query %}
+<a class="btn-primary" href="https://www.booking.com/searchresults.html?ss={{ booking_query|urlencode }}" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+<p class="cta-note">This link is already scoped to {{ b.borough }}, not the whole of London.</p>
+{% endif %}
+
 <p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
 
 {% if faq_items %}
