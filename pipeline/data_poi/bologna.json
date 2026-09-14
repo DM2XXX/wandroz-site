@@ -1,0 +1,192 @@
+{
+ "city": "bologna",
+ "pois": [
+  {
+   "name": "Piazza Maggiore",
+   "category": "square",
+   "qid": "Q634917",
+   "lat": 44.49373,
+   "lon": 11.34306,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Sanctuary of the Madonna di San Luca",
+   "category": "view",
+   "qid": "Q2004104",
+   "lat": 44.47915,
+   "lon": 11.29789,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Towers of Bologna",
+   "category": "view",
+   "qid": "Q1784259",
+   "lat": 44.4943,
+   "lon": 11.3465,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Basilica of San Domenico",
+   "category": "art",
+   "qid": "Q862602",
+   "lat": 44.4895,
+   "lon": 11.3445,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Pinacoteca Nazionale di Bologna",
+   "category": "art",
+   "qid": "Q1103550",
+   "lat": 44.49777,
+   "lon": 11.35355,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Archeological Civic Museum of Bologna",
+   "category": "art",
+   "qid": "Q2358398",
+   "lat": 44.49295,
+   "lon": 11.34357,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Piazza Santo Stefano",
+   "category": "square",
+   "qid": "Q2091949",
+   "lat": 44.49227,
+   "lon": 11.34814,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Palazzo dell’Archiginnasio",
+   "category": "art",
+   "qid": "Q1476981",
+   "lat": 44.49198,
+   "lon": 11.34342,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Bologna Museum of Modern Art",
+   "category": "art",
+   "qid": "Q3867868",
+   "lat": 44.5025,
+   "lon": 11.3369,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Park of Montagnola",
+   "category": "green",
+   "qid": "Q3763919",
+   "lat": 44.50261,
+   "lon": 11.34642,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "giardini Margherita",
+   "category": "green",
+   "qid": "Q3763804",
+   "lat": 44.48238,
+   "lon": 11.35255,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Via Zamboni",
+   "category": "night",
+   "qid": "Q3556507",
+   "lat": 44.4956,
+   "lon": 11.3489,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Piazza Giuseppe Verdi",
+   "category": "night",
+   "qid": "Q3902352",
+   "lat": 44.49629,
+   "lon": 11.35064,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Villa Ghigi",
+   "category": "green",
+   "qid": "Q24937141",
+   "lat": 44.47637,
+   "lon": 11.32843,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Portico di San Luca",
+   "category": "square",
+   "qid": "Q56258744",
+   "lat": 44.4854,
+   "lon": 11.3019,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Mercato delle Erbe",
+   "category": "food",
+   "qid": "Q25409820",
+   "lat": 44.49586,
+   "lon": 11.33822,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Mercato di Mezzo",
+   "category": "food",
+   "qid": "Q60288892",
+   "lat": 44.49422,
+   "lon": 11.34522,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  }
+ ]
+}
