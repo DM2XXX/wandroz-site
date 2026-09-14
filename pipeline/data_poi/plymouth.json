@@ -1,0 +1,71 @@
+{
+ "city": "plymouth",
+ "pois": [
+  {
+   "name": "Plymouth Hoe",
+   "category": "view",
+   "qid": "Q7205818",
+   "lat": 50.36537,
+   "lon": -4.14209,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Smeaton's Tower",
+   "category": "view",
+   "qid": "Q3995634",
+   "lat": 50.3644,
+   "lon": -4.14183,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "National Marine Aquarium",
+   "category": "art",
+   "qid": "Q1967440",
+   "lat": 50.3666,
+   "lon": -4.1313,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Central Park, Plymouth",
+   "category": "green",
+   "qid": "Q5061590",
+   "lat": 50.3858,
+   "lon": -4.15144,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Union Street",
+   "category": "night",
+   "qid": "Q7886129",
+   "lat": 50.37,
+   "lon": -4.153,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Mayflower Steps",
+   "category": "art",
+   "qid": "Q6797242",
+   "lat": 50.36606,
+   "lon": -4.134,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  }
+ ]
+}

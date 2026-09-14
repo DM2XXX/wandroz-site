@@ -1,0 +1,104 @@
+{
+ "city": "derby",
+ "pois": [
+  {
+   "name": "Derby Museum and Art Gallery",
+   "category": "art",
+   "qid": "Q8012",
+   "lat": 52.92292,
+   "lon": -1.48003,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Pride Park Stadium",
+   "category": "art",
+   "qid": "Q201612",
+   "lat": 52.915,
+   "lon": -1.44722,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Museum of Making",
+   "category": "art",
+   "qid": "Q839047",
+   "lat": 52.9258,
+   "lon": -1.47583,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Derby Cathedral",
+   "category": "art",
+   "qid": "Q2310409",
+   "lat": 52.9248,
+   "lon": -1.4773,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Cathedral Quarter",
+   "category": "square",
+   "qid": "Q692896",
+   "lat": 52.9254,
+   "lon": -1.4793,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Markeaton Park Light Railway",
+   "category": "green",
+   "qid": "Q6770603",
+   "lat": 52.9312,
+   "lon": -1.50426,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Darley Park",
+   "category": "green",
+   "qid": "Q55137070",
+   "lat": 52.938,
+   "lon": -1.479,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Market Hall",
+   "category": "food",
+   "qid": "Q26575633",
+   "lat": 52.92259,
+   "lon": -1.47585,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Friar Gate Bridge",
+   "category": "night",
+   "qid": "Q22913591",
+   "lat": 52.92399,
+   "lon": -1.4856,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  }
+ ]
+}

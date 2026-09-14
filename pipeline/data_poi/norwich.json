@@ -1,0 +1,115 @@
+{
+ "city": "norwich",
+ "pois": [
+  {
+   "name": "Norwich Cathedral",
+   "category": "art",
+   "qid": "Q768692",
+   "lat": 52.63194,
+   "lon": 1.30111,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Norwich Castle",
+   "category": "art",
+   "qid": "Q1672292",
+   "lat": 52.6281,
+   "lon": 1.29678,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Norwich Market",
+   "category": "food",
+   "qid": "Q3289887",
+   "lat": 52.6285,
+   "lon": 1.2929,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Sainsbury Centre",
+   "category": "art",
+   "qid": "Q7400532",
+   "lat": 52.6203,
+   "lon": 1.2347,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Elm Hill",
+   "category": "square",
+   "qid": "Q5366285",
+   "lat": 52.6318,
+   "lon": 1.2971,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "The Forum, Norwich",
+   "category": "square",
+   "qid": "Q7734913",
+   "lat": 52.6275,
+   "lon": 1.29056,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Chapelfield Gardens",
+   "category": "green",
+   "qid": "Q133522871",
+   "lat": 52.6273,
+   "lon": 1.2873,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Eaton Park",
+   "category": "green",
+   "qid": "Q60740337",
+   "lat": 52.62,
+   "lon": 1.255,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Norwich Lanes",
+   "category": "square",
+   "qid": "Q60775222",
+   "lat": 52.6298,
+   "lon": 1.2931,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Prince of Wales Road",
+   "category": "night",
+   "qid": "Q136343172",
+   "lat": 52.629,
+   "lon": 1.3026,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  }
+ ]
+}

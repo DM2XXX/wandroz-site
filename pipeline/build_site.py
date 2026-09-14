@@ -89,6 +89,12 @@ UK_CITIES = [
      "lat": 50.9097, "lon": -1.4044, "color": "#3f7f8f"},
     {"key": "portsmouth", "city": "Portsmouth", "force": "Hampshire Constabulary",
      "lat": 50.8198, "lon": -1.0880, "color": "#8f3f6b"},
+    {"key": "plymouth", "city": "Plymouth", "force": "Devon & Cornwall Police",
+     "lat": 50.3755, "lon": -4.1427, "color": "#4f6bb0"},
+    {"key": "derby", "city": "Derby", "force": "Derbyshire Constabulary",
+     "lat": 52.9228, "lon": -1.4746, "color": "#b06b4f"},
+    {"key": "norwich", "city": "Norwich", "force": "Norfolk Constabulary",
+     "lat": 52.6309, "lon": 1.2974, "color": "#6b8f5a"},
 ]
 
 
