@@ -42,21 +42,25 @@
   },
   "booking": {
     "URL_STRUCTURE_PASS": {
-      "PASS": 1178
+      "PASS": 1210
     },
     "WANDROZ_QUERY_MATCH": {
-      "PASS": 1178
+      "PASS": 1210
     },
     "BOOKING_DESTINATION_VERIFIED": {
-      "MANUAL_VERIFICATION_REQUIRED": 1178
+      "MANUAL_VERIFICATION_REQUIRED": 1105,
+      "PASS": 105
     },
     "AFFILIATE_ATTRIBUTION_VERIFIED": {
-      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1178
+      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1210
     },
     "destination_class": {
-      "UNVERIFIED": 1178
+      "UNVERIFIED": 1105,
+      "TRAVELLER_ALIAS": 95,
+      "EXACT_AREA": 3,
+      "CITY_FALLBACK": 7
     },
-    "ctas_total": 1178
+    "ctas_total": 1210
   },
   "correction_email": {
     "canonical": "hellowandroz@gmail.com",
@@ -66,7 +70,7 @@
   },
   "totals": {
     "failures": 0,
-    "warnings": 23
+    "warnings": 10
   },
   "findings": [
     {
@@ -75,90 +79,6 @@
       "check": "canonical-registry",
       "target": "build_site.py",
       "message": "no CITY_REGISTRY in build_site.py; QA is using its own fallback table. Move the registry into the generator so slug/scheme/data-key live in one place."
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-1",
-      "message": "`ss`='Chiaia, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-2",
-      "message": "`ss`='Quartieri Spagnoli, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-3",
-      "message": "`ss`='Sanita, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-4",
-      "message": "`ss`='Piazza Garibaldi, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-5",
-      "message": "`ss`='Vomero, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-6",
-      "message": "`ss`='Ponticelli, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-7",
-      "message": "`ss`='Secondigliano, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-8",
-      "message": "`ss`='Scampia, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-9",
-      "message": "`ss`='Pianura, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "napoli/municipalita-10",
-      "message": "`ss`='Fuorigrotta, Napoli, Italy' does not name Naples — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "roma/acilia-nord",
-      "message": "`ss`='Acilia, Italy' does not name Rome — a generic or duplicated place name can resolve to another city or country"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "destination-ambiguity",
-      "target": "roma/acilia-sud",
-      "message": "`ss`='Acilia, Italy' does not name Rome — a generic or duplicated place name can resolve to another city or country"
     },
     {
       "severity": "WARN",
@@ -187,13 +107,6 @@
       "check": "shared-destination",
       "target": "roma/acilia-nord",
       "message": "2 zones share destination 'Acilia, Italy': roma/acilia-nord, roma/acilia-sud — check whether Booking can distinguish them at all"
-    },
-    {
-      "severity": "WARN",
-      "category": "BOOKING",
-      "check": "shared-destination",
-      "target": "firenze/isolotto-nord",
-      "message": "2 zones share destination 'Florence, Italy': firenze/isolotto-nord, firenze/isolotto-sud — check whether Booking can distinguish them at all"
     },
     {
       "severity": "WARN",
@@ -228,7 +141,7 @@
       "category": "BOOKING",
       "check": "affiliate-attribution",
       "target": "site-wide",
-      "message": "1178 of 1178 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
+      "message": "1210 of 1210 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
     }
   ]
 }

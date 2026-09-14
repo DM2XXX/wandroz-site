@@ -428,6 +428,25 @@ BOOKING_CITY_SCOPE_NOTE = (
     "searches the whole city rather than just this area."
 )
 
+# And a third case, between the two: Booking has no area for the neighbourhood
+# but does index the district it sits in. Paris is the clean example — every
+# quartier name carries its arrondissement, "Halles, Paris, France" resolved to
+# a single hotel while "1st arr., Paris, France" returns the arrondissement's
+# 474 properties. Better than the whole city, and the note says which it is.
+BOOKING_PARENT_SCOPE_NOTE = (
+    "Booking.com has no search area for this quartier, so this link searches the "
+    "surrounding district — narrower than the whole city, wider than this "
+    "neighbourhood alone."
+)
+
+
+def booking_note(ui, scope):
+    if scope == "city":
+        return BOOKING_CITY_SCOPE_NOTE
+    if scope == "parent":
+        return BOOKING_PARENT_SCOPE_NOTE
+    return ui["label_booking_note"]
+
 # Categories a visitor filters by (why you would go) and the icon each pin
 # takes (what the place is) are kept apart on purpose: they diverge on areas —
 # Kazimierz, Navigli and Bairro Alto are all AREA, but people look for them
@@ -1018,9 +1037,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             zone=zone_ctx, show_toggle=show_toggle,
             label_day=ui["label_day"], label_night=ui["label_night"],
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
-            label_booking_note=(ui["label_booking_note"]
-                                if z.get("booking_scope", "area") == "area"
-                                else BOOKING_CITY_SCOPE_NOTE),
+            label_booking_note=booking_note(ui, z.get("booking_scope", "area")),
             data_note=method_note(city_key, data["label"],
                                   no_findings=(z.get("evidence") == "no_findings")),
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
@@ -1833,6 +1850,20 @@ def main():
         ))
     print(f"Wrote {os.path.join(OUT_DIR, 'methodology.html')}")
 
+    # London's borough pages were the only zone pages on the site with no
+    # accommodation link at all: 32 pages that answer "is this area safe?" and
+    # then leave the reader with nowhere to go. The destination string is the
+    # one the London map already uses for that borough, so the two cannot
+    # disagree about where a click lands.
+    london_queries = {}
+    try:
+        with open(os.path.join(ZONES_DIR, "london_boundaries.json")) as f:
+            for z in json.load(f)["zones"]:
+                if z.get("query"):
+                    london_queries[_canon(z["name"])] = z["query"]
+    except Exception:
+        pass
+
     # One page per borough/neighbourhood
     for city in cities:
         city_slug = city["city"].lower().replace(" ", "-")
@@ -1847,7 +1878,9 @@ def main():
             page = borough_tpl.render(
                 city=city, b=b, day_label=day_label, night_label=night_label,
                 canonical_url=page_url, correction_email=CORRECTION_EMAIL,
-                evidence_tag=LONDON_EVIDENCE_TAG,
+                evidence_tag="%s · Metropolitan Police recorded crime · %s"
+                              % (LONDON_EVIDENCE_TAG, london_window()),
+                booking_query=london_queries.get(_canon(b["borough"])),
                 faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
             )
             out_path = os.path.join(city_dir, f"{b['slug']}.html")
@@ -1862,7 +1895,7 @@ def main():
     for path in copied:
         print(f"Copied {path}")
 
-    torino_urls = render_illustrative_city("torino", "torino", TORINO_UI, EN_TONE_BADGE, )
+    torino_urls = render_illustrative_city("torino", "torino", TORINO_UI, EN_TONE_BADGE)
     sitemap_urls.extend(torino_urls)
     zurich_zone_burglary = build_zurich_zone_burglary()
     zurigo_urls = render_illustrative_city(
@@ -1871,7 +1904,7 @@ def main():
     sitemap_urls.extend(zurigo_urls)
     london_map_urls = render_london_map(cities)
     sitemap_urls.extend(london_map_urls)
-    milano_urls = render_illustrative_city("milano", "milano", MILANO_UI, EN_TONE_BADGE, )
+    milano_urls = render_illustrative_city("milano", "milano", MILANO_UI, EN_TONE_BADGE)
     sitemap_urls.extend(milano_urls)
     roma_urls = render_illustrative_city("roma", "roma", ROMA_UI, EN_TONE_BADGE, flat=True)
     sitemap_urls.extend(roma_urls)
