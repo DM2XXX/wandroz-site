@@ -1,0 +1,93 @@
+{
+ "city": "portsmouth",
+ "pois": [
+  {
+   "name": "HMS Victory",
+   "category": "art",
+   "qid": "Q213958",
+   "lat": 50.80176,
+   "lon": -1.1096,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Spinnaker Tower",
+   "category": "view",
+   "qid": "Q541846",
+   "lat": 50.7956,
+   "lon": -1.10857,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Southsea Castle",
+   "category": "art",
+   "qid": "Q1743815",
+   "lat": 50.778,
+   "lon": -1.08888,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Mary Rose Ship Hall and Museum",
+   "category": "art",
+   "qid": "Q6780641",
+   "lat": 50.8022,
+   "lon": -1.109,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Portsmouth Historic Dockyard",
+   "category": "art",
+   "qid": "Q21030119",
+   "lat": 50.801,
+   "lon": -1.11,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Gunwharf Quays",
+   "category": "square",
+   "qid": "Q278073",
+   "lat": 50.7949,
+   "lon": -1.1058,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Old Portsmouth",
+   "category": "square",
+   "qid": "Q7084758",
+   "lat": 50.79,
+   "lon": -1.105,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Southsea Common",
+   "category": "green",
+   "qid": "Q137843240",
+   "lat": 50.78042,
+   "lon": -1.08935,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  }
+ ]
+}

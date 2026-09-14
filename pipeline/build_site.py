@@ -83,6 +83,12 @@ UK_CITIES = [
      "lat": 52.2053, "lon": 0.1218, "color": "#4fa36b"},
     {"key": "bath", "city": "Bath", "force": "Avon and Somerset Constabulary",
      "lat": 51.3811, "lon": -2.3590, "color": "#c2704f"},
+    {"key": "coventry", "city": "Coventry", "force": "West Midlands Police",
+     "lat": 52.4068, "lon": -1.5090, "color": "#7f8f3f"},
+    {"key": "southampton", "city": "Southampton", "force": "Hampshire Constabulary",
+     "lat": 50.9097, "lon": -1.4044, "color": "#3f7f8f"},
+    {"key": "portsmouth", "city": "Portsmouth", "force": "Hampshire Constabulary",
+     "lat": 50.8198, "lon": -1.0880, "color": "#8f3f6b"},
 ]
 
 

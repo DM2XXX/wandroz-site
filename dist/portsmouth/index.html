@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is my Portsmouth neighbourhood safe? — Wandroz</title>
+<meta name="description" content="Interactive map of Portsmouth&#39;s official wards with real street-level police crime data, day and night.">
+<link rel="canonical" href="https://www.wandroz.com/portsmouth/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Is my Portsmouth neighbourhood safe? — Wandroz">
+<meta property="og:description" content="Interactive map of Portsmouth&#39;s official wards with real street-level police crime data, day and night.">
+<meta property="og:url" content="https://www.wandroz.com/portsmouth/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
+  .switch.on { background: var(--accent); }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
+  .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
+  /* Era un pannello giallo di cinque righe che spiegava la metodologia di
+     Londra a chi stava leggendo di Zurigo. Una riga: su cosa si basa la
+     mappa, e il link a chi vuole il resto. */
+  .evidence { font-size:12.5px; color:var(--muted); margin:10px 24px 14px; display:flex;
+              flex-wrap:wrap; align-items:center; gap:8px; }
+  .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
+  .map-wrap { position:relative; padding: 0 24px 28px; }
+  #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
+  .legend-dash { display:flex; align-items:center; gap:8px; }
+  .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
+  .ev-flag { display:flex; gap:7px; align-items:flex-start; font-size:12px; color:#5b6670; margin:6px 0 2px; line-height:1.45; }
+  .ev-dot { flex:none; width:9px; height:9px; margin-top:3px; border-radius:50%; border:1.5px dashed #7a8190; }
+  .legend-poi-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-item.off { display:none; }
+  /* Sights sit on top of the safety colours, so they carry none of their own:
+     a white disc with a dark edge reads on green, amber and red alike, and the
+     icon does the work of saying what the place is. */
+  .poi-ico { display:flex; align-items:center; justify-content:center; width:26px; height:26px;
+             background:#fff; border:2px solid #16232b; border-radius:50%;
+             box-shadow:0 1px 5px rgba(0,0,0,.38); font-size:13px; position:relative; }
+  .poi-num { position:absolute; right:-6px; top:-6px; width:16px; height:16px; border-radius:50%;
+             background:#16232b; color:#fff; border:1.5px solid #fff; font-size:10px; font-weight:800;
+             display:flex; align-items:center; justify-content:center; }
+  .poi-lab-tt { background:rgba(255,255,255,.96); border:1px solid rgba(22,35,43,.18); border-radius:5px;
+                padding:2px 7px; font-size:11.5px; font-weight:700; color:#16232b;
+                box-shadow:0 1px 4px rgba(0,0,0,.18); }
+  .poi-lab-tt::before { display:none; }
+  /* I filtri restano raggiungibili mentre si guarda la mappa, invece di finire
+     fuori schermo appena si scorre: prima non si poteva cambiare filtro senza
+     prima uscire dalla mappa, che sul telefono e' il gesto piu' difficile. */
+  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
+             position:sticky; top:0; z-index:1100; background:rgba(247,248,250,.94);
+             backdrop-filter:blur(6px); }
+  .poi-reset { position:absolute; left:36px; bottom:40px; z-index:1000; border:1px solid var(--line);
+               background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
+               font-size:12.5px; font-weight:600; color:#3a4750; cursor:pointer;
+               box-shadow:0 1px 5px rgba(0,0,0,.18); -webkit-tap-highlight-color:transparent; }
+  .poi-reset:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .poi-chip { border:1px solid var(--line); background:#fff; color:#4a5a63; border-radius:999px;
+              padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
+  /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
+     una griglia auto-fill produceva una singola fascia orizzontale di dodici
+     voci, illeggibile e slegata dal resto della pagina. */
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
+  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
+  .map-detail .close-btn:hover { color:var(--ink); }
+  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
+  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
+  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
+  .map-detail .cta.secondary { background: var(--accent); }
+  .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
+  .leaflet-tooltip.zone-tooltip::before { display:none; }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  .zone-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px 22px; }
+  .zone-group h3 { font-size:12.5px; margin:0 0 6px; font-weight:700; display:flex; align-items:center; gap:6px;
+                   border-bottom:1px solid var(--line); padding-bottom:5px; }
+  .zone-group ul { columns:1; font-size:13px; }
+  .zg-count { font-weight:600; color:var(--muted); font-size:11px; margin-left:auto; }
+  .zg-dot { font-size:10px; line-height:1; padding:2px 5px; border-radius:8px; color:#fff; font-weight:700; }
+  .zg-dot.green { background:#2e7d46; } .zg-dot.yellow { background:#c98a02; }
+  .zg-dot.red { background:#c0392b; } .zg-dot.grey { background:#7a8190; }
+  @media (max-width: 720px){
+    /* 520px su un telefono riempiva quasi tutto lo schermo: qualunque tentativo
+       di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
+       400px lascia pagina sopra e sotto su cui appoggiare il pollice. */
+    #map{ height:400px; }
+    .map-wrap { padding: 0 12px 24px; }
+    /* Sovrapposta, la legenda copriva meta' di una mappa larga 351px, e i pin
+       che finivano sotto erano semplicemente invisibili. Su telefono scende
+       quindi sotto la mappa, su una riga sola, e non nasconde piu' niente. */
+    .map-legend { position:static; max-width:none; margin-top:10px; padding:10px 2px 0;
+                  background:none; backdrop-filter:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
+                  flex-direction:row; flex-wrap:wrap; gap:6px 16px; font-size:11px; }
+    /* Con la legenda spostata sotto, l'angolo in alto a destra della mappa e'
+       libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
+       invece di finire in fondo alla pagina sopra la legenda. */
+    .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
+    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
+    .zone-list ul { columns:2; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">City</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        <optgroup label="🇬🇧 United Kingdom">
+          <option value="https://www.wandroz.com/london/" >London</option>
+          <option value="https://www.wandroz.com/edinburgh/" >Edinburgh</option>
+          <option value="https://www.wandroz.com/birmingham/" >Birmingham</option>
+          <option value="https://www.wandroz.com/leeds/" >Leeds</option>
+          <option value="https://www.wandroz.com/bristol/" >Bristol</option>
+          <option value="https://www.wandroz.com/sheffield/" >Sheffield</option>
+          <option value="https://www.wandroz.com/newcastle/" >Newcastle upon Tyne</option>
+          <option value="https://www.wandroz.com/nottingham/" >Nottingham</option>
+          <option value="https://www.wandroz.com/cardiff/" >Cardiff</option>
+          <option value="https://www.wandroz.com/leicester/" >Leicester</option>
+          <option value="https://www.wandroz.com/liverpool/" >Liverpool</option>
+          <option value="https://www.wandroz.com/brighton/" >Brighton and Hove</option>
+          <option value="https://www.wandroz.com/york/" >York</option>
+          <option value="https://www.wandroz.com/oxford/" >Oxford</option>
+          <option value="https://www.wandroz.com/cambridge/" >Cambridge</option>
+          <option value="https://www.wandroz.com/bath/" >Bath</option>
+          <option value="https://www.wandroz.com/coventry/" >Coventry</option>
+          <option value="https://www.wandroz.com/southampton/" >Southampton</option>
+          <option value="https://www.wandroz.com/portsmouth/" selected>Portsmouth</option>
+        </optgroup>
+        <optgroup label="🇮🇹 Italy">
+          <option value="https://www.wandroz.com/torino/" >Turin</option>
+          <option value="https://www.wandroz.com/milano/" >Milan</option>
+          <option value="https://www.wandroz.com/roma/" >Rome</option>
+          <option value="https://www.wandroz.com/venezia/" >Venice</option>
+          <option value="https://www.wandroz.com/firenze/" >Florence</option>
+          <option value="https://www.wandroz.com/napoli/" >Naples</option>
+        </optgroup>
+        <optgroup label="🇩🇪 Germany">
+          <option value="https://www.wandroz.com/berlin/" >Berlin</option>
+          <option value="https://www.wandroz.com/monaco-di-baviera/" >Munich</option>
+        </optgroup>
+        <optgroup label="🇪🇸 Spain">
+          <option value="https://www.wandroz.com/barcelona/" >Barcelona</option>
+          <option value="https://www.wandroz.com/madrid/" >Madrid</option>
+        </optgroup>
+        <optgroup label="🇳🇱 Netherlands">
+          <option value="https://www.wandroz.com/amsterdam/" >Amsterdam</option>
+        </optgroup>
+        <optgroup label="🇨🇭 Switzerland">
+          <option value="https://www.wandroz.com/zurigo/" >Zurich</option>
+        </optgroup>
+        <optgroup label="🇨🇿 Czechia">
+          <option value="https://www.wandroz.com/praha/" >Prague</option>
+        </optgroup>
+        <optgroup label="🇳🇴 Norway">
+          <option value="https://www.wandroz.com/oslo/" >Oslo</option>
+        </optgroup>
+        <optgroup label="🇸🇪 Sweden">
+          <option value="https://www.wandroz.com/stockholm/" >Stockholm</option>
+        </optgroup>
+        <optgroup label="🇦🇹 Austria">
+          <option value="https://www.wandroz.com/vienna/" >Vienna</option>
+        </optgroup>
+        <optgroup label="🇵🇹 Portugal">
+          <option value="https://www.wandroz.com/lisbon/" >Lisbon</option>
+        </optgroup>
+        <optgroup label="🇫🇷 France">
+          <option value="https://www.wandroz.com/paris/" >Paris</option>
+        </optgroup>
+        <optgroup label="🇧🇪 Belgium">
+          <option value="https://www.wandroz.com/brussels/" >Brussels</option>
+        </optgroup>
+        <optgroup label="🇬🇷 Greece">
+          <option value="https://www.wandroz.com/athens/" >Athens</option>
+        </optgroup>
+        <optgroup label="🇮🇪 Ireland">
+          <option value="https://www.wandroz.com/dublin/" >Dublin</option>
+        </optgroup>
+        <optgroup label="🇭🇺 Hungary">
+          <option value="https://www.wandroz.com/budapest/" >Budapest</option>
+        </optgroup>
+        <optgroup label="🇵🇱 Poland">
+          <option value="https://www.wandroz.com/krakow/" >Kraków</option>
+        </optgroup>
+      </select>
+    </div>
+    
+    <div class="switch-wrap" id="dnSwitchWrap">
+      <span>day</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>night</span>
+    </div>
+    
+    
+    <nav class="wz-nav">
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+<nav class="crumbs"><a href="/">Home</a> &rsaquo; Portsmouth, United Kingdom</nav>
+<h1 class="page-title">Portsmouth wards</h1>
+<p class="lead">Click a ward on the map to see its level, the recorded figures behind it, and a Booking.com link for that area.</p>
+<p class="evidence">🟢 Official crime data · Hampshire Constabulary, data.police.uk <a href="/methodology.html">Methodology &rarr;</a></p>
+
+<div class="poi-bar" id="poiBar"></div>
+
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="map-legend" id="legendBox">
+    <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
+    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
+    <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
+    
+    
+    <div class="legend-poi-sep" id="legendPoiSep"></div>
+    <div id="legendPoi"></div>
+  </div>
+  <button type="button" class="poi-reset" id="poiReset">Reset view</button>
+  <div class="map-detail" id="detailBox">
+    <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<div class="poi-list-wrap">
+  <h2>Sights on this map</h2>
+  <ol class="poi-list" id="poiList"></ol>
+</div>
+
+
+<div class="zone-list">
+  <h2>All wards</h2>
+  
+  <ul>
+    
+    <li><a href="/portsmouth/baffins.html">Baffins</a></li>
+    
+    <li><a href="/portsmouth/central-southsea.html">Central Southsea</a></li>
+    
+    <li><a href="/portsmouth/charles-dickens.html">Charles Dickens</a></li>
+    
+    <li><a href="/portsmouth/copnor.html">Copnor</a></li>
+    
+    <li><a href="/portsmouth/cosham.html">Cosham</a></li>
+    
+    <li><a href="/portsmouth/drayton-and-farlington.html">Drayton and Farlington</a></li>
+    
+    <li><a href="/portsmouth/eastney-and-craneswater.html">Eastney and Craneswater</a></li>
+    
+    <li><a href="/portsmouth/fratton.html">Fratton</a></li>
+    
+    <li><a href="/portsmouth/hilsea.html">Hilsea</a></li>
+    
+    <li><a href="/portsmouth/milton.html">Milton</a></li>
+    
+    <li><a href="/portsmouth/nelson.html">Nelson</a></li>
+    
+    <li><a href="/portsmouth/paulsgrove.html">Paulsgrove</a></li>
+    
+    <li><a href="/portsmouth/st-jude.html">St Jude</a></li>
+    
+    <li><a href="/portsmouth/st-thomas.html">St Thomas</a></li>
+    
+  </ul>
+  
+</div>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = [{"coords": [[[50.81511, -1.0423], [50.8139, -1.04244], [50.81168, -1.04069], [50.81071, -1.04051], [50.80701, -1.0422], [50.80431, -1.04186], [50.7985, -1.03929], [50.79858, -1.04581], [50.7982, -1.0494], [50.79773, -1.04931], [50.79762, -1.05255], [50.79843, -1.05277], [50.79743, -1.05506], [50.79803, -1.05576], [50.79839, -1.05495], [50.79904, -1.05571], [50.80079, -1.05478], [50.80098, -1.05775], [50.80003, -1.05812], [50.80037, -1.0623], [50.80137, -1.06303], [50.80135, -1.06447], [50.80145, -1.06508], [50.80171, -1.06501], [50.80191, -1.06652], [50.80111, -1.06704], [50.80122, -1.06807], [50.80838, -1.06361], [50.80863, -1.06402], [50.81156, -1.06404], [50.81218, -1.06466], [50.81703, -1.06456], [50.81651, -1.05884], [50.8167, -1.05447], [50.81563, -1.05034], [50.81519, -1.04667], [50.81515, -1.04353], [50.81534, -1.04339], [50.81511, -1.04236], [50.81511, -1.0423]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Baffins", "night": "green", "night_label": "Relatively safer", "query": "Portsmouth, United Kingdom", "slug": "baffins", "text": "Hampshire Constabulary recorded 337 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.5 per 1,000 residents, the 13th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (11), vehicle crime (8), drugs (3); the evening/night score by violent crime (51), anti social behaviour (11), public order (7). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/baffins.html"}, {"coords": [[[50.78696, -1.06534], [50.78687, -1.06643], [50.78601, -1.06788], [50.7867, -1.07389], [50.78665, -1.07656], [50.79036, -1.07641], [50.78997, -1.08118], [50.78931, -1.08266], [50.79135, -1.08231], [50.79173, -1.08108], [50.79438, -1.07925], [50.795, -1.07951], [50.7958, -1.07696], [50.79601, -1.07499], [50.79493, -1.06973], [50.79389, -1.06236], [50.78696, -1.06534]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Central Southsea", "night": "green", "night_label": "Relatively safer", "query": "Portsmouth, United Kingdom", "slug": "central-southsea", "text": "Hampshire Constabulary recorded 400 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.3 per 1,000 residents, the 11th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (22), vehicle crime (9), drugs (5); the evening/night score by violent crime (51), anti social behaviour (14), public order (7). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/central-southsea.html"}, {"coords": [[[50.81022, -1.07865], [50.8092, -1.07756], [50.80537, -1.07668], [50.8014, -1.07732], [50.7963, -1.07688], [50.7958, -1.07696], [50.795, -1.07951], [50.79495, -1.08594], [50.79562, -1.09372], [50.79499, -1.09587], [50.79747, -1.09574], [50.79598, -1.10214], [50.79611, -1.10347], [50.797, -1.10612], [50.79705, -1.10588], [50.79795, -1.10664], [50.79816, -1.1074], [50.79864, -1.10752], [50.79859, -1.10795], [50.79906, -1.10831], [50.79969, -1.10712], [50.79998, -1.10731], [50.79855, -1.11124], [50.80047, -1.1117], [50.80069, -1.11079], [50.79948, -1.10966], [50.79958, -1.10937], [50.80112, -1.11082], [50.80093, -1.11173], [50.80113, -1.11108], [50.80145, -1.11174], [50.80188, -1.11114], [50.8019, -1.11172], [50.80252, -1.11176], [50.80257, -1.11107], [50.80286, -1.11144], [50.80341, -1.11103], [50.80346, -1.11059], [50.80369, -1.11138], [50.80428, -1.11102], [50.80429, -1.11158], [50.8069, -1.11152], [50.80692, -1.10773], [50.8062, -1.1064], [50.80598, -1.10669], [50.80653, -1.10777], [50.80638, -1.10797], [50.804, -1.10791], [50.80396, -1.10619], [50.80596, -1.10618], [50.80573, -1.10372], [50.80731, -1.1039], [50.80737, -1.10575], [50.80793, -1.10536], [50.80806, -1.10646], [50.80839, -1.10641], [50.80842, -1.10534], [50.80871, -1.10534], [50.80885, -1.10622], [50.81047, -1.104], [50.80885, -1.09469], [50.8085, -1.09409], [50.80904, -1.09132], [50.80914, -1.09129], [50.80824, -1.0878], [50.80785, -1.08798], [50.80742, -1.08646], [50.80801, -1.08624], [50.80764, -1.08303], [50.81059, -1.0822], [50.81057, -1.08093], [50.81015, -1.08064], [50.81022, -1.07865]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Charles Dickens", "night": "red", "night_label": "Higher caution advised", "query": "Portsmouth, United Kingdom", "slug": "charles-dickens", "text": "Hampshire Constabulary recorded 1,714 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 25.6 per 1,000 residents, the 1st highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (66), drugs (27), vehicle crime (20); the evening/night score by violent crime (218), anti social behaviour (74), public order (52). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/charles-dickens.html"}, {"coords": [[[50.81511, -1.0423], [50.81511, -1.04236], [50.81534, -1.04339], [50.81515, -1.04353], [50.81519, -1.04667], [50.81563, -1.05034], [50.8167, -1.05447], [50.81651, -1.05884], [50.81703, -1.06456], [50.81218, -1.06466], [50.81156, -1.06404], [50.81142, -1.06937], [50.812, -1.06954], [50.81186, -1.07637], [50.81374, -1.0765], [50.8138, -1.07444], [50.81698, -1.07466], [50.81697, -1.07261], [50.82246, -1.07256], [50.82273, -1.07076], [50.82255, -1.06521], [50.82495, -1.06546], [50.82474, -1.05995], [50.82912, -1.05836], [50.83343, -1.05475], [50.83277, -1.05218], [50.83241, -1.04862], [50.83316, -1.04907], [50.83176, -1.04758], [50.83088, -1.04489], [50.83172, -1.04458], [50.83165, -1.04419], [50.82627, -1.04462], [50.82581, -1.04218], [50.82428, -1.04127], [50.82372, -1.04193], [50.82261, -1.0412], [50.81873, -1.04302], [50.81695, -1.04235], [50.81511, -1.0423]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Copnor", "night": "green", "night_label": "Relatively safer", "query": "Portsmouth, United Kingdom", "slug": "copnor", "text": "Hampshire Constabulary recorded 338 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.5 per 1,000 residents, the 10th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (24), drugs (8), vehicle crime (6); the evening/night score by violent crime (37), public order (11), anti social behaviour (9). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/copnor.html"}, {"coords": [[[50.85509, -1.05435], [50.85355, -1.05523], [50.8534, -1.05303], [50.85309, -1.05334], [50.85103, -1.06069], [50.84647, -1.06166], [50.84613, -1.05636], [50.84092, -1.05708], [50.84094, -1.0577], [50.84004, -1.0582], [50.83921, -1.0552], [50.83782, -1.05335], [50.83561, -1.05289], [50.83546, -1.05201], [50.8343, -1.05379], [50.83633, -1.06291], [50.8379, -1.07579], [50.83802, -1.0816], [50.83846, -1.08441], [50.83949, -1.08744], [50.84314, -1.09451], [50.84705, -1.10007], [50.84716, -1.09861], [50.84662, -1.09305], [50.84684, -1.08468], [50.84758, -1.08194], [50.84874, -1.08276], [50.85037, -1.08214], [50.84997, -1.07716], [50.853, -1.07651], [50.85287, -1.07198], [50.85605, -1.08462], [50.85858, -1.09078], [50.85722, -1.08423], [50.85638, -1.07553], [50.85653, -1.0714], [50.8587, -1.07098], [50.85818, -1.06784], [50.85847, -1.06619], [50.85836, -1.06563], [50.85764, -1.06519], [50.85764, -1.06213], [50.85545, -1.06219], [50.85509, -1.05435]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Cosham", "night": "red", "night_label": "Higher caution advised", "query": "Portsmouth, United Kingdom", "slug": "cosham", "text": "Hampshire Constabulary recorded 640 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 14.8 per 1,000 residents, the 4th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (36), vehicle crime (10), bicycle theft (5); the evening/night score by violent crime (88), public order (17), anti social behaviour (14). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/cosham.html"}, {"coords": [[[50.85207, -1.02263], [50.85042, -1.02254], [50.84984, -1.02457], [50.84793, -1.02382], [50.84773, -1.02514], [50.84597, -1.02484], [50.84603, -1.02346], [50.84279, -1.02261], [50.84262, -1.02176], [50.84206, -1.02169], [50.84177, -1.02239], [50.8392, -1.02064], [50.83778, -1.02147], [50.83675, -1.02217], [50.83662, -1.02217], [50.8366, -1.02216], [50.83628, -1.02235], [50.83511, -1.02218], [50.8351, -1.02218], [50.83388, -1.02312], [50.83388, -1.02313], [50.83341, -1.02348], [50.8333, -1.02355], [50.83317, -1.02367], [50.83311, -1.02388], [50.83309, -1.02397], [50.83309, -1.02398], [50.83305, -1.02418], [50.83302, -1.02419], [50.833, -1.02424], [50.833, -1.02419], [50.83167, -1.02459], [50.83035, -1.02299], [50.82706, -1.02456], [50.82638, -1.02409], [50.82681, -1.02751], [50.82763, -1.02791], [50.82779, -1.02842], [50.82772, -1.02916], [50.82739, -1.02923], [50.82738, -1.03012], [50.82878, -1.03166], [50.82936, -1.03489], [50.83543, -1.03631], [50.83463, -1.03873], [50.83447, -1.04115], [50.83377, -1.04341], [50.83217, -1.04408], [50.83247, -1.04438], [50.83384, -1.04394], [50.83406, -1.04443], [50.83347, -1.05194], [50.83388, -1.05428], [50.8343, -1.05379], [50.83546, -1.05201], [50.83561, -1.05289], [50.83782, -1.05335], [50.83921, -1.0552], [50.84004, -1.0582], [50.84094, -1.0577], [50.84092, -1.05708], [50.84613, -1.05636], [50.84647, -1.06166], [50.85103, -1.06069], [50.85309, -1.05334], [50.8534, -1.05303], [50.85355, -1.05523], [50.85509, -1.05435], [50.85653, -1.05408], [50.85651, -1.05225], [50.85618, -1.05213], [50.85581, -1.05099], [50.85621, -1.05053], [50.85584, -1.04988], [50.85527, -1.04977], [50.85506, -1.0468], [50.85393, -1.04697], [50.85294, -1.03754], [50.85277, -1.0231], [50.85207, -1.02263]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Drayton and Farlington", "night": "green", "night_label": "Relatively safer", "query": "Portsmouth, United Kingdom", "slug": "drayton-and-farlington", "text": "Hampshire Constabulary recorded 188 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 4.6 per 1,000 residents, the 14th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (8), vehicle crime (7), drugs (1); the evening/night score by violent crime (21), anti social behaviour (8), public order (4). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/drayton-and-farlington.html"}, {"coords": [[[50.77819, -1.08179], [50.77994, -1.08082], [50.78014, -1.08002], [50.78059, -1.08042], [50.78223, -1.07994], [50.78257, -1.07893], [50.78286, -1.07933], [50.78414, -1.0781], [50.78412, -1.07744], [50.78638, -1.0776], [50.78639, -1.07666], [50.78665, -1.07656], [50.7867, -1.07389], [50.78601, -1.06788], [50.78687, -1.06643], [50.78696, -1.06534], [50.7865, -1.05834], [50.78665, -1.0574], [50.78763, -1.05571], [50.78955, -1.05521], [50.78954, -1.04928], [50.78878, -1.04815], [50.78834, -1.04554], [50.79027, -1.04457], [50.79017, -1.04406], [50.78975, -1.04379], [50.78959, -1.04175], [50.78979, -1.04104], [50.79015, -1.04091], [50.7901, -1.03979], [50.79228, -1.03458], [50.79114, -1.03714], [50.79065, -1.03663], [50.79043, -1.03569], [50.79148, -1.03334], [50.79219, -1.03427], [50.79195, -1.03259], [50.79217, -1.03163], [50.7933, -1.03039], [50.79552, -1.03032], [50.79566, -1.03031], [50.79627, -1.03072], [50.79667, -1.0317], [50.79646, -1.03021], [50.79552, -1.02986], [50.79401, -1.0293], [50.7916, -1.02952], [50.78936, -1.02886], [50.78737, -1.03044], [50.78682, -1.03203], [50.78361, -1.05027], [50.78091, -1.06226], [50.7784, -1.07869], [50.77819, -1.08179]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Eastney and Craneswater", "night": "yellow", "night_label": "Average", "query": "Portsmouth, United Kingdom", "slug": "eastney-and-craneswater", "text": "Hampshire Constabulary recorded 370 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.8 per 1,000 residents, the 7th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (11), vehicle crime (6), bicycle theft (3); the evening/night score by violent crime (49), anti social behaviour (21), public order (9). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/eastney-and-craneswater.html"}, {"coords": [[[50.81156, -1.06404], [50.80863, -1.06402], [50.80838, -1.06361], [50.80122, -1.06807], [50.79827, -1.07001], [50.79718, -1.07127], [50.79639, -1.0736], [50.7963, -1.07688], [50.8014, -1.07732], [50.80537, -1.07668], [50.8092, -1.07756], [50.81022, -1.07865], [50.81175, -1.07976], [50.81186, -1.07637], [50.812, -1.06954], [50.81142, -1.06937], [50.81156, -1.06404]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Fratton", "night": "yellow", "night_label": "Average", "query": "Portsmouth, United Kingdom", "slug": "fratton", "text": "Hampshire Constabulary recorded 371 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.0 per 1,000 residents, the 12th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (6), vehicle crime (6), drugs (4); the evening/night score by violent crime (63), anti social behaviour (16), public order (11). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/fratton.html"}, {"coords": [[[50.82912, -1.05836], [50.82474, -1.05995], [50.82495, -1.06546], [50.82255, -1.06521], [50.82273, -1.07076], [50.82246, -1.07256], [50.81697, -1.07261], [50.81698, -1.07466], [50.81705, -1.07957], [50.82108, -1.07621], [50.82081, -1.08125], [50.82339, -1.08134], [50.8227, -1.08408], [50.82231, -1.08461], [50.82467, -1.08533], [50.82501, -1.08604], [50.82499, -1.08567], [50.82472, -1.08515], [50.82482, -1.08447], [50.82542, -1.08392], [50.8278, -1.0833], [50.82883, -1.08338], [50.82916, -1.08384], [50.8301, -1.08349], [50.83095, -1.08123], [50.83211, -1.08035], [50.83297, -1.07885], [50.83611, -1.07839], [50.8369, -1.07628], [50.83669, -1.07146], [50.83637, -1.07116], [50.8362, -1.06675], [50.83557, -1.06142], [50.83483, -1.0581], [50.83344, -1.05481], [50.83343, -1.05475], [50.82912, -1.05836]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Hilsea", "night": "green", "night_label": "Relatively safer", "query": "Portsmouth, United Kingdom", "slug": "hilsea", "text": "Hampshire Constabulary recorded 366 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.8 per 1,000 residents, the 9th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by vehicle crime (10), shoplifting (8), drugs (4); the evening/night score by violent crime (51), anti social behaviour (13), public order (11). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/hilsea.html"}, {"coords": [[[50.7985, -1.03929], [50.79838, -1.03923], [50.79596, -1.03817], [50.7959, -1.03871], [50.79559, -1.03859], [50.79501, -1.03836], [50.79463, -1.03941], [50.79492, -1.03834], [50.7946, -1.03836], [50.79377, -1.04022], [50.79185, -1.04247], [50.79075, -1.04289], [50.7906, -1.04425], [50.79017, -1.04406], [50.79017, -1.04406], [50.79027, -1.04457], [50.78834, -1.04554], [50.78878, -1.04815], [50.78954, -1.04928], [50.78955, -1.05521], [50.78763, -1.05571], [50.78665, -1.0574], [50.7865, -1.05834], [50.78696, -1.06534], [50.79389, -1.06236], [50.79493, -1.06973], [50.79601, -1.07499], [50.7958, -1.07696], [50.7963, -1.07688], [50.79639, -1.0736], [50.79718, -1.07127], [50.79827, -1.07001], [50.80122, -1.06807], [50.80111, -1.06704], [50.80191, -1.06652], [50.80171, -1.06501], [50.80145, -1.06508], [50.80135, -1.06447], [50.80137, -1.06303], [50.80037, -1.0623], [50.80003, -1.05812], [50.80098, -1.05775], [50.80079, -1.05478], [50.79904, -1.05571], [50.79839, -1.05495], [50.79803, -1.05576], [50.79743, -1.05506], [50.79843, -1.05277], [50.79762, -1.05255], [50.79773, -1.04931], [50.7982, -1.0494], [50.79858, -1.04581], [50.7985, -1.03929]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Milton", "night": "yellow", "night_label": "Average", "query": "Portsmouth, United Kingdom", "slug": "milton", "text": "Hampshire Constabulary recorded 393 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.1 per 1,000 residents, the 8th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (16), vehicle crime (7), bicycle theft (2); the evening/night score by violent crime (55), anti social behaviour (14), public order (12). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/milton.html"}, {"coords": [[[50.82773, -1.09196], [50.82708, -1.09094], [50.82788, -1.09032], [50.82763, -1.08942], [50.8264, -1.08997], [50.82654, -1.08866], [50.82698, -1.08845], [50.82669, -1.08829], [50.82603, -1.08614], [50.82509, -1.08606], [50.82502, -1.08606], [50.82501, -1.08605], [50.82501, -1.08605], [50.82501, -1.08604], [50.82467, -1.08533], [50.82231, -1.08461], [50.8227, -1.08408], [50.82339, -1.08134], [50.82081, -1.08125], [50.82108, -1.07621], [50.81705, -1.07957], [50.81698, -1.07466], [50.8138, -1.07444], [50.81374, -1.0765], [50.81186, -1.07637], [50.81175, -1.07976], [50.81022, -1.07865], [50.81015, -1.08064], [50.81057, -1.08093], [50.81059, -1.0822], [50.80764, -1.08303], [50.80801, -1.08624], [50.80742, -1.08646], [50.80785, -1.08798], [50.80824, -1.0878], [50.80914, -1.09129], [50.81164, -1.09052], [50.8118, -1.09093], [50.8112, -1.092], [50.81132, -1.09298], [50.81082, -1.09525], [50.81118, -1.09438], [50.8114, -1.09447], [50.81129, -1.09686], [50.81159, -1.09452], [50.81224, -1.09464], [50.81473, -1.09114], [50.81557, -1.09125], [50.81591, -1.09174], [50.81596, -1.09106], [50.81678, -1.09081], [50.81716, -1.08984], [50.81685, -1.09084], [50.81704, -1.09098], [50.81937, -1.09246], [50.82311, -1.09386], [50.82322, -1.09503], [50.82283, -1.09689], [50.82308, -1.09748], [50.82486, -1.09958], [50.82669, -1.10022], [50.8273, -1.09909], [50.82696, -1.0996], [50.82672, -1.0983], [50.82704, -1.09478], [50.82802, -1.09328], [50.82904, -1.09403], [50.82905, -1.09298], [50.82833, -1.09194], [50.82773, -1.09196]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Nelson", "night": "yellow", "night_label": "Average", "query": "Portsmouth, United Kingdom", "slug": "nelson", "text": "Hampshire Constabulary recorded 605 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 13.3 per 1,000 residents, the 5th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (23), vehicle crime (13), drugs (5); the evening/night score by violent crime (82), anti social behaviour (18), public order (18). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/nelson.html"}, {"coords": [[[50.85858, -1.09078], [50.85605, -1.08462], [50.85287, -1.07198], [50.853, -1.07651], [50.84997, -1.07716], [50.85037, -1.08214], [50.84874, -1.08276], [50.84758, -1.08194], [50.84684, -1.08468], [50.84662, -1.09305], [50.84716, -1.09861], [50.84705, -1.10007], [50.84314, -1.09451], [50.83949, -1.08744], [50.83846, -1.08441], [50.83672, -1.08344], [50.83507, -1.08365], [50.82858, -1.08913], [50.82857, -1.08918], [50.82899, -1.08978], [50.83137, -1.08803], [50.83152, -1.08846], [50.83071, -1.08946], [50.83126, -1.09472], [50.83449, -1.09929], [50.83789, -1.10631], [50.83836, -1.10601], [50.83912, -1.10639], [50.83915, -1.10605], [50.83967, -1.1061], [50.84379, -1.10367], [50.84378, -1.10335], [50.84391, -1.10361], [50.84583, -1.10252], [50.84622, -1.10299], [50.84679, -1.10561], [50.8468, -1.11377], [50.8455, -1.11472], [50.84562, -1.11538], [50.84539, -1.11562], [50.84512, -1.11531], [50.84539, -1.11471], [50.84467, -1.11253], [50.8443, -1.11229], [50.84492, -1.1139], [50.84471, -1.1141], [50.84418, -1.11241], [50.84368, -1.11232], [50.8435, -1.1118], [50.84324, -1.11203], [50.84345, -1.11263], [50.84315, -1.11297], [50.84392, -1.11463], [50.84384, -1.11657], [50.84305, -1.117], [50.84421, -1.11813], [50.84444, -1.11764], [50.85145, -1.11762], [50.85149, -1.11664], [50.85447, -1.11681], [50.85473, -1.11586], [50.85827, -1.11578], [50.85833, -1.11301], [50.85715, -1.09988], [50.85886, -1.09915], [50.8593, -1.09406], [50.85858, -1.09078]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Paulsgrove", "night": "yellow", "night_label": "Average", "query": "Portsmouth, United Kingdom", "slug": "paulsgrove", "text": "Hampshire Constabulary recorded 455 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.4 per 1,000 residents, the 6th highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (7), vehicle crime (6), drugs (4); the evening/night score by violent crime (78), public order (15), anti social behaviour (13). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/paulsgrove.html"}, {"coords": [[[50.79036, -1.07641], [50.78665, -1.07656], [50.78639, -1.07666], [50.78638, -1.0776], [50.78412, -1.07744], [50.78414, -1.0781], [50.78286, -1.07933], [50.78257, -1.07893], [50.78223, -1.07994], [50.78059, -1.08042], [50.78014, -1.08002], [50.77994, -1.08082], [50.77819, -1.08179], [50.77819, -1.0818], [50.77805, -1.08531], [50.7776, -1.08809], [50.77783, -1.08954], [50.77919, -1.09248], [50.78068, -1.09396], [50.78521, -1.10074], [50.78849, -1.09737], [50.78794, -1.09473], [50.78798, -1.09415], [50.78845, -1.09358], [50.78791, -1.09285], [50.78754, -1.09115], [50.78851, -1.08901], [50.78916, -1.08924], [50.78994, -1.0889], [50.78986, -1.08844], [50.79022, -1.08828], [50.78931, -1.08266], [50.78997, -1.08118], [50.79036, -1.07641]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "St Jude", "night": "red", "night_label": "Higher caution advised", "query": "Portsmouth, United Kingdom", "slug": "st-jude", "text": "Hampshire Constabulary recorded 632 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 17.5 per 1,000 residents, the 2nd highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by shoplifting (24), drugs (12), bicycle theft (6); the evening/night score by violent crime (68), anti social behaviour (41), public order (16). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/st-jude.html"}, {"coords": [[[50.795, -1.07951], [50.79438, -1.07925], [50.79173, -1.08108], [50.79135, -1.08231], [50.78931, -1.08266], [50.79022, -1.08828], [50.78986, -1.08844], [50.78994, -1.0889], [50.78916, -1.08924], [50.78851, -1.08901], [50.78754, -1.09115], [50.78791, -1.09285], [50.78845, -1.09358], [50.78798, -1.09415], [50.78794, -1.09473], [50.78849, -1.09737], [50.78521, -1.10074], [50.78672, -1.10221], [50.79044, -1.10892], [50.79166, -1.10971], [50.79265, -1.10932], [50.79292, -1.10864], [50.79182, -1.10797], [50.79237, -1.10781], [50.79238, -1.10656], [50.79193, -1.10587], [50.7915, -1.1061], [50.79133, -1.10755], [50.79033, -1.10693], [50.79094, -1.10639], [50.79111, -1.10567], [50.79227, -1.10526], [50.79278, -1.10683], [50.79293, -1.10612], [50.79322, -1.10793], [50.79394, -1.10837], [50.79428, -1.10815], [50.7945, -1.10716], [50.79542, -1.10818], [50.79564, -1.10731], [50.79613, -1.10679], [50.79686, -1.10623], [50.79684, -1.10689], [50.797, -1.10612], [50.79611, -1.10347], [50.79598, -1.10214], [50.79747, -1.09574], [50.79499, -1.09587], [50.79562, -1.09372], [50.79495, -1.08594], [50.795, -1.07951]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "St Thomas", "night": "yellow", "night_label": "Average", "query": "Portsmouth, United Kingdom", "slug": "st-thomas", "text": "Hampshire Constabulary recorded 674 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 14.9 per 1,000 residents, the 3rd highest rate of Portsmouth\u0027s 14 wards. The daytime score here is driven by drugs (12), shoplifting (11), vehicle crime (10); the evening/night score by violent crime (85), anti social behaviour (32), public order (20). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/portsmouth/st-thomas.html"}];
+  var CENTER = [50.8151, -1.0732];
+  var ZOOM = 11;
+  var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = "Click a ward on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_BOOKING = "Search accommodation here on Booking.com \u2192";
+  var L_MORE = "See the full page \u2192";
+  var L_NOTCOVERED = "";
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.80176, "lon": -1.1096, "name": "HMS Victory", "rank": 1}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 50.7956, "lon": -1.10857, "name": "Spinnaker Tower", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.778, "lon": -1.08888, "name": "Southsea Castle", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 50.8022, "lon": -1.109, "name": "Mary Rose Ship Hall and Museum", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 50.801, "lon": -1.11, "name": "Portsmouth Historic Dockyard", "rank": 5}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 50.7949, "lon": -1.1058, "name": "Gunwharf Quays", "rank": 6}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 50.79, "lon": -1.105, "name": "Old Portsmouth", "rank": 7}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 50.78042, "lon": -1.08935, "name": "Southsea Common", "rank": 8}];
+  var POI_ALL = "All";
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
+
+  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+
+  // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi
+  // dalla citta' e non trovare piu' la strada indietro — con l'unico rimedio di
+  // ricaricare la pagina. Questo e' il fondo di ripiego, per le citta' che non
+  // hanno ancora sights; dove ci sono, lo rifissa poiFitAll() sulla vista che
+  // li contiene tutti.
+  var POI_HOME = null;
+  map.setMinZoom(Math.max(3, ZOOM - 2));
+  map.setMaxBounds(L.latLngBounds(
+    L.latLng(CENTER[0] - 0.55, CENTER[1] - 0.75),
+    L.latLng(CENTER[0] + 0.55, CENTER[1] + 0.75)
+  ));
+  map.options.maxBoundsViscosity = 0.7;
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var burglaryMode = false;
+  var layers = [];
+  var lastZone = null;
+
+  function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  var detailPanel = document.getElementById('detailBox');
+
+  function showPanel() { detailPanel.classList.add('visible'); }
+  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; }
+  document.getElementById('detailClose').addEventListener('click', hidePanel);
+
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.covered) {
+      html += badge(tone, z.tone_label || tone);
+    } else {
+      html += badge('grey', z.tone_label || '');
+    }
+    if (z.evidence === 'no_findings') {
+      html += '<div class="ev-flag"><span class="ev-dot"></span>' + z.evidence_label +
+              ' — the review reached no reporting specific to this area, so the rating rests on that ' +
+              'absence rather than on named sources.</div>';
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.covered) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    var greyEl = document.getElementById('legendGreyText');
+    if (greyEl) { greyEl.textContent = set.grey; }
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    ZONES.forEach(function(z){
+      var tone = toneOf(z);
+      // Dashed where the rating rests on an absence of reporting rather than
+      // on sources: the colour still carries the judgement, the outline says
+      // how much evidence is behind it.
+      var thin = z.evidence === 'no_findings';
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight: thin ? 1.5 : 2,
+                                       dashArray: thin ? '5,4' : null,
+                                       fillOpacity: 0.32 }).addTo(map);
+      // Name is visible on hover (not just after a click) via a sticky
+      // tooltip, plus a highlight so it's obvious which zone you're over —
+      // click still opens the full detail card.
+      poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
+      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
+      poly.on('mouseout', function(){ poly.setStyle({ weight:2 }); });
+      poly.on('click', function(){ renderDetail(z); });
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+      if (lastZone && !burglaryMode) renderDetail(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) renderDetail(lastZone);
+    });
+  }
+
+  // ---------------------------------------------------------------------
+  // Sights, laid over the safety map
+  //
+  // The point of the pairing is that a visitor sees what is worth going to
+  // AND which safety area it sits in, on one map. So the pins carry no colour
+  // of their own — colour belongs to safety. The opening view used to be the
+  // safety geography alone, which left a distant sight like Superga or
+  // Stupinigi off screen: a pin nobody can see is a pin that does not exist.
+  // The view now covers every sight as well as every zone.
+  // ---------------------------------------------------------------------
+  var poiMarkers = [];
+  var poiLeaders = [];
+  var POI_SPREAD = 34;
+
+  function poiBuild() {
+    if (!POIS || !POIS.length) return;
+    POIS.forEach(function (p) {
+      var m = L.marker([p.lat, p.lon], { icon: L.divIcon({
+        className: '', iconSize: [26, 26], iconAnchor: [13, 13],
+        html: '<div class="poi-ico">' + p.icon + '<span class="poi-num">' + p.rank + '</span></div>'
+      })});
+      m.bindTooltip(p.name, { direction: 'right', offset: [15, 0], className: 'poi-lab-tt' });
+      m.bindPopup('<b>' + p.name + '</b><br><span style="color:#5b6670">' + p.cat_label + '</span>');
+      m.poiCat = p.cat; m.poiRank = p.rank; m.poiName = p.name;
+      m.addTo(map); poiMarkers.push(m);
+    });
+    poiFitAll();
+    poiChips();
+    poiLegend(null);
+    poiListing();
+    map.on('zoomend moveend', poiRefresh);
+    window.addEventListener('resize', function () { poiHome(false); poiRefresh(); });
+    poiRefresh();
+  }
+
+  // Tutti i sights devono stare nella vista d'apertura, e quella vista diventa
+  // anche il limite: non si rimpicciolisce oltre, non ci si allontana oltre, e
+  // "Reset view" riporta esattamente qui. Cosi' da telefono non si finisce mai
+  // in un punto da cui non si sa tornare.
+  function poiFitAll() {
+    // Si parte dalla vista decisa dalla sicurezza e la si allarga solo quanto
+    // basta a farci stare i pin: dove sono gia' tutti dentro, l'inquadratura
+    // resta esattamente quella di prima.
+    var b = map.getBounds();
+    poiMarkers.forEach(function (m) { b.extend(m.poiReal || m.getLatLng()); });
+    POI_HOME = b;
+    poiHome(true);
+  }
+
+  // Il fondo dipende da quanto e' grande la mappa, che cambia ruotando il
+  // telefono, quindi si ricalcola anche al resize. Fissarlo una volta sola
+  // lasciava un minZoom piu' stretto della vista d'apertura: cioe' proprio il
+  // caso in cui, dopo aver zoomato, non si riusciva piu' a tornare indietro.
+  function poiHome(recenter) {
+    if (!POI_HOME) return;
+    map.setMinZoom(3);
+    map.invalidateSize(false);
+    var z = map.getBoundsZoom(POI_HOME, false, L.point(28, 28));
+    if (recenter) map.setView(POI_HOME.getCenter(), z, { animate: false });
+    map.setMinZoom(z);
+    map.setMaxBounds(POI_HOME.pad(0.35));
+  }
+
+  // Pins closer than POI_SPREAD px are fanned onto a small circle with a
+  // hairline back to the true spot: all of them stay clickable instead of
+  // stacking, and none of them lies about where it is.
+  function poiDeclutter() {
+    poiLeaders.forEach(function (l) { map.removeLayer(l); });
+    poiLeaders = [];
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    vis.forEach(function (m) {
+      if (!m.poiReal) m.poiReal = m.getLatLng();
+      m.setLatLng(m.poiReal);
+    });
+    vis.forEach(function (m) { m.poiPt = map.latLngToLayerPoint(m.getLatLng()); });
+    var groups = [];
+    vis.forEach(function (m) {
+      var g = null;
+      groups.forEach(function (gr) {
+        if (!g && gr.some(function (o) { return o.poiPt.distanceTo(m.poiPt) < POI_SPREAD; })) g = gr;
+      });
+      if (g) { g.push(m); } else { groups.push([m]); }
+    });
+    groups.forEach(function (g) {
+      if (g.length === 1) return;
+      var cx = 0, cy = 0;
+      g.forEach(function (m) { cx += m.poiPt.x; cy += m.poiPt.y; });
+      cx /= g.length; cy /= g.length;
+      var R = Math.max(26, 12 + g.length * 6);
+      g.sort(function (a, b) { return a.poiRank - b.poiRank; });
+      g.forEach(function (m, i) {
+        var ang = (2 * Math.PI * i) / g.length - Math.PI / 2;
+        m.setLatLng(map.layerPointToLatLng(L.point(cx + R * Math.cos(ang), cy + R * Math.sin(ang))));
+        poiLeaders.push(L.polyline([m.poiReal, m.getLatLng()],
+          { color: '#16232b', weight: 1, opacity: .38, interactive: false }).addTo(map));
+      });
+    });
+  }
+
+  function poiOverlap(a, b) { return !(a.r < b.l || b.r < a.l || a.b < b.t || b.b < a.t); }
+
+  // A name stays on screen only where it collides with nothing — not with
+  // another name, not with another pin, not with the edge. Names are tried in
+  // rank order, so when two compete the better-known place keeps its label.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
+  function poiLabels() {
+    poiMarkers.forEach(function (m) {
+      if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
+    });
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    if (!vis.length) return;
+    var size = map.getSize();
+    var taken = vis.map(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      return { l: pt.x - 15, r: pt.x + 15, t: pt.y - 15, b: pt.y + 15 };
+    });
+    vis.slice().sort(function (a, b) { return a.poiRank - b.poiRank; }).forEach(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      var w = 10 + m.poiName.length * 6.6, h = 18;
+      var cand = [
+        { d: 'right', o: [15, 0],  b: { l: pt.x + 16, r: pt.x + 16 + w, t: pt.y - h / 2, b: pt.y + h / 2 } },
+        { d: 'left',  o: [-15, 0], b: { l: pt.x - 16 - w, r: pt.x - 16, t: pt.y - h / 2, b: pt.y + h / 2 } }
+      ];
+      var ok = null;
+      cand.forEach(function (c) {
+        if (ok) return;
+        if (c.b.l < 8 || c.b.r > size.x - 8) return;
+        var clash = false;
+        taken.forEach(function (t) { if (poiOverlap(c.b, t)) clash = true; });
+        if (!clash) ok = c;
+      });
+      if (!ok) return;
+      taken.push(ok.b);
+      m.poiPerm = L.tooltip({ permanent: true, direction: ok.d, offset: ok.o,
+                              className: 'poi-lab-tt', interactive: false })
+                   .setLatLng(m.getLatLng()).setContent(m.poiName).addTo(map);
+    });
+  }
+
+  function poiRefresh() { poiDeclutter(); poiLabels(); }
+
+  // La legenda deve dire quello che si vede. Filtrando su "Green space" le
+  // altre voci descrivono pin che in quel momento non ci sono, quindi
+  // spariscono con loro invece di restare a promettere icone assenti.
+  function poiLegend(active) {
+    var box = document.getElementById('legendPoi');
+    if (!box) return;
+    var seen = {};
+    POIS.forEach(function (p) { seen[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    box.innerHTML = '';
+    Object.keys(seen).forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'legend-poi-item' + (active && active !== c ? ' off' : '');
+      row.textContent = seen[c];
+      box.appendChild(row);
+    });
+  }
+
+  function poiChips() {
+    var bar = document.getElementById('poiBar');
+    if (!bar) return;
+    var cats = [null];
+    POIS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); });
+    var labelOf = {};
+    POIS.forEach(function (p) { labelOf[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    cats.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'poi-chip';
+      b.textContent = c === null ? POI_ALL : labelOf[c];
+      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(bar.children, function (x, k) {
+          x.setAttribute('aria-pressed', cats[k] === c ? 'true' : 'false');
+        });
+        poiMarkers.forEach(function (m) {
+          if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
+        });
+        poiLegend(c);
+        poiListFilter(c);
+        poiRefresh();
+      });
+      bar.appendChild(b);
+    });
+  }
+
+  // On a narrow screen a twenty-character label has nowhere to go, so the
+  // numbered list is where the names live: the pin shows the number, the list
+  // gives the name, and tapping one flies the map there.
+  function poiListing() {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    POIS.forEach(function (p) {
+      var li = document.createElement('li');
+      li.setAttribute('data-cat', p.cat);
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
+      li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
+      ol.appendChild(li);
+    });
+  }
+
+  // Filtrando su "Art & history" la mappa mostra solo quei pin: l'elenco qui
+  // sotto e' la stessa cosa scritta, quindi si filtra con lei. I numeri non si
+  // rinumerano, altrimenti non corrisponderebbero piu' ai pin.
+  function poiListFilter(c) {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    Array.prototype.forEach.call(ol.children, function (li) {
+      var show = c === null || li.getAttribute('data-cat') === c;
+      li.style.display = show ? 'inline-flex' : 'none';
+    });
+  }
+
+  var poiResetBtn = document.getElementById('poiReset');
+  if (poiResetBtn) {
+    poiResetBtn.addEventListener('click', function () {
+      if (POI_HOME) { poiHome(true); } else { map.setView(CENTER, ZOOM); }
+      hidePanel();
+    });
+  }
+
+  poiBuild();
+
+</script>
+</body>
+</html>

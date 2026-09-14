@@ -167,6 +167,12 @@ CITIES = {
     "oxford": ("Oxford, United Kingdom", "Thames Valley Police"),
     "cambridge": ("Cambridge, United Kingdom", "Cambridgeshire Constabulary"),
     "bath": ("Bath, United Kingdom", "Avon and Somerset Constabulary"),
+    "coventry": ("Coventry, United Kingdom", "West Midlands Police"),
+    "southampton": ("Southampton, United Kingdom", "Hampshire Constabulary"),
+    "portsmouth": ("Portsmouth, United Kingdom", "Hampshire Constabulary"),
+    "plymouth": ("Plymouth, United Kingdom", "Devon & Cornwall Police"),
+    "derby": ("Derby, United Kingdom", "Derbyshire Constabulary"),
+    "norwich": ("Norwich, United Kingdom", "Norfolk Constabulary"),
 }
 
 if __name__ == "__main__":
