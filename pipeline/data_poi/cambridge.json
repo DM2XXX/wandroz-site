@@ -1,0 +1,115 @@
+{
+ "city": "cambridge",
+ "pois": [
+  {
+   "name": "Trinity College",
+   "category": "art",
+   "qid": "Q332342",
+   "lat": 52.20694,
+   "lon": 0.11694,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Fitzwilliam Museum",
+   "category": "art",
+   "qid": "Q1421440",
+   "lat": 52.20028,
+   "lon": 0.11944,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "King's College Chapel",
+   "category": "art",
+   "qid": "Q1263246",
+   "lat": 52.20472,
+   "lon": 0.11639,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Cambridge University Botanic Garden",
+   "category": "green",
+   "qid": "Q894665",
+   "lat": 52.1938,
+   "lon": 0.12789,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "The Backs",
+   "category": "green",
+   "qid": "Q3519854",
+   "lat": 52.2044,
+   "lon": 0.11404,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Parker's Piece",
+   "category": "green",
+   "qid": "Q130559",
+   "lat": 52.20222,
+   "lon": 0.12778,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Mill Road",
+   "category": "night",
+   "qid": "Q136287",
+   "lat": 52.1999,
+   "lon": 0.1376,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Jesus Green",
+   "category": "green",
+   "qid": "Q6188164",
+   "lat": 52.21194,
+   "lon": 0.12234,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Cambridge Corn Exchange",
+   "category": "art",
+   "qid": "Q5025399",
+   "lat": 52.2042,
+   "lon": 0.1198,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Midsummer Common",
+   "category": "green",
+   "qid": "Q6843033",
+   "lat": 52.21028,
+   "lon": 0.12861,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  }
+ ]
+}

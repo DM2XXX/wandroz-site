@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is my Cambridge neighbourhood safe? — Wandroz</title>
+<meta name="description" content="Interactive map of Cambridge&#39;s official wards with real street-level police crime data, day and night.">
+<link rel="canonical" href="https://www.wandroz.com/cambridge/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Is my Cambridge neighbourhood safe? — Wandroz">
+<meta property="og:description" content="Interactive map of Cambridge&#39;s official wards with real street-level police crime data, day and night.">
+<meta property="og:url" content="https://www.wandroz.com/cambridge/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
+  .switch.on { background: var(--accent); }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
+  .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
+  /* Era un pannello giallo di cinque righe che spiegava la metodologia di
+     Londra a chi stava leggendo di Zurigo. Una riga: su cosa si basa la
+     mappa, e il link a chi vuole il resto. */
+  .evidence { font-size:12.5px; color:var(--muted); margin:10px 24px 14px; display:flex;
+              flex-wrap:wrap; align-items:center; gap:8px; }
+  .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
+  .map-wrap { position:relative; padding: 0 24px 28px; }
+  #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
+  .legend-dash { display:flex; align-items:center; gap:8px; }
+  .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
+  .ev-flag { display:flex; gap:7px; align-items:flex-start; font-size:12px; color:#5b6670; margin:6px 0 2px; line-height:1.45; }
+  .ev-dot { flex:none; width:9px; height:9px; margin-top:3px; border-radius:50%; border:1.5px dashed #7a8190; }
+  .legend-poi-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-item.off { display:none; }
+  /* Sights sit on top of the safety colours, so they carry none of their own:
+     a white disc with a dark edge reads on green, amber and red alike, and the
+     icon does the work of saying what the place is. */
+  .poi-ico { display:flex; align-items:center; justify-content:center; width:26px; height:26px;
+             background:#fff; border:2px solid #16232b; border-radius:50%;
+             box-shadow:0 1px 5px rgba(0,0,0,.38); font-size:13px; position:relative; }
+  .poi-num { position:absolute; right:-6px; top:-6px; width:16px; height:16px; border-radius:50%;
+             background:#16232b; color:#fff; border:1.5px solid #fff; font-size:10px; font-weight:800;
+             display:flex; align-items:center; justify-content:center; }
+  .poi-lab-tt { background:rgba(255,255,255,.96); border:1px solid rgba(22,35,43,.18); border-radius:5px;
+                padding:2px 7px; font-size:11.5px; font-weight:700; color:#16232b;
+                box-shadow:0 1px 4px rgba(0,0,0,.18); }
+  .poi-lab-tt::before { display:none; }
+  /* I filtri restano raggiungibili mentre si guarda la mappa, invece di finire
+     fuori schermo appena si scorre: prima non si poteva cambiare filtro senza
+     prima uscire dalla mappa, che sul telefono e' il gesto piu' difficile. */
+  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
+             position:sticky; top:0; z-index:1100; background:rgba(247,248,250,.94);
+             backdrop-filter:blur(6px); }
+  .poi-reset { position:absolute; left:36px; bottom:40px; z-index:1000; border:1px solid var(--line);
+               background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
+               font-size:12.5px; font-weight:600; color:#3a4750; cursor:pointer;
+               box-shadow:0 1px 5px rgba(0,0,0,.18); -webkit-tap-highlight-color:transparent; }
+  .poi-reset:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .poi-chip { border:1px solid var(--line); background:#fff; color:#4a5a63; border-radius:999px;
+              padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
+  /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
+     una griglia auto-fill produceva una singola fascia orizzontale di dodici
+     voci, illeggibile e slegata dal resto della pagina. */
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
+  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
+  .map-detail .close-btn:hover { color:var(--ink); }
+  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
+  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
+  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
+  .map-detail .cta.secondary { background: var(--accent); }
+  .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
+  .leaflet-tooltip.zone-tooltip::before { display:none; }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  .zone-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px 22px; }
+  .zone-group h3 { font-size:12.5px; margin:0 0 6px; font-weight:700; display:flex; align-items:center; gap:6px;
+                   border-bottom:1px solid var(--line); padding-bottom:5px; }
+  .zone-group ul { columns:1; font-size:13px; }
+  .zg-count { font-weight:600; color:var(--muted); font-size:11px; margin-left:auto; }
+  .zg-dot { font-size:10px; line-height:1; padding:2px 5px; border-radius:8px; color:#fff; font-weight:700; }
+  .zg-dot.green { background:#2e7d46; } .zg-dot.yellow { background:#c98a02; }
+  .zg-dot.red { background:#c0392b; } .zg-dot.grey { background:#7a8190; }
+  @media (max-width: 720px){
+    /* 520px su un telefono riempiva quasi tutto lo schermo: qualunque tentativo
+       di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
+       400px lascia pagina sopra e sotto su cui appoggiare il pollice. */
+    #map{ height:400px; }
+    .map-wrap { padding: 0 12px 24px; }
+    /* Sovrapposta, la legenda copriva meta' di una mappa larga 351px, e i pin
+       che finivano sotto erano semplicemente invisibili. Su telefono scende
+       quindi sotto la mappa, su una riga sola, e non nasconde piu' niente. */
+    .map-legend { position:static; max-width:none; margin-top:10px; padding:10px 2px 0;
+                  background:none; backdrop-filter:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
+                  flex-direction:row; flex-wrap:wrap; gap:6px 16px; font-size:11px; }
+    /* Con la legenda spostata sotto, l'angolo in alto a destra della mappa e'
+       libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
+       invece di finire in fondo alla pagina sopra la legenda. */
+    .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
+    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
+    .zone-list ul { columns:2; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">City</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        <optgroup label="🇬🇧 United Kingdom">
+          <option value="https://www.wandroz.com/london/" >London</option>
+          <option value="https://www.wandroz.com/edinburgh/" >Edinburgh</option>
+          <option value="https://www.wandroz.com/birmingham/" >Birmingham</option>
+          <option value="https://www.wandroz.com/leeds/" >Leeds</option>
+          <option value="https://www.wandroz.com/bristol/" >Bristol</option>
+          <option value="https://www.wandroz.com/sheffield/" >Sheffield</option>
+          <option value="https://www.wandroz.com/newcastle/" >Newcastle upon Tyne</option>
+          <option value="https://www.wandroz.com/nottingham/" >Nottingham</option>
+          <option value="https://www.wandroz.com/cardiff/" >Cardiff</option>
+          <option value="https://www.wandroz.com/leicester/" >Leicester</option>
+          <option value="https://www.wandroz.com/liverpool/" >Liverpool</option>
+          <option value="https://www.wandroz.com/brighton/" >Brighton and Hove</option>
+          <option value="https://www.wandroz.com/york/" >York</option>
+          <option value="https://www.wandroz.com/oxford/" >Oxford</option>
+          <option value="https://www.wandroz.com/cambridge/" selected>Cambridge</option>
+          <option value="https://www.wandroz.com/bath/" >Bath</option>
+        </optgroup>
+        <optgroup label="🇮🇹 Italy">
+          <option value="https://www.wandroz.com/torino/" >Turin</option>
+          <option value="https://www.wandroz.com/milano/" >Milan</option>
+          <option value="https://www.wandroz.com/roma/" >Rome</option>
+          <option value="https://www.wandroz.com/venezia/" >Venice</option>
+          <option value="https://www.wandroz.com/firenze/" >Florence</option>
+          <option value="https://www.wandroz.com/napoli/" >Naples</option>
+        </optgroup>
+        <optgroup label="🇩🇪 Germany">
+          <option value="https://www.wandroz.com/berlin/" >Berlin</option>
+          <option value="https://www.wandroz.com/monaco-di-baviera/" >Munich</option>
+        </optgroup>
+        <optgroup label="🇪🇸 Spain">
+          <option value="https://www.wandroz.com/barcelona/" >Barcelona</option>
+          <option value="https://www.wandroz.com/madrid/" >Madrid</option>
+        </optgroup>
+        <optgroup label="🇳🇱 Netherlands">
+          <option value="https://www.wandroz.com/amsterdam/" >Amsterdam</option>
+        </optgroup>
+        <optgroup label="🇨🇭 Switzerland">
+          <option value="https://www.wandroz.com/zurigo/" >Zurich</option>
+        </optgroup>
+        <optgroup label="🇨🇿 Czechia">
+          <option value="https://www.wandroz.com/praha/" >Prague</option>
+        </optgroup>
+        <optgroup label="🇳🇴 Norway">
+          <option value="https://www.wandroz.com/oslo/" >Oslo</option>
+        </optgroup>
+        <optgroup label="🇸🇪 Sweden">
+          <option value="https://www.wandroz.com/stockholm/" >Stockholm</option>
+        </optgroup>
+        <optgroup label="🇦🇹 Austria">
+          <option value="https://www.wandroz.com/vienna/" >Vienna</option>
+        </optgroup>
+        <optgroup label="🇵🇹 Portugal">
+          <option value="https://www.wandroz.com/lisbon/" >Lisbon</option>
+        </optgroup>
+        <optgroup label="🇫🇷 France">
+          <option value="https://www.wandroz.com/paris/" >Paris</option>
+        </optgroup>
+        <optgroup label="🇧🇪 Belgium">
+          <option value="https://www.wandroz.com/brussels/" >Brussels</option>
+        </optgroup>
+        <optgroup label="🇬🇷 Greece">
+          <option value="https://www.wandroz.com/athens/" >Athens</option>
+        </optgroup>
+        <optgroup label="🇮🇪 Ireland">
+          <option value="https://www.wandroz.com/dublin/" >Dublin</option>
+        </optgroup>
+        <optgroup label="🇭🇺 Hungary">
+          <option value="https://www.wandroz.com/budapest/" >Budapest</option>
+        </optgroup>
+        <optgroup label="🇵🇱 Poland">
+          <option value="https://www.wandroz.com/krakow/" >Kraków</option>
+        </optgroup>
+      </select>
+    </div>
+    
+    <div class="switch-wrap" id="dnSwitchWrap">
+      <span>day</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>night</span>
+    </div>
+    
+    
+    <nav class="wz-nav">
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+<nav class="crumbs"><a href="/">Home</a> &rsaquo; Cambridge, United Kingdom</nav>
+<h1 class="page-title">Cambridge wards</h1>
+<p class="lead">Click a ward on the map to see its level, the recorded figures behind it, and a Booking.com link for that area.</p>
+<p class="evidence">🟢 Official crime data · Cambridgeshire Constabulary, data.police.uk <a href="/methodology.html">Methodology &rarr;</a></p>
+
+<div class="poi-bar" id="poiBar"></div>
+
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="map-legend" id="legendBox">
+    <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
+    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
+    <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
+    
+    
+    <div class="legend-poi-sep" id="legendPoiSep"></div>
+    <div id="legendPoi"></div>
+  </div>
+  <button type="button" class="poi-reset" id="poiReset">Reset view</button>
+  <div class="map-detail" id="detailBox">
+    <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<div class="poi-list-wrap">
+  <h2>Sights on this map</h2>
+  <ol class="poi-list" id="poiList"></ol>
+</div>
+
+
+<div class="zone-list">
+  <h2>All wards</h2>
+  
+  <ul>
+    
+    <li><a href="/cambridge/abbey.html">Abbey</a></li>
+    
+    <li><a href="/cambridge/arbury.html">Arbury</a></li>
+    
+    <li><a href="/cambridge/castle.html">Castle</a></li>
+    
+    <li><a href="/cambridge/cherry-hinton.html">Cherry Hinton</a></li>
+    
+    <li><a href="/cambridge/coleridge.html">Coleridge</a></li>
+    
+    <li><a href="/cambridge/east-chesterton.html">East Chesterton</a></li>
+    
+    <li><a href="/cambridge/king-s-hedges.html">King&#39;s Hedges</a></li>
+    
+    <li><a href="/cambridge/market.html">Market</a></li>
+    
+    <li><a href="/cambridge/newnham.html">Newnham</a></li>
+    
+    <li><a href="/cambridge/petersfield.html">Petersfield</a></li>
+    
+    <li><a href="/cambridge/queen-edith-s.html">Queen Edith&#39;s</a></li>
+    
+    <li><a href="/cambridge/romsey.html">Romsey</a></li>
+    
+    <li><a href="/cambridge/trumpington.html">Trumpington</a></li>
+    
+    <li><a href="/cambridge/west-chesterton.html">West Chesterton</a></li>
+    
+  </ul>
+  
+</div>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = [{"coords": [[[52.20141, 0.17893], [52.19989, 0.17631], [52.19988, 0.17548], [52.19929, 0.17526], [52.19945, 0.17172], [52.19914, 0.17045], [52.19723, 0.16759], [52.19965, 0.16066], [52.20152, 0.1628], [52.20213, 0.16159], [52.20087, 0.15923], [52.20751, 0.15231], [52.20811, 0.15105], [52.20823, 0.14949], [52.21107, 0.15106], [52.21116, 0.15078], [52.21133, 0.15017], [52.20454, 0.14522], [52.20388, 0.14273], [52.2064, 0.1413], [52.20702, 0.14015], [52.2076, 0.13979], [52.20734, 0.13877], [52.20852, 0.13833], [52.20849, 0.13765], [52.21103, 0.13675], [52.21119, 0.13973], [52.21198, 0.14168], [52.21416, 0.14346], [52.2154, 0.14511], [52.21751, 0.14611], [52.21908, 0.15304], [52.22001, 0.15555], [52.22081, 0.16093], [52.2191, 0.16383], [52.21927, 0.16497], [52.21791, 0.16548], [52.21728, 0.17587], [52.21571, 0.17474], [52.21556, 0.1752], [52.21327, 0.17361], [52.21339, 0.17301], [52.20889, 0.17041], [52.20702, 0.1703], [52.20601, 0.17088], [52.20505, 0.16859], [52.20415, 0.16734], [52.20381, 0.17124], [52.20438, 0.17282], [52.20396, 0.17308], [52.20546, 0.17575], [52.20408, 0.17828], [52.20326, 0.17741], [52.20225, 0.17992], [52.20141, 0.17893]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Abbey", "night": "yellow", "night_label": "Average", "query": "Cambridge, United Kingdom", "slug": "abbey", "text": "Cambridgeshire Constabulary recorded 443 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 13.7 per 1,000 residents, the 3rd highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (28), vehicle crime (8), burglary (7); the evening/night score by violent crime (41), anti social behaviour (20), public order (9). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/abbey.html"}, {"coords": [[[52.2246, 0.12976], [52.2221, 0.12467], [52.22352, 0.1217], [52.22354, 0.12036], [52.22053, 0.11849], [52.21888, 0.12084], [52.21787, 0.11984], [52.21809, 0.11946], [52.21788, 0.11916], [52.21774, 0.11947], [52.21578, 0.11865], [52.21519, 0.11879], [52.21565, 0.11406], [52.21518, 0.11234], [52.21448, 0.11123], [52.21463, 0.11042], [52.21515, 0.11013], [52.21823, 0.11034], [52.21879, 0.10821], [52.21953, 0.10881], [52.21926, 0.10989], [52.21974, 0.11016], [52.21992, 0.11113], [52.2201, 0.11076], [52.22071, 0.11091], [52.22147, 0.10894], [52.2236, 0.10541], [52.22607, 0.10886], [52.22625, 0.10823], [52.22817, 0.10972], [52.22808, 0.11001], [52.22998, 0.11006], [52.22964, 0.11145], [52.22905, 0.1116], [52.22896, 0.11376], [52.22824, 0.11742], [52.23129, 0.11874], [52.2246, 0.12976]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Arbury", "night": "yellow", "night_label": "Average", "query": "Cambridge, United Kingdom", "slug": "arbury", "text": "Cambridgeshire Constabulary recorded 277 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.3 per 1,000 residents, the 7th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (11), burglary (4), bicycle theft (3); the evening/night score by violent crime (33), anti social behaviour (18), public order (5). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/arbury.html"}, {"coords": [[[52.22998, 0.11006], [52.22808, 0.11001], [52.22817, 0.10972], [52.22625, 0.10823], [52.22607, 0.10886], [52.2236, 0.10541], [52.22147, 0.10894], [52.22071, 0.11091], [52.2201, 0.11076], [52.21992, 0.11113], [52.21974, 0.11016], [52.21926, 0.10989], [52.21953, 0.10881], [52.21879, 0.10821], [52.21823, 0.11034], [52.21515, 0.11013], [52.21463, 0.11042], [52.21448, 0.11123], [52.2143, 0.11103], [52.21415, 0.11143], [52.21476, 0.11252], [52.21446, 0.1136], [52.21282, 0.11555], [52.21183, 0.11505], [52.21159, 0.11406], [52.21075, 0.11504], [52.21053, 0.11357], [52.21005, 0.11189], [52.21055, 0.11042], [52.21129, 0.1058], [52.21205, 0.09662], [52.21335, 0.0881], [52.21356, 0.0822], [52.21491, 0.07455], [52.21513, 0.07112], [52.21494, 0.06865], [52.21611, 0.06864], [52.21679, 0.07497], [52.21711, 0.07514], [52.21824, 0.08154], [52.22004, 0.08513], [52.2198, 0.08565], [52.22093, 0.08756], [52.22055, 0.08814], [52.2215, 0.08941], [52.22109, 0.09004], [52.22314, 0.09252], [52.22255, 0.09376], [52.22454, 0.09596], [52.22697, 0.10118], [52.23055, 0.10779], [52.22998, 0.11006]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Castle", "night": "green", "night_label": "Relatively safer", "query": "Cambridge, United Kingdom", "slug": "castle", "text": "Cambridgeshire Constabulary recorded 115 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 4.9 per 1,000 residents, the 13th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by bicycle theft (4), shoplifting (4), vehicle crime (2); the evening/night score by violent crime (10), anti social behaviour (5), public order (3). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/castle.html"}, {"coords": [[[52.16949, 0.18133], [52.17094, 0.17642], [52.17124, 0.17196], [52.17233, 0.16371], [52.1734, 0.1643], [52.17683, 0.16475], [52.17797, 0.16677], [52.179, 0.16524], [52.181, 0.16773], [52.18133, 0.16729], [52.18094, 0.16608], [52.18131, 0.16491], [52.1815, 0.1647], [52.18171, 0.16529], [52.18273, 0.16442], [52.1835, 0.16475], [52.18426, 0.15939], [52.18635, 0.16034], [52.18627, 0.16062], [52.18907, 0.16275], [52.18977, 0.16287], [52.19148, 0.16475], [52.19085, 0.16593], [52.18924, 0.16735], [52.18989, 0.16804], [52.19, 0.16775], [52.19018, 0.16836], [52.19191, 0.17019], [52.19343, 0.16577], [52.19521, 0.16295], [52.19998, 0.15991], [52.19965, 0.16066], [52.19723, 0.16759], [52.19914, 0.17045], [52.19945, 0.17172], [52.19929, 0.17526], [52.19988, 0.17548], [52.19989, 0.17631], [52.20141, 0.17893], [52.20067, 0.18044], [52.20032, 0.17993], [52.19956, 0.1815], [52.19891, 0.18076], [52.19811, 0.18269], [52.19655, 0.18109], [52.19577, 0.1835], [52.19313, 0.1817], [52.19149, 0.18455], [52.18997, 0.18204], [52.18787, 0.18102], [52.18785, 0.18321], [52.18692, 0.18312], [52.18688, 0.18135], [52.18526, 0.18172], [52.18312, 0.1815], [52.18307, 0.18118], [52.1706, 0.18171], [52.16949, 0.18133]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Cherry Hinton", "night": "yellow", "night_label": "Average", "query": "Cambridge, United Kingdom", "slug": "cherry-hinton", "text": "Cambridgeshire Constabulary recorded 174 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.2 per 1,000 residents, the 11th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (3), bicycle theft (1), burglary (1); the evening/night score by violent crime (26), anti social behaviour (12), public order (2). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/cherry-hinton.html"}, {"coords": [[[52.19521, 0.16295], [52.19343, 0.16577], [52.19191, 0.17019], [52.19018, 0.16836], [52.19, 0.16775], [52.18989, 0.16804], [52.18924, 0.16735], [52.19085, 0.16593], [52.19148, 0.16475], [52.18977, 0.16287], [52.18907, 0.16275], [52.18627, 0.16062], [52.18635, 0.16034], [52.18426, 0.15939], [52.18496, 0.15447], [52.1859, 0.15486], [52.186, 0.15439], [52.18604, 0.1537], [52.18571, 0.15351], [52.1858, 0.15299], [52.18607, 0.1531], [52.1864, 0.15129], [52.18567, 0.15074], [52.18576, 0.15044], [52.18645, 0.15073], [52.18698, 0.15009], [52.18673, 0.14999], [52.18673, 0.14886], [52.18613, 0.14862], [52.18596, 0.14707], [52.18698, 0.14719], [52.18741, 0.14648], [52.18755, 0.14492], [52.18781, 0.14485], [52.18742, 0.14461], [52.1876, 0.14289], [52.18788, 0.14174], [52.18844, 0.14133], [52.18793, 0.14024], [52.18849, 0.13938], [52.18814, 0.13841], [52.1885, 0.13802], [52.18845, 0.13712], [52.18831, 0.13652], [52.18785, 0.13681], [52.18696, 0.1326], [52.1959, 0.13893], [52.19544, 0.14198], [52.19566, 0.1423], [52.19491, 0.14652], [52.19537, 0.14669], [52.19526, 0.14756], [52.19578, 0.14775], [52.1946, 0.15882], [52.19592, 0.1571], [52.19521, 0.16295]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Coleridge", "night": "green", "night_label": "Relatively safer", "query": "Cambridge, United Kingdom", "slug": "coleridge", "text": "Cambridgeshire Constabulary recorded 219 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.0 per 1,000 residents, the 10th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (6), vehicle crime (3), bicycle theft (2); the evening/night score by violent crime (22), anti social behaviour (17), public order (5). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/coleridge.html"}, {"coords": [[[52.23384, 0.17144], [52.23296, 0.17134], [52.23355, 0.16906], [52.23014, 0.16665], [52.23077, 0.16415], [52.23008, 0.16346], [52.23101, 0.16098], [52.22749, 0.15732], [52.22649, 0.15485], [52.22495, 0.15617], [52.22332, 0.15686], [52.22081, 0.16093], [52.22001, 0.15555], [52.21908, 0.15304], [52.21751, 0.14611], [52.2154, 0.14511], [52.21416, 0.14346], [52.21198, 0.14168], [52.21119, 0.13973], [52.21103, 0.13675], [52.21429, 0.13658], [52.21768, 0.13405], [52.21884, 0.13254], [52.22011, 0.13454], [52.22059, 0.1346], [52.2208, 0.135], [52.2206, 0.13527], [52.22359, 0.14062], [52.22377, 0.14036], [52.22386, 0.14109], [52.22415, 0.14086], [52.22441, 0.14132], [52.22476, 0.14204], [52.22461, 0.14243], [52.22545, 0.14307], [52.22538, 0.14354], [52.22603, 0.14436], [52.22569, 0.14485], [52.2261, 0.14556], [52.22637, 0.14516], [52.22691, 0.14611], [52.22742, 0.14543], [52.22737, 0.14703], [52.22832, 0.14841], [52.22887, 0.14748], [52.22961, 0.14853], [52.22991, 0.14763], [52.23292, 0.15128], [52.23729, 0.1553], [52.23426, 0.16623], [52.23578, 0.16734], [52.23525, 0.16945], [52.23432, 0.17009], [52.23384, 0.17144]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "East Chesterton", "night": "yellow", "night_label": "Average", "query": "Cambridge, United Kingdom", "slug": "east-chesterton", "text": "Cambridgeshire Constabulary recorded 338 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 11.6 per 1,000 residents, the 4th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (13), vehicle crime (5), bicycle theft (3); the evening/night score by violent crime (34), anti social behaviour (23), public order (6). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/east-chesterton.html"}, {"coords": [[[52.22991, 0.14763], [52.22961, 0.14853], [52.22887, 0.14748], [52.22832, 0.14841], [52.22737, 0.14703], [52.22742, 0.14543], [52.22691, 0.14611], [52.22637, 0.14516], [52.2261, 0.14556], [52.22569, 0.14485], [52.22603, 0.14436], [52.22538, 0.14354], [52.22545, 0.14307], [52.22461, 0.14243], [52.22476, 0.14204], [52.22441, 0.14132], [52.22415, 0.14086], [52.22386, 0.14109], [52.22377, 0.14036], [52.22359, 0.14062], [52.2206, 0.13527], [52.2208, 0.135], [52.22059, 0.1346], [52.22138, 0.13362], [52.22173, 0.13418], [52.22214, 0.13365], [52.22241, 0.13415], [52.22412, 0.13211], [52.22387, 0.13161], [52.22473, 0.13055], [52.22445, 0.12999], [52.2246, 0.12976], [52.23129, 0.11874], [52.2343, 0.125], [52.23436, 0.12614], [52.23384, 0.12761], [52.23568, 0.12991], [52.22991, 0.14763]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "King\u0027s Hedges", "night": "yellow", "night_label": "Average", "query": "Cambridge, United Kingdom", "slug": "king-s-hedges", "text": "Cambridgeshire Constabulary recorded 325 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.8 per 1,000 residents, the 6th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by vehicle crime (7), burglary (4), drugs (4); the evening/night score by violent crime (44), anti social behaviour (22), public order (2). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/king-s-hedges.html"}, {"coords": [[[52.21103, 0.13675], [52.20849, 0.13765], [52.20771, 0.13734], [52.2051, 0.13391], [52.20094, 0.12958], [52.20054, 0.13061], [52.19961, 0.13068], [52.19912, 0.13164], [52.1988, 0.13125], [52.19833, 0.13218], [52.19691, 0.12953], [52.19523, 0.13106], [52.19457, 0.12374], [52.19503, 0.12367], [52.19497, 0.1224], [52.19211, 0.12405], [52.19159, 0.12399], [52.19363, 0.12074], [52.19482, 0.11607], [52.19743, 0.11834], [52.19947, 0.11597], [52.20117, 0.11593], [52.20189, 0.1154], [52.20241, 0.11773], [52.20423, 0.11757], [52.20663, 0.11824], [52.20755, 0.11795], [52.20844, 0.11848], [52.20985, 0.11653], [52.21164, 0.11816], [52.21228, 0.11923], [52.21291, 0.1209], [52.21337, 0.12395], [52.21329, 0.12578], [52.21273, 0.12776], [52.21116, 0.13021], [52.21058, 0.13199], [52.21045, 0.135], [52.21103, 0.13675]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Market", "night": "red", "night_label": "Higher caution advised", "query": "Cambridge, United Kingdom", "slug": "market", "text": "Cambridgeshire Constabulary recorded 1,165 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 37.2 per 1,000 residents, the 1st highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (74), bicycle theft (35), drugs (11); the evening/night score by violent crime (104), anti social behaviour (52), public order (23). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/market.html"}, {"coords": [[[52.21053, 0.11357], [52.20962, 0.11463], [52.20933, 0.11585], [52.20985, 0.11653], [52.20844, 0.11848], [52.20755, 0.11795], [52.20663, 0.11824], [52.20423, 0.11757], [52.20241, 0.11773], [52.20189, 0.1154], [52.20117, 0.11593], [52.19947, 0.11597], [52.19743, 0.11834], [52.19482, 0.11607], [52.19353, 0.11427], [52.19235, 0.10936], [52.19203, 0.10855], [52.19136, 0.10826], [52.19049, 0.10584], [52.19066, 0.10471], [52.19119, 0.1037], [52.19151, 0.10406], [52.19243, 0.10025], [52.19183, 0.09972], [52.19208, 0.09685], [52.19285, 0.09638], [52.19509, 0.09741], [52.19731, 0.09757], [52.19756, 0.09623], [52.19875, 0.095], [52.19933, 0.09489], [52.19933, 0.09408], [52.19899, 0.09384], [52.19932, 0.0932], [52.19918, 0.09236], [52.1995, 0.09231], [52.20023, 0.09054], [52.20149, 0.0847], [52.20325, 0.08553], [52.20435, 0.07902], [52.20581, 0.07915], [52.20606, 0.07764], [52.20788, 0.07737], [52.20838, 0.07395], [52.2097, 0.0741], [52.20987, 0.07367], [52.21153, 0.07424], [52.21218, 0.0698], [52.21513, 0.07112], [52.21491, 0.07455], [52.21356, 0.0822], [52.21335, 0.0881], [52.21205, 0.09662], [52.21129, 0.1058], [52.21055, 0.11042], [52.21005, 0.11189], [52.21053, 0.11357]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Newnham", "night": "green", "night_label": "Relatively safer", "query": "Cambridge, United Kingdom", "slug": "newnham", "text": "Cambridgeshire Constabulary recorded 152 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 4.5 per 1,000 residents, the 14th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by bicycle theft (8), vehicle crime (5), shoplifting (2); the evening/night score by violent crime (12), anti social behaviour (9), theft from the person (4). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/newnham.html"}, {"coords": [[[52.20454, 0.14522], [52.1959, 0.13893], [52.18696, 0.1326], [52.18562, 0.13198], [52.18547, 0.1274], [52.18567, 0.1263], [52.18935, 0.12622], [52.19062, 0.12544], [52.19159, 0.12399], [52.19211, 0.12405], [52.19497, 0.1224], [52.19503, 0.12367], [52.19457, 0.12374], [52.19523, 0.13106], [52.19691, 0.12953], [52.19833, 0.13218], [52.1988, 0.13125], [52.19912, 0.13164], [52.19961, 0.13068], [52.20054, 0.13061], [52.20094, 0.12958], [52.2051, 0.13391], [52.20771, 0.13734], [52.20849, 0.13765], [52.20852, 0.13833], [52.20734, 0.13877], [52.2076, 0.13979], [52.20702, 0.14015], [52.2064, 0.1413], [52.20388, 0.14273], [52.20454, 0.14522]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Petersfield", "night": "yellow", "night_label": "Average", "query": "Cambridge, United Kingdom", "slug": "petersfield", "text": "Cambridgeshire Constabulary recorded 468 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 14.3 per 1,000 residents, the 2nd highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (30), bicycle theft (20), vehicle crime (4); the evening/night score by violent crime (30), anti social behaviour (28), public order (10). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/petersfield.html"}, {"coords": [[[52.18426, 0.15939], [52.1835, 0.16475], [52.18273, 0.16442], [52.18171, 0.16529], [52.1815, 0.1647], [52.18131, 0.16491], [52.18094, 0.16608], [52.18133, 0.16729], [52.181, 0.16773], [52.179, 0.16524], [52.17797, 0.16677], [52.17683, 0.16475], [52.1734, 0.1643], [52.17233, 0.16371], [52.17248, 0.16263], [52.16845, 0.15988], [52.16462, 0.15493], [52.171, 0.14176], [52.16824, 0.13205], [52.17889, 0.13074], [52.18331, 0.13115], [52.18562, 0.13198], [52.18696, 0.1326], [52.18785, 0.13681], [52.18831, 0.13652], [52.18845, 0.13712], [52.1885, 0.13802], [52.18814, 0.13841], [52.18849, 0.13938], [52.18793, 0.14024], [52.18844, 0.14133], [52.18788, 0.14174], [52.1876, 0.14289], [52.18742, 0.14461], [52.18781, 0.14485], [52.18755, 0.14492], [52.18741, 0.14648], [52.18698, 0.14719], [52.18596, 0.14707], [52.18613, 0.14862], [52.18673, 0.14886], [52.18673, 0.14999], [52.18698, 0.15009], [52.18645, 0.15073], [52.18576, 0.15044], [52.18567, 0.15074], [52.1864, 0.15129], [52.18607, 0.1531], [52.1858, 0.15299], [52.18571, 0.15351], [52.18604, 0.1537], [52.186, 0.15439], [52.1859, 0.15486], [52.18496, 0.15447], [52.18426, 0.15939]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Queen Edith\u0027s", "night": "green", "night_label": "Relatively safer", "query": "Cambridge, United Kingdom", "slug": "queen-edith-s", "text": "Cambridgeshire Constabulary recorded 193 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 5.3 per 1,000 residents, the 12th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (4), bicycle theft (3), burglary (2); the evening/night score by violent crime (26), anti social behaviour (11), public order (2). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/queen-edith-s.html"}, {"coords": [[[52.19965, 0.16066], [52.19998, 0.15991], [52.19521, 0.16295], [52.19592, 0.1571], [52.1946, 0.15882], [52.19578, 0.14775], [52.19526, 0.14756], [52.19537, 0.14669], [52.19491, 0.14652], [52.19566, 0.1423], [52.19544, 0.14198], [52.1959, 0.13893], [52.20454, 0.14522], [52.21133, 0.15017], [52.21116, 0.15078], [52.21107, 0.15106], [52.20823, 0.14949], [52.20811, 0.15105], [52.20751, 0.15231], [52.20087, 0.15923], [52.20213, 0.16159], [52.20152, 0.1628], [52.19965, 0.16066]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Romsey", "night": "green", "night_label": "Relatively safer", "query": "Cambridge, United Kingdom", "slug": "romsey", "text": "Cambridgeshire Constabulary recorded 218 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.1 per 1,000 residents, the 9th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (7), bicycle theft (7), vehicle crime (3); the evening/night score by violent crime (23), anti social behaviour (11), public order (3). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/romsey.html"}, {"coords": [[[52.19159, 0.12399], [52.19062, 0.12544], [52.18935, 0.12622], [52.18567, 0.1263], [52.18547, 0.1274], [52.18562, 0.13198], [52.18331, 0.13115], [52.17889, 0.13074], [52.16824, 0.13205], [52.16782, 0.13059], [52.16807, 0.13018], [52.16706, 0.12681], [52.16675, 0.12682], [52.16499, 0.12058], [52.15794, 0.10343], [52.16072, 0.1011], [52.16343, 0.10468], [52.16618, 0.10583], [52.16832, 0.10785], [52.1683, 0.10609], [52.16989, 0.10695], [52.17133, 0.09929], [52.17179, 0.10003], [52.17276, 0.09993], [52.17381, 0.10131], [52.17485, 0.10158], [52.17586, 0.10139], [52.17597, 0.10033], [52.17669, 0.0995], [52.17934, 0.09963], [52.17996, 0.09832], [52.18056, 0.09813], [52.1822, 0.09925], [52.18259, 0.10036], [52.18494, 0.09999], [52.18651, 0.10203], [52.18741, 0.10214], [52.18813, 0.10283], [52.18901, 0.10475], [52.19066, 0.10471], [52.19049, 0.10584], [52.19136, 0.10826], [52.19203, 0.10855], [52.19235, 0.10936], [52.19353, 0.11427], [52.19482, 0.11607], [52.19363, 0.12074], [52.19159, 0.12399]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Trumpington", "night": "green", "night_label": "Relatively safer", "query": "Cambridge, United Kingdom", "slug": "trumpington", "text": "Cambridgeshire Constabulary recorded 278 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.5 per 1,000 residents, the 8th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (11), bicycle theft (6), vehicle crime (3); the evening/night score by violent crime (33), anti social behaviour (14), public order (7). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/trumpington.html"}, {"coords": [[[52.22059, 0.1346], [52.22011, 0.13454], [52.21884, 0.13254], [52.21768, 0.13405], [52.21429, 0.13658], [52.21103, 0.13675], [52.21045, 0.135], [52.21058, 0.13199], [52.21116, 0.13021], [52.21273, 0.12776], [52.21329, 0.12578], [52.21337, 0.12395], [52.21291, 0.1209], [52.21228, 0.11923], [52.21164, 0.11816], [52.20985, 0.11653], [52.20933, 0.11585], [52.20962, 0.11463], [52.21053, 0.11357], [52.21075, 0.11504], [52.21159, 0.11406], [52.21183, 0.11505], [52.21282, 0.11555], [52.21446, 0.1136], [52.21476, 0.11252], [52.21415, 0.11143], [52.2143, 0.11103], [52.21448, 0.11123], [52.21518, 0.11234], [52.21565, 0.11406], [52.21519, 0.11879], [52.21578, 0.11865], [52.21774, 0.11947], [52.21788, 0.11916], [52.21809, 0.11946], [52.21787, 0.11984], [52.21888, 0.12084], [52.22053, 0.11849], [52.22354, 0.12036], [52.22352, 0.1217], [52.2221, 0.12467], [52.2246, 0.12976], [52.22445, 0.12999], [52.22473, 0.13055], [52.22387, 0.13161], [52.22412, 0.13211], [52.22241, 0.13415], [52.22214, 0.13365], [52.22173, 0.13418], [52.22138, 0.13362], [52.22059, 0.1346]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "West Chesterton", "night": "green", "night_label": "Relatively safer", "query": "Cambridge, United Kingdom", "slug": "west-chesterton", "text": "Cambridgeshire Constabulary recorded 291 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.9 per 1,000 residents, the 5th highest rate of Cambridge\u0027s 14 wards. The daytime score here is driven by shoplifting (30), bicycle theft (7), drugs (2); the evening/night score by violent crime (21), anti social behaviour (16), public order (3). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/cambridge/west-chesterton.html"}];
+  var CENTER = [52.2038, 0.1348];
+  var ZOOM = 11;
+  var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = "Click a ward on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_BOOKING = "Search accommodation here on Booking.com \u2192";
+  var L_MORE = "See the full page \u2192";
+  var L_NOTCOVERED = "";
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.20694, "lon": 0.11694, "name": "Trinity College", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.20028, "lon": 0.11944, "name": "Fitzwilliam Museum", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.20472, "lon": 0.11639, "name": "King\u0027s College Chapel", "rank": 3}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.1938, "lon": 0.12789, "name": "Cambridge University Botanic Garden", "rank": 4}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.2044, "lon": 0.11404, "name": "The Backs", "rank": 5}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.20222, "lon": 0.12778, "name": "Parker\u0027s Piece", "rank": 6}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 52.1999, "lon": 0.1376, "name": "Mill Road", "rank": 7}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.21194, "lon": 0.12234, "name": "Jesus Green", "rank": 8}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.2042, "lon": 0.1198, "name": "Cambridge Corn Exchange", "rank": 9}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.21028, "lon": 0.12861, "name": "Midsummer Common", "rank": 10}];
+  var POI_ALL = "All";
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
+
+  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+
+  // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi
+  // dalla citta' e non trovare piu' la strada indietro — con l'unico rimedio di
+  // ricaricare la pagina. Questo e' il fondo di ripiego, per le citta' che non
+  // hanno ancora sights; dove ci sono, lo rifissa poiFitAll() sulla vista che
+  // li contiene tutti.
+  var POI_HOME = null;
+  map.setMinZoom(Math.max(3, ZOOM - 2));
+  map.setMaxBounds(L.latLngBounds(
+    L.latLng(CENTER[0] - 0.55, CENTER[1] - 0.75),
+    L.latLng(CENTER[0] + 0.55, CENTER[1] + 0.75)
+  ));
+  map.options.maxBoundsViscosity = 0.7;
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var burglaryMode = false;
+  var layers = [];
+  var lastZone = null;
+
+  function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  var detailPanel = document.getElementById('detailBox');
+
+  function showPanel() { detailPanel.classList.add('visible'); }
+  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; }
+  document.getElementById('detailClose').addEventListener('click', hidePanel);
+
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.covered) {
+      html += badge(tone, z.tone_label || tone);
+    } else {
+      html += badge('grey', z.tone_label || '');
+    }
+    if (z.evidence === 'no_findings') {
+      html += '<div class="ev-flag"><span class="ev-dot"></span>' + z.evidence_label +
+              ' — the review reached no reporting specific to this area, so the rating rests on that ' +
+              'absence rather than on named sources.</div>';
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.covered) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    var greyEl = document.getElementById('legendGreyText');
+    if (greyEl) { greyEl.textContent = set.grey; }
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    ZONES.forEach(function(z){
+      var tone = toneOf(z);
+      // Dashed where the rating rests on an absence of reporting rather than
+      // on sources: the colour still carries the judgement, the outline says
+      // how much evidence is behind it.
+      var thin = z.evidence === 'no_findings';
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight: thin ? 1.5 : 2,
+                                       dashArray: thin ? '5,4' : null,
+                                       fillOpacity: 0.32 }).addTo(map);
+      // Name is visible on hover (not just after a click) via a sticky
+      // tooltip, plus a highlight so it's obvious which zone you're over —
+      // click still opens the full detail card.
+      poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
+      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
+      poly.on('mouseout', function(){ poly.setStyle({ weight:2 }); });
+      poly.on('click', function(){ renderDetail(z); });
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+      if (lastZone && !burglaryMode) renderDetail(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) renderDetail(lastZone);
+    });
+  }
+
+  // ---------------------------------------------------------------------
+  // Sights, laid over the safety map
+  //
+  // The point of the pairing is that a visitor sees what is worth going to
+  // AND which safety area it sits in, on one map. So the pins carry no colour
+  // of their own — colour belongs to safety. The opening view used to be the
+  // safety geography alone, which left a distant sight like Superga or
+  // Stupinigi off screen: a pin nobody can see is a pin that does not exist.
+  // The view now covers every sight as well as every zone.
+  // ---------------------------------------------------------------------
+  var poiMarkers = [];
+  var poiLeaders = [];
+  var POI_SPREAD = 34;
+
+  function poiBuild() {
+    if (!POIS || !POIS.length) return;
+    POIS.forEach(function (p) {
+      var m = L.marker([p.lat, p.lon], { icon: L.divIcon({
+        className: '', iconSize: [26, 26], iconAnchor: [13, 13],
+        html: '<div class="poi-ico">' + p.icon + '<span class="poi-num">' + p.rank + '</span></div>'
+      })});
+      m.bindTooltip(p.name, { direction: 'right', offset: [15, 0], className: 'poi-lab-tt' });
+      m.bindPopup('<b>' + p.name + '</b><br><span style="color:#5b6670">' + p.cat_label + '</span>');
+      m.poiCat = p.cat; m.poiRank = p.rank; m.poiName = p.name;
+      m.addTo(map); poiMarkers.push(m);
+    });
+    poiFitAll();
+    poiChips();
+    poiLegend(null);
+    poiListing();
+    map.on('zoomend moveend', poiRefresh);
+    window.addEventListener('resize', function () { poiHome(false); poiRefresh(); });
+    poiRefresh();
+  }
+
+  // Tutti i sights devono stare nella vista d'apertura, e quella vista diventa
+  // anche il limite: non si rimpicciolisce oltre, non ci si allontana oltre, e
+  // "Reset view" riporta esattamente qui. Cosi' da telefono non si finisce mai
+  // in un punto da cui non si sa tornare.
+  function poiFitAll() {
+    // Si parte dalla vista decisa dalla sicurezza e la si allarga solo quanto
+    // basta a farci stare i pin: dove sono gia' tutti dentro, l'inquadratura
+    // resta esattamente quella di prima.
+    var b = map.getBounds();
+    poiMarkers.forEach(function (m) { b.extend(m.poiReal || m.getLatLng()); });
+    POI_HOME = b;
+    poiHome(true);
+  }
+
+  // Il fondo dipende da quanto e' grande la mappa, che cambia ruotando il
+  // telefono, quindi si ricalcola anche al resize. Fissarlo una volta sola
+  // lasciava un minZoom piu' stretto della vista d'apertura: cioe' proprio il
+  // caso in cui, dopo aver zoomato, non si riusciva piu' a tornare indietro.
+  function poiHome(recenter) {
+    if (!POI_HOME) return;
+    map.setMinZoom(3);
+    map.invalidateSize(false);
+    var z = map.getBoundsZoom(POI_HOME, false, L.point(28, 28));
+    if (recenter) map.setView(POI_HOME.getCenter(), z, { animate: false });
+    map.setMinZoom(z);
+    map.setMaxBounds(POI_HOME.pad(0.35));
+  }
+
+  // Pins closer than POI_SPREAD px are fanned onto a small circle with a
+  // hairline back to the true spot: all of them stay clickable instead of
+  // stacking, and none of them lies about where it is.
+  function poiDeclutter() {
+    poiLeaders.forEach(function (l) { map.removeLayer(l); });
+    poiLeaders = [];
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    vis.forEach(function (m) {
+      if (!m.poiReal) m.poiReal = m.getLatLng();
+      m.setLatLng(m.poiReal);
+    });
+    vis.forEach(function (m) { m.poiPt = map.latLngToLayerPoint(m.getLatLng()); });
+    var groups = [];
+    vis.forEach(function (m) {
+      var g = null;
+      groups.forEach(function (gr) {
+        if (!g && gr.some(function (o) { return o.poiPt.distanceTo(m.poiPt) < POI_SPREAD; })) g = gr;
+      });
+      if (g) { g.push(m); } else { groups.push([m]); }
+    });
+    groups.forEach(function (g) {
+      if (g.length === 1) return;
+      var cx = 0, cy = 0;
+      g.forEach(function (m) { cx += m.poiPt.x; cy += m.poiPt.y; });
+      cx /= g.length; cy /= g.length;
+      var R = Math.max(26, 12 + g.length * 6);
+      g.sort(function (a, b) { return a.poiRank - b.poiRank; });
+      g.forEach(function (m, i) {
+        var ang = (2 * Math.PI * i) / g.length - Math.PI / 2;
+        m.setLatLng(map.layerPointToLatLng(L.point(cx + R * Math.cos(ang), cy + R * Math.sin(ang))));
+        poiLeaders.push(L.polyline([m.poiReal, m.getLatLng()],
+          { color: '#16232b', weight: 1, opacity: .38, interactive: false }).addTo(map));
+      });
+    });
+  }
+
+  function poiOverlap(a, b) { return !(a.r < b.l || b.r < a.l || a.b < b.t || b.b < a.t); }
+
+  // A name stays on screen only where it collides with nothing — not with
+  // another name, not with another pin, not with the edge. Names are tried in
+  // rank order, so when two compete the better-known place keeps its label.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
+  function poiLabels() {
+    poiMarkers.forEach(function (m) {
+      if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
+    });
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    if (!vis.length) return;
+    var size = map.getSize();
+    var taken = vis.map(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      return { l: pt.x - 15, r: pt.x + 15, t: pt.y - 15, b: pt.y + 15 };
+    });
+    vis.slice().sort(function (a, b) { return a.poiRank - b.poiRank; }).forEach(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      var w = 10 + m.poiName.length * 6.6, h = 18;
+      var cand = [
+        { d: 'right', o: [15, 0],  b: { l: pt.x + 16, r: pt.x + 16 + w, t: pt.y - h / 2, b: pt.y + h / 2 } },
+        { d: 'left',  o: [-15, 0], b: { l: pt.x - 16 - w, r: pt.x - 16, t: pt.y - h / 2, b: pt.y + h / 2 } }
+      ];
+      var ok = null;
+      cand.forEach(function (c) {
+        if (ok) return;
+        if (c.b.l < 8 || c.b.r > size.x - 8) return;
+        var clash = false;
+        taken.forEach(function (t) { if (poiOverlap(c.b, t)) clash = true; });
+        if (!clash) ok = c;
+      });
+      if (!ok) return;
+      taken.push(ok.b);
+      m.poiPerm = L.tooltip({ permanent: true, direction: ok.d, offset: ok.o,
+                              className: 'poi-lab-tt', interactive: false })
+                   .setLatLng(m.getLatLng()).setContent(m.poiName).addTo(map);
+    });
+  }
+
+  function poiRefresh() { poiDeclutter(); poiLabels(); }
+
+  // La legenda deve dire quello che si vede. Filtrando su "Green space" le
+  // altre voci descrivono pin che in quel momento non ci sono, quindi
+  // spariscono con loro invece di restare a promettere icone assenti.
+  function poiLegend(active) {
+    var box = document.getElementById('legendPoi');
+    if (!box) return;
+    var seen = {};
+    POIS.forEach(function (p) { seen[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    box.innerHTML = '';
+    Object.keys(seen).forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'legend-poi-item' + (active && active !== c ? ' off' : '');
+      row.textContent = seen[c];
+      box.appendChild(row);
+    });
+  }
+
+  function poiChips() {
+    var bar = document.getElementById('poiBar');
+    if (!bar) return;
+    var cats = [null];
+    POIS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); });
+    var labelOf = {};
+    POIS.forEach(function (p) { labelOf[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    cats.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'poi-chip';
+      b.textContent = c === null ? POI_ALL : labelOf[c];
+      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(bar.children, function (x, k) {
+          x.setAttribute('aria-pressed', cats[k] === c ? 'true' : 'false');
+        });
+        poiMarkers.forEach(function (m) {
+          if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
+        });
+        poiLegend(c);
+        poiListFilter(c);
+        poiRefresh();
+      });
+      bar.appendChild(b);
+    });
+  }
+
+  // On a narrow screen a twenty-character label has nowhere to go, so the
+  // numbered list is where the names live: the pin shows the number, the list
+  // gives the name, and tapping one flies the map there.
+  function poiListing() {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    POIS.forEach(function (p) {
+      var li = document.createElement('li');
+      li.setAttribute('data-cat', p.cat);
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
+      li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
+      ol.appendChild(li);
+    });
+  }
+
+  // Filtrando su "Art & history" la mappa mostra solo quei pin: l'elenco qui
+  // sotto e' la stessa cosa scritta, quindi si filtra con lei. I numeri non si
+  // rinumerano, altrimenti non corrisponderebbero piu' ai pin.
+  function poiListFilter(c) {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    Array.prototype.forEach.call(ol.children, function (li) {
+      var show = c === null || li.getAttribute('data-cat') === c;
+      li.style.display = show ? 'inline-flex' : 'none';
+    });
+  }
+
+  var poiResetBtn = document.getElementById('poiReset');
+  if (poiResetBtn) {
+    poiResetBtn.addEventListener('click', function () {
+      if (POI_HOME) { poiHome(true); } else { map.setView(CENTER, ZOOM); }
+      hidePanel();
+    });
+  }
+
+  poiBuild();
+
+</script>
+</body>
+</html>
