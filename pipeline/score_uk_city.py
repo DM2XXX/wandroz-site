@@ -36,15 +36,22 @@ def weighted(counts, categories):
                for c, n in counts.items() if c in categories)
 
 
-def load_zone(raw_dir, slug):
-    months, per_month = [], []
-    for path in sorted(glob.glob(os.path.join(raw_dir, "%s_*.json" % slug)), reverse=True):
-        m = re.search(r"_(\d{4}-\d{2})\.json$", path)
-        if not m:
-            continue
-        months.append(m.group(1))
-        per_month.append(collections.Counter(c["category"] for c in json.load(open(path))))
-    return months, per_month
+def load_counts(key):
+    """Per-ward, per-month category counts, written by fetch_uk_city.py.
+
+    The scorer reads the aggregate rather than the raw records: it needs a
+    count per category, and carrying every incident's street name in the
+    repository to recompute one is how a repo ends up 100 MB heavier per city.
+    """
+    path = os.path.join(REPO, "data", "counts_%s.json" % key)
+    with open(path) as f:
+        return json.load(f)["counts"]
+
+
+def load_zone(counts, slug):
+    per = counts.get(slug) or {}
+    months = sorted(per, reverse=True)
+    return months, [collections.Counter(per[m]) for m in months]
 
 
 def tone(rate, avg):
@@ -79,18 +86,18 @@ def ordinal(n):
 def main(key, label, force, centre_zoom=11):
     src = os.path.join(HERE, "data_zones", "%s_boundaries.json" % key)
     doc = json.load(open(src))
-    raw_dir = os.path.join(REPO, "data", "raw_%s" % key)
+    counts = load_counts(key)
 
     rows = []
     all_months = set()
     for z in doc["zones"]:
-        months, per_month = load_zone(raw_dir, z["slug"])
+        months, per_month = load_zone(counts, z["slug"])
         if not months:
             print("SALTATA (nessun dato):", z["name"]); continue
         all_months.update(months)
         avg = collections.Counter()
-        for counts in per_month:
-            for c, n in counts.items():
+        for month_counts in per_month:          # not `counts`: that name holds
+            for c, n in month_counts.items():   # the whole city's table above
                 avg[c] += n / len(per_month)
         pop = z.get("population") or 0
         if not pop:

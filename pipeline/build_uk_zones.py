@@ -12,8 +12,20 @@ import json, os, sys, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = None
-ONS = ("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/"
-       "Wards_December_2024_Boundaries_UK_BGC/FeatureServer/0/query")
+# Two ward vintages, because a city that re-warded after the 2021 census has
+# boundaries the census cannot populate: Liverpool's 2024 wards return nothing
+# from NOMIS, since the population was counted against the 2021 ones. Where
+# that happens the city is built on the 2021 vintage instead, so the boundary
+# and its denominator come from the same year — a real official boundary and a
+# real official count, rather than two that do not line up.
+ONS_BY_VINTAGE = {
+    "2024": ("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/"
+             "Wards_December_2024_Boundaries_UK_BGC/FeatureServer/0/query", "WD24CD", "WD24NM", "LAD24NM"),
+    "2021": ("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/"
+             "Wards_(December_2021)_UK_BGC/FeatureServer/0/query", "WD21CD", "WD21NM", "LAD21NM"),
+}
+VINTAGE = os.environ.get("WARD_VINTAGE", "2024")
+ONS, CODE_F, NAME_F, LAD_F = ONS_BY_VINTAGE[VINTAGE]
 UA = "WandrozBoundaries/1.0 (https://www.wandroz.com; hellowandroz@gmail.com)"
 KEY, LAD, LABEL = "birmingham", "Birmingham", "Birmingham, United Kingdom"
 if len(sys.argv) > 3:
@@ -35,8 +47,8 @@ def slugify(name):
 
 def fetch():
     params = {
-        "where": "LAD24NM='%s'" % LAD,
-        "outFields": "WD24CD,WD24NM,LAD24NM",
+        "where": "%s='%s'" % (LAD_F, LAD),
+        "outFields": "%s,%s,%s" % (CODE_F, NAME_F, LAD_F),
         "returnGeometry": "true",
         "outSR": "4326",
         "f": "json",
@@ -66,7 +78,7 @@ def main():
     feats = fetch()
     zones = []
     for f in feats:
-        name = f["attributes"]["WD24NM"]
+        name = f["attributes"][NAME_F]
         coords = rings_to_coords(f.get("geometry") or {})
         if not coords:
             print("SKIP (nessuna geometria):", name)
@@ -74,7 +86,7 @@ def main():
         zones.append({
             "name": name,
             "slug": slugify(name),
-            "code": f["attributes"]["WD24CD"],
+            "code": f["attributes"][CODE_F],
             "day": "grey", "night": "grey",
             "text": "",
             "query": "%s, %s, United Kingdom" % (name, LAD),
@@ -86,6 +98,7 @@ def main():
     lon = sum(p[1] for z in zones for p in z["coords"][0]) / sum(len(z["coords"][0]) for z in zones)
     doc = {
         "label": LABEL,
+        "ward_vintage": VINTAGE,
         "center": [round(lat, 4), round(lon, 4)],
         "zoom": 11,
         "dataNote": "",
@@ -98,4 +111,5 @@ def main():
     print("scritto", OUT, "(%.0f KB)" % (os.path.getsize(OUT) / 1024))
 
 
-main()
+if __name__ == "__main__":
+    main()

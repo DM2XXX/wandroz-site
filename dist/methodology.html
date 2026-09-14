@@ -77,7 +77,7 @@
     crime statistic. <strong>London</strong> runs on the UK Home Office's street-level data, published monthly at
     <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a> and recomputed by pipeline,
     not by hand: 32 of 33 boroughs are scored — every borough except the City of London, which is policed separately and is not in the dataset,
-    from the months the Met has actually published (April–June 2026). 8 further cities —
+    from the months the Met has actually published (April–June 2026). 10 further cities —
     Berlin, Amsterdam, Prague, Oslo, Munich, Stockholm and Brussels — are driven by their own national or municipal
     statistic, named on each city's map and in its section below. These are periodic snapshots, not live feeds, and
     none of them splits crime by time of day.
@@ -897,21 +897,22 @@
   only moderate.
 </div>
 
-<h2>Birmingham: real Metropolitan-style data, from West Midlands Police</h2>
+<h2>Birmingham, Leeds, Liverpool and Bristol: the same official feed as London</h2>
 <p style="font-size:13.5px;color:var(--muted);">
-  Birmingham is the first city built on London's own pipeline rather than beside it. West Midlands
-  Police publishes street-level crime records to
+  These four cities are built on London's own pipeline rather than beside it. West Midlands Police,
+  West Yorkshire Police, Merseyside Police and Avon and Somerset Constabulary all publish
+  street-level crime records to
   <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a> — the same
-  national feed London runs on — so each of Birmingham's 69 official wards is queried against its
-  real ONS boundary polygon, not a circle around a centroid, and scored with the same category
-  weights and the same day/night split described above. Ratings compare a ward against the average
-  of Birmingham's own wards, never against London's.
+  national feed London runs on — so every official ward is queried against its real ONS boundary
+  polygon, not a circle around a centroid, and scored with the same category weights and the same
+  day/night split described above. Ratings compare a ward against the average of its own city's
+  wards, never against London's or each other's.
 </p>
 <div class="note" style="margin-bottom:10px;">
   <strong>One deliberate difference from London: no footfall correction.</strong> London's scores are
   divided by an estimated workday population, because the ONS published a workday-population release
-  at borough level. No equivalent exists for wards, so Birmingham's rates are per <em>resident</em>
-  (2021 census, 1,144,911 people across the 69 wards). The effect is predictable and worth knowing
+  at borough level. No equivalent exists for wards, so these cities' rates are per <em>resident</em>
+  (2021 census). The effect is predictable and worth knowing
   when reading the map: a central ward carrying a city's shops, stations and nightlife — Ladywood,
   which includes the Bullring and New Street — serves far more people than live there, so its rate
   per resident reads high. It is the highest in the city at 46 recorded crimes per 1,000 residents
