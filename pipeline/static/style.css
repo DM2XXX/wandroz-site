@@ -118,3 +118,29 @@ footer.wz-footer a { color: var(--muted); }
 /* Scroll-reveal-free subtle transition helpers */
 .hover-lift { transition: transform .15s ease, box-shadow .15s ease; }
 .hover-lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+
+/* ---------------------------------------------------------------------------
+   Scala tipografica per schermi grandi.
+   La scala di base e' tarata sul telefono, dove riempie i 375px che ci sono.
+   Su un laptop la stessa scala si legge minuta, e su una finestra molto larga
+   — monitor grande, o browser rimpicciolito, che dal lato CSS sono la stessa
+   cosa — di piu' ancora. Quindi cresce a gradini, e il telefono resta com'e'.
+--------------------------------------------------------------------------- */
+@media (min-width: 721px){
+  .wz-brand .wz-name { font-size:19px; }
+  .wz-brand .wz-tagline { font-size:13.5px; }
+  .wz-nav a { font-size:15px; margin-left:24px; }
+  .badge { font-size:13.5px; padding:5px 14px; }
+  .btn-primary, .btn-secondary { font-size:16px; padding:13px 22px; }
+  .note { font-size:15px; }
+  footer.wz-footer { font-size:13.5px; }
+}
+@media (min-width: 1800px){
+  .wz-brand .wz-name { font-size:21px; }
+  .wz-brand .wz-tagline { font-size:15px; }
+  .wz-nav a { font-size:16.5px; }
+  .badge { font-size:15px; padding:6px 16px; }
+  .btn-primary, .btn-secondary { font-size:17.5px; }
+  .note { font-size:16.5px; }
+  footer.wz-footer { font-size:15px; }
+}
