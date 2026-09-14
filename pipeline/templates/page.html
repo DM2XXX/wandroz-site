@@ -1,0 +1,13 @@
+{% extends "_base.html" %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+{% block content %}
+<h1>{{ page_h1 }}</h1>
+{% if lede %}<p class="subtitle">{{ lede }}</p>{% endif %}
+{{ body }}
+<p style="margin-top:28px;"><a href="/">← Back to Wandroz</a></p>
+{% endblock %}

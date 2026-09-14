@@ -67,6 +67,10 @@ EXPECTED_ROOT_FILES = {
     "site.webmanifest", "favicon.svg", "favicon-32.png",
     "apple-touch-icon.png", "icon-512.png", "logo-mark.png",
 }
+# The about/contact/privacy/disclosure set is defined once, in the generator.
+# Listing it here as well is how a gate ends up rejecting a page the site is
+# supposed to have, so the names are read from STATIC_PAGES instead.
+EXPECTED_ROOT_FILES |= {"%s.html" % p["slug"] for p in getattr(BS, "STATIC_PAGES", [])}
 
 # Marker → (why a clean rebuild changes it, expected count in a clean build).
 # This is the production-vintage analysis from the 11 Sep crawl, turned into
