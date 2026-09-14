@@ -1,10 +1,10 @@
 {
   "dist": "/Users/dm2/wandroz/repo/dist",
-  "pages_audited": 1380,
-  "cities_expected": 28,
-  "cities_built": 28,
+  "pages_audited": 1508,
+  "cities_expected": 33,
+  "cities_built": 33,
   "cities_missing": [],
-  "cities_audited": 27,
+  "cities_audited": 32,
   "zone_counts": {
     "amsterdam": 110,
     "athens": 7,
@@ -14,56 +14,61 @@
     "bristol": 34,
     "brussels": 19,
     "budapest": 23,
+    "cardiff": 28,
     "dublin": 11,
     "edinburgh": 17,
     "firenze": 74,
     "krakow": 18,
     "leeds": 33,
+    "leicester": 21,
     "lisbon": 24,
     "madrid": 131,
     "milano": 88,
     "monaco-di-baviera": 25,
     "napoli": 10,
+    "newcastle": 26,
+    "nottingham": 20,
     "oslo": 16,
     "paris": 80,
     "praha": 57,
     "roma": 155,
+    "sheffield": 28,
     "stockholm": 11,
     "torino": 23,
     "venezia": 6,
     "vienna": 23,
     "zurigo": 34
   },
-  "zones_in_source": 1314,
+  "zones_in_source": 1437,
   "florence": {
     "expected": 75,
     "generated": 75
   },
   "navigation": {
-    "expected_cities_per_hub": 28,
+    "expected_cities_per_hub": 33,
     "hubs_with_incomplete_switcher": []
   },
   "booking": {
     "URL_STRUCTURE_PASS": {
-      "PASS": 1346
+      "PASS": 1469
     },
     "WANDROZ_QUERY_MATCH": {
-      "PASS": 1346
+      "PASS": 1469
     },
     "BOOKING_DESTINATION_VERIFIED": {
-      "MANUAL_VERIFICATION_REQUIRED": 1241,
+      "MANUAL_VERIFICATION_REQUIRED": 1364,
       "PASS": 105
     },
     "AFFILIATE_ATTRIBUTION_VERIFIED": {
-      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1346
+      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1469
     },
     "destination_class": {
-      "UNVERIFIED": 1241,
+      "UNVERIFIED": 1364,
       "TRAVELLER_ALIAS": 95,
       "EXACT_AREA": 3,
       "CITY_FALLBACK": 7
     },
-    "ctas_total": 1346
+    "ctas_total": 1469
   },
   "correction_email": {
     "canonical": "hellowandroz@gmail.com",
@@ -144,7 +149,7 @@
       "category": "BOOKING",
       "check": "affiliate-attribution",
       "target": "site-wide",
-      "message": "1346 of 1346 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
+      "message": "1469 of 1469 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
     }
   ]
 }

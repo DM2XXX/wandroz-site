@@ -61,6 +61,16 @@ UK_CITIES = [
     # rather than shipping crime counts divided by a guess.
     {"key": "bristol", "city": "Bristol", "force": "Avon and Somerset Constabulary",
      "lat": 51.4545, "lon": -2.5879, "color": "#2f9e8f"},
+    {"key": "sheffield", "city": "Sheffield", "force": "South Yorkshire Police",
+     "lat": 53.3811, "lon": -1.4701, "color": "#4a7fb5"},
+    {"key": "newcastle", "city": "Newcastle upon Tyne", "force": "Northumbria Police",
+     "lat": 54.9783, "lon": -1.6178, "color": "#b5564a"},
+    {"key": "nottingham", "city": "Nottingham", "force": "Nottinghamshire Police",
+     "lat": 52.9548, "lon": -1.1581, "color": "#8a6d3b"},
+    {"key": "cardiff", "city": "Cardiff", "force": "South Wales Police",
+     "lat": 51.4816, "lon": -3.1791, "color": "#3f8f5c"},
+    {"key": "leicester", "city": "Leicester", "force": "Leicestershire Police",
+     "lat": 52.6369, "lon": -1.1398, "color": "#9c5fb0"},
 ]
 
 
@@ -2153,6 +2163,8 @@ def main():
             london_covered_count=london_live_count,
             london_total_boroughs=33,
             london_window=london_window(),
+            uk_cities=[c["city"] for c in UK_CITIES],
+            uk_forces=sorted({c["force"] for c in UK_CITIES}),
             ev=evidence_stats(),
         ))
     print(f"Wrote {os.path.join(OUT_DIR, 'methodology.html')}")

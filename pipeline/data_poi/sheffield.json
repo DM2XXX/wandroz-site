@@ -1,0 +1,115 @@
+{
+ "city": "sheffield",
+ "pois": [
+  {
+   "name": "Bramall Lane",
+   "category": "art",
+   "qid": "Q897533",
+   "lat": 53.37028,
+   "lon": -1.47083,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Sheffield Cathedral",
+   "category": "art",
+   "qid": "Q1421317",
+   "lat": 53.38315,
+   "lon": -1.46928,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Sheffield Botanical Gardens",
+   "category": "green",
+   "qid": "Q7492594",
+   "lat": 53.3725,
+   "lon": -1.4975,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Kelham Island Museum",
+   "category": "art",
+   "qid": "Q6385589",
+   "lat": 53.3895,
+   "lon": -1.47234,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Sheffield Winter Garden",
+   "category": "green",
+   "qid": "Q7492783",
+   "lat": 53.37985,
+   "lon": -1.468,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Peace Gardens",
+   "category": "square",
+   "qid": "Q7157371",
+   "lat": 53.38,
+   "lon": -1.4696,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Endcliffe Park",
+   "category": "green",
+   "qid": "Q5375973",
+   "lat": 53.369,
+   "lon": -1.507,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "West Street",
+   "category": "night",
+   "qid": "Q133844141",
+   "lat": 53.38061,
+   "lon": -1.47616,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Ecclesall Road",
+   "category": "square",
+   "qid": "Q5332214",
+   "lat": 53.3732,
+   "lon": -1.4812,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Devonshire Green",
+   "category": "night",
+   "qid": "Q5267858",
+   "lat": 53.3789,
+   "lon": -1.4783,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  }
+ ]
+}

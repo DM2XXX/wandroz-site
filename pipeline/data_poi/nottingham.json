@@ -1,0 +1,104 @@
+{
+ "city": "nottingham",
+ "pois": [
+  {
+   "name": "Wollaton Hall",
+   "category": "art",
+   "qid": "Q17528596",
+   "lat": 52.9479,
+   "lon": -1.20966,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Ye Olde Trip To Jerusalem",
+   "category": "night",
+   "qid": "Q5323585",
+   "lat": 52.9493,
+   "lon": -1.15264,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Lace Market",
+   "category": "night",
+   "qid": "Q3215777",
+   "lat": 52.952,
+   "lon": -1.144,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Old Market Square",
+   "category": "square",
+   "qid": "Q7084480",
+   "lat": 52.9533,
+   "lon": -1.15028,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Drury Hill Caves",
+   "category": "art",
+   "qid": "Q17642895",
+   "lat": 52.9507,
+   "lon": -1.1463,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Highfields Park, Nottingham",
+   "category": "green",
+   "qid": "Q5758520",
+   "lat": 52.93812,
+   "lon": -1.18993,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Nottingham Council House",
+   "category": "art",
+   "qid": "Q7063627",
+   "lat": 52.9534,
+   "lon": -1.14843,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Nottingham Castle Ducal Mansion",
+   "category": "art",
+   "qid": "Q1799649",
+   "lat": 52.9493,
+   "lon": -1.1546,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Victoria Centre",
+   "category": "square",
+   "qid": "Q7926625",
+   "lat": 52.95639,
+   "lon": -1.14722,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  }
+ ]
+}
