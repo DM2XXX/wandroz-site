@@ -81,7 +81,33 @@ def main(key):
     json.dump({"city": key, "months": months, "counts": manifest},
               open(os.path.join(out_dir, "manifest.json"), "w"), indent=1)
     check_plausible(key, doc, out_dir, months)
+    aggregate(key, doc, out_dir, months)
     print("fatto")
+
+
+# What the scorer needs from 17 MB of raw records is a category count per ward
+# per month — about 20 KB. The raw stays on the machine that fetched it (it is
+# gitignored); the aggregate is what the repository carries, so a clean rebuild
+# has everything it needs without the repository growing by a city's worth of
+# JSON every time a city is added.
+def aggregate(key, doc, out_dir, months):
+    import collections, glob
+    counts = {}
+    for z in doc["zones"]:
+        per_month = {}
+        for month in months:
+            path = os.path.join(out_dir, "%s_%s.json" % (z["slug"], month))
+            if not os.path.exists(path):
+                continue
+            c = collections.Counter(x["category"] for x in json.load(open(path)))
+            per_month[month] = dict(sorted(c.items()))
+        if per_month:
+            counts[z["slug"]] = per_month
+    dest = os.path.join(REPO, "data", "counts_%s.json" % key)
+    json.dump({"city": key, "months": months, "source": "data.police.uk street-level crime",
+               "fetched": time.strftime("%Y-%m-%d"), "counts": counts},
+              open(dest, "w"), indent=0)
+    print("aggregato %s (%.0f KB)" % (dest, os.path.getsize(dest) / 1024))
 
 
 # Greater Manchester Police does not supply street-level crime to
@@ -114,4 +140,5 @@ def check_plausible(key, doc, out_dir, months):
             % (key, rate, MIN_CRIMES_PER_1000_PER_MONTH))
 
 
-main(sys.argv[1] if len(sys.argv) > 1 else "manchester")
+if __name__ == "__main__":
+    main(sys.argv[1] if len(sys.argv) > 1 else "birmingham")

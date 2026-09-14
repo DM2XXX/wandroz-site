@@ -1,0 +1,6 @@
+
+# Raw police records are fetched locally and aggregated into data/counts_<city>.json,
+# which is what the build reads. Keeping every incident's record in the repository
+# adds ~17 MB per city for data nobody rebuilds from.
+data/raw_*/
+data/raw/

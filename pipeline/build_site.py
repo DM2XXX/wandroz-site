@@ -45,9 +45,47 @@ CORRECTION_EMAIL = "hellowandroz@gmail.com"
 # Every city with a map page, used to populate the "City" switcher shown on
 # every map page (top-right, next to the Day/Night toggle) so a visitor can
 # jump straight from one city's map to another's without going back home.
+# Cities on the data.police.uk pipeline. They differ by name, force and where
+# they are; everything else — the ward vocabulary, the copy, the scoring — is
+# shared, so they are described once here rather than copied four times.
+UK_CITIES = [
+    {"key": "birmingham", "city": "Birmingham", "force": "West Midlands Police",
+     "lat": 52.4862, "lon": -1.8904, "color": "#7a4fbf"},
+    {"key": "leeds", "city": "Leeds", "force": "West Yorkshire Police",
+     "lat": 53.8008, "lon": -1.5491, "color": "#c0567a"},
+    # Liverpool is not here yet, and the reason is worth writing down: the city
+    # re-warded after the 2021 census, so its current 64 wards have no census
+    # population — NOMIS returns nothing for their codes. A rate needs a
+    # denominator from the same geography as its numerator, so Liverpool waits
+    # for either 2021-vintage boundaries or a newer official ward estimate,
+    # rather than shipping crime counts divided by a guess.
+    {"key": "bristol", "city": "Bristol", "force": "Avon and Somerset Constabulary",
+     "lat": 51.4545, "lon": -2.5879, "color": "#2f9e8f"},
+]
+
+
+
+
+def uk_city_ui(city):
+    ui = dict(TORINO_UI)
+    ui.update({
+        "page_title": "Is my %s neighbourhood safe? — Wandroz" % city,
+        "page_description": ("Interactive map of %s's official wards with real "
+                             "street-level police crime data, day and night." % city),
+        "page_h1": "%s wards" % city,
+        "page_lead": ("Click a ward on the map to see its level, the recorded figures "
+                      "behind it, and a Booking.com link for that area."),
+        "label_all_zones": "All wards",
+        "neigh_title": "Is {name} in %s safe? | Wandroz" % city,
+        "label_zone_detail": "Ward detail",
+        "label_click_hint": ("Click a ward on the map to see its level, the reasoning, "
+                             "and a Booking.com link for that area."),
+    })
+    return ui
+
+
 CITY_LINKS = [
     {"label": "London", "url": f"{SITE_URL}/london/"},
-    {"label": "Birmingham", "url": f"{SITE_URL}/birmingham/"},
     {"label": "Berlin", "url": f"{SITE_URL}/berlin/"},
     {"label": "Amsterdam", "url": f"{SITE_URL}/amsterdam/"},
     {"label": "Turin", "url": f"{SITE_URL}/torino/"},
@@ -96,7 +134,6 @@ CITY_COUNTRY = {
     "Paris": "France", "Brussels": "Belgium", "Athens": "Greece", "Venice": "Italy",
     "Dublin": "Ireland", "Florence": "Italy", "Edinburgh": "United Kingdom",
     "Naples": "Italy", "Budapest": "Hungary", "Kraków": "Poland",
-    "Birmingham": "United Kingdom",
 }
 
 # Curated "Popular destinations" shortcut shown near the homepage search box
@@ -150,6 +187,12 @@ def group_cities_by_country(items, name_key="name"):
 # Country-grouped version of CITY_LINKS for the per-city-page <select>
 # switcher (rendered as <optgroup>s — see city_map.html). Computed once at
 # import time since CITY_LINKS is static.
+# Every UK pipeline city is in the United Kingdom; saying so here keeps the
+# country grouping honest without four more literals to forget.
+for _c in UK_CITIES:
+    CITY_COUNTRY[_c["city"]] = "United Kingdom"
+
+CITY_LINKS += [{"label": c["city"], "url": f"{SITE_URL}/{c['key']}/"} for c in UK_CITIES]
 CITY_LINKS_BY_COUNTRY = group_cities_by_country(CITY_LINKS, name_key="label")
 
 # --- Central methodology classification -----------------------------------
@@ -196,11 +239,8 @@ CITY_METHODOLOGY = {
     "munich": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizeipräsidium München's official recorded-offence statistics"},
     "stockholm": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Brå (Brottsförebyggande rådet)'s official crime statistics"},
     "brussels": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "BISA / Federale Politie's official crime statistics"},
-    # The first city added on London's own pipeline rather than beside it:
-    # West Midlands Police publishes street-level crime to data.police.uk, the
-    # same feed and the same scoring, applied to Birmingham's 69 official wards.
-    "birmingham": {"tier": OFFICIAL_SNAPSHOT,
-                   "crime_source": "West Midlands Police street-level crime records published at data.police.uk"},
+    # The English cities added on London's own pipeline rather than beside it
+    # are filled in from UK_CITIES below, so a new one needs a single entry.
     # Edinburgh is deliberately NOT OFFICIAL_SNAPSHOT. Its figures are a secondary
     # analysis of Scottish Government/Police Scotland data (Churchill Support
     # Services, corroborated by datamap-scotland), not a first-party official
@@ -225,6 +265,8 @@ CITY_METHODOLOGY = {
     "torino": {"tier": MANUAL_EXPERIMENTAL},
     "zurigo": {"tier": MANUAL_EXPERIMENTAL},
 }
+
+
 
 
 # The per-page evidence tag shown at the top of every neighbourhood/borough
@@ -390,9 +432,17 @@ EVIDENCE_SOURCE = {
     "stockholm": "Brå",
     "brussels": "BISA / Federale Politie",
     "edinburgh": "analysis of Police Scotland figures",
-    "birmingham": "West Midlands Police, data.police.uk",
     "zurigo": "district burglary data shown alongside",
 }
+
+# Each city on the data.police.uk pipeline is official-data tier by
+# construction: the rating is computed from the force's own records.
+for _c in UK_CITIES:
+    CITY_METHODOLOGY[_c["key"]] = {
+        "tier": OFFICIAL_SNAPSHOT,
+        "crime_source": "%s street-level crime records published at data.police.uk" % _c["force"],
+    }
+    EVIDENCE_SOURCE[_c["key"]] = "%s, data.police.uk" % _c["force"]
 
 # London is not in CITY_METHODOLOGY — it has its own automated pipeline built
 # directly on data.police.uk, which is the strongest source on the site, so it
@@ -1100,6 +1150,47 @@ def render_static_pages():
     return urls
 
 
+def group_zones(zones, js_zones):
+    """Zones gathered under their own city's district, when the data says so.
+
+    A city map ends with a list of every neighbourhood on it. At 155 names that
+    list is a wall: nobody scans Rome looking for "Tor San Giovanni", they look
+    for the part of town their hotel is in. Where a zone carries a `group` —
+    its arrondissement, its Bezirk, its municipio — the list is built under
+    those headings, each showing how its own areas split across the levels.
+    Cities without groups keep the flat list; nothing is invented to fill one.
+    """
+    if not any(z.get("group") for z in zones):
+        return []
+    url_of = {z["slug"]: z.get("url") for z in js_zones}
+    order, buckets = [], {}
+    for z in zones:
+        g = z.get("group") or "Other areas"
+        if g not in buckets:
+            buckets[g] = []
+            order.append(g)
+        buckets[g].append(z)
+    def natural(name):
+        # "10th arrondissement" must not sort before "1st": headings that carry
+        # a number are ordered by it, everything else alphabetically.
+        m = re.match(r"^(\d+)", name)
+        return (0, int(m.group(1)), "") if m else (1, 0, name.lower())
+
+    out = []
+    for name in sorted(order, key=natural):
+        rows = sorted(buckets[name], key=lambda z: z["name"])
+        tones = {}
+        for z in rows:
+            t = z.get("day") or "grey"
+            tones[t] = tones.get(t, 0) + 1
+        out.append({
+            "name": name,
+            "zones": [{"name": z["name"], "url": url_of.get(z["slug"], "")} for z in rows],
+            "tones": [(t, tones[t]) for t in ("red", "yellow", "green", "grey") if tones.get(t)],
+        })
+    return out
+
+
 def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data=None, flat=False):
     """Render a full-city interactive map (day/night toggle, click-a-zone
     detail sidebar) plus one detail sub-page per neighbourhood, for a city
@@ -1202,7 +1293,8 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         label_more=ui["label_more"], label_not_covered="",
         pois=load_pois(city_key), poi_filter_all="All",
         footer_note=ui["footer_note"],
-        zones=js_zones, center=data["center"], zoom=data["zoom"],
+        zones=js_zones, zone_groups=group_zones(zones, js_zones),
+        center=data["center"], zoom=data["zoom"],
         show_burglary_toggle=bool(extra_zone_data),
     )
     with open(os.path.join(city_dir, "index.html"), "w") as f:
@@ -1562,18 +1654,6 @@ ZURIGO_UI.update({
     "neigh_title": "Is {name} in Zurich safe? | Wandroz",
 })
 
-BIRMINGHAM_UI = dict(TORINO_UI)
-BIRMINGHAM_UI.update({
-    "page_title": "Is my Birmingham neighbourhood safe? — Wandroz",
-    "page_description": ("Interactive map of Birmingham's 69 official wards with real "
-                         "West Midlands Police street-level crime data, day and night."),
-    "page_h1": "Birmingham wards",
-    "page_lead": "Click a ward on the map to see its level, the recorded figures behind it, and a Booking.com link for that area.",
-    "label_all_zones": "All wards",
-    "neigh_title": "Is {name} in Birmingham safe? | Wandroz",
-    "label_zone_detail": "Ward detail",
-    "label_click_hint": "Click a ward on the map to see its level, the reasoning, and a Booking.com link for that area.",
-})
 
 MILANO_UI = dict(TORINO_UI)
 MILANO_UI.update({
@@ -1958,10 +2038,6 @@ def main():
          "blurb": "All 74 official quartieri/zone mapped, real Comune di Firenze boundaries, safety ratings from a structured local-source assessment, area by area.",
          "lat": 43.7696, "lon": 11.2558, "color": "#9c6b3e",
          "zone_count": 74, "data_tag": "Official boundaries"},
-        {"name": "Birmingham", "url": "birmingham/index.html", "flag": "🇬🇧",
-         "blurb": "All 69 official wards mapped, day and night levels computed from real West Midlands Police street-level crime records.",
-         "lat": 52.4862, "lon": -1.8904, "color": "#7a4fbf",
-         "zone_count": _zone_count("birmingham"), "data_tag": "Official police data"},
         {"name": "Edinburgh", "url": "edinburgh/index.html", "flag": "🇬🇧",
          "blurb": "All 17 official City of Edinburgh Council wards mapped, safety ratings anchored to real crimes-per-1,000-population figures per ward.",
          "lat": 55.9533, "lon": -3.1883, "color": "#0f4c81",
@@ -1995,7 +2071,6 @@ def main():
         "Lisbon": "lisbon", "Paris": "paris", "Brussels": "brussels", "Athens": "athens",
         "Venice": "venezia", "Dublin": "dublin", "Edinburgh": "edinburgh", "Naples": "napoli",
         "Budapest": "budapest", "Kraków": "krakow", "Florence": "firenze",
-        "Birmingham": "birmingham",
         # London already has its own correct "Official police data" tag above (a real
         # automated data.police.uk pipeline, not this dict's illustrative-city tiers).
         # Florence IS in CITY_METHODOLOGY now (RESEARCH_BASED, recovered from
@@ -2004,6 +2079,8 @@ def main():
         # boundaries" — which described the boundary provenance, not the evidence
         # behind the rating.
     }
+    for _c in UK_CITIES:
+        _CITY_CARD_TO_METHOD_KEY[_c["city"]] = _c["key"]
     _EVIDENCE_TAG_BY_TIER = {
         OFFICIAL_SNAPSHOT: "Official crime data",
         RESEARCH_BASED: "Local-source assessment",
@@ -2017,6 +2094,15 @@ def main():
             if _mkey == "zurigo":
                 _tag += " + district burglary data"
             _card["data_tag"] = _tag
+    city_cards += [
+        {"name": c["city"], "url": "%s/index.html" % c["key"], "flag": "🇬🇧",
+         "blurb": ("All %d official wards mapped, day and night levels computed from real "
+                   "%s street-level crime records." % (_zone_count(c["key"]), c["force"])),
+         "lat": c["lat"], "lon": c["lon"], "color": c["color"],
+         "zone_count": _zone_count(c["key"]), "data_tag": "Official police data"}
+        for c in UK_CITIES
+    ]
+
     # Florence has no CITY_METHODOLOGY entry (it's a hand-built page, not
     # rendered by this pipeline — see the comment above), so it falls
     # through the loop above and would otherwise keep the old, boundary-only
@@ -2167,8 +2253,9 @@ def main():
     sitemap_urls.extend(budapest_urls)
     krakow_urls = render_illustrative_city("krakow", "krakow", KRAKOW_UI, EN_TONE_BADGE, flat=True)
     sitemap_urls.extend(krakow_urls)
-    birmingham_urls = render_illustrative_city("birmingham", "birmingham", BIRMINGHAM_UI, EN_TONE_BADGE, flat=True)
-    sitemap_urls.extend(birmingham_urls)
+    for _c in UK_CITIES:
+        sitemap_urls.extend(render_illustrative_city(
+            _c["key"], _c["key"], uk_city_ui(_c["city"]), EN_TONE_BADGE, flat=True))
     firenze_urls = render_illustrative_city(
         "firenze", "firenze", FIRENZE_UI, EN_TONE_BADGE,
         flat=True,

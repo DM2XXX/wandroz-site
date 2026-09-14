@@ -1,0 +1,280 @@
+{
+ "city": "birmingham",
+ "pois": [
+  {
+   "name": "Villa Park",
+   "category": "art",
+   "qid": "Q175339",
+   "lat": 52.50917,
+   "lon": -1.88472,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Birmingham Museum and Art Gallery",
+   "category": "art",
+   "qid": "Q1799857",
+   "lat": 52.48028,
+   "lon": -1.90361,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "St Philip's Cathedral",
+   "category": "art",
+   "qid": "Q751081",
+   "lat": 52.4812,
+   "lon": -1.89891,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Library of Birmingham",
+   "category": "art",
+   "qid": "Q6542576",
+   "lat": 52.4798,
+   "lon": -1.9085,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Edgbaston Cricket Ground",
+   "category": "art",
+   "qid": "Q1284346",
+   "lat": 52.4558,
+   "lon": -1.90249,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Aston Hall",
+   "category": "art",
+   "qid": "Q4810979",
+   "lat": 52.5063,
+   "lon": -1.88436,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Cadbury World",
+   "category": "art",
+   "qid": "Q5945554",
+   "lat": 52.42995,
+   "lon": -1.93263,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Barber Institute of Fine Arts",
+   "category": "art",
+   "qid": "Q4859590",
+   "lat": 52.45033,
+   "lon": -1.92783,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Selfridges Building, Birmingham",
+   "category": "art",
+   "qid": "Q7448350",
+   "lat": 52.4778,
+   "lon": -1.89226,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Thinktank",
+   "category": "art",
+   "qid": "Q7784619",
+   "lat": 52.4829,
+   "lon": -1.88606,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Symphony Hall",
+   "category": "art",
+   "qid": "Q3507908",
+   "lat": 52.47861,
+   "lon": -1.91056,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Moseley",
+   "category": "night",
+   "qid": "Q6915606",
+   "lat": 52.4467,
+   "lon": -1.88814,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Chinese Quarter",
+   "category": "food",
+   "qid": "Q2059902",
+   "lat": 52.4752,
+   "lon": -1.8967,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Sutton Park",
+   "category": "green",
+   "qid": "Q1369961",
+   "lat": 52.5617,
+   "lon": -1.85392,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Birmingham Botanical Gardens",
+   "category": "green",
+   "qid": "Q964899",
+   "lat": 52.4665,
+   "lon": -1.9293,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Sarehole Mill",
+   "category": "art",
+   "qid": "Q82108",
+   "lat": 52.4341,
+   "lon": -1.85581,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Winterbourne House and Garden",
+   "category": "green",
+   "qid": "Q5620069",
+   "lat": 52.4537,
+   "lon": -1.92484,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Ikon Gallery",
+   "category": "art",
+   "qid": "Q5996126",
+   "lat": 52.4776,
+   "lon": -1.9125,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Jewellery Quarter",
+   "category": "square",
+   "qid": "Q6189579",
+   "lat": 52.489,
+   "lon": -1.91,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Digbeth",
+   "category": "night",
+   "qid": "Q5275561",
+   "lat": 52.47639,
+   "lon": -1.89083,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
+  },
+  {
+   "name": "Cannon Hill Park",
+   "category": "green",
+   "qid": "Q15207157",
+   "lat": 52.453,
+   "lon": -1.901,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 21
+  },
+  {
+   "name": "Birmingham Back to Backs",
+   "category": "art",
+   "qid": "Q4916605",
+   "lat": 52.47434,
+   "lon": -1.89722,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 22
+  },
+  {
+   "name": "Broad Street",
+   "category": "night",
+   "qid": "Q4971941",
+   "lat": 52.4777,
+   "lon": -1.9111,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 23
+  },
+  {
+   "name": "Gas Street Basin",
+   "category": "square",
+   "qid": "Q5526310",
+   "lat": 52.4775,
+   "lon": -1.90944,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 24
+  },
+  {
+   "name": "Custard Factory",
+   "category": "night",
+   "qid": "Q5196288",
+   "lat": 52.4752,
+   "lon": -1.8842,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 25
+  }
+ ]
+}

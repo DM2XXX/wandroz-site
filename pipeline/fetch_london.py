@@ -7,7 +7,7 @@ WHY THIS SCRIPT EXISTS
   browser text-extraction tool inside a network-restricted sandbox, which
   silently truncated each borough to its first ~170 crime records instead
   of the full month. This script replaces that hack with a real HTTP
-  client (requests) that pulls the COMPLETE monthly response from the
+  client that pulls the COMPLETE monthly response from the
   official UK Police API. It is meant to run in GitHub Actions (normal,
   unrestricted outbound network), not in a Claude sandbox — see
   .github/workflows/refresh-data.yml.
@@ -76,7 +76,18 @@ import sys
 import time
 from urllib.parse import urlencode
 
-import requests
+import subprocess
+
+
+class _Resp:
+    """The two fields the callers below use, so the retry logic stays as it was."""
+
+    def __init__(self, status_code, text):
+        self.status_code = status_code
+        self.text = text
+
+    def json(self):
+        return json.loads(self.text)
 
 BASE_DIR = os.path.dirname(__file__)
 RAW_DIR = os.path.join(BASE_DIR, "..", "data", "raw")
@@ -140,15 +151,33 @@ def load_boroughs():
     return boroughs
 
 
+# Transport note. data.police.uk refuses the TLS handshake offered by the
+# LibreSSL that macOS's system Python links against, so neither urllib nor
+# requests can reach it from the machine this project is developed on — only
+# from the runner. A fetch script that can only be exercised in CI is a fetch
+# script nobody tests before pushing, so both go through curl, which is present
+# in both places.
+def _curl(url, data=None):
+    cmd = ["curl", "-sS", "--max-time", str(REQUEST_TIMEOUT), "-A", USER_AGENT,
+           "-w", "\n%{http_code}"]
+    if data is not None:
+        cmd += ["--data", urlencode(data)]
+    cmd.append(url)
+    res = subprocess.run(cmd, capture_output=True, text=True)
+    if res.returncode != 0:
+        raise RuntimeError("curl failed (%s): %s" % (res.returncode, res.stderr.strip()[:200]))
+    body, _, code = res.stdout.rpartition("\n")
+    return int(code), body
+
+
 def _post(path, data):
     url = f"{API_BASE}{path}"
     last_error = None
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            resp = requests.post(
-                url, data=data, headers={"User-Agent": USER_AGENT}, timeout=REQUEST_TIMEOUT
-            )
-        except requests.RequestException as exc:
+            status, body = _curl(url, data)
+            resp = _Resp(status, body)
+        except Exception as exc:
             last_error = exc
             print(f"    request error (attempt {attempt}/{MAX_RETRIES}): {exc}")
             time.sleep(2 * attempt)
@@ -176,10 +205,9 @@ def _get(path, params=None):
     last_error = None
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            resp = requests.get(
-                url, headers={"User-Agent": USER_AGENT}, timeout=REQUEST_TIMEOUT
-            )
-        except requests.RequestException as exc:
+            status, body = _curl(url)
+            resp = _Resp(status, body)
+        except Exception as exc:
             last_error = exc
             print(f"    request error (attempt {attempt}/{MAX_RETRIES}): {exc}")
             time.sleep(2 * attempt)

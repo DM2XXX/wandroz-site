@@ -1,0 +1,159 @@
+{
+ "city": "bristol",
+ "pois": [
+  {
+   "name": "Clifton Suspension Bridge",
+   "category": "view",
+   "qid": "Q162170",
+   "lat": 51.455,
+   "lon": -2.62776,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "SS Great Britain",
+   "category": "art",
+   "qid": "Q744086",
+   "lat": 51.4492,
+   "lon": -2.6084,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Bristol Cathedral",
+   "category": "art",
+   "qid": "Q917917",
+   "lat": 51.45167,
+   "lon": -2.60056,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Clifton",
+   "category": "square",
+   "qid": "Q2376216",
+   "lat": 51.46,
+   "lon": -2.62,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Bristol City Museum & Art Gallery",
+   "category": "art",
+   "qid": "Q4968867",
+   "lat": 51.4561,
+   "lon": -2.6053,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Bristol Harbour",
+   "category": "square",
+   "qid": "Q26874",
+   "lat": 51.45,
+   "lon": -2.6,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Ashton Court",
+   "category": "green",
+   "qid": "Q4806024",
+   "lat": 51.4479,
+   "lon": -2.6446,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Brandon Hill",
+   "category": "view",
+   "qid": "Q4956901",
+   "lat": 51.45291,
+   "lon": -2.6068,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Queen Square",
+   "category": "square",
+   "qid": "Q7270505",
+   "lat": 51.45,
+   "lon": -2.595,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Stokes Croft",
+   "category": "night",
+   "qid": "Q3973790",
+   "lat": 51.462,
+   "lon": -2.59,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "King Street",
+   "category": "night",
+   "qid": "Q6412075",
+   "lat": 51.4518,
+   "lon": -2.5946,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "M Shed",
+   "category": "art",
+   "qid": "Q6720527",
+   "lat": 51.4473,
+   "lon": -2.5986,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "St Nicholas Market",
+   "category": "food",
+   "qid": "Q7594957",
+   "lat": 51.45404,
+   "lon": -2.59308,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Gloucester Road",
+   "category": "square",
+   "qid": "Q5572077",
+   "lat": 51.4735,
+   "lon": -2.59139,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  }
+ ]
+}

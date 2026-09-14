@@ -115,6 +115,14 @@
   .zone-list li { break-inside: avoid; padding:4px 0; }
   .zone-list a { color: var(--ink); text-decoration:none; }
   .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  .zone-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px 22px; }
+  .zone-group h3 { font-size:12.5px; margin:0 0 6px; font-weight:700; display:flex; align-items:center; gap:6px;
+                   border-bottom:1px solid var(--line); padding-bottom:5px; }
+  .zone-group ul { columns:1; font-size:13px; }
+  .zg-count { font-weight:600; color:var(--muted); font-size:11px; margin-left:auto; }
+  .zg-dot { font-size:10px; line-height:1; padding:2px 5px; border-radius:8px; color:#fff; font-weight:700; }
+  .zg-dot.green { background:#2e7d46; } .zg-dot.yellow { background:#c98a02; }
+  .zg-dot.red { background:#c0392b; } .zg-dot.grey { background:#7a8190; }
   @media (max-width: 720px){
     /* 520px su un telefono riempiva quasi tutto lo schermo: qualunque tentativo
        di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
@@ -168,8 +176,10 @@
         </optgroup>
         <optgroup label="🇬🇧 United Kingdom">
           <option value="https://www.wandroz.com/london/" >London</option>
-          <option value="https://www.wandroz.com/birmingham/" >Birmingham</option>
           <option value="https://www.wandroz.com/edinburgh/" >Edinburgh</option>
+          <option value="https://www.wandroz.com/birmingham/" >Birmingham</option>
+          <option value="https://www.wandroz.com/leeds/" >Leeds</option>
+          <option value="https://www.wandroz.com/bristol/" >Bristol</option>
         </optgroup>
         <optgroup label="🇩🇪 Germany">
           <option value="https://www.wandroz.com/berlin/" selected>Berlin</option>
@@ -261,295 +271,418 @@
 
 <div class="zone-list">
   <h2>All neighbourhoods</h2>
-  <ul>
-    
-    <li><a href="/berlin/adlershof.html">Adlershof</a></li>
-    
-    <li><a href="/berlin/albrechtstrasse.html">Albrechtstraße</a></li>
-    
-    <li><a href="/berlin/alexanderplatz.html">Alexanderplatz</a></li>
-    
-    <li><a href="/berlin/allende-viertel.html">Allende-Viertel</a></li>
-    
-    <li><a href="/berlin/altglienicke.html">Altglienicke</a></li>
-    
-    <li><a href="/berlin/alt-hohenschonhausen-nord.html">Alt-Hohenschönhausen Nord</a></li>
-    
-    <li><a href="/berlin/alt-hohenschonhausen-sud.html">Alt-Hohenschönhausen Süd</a></li>
-    
-    <li><a href="/berlin/alt-lichtenberg.html">Alt-Lichtenberg</a></li>
-    
-    <li><a href="/berlin/altstadt-kopenick.html">Altstadt Köpenick</a></li>
-    
-    <li><a href="/berlin/alt-treptow.html">Alt-Treptow</a></li>
-    
-    <li><a href="/berlin/baumschulenweg.html">Baumschulenweg</a></li>
-    
-    <li><a href="/berlin/biesdorf.html">Biesdorf</a></li>
-    
-    <li><a href="/berlin/blankenburg-heinersdorf-marchenland.html">Blankenburg/ Heinersdorf/ Märchenland</a></li>
-    
-    <li><a href="/berlin/blankenfelde-niederschonhausen.html">Blankenfelde/ Niederschönhausen</a></li>
-    
-    <li><a href="/berlin/bohnsdorf.html">Bohnsdorf</a></li>
-    
-    <li><a href="/berlin/britz.html">Britz</a></li>
-    
-    <li><a href="/berlin/britz-nord.html">Britz Nord</a></li>
-    
-    <li><a href="/berlin/brunnenstrasse-nord.html">Brunnenstraße Nord</a></li>
-    
-    <li><a href="/berlin/brunnenstrasse-sud.html">Brunnenstraße Süd</a></li>
-    
-    <li><a href="/berlin/brunsbutteler-damm.html">Brunsbütteler Damm</a></li>
-    
-    <li><a href="/berlin/buch.html">Buch</a></li>
-    
-    <li><a href="/berlin/buchholz.html">Buchholz</a></li>
-    
-    <li><a href="/berlin/buckow.html">Buckow</a></li>
-    
-    <li><a href="/berlin/buckow-nord.html">Buckow Nord</a></li>
-    
-    <li><a href="/berlin/charlottenburg-nord.html">Charlottenburg Nord</a></li>
-    
-    <li><a href="/berlin/dammvorstadt.html">Dammvorstadt</a></li>
-    
-    <li><a href="/berlin/drakestrasse.html">Drakestraße</a></li>
-    
-    <li><a href="/berlin/falkenhagener-feld.html">Falkenhagener Feld</a></li>
-    
-    <li><a href="/berlin/fennpfuhl.html">Fennpfuhl</a></li>
-    
-    <li><a href="/berlin/frankfurter-allee-nord.html">Frankfurter Allee Nord</a></li>
-    
-    <li><a href="/berlin/frankfurter-allee-sud.html">Frankfurter Allee Süd</a></li>
-    
-    <li><a href="/berlin/frankfurter-allee-sud-fk.html">Frankfurter Allee Süd FK</a></li>
-    
-    <li><a href="/berlin/friedenau-ost.html">Friedenau Ost</a></li>
-    
-    <li><a href="/berlin/friedenau-west.html">Friedenau West</a></li>
-    
-    <li><a href="/berlin/friedrichsfelde-nord.html">Friedrichsfelde Nord</a></li>
-    
-    <li><a href="/berlin/friedrichsfelde-sud.html">Friedrichsfelde Süd</a></li>
-    
-    <li><a href="/berlin/friedrichshagen.html">Friedrichshagen</a></li>
-    
-    <li><a href="/berlin/gatow-kladow.html">Gatow/Kladow</a></li>
-    
-    <li><a href="/berlin/gropiusstadt-ost.html">Gropiusstadt Ost</a></li>
-    
-    <li><a href="/berlin/gropiusstadt-west.html">Gropiusstadt West</a></li>
-    
-    <li><a href="/berlin/grunau.html">Grünau</a></li>
-    
-    <li><a href="/berlin/grunewald.html">Grunewald</a></li>
-    
-    <li><a href="/berlin/hakenfelde.html">Hakenfelde</a></li>
-    
-    <li><a href="/berlin/halensee.html">Halensee</a></li>
-    
-    <li><a href="/berlin/haselhorst.html">Haselhorst</a></li>
-    
-    <li><a href="/berlin/heerstrasse-charlottenburg-wilmersdorf.html">Heerstraße (Charlottenburg-Wilmersdorf)</a></li>
-    
-    <li><a href="/berlin/heerstrasse-spandau.html">Heerstraße (Spandau)</a></li>
-    
-    <li><a href="/berlin/hellersdorf-nord.html">Hellersdorf Nord</a></li>
-    
-    <li><a href="/berlin/hellersdorf-ost.html">Hellersdorf Ost</a></li>
-    
-    <li><a href="/berlin/hellersdorf-sud.html">Hellersdorf Süd</a></li>
-    
-    <li><a href="/berlin/helmholtzplatz.html">Helmholtzplatz</a></li>
-    
-    <li><a href="/berlin/johannisthal.html">Johannisthal</a></li>
-    
-    <li><a href="/berlin/karl-marx-allee-nord.html">Karl-Marx-Allee Nord</a></li>
-    
-    <li><a href="/berlin/karl-marx-allee-sud.html">Karl-Marx-Allee Süd</a></li>
-    
-    <li><a href="/berlin/karlshorst.html">Karlshorst</a></li>
-    
-    <li><a href="/berlin/karow.html">Karow</a></li>
-    
-    <li><a href="/berlin/kaulsdorf.html">Kaulsdorf</a></li>
-    
-    <li><a href="/berlin/kollnische-heide.html">Köllnische Heide</a></li>
-    
-    <li><a href="/berlin/kollnische-vorstadt-spindlersfeld.html">Köllnische Vorstadt/ Spindlersfeld</a></li>
-    
-    <li><a href="/berlin/kopenick-nord.html">Köpenick Nord</a></li>
-    
-    <li><a href="/berlin/kopenick-sud.html">Köpenick Süd</a></li>
-    
-    <li><a href="/berlin/lankwitz.html">Lankwitz</a></li>
-    
-    <li><a href="/berlin/lichtenrade-nord.html">Lichtenrade Nord</a></li>
-    
-    <li><a href="/berlin/lichtenrade-sud.html">Lichtenrade Süd</a></li>
-    
-    <li><a href="/berlin/lietzenburger-strasse.html">Lietzenburger Straße</a></li>
-    
-    <li><a href="/berlin/mahlsdorf.html">Mahlsdorf</a></li>
-    
-    <li><a href="/berlin/malchow-wartenberg-und-falkenberg.html">Malchow, Wartenberg und Falkenberg</a></li>
-    
-    <li><a href="/berlin/mariendorf-nord.html">Mariendorf Nord</a></li>
-    
-    <li><a href="/berlin/mariendorf-sud.html">Mariendorf Süd</a></li>
-    
-    <li><a href="/berlin/marienfelde-nord.html">Marienfelde Nord</a></li>
-    
-    <li><a href="/berlin/marienfelde-sud.html">Marienfelde Süd</a></li>
-    
-    <li><a href="/berlin/marzahn-mitte.html">Marzahn Mitte</a></li>
-    
-    <li><a href="/berlin/marzahn-nord.html">Marzahn Nord</a></li>
-    
-    <li><a href="/berlin/marzahn-sud.html">Marzahn Süd</a></li>
-    
-    <li><a href="/berlin/mierendorffplatz.html">Mierendorffplatz</a></li>
-    
-    <li><a href="/berlin/moabit-ost.html">Moabit Ost</a></li>
-    
-    <li><a href="/berlin/moabit-west.html">Moabit West</a></li>
-    
-    <li><a href="/berlin/muggelheim.html">Müggelheim</a></li>
-    
-    <li><a href="/berlin/mv-nord.html">MV Nord</a></li>
-    
-    <li><a href="/berlin/mv-sud.html">MV Süd</a></li>
-    
-    <li><a href="/berlin/neu-hohenschonhausen-nord.html">Neu-Hohenschönhausen Nord</a></li>
-    
-    <li><a href="/berlin/neu-hohenschonhausen-sud.html">Neu-Hohenschönhausen Süd</a></li>
-    
-    <li><a href="/berlin/neukollner-mitte-zentrum.html">Neuköllner Mitte/Zentrum</a></li>
-    
-    <li><a href="/berlin/neu-lichtenberg.html">Neu-Lichtenberg</a></li>
-    
-    <li><a href="/berlin/niederschoneweide.html">Niederschöneweide</a></li>
-    
-    <li><a href="/berlin/nord-1-frohnau-hermsdorf.html">Nord 1 - Frohnau/ Hermsdorf</a></li>
-    
-    <li><a href="/berlin/nord-2-waidmannslust-wittenau-lubars.html">Nord 2 – Waidmannslust/ Wittenau/ Lübars</a></li>
-    
-    <li><a href="/berlin/nordliche-luisenstadt.html">Nördliche Luisenstadt</a></li>
-    
-    <li><a href="/berlin/oberschoneweide.html">Oberschöneweide</a></li>
-    
-    <li><a href="/berlin/osloer-strasse.html">Osloer Straße</a></li>
-    
-    <li><a href="/berlin/ost-1-reginhardstrasse.html">Ost 1 - Reginhardstraße</a></li>
-    
-    <li><a href="/berlin/ost-2-alt-reinickendorf.html">Ost 2 - Alt-Reinickendorf</a></li>
-    
-    <li><a href="/berlin/ostpreussendamm.html">Ostpreußendamm</a></li>
-    
-    <li><a href="/berlin/otto-suhr-allee-kantstrasse.html">Otto-Suhr-Allee/ Kantstraße</a></li>
-    
-    <li><a href="/berlin/pankow-sud.html">Pankow Süd</a></li>
-    
-    <li><a href="/berlin/pankow-zentrum.html">Pankow Zentrum</a></li>
-    
-    <li><a href="/berlin/parkviertel.html">Parkviertel</a></li>
-    
-    <li><a href="/berlin/planterwald.html">Plänterwald</a></li>
-    
-    <li><a href="/berlin/prenzlauer-berg-nord.html">Prenzlauer Berg Nord</a></li>
-    
-    <li><a href="/berlin/prenzlauer-berg-nordwest.html">Prenzlauer Berg Nordwest</a></li>
-    
-    <li><a href="/berlin/prenzlauer-berg-ost.html">Prenzlauer Berg Ost</a></li>
-    
-    <li><a href="/berlin/prenzlauer-berg-sud.html">Prenzlauer Berg Süd</a></li>
-    
-    <li><a href="/berlin/prenzlauer-berg-sudwest.html">Prenzlauer Berg Südwest</a></li>
-    
-    <li><a href="/berlin/rahnsdorf.html">Rahnsdorf</a></li>
-    
-    <li><a href="/berlin/regierungsviertel.html">Regierungsviertel</a></li>
-    
-    <li><a href="/berlin/reuterstrasse.html">Reuterstraße</a></li>
-    
-    <li><a href="/berlin/rixdorf.html">Rixdorf</a></li>
-    
-    <li><a href="/berlin/rollbergesiedlung.html">Rollbergesiedlung</a></li>
-    
-    <li><a href="/berlin/rudow.html">Rudow</a></li>
-    
-    <li><a href="/berlin/rummelsburger-bucht.html">Rummelsburger Bucht</a></li>
-    
-    <li><a href="/berlin/schillerpromenade.html">Schillerpromenade</a></li>
-    
-    <li><a href="/berlin/schloss-charlottenburg.html">Schloss Charlottenburg</a></li>
-    
-    <li><a href="/berlin/schlossstrasse.html">Schloßstraße</a></li>
-    
-    <li><a href="/berlin/schmargendorf.html">Schmargendorf</a></li>
-    
-    <li><a href="/berlin/schmockwitz.html">Schmöckwitz</a></li>
-    
-    <li><a href="/berlin/schoneberg-nordost.html">Schöneberg Nordost</a></li>
-    
-    <li><a href="/berlin/schoneberg-nordwest.html">Schöneberg Nordwest</a></li>
-    
-    <li><a href="/berlin/schoneberg-sudost.html">Schöneberg Südost</a></li>
-    
-    <li><a href="/berlin/schoneberg-sudwest.html">Schöneberg Südwest</a></li>
-    
-    <li><a href="/berlin/schonholz-wilhelmsruh-rosenthal.html">Schönholz/ Wilhelmsruh/ Rosenthal</a></li>
-    
-    <li><a href="/berlin/siemensstadt.html">Siemensstadt</a></li>
-    
-    <li><a href="/berlin/spandau-mitte.html">Spandau Mitte</a></li>
-    
-    <li><a href="/berlin/sudliche-friedrichstadt.html">Südliche Friedrichstadt</a></li>
-    
-    <li><a href="/berlin/sudliche-luisenstadt.html">Südliche Luisenstadt</a></li>
-    
-    <li><a href="/berlin/teltower-damm.html">Teltower Damm</a></li>
-    
-    <li><a href="/berlin/tempelhof-nord.html">Tempelhof Nord</a></li>
-    
-    <li><a href="/berlin/tempelhof-sudost.html">Tempelhof Südost</a></li>
-    
-    <li><a href="/berlin/tempelhof-sudwest.html">Tempelhof Südwest</a></li>
-    
-    <li><a href="/berlin/tempelhofer-vorstadt.html">Tempelhofer Vorstadt</a></li>
-    
-    <li><a href="/berlin/tiergarten-sud.html">Tiergarten Süd</a></li>
-    
-    <li><a href="/berlin/volkspark-wilmersdorf.html">Volkspark Wilmersdorf</a></li>
-    
-    <li><a href="/berlin/wedding-zentrum.html">Wedding Zentrum</a></li>
-    
-    <li><a href="/berlin/weissensee.html">Weißensee</a></li>
-    
-    <li><a href="/berlin/weissensee-ost.html">Weißensee Ost</a></li>
-    
-    <li><a href="/berlin/west-1-tegel-sud-flughafensee.html">West 1 - Tegel-Süd/Flughafensee</a></li>
-    
-    <li><a href="/berlin/west-2-heiligensee-konradshohe.html">West 2 - Heiligensee/Konradshöhe</a></li>
-    
-    <li><a href="/berlin/west-3-borsigwalde-freie-scholle.html">West 3 - Borsigwalde/Freie Scholle</a></li>
-    
-    <li><a href="/berlin/west-4-auguste-viktoria-allee.html">West 4 - Auguste-Viktoria-Allee</a></li>
-    
-    <li><a href="/berlin/west-5-tegel.html">West 5 - Tegel</a></li>
-    
-    <li><a href="/berlin/westend.html">Westend</a></li>
-    
-    <li><a href="/berlin/wilhelmstadt.html">Wilhelmstadt</a></li>
-    
-    <li><a href="/berlin/zehlendorf-nord.html">Zehlendorf Nord</a></li>
-    
-    <li><a href="/berlin/zehlendorf-sudwest.html">Zehlendorf Südwest</a></li>
-    
-  </ul>
+  
+  
+  <div class="zone-groups">
+    
+    <section class="zone-group">
+      <h3>Charlottenburg-Wilmersdorf
+        <span class="zg-count">11</span>
+        <span class="zg-dot red" title="3">3</span><span class="zg-dot yellow" title="7">7</span><span class="zg-dot green" title="1">1</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/charlottenburg-nord.html">Charlottenburg Nord</a></li>
+        
+        <li><a href="/berlin/grunewald.html">Grunewald</a></li>
+        
+        <li><a href="/berlin/halensee.html">Halensee</a></li>
+        
+        <li><a href="/berlin/heerstrasse-charlottenburg-wilmersdorf.html">Heerstraße (Charlottenburg-Wilmersdorf)</a></li>
+        
+        <li><a href="/berlin/lietzenburger-strasse.html">Lietzenburger Straße</a></li>
+        
+        <li><a href="/berlin/mierendorffplatz.html">Mierendorffplatz</a></li>
+        
+        <li><a href="/berlin/otto-suhr-allee-kantstrasse.html">Otto-Suhr-Allee/ Kantstraße</a></li>
+        
+        <li><a href="/berlin/schloss-charlottenburg.html">Schloss Charlottenburg</a></li>
+        
+        <li><a href="/berlin/schmargendorf.html">Schmargendorf</a></li>
+        
+        <li><a href="/berlin/volkspark-wilmersdorf.html">Volkspark Wilmersdorf</a></li>
+        
+        <li><a href="/berlin/westend.html">Westend</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Friedrichshain-Kreuzberg
+        <span class="zg-count">8</span>
+        <span class="zg-dot red" title="6">6</span><span class="zg-dot yellow" title="2">2</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/frankfurter-allee-nord.html">Frankfurter Allee Nord</a></li>
+        
+        <li><a href="/berlin/frankfurter-allee-sud-fk.html">Frankfurter Allee Süd FK</a></li>
+        
+        <li><a href="/berlin/karl-marx-allee-nord.html">Karl-Marx-Allee Nord</a></li>
+        
+        <li><a href="/berlin/karl-marx-allee-sud.html">Karl-Marx-Allee Süd</a></li>
+        
+        <li><a href="/berlin/nordliche-luisenstadt.html">Nördliche Luisenstadt</a></li>
+        
+        <li><a href="/berlin/sudliche-friedrichstadt.html">Südliche Friedrichstadt</a></li>
+        
+        <li><a href="/berlin/sudliche-luisenstadt.html">Südliche Luisenstadt</a></li>
+        
+        <li><a href="/berlin/tempelhofer-vorstadt.html">Tempelhofer Vorstadt</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Lichtenberg
+        <span class="zg-count">13</span>
+        <span class="zg-dot red" title="2">2</span><span class="zg-dot yellow" title="5">5</span><span class="zg-dot green" title="6">6</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/alt-hohenschonhausen-nord.html">Alt-Hohenschönhausen Nord</a></li>
+        
+        <li><a href="/berlin/alt-hohenschonhausen-sud.html">Alt-Hohenschönhausen Süd</a></li>
+        
+        <li><a href="/berlin/alt-lichtenberg.html">Alt-Lichtenberg</a></li>
+        
+        <li><a href="/berlin/fennpfuhl.html">Fennpfuhl</a></li>
+        
+        <li><a href="/berlin/frankfurter-allee-sud.html">Frankfurter Allee Süd</a></li>
+        
+        <li><a href="/berlin/friedrichsfelde-nord.html">Friedrichsfelde Nord</a></li>
+        
+        <li><a href="/berlin/friedrichsfelde-sud.html">Friedrichsfelde Süd</a></li>
+        
+        <li><a href="/berlin/karlshorst.html">Karlshorst</a></li>
+        
+        <li><a href="/berlin/malchow-wartenberg-und-falkenberg.html">Malchow, Wartenberg und Falkenberg</a></li>
+        
+        <li><a href="/berlin/neu-hohenschonhausen-nord.html">Neu-Hohenschönhausen Nord</a></li>
+        
+        <li><a href="/berlin/neu-hohenschonhausen-sud.html">Neu-Hohenschönhausen Süd</a></li>
+        
+        <li><a href="/berlin/neu-lichtenberg.html">Neu-Lichtenberg</a></li>
+        
+        <li><a href="/berlin/rummelsburger-bucht.html">Rummelsburger Bucht</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Marzahn-Hellersdorf
+        <span class="zg-count">9</span>
+        <span class="zg-dot yellow" title="4">4</span><span class="zg-dot green" title="5">5</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/biesdorf.html">Biesdorf</a></li>
+        
+        <li><a href="/berlin/hellersdorf-nord.html">Hellersdorf Nord</a></li>
+        
+        <li><a href="/berlin/hellersdorf-ost.html">Hellersdorf Ost</a></li>
+        
+        <li><a href="/berlin/hellersdorf-sud.html">Hellersdorf Süd</a></li>
+        
+        <li><a href="/berlin/kaulsdorf.html">Kaulsdorf</a></li>
+        
+        <li><a href="/berlin/mahlsdorf.html">Mahlsdorf</a></li>
+        
+        <li><a href="/berlin/marzahn-mitte.html">Marzahn Mitte</a></li>
+        
+        <li><a href="/berlin/marzahn-nord.html">Marzahn Nord</a></li>
+        
+        <li><a href="/berlin/marzahn-sud.html">Marzahn Süd</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Mitte
+        <span class="zg-count">10</span>
+        <span class="zg-dot red" title="7">7</span><span class="zg-dot yellow" title="3">3</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/alexanderplatz.html">Alexanderplatz</a></li>
+        
+        <li><a href="/berlin/brunnenstrasse-nord.html">Brunnenstraße Nord</a></li>
+        
+        <li><a href="/berlin/brunnenstrasse-sud.html">Brunnenstraße Süd</a></li>
+        
+        <li><a href="/berlin/moabit-ost.html">Moabit Ost</a></li>
+        
+        <li><a href="/berlin/moabit-west.html">Moabit West</a></li>
+        
+        <li><a href="/berlin/osloer-strasse.html">Osloer Straße</a></li>
+        
+        <li><a href="/berlin/parkviertel.html">Parkviertel</a></li>
+        
+        <li><a href="/berlin/regierungsviertel.html">Regierungsviertel</a></li>
+        
+        <li><a href="/berlin/tiergarten-sud.html">Tiergarten Süd</a></li>
+        
+        <li><a href="/berlin/wedding-zentrum.html">Wedding Zentrum</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Neukölln
+        <span class="zg-count">12</span>
+        <span class="zg-dot red" title="3">3</span><span class="zg-dot yellow" title="6">6</span><span class="zg-dot green" title="3">3</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/britz.html">Britz</a></li>
+        
+        <li><a href="/berlin/britz-nord.html">Britz Nord</a></li>
+        
+        <li><a href="/berlin/buckow.html">Buckow</a></li>
+        
+        <li><a href="/berlin/buckow-nord.html">Buckow Nord</a></li>
+        
+        <li><a href="/berlin/gropiusstadt-ost.html">Gropiusstadt Ost</a></li>
+        
+        <li><a href="/berlin/gropiusstadt-west.html">Gropiusstadt West</a></li>
+        
+        <li><a href="/berlin/kollnische-heide.html">Köllnische Heide</a></li>
+        
+        <li><a href="/berlin/neukollner-mitte-zentrum.html">Neuköllner Mitte/Zentrum</a></li>
+        
+        <li><a href="/berlin/reuterstrasse.html">Reuterstraße</a></li>
+        
+        <li><a href="/berlin/rixdorf.html">Rixdorf</a></li>
+        
+        <li><a href="/berlin/rudow.html">Rudow</a></li>
+        
+        <li><a href="/berlin/schillerpromenade.html">Schillerpromenade</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Pankow
+        <span class="zg-count">16</span>
+        <span class="zg-dot yellow" title="7">7</span><span class="zg-dot green" title="9">9</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/blankenburg-heinersdorf-marchenland.html">Blankenburg/ Heinersdorf/ Märchenland</a></li>
+        
+        <li><a href="/berlin/blankenfelde-niederschonhausen.html">Blankenfelde/ Niederschönhausen</a></li>
+        
+        <li><a href="/berlin/buch.html">Buch</a></li>
+        
+        <li><a href="/berlin/buchholz.html">Buchholz</a></li>
+        
+        <li><a href="/berlin/helmholtzplatz.html">Helmholtzplatz</a></li>
+        
+        <li><a href="/berlin/karow.html">Karow</a></li>
+        
+        <li><a href="/berlin/pankow-sud.html">Pankow Süd</a></li>
+        
+        <li><a href="/berlin/pankow-zentrum.html">Pankow Zentrum</a></li>
+        
+        <li><a href="/berlin/prenzlauer-berg-nord.html">Prenzlauer Berg Nord</a></li>
+        
+        <li><a href="/berlin/prenzlauer-berg-nordwest.html">Prenzlauer Berg Nordwest</a></li>
+        
+        <li><a href="/berlin/prenzlauer-berg-ost.html">Prenzlauer Berg Ost</a></li>
+        
+        <li><a href="/berlin/prenzlauer-berg-sud.html">Prenzlauer Berg Süd</a></li>
+        
+        <li><a href="/berlin/prenzlauer-berg-sudwest.html">Prenzlauer Berg Südwest</a></li>
+        
+        <li><a href="/berlin/schonholz-wilhelmsruh-rosenthal.html">Schönholz/ Wilhelmsruh/ Rosenthal</a></li>
+        
+        <li><a href="/berlin/weissensee.html">Weißensee</a></li>
+        
+        <li><a href="/berlin/weissensee-ost.html">Weißensee Ost</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Reinickendorf
+        <span class="zg-count">12</span>
+        <span class="zg-dot red" title="1">1</span><span class="zg-dot yellow" title="6">6</span><span class="zg-dot green" title="5">5</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/mv-nord.html">MV Nord</a></li>
+        
+        <li><a href="/berlin/mv-sud.html">MV Süd</a></li>
+        
+        <li><a href="/berlin/nord-1-frohnau-hermsdorf.html">Nord 1 - Frohnau/ Hermsdorf</a></li>
+        
+        <li><a href="/berlin/nord-2-waidmannslust-wittenau-lubars.html">Nord 2 – Waidmannslust/ Wittenau/ Lübars</a></li>
+        
+        <li><a href="/berlin/ost-1-reginhardstrasse.html">Ost 1 - Reginhardstraße</a></li>
+        
+        <li><a href="/berlin/ost-2-alt-reinickendorf.html">Ost 2 - Alt-Reinickendorf</a></li>
+        
+        <li><a href="/berlin/rollbergesiedlung.html">Rollbergesiedlung</a></li>
+        
+        <li><a href="/berlin/west-1-tegel-sud-flughafensee.html">West 1 - Tegel-Süd/Flughafensee</a></li>
+        
+        <li><a href="/berlin/west-2-heiligensee-konradshohe.html">West 2 - Heiligensee/Konradshöhe</a></li>
+        
+        <li><a href="/berlin/west-3-borsigwalde-freie-scholle.html">West 3 - Borsigwalde/Freie Scholle</a></li>
+        
+        <li><a href="/berlin/west-4-auguste-viktoria-allee.html">West 4 - Auguste-Viktoria-Allee</a></li>
+        
+        <li><a href="/berlin/west-5-tegel.html">West 5 - Tegel</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Spandau
+        <span class="zg-count">9</span>
+        <span class="zg-dot red" title="1">1</span><span class="zg-dot yellow" title="3">3</span><span class="zg-dot green" title="5">5</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/brunsbutteler-damm.html">Brunsbütteler Damm</a></li>
+        
+        <li><a href="/berlin/falkenhagener-feld.html">Falkenhagener Feld</a></li>
+        
+        <li><a href="/berlin/gatow-kladow.html">Gatow/Kladow</a></li>
+        
+        <li><a href="/berlin/hakenfelde.html">Hakenfelde</a></li>
+        
+        <li><a href="/berlin/haselhorst.html">Haselhorst</a></li>
+        
+        <li><a href="/berlin/heerstrasse-spandau.html">Heerstraße (Spandau)</a></li>
+        
+        <li><a href="/berlin/siemensstadt.html">Siemensstadt</a></li>
+        
+        <li><a href="/berlin/spandau-mitte.html">Spandau Mitte</a></li>
+        
+        <li><a href="/berlin/wilhelmstadt.html">Wilhelmstadt</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Steglitz-Zehlendorf
+        <span class="zg-count">8</span>
+        <span class="zg-dot yellow" title="1">1</span><span class="zg-dot green" title="7">7</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/albrechtstrasse.html">Albrechtstraße</a></li>
+        
+        <li><a href="/berlin/drakestrasse.html">Drakestraße</a></li>
+        
+        <li><a href="/berlin/lankwitz.html">Lankwitz</a></li>
+        
+        <li><a href="/berlin/ostpreussendamm.html">Ostpreußendamm</a></li>
+        
+        <li><a href="/berlin/schlossstrasse.html">Schloßstraße</a></li>
+        
+        <li><a href="/berlin/teltower-damm.html">Teltower Damm</a></li>
+        
+        <li><a href="/berlin/zehlendorf-nord.html">Zehlendorf Nord</a></li>
+        
+        <li><a href="/berlin/zehlendorf-sudwest.html">Zehlendorf Südwest</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Tempelhof-Schöneberg
+        <span class="zg-count">15</span>
+        <span class="zg-dot red" title="3">3</span><span class="zg-dot yellow" title="4">4</span><span class="zg-dot green" title="8">8</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/friedenau-ost.html">Friedenau Ost</a></li>
+        
+        <li><a href="/berlin/friedenau-west.html">Friedenau West</a></li>
+        
+        <li><a href="/berlin/lichtenrade-nord.html">Lichtenrade Nord</a></li>
+        
+        <li><a href="/berlin/lichtenrade-sud.html">Lichtenrade Süd</a></li>
+        
+        <li><a href="/berlin/mariendorf-nord.html">Mariendorf Nord</a></li>
+        
+        <li><a href="/berlin/mariendorf-sud.html">Mariendorf Süd</a></li>
+        
+        <li><a href="/berlin/marienfelde-nord.html">Marienfelde Nord</a></li>
+        
+        <li><a href="/berlin/marienfelde-sud.html">Marienfelde Süd</a></li>
+        
+        <li><a href="/berlin/schoneberg-nordost.html">Schöneberg Nordost</a></li>
+        
+        <li><a href="/berlin/schoneberg-nordwest.html">Schöneberg Nordwest</a></li>
+        
+        <li><a href="/berlin/schoneberg-sudost.html">Schöneberg Südost</a></li>
+        
+        <li><a href="/berlin/schoneberg-sudwest.html">Schöneberg Südwest</a></li>
+        
+        <li><a href="/berlin/tempelhof-nord.html">Tempelhof Nord</a></li>
+        
+        <li><a href="/berlin/tempelhof-sudost.html">Tempelhof Südost</a></li>
+        
+        <li><a href="/berlin/tempelhof-sudwest.html">Tempelhof Südwest</a></li>
+        
+      </ul>
+    </section>
+    
+    <section class="zone-group">
+      <h3>Treptow-Köpenick
+        <span class="zg-count">20</span>
+        <span class="zg-dot red" title="1">1</span><span class="zg-dot yellow" title="5">5</span><span class="zg-dot green" title="14">14</span>
+      </h3>
+      <ul>
+        
+        <li><a href="/berlin/adlershof.html">Adlershof</a></li>
+        
+        <li><a href="/berlin/allende-viertel.html">Allende-Viertel</a></li>
+        
+        <li><a href="/berlin/alt-treptow.html">Alt-Treptow</a></li>
+        
+        <li><a href="/berlin/altglienicke.html">Altglienicke</a></li>
+        
+        <li><a href="/berlin/altstadt-kopenick.html">Altstadt Köpenick</a></li>
+        
+        <li><a href="/berlin/baumschulenweg.html">Baumschulenweg</a></li>
+        
+        <li><a href="/berlin/bohnsdorf.html">Bohnsdorf</a></li>
+        
+        <li><a href="/berlin/dammvorstadt.html">Dammvorstadt</a></li>
+        
+        <li><a href="/berlin/friedrichshagen.html">Friedrichshagen</a></li>
+        
+        <li><a href="/berlin/grunau.html">Grünau</a></li>
+        
+        <li><a href="/berlin/johannisthal.html">Johannisthal</a></li>
+        
+        <li><a href="/berlin/kollnische-vorstadt-spindlersfeld.html">Köllnische Vorstadt/ Spindlersfeld</a></li>
+        
+        <li><a href="/berlin/kopenick-nord.html">Köpenick Nord</a></li>
+        
+        <li><a href="/berlin/kopenick-sud.html">Köpenick Süd</a></li>
+        
+        <li><a href="/berlin/muggelheim.html">Müggelheim</a></li>
+        
+        <li><a href="/berlin/niederschoneweide.html">Niederschöneweide</a></li>
+        
+        <li><a href="/berlin/oberschoneweide.html">Oberschöneweide</a></li>
+        
+        <li><a href="/berlin/planterwald.html">Plänterwald</a></li>
+        
+        <li><a href="/berlin/rahnsdorf.html">Rahnsdorf</a></li>
+        
+        <li><a href="/berlin/schmockwitz.html">Schmöckwitz</a></li>
+        
+      </ul>
+    </section>
+    
+  </div>
+  
 </div>
 
 <footer class="wz-footer">

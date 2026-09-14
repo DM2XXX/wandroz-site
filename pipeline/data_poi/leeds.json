@@ -1,0 +1,159 @@
+{
+ "city": "leeds",
+ "pois": [
+  {
+   "name": "Headingley",
+   "category": "night",
+   "qid": "Q1592322",
+   "lat": 53.82139,
+   "lon": -1.57778,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Kirkstall Abbey",
+   "category": "art",
+   "qid": "Q1421579",
+   "lat": 53.82054,
+   "lon": -1.60806,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Leeds Town Hall",
+   "category": "art",
+   "qid": "Q2017744",
+   "lat": 53.8003,
+   "lon": -1.5497,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Leeds Art Gallery",
+   "category": "art",
+   "qid": "Q6515835",
+   "lat": 53.8001,
+   "lon": -1.5481,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Royal Armouries Leeds",
+   "category": "art",
+   "qid": "Q7373689",
+   "lat": 53.7919,
+   "lon": -1.53226,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Leeds Corn Exchange",
+   "category": "square",
+   "qid": "Q6515948",
+   "lat": 53.7959,
+   "lon": -1.5402,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Temple Newsam",
+   "category": "green",
+   "qid": "Q2748017",
+   "lat": 53.7842,
+   "lon": -1.4595,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Leeds Kirkgate Market",
+   "category": "food",
+   "qid": "Q11033321",
+   "lat": 53.7972,
+   "lon": -1.5397,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Briggate",
+   "category": "square",
+   "qid": "Q10435562",
+   "lat": 53.7969,
+   "lon": -1.5424,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Leeds Minster",
+   "category": "art",
+   "qid": "Q2322532",
+   "lat": 53.795,
+   "lon": -1.53611,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Roundhay Park",
+   "category": "green",
+   "qid": "Q3305358",
+   "lat": 53.8417,
+   "lon": -1.4925,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Victoria Quarter",
+   "category": "square",
+   "qid": "Q4215957",
+   "lat": 53.798,
+   "lon": -1.541,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Leeds Dock",
+   "category": "square",
+   "qid": "Q5126476",
+   "lat": 53.7918,
+   "lon": -1.5335,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Call Lane Social",
+   "category": "night",
+   "qid": "Q61866033",
+   "lat": 53.79554,
+   "lon": -1.54118,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  }
+ ]
+}
