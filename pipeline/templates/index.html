@@ -389,11 +389,15 @@
   // this map is just showing which cities are covered, so a muted grey
   // background keeps the city pins as the only thing competing for attention,
   // for a cleaner, more designed first impression than the full-detail OSM
-  // tiles (which are kept on the per-city neighbourhood maps, where street
-  // detail actually matters).
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  // CARTO's light basemap was chosen here for a muted overview, and CARTO has
+  // since started serving unauthenticated requests as tiles stamped "API KEY
+  // REQUIRED" — a 200 response carrying a watermark, so nothing looked broken
+  // from the outside while the site's front page showed it across Europe.
+  // Back to the same OpenStreetMap tiles every city map already uses: busier,
+  // and actually ours to use.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var clusters = L.markerClusterGroup({
