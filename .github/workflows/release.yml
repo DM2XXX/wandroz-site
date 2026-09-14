@@ -139,7 +139,12 @@ jobs:
           git config user.email "release@wandroz.com"
           # .gitignore is listed explicitly: this add is path-scoped, so a
           # root-level file left out of it never reaches the release commit.
-          git add -A pipeline .github data dist .gitignore
+          # Conditionally, though, exactly like the checkout above: naming a
+          # path that exists nowhere makes git exit 128 and kills the release,
+          # which is what happened on the first release cut from a branch that
+          # predated the .gitignore.
+          git add -A pipeline .github data dist
+          if [ -f .gitignore ]; then git add -A .gitignore; fi
           if git diff --cached --quiet; then
             echo "::error::nothing to release — main already matches this build"
             exit 1

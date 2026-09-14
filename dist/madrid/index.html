@@ -43,8 +43,8 @@
   /* Senza un tetto la pagina si stirava fino al bordo dello schermo: su un
      monitor largo il titolo finiva a sinistra, l'elenco dei quartieri si
      spalmava su tre colonne lunghissime e in mezzo restava grigio. */
-  .page-shell { max-width: 1560px; margin: 0 auto; }
-  .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center; gap:22px; padding: 0 24px 28px; }
+  .page-shell { max-width: 2400px; margin: 0 auto; }
+  .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
      strette, ed e' anche il ripiego se la mappa si prende tutta la larghezza
      perche' i suoi bounds la chiedono davvero. La classe .split la mette
@@ -1103,40 +1103,76 @@
   // cambia solo quanta cornice vuota c'e' intorno — e il resto va alla colonna.
   // Parigi, che e' larga davvero (1.87), non si stringe e non prende colonna:
   // e' la stessa regola, applicata a una citta' di forma diversa.
-  var STAGE_GAP = 22, RAIL_MIN = 300, RAIL_MAX = 460, RAIL_MAX_WIDE = 560, SPLIT_MIN_WIDTH = 1080;
+  var STAGE_GAP = 22, RAIL_MIN = 300, RAIL_MAX = 620, MAP_MIN = 560, SPLIT_MIN_WIDTH = 1080;
   function layoutStage() {
     var stage = document.getElementById('mapStage'),
         wrap  = document.getElementById('mapWrap'),
-        rail  = document.getElementById('mapRail');
+        rail  = document.getElementById('mapRail'),
+        shell = document.querySelector('.page-shell');
     if (!stage || !wrap || !rail) return;
     // Si misura sempre da mappa a tutta larghezza, altrimenti la decisione
     // dipenderebbe dalla larghezza lasciata dal passaggio precedente e a ogni
     // resize la colonna si mangerebbe un altro pezzo di mappa.
     stage.classList.remove('split');
     wrap.style.width = ''; rail.style.width = ''; rail.style.maxHeight = '';
+    document.getElementById('map').style.height = '';
+    if (shell) shell.style.maxWidth = '';
     map.invalidateSize(false);
     if (window.innerWidth < SPLIT_MIN_WIDTH) return;
     var home = POI_HOME || contentBounds();
     if (!home || !home.isValid()) return;
-    var z = map.getBoundsZoom(home, false, L.point(28, 28));
-    var need = Math.ceil(map.project(home.getNorthEast(), z).x -
-                         map.project(home.getSouthWest(), z).x) + 56;
+    // La forma dei confini, indipendente dallo zoom: e' questa che il riquadro
+    // deve avere per inquadrare la citta' senza contorno di campagna.
+    var z  = map.getBoundsZoom(home, false, L.point(28, 28));
+    var ne = map.project(home.getNorthEast(), z), sw = map.project(home.getSouthWest(), z);
+    var aspect = (ne.x - sw.x) / (sw.y - ne.y);
+    if (!isFinite(aspect) || aspect <= 0) return;
+
     // clientWidth comprende il padding del contenitore: usandolo si assegnavano
     // 48px piu' di quelli che c'erano davvero e la colonna, in un flex che va a
     // capo, finiva sotto la mappa invece che accanto.
     var cs = getComputedStyle(stage);
     var avail = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-    var spare = avail - need - STAGE_GAP;
-    if (spare < RAIL_MIN) return;          // citta' larga: la mappa se la merita tutta
-    // Oltre un certo punto allargare la mappa non mostra piu' citta', mostra
-    // campagna — ed e' precisamente il difetto da cui siamo partiti. Quindi la
-    // mappa cresce solo fino a inquadrare i suoi confini con un po' d'aria, e
-    // quello che avanza va alla colonna invece di tornare a essere cornice.
-    var railW = Math.min(RAIL_MAX, spare);
-    var mapW  = Math.min(avail - STAGE_GAP - railW, Math.round(need * 1.3));
-    railW = Math.min(RAIL_MAX_WIDE, avail - STAGE_GAP - mapW);
+
+    // Il primo tentativo teneva la mappa alta 760px fisse e le stringeva la
+    // larghezza per farle prendere la forma giusta. Funziona, ma vuol dire che
+    // su una finestra grande la mappa resta piccola in mezzo a due fasce
+    // bianche: il riquadro non cresceva con lo schermo, cresceva il margine.
+    // Il verso giusto e' l'opposto — si prende la larghezza che c'e' e si
+    // ricava l'ALTEZZA dalla forma dei confini. Cosi' una finestra piu' grande
+    // da' una mappa piu' grande, e continua a non esserci campagna di troppo.
+    var railW = Math.min(RAIL_MAX, Math.max(RAIL_MIN, Math.round(avail * 0.26)));
+    var mapW  = avail - STAGE_GAP - railW;
+    var PAD   = 56;
+    var mapH  = Math.round((mapW - PAD) / aspect) + PAD;
+
+    // Una mappa molto piu' alta della finestra si guarda a pezzi, quindi
+    // l'altezza ha un tetto — generoso, perche' qualche centinaio di pixel di
+    // scorrimento e' un prezzo onesto per una mappa grande.
+    var maxH = Math.max(560, Math.min(1180, Math.round(window.innerHeight * 1.15) - 100));
+    if (mapH > maxH) {
+      mapH = maxH;
+      // Alla larghezza esatta dei confini si puo' concedere un po' di contorno:
+      // il difetto di partenza era il DOPPIO di cornice, non un margine. Fino a
+      // 1.3 la citta' resta grande e la finestra larga viene usata invece di
+      // diventare bordo bianco.
+      var exact = Math.round((mapH - PAD) * aspect) + PAD;
+      mapW  = Math.min(avail - STAGE_GAP - railW, Math.round(exact * 1.3));
+      railW = Math.min(RAIL_MAX, avail - STAGE_GAP - mapW);
+    }
+    if (mapW < MAP_MIN || railW < RAIL_MIN) return;   // non c'e' spazio per due colonne
     wrap.style.width = mapW + 'px';
     rail.style.width = railW + 'px';
+    document.getElementById('map').style.height = mapH + 'px';
+    // E la pagina si stringe su quello che c'e' davvero, invece di restare
+    // larga quanto lo schermo: cosi' titolo, filtri, mappa e colonna hanno
+    // tutti lo stesso bordo sinistro e quello che avanza e' margine simmetrico.
+    // Prima il titolo partiva da sinistra e la mappa era centrata nello stage:
+    // il vuoto si apriva tutto da un lato solo, ed e' quello che si vedeva.
+    if (shell) {
+      shell.style.maxWidth = (mapW + STAGE_GAP + railW +
+        parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)) + 'px';
+    }
     stage.classList.add('split');
     map.invalidateSize(false);
     rail.style.maxHeight = document.getElementById('map').clientHeight + 'px';
