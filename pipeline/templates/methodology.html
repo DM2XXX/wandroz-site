@@ -808,6 +808,38 @@
   only moderate.
 </div>
 
+<h2>Birmingham: real Metropolitan-style data, from West Midlands Police</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Birmingham is the first city built on London's own pipeline rather than beside it. West Midlands
+  Police publishes street-level crime records to
+  <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a> — the same
+  national feed London runs on — so each of Birmingham's 69 official wards is queried against its
+  real ONS boundary polygon, not a circle around a centroid, and scored with the same category
+  weights and the same day/night split described above. Ratings compare a ward against the average
+  of Birmingham's own wards, never against London's.
+</p>
+<div class="note" style="margin-bottom:10px;">
+  <strong>One deliberate difference from London: no footfall correction.</strong> London's scores are
+  divided by an estimated workday population, because the ONS published a workday-population release
+  at borough level. No equivalent exists for wards, so Birmingham's rates are per <em>resident</em>
+  (2021 census, 1,144,911 people across the 69 wards). The effect is predictable and worth knowing
+  when reading the map: a central ward carrying a city's shops, stations and nightlife — Ladywood,
+  which includes the Bullring and New Street — serves far more people than live there, so its rate
+  per resident reads high. It is the highest in the city at 46 recorded crimes per 1,000 residents
+  over the three months to July 2026; that number describes a city centre, not a warning to stay
+  away from one.
+</div>
+<div class="note">
+  <strong>Why Manchester is not here.</strong> Manchester was the intended first city. Greater
+  Manchester Police does not supply street-level crime to data.police.uk, and the API does not say
+  so — it answers normally and returns almost nothing. A mile around Manchester city centre returned
+  <strong>6 recorded crimes</strong> for June 2026, against 1,774 in Birmingham, 1,691 in Bristol,
+  1,464 in Liverpool and 1,452 in Leeds for the same month and the same radius. Published as-is,
+  that would have made Manchester by far the safest city on this site, purely because a police force
+  is absent from a feed. The build now refuses any city whose recorded rate falls below a
+  plausibility floor, and says it is a data-supply problem rather than a finding.
+</div>
+
 <h2>Rome — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Rome (reviewed 20 August 2026) uses Roma Capitale's own 155 official Zone Urbanistiche, taken from the Comune's
