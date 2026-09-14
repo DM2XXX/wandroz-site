@@ -89,6 +89,19 @@ jobs:
           # branch, because the branch's data never travelled with it.
           rm -rf pipeline .github data
           git checkout "$SRC" -- pipeline .github data
+          # .gitignore sits at the root, so it is not inside any of the three
+          # trees above and would never travel with a release: main would keep
+          # having no .gitignore no matter how many times the branch fixed it.
+          # Taken conditionally because an unconditional checkout of a missing
+          # path makes git exit non-zero and fail the whole release — releasing
+          # from a branch cut before .gitignore existed has to keep working,
+          # and in that case main's current one simply stays in place.
+          if git cat-file -e "$SRC:.gitignore" 2>/dev/null; then
+            git checkout "$SRC" -- .gitignore
+            echo "  .gitignore taken from the source branch"
+          else
+            echo "  note: $SRC has no .gitignore; keeping main's"
+          fi
           echo "Source taken from $SRC"
 
       - name: Install dependencies
@@ -124,7 +137,9 @@ jobs:
           rm -rf candidate
           git config user.name "wandroz-release"
           git config user.email "release@wandroz.com"
-          git add -A pipeline .github data dist
+          # .gitignore is listed explicitly: this add is path-scoped, so a
+          # root-level file left out of it never reaches the release commit.
+          git add -A pipeline .github data dist .gitignore
           if git diff --cached --quiet; then
             echo "::error::nothing to release — main already matches this build"
             exit 1

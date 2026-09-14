@@ -40,10 +40,39 @@
               flex-wrap:wrap; align-items:center; gap:8px; }
   .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
   .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
-  .map-wrap { position:relative; padding: 0 24px 28px; }
+  /* Senza un tetto la pagina si stirava fino al bordo dello schermo: su un
+     monitor largo il titolo finiva a sinistra, l'elenco dei quartieri si
+     spalmava su tre colonne lunghissime e in mezzo restava grigio. */
+  .page-shell { max-width: 1560px; margin: 0 auto; }
+  .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center; gap:22px; padding: 0 24px 28px; }
+  /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
+     strette, ed e' anche il ripiego se la mappa si prende tutta la larghezza
+     perche' i suoi bounds la chiedono davvero. La classe .split la mette
+     JS, e solo quando resta spazio vero per la colonna. */
+  .map-wrap { position:relative; flex:1 1 100%; min-width:0; padding:0; }
+  .map-rail { flex:1 1 100%; min-width:0; display:flex; flex-direction:column; gap:16px; }
+  .map-stage.split .map-wrap,
+  .map-stage.split .map-rail { flex:0 0 auto; }
+  .map-stage.split .map-rail { overflow-y:auto; }
+  /* L'elenco dei quartieri vive nella colonna insieme a legenda e sights.
+     A tutta pagina erano ventitre nomi corti sparsi su tre colonne larghe
+     1.387px: una fascia grigia alta 300px sotto la mappa, che e' esattamente
+     il "buco" che rendeva la pagina lunga il doppio senza dire niente di piu'.
+     Nella colonna riempiono lo spazio che c'e', e la pagina finisce dove
+     finisce la mappa. */
+  .map-stage.split .zone-list { margin-top:2px; padding:0; }
+  .map-stage.split .zone-list ul { columns:1; }
+  .map-stage.split .zone-groups { grid-template-columns:1fr; gap:14px; }
+  .map-stage.split .zone-list h2 { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
+                                   color:var(--muted); font-weight:700; margin:0 0 9px; }
   #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
-  .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
-  .legend-item { display:flex; align-items:center; gap:8px; }
+  /* Prima galleggiava sopra l'angolo della mappa: copriva pezzo di citta' e
+     obbligava a tenerla piccola per farsi perdonare. Nella colonna non copre
+     niente, quindi puo' essere leggibile. */
+  .map-legend { background:var(--panel,#fff); border:1px solid var(--line); border-radius: var(--radius-md);
+                padding:11px 13px; display:flex; flex-direction:column; gap:7px; font-size:12px; line-height:1.4; }
+  .legend-item { display:flex; align-items:flex-start; gap:9px; }
+  .legend-item .dot { margin-top:4px; }
   .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
   .legend-dash { display:flex; align-items:center; gap:8px; }
   .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
@@ -70,7 +99,7 @@
   .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
              position:sticky; top:0; z-index:1100; background:rgba(247,248,250,.94);
              backdrop-filter:blur(6px); }
-  .poi-reset { position:absolute; left:36px; bottom:40px; z-index:1000; border:1px solid var(--line);
+  .poi-reset { position:absolute; right:14px; top:14px; z-index:1000; border:1px solid var(--line);
                background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
                font-size:12.5px; font-weight:600; color:#3a4750; cursor:pointer;
                box-shadow:0 1px 5px rgba(0,0,0,.18); -webkit-tap-highlight-color:transparent; }
@@ -85,9 +114,14 @@
   /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
      dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
      occupano due righe invece di dieci, e su telefono si impaginano da sole. */
-  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap { margin:0; padding:0 24px; }
+  .map-stage.split .poi-list-wrap { padding:0; }
   .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
                       color:var(--muted); margin:0 0 8px; font-weight:700; }
+  /* In colonna le pastiglie che vanno a capo diventano un mosaico storto:
+     larghe uguali e incolonnate si leggono come un indice. */
+  .map-stage.split ol.poi-list { flex-direction:column; flex-wrap:nowrap; gap:4px; }
+  .map-stage.split ol.poi-list li { width:100%; }
   ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
   ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
                    border:1px solid var(--line); border-radius:999px; background:#fff;
@@ -128,16 +162,17 @@
        di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
        400px lascia pagina sopra e sotto su cui appoggiare il pollice. */
     #map{ height:400px; }
-    .map-wrap { padding: 0 12px 24px; }
+    .map-stage { padding: 0 12px 24px; gap:14px; }
     /* Sovrapposta, la legenda copriva meta' di una mappa larga 351px, e i pin
        che finivano sotto erano semplicemente invisibili. Su telefono scende
        quindi sotto la mappa, su una riga sola, e non nasconde piu' niente. */
-    .map-legend { position:static; max-width:none; margin-top:10px; padding:10px 2px 0;
-                  background:none; backdrop-filter:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
+    /* Sotto la mappa, su una riga sola, come ieri: niente riquadro, solo un
+       filo di separazione. */
+    .map-legend { border:none; border-radius:0; margin-top:10px; padding:10px 2px 0;
+                  background:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
                   flex-direction:row; flex-wrap:wrap; gap:6px 16px; font-size:11px; }
-    /* Con la legenda spostata sotto, l'angolo in alto a destra della mappa e'
-       libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
-       invece di finire in fondo alla pagina sopra la legenda. */
+    .legend-item { align-items:center; }
+    .legend-item .dot { margin-top:0; }
     .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
     /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
        appiccicata in alto: rimpicciolite stanno in due righe. */
@@ -145,6 +180,37 @@
     .poi-chip { font-size:12px; padding:6px 10px; }
     .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
     .zone-list ul { columns:2; }
+  }
+  /* Da tablet in su i caratteri crescono. Sta tutto qui dentro, e il limite e'
+     a 721px, perche' su telefono l'impaginazione e' quella che e' gia' e non
+     va toccata: la stessa scala che su un laptop da 1435px risulta minuta, su
+     375px riempie lo schermo. */
+  @media (min-width: 721px){
+    nav.crumbs { font-size:13.5px; }
+    h1.page-title { font-size:31px; margin:10px 24px 6px; }
+    .lead { font-size:16.5px; line-height:1.5; max-width:820px; margin-bottom:16px; }
+    .evidence { font-size:14px; }
+    .map-legend { font-size:14.5px; gap:10px; padding:15px 17px; }
+    .poi-chip { font-size:14px; padding:8px 16px; }
+    .poi-bar { gap:8px; }
+    .poi-list-wrap h2 { font-size:12px; margin-bottom:10px; }
+    ol.poi-list li { font-size:14.5px; padding:5px 13px 5px 5px; }
+    ol.poi-list .n { width:22px; height:22px; font-size:11.5px; }
+    .zone-list h2 { font-size:18px; margin-bottom:12px; }
+    .map-stage.split .zone-list h2 { font-size:12px; }
+    .zone-list ul { font-size:15px; column-gap:24px; }
+    .zone-list li { padding:5px 0; }
+    .zone-group h3 { font-size:14.5px; }
+    .zone-group ul { font-size:15px; }
+    .zg-count { font-size:12px; }
+    .zg-dot { font-size:11px; padding:2px 6px; }
+    .map-detail { font-size:14.5px; }
+    .map-detail .zn { font-size:19px; }
+    .map-detail .body-text { font-size:15px; }
+    .map-detail .cta { font-size:14.5px; padding:12px 15px; }
+    .poi-reset { font-size:13.5px; padding:8px 15px; }
+    .leaflet-tooltip.zone-tooltip { font-size:13px; }
+    .poi-lab-tt { font-size:12.5px; }
   }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -261,6 +327,7 @@
     </nav>
   </div>
 </header>
+<div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; London</nav>
 <h1 class="page-title">London boroughs</h1>
 <p class="lead">Click a borough on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
@@ -268,104 +335,108 @@
 
 <div class="poi-bar" id="poiBar"></div>
 
-<div class="map-wrap">
-  <div id="map"></div>
-  <div class="map-legend" id="legendBox">
-    <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Relatively safer</span></div>
-    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Average</span></div>
-    <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Higher caution advised</span></div>
-    <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Not covered</span></div>
-    
-    <div class="legend-poi-sep" id="legendPoiSep"></div>
-    <div id="legendPoi"></div>
+
+<div class="map-stage" id="mapStage">
+  <div class="map-wrap" id="mapWrap">
+    <div id="map"></div>
+    <button type="button" class="poi-reset" id="poiReset">Reset view</button>
+    <div class="map-detail" id="detailBox">
+      <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+      <div id="detail"></div>
+    </div>
   </div>
-  <button type="button" class="poi-reset" id="poiReset">Reset view</button>
-  <div class="map-detail" id="detailBox">
-    <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
-    <div id="detail"></div>
+  <aside class="map-rail" id="mapRail">
+    <div class="map-legend" id="legendBox">
+      <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Relatively safer</span></div>
+      <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Average</span></div>
+      <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Higher caution advised</span></div>
+      <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Not covered</span></div>
+      
+    </div>
+    
+    <div class="poi-list-wrap">
+      <h2>Sights on this map</h2>
+      <ol class="poi-list" id="poiList"></ol>
+    </div>
+    
+  <div class="zone-list">
+    <h2>All boroughs</h2>
+    
+    <ul>
+      
+      <li><a href="/london/barking_dagenham.html">Barking and Dagenham</a></li>
+      
+      <li><a href="/london/barnet.html">Barnet</a></li>
+      
+      <li><a href="/london/bexley.html">Bexley</a></li>
+      
+      <li><a href="/london/brent.html">Brent</a></li>
+      
+      <li><a href="/london/bromley.html">Bromley</a></li>
+      
+      <li><a href="/london/camden.html">Camden</a></li>
+      
+      <li>City of London</li>
+      
+      <li><a href="/london/croydon.html">Croydon</a></li>
+      
+      <li><a href="/london/ealing.html">Ealing</a></li>
+      
+      <li><a href="/london/enfield.html">Enfield</a></li>
+      
+      <li><a href="/london/greenwich.html">Greenwich</a></li>
+      
+      <li><a href="/london/hackney.html">Hackney</a></li>
+      
+      <li><a href="/london/hammersmith_fulham.html">Hammersmith and Fulham</a></li>
+      
+      <li><a href="/london/haringey.html">Haringey</a></li>
+      
+      <li><a href="/london/harrow.html">Harrow</a></li>
+      
+      <li><a href="/london/havering.html">Havering</a></li>
+      
+      <li><a href="/london/hillingdon.html">Hillingdon</a></li>
+      
+      <li><a href="/london/hounslow.html">Hounslow</a></li>
+      
+      <li><a href="/london/islington.html">Islington</a></li>
+      
+      <li><a href="/london/kensington_chelsea.html">Kensington and Chelsea</a></li>
+      
+      <li><a href="/london/kingston_upon_thames.html">Kingston upon Thames</a></li>
+      
+      <li><a href="/london/lambeth.html">Lambeth</a></li>
+      
+      <li><a href="/london/lewisham.html">Lewisham</a></li>
+      
+      <li><a href="/london/merton.html">Merton</a></li>
+      
+      <li><a href="/london/newham.html">Newham</a></li>
+      
+      <li><a href="/london/redbridge.html">Redbridge</a></li>
+      
+      <li><a href="/london/richmond_upon_thames.html">Richmond upon Thames</a></li>
+      
+      <li><a href="/london/southwark.html">Southwark</a></li>
+      
+      <li><a href="/london/sutton.html">Sutton</a></li>
+      
+      <li><a href="/london/tower_hamlets.html">Tower Hamlets</a></li>
+      
+      <li><a href="/london/waltham_forest.html">Waltham Forest</a></li>
+      
+      <li><a href="/london/wandsworth.html">Wandsworth</a></li>
+      
+      <li><a href="/london/westminster.html">Westminster</a></li>
+      
+    </ul>
+    
   </div>
+  </aside>
 </div>
 
-<div class="poi-list-wrap">
-  <h2>Sights on this map</h2>
-  <ol class="poi-list" id="poiList"></ol>
-</div>
-
-
-<div class="zone-list">
-  <h2>All boroughs</h2>
-  
-  <ul>
-    
-    <li><a href="/london/barking_dagenham.html">Barking and Dagenham</a></li>
-    
-    <li><a href="/london/barnet.html">Barnet</a></li>
-    
-    <li><a href="/london/bexley.html">Bexley</a></li>
-    
-    <li><a href="/london/brent.html">Brent</a></li>
-    
-    <li><a href="/london/bromley.html">Bromley</a></li>
-    
-    <li><a href="/london/camden.html">Camden</a></li>
-    
-    <li>City of London</li>
-    
-    <li><a href="/london/croydon.html">Croydon</a></li>
-    
-    <li><a href="/london/ealing.html">Ealing</a></li>
-    
-    <li><a href="/london/enfield.html">Enfield</a></li>
-    
-    <li><a href="/london/greenwich.html">Greenwich</a></li>
-    
-    <li><a href="/london/hackney.html">Hackney</a></li>
-    
-    <li><a href="/london/hammersmith_fulham.html">Hammersmith and Fulham</a></li>
-    
-    <li><a href="/london/haringey.html">Haringey</a></li>
-    
-    <li><a href="/london/harrow.html">Harrow</a></li>
-    
-    <li><a href="/london/havering.html">Havering</a></li>
-    
-    <li><a href="/london/hillingdon.html">Hillingdon</a></li>
-    
-    <li><a href="/london/hounslow.html">Hounslow</a></li>
-    
-    <li><a href="/london/islington.html">Islington</a></li>
-    
-    <li><a href="/london/kensington_chelsea.html">Kensington and Chelsea</a></li>
-    
-    <li><a href="/london/kingston_upon_thames.html">Kingston upon Thames</a></li>
-    
-    <li><a href="/london/lambeth.html">Lambeth</a></li>
-    
-    <li><a href="/london/lewisham.html">Lewisham</a></li>
-    
-    <li><a href="/london/merton.html">Merton</a></li>
-    
-    <li><a href="/london/newham.html">Newham</a></li>
-    
-    <li><a href="/london/redbridge.html">Redbridge</a></li>
-    
-    <li><a href="/london/richmond_upon_thames.html">Richmond upon Thames</a></li>
-    
-    <li><a href="/london/southwark.html">Southwark</a></li>
-    
-    <li><a href="/london/sutton.html">Sutton</a></li>
-    
-    <li><a href="/london/tower_hamlets.html">Tower Hamlets</a></li>
-    
-    <li><a href="/london/waltham_forest.html">Waltham Forest</a></li>
-    
-    <li><a href="/london/wandsworth.html">Wandsworth</a></li>
-    
-    <li><a href="/london/westminster.html">Westminster</a></li>
-    
-  </ul>
-  
-</div>
+</div><!-- /page-shell -->
 
 <footer class="wz-footer">
   Wandroz &middot; public official data, not just reviews. In beta — coverage is expanding. &middot; map data: OpenStreetMap contributors<br>
@@ -399,7 +470,12 @@
     grey: "No burglary data for this district"
   };
 
-  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+  // zoomSnap:0 perche' altrimenti Leaflet arrotonda per difetto lo zoom che
+  // fa entrare la citta': dove ne servirebbe 12.23 usava 12, e un quarto di
+  // livello buttato via vuol dire il 21% di dimensione in meno su entrambi i
+  // lati — a mappa ferma, con lo stesso spazio a disposizione. Con lo zoom
+  // frazionario l'inquadratura e' quella giusta e basta.
+  var map = L.map('map', { scrollWheelZoom:true, zoomSnap:0, zoomDelta:0.5 }).setView(CENTER, ZOOM);
 
   // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi
   // dalla citta' e non trovare piu' la strada indietro — con l'unico rimedio di
@@ -582,7 +658,7 @@
     poiLegend(null);
     poiListing();
     map.on('zoomend moveend', poiRefresh);
-    window.addEventListener('resize', function () { poiHome(false); poiRefresh(); });
+    window.addEventListener('resize', function () { layoutStage(); poiHome(false); poiRefresh(); });
     poiRefresh();
   }
 
@@ -590,14 +666,73 @@
   // anche il limite: non si rimpicciolisce oltre, non ci si allontana oltre, e
   // "Reset view" riporta esattamente qui. Cosi' da telefono non si finisce mai
   // in un punto da cui non si sa tornare.
+  // I confini di quello che c'e' DISEGNATO sulla mappa, non della finestra in
+  // cui e' mostrata. Prima si partiva da map.getBounds(), cioe' dal rettangolo
+  // che il contenitore inquadrava a quello zoom: su un contenitore largo quel
+  // rettangolo comprendeva chilometri di campagna a est, e siccome diventava
+  // anche l'inquadratura d'apertura, la campagna se la portava dietro per
+  // sempre. Partendo dai poligoni e dai pin, l'inquadratura e' la citta'.
+  function contentBounds() {
+    var b = null;
+    function add(x) { if (!x) return; b = b ? b.extend(x) : L.latLngBounds(x, x); }
+    layers.forEach(function (l) { if (l.getBounds) { var lb = l.getBounds(); if (lb.isValid()) { b = b ? b.extend(lb) : L.latLngBounds(lb.getSouthWest(), lb.getNorthEast()); } } });
+    poiMarkers.forEach(function (m) { add(m.poiReal || m.getLatLng()); });
+    return (b && b.isValid()) ? b : map.getBounds();
+  }
+
   function poiFitAll() {
-    // Si parte dalla vista decisa dalla sicurezza e la si allarga solo quanto
-    // basta a farci stare i pin: dove sono gia' tutti dentro, l'inquadratura
-    // resta esattamente quella di prima.
-    var b = map.getBounds();
-    poiMarkers.forEach(function (m) { b.extend(m.poiReal || m.getLatLng()); });
-    POI_HOME = b;
+    POI_HOME = contentBounds();
+    layoutStage();
     poiHome(true);
+  }
+
+  // Quanto e' larga la mappa non e' una scelta grafica, e' una conseguenza:
+  // Leaflet inquadra il lato che sta piu' stretto, e per quasi tutte le citta'
+  // (Torino 1.03, Roma 0.95, Madrid 0.85, Birmingham 0.82 di rapporto est-ovest
+  // su nord-sud) il lato stretto e' l'altezza. Un riquadro largo il doppio
+  // dell'altezza sprecava quindi meta' larghezza in terreno vuoto, e la citta'
+  // veniva disegnata grande la meta'. Qui la mappa si stringe esattamente a
+  // quello che i suoi confini chiedono — lo zoom non cambia di un livello,
+  // cambia solo quanta cornice vuota c'e' intorno — e il resto va alla colonna.
+  // Parigi, che e' larga davvero (1.87), non si stringe e non prende colonna:
+  // e' la stessa regola, applicata a una citta' di forma diversa.
+  var STAGE_GAP = 22, RAIL_MIN = 300, RAIL_MAX = 460, RAIL_MAX_WIDE = 560, SPLIT_MIN_WIDTH = 1080;
+  function layoutStage() {
+    var stage = document.getElementById('mapStage'),
+        wrap  = document.getElementById('mapWrap'),
+        rail  = document.getElementById('mapRail');
+    if (!stage || !wrap || !rail) return;
+    // Si misura sempre da mappa a tutta larghezza, altrimenti la decisione
+    // dipenderebbe dalla larghezza lasciata dal passaggio precedente e a ogni
+    // resize la colonna si mangerebbe un altro pezzo di mappa.
+    stage.classList.remove('split');
+    wrap.style.width = ''; rail.style.width = ''; rail.style.maxHeight = '';
+    map.invalidateSize(false);
+    if (window.innerWidth < SPLIT_MIN_WIDTH) return;
+    var home = POI_HOME || contentBounds();
+    if (!home || !home.isValid()) return;
+    var z = map.getBoundsZoom(home, false, L.point(28, 28));
+    var need = Math.ceil(map.project(home.getNorthEast(), z).x -
+                         map.project(home.getSouthWest(), z).x) + 56;
+    // clientWidth comprende il padding del contenitore: usandolo si assegnavano
+    // 48px piu' di quelli che c'erano davvero e la colonna, in un flex che va a
+    // capo, finiva sotto la mappa invece che accanto.
+    var cs = getComputedStyle(stage);
+    var avail = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var spare = avail - need - STAGE_GAP;
+    if (spare < RAIL_MIN) return;          // citta' larga: la mappa se la merita tutta
+    // Oltre un certo punto allargare la mappa non mostra piu' citta', mostra
+    // campagna — ed e' precisamente il difetto da cui siamo partiti. Quindi la
+    // mappa cresce solo fino a inquadrare i suoi confini con un po' d'aria, e
+    // quello che avanza va alla colonna invece di tornare a essere cornice.
+    var railW = Math.min(RAIL_MAX, spare);
+    var mapW  = Math.min(avail - STAGE_GAP - railW, Math.round(need * 1.3));
+    railW = Math.min(RAIL_MAX_WIDE, avail - STAGE_GAP - mapW);
+    wrap.style.width = mapW + 'px';
+    rail.style.width = railW + 'px';
+    stage.classList.add('split');
+    map.invalidateSize(false);
+    rail.style.maxHeight = document.getElementById('map').clientHeight + 'px';
   }
 
   // Il fondo dipende da quanto e' grande la mappa, che cambia ruotando il
@@ -697,6 +832,10 @@
   // La legenda deve dire quello che si vede. Filtrando su "Green space" le
   // altre voci descrivono pin che in quel momento non ci sono, quindi
   // spariscono con loro invece di restare a promettere icone assenti.
+  // Le categorie non stanno piu' nella legenda: erano le stesse sei voci, con
+  // le stesse icone, dei filtri sopra la mappa — scritte due volte a quindici
+  // centimetri di distanza. La funzione resta perche' se un giorno tornasse un
+  // riquadro per le icone si riaccende da sola, e intanto non fa niente.
   function poiLegend(active) {
     var box = document.getElementById('legendPoi');
     if (!box) return;
