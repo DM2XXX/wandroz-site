@@ -98,6 +98,8 @@ FALLBACK_REGISTRY = {
     "newcastle":             ("newcastle",           "flat"),
     "nottingham":            ("nottingham",          "flat"),
     "sheffield":             ("sheffield",           "flat"),
+    "brighton":              ("brighton",            "flat"),
+    "liverpool":             ("liverpool",           "flat"),
     "stockholm":            ("stockholm",        "flat"),
     "torino":               ("torino",           "nested"),
     "venezia":              ("venezia",          "flat"),

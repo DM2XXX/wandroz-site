@@ -1,0 +1,159 @@
+{
+ "city": "liverpool",
+ "pois": [
+  {
+   "name": "Anfield",
+   "category": "art",
+   "qid": "Q45671",
+   "lat": 53.43083,
+   "lon": -2.96083,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Liverpool Cathedral",
+   "category": "art",
+   "qid": "Q1866506",
+   "lat": 53.39751,
+   "lon": -2.97305,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "The Cavern Club",
+   "category": "night",
+   "qid": "Q909845",
+   "lat": 53.4061,
+   "lon": -2.98722,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Liverpool Metropolitan Cathedral",
+   "category": "art",
+   "qid": "Q1470975",
+   "lat": 53.40472,
+   "lon": -2.96889,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Walker Art Gallery",
+   "category": "art",
+   "qid": "Q1536471",
+   "lat": 53.41007,
+   "lon": -2.97967,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Royal Albert Dock, Liverpool",
+   "category": "square",
+   "qid": "Q2831123",
+   "lat": 53.4003,
+   "lon": -2.9927,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "World Museum",
+   "category": "art",
+   "qid": "Q980795",
+   "lat": 53.41,
+   "lon": -2.98167,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "The Beatles Story",
+   "category": "art",
+   "qid": "Q4306068",
+   "lat": 53.399,
+   "lon": -2.992,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Pier Head",
+   "category": "view",
+   "qid": "Q3052515",
+   "lat": 53.40473,
+   "lon": -2.99668,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "St George's Hall",
+   "category": "art",
+   "qid": "Q1073341",
+   "lat": 53.4086,
+   "lon": -2.9801,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Concert Square",
+   "category": "night",
+   "qid": "Q5158505",
+   "lat": 53.4033,
+   "lon": -2.9802,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Baltic Triangle",
+   "category": "night",
+   "qid": "Q4852733",
+   "lat": 53.397,
+   "lon": -2.983,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Sefton Park",
+   "category": "green",
+   "qid": "Q7446121",
+   "lat": 53.381,
+   "lon": -2.94,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Bold Street",
+   "category": "square",
+   "qid": "Q4939075",
+   "lat": 53.4033,
+   "lon": -2.9787,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  }
+ ]
+}

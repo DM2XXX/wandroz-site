@@ -71,6 +71,10 @@ UK_CITIES = [
      "lat": 51.4816, "lon": -3.1791, "color": "#3f8f5c"},
     {"key": "leicester", "city": "Leicester", "force": "Leicestershire Police",
      "lat": 52.6369, "lon": -1.1398, "color": "#9c5fb0"},
+    {"key": "liverpool", "city": "Liverpool", "force": "Merseyside Police",
+     "lat": 53.4084, "lon": -2.9916, "color": "#e07a3f"},
+    {"key": "brighton", "city": "Brighton and Hove", "force": "Sussex Police",
+     "lat": 50.8225, "lon": -0.1372, "color": "#5aa9d6"},
 ]
 
 

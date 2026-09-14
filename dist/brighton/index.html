@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is my Brighton and Hove neighbourhood safe? — Wandroz</title>
+<meta name="description" content="Interactive map of Brighton and Hove&#39;s official wards with real street-level police crime data, day and night.">
+<link rel="canonical" href="https://www.wandroz.com/brighton/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Is my Brighton and Hove neighbourhood safe? — Wandroz">
+<meta property="og:description" content="Interactive map of Brighton and Hove&#39;s official wards with real street-level police crime data, day and night.">
+<meta property="og:url" content="https://www.wandroz.com/brighton/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
+  .switch.on { background: var(--accent); }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
+  .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
+  /* Era un pannello giallo di cinque righe che spiegava la metodologia di
+     Londra a chi stava leggendo di Zurigo. Una riga: su cosa si basa la
+     mappa, e il link a chi vuole il resto. */
+  .evidence { font-size:12.5px; color:var(--muted); margin:10px 24px 14px; display:flex;
+              flex-wrap:wrap; align-items:center; gap:8px; }
+  .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
+  .map-wrap { position:relative; padding: 0 24px 28px; }
+  #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
+  .legend-dash { display:flex; align-items:center; gap:8px; }
+  .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
+  .ev-flag { display:flex; gap:7px; align-items:flex-start; font-size:12px; color:#5b6670; margin:6px 0 2px; line-height:1.45; }
+  .ev-dot { flex:none; width:9px; height:9px; margin-top:3px; border-radius:50%; border:1.5px dashed #7a8190; }
+  .legend-poi-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-item.off { display:none; }
+  /* Sights sit on top of the safety colours, so they carry none of their own:
+     a white disc with a dark edge reads on green, amber and red alike, and the
+     icon does the work of saying what the place is. */
+  .poi-ico { display:flex; align-items:center; justify-content:center; width:26px; height:26px;
+             background:#fff; border:2px solid #16232b; border-radius:50%;
+             box-shadow:0 1px 5px rgba(0,0,0,.38); font-size:13px; position:relative; }
+  .poi-num { position:absolute; right:-6px; top:-6px; width:16px; height:16px; border-radius:50%;
+             background:#16232b; color:#fff; border:1.5px solid #fff; font-size:10px; font-weight:800;
+             display:flex; align-items:center; justify-content:center; }
+  .poi-lab-tt { background:rgba(255,255,255,.96); border:1px solid rgba(22,35,43,.18); border-radius:5px;
+                padding:2px 7px; font-size:11.5px; font-weight:700; color:#16232b;
+                box-shadow:0 1px 4px rgba(0,0,0,.18); }
+  .poi-lab-tt::before { display:none; }
+  /* I filtri restano raggiungibili mentre si guarda la mappa, invece di finire
+     fuori schermo appena si scorre: prima non si poteva cambiare filtro senza
+     prima uscire dalla mappa, che sul telefono e' il gesto piu' difficile. */
+  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
+             position:sticky; top:0; z-index:1100; background:rgba(247,248,250,.94);
+             backdrop-filter:blur(6px); }
+  .poi-reset { position:absolute; left:36px; bottom:40px; z-index:1000; border:1px solid var(--line);
+               background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
+               font-size:12.5px; font-weight:600; color:#3a4750; cursor:pointer;
+               box-shadow:0 1px 5px rgba(0,0,0,.18); -webkit-tap-highlight-color:transparent; }
+  .poi-reset:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .poi-chip { border:1px solid var(--line); background:#fff; color:#4a5a63; border-radius:999px;
+              padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
+  /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
+     una griglia auto-fill produceva una singola fascia orizzontale di dodici
+     voci, illeggibile e slegata dal resto della pagina. */
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
+  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
+  .map-detail .close-btn:hover { color:var(--ink); }
+  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
+  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
+  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
+  .map-detail .cta.secondary { background: var(--accent); }
+  .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
+  .leaflet-tooltip.zone-tooltip::before { display:none; }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  .zone-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px 22px; }
+  .zone-group h3 { font-size:12.5px; margin:0 0 6px; font-weight:700; display:flex; align-items:center; gap:6px;
+                   border-bottom:1px solid var(--line); padding-bottom:5px; }
+  .zone-group ul { columns:1; font-size:13px; }
+  .zg-count { font-weight:600; color:var(--muted); font-size:11px; margin-left:auto; }
+  .zg-dot { font-size:10px; line-height:1; padding:2px 5px; border-radius:8px; color:#fff; font-weight:700; }
+  .zg-dot.green { background:#2e7d46; } .zg-dot.yellow { background:#c98a02; }
+  .zg-dot.red { background:#c0392b; } .zg-dot.grey { background:#7a8190; }
+  @media (max-width: 720px){
+    /* 520px su un telefono riempiva quasi tutto lo schermo: qualunque tentativo
+       di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
+       400px lascia pagina sopra e sotto su cui appoggiare il pollice. */
+    #map{ height:400px; }
+    .map-wrap { padding: 0 12px 24px; }
+    /* Sovrapposta, la legenda copriva meta' di una mappa larga 351px, e i pin
+       che finivano sotto erano semplicemente invisibili. Su telefono scende
+       quindi sotto la mappa, su una riga sola, e non nasconde piu' niente. */
+    .map-legend { position:static; max-width:none; margin-top:10px; padding:10px 2px 0;
+                  background:none; backdrop-filter:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
+                  flex-direction:row; flex-wrap:wrap; gap:6px 16px; font-size:11px; }
+    /* Con la legenda spostata sotto, l'angolo in alto a destra della mappa e'
+       libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
+       invece di finire in fondo alla pagina sopra la legenda. */
+    .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
+    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
+    .zone-list ul { columns:2; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">City</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        <optgroup label="🇬🇧 United Kingdom">
+          <option value="https://www.wandroz.com/london/" >London</option>
+          <option value="https://www.wandroz.com/edinburgh/" >Edinburgh</option>
+          <option value="https://www.wandroz.com/birmingham/" >Birmingham</option>
+          <option value="https://www.wandroz.com/leeds/" >Leeds</option>
+          <option value="https://www.wandroz.com/bristol/" >Bristol</option>
+          <option value="https://www.wandroz.com/sheffield/" >Sheffield</option>
+          <option value="https://www.wandroz.com/newcastle/" >Newcastle upon Tyne</option>
+          <option value="https://www.wandroz.com/nottingham/" >Nottingham</option>
+          <option value="https://www.wandroz.com/cardiff/" >Cardiff</option>
+          <option value="https://www.wandroz.com/leicester/" >Leicester</option>
+          <option value="https://www.wandroz.com/liverpool/" >Liverpool</option>
+          <option value="https://www.wandroz.com/brighton/" selected>Brighton and Hove</option>
+        </optgroup>
+        <optgroup label="🇮🇹 Italy">
+          <option value="https://www.wandroz.com/torino/" >Turin</option>
+          <option value="https://www.wandroz.com/milano/" >Milan</option>
+          <option value="https://www.wandroz.com/roma/" >Rome</option>
+          <option value="https://www.wandroz.com/venezia/" >Venice</option>
+          <option value="https://www.wandroz.com/firenze/" >Florence</option>
+          <option value="https://www.wandroz.com/napoli/" >Naples</option>
+        </optgroup>
+        <optgroup label="🇩🇪 Germany">
+          <option value="https://www.wandroz.com/berlin/" >Berlin</option>
+          <option value="https://www.wandroz.com/monaco-di-baviera/" >Munich</option>
+        </optgroup>
+        <optgroup label="🇪🇸 Spain">
+          <option value="https://www.wandroz.com/barcelona/" >Barcelona</option>
+          <option value="https://www.wandroz.com/madrid/" >Madrid</option>
+        </optgroup>
+        <optgroup label="🇳🇱 Netherlands">
+          <option value="https://www.wandroz.com/amsterdam/" >Amsterdam</option>
+        </optgroup>
+        <optgroup label="🇨🇭 Switzerland">
+          <option value="https://www.wandroz.com/zurigo/" >Zurich</option>
+        </optgroup>
+        <optgroup label="🇨🇿 Czechia">
+          <option value="https://www.wandroz.com/praha/" >Prague</option>
+        </optgroup>
+        <optgroup label="🇳🇴 Norway">
+          <option value="https://www.wandroz.com/oslo/" >Oslo</option>
+        </optgroup>
+        <optgroup label="🇸🇪 Sweden">
+          <option value="https://www.wandroz.com/stockholm/" >Stockholm</option>
+        </optgroup>
+        <optgroup label="🇦🇹 Austria">
+          <option value="https://www.wandroz.com/vienna/" >Vienna</option>
+        </optgroup>
+        <optgroup label="🇵🇹 Portugal">
+          <option value="https://www.wandroz.com/lisbon/" >Lisbon</option>
+        </optgroup>
+        <optgroup label="🇫🇷 France">
+          <option value="https://www.wandroz.com/paris/" >Paris</option>
+        </optgroup>
+        <optgroup label="🇧🇪 Belgium">
+          <option value="https://www.wandroz.com/brussels/" >Brussels</option>
+        </optgroup>
+        <optgroup label="🇬🇷 Greece">
+          <option value="https://www.wandroz.com/athens/" >Athens</option>
+        </optgroup>
+        <optgroup label="🇮🇪 Ireland">
+          <option value="https://www.wandroz.com/dublin/" >Dublin</option>
+        </optgroup>
+        <optgroup label="🇭🇺 Hungary">
+          <option value="https://www.wandroz.com/budapest/" >Budapest</option>
+        </optgroup>
+        <optgroup label="🇵🇱 Poland">
+          <option value="https://www.wandroz.com/krakow/" >Kraków</option>
+        </optgroup>
+      </select>
+    </div>
+    
+    <div class="switch-wrap" id="dnSwitchWrap">
+      <span>day</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>night</span>
+    </div>
+    
+    
+    <nav class="wz-nav">
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+<nav class="crumbs"><a href="/">Home</a> &rsaquo; Brighton and Hove, United Kingdom</nav>
+<h1 class="page-title">Brighton and Hove wards</h1>
+<p class="lead">Click a ward on the map to see its level, the recorded figures behind it, and a Booking.com link for that area.</p>
+<p class="evidence">🟢 Official crime data · Sussex Police, data.police.uk <a href="/methodology.html">Methodology &rarr;</a></p>
+
+<div class="poi-bar" id="poiBar"></div>
+
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="map-legend" id="legendBox">
+    <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
+    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
+    <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
+    
+    
+    <div class="legend-poi-sep" id="legendPoiSep"></div>
+    <div id="legendPoi"></div>
+  </div>
+  <button type="button" class="poi-reset" id="poiReset">Reset view</button>
+  <div class="map-detail" id="detailBox">
+    <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<div class="poi-list-wrap">
+  <h2>Sights on this map</h2>
+  <ol class="poi-list" id="poiList"></ol>
+</div>
+
+
+<div class="zone-list">
+  <h2>All wards</h2>
+  
+  <ul>
+    
+    <li><a href="/brighton/brunswick-and-adelaide.html">Brunswick and Adelaide</a></li>
+    
+    <li><a href="/brighton/central-hove.html">Central Hove</a></li>
+    
+    <li><a href="/brighton/east-brighton.html">East Brighton</a></li>
+    
+    <li><a href="/brighton/goldsmid.html">Goldsmid</a></li>
+    
+    <li><a href="/brighton/hangleton-and-knoll.html">Hangleton and Knoll</a></li>
+    
+    <li><a href="/brighton/hanover-and-elm-grove.html">Hanover and Elm Grove</a></li>
+    
+    <li><a href="/brighton/hollingdean-and-stanmer.html">Hollingdean and Stanmer</a></li>
+    
+    <li><a href="/brighton/hove-park.html">Hove Park</a></li>
+    
+    <li><a href="/brighton/moulsecoomb-and-bevendean.html">Moulsecoomb and Bevendean</a></li>
+    
+    <li><a href="/brighton/north-portslade.html">North Portslade</a></li>
+    
+    <li><a href="/brighton/patcham.html">Patcham</a></li>
+    
+    <li><a href="/brighton/preston-park.html">Preston Park</a></li>
+    
+    <li><a href="/brighton/queen-s-park.html">Queen&#39;s Park</a></li>
+    
+    <li><a href="/brighton/regency.html">Regency</a></li>
+    
+    <li><a href="/brighton/rottingdean-coastal.html">Rottingdean Coastal</a></li>
+    
+    <li><a href="/brighton/south-portslade.html">South Portslade</a></li>
+    
+    <li><a href="/brighton/st-peter-s-and-north-laine.html">St. Peter&#39;s and North Laine</a></li>
+    
+    <li><a href="/brighton/westbourne.html">Westbourne</a></li>
+    
+    <li><a href="/brighton/wish.html">Wish</a></li>
+    
+    <li><a href="/brighton/withdean.html">Withdean</a></li>
+    
+    <li><a href="/brighton/woodingdean.html">Woodingdean</a></li>
+    
+  </ul>
+  
+</div>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = [{"coords": [[[50.82679, -0.15448], [50.82664, -0.15389], [50.82179, -0.1569], [50.8218, -0.15697], [50.82313, -0.16685], [50.82472, -0.16628], [50.82476, -0.16748], [50.82991, -0.16597], [50.82931, -0.16243], [50.8285, -0.1627], [50.82679, -0.15448]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Brunswick and Adelaide", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "brunswick-and-adelaide", "text": "Sussex Police recorded 270 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.1 per 1,000 residents, the 10th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (6), vehicle crime (6), drugs (5); the evening/night score by anti social behaviour (26), violent crime (21), public order (8). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/brunswick-and-adelaide.html"}, {"coords": [[[50.82991, -0.16597], [50.82476, -0.16748], [50.82472, -0.16628], [50.82313, -0.16685], [50.82313, -0.16687], [50.82376, -0.17219], [50.82345, -0.1722], [50.82365, -0.17222], [50.82387, -0.17342], [50.82383, -0.17471], [50.82329, -0.17484], [50.82382, -0.17477], [50.82409, -0.17683], [50.82404, -0.17686], [50.82448, -0.18117], [50.82881, -0.17867], [50.8327, -0.17746], [50.83204, -0.17266], [50.83142, -0.17294], [50.83133, -0.17237], [50.83096, -0.17253], [50.82991, -0.16597]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Central Hove", "night": "yellow", "night_label": "Average", "query": "Brighton and Hove, United Kingdom", "slug": "central-hove", "text": "Sussex Police recorded 425 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 15.2 per 1,000 residents, the 5th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (28), bicycle theft (5), vehicle crime (5); the evening/night score by anti social behaviour (31), violent crime (31), public order (15). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/central-hove.html"}, {"coords": [[[50.83506, -0.0942], [50.83445, -0.09231], [50.83253, -0.09001], [50.82849, -0.0872], [50.82049, -0.08381], [50.81909, -0.08263], [50.82042, -0.08651], [50.82044, -0.09081], [50.81972, -0.09301], [50.81735, -0.0967], [50.81627, -0.10007], [50.8169, -0.10399], [50.81747, -0.10368], [50.81804, -0.10628], [50.81741, -0.1067], [50.81842, -0.11121], [50.81665, -0.112], [50.81635, -0.11307], [50.81412, -0.11314], [50.81638, -0.12393], [50.81638, -0.12394], [50.81882, -0.12287], [50.82125, -0.12056], [50.82109, -0.11975], [50.82381, -0.11777], [50.82453, -0.11968], [50.82495, -0.11921], [50.82565, -0.12021], [50.82651, -0.11871], [50.82665, -0.11898], [50.82699, -0.11855], [50.82686, -0.11829], [50.82716, -0.11786], [50.82761, -0.11692], [50.82789, -0.11486], [50.83195, -0.11249], [50.83315, -0.1094], [50.83508, -0.10617], [50.83546, -0.10359], [50.83476, -0.09861], [50.83506, -0.0942]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "East Brighton", "night": "red", "night_label": "Higher caution advised", "query": "Brighton and Hove, United Kingdom", "slug": "east-brighton", "text": "Sussex Police recorded 763 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 17.9 per 1,000 residents, the 4th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (7), vehicle crime (4), drugs (4); the evening/night score by violent crime (96), anti social behaviour (64), public order (24). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/east-brighton.html"}, {"coords": [[[50.8337, -0.15037], [50.83218, -0.14854], [50.83082, -0.1475], [50.83074, -0.14995], [50.82984, -0.15116], [50.82995, -0.1514], [50.82874, -0.15291], [50.8285, -0.15231], [50.82808, -0.15275], [50.82833, -0.15352], [50.82679, -0.15448], [50.8285, -0.1627], [50.82931, -0.16243], [50.82991, -0.16597], [50.83096, -0.17253], [50.83133, -0.17237], [50.83142, -0.17294], [50.83204, -0.17266], [50.8327, -0.17746], [50.83447, -0.17703], [50.83609, -0.17725], [50.83559, -0.17304], [50.83661, -0.17271], [50.83669, -0.17341], [50.83752, -0.17344], [50.83896, -0.17211], [50.83896, -0.17157], [50.83491, -0.15805], [50.8337, -0.15037]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Goldsmid", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "goldsmid", "text": "Sussex Police recorded 284 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.0 per 1,000 residents, the 15th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by drugs (6), vehicle crime (5), burglary (2); the evening/night score by anti social behaviour (30), violent crime (27), public order (8). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/goldsmid.html"}, {"coords": [[[50.86857, -0.18773], [50.86687, -0.18583], [50.86698, -0.18442], [50.86291, -0.18335], [50.85802, -0.17504], [50.85689, -0.17529], [50.85348, -0.17778], [50.85182, -0.18006], [50.85086, -0.18279], [50.84814, -0.18397], [50.84768, -0.18488], [50.8468, -0.1831], [50.84566, -0.18381], [50.8459, -0.18463], [50.84338, -0.18633], [50.84347, -0.18713], [50.84307, -0.1874], [50.8426, -0.18755], [50.84251, -0.18683], [50.8403, -0.18752], [50.84039, -0.18815], [50.84, -0.18813], [50.83989, -0.18745], [50.83873, -0.18738], [50.83856, -0.18866], [50.83652, -0.18847], [50.83639, -0.19545], [50.8357, -0.20584], [50.83807, -0.20428], [50.8382, -0.20698], [50.84288, -0.20618], [50.84472, -0.20673], [50.84705, -0.20833], [50.84928, -0.20972], [50.85416, -0.21165], [50.85562, -0.21169], [50.85723, -0.21066], [50.861, -0.21194], [50.87046, -0.21388], [50.87051, -0.20926], [50.87009, -0.2054], [50.87586, -0.20264], [50.87491, -0.20092], [50.87012, -0.19899], [50.86955, -0.19735], [50.86964, -0.19437], [50.86903, -0.18922], [50.86857, -0.18773]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Hangleton and Knoll", "night": "yellow", "night_label": "Average", "query": "Brighton and Hove, United Kingdom", "slug": "hangleton-and-knoll", "text": "Sussex Police recorded 405 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.9 per 1,000 residents, the 11th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (8), vehicle crime (4), drugs (3); the evening/night score by violent crime (52), anti social behaviour (29), public order (10). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/hangleton-and-knoll.html"}, {"coords": [[[50.83546, -0.10359], [50.83508, -0.10617], [50.83315, -0.1094], [50.83195, -0.11249], [50.82789, -0.11486], [50.82761, -0.11692], [50.82716, -0.11786], [50.82773, -0.11833], [50.82896, -0.12266], [50.82591, -0.12719], [50.8268, -0.12975], [50.82802, -0.13191], [50.82857, -0.13442], [50.83418, -0.12713], [50.83783, -0.12419], [50.83609, -0.10589], [50.83546, -0.10359]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Hanover and Elm Grove", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "hanover-and-elm-grove", "text": "Sussex Police recorded 322 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.7 per 1,000 residents, the 14th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by vehicle crime (5), drugs (5), burglary (2); the evening/night score by violent crime (39), anti social behaviour (25), public order (9). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/hanover-and-elm-grove.html"}, {"coords": [[[50.86317, -0.08324], [50.86208, -0.09078], [50.86019, -0.09627], [50.85872, -0.09724], [50.85783, -0.09885], [50.85747, -0.10069], [50.85732, -0.10436], [50.85631, -0.10737], [50.85349, -0.10952], [50.84928, -0.1113], [50.8482, -0.11258], [50.8465, -0.11591], [50.84337, -0.11951], [50.83783, -0.12419], [50.83776, -0.12604], [50.83753, -0.1261], [50.8379, -0.12722], [50.83813, -0.12717], [50.83804, -0.12839], [50.83837, -0.1291], [50.83715, -0.13356], [50.83938, -0.13364], [50.84671, -0.13539], [50.84886, -0.13527], [50.85307, -0.13485], [50.85503, -0.13303], [50.85742, -0.12929], [50.85872, -0.12286], [50.85959, -0.12181], [50.86104, -0.12115], [50.86526, -0.12047], [50.86752, -0.11958], [50.86941, -0.11829], [50.8697, -0.1191], [50.87116, -0.11978], [50.87356, -0.12009], [50.87423, -0.11531], [50.87316, -0.11136], [50.87234, -0.10492], [50.87277, -0.10349], [50.8746, -0.10446], [50.87654, -0.09796], [50.8775, -0.09848], [50.87795, -0.09752], [50.87654, -0.0948], [50.87678, -0.09436], [50.87312, -0.08493], [50.87107, -0.0861], [50.86898, -0.08464], [50.86745, -0.08287], [50.86692, -0.08413], [50.86317, -0.08324]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Hollingdean and Stanmer", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "hollingdean-and-stanmer", "text": "Sussex Police recorded 479 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.5 per 1,000 residents, the 8th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (8), vehicle crime (4), burglary (3); the evening/night score by anti social behaviour (54), violent crime (49), public order (11). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/hollingdean-and-stanmer.html"}, {"coords": [[[50.83873, -0.15537], [50.83684, -0.15305], [50.8337, -0.15037], [50.83491, -0.15805], [50.83896, -0.17157], [50.83896, -0.17211], [50.83752, -0.17344], [50.83669, -0.17341], [50.83661, -0.17271], [50.83559, -0.17304], [50.83609, -0.17725], [50.83644, -0.18413], [50.83652, -0.18847], [50.83856, -0.18866], [50.83873, -0.18738], [50.83989, -0.18745], [50.84, -0.18813], [50.84039, -0.18815], [50.8403, -0.18752], [50.84251, -0.18683], [50.8426, -0.18755], [50.84307, -0.1874], [50.84347, -0.18713], [50.84338, -0.18633], [50.8459, -0.18463], [50.84566, -0.18381], [50.8468, -0.1831], [50.84768, -0.18488], [50.84814, -0.18397], [50.85086, -0.18279], [50.85182, -0.18006], [50.85348, -0.17778], [50.85689, -0.17529], [50.85802, -0.17504], [50.85561, -0.17057], [50.84871, -0.16206], [50.84693, -0.16062], [50.84197, -0.15878], [50.83873, -0.15537]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Hove Park", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "hove-park", "text": "Sussex Police recorded 189 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 5.7 per 1,000 residents, the 17th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (15), vehicle crime (2), drugs (1); the evening/night score by violent crime (15), anti social behaviour (11), public order (6). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/hove-park.html"}, {"coords": [[[50.8507, -0.07526], [50.84934, -0.08548], [50.84513, -0.08215], [50.84409, -0.0855], [50.84408, -0.08764], [50.84336, -0.08779], [50.8429, -0.08881], [50.84149, -0.08986], [50.84094, -0.08855], [50.84027, -0.0891], [50.83983, -0.09034], [50.83792, -0.08957], [50.83735, -0.09197], [50.83635, -0.09098], [50.83506, -0.0942], [50.83476, -0.09861], [50.83546, -0.10359], [50.83609, -0.10589], [50.83783, -0.12419], [50.84337, -0.11951], [50.8465, -0.11591], [50.8482, -0.11258], [50.84928, -0.1113], [50.85349, -0.10952], [50.85631, -0.10737], [50.85732, -0.10436], [50.85747, -0.10069], [50.85783, -0.09885], [50.85872, -0.09724], [50.86019, -0.09627], [50.86208, -0.09078], [50.86317, -0.08324], [50.86307, -0.0828], [50.86069, -0.08167], [50.86093, -0.08001], [50.8538, -0.07883], [50.8507, -0.07526]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Moulsecoomb and Bevendean", "night": "yellow", "night_label": "Average", "query": "Brighton and Hove, United Kingdom", "slug": "moulsecoomb-and-bevendean", "text": "Sussex Police recorded 385 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.6 per 1,000 residents, the 12th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by drugs (5), vehicle crime (4), shoplifting (2); the evening/night score by violent crime (57), anti social behaviour (29), public order (10). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/moulsecoomb-and-bevendean.html"}, {"coords": [[[50.87046, -0.21388], [50.861, -0.21194], [50.85723, -0.21066], [50.85562, -0.21169], [50.85416, -0.21165], [50.84928, -0.20972], [50.84705, -0.20833], [50.84543, -0.21565], [50.84396, -0.21869], [50.84299, -0.22317], [50.84293, -0.22597], [50.84441, -0.22764], [50.84563, -0.2284], [50.84573, -0.22932], [50.84832, -0.23062], [50.85111, -0.23433], [50.85241, -0.23538], [50.85752, -0.23638], [50.85872, -0.23899], [50.86195, -0.23975], [50.86288, -0.2415], [50.86343, -0.24472], [50.86381, -0.24497], [50.8652, -0.24058], [50.86605, -0.2398], [50.86789, -0.23924], [50.86972, -0.23875], [50.87179, -0.23755], [50.87516, -0.23382], [50.87594, -0.23267], [50.87818, -0.22672], [50.87807, -0.22552], [50.87724, -0.22465], [50.87629, -0.22456], [50.87518, -0.21415], [50.87046, -0.21388]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "North Portslade", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "north-portslade", "text": "Sussex Police recorded 150 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 4.9 per 1,000 residents, the 18th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (3), drugs (1), vehicle crime (1); the evening/night score by violent crime (21), anti social behaviour (10), public order (5). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/north-portslade.html"}, {"coords": [[[50.88663, -0.13501], [50.88514, -0.13554], [50.88075, -0.13582], [50.8781, -0.13528], [50.87872, -0.1295], [50.87815, -0.12704], [50.87798, -0.12421], [50.87619, -0.1243], [50.87612, -0.12223], [50.87343, -0.1218], [50.87356, -0.12009], [50.87116, -0.11978], [50.8697, -0.1191], [50.86941, -0.11829], [50.86752, -0.11958], [50.86526, -0.12047], [50.86104, -0.12115], [50.85959, -0.12181], [50.85872, -0.12286], [50.85742, -0.12929], [50.85503, -0.13303], [50.85307, -0.13485], [50.8536, -0.13914], [50.85335, -0.14095], [50.85357, -0.15221], [50.8533, -0.15502], [50.85429, -0.15512], [50.85621, -0.15406], [50.85652, -0.15582], [50.85926, -0.15525], [50.8626, -0.15572], [50.87007, -0.15924], [50.87734, -0.16524], [50.88091, -0.16643], [50.88096, -0.16166], [50.8803, -0.15944], [50.87978, -0.15546], [50.87986, -0.15297], [50.8849, -0.15318], [50.88544, -0.15253], [50.88698, -0.14461], [50.88582, -0.14209], [50.88429, -0.14241], [50.88458, -0.13714], [50.88663, -0.13501]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Patcham", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "patcham", "text": "Sussex Police recorded 306 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.0 per 1,000 residents, the 13th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (9), drugs (5), vehicle crime (2); the evening/night score by violent crime (32), anti social behaviour (22), public order (9). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/patcham.html"}, {"coords": [[[50.83715, -0.13356], [50.83664, -0.13356], [50.83543, -0.13956], [50.83361, -0.13868], [50.83316, -0.14241], [50.83185, -0.14578], [50.83196, -0.14737], [50.83224, -0.14738], [50.83218, -0.14854], [50.8337, -0.15037], [50.83684, -0.15305], [50.83873, -0.15537], [50.83919, -0.15343], [50.83897, -0.15177], [50.83916, -0.15157], [50.83991, -0.1529], [50.83962, -0.15291], [50.83973, -0.15357], [50.84056, -0.15311], [50.84156, -0.15332], [50.84198, -0.15114], [50.84314, -0.15134], [50.84399, -0.14709], [50.84414, -0.14361], [50.84872, -0.1373], [50.84886, -0.13527], [50.84671, -0.13539], [50.83938, -0.13364], [50.83715, -0.13356]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Preston Park", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "preston-park", "text": "Sussex Police recorded 184 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 4.1 per 1,000 residents, the 20th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by vehicle crime (5), drugs (3), bicycle theft (1); the evening/night score by anti social behaviour (18), violent crime (16), public order (4). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/preston-park.html"}, {"coords": [[[50.82716, -0.11786], [50.82686, -0.11829], [50.82699, -0.11855], [50.82665, -0.11898], [50.82651, -0.11871], [50.82565, -0.12021], [50.82495, -0.11921], [50.82453, -0.11968], [50.82381, -0.11777], [50.82109, -0.11975], [50.82125, -0.12056], [50.81882, -0.12287], [50.81638, -0.12394], [50.81884, -0.13607], [50.81888, -0.13683], [50.81887, -0.13684], [50.82109, -0.13655], [50.82315, -0.13626], [50.82675, -0.1346], [50.82857, -0.13442], [50.82802, -0.13191], [50.8268, -0.12975], [50.82591, -0.12719], [50.82896, -0.12266], [50.82773, -0.11833], [50.82716, -0.11786]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Queen\u0027s Park", "night": "red", "night_label": "Higher caution advised", "query": "Brighton and Hove, United Kingdom", "slug": "queen-s-park", "text": "Sussex Police recorded 987 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 21.0 per 1,000 residents, the 3rd highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (17), drugs (11), vehicle crime (8); the evening/night score by violent crime (103), anti social behaviour (95), public order (32). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/queen-s-park.html"}, {"coords": [[[50.82109, -0.13655], [50.81887, -0.13684], [50.81851, -0.13703], [50.81885, -0.13913], [50.81853, -0.13931], [50.82179, -0.1569], [50.82664, -0.15389], [50.82679, -0.15448], [50.82833, -0.15352], [50.82808, -0.15275], [50.8285, -0.15231], [50.82874, -0.15291], [50.82995, -0.1514], [50.82984, -0.15116], [50.83074, -0.14995], [50.83082, -0.1475], [50.82563, -0.14589], [50.82403, -0.14463], [50.82306, -0.14083], [50.82146, -0.13811], [50.82109, -0.13655]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Regency", "night": "red", "night_label": "Higher caution advised", "query": "Brighton and Hove, United Kingdom", "slug": "regency", "text": "Sussex Police recorded 1,945 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 65.1 per 1,000 residents, the 1st highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (140), drugs (22), burglary (10); the evening/night score by violent crime (159), anti social behaviour (148), public order (63). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/regency.html"}, {"coords": [[[50.82482, -0.04217], [50.82425, -0.04246], [50.8234, -0.04511], [50.82354, -0.04582], [50.82237, -0.04548], [50.82182, -0.04597], [50.82146, -0.04216], [50.82153, -0.03969], [50.8188, -0.03327], [50.81742, -0.031], [50.81735, -0.03023], [50.81802, -0.02634], [50.82183, -0.02043], [50.81965, -0.0193], [50.81627, -0.01659], [50.81488, -0.016], [50.81289, -0.02062], [50.80828, -0.0282], [50.80455, -0.03177], [50.80246, -0.03439], [50.80093, -0.0371], [50.79908, -0.03858], [50.79953, -0.03954], [50.79938, -0.03961], [50.79971, -0.04074], [50.79959, -0.04083], [50.80007, -0.04233], [50.79974, -0.04259], [50.79999, -0.04348], [50.79974, -0.04371], [50.80053, -0.04511], [50.80153, -0.05005], [50.80158, -0.05339], [50.80086, -0.05381], [50.80125, -0.05385], [50.80158, -0.05493], [50.80112, -0.05517], [50.80158, -0.05585], [50.80148, -0.05643], [50.80207, -0.05738], [50.80186, -0.05788], [50.80239, -0.05863], [50.80233, -0.05919], [50.80439, -0.06482], [50.80527, -0.0682], [50.80496, -0.0687], [50.80518, -0.06857], [50.80575, -0.06998], [50.80588, -0.07042], [50.80554, -0.07067], [50.80689, -0.0736], [50.80848, -0.07993], [50.81027, -0.08548], [50.81034, -0.08689], [50.81093, -0.08806], [50.81178, -0.09208], [50.81176, -0.09259], [50.80968, -0.09393], [50.80908, -0.09452], [50.80858, -0.09559], [50.8084, -0.09702], [50.80897, -0.10288], [50.80954, -0.10617], [50.8096, -0.10463], [50.81028, -0.1051], [50.80952, -0.10444], [50.80919, -0.10334], [50.80891, -0.10112], [50.80852, -0.09642], [50.80932, -0.09438], [50.81046, -0.09354], [50.8107, -0.09408], [50.81222, -0.10371], [50.81177, -0.10391], [50.81168, -0.10343], [50.8105, -0.10396], [50.81055, -0.10455], [50.81129, -0.10449], [50.81167, -0.10642], [50.81158, -0.10781], [50.8102, -0.10796], [50.80827, -0.10637], [50.80963, -0.10778], [50.81041, -0.10816], [50.81111, -0.10815], [50.81272, -0.10754], [50.81412, -0.11314], [50.81412, -0.11314], [50.81635, -0.11307], [50.81665, -0.112], [50.81842, -0.11121], [50.81741, -0.1067], [50.81804, -0.10628], [50.81747, -0.10368], [50.8169, -0.10399], [50.81627, -0.10007], [50.81735, -0.0967], [50.81972, -0.09301], [50.82044, -0.09081], [50.82042, -0.08651], [50.81909, -0.08263], [50.81815, -0.08056], [50.81859, -0.0784], [50.81974, -0.07648], [50.81898, -0.07452], [50.82037, -0.07333], [50.82118, -0.0717], [50.82144, -0.07191], [50.82335, -0.07096], [50.82279, -0.06979], [50.82243, -0.06994], [50.82213, -0.06752], [50.82291, -0.06393], [50.82461, -0.05977], [50.8269, -0.04989], [50.82406, -0.04915], [50.82398, -0.04818], [50.82663, -0.04676], [50.82782, -0.04672], [50.82833, -0.04595], [50.82827, -0.04511], [50.82788, -0.04457], [50.82483, -0.04434], [50.82482, -0.04217]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Rottingdean Coastal", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "rottingdean-coastal", "text": "Sussex Police recorded 429 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.0 per 1,000 residents, the 7th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (31), vehicle crime (3), bicycle theft (3); the evening/night score by anti social behaviour (38), violent crime (26), public order (14). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/rottingdean-coastal.html"}, {"coords": [[[50.8357, -0.20584], [50.8309, -0.20826], [50.82669, -0.20843], [50.82669, -0.20844], [50.82758, -0.21604], [50.82758, -0.21605], [50.83037, -0.21529], [50.83068, -0.21659], [50.83296, -0.21667], [50.83292, -0.21757], [50.83909, -0.22291], [50.84293, -0.22597], [50.84299, -0.22317], [50.84396, -0.21869], [50.84543, -0.21565], [50.84705, -0.20833], [50.84472, -0.20673], [50.84288, -0.20618], [50.8382, -0.20698], [50.83807, -0.20428], [50.8357, -0.20584]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "South Portslade", "night": "yellow", "night_label": "Average", "query": "Brighton and Hove, United Kingdom", "slug": "south-portslade", "text": "Sussex Police recorded 300 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.1 per 1,000 residents, the 6th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (11), drugs (3), vehicle crime (3); the evening/night score by violent crime (31), anti social behaviour (20), public order (12). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/south-portslade.html"}, {"coords": [[[50.83783, -0.12419], [50.83418, -0.12713], [50.82857, -0.13442], [50.82675, -0.1346], [50.82315, -0.13626], [50.82109, -0.13655], [50.82146, -0.13811], [50.82306, -0.14083], [50.82403, -0.14463], [50.82563, -0.14589], [50.83082, -0.1475], [50.83218, -0.14854], [50.83224, -0.14738], [50.83196, -0.14737], [50.83185, -0.14578], [50.83316, -0.14241], [50.83361, -0.13868], [50.83543, -0.13956], [50.83664, -0.13356], [50.83715, -0.13356], [50.83837, -0.1291], [50.83804, -0.12839], [50.83813, -0.12717], [50.8379, -0.12722], [50.83753, -0.1261], [50.83776, -0.12604], [50.83783, -0.12419]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "St. Peter\u0027s and North Laine", "night": "red", "night_label": "Higher caution advised", "query": "Brighton and Hove, United Kingdom", "slug": "st-peter-s-and-north-laine", "text": "Sussex Police recorded 1,686 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 31.8 per 1,000 residents, the 2nd highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (130), drugs (18), vehicle crime (11); the evening/night score by anti social behaviour (137), violent crime (122), public order (44). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/st-peter-s-and-north-laine.html"}, {"coords": [[[50.83609, -0.17725], [50.83447, -0.17703], [50.8327, -0.17746], [50.82881, -0.17867], [50.82448, -0.18117], [50.82449, -0.18125], [50.82557, -0.19174], [50.82654, -0.19173], [50.83379, -0.18929], [50.83331, -0.18523], [50.83644, -0.18413], [50.83609, -0.17725]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Westbourne", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "westbourne", "text": "Sussex Police recorded 174 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 5.9 per 1,000 residents, the 16th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (5), vehicle crime (3), bicycle theft (2); the evening/night score by violent crime (15), anti social behaviour (14), public order (5). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/westbourne.html"}, {"coords": [[[50.83644, -0.18413], [50.83331, -0.18523], [50.83379, -0.18929], [50.82654, -0.19173], [50.82557, -0.19174], [50.8265, -0.20383], [50.82616, -0.20517], [50.82669, -0.20843], [50.8309, -0.20826], [50.8357, -0.20584], [50.83639, -0.19545], [50.83652, -0.18847], [50.83644, -0.18413]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Wish", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "wish", "text": "Sussex Police recorded 284 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.2 per 1,000 residents, the 9th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by shoplifting (8), vehicle crime (3), burglary (2); the evening/night score by anti social behaviour (30), violent crime (27), public order (10). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/wish.html"}, {"coords": [[[50.88091, -0.16643], [50.87734, -0.16524], [50.87007, -0.15924], [50.8626, -0.15572], [50.85926, -0.15525], [50.85652, -0.15582], [50.85621, -0.15406], [50.85429, -0.15512], [50.8533, -0.15502], [50.85357, -0.15221], [50.85335, -0.14095], [50.8536, -0.13914], [50.85307, -0.13485], [50.84886, -0.13527], [50.84872, -0.1373], [50.84414, -0.14361], [50.84399, -0.14709], [50.84314, -0.15134], [50.84198, -0.15114], [50.84156, -0.15332], [50.84056, -0.15311], [50.83973, -0.15357], [50.83962, -0.15291], [50.83991, -0.1529], [50.83916, -0.15157], [50.83897, -0.15177], [50.83919, -0.15343], [50.83873, -0.15537], [50.84197, -0.15878], [50.84693, -0.16062], [50.84871, -0.16206], [50.85561, -0.17057], [50.85802, -0.17504], [50.86291, -0.18335], [50.86698, -0.18442], [50.86687, -0.18583], [50.86857, -0.18773], [50.87442, -0.18975], [50.87559, -0.18773], [50.87567, -0.18627], [50.87658, -0.18507], [50.8809, -0.18186], [50.88365, -0.1813], [50.88832, -0.18242], [50.88835, -0.18078], [50.89047, -0.17781], [50.88993, -0.16933], [50.89237, -0.16861], [50.89233, -0.16586], [50.88559, -0.16817], [50.88505, -0.16818], [50.8848, -0.16763], [50.88191, -0.16847], [50.88075, -0.16813], [50.88091, -0.16643]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Withdean", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "withdean", "text": "Sussex Police recorded 178 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 4.0 per 1,000 residents, the 21st highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by vehicle crime (3), burglary (3), drugs (2); the evening/night score by violent crime (20), anti social behaviour (15), public order (3). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/withdean.html"}, {"coords": [[[50.82482, -0.04217], [50.82483, -0.04434], [50.82788, -0.04457], [50.82827, -0.04511], [50.82833, -0.04595], [50.82782, -0.04672], [50.82663, -0.04676], [50.82398, -0.04818], [50.82406, -0.04915], [50.8269, -0.04989], [50.82461, -0.05977], [50.82291, -0.06393], [50.82213, -0.06752], [50.82243, -0.06994], [50.82279, -0.06979], [50.82335, -0.07096], [50.82144, -0.07191], [50.82118, -0.0717], [50.82037, -0.07333], [50.81898, -0.07452], [50.81974, -0.07648], [50.81859, -0.0784], [50.81815, -0.08056], [50.81909, -0.08263], [50.82049, -0.08381], [50.82849, -0.0872], [50.83253, -0.09001], [50.83445, -0.09231], [50.83506, -0.0942], [50.83635, -0.09098], [50.83735, -0.09197], [50.83792, -0.08957], [50.83983, -0.09034], [50.84027, -0.0891], [50.84094, -0.08855], [50.84149, -0.08986], [50.8429, -0.08881], [50.84336, -0.08779], [50.84408, -0.08764], [50.84409, -0.0855], [50.84513, -0.08215], [50.84934, -0.08548], [50.8507, -0.07526], [50.84833, -0.0725], [50.84582, -0.07078], [50.84404, -0.07239], [50.84124, -0.07344], [50.84153, -0.06262], [50.84197, -0.06035], [50.84288, -0.05836], [50.84429, -0.05359], [50.84439, -0.04882], [50.84497, -0.04559], [50.84429, -0.04346], [50.84332, -0.04338], [50.84272, -0.04259], [50.84124, -0.03684], [50.83958, -0.03623], [50.83787, -0.03899], [50.83641, -0.03808], [50.83468, -0.03886], [50.82863, -0.0391], [50.82482, -0.04217]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Woodingdean", "night": "green", "night_label": "Relatively safer", "query": "Brighton and Hove, United Kingdom", "slug": "woodingdean", "text": "Sussex Police recorded 127 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 4.3 per 1,000 residents, the 19th highest rate of Brighton and Hove\u0027s 21 wards. The daytime score here is driven by drugs (2), vehicle crime (2), burglary (1); the evening/night score by violent crime (13), anti social behaviour (10), public order (4). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/brighton/woodingdean.html"}];
+  var CENTER = [50.8385, -0.1327];
+  var ZOOM = 11;
+  var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = "Click a ward on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_BOOKING = "Search accommodation here on Booking.com \u2192";
+  var L_MORE = "See the full page \u2192";
+  var L_NOTCOVERED = "";
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.82236, "lon": -0.13772, "name": "Royal Pavilion", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 50.8183, "lon": -0.13662, "name": "Brighton Pier", "rank": 2}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 50.82135, "lon": -0.1509, "name": "Brighton i360", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 50.8237, "lon": -0.13804, "name": "Brighton Museum \u0026 Art Gallery", "rank": 4}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 50.8125, "lon": -0.103, "name": "Brighton Marina", "rank": 5}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 50.8264, "lon": -0.13917, "name": "North Laine", "rank": 6}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 50.8414, "lon": -0.14778, "name": "Preston Park", "rank": 7}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 50.885, "lon": -0.205, "name": "Devil\u0027s Dyke", "rank": 8}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 50.81778, "lon": -0.11639, "name": "Kemptown", "rank": 9}];
+  var POI_ALL = "All";
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
+
+  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+
+  // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi
+  // dalla citta' e non trovare piu' la strada indietro — con l'unico rimedio di
+  // ricaricare la pagina. Questo e' il fondo di ripiego, per le citta' che non
+  // hanno ancora sights; dove ci sono, lo rifissa poiFitAll() sulla vista che
+  // li contiene tutti.
+  var POI_HOME = null;
+  map.setMinZoom(Math.max(3, ZOOM - 2));
+  map.setMaxBounds(L.latLngBounds(
+    L.latLng(CENTER[0] - 0.55, CENTER[1] - 0.75),
+    L.latLng(CENTER[0] + 0.55, CENTER[1] + 0.75)
+  ));
+  map.options.maxBoundsViscosity = 0.7;
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var burglaryMode = false;
+  var layers = [];
+  var lastZone = null;
+
+  function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  var detailPanel = document.getElementById('detailBox');
+
+  function showPanel() { detailPanel.classList.add('visible'); }
+  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; }
+  document.getElementById('detailClose').addEventListener('click', hidePanel);
+
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.covered) {
+      html += badge(tone, z.tone_label || tone);
+    } else {
+      html += badge('grey', z.tone_label || '');
+    }
+    if (z.evidence === 'no_findings') {
+      html += '<div class="ev-flag"><span class="ev-dot"></span>' + z.evidence_label +
+              ' — the review reached no reporting specific to this area, so the rating rests on that ' +
+              'absence rather than on named sources.</div>';
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.covered) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    var greyEl = document.getElementById('legendGreyText');
+    if (greyEl) { greyEl.textContent = set.grey; }
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    ZONES.forEach(function(z){
+      var tone = toneOf(z);
+      // Dashed where the rating rests on an absence of reporting rather than
+      // on sources: the colour still carries the judgement, the outline says
+      // how much evidence is behind it.
+      var thin = z.evidence === 'no_findings';
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight: thin ? 1.5 : 2,
+                                       dashArray: thin ? '5,4' : null,
+                                       fillOpacity: 0.32 }).addTo(map);
+      // Name is visible on hover (not just after a click) via a sticky
+      // tooltip, plus a highlight so it's obvious which zone you're over —
+      // click still opens the full detail card.
+      poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
+      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
+      poly.on('mouseout', function(){ poly.setStyle({ weight:2 }); });
+      poly.on('click', function(){ renderDetail(z); });
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+      if (lastZone && !burglaryMode) renderDetail(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) renderDetail(lastZone);
+    });
+  }
+
+  // ---------------------------------------------------------------------
+  // Sights, laid over the safety map
+  //
+  // The point of the pairing is that a visitor sees what is worth going to
+  // AND which safety area it sits in, on one map. So the pins carry no colour
+  // of their own — colour belongs to safety. The opening view used to be the
+  // safety geography alone, which left a distant sight like Superga or
+  // Stupinigi off screen: a pin nobody can see is a pin that does not exist.
+  // The view now covers every sight as well as every zone.
+  // ---------------------------------------------------------------------
+  var poiMarkers = [];
+  var poiLeaders = [];
+  var POI_SPREAD = 34;
+
+  function poiBuild() {
+    if (!POIS || !POIS.length) return;
+    POIS.forEach(function (p) {
+      var m = L.marker([p.lat, p.lon], { icon: L.divIcon({
+        className: '', iconSize: [26, 26], iconAnchor: [13, 13],
+        html: '<div class="poi-ico">' + p.icon + '<span class="poi-num">' + p.rank + '</span></div>'
+      })});
+      m.bindTooltip(p.name, { direction: 'right', offset: [15, 0], className: 'poi-lab-tt' });
+      m.bindPopup('<b>' + p.name + '</b><br><span style="color:#5b6670">' + p.cat_label + '</span>');
+      m.poiCat = p.cat; m.poiRank = p.rank; m.poiName = p.name;
+      m.addTo(map); poiMarkers.push(m);
+    });
+    poiFitAll();
+    poiChips();
+    poiLegend(null);
+    poiListing();
+    map.on('zoomend moveend', poiRefresh);
+    window.addEventListener('resize', function () { poiHome(false); poiRefresh(); });
+    poiRefresh();
+  }
+
+  // Tutti i sights devono stare nella vista d'apertura, e quella vista diventa
+  // anche il limite: non si rimpicciolisce oltre, non ci si allontana oltre, e
+  // "Reset view" riporta esattamente qui. Cosi' da telefono non si finisce mai
+  // in un punto da cui non si sa tornare.
+  function poiFitAll() {
+    // Si parte dalla vista decisa dalla sicurezza e la si allarga solo quanto
+    // basta a farci stare i pin: dove sono gia' tutti dentro, l'inquadratura
+    // resta esattamente quella di prima.
+    var b = map.getBounds();
+    poiMarkers.forEach(function (m) { b.extend(m.poiReal || m.getLatLng()); });
+    POI_HOME = b;
+    poiHome(true);
+  }
+
+  // Il fondo dipende da quanto e' grande la mappa, che cambia ruotando il
+  // telefono, quindi si ricalcola anche al resize. Fissarlo una volta sola
+  // lasciava un minZoom piu' stretto della vista d'apertura: cioe' proprio il
+  // caso in cui, dopo aver zoomato, non si riusciva piu' a tornare indietro.
+  function poiHome(recenter) {
+    if (!POI_HOME) return;
+    map.setMinZoom(3);
+    map.invalidateSize(false);
+    var z = map.getBoundsZoom(POI_HOME, false, L.point(28, 28));
+    if (recenter) map.setView(POI_HOME.getCenter(), z, { animate: false });
+    map.setMinZoom(z);
+    map.setMaxBounds(POI_HOME.pad(0.35));
+  }
+
+  // Pins closer than POI_SPREAD px are fanned onto a small circle with a
+  // hairline back to the true spot: all of them stay clickable instead of
+  // stacking, and none of them lies about where it is.
+  function poiDeclutter() {
+    poiLeaders.forEach(function (l) { map.removeLayer(l); });
+    poiLeaders = [];
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    vis.forEach(function (m) {
+      if (!m.poiReal) m.poiReal = m.getLatLng();
+      m.setLatLng(m.poiReal);
+    });
+    vis.forEach(function (m) { m.poiPt = map.latLngToLayerPoint(m.getLatLng()); });
+    var groups = [];
+    vis.forEach(function (m) {
+      var g = null;
+      groups.forEach(function (gr) {
+        if (!g && gr.some(function (o) { return o.poiPt.distanceTo(m.poiPt) < POI_SPREAD; })) g = gr;
+      });
+      if (g) { g.push(m); } else { groups.push([m]); }
+    });
+    groups.forEach(function (g) {
+      if (g.length === 1) return;
+      var cx = 0, cy = 0;
+      g.forEach(function (m) { cx += m.poiPt.x; cy += m.poiPt.y; });
+      cx /= g.length; cy /= g.length;
+      var R = Math.max(26, 12 + g.length * 6);
+      g.sort(function (a, b) { return a.poiRank - b.poiRank; });
+      g.forEach(function (m, i) {
+        var ang = (2 * Math.PI * i) / g.length - Math.PI / 2;
+        m.setLatLng(map.layerPointToLatLng(L.point(cx + R * Math.cos(ang), cy + R * Math.sin(ang))));
+        poiLeaders.push(L.polyline([m.poiReal, m.getLatLng()],
+          { color: '#16232b', weight: 1, opacity: .38, interactive: false }).addTo(map));
+      });
+    });
+  }
+
+  function poiOverlap(a, b) { return !(a.r < b.l || b.r < a.l || a.b < b.t || b.b < a.t); }
+
+  // A name stays on screen only where it collides with nothing — not with
+  // another name, not with another pin, not with the edge. Names are tried in
+  // rank order, so when two compete the better-known place keeps its label.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
+  function poiLabels() {
+    poiMarkers.forEach(function (m) {
+      if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
+    });
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    if (!vis.length) return;
+    var size = map.getSize();
+    var taken = vis.map(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      return { l: pt.x - 15, r: pt.x + 15, t: pt.y - 15, b: pt.y + 15 };
+    });
+    vis.slice().sort(function (a, b) { return a.poiRank - b.poiRank; }).forEach(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      var w = 10 + m.poiName.length * 6.6, h = 18;
+      var cand = [
+        { d: 'right', o: [15, 0],  b: { l: pt.x + 16, r: pt.x + 16 + w, t: pt.y - h / 2, b: pt.y + h / 2 } },
+        { d: 'left',  o: [-15, 0], b: { l: pt.x - 16 - w, r: pt.x - 16, t: pt.y - h / 2, b: pt.y + h / 2 } }
+      ];
+      var ok = null;
+      cand.forEach(function (c) {
+        if (ok) return;
+        if (c.b.l < 8 || c.b.r > size.x - 8) return;
+        var clash = false;
+        taken.forEach(function (t) { if (poiOverlap(c.b, t)) clash = true; });
+        if (!clash) ok = c;
+      });
+      if (!ok) return;
+      taken.push(ok.b);
+      m.poiPerm = L.tooltip({ permanent: true, direction: ok.d, offset: ok.o,
+                              className: 'poi-lab-tt', interactive: false })
+                   .setLatLng(m.getLatLng()).setContent(m.poiName).addTo(map);
+    });
+  }
+
+  function poiRefresh() { poiDeclutter(); poiLabels(); }
+
+  // La legenda deve dire quello che si vede. Filtrando su "Green space" le
+  // altre voci descrivono pin che in quel momento non ci sono, quindi
+  // spariscono con loro invece di restare a promettere icone assenti.
+  function poiLegend(active) {
+    var box = document.getElementById('legendPoi');
+    if (!box) return;
+    var seen = {};
+    POIS.forEach(function (p) { seen[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    box.innerHTML = '';
+    Object.keys(seen).forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'legend-poi-item' + (active && active !== c ? ' off' : '');
+      row.textContent = seen[c];
+      box.appendChild(row);
+    });
+  }
+
+  function poiChips() {
+    var bar = document.getElementById('poiBar');
+    if (!bar) return;
+    var cats = [null];
+    POIS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); });
+    var labelOf = {};
+    POIS.forEach(function (p) { labelOf[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    cats.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'poi-chip';
+      b.textContent = c === null ? POI_ALL : labelOf[c];
+      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(bar.children, function (x, k) {
+          x.setAttribute('aria-pressed', cats[k] === c ? 'true' : 'false');
+        });
+        poiMarkers.forEach(function (m) {
+          if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
+        });
+        poiLegend(c);
+        poiListFilter(c);
+        poiRefresh();
+      });
+      bar.appendChild(b);
+    });
+  }
+
+  // On a narrow screen a twenty-character label has nowhere to go, so the
+  // numbered list is where the names live: the pin shows the number, the list
+  // gives the name, and tapping one flies the map there.
+  function poiListing() {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    POIS.forEach(function (p) {
+      var li = document.createElement('li');
+      li.setAttribute('data-cat', p.cat);
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
+      li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
+      ol.appendChild(li);
+    });
+  }
+
+  // Filtrando su "Art & history" la mappa mostra solo quei pin: l'elenco qui
+  // sotto e' la stessa cosa scritta, quindi si filtra con lei. I numeri non si
+  // rinumerano, altrimenti non corrisponderebbero piu' ai pin.
+  function poiListFilter(c) {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    Array.prototype.forEach.call(ol.children, function (li) {
+      var show = c === null || li.getAttribute('data-cat') === c;
+      li.style.display = show ? 'inline-flex' : 'none';
+    });
+  }
+
+  var poiResetBtn = document.getElementById('poiReset');
+  if (poiResetBtn) {
+    poiResetBtn.addEventListener('click', function () {
+      if (POI_HOME) { poiHome(true); } else { map.setView(CENTER, ZOOM); }
+      hidePanel();
+    });
+  }
+
+  poiBuild();
+
+</script>
+</body>
+</html>
