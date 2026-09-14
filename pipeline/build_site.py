@@ -23,6 +23,7 @@ import os
 import re
 import shutil
 from jinja2 import Environment, FileSystemLoader
+from markupsafe import Markup
 
 BASE_DIR = os.path.dirname(__file__)
 DATA_DIR = os.path.join(BASE_DIR, "..", "data", "scores")
@@ -898,6 +899,199 @@ def build_zurich_zone_burglary():
     return zone_data
 
 
+
+# ---------------------------------------------------------------------------
+# The pages every site needs and this one did not have: what the site is, who
+# to write to, what it does with a visitor's data, and how its outbound links
+# work. Their absence is also the most common reason an affiliate application
+# sits in "pending" — compliance pauses any site with no privacy policy and no
+# disclosure — so they are written to be true first and to satisfy a reviewer
+# second.
+# ---------------------------------------------------------------------------
+STATIC_PAGES = [
+    {
+        "slug": "about",
+        "title": "About Wandroz — what it is and how it is built",
+        "h1": "About Wandroz",
+        "description": "Wandroz maps neighbourhood safety for travellers in 25 European cities, "
+                       "using official boundaries and, where it exists, official crime data.",
+        "lede": "A traveller booking a room can find out what a hotel is like in thirty seconds, "
+                "and almost nothing about the four streets around it. Wandroz exists for that gap.",
+        "body": """
+<h2>What it does</h2>
+<p>Wandroz maps every official neighbourhood of 25 European cities and says, per neighbourhood,
+what the evidence supports about safety for a visitor — by day and after dark — with the reasoning
+and the sources on the page rather than behind a score.</p>
+
+<h2>What it is built on</h2>
+<p>Boundaries are always the city's own official administrative geometry. Ratings come from one of
+three classes of evidence, and every page says which one it is on: official police or government
+crime data; a structured local-source assessment where no such dataset is published; or a
+limited-data assessment where neither is available yet. The
+<a href="/methodology.html">methodology page</a> sets out all three, the process behind the second,
+and the coverage figures city by city, including the unflattering ones.</p>
+
+<h2>What it is not</h2>
+<p>It is not a crime-prediction tool, it does not estimate anyone's personal risk, and its ratings
+are never comparable between cities. Where the evidence is thin, the page says so instead of
+rounding up to a colour.</p>
+
+<h2>Who is behind it</h2>
+<p>Wandroz is an independent project, not a company with a newsroom. It is built and maintained by
+one person, which is the reason for the emphasis on published sources and checkable claims: the
+work has to stand on what it can show, not on who is saying it.</p>
+
+<h2>Credits</h2>
+<p>Map data © OpenStreetMap contributors. Crime data for London from
+<a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a> under the Open
+Government Licence. Neighbourhood boundaries from each city's own open-data portal. Sights resolved
+against <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a> and
+OpenStreetMap. Local sources used for a specific neighbourhood are named on that neighbourhood's
+page.</p>
+""",
+    },
+    {
+        "slug": "contact",
+        "title": "Contact Wandroz",
+        "h1": "Contact",
+        "description": "How to reach Wandroz: corrections, questions, partnerships and press.",
+        "lede": "One address, read by a person.",
+        "body": """
+<p style="font-size:18px;"><a href="mailto:{email}">{email}</a></p>
+
+<h2>Corrections</h2>
+<p>If something on a neighbourhood page is wrong or out of date, that is the most useful thing you
+can send. Include the page and, where you can, a source — a local news report, an official figure,
+a municipal notice. Every neighbourhood page carries a direct correction link that fills in the
+area for you.</p>
+
+<h2>Everything else</h2>
+<p>Questions about the method, partnership and licensing enquiries, and press requests go to the
+same address.</p>
+
+<h2>What happens to what you send</h2>
+<p>Correction emails are read and kept only as long as it takes to act on them. They are not added
+to any mailing list, and there is no mailing list. See the
+<a href="/privacy.html">privacy policy</a>.</p>
+""",
+    },
+    {
+        "slug": "privacy",
+        "title": "Privacy policy — Wandroz",
+        "h1": "Privacy policy",
+        "description": "What Wandroz collects, what it does not, the cookies in use, and how to opt out.",
+        "lede": "Last updated 14 September 2026.",
+        "body": """
+<h2>The short version</h2>
+<p>Wandroz has no accounts, no logins, no forms and no newsletter. It does not ask you for personal
+data and has nothing to sell. What follows is the complete list of what is nevertheless collected,
+by whom, and how to stop it.</p>
+
+<h2>What Wandroz itself collects</h2>
+<p>Nothing. There is no database of visitors, no profile, no identifier set by this site.</p>
+
+<h2>Analytics</h2>
+<p>The site uses Google Analytics 4 to count visits and see which pages are read. Google sets
+cookies in your browser and receives your IP address, which it uses to derive an approximate
+location and then discards at full precision. This is used only in aggregate — how many people
+read the Rome map, not who read it. The legal basis is legitimate interest in understanding whether
+the site is useful; you can object by any of the means below, and nothing on the site stops working
+if you do.</p>
+<ul>
+  <li>Block cookies for this site in your browser's settings.</li>
+  <li>Install Google's own
+    <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">opt-out
+    browser add-on</a>.</li>
+  <li>Use any tracker-blocking extension or a browser that blocks analytics by default.</li>
+</ul>
+
+<h2>Hosting</h2>
+<p>The site is served as static files by Vercel, which keeps standard server logs (IP address,
+request time, page requested, user agent) for security and abuse prevention. Wandroz does not read
+these logs to identify anyone.</p>
+
+<h2>Maps and outbound links</h2>
+<p>Maps are drawn with Leaflet using tiles from OpenStreetMap; loading a map sends a request to
+OpenStreetMap's tile servers, which see your IP address as any image request would. Accommodation
+links go to Booking.com, which applies its own privacy policy once you arrive there. See the
+<a href="/affiliate-disclosure.html">affiliate disclosure</a> for what those links are and are not.</p>
+
+<h2>What is never done</h2>
+<p>No data is sold, rented or shared with advertisers. There are no advertising cookies, no
+retargeting pixels, no social-network trackers, and no fingerprinting. Wandroz does not attempt to
+identify individual visitors, and nothing on this site is directed at children.</p>
+
+<h2>Your rights</h2>
+<p>If you are in the EU, the UK or another jurisdiction with equivalent law, you have the right to
+access, correct, delete or object to the processing of personal data relating to you. Since Wandroz
+holds no personal data of its own, most requests concern Google Analytics, and the opt-outs above
+are the fastest route. If you have written to Wandroz and want that correspondence deleted, say so
+and it will be.</p>
+
+<h2>Changes</h2>
+<p>Material changes to this page will be dated here. Questions:
+<a href="mailto:{email}">{email}</a>.</p>
+""",
+    },
+    {
+        "slug": "affiliate-disclosure",
+        "title": "Affiliate disclosure — Wandroz",
+        "h1": "Affiliate disclosure",
+        "description": "How Wandroz's accommodation links work, and what it does and does not earn from them.",
+        "lede": "Last updated 14 September 2026.",
+        "body": """
+<h2>The links</h2>
+<p>Every neighbourhood page carries one accommodation link, pointing to a Booking.com search already
+scoped to that area. Where Booking.com has no search area for a neighbourhood, the link searches the
+surrounding district or the city instead, and the note under the button says which of the three it
+is — verified against Booking, not assumed.</p>
+
+<h2>What Wandroz earns from them today</h2>
+<p><strong>Nothing.</strong> The links carry no affiliate or tracking parameters and are not
+commissioned. An application to Booking.com's affiliate programme is in progress. If and when those
+links start earning a commission, this page will be updated with the date, every commissioned link
+will be disclosed as such, and this notice will change from "nothing" to the actual arrangement.</p>
+
+<h2>What a commission would and would not change</h2>
+<p>It would not change a rating. Safety levels come from the evidence classes set out on the
+<a href="/methodology.html">methodology page</a> and are written before any link is generated; a
+neighbourhood's rating has never depended on how many rooms are bookable in it, and a commercial
+arrangement would not make it depend on that. The link is downstream of the rating and always will
+be.</p>
+<p>Nor would it cost you anything: an affiliate commission is paid by the booking platform out of
+its own margin, at no additional cost to the traveller.</p>
+
+<h2>Other relationships</h2>
+<p>Wandroz takes no payment for coverage, placement or a rating, from cities, hotels, tourist boards
+or anyone else. There is no advertising on the site. If that ever changes it will be disclosed here
+before it appears anywhere else.</p>
+
+<h2>Questions</h2>
+<p><a href="mailto:{email}">{email}</a></p>
+""",
+    },
+]
+
+
+def render_static_pages():
+    """The about / contact / privacy / disclosure set."""
+    tpl = env.get_template("page.html")
+    urls = []
+    for page in STATIC_PAGES:
+        url = f"{SITE_URL}/{page['slug']}.html"
+        html = tpl.render(
+            lang="en", canonical_url=url,
+            page_title=page["title"], page_description=page["description"],
+            page_h1=page["h1"], lede=page["lede"],
+            body=Markup(page["body"].replace("{email}", CORRECTION_EMAIL)),
+        )
+        with open(os.path.join(OUT_DIR, f"{page['slug']}.html"), "w") as f:
+            f.write(html)
+        print(f"Wrote {os.path.join(OUT_DIR, page['slug'] + '.html')}")
+        urls.append(url)
+    return urls
+
+
 def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data=None, flat=False):
     """Render a full-city interactive map (day/night toggle, click-a-zone
     detail sidebar) plus one detail sub-page per neighbourhood, for a city
@@ -1626,6 +1820,7 @@ def main():
     methodology_tpl = env.get_template("methodology.html")
 
     sitemap_urls = [SITE_URL + "/", SITE_URL + "/methodology.html"]
+    sitemap_urls.extend(render_static_pages())
 
     # Home page — a plain city chooser, no ranking here; the map itself
     # (click a zone) is where safety levels and reasoning live.
