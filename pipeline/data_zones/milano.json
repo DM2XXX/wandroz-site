@@ -107,7 +107,8 @@
    "text": "The historic and commercial core of Milan (Piazza del Duomo, Galleria Vittorio Emanuele II, the main shopping streets). Very safe by the standards of violent or serious crime, heavily policed and busy at almost any hour. The one real, well-documented issue here is pickpocketing targeting tourists in the crowded areas around the cathedral and Corso Buenos Aires — local news regularly reports plainclothes police patrols specifically for this. Normal city-centre caution with bags and phones is the main thing to keep in mind, not personal safety after dark.",
    "query": "Duomo, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 1"
   },
   {
    "name": "Brera",
@@ -181,7 +182,8 @@
    "text": "An upscale, gallery- and restaurant-filled district just north of the Duomo, consistently described in local press and real-estate coverage as one of Milan's calmest and most desirable central areas. No recurring safety issues turned up in local news coverage — the main practical note for visitors is that it's an expensive area to eat and stay in, not a risk one.",
    "query": "Brera, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 1"
   },
   {
    "name": "Giardini Porta Venezia",
@@ -223,7 +225,8 @@
    "text": "A small, well-kept public garden area right by the Porta Venezia gate, next to the museums of natural history. Central, well-lit, and busy with families and museum visitors by day; no notable safety issues found in local coverage.",
    "query": "Giardini Pubblici Indro Montanelli, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 1"
   },
   {
    "name": "Navigli (Porta Ticinese)",
@@ -293,7 +296,8 @@
    "text": "Milan's best-known canal-side nightlife district (Naviglio Grande, the Darsena) — lively, touristy, and generally pleasant by day and early evening. At night it's genuinely one of the areas Milan's municipal 'red zone' public-order measures currently cover, and local news has reported real, if occasional, incidents tied to the nightlife crowds — including a stabbing near the canals in April 2025 and a clash between rival football fans in 2025. This is a busy, popular area rather than a dangerous one, but late-night caution around the bars and crowds is a reasonable, press-grounded precaution, not just a generic warning.",
    "query": "Navigli, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 5"
   },
   {
    "name": "Magenta - Sant'Ambrogio",
@@ -363,7 +367,8 @@
    "text": "A quiet, residential-and-museum district around the Basilica di Sant'Ambrogio and Corso Magenta (also near the Cenacolo Vinciano/Last Supper). No recurring safety issues found in local press — a calm, upmarket part of central Milan.",
    "query": "Milan, Italy",
    "booking_scope": "city",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 1"
   },
   {
    "name": "Parco Sempione",
@@ -413,7 +418,8 @@
    "text": "Milan's largest central park, behind the Castello Sforzesco. Popular and well used by day — joggers, families, the Arco della Pace. Like most large city parks, it gets much quieter and less lit after dark, which is the ordinary reason to be more careful at night here rather than any specific documented crime pattern.",
    "query": "Parco Sempione, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 1"
   },
   {
    "name": "Porta Garibaldi - Porta Nuova",
@@ -479,7 +485,8 @@
    "text": "Milan's modern skyscraper business district (Piazza Gae Aulenti, the Bosco Verticale, Corso Como) — glossy, well-lit, and heavily used for nightlife and aperitivo. It's included in the city's current 'red zone' public-order measures covering the nightlife strip between Corso Como and Via Tocqueville, and local news reported a serious stabbing in Piazza Gae Aulenti that prompted an extra mobile police presence. By day it's a safe, corporate/touristic area; at night the usual big-crowd caution applies.",
    "query": "Porta Nuova, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Stazione Centrale",
@@ -577,7 +584,8 @@
    "text": "The area immediately around Milano Centrale railway station. This is one of the more genuinely documented problem areas in Milan: it has been under an official municipal 'zona rossa' (red zone, allowing police to issue exclusion orders) since December 2024, extended through the 2026 Winter Olympics, and a security summit reported recorded crime up 5% over five months, alongside ongoing issues with encampments, drug dealing and street-level degrado described repeatedly in local press. It's still a functioning, heavily-trafficked transport hub used safely by huge numbers of people daily — but of the areas on this map, it has the clearest, most consistently reported case for extra caution, especially at night.",
    "query": "Stazione Centrale, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 2"
   },
   {
    "name": "Isola",
@@ -647,7 +655,8 @@
    "text": "A formerly working-class district that has gentrified heavily over the last decade, now full of bars, design studios and the Porta Nuova towers on its edge. No recurring safety issues found in local coverage — generally regarded as one of the calmer, more pleasant areas near the center.",
    "query": "Isola, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Via Padova (Padova - Turro - Crescenzago)",
@@ -761,7 +770,8 @@
    "text": "The area along Via Padova, one of Milan's most ethnically diverse and, per repeated local news coverage, most tension-prone streets — reports describe periodic clashes, robberies and stabbings, and it was added to the city's official 'red zone' public-order measures in March 2025 (extended through March 2026). This isn't a small pocket the way some of Milan's other flagged areas are — it's a long, busy residential corridor, mostly ordinary day-to-day life, but it is the area with the most consistent negative safety coverage in Milan press outside the station/Corvetto/Rogoredo cluster, so extra caution — especially after dark — is a reasonable, press-grounded precaution.",
    "query": "Via Padova, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 2"
   },
   {
    "name": "Corso Buenos Aires - Porta Venezia",
@@ -863,7 +873,8 @@
    "text": "One of Milan's busiest shopping streets (Corso Buenos Aires) and the surrounding Porta Venezia district, known for its nightlife and LGBTQ+ scene. Local police coverage specifically names this corridor (alongside the Duomo) as a focus area for plainclothes anti-pickpocketing patrols given the crowds — busy and safe by day, with normal big-crowd/nightlife caution suggested at night.",
    "query": "Corso Buenos Aires, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 3"
   },
   {
    "name": "Città Studi",
@@ -949,7 +960,8 @@
    "text": "Milan's university district (Politecnico, Statale science faculties), quiet and residential outside term-time bustle. No recurring safety issues found in local coverage — a calm, student-heavy area.",
    "query": "Città Studi, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 3"
   },
   {
    "name": "Lambrate - Ortica",
@@ -1051,7 +1063,8 @@
    "text": "A mixed former-industrial district east of the center, now home to tech offices, university buildings and the design-week scene, alongside older residential blocks. One specific spot here, Piazza Bottini, was named in a January 2026 local news roundup of areas where residents report daily encampments and degrado — a localized issue within the district rather than a neighbourhood-wide one, but worth flagging honestly rather than glossing over.",
    "query": "Lambrate, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 3"
   },
   {
    "name": "Porta Romana",
@@ -1117,7 +1130,8 @@
    "text": "A well-off residential and business district south of the center, near Bocconi University and the site of the 2026 Winter Olympics athletes' village redevelopment. No recurring safety issues found in local coverage — generally regarded as a calm, upmarket area.",
    "query": "Porta Romana, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 4"
   },
   {
    "name": "Rogoredo - Santa Giulia",
@@ -1191,7 +1205,8 @@
    "text": "A district that combines two very different things: Santa Giulia, a large modern redevelopment (new park, arena, offices) built over the last decade, and Rogoredo railway station, long documented in Milan press as a hub for open drug dealing and use despite repeated clean-up efforts — it's covered by the city's official 'red zone' public-order measures (extended through March 2026) together with Corvetto. The redeveloped Santa Giulia side is genuinely calmer than its older reputation; the station area itself is the specific, well-documented concern, especially after dark.",
    "query": "Rogoredo, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 4"
   },
   {
    "name": "Corvetto",
@@ -1301,7 +1316,8 @@
    "text": "A southern district built around large public-housing complexes, one of the areas most discussed in Milan's 2025 safety debate after the death of 19-year-old Ramy Elgaml following a police chase in November 2024, which sparked protests. Local investigative coverage (Il Post, among others) pushes back on the simplistic 'lawless banlieue' framing that followed — Corvetto also has student housing, community centres and active regeneration projects — but it does have real, documented issues: some of the lowest per-capita income in Milan, and recurring theft, brawls and knife incidents reported around specific housing blocks. It's covered by the city's official 'red zone' measures. A more complex, in-transition neighbourhood than a simple red flag suggests, but the honest read is caution, especially at night.",
    "query": "Corvetto, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 4"
   },
   {
    "name": "Navigli Sud (Conchetta)",
@@ -1371,7 +1387,8 @@
    "text": "The southern continuation of the Navigli canal district (Naviglio Pavese side). Quieter and more residential than the busier Naviglio Grande/Darsena stretch to its north, which is covered by the same 'red zone' nightlife measures — the same general late-night caution that applies to the Navigli area overall is worth keeping in mind here too, though this stretch sees less of the crowding.",
    "query": "Naviglio Pavese, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 6"
   },
   {
    "name": "Giambellino",
@@ -1477,7 +1494,8 @@
    "text": "A working-class district southwest of the center, undergoing some urban-renewal investment in recent years. Despite that, a January 2026 local news roundup of areas where Milan residents report feeling unsafe specifically names Piazza Tirana here for recurring clashes between rival groups. Not the whole district by any means, but a specific, named, recent concern worth disclosing rather than smoothing over.",
    "query": "Giambellino, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 6"
   },
   {
    "name": "San Siro",
@@ -1539,7 +1557,8 @@
    "text": "A quiet residential district for most of the week, home to the San Siro / Giuseppe Meazza stadium. The realistic safety consideration here is match-day and event crowds — pickpocketing and, occasionally, clashes among ultras/fan groups have been reported around the stadium on event nights — rather than an everyday neighbourhood risk. On non-event days it's an ordinary, calm residential area.",
    "query": "San Siro, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 7"
   },
   {
    "name": "Sarpi (Chinatown)",
@@ -1625,7 +1644,8 @@
    "text": "Milan's Chinatown, centred on Via Paolo Sarpi — a pedestrianised shopping and dining street popular with both residents and visitors. No recurring safety issues found in current local coverage; recent local reporting frames it mostly around its ongoing gentrification and restaurant/retail scene rather than any safety concern.",
    "query": "Via Paolo Sarpi, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "Guastalla",
@@ -1715,7 +1735,8 @@
    "text": "Central historic zone around Università Statale and the Ca' Granda/Policlinico hospital complex, plus the Cinque Giornate area. A 2025 neighbourhood safety-index ranking placed this area among the five safest in Milan, safer even than the Duomo itself. No documented safety concerns beyond ordinary city-centre pickpocket awareness.",
    "query": "Guastalla, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 1"
   },
   {
    "name": "Porta Vigentina - Porta Lodovica",
@@ -1785,7 +1806,8 @@
    "text": "A mixed residential and commercial zone near Milan's fashion district (Quadrilatero della Moda), with some local bars around Porta Lodovica. The same 2025 safety-index ranking placed this area among Milan's five safest zones. No documented crime clusters or drug-dealing coverage found in local press.",
    "query": "Porta Vigentina - Porta Lodovica, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 5"
   },
   {
    "name": "Maciachini - Maggiolina",
@@ -1879,7 +1901,8 @@
    "text": "Two very different faces in one zone. The Maggiolina/Villaggio dei Giornalisti villa district was ranked the single safest micro-area in Milan by a 2025 crime-index study. Piazzale Maciachini itself, however, has recurring documented issues — drug-dealing arrests in its public park (May 2025) and a 2024 proposal for a formal 'zona rossa' around the nearby Alcatraz nightclub after documented assaults on women leaving the venue, including a sexual assault case. The Comune's own security mapping also flags ongoing drug dealing around Maciachini-Imbonati.",
    "query": "Maciachini - Maggiolina, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Greco - Segnano",
@@ -1969,7 +1992,8 @@
    "text": "Primarily residential and light-commercial, well served by transit, with no documented violent-crime clusters. Local press (2025) reported shop owners along via De Marchi describing repeated burglaries of local businesses and loitering by problematic individuals — property-crime complaints rather than street violence.",
    "query": "Greco - Segnano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 2"
   },
   {
    "name": "Niguarda - Ca' Granda - Prato Centenaro - Q.re Fulvio Testi",
@@ -2095,7 +2119,8 @@
    "text": "A large residential district anchored by Milan's major Niguarda public hospital, with substantial public-housing stock. Local press has reported drug-dealing arrests in the area, including near the hospital, and the Comune's own security mapping flags degradation in parts of the public housing. No evidence of violence targeting visitors specifically — this is a residential/hospital-district concern.",
    "query": "Niguarda - Ca' Granda - Prato Centenaro - Q.re Fulvio Testi, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Bicocca",
@@ -2177,7 +2202,8 @@
    "text": "By day a modern university and business district (Bicocca campus, corporate offices, Bicocca Village) with no particular concerns. At night its nightlife strip has a genuine, recent, recurring problem: a July 2026 mass brawl left eight people injured including police officers, following earlier brawls the same week — filmed by residents from their balconies. Politicians across parties have called the area 'out of control' after dark, and the university itself runs a nighttime-safety initiative.",
    "query": "Bicocca, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Gorla - Precotto",
@@ -2291,7 +2317,8 @@
    "text": "A largely quiet, historic residential district along the Martesana canal. Local press documented an ongoing problem at one specific occupied apartment building near the Turro border — brawls, suspected drug dealing, harassment of women, poor lighting, and a knife attack in 2024 — but this appears localised to that building/street rather than the neighbourhood as a whole.",
    "query": "Gorla - Precotto, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 2"
   },
   {
    "name": "Adriano",
@@ -2409,7 +2436,8 @@
    "text": "A former-industrial district undergoing long-running redevelopment. Recent local reporting focuses mainly on urban neglect — abandoned buildings, unfinished construction, poorly maintained green space — rather than documented violent crime. The Comune's own security map lists this decay as an ongoing concern. Little reason for visitors to pass through; a purely residential/redevelopment zone.",
    "query": "Adriano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 2"
   },
   {
    "name": "Cimiano - Rottole - Q.re Feltre",
@@ -2563,7 +2591,8 @@
    "text": "A residential district served by the M2 metro line's Cimiano station. Genuine, recent, documented violent incidents: a February 2025 gang attack on a student near a bus stop, and a separate February 2025 evening assault in which a man was chased to the Cimiano metro stop, pushed down the stairs and robbed — six to eight people were subsequently arrested with weapons recovered. A local councilman has since requested more patrols and cameras, citing a broader pattern of evening disorder.",
    "query": "Cimiano - Rottole - Q.re Feltre, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 3"
   },
   {
    "name": "Loreto - Casoretto - Nolo",
@@ -2645,7 +2674,8 @@
    "text": "Includes Piazzale Loreto and stretches of via Padova, officially part of Milan's 'zona rossa' public-order measure, extended through March 2026 due to recurring trafficking, brawls and violence. Multiple stabbings have been documented around Piazzale Loreto, and via Padova is repeatedly cited for muggings and assaults clustering at night. By day the area — including the multicultural NoLo sub-district — functions as an ordinary busy commercial and residential high street.",
    "query": "Loreto - Casoretto - Nolo, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 2"
   },
   {
    "name": "Parco Forlanini - Cavriano",
@@ -2751,7 +2781,8 @@
    "text": "Dominated by Parco Forlanini, a large green space, plus the small Cavriano hamlet. Local press and a resident safety committee have documented general neglect and car break-ins in and around the park, but no record of violent-crime clusters. A daytime walking/sport destination; caution mainly applies to being in the park itself after dark.",
    "query": "Parco Forlanini - Cavriano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 4"
   },
   {
    "name": "Corsica",
@@ -2813,7 +2844,8 @@
    "text": "A mixed residential and commercial area along viale Corsica. No documented recurring safety concerns found in local research. General Milan-wide caution applies, with nothing specific flagging this zone.",
    "query": "Corsica, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 4"
   },
   {
    "name": "XXII Marzo",
@@ -2899,7 +2931,8 @@
    "text": "Corso XXII Marzo is a well-known, relatively affluent tree-lined boulevard with Liberty-era architecture and a normal residential/shopping character. One isolated armed-robbery incident against shopkeepers was reported, but no pattern of recurring crime or official concern designation. No particular safety concern beyond ordinary big-city awareness.",
    "query": "XXII Marzo, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 4"
   },
   {
    "name": "Umbria - Molise - Calvairate",
@@ -2965,7 +2998,8 @@
    "text": "Includes the Molise-Calvairate public housing estate near Piazzale Libia, which has recurring documented problems: a large-scale police raid in April 2026 targeting drug dealing, plus long-running reports of illegally occupied vacant housing units and periodic evictions. A residential public-housing district, not a tourist destination, but the recurring enforcement operations are genuine and recent enough to warrant caution after dark.",
    "query": "Umbria - Molise - Calvairate, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 4"
   },
   {
    "name": "Ortomercato",
@@ -3035,7 +3069,8 @@
    "text": "Milan's wholesale food market district — a working industrial/logistics zone rather than a tourist area. It has a documented history of organised-crime infiltration in the market's operating companies, plus isolated recent drug-dealing arrests tied to businesses inside the market. A large redevelopment (new produce pavilion, opened 2024) is modernising the area. Not somewhere travellers would typically visit outside business purposes.",
    "query": "Ortomercato, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 4"
   },
   {
    "name": "Taliedo - Morsenchio - Q.re Forlanini",
@@ -3137,7 +3172,8 @@
    "text": "Includes the Taliedo and Quartiere Forlanini public-housing estates from the late 1950s-60s. A 2017 resident survey found a meaningful share of Taliedo residents described the area as feeling insecure, attributed partly to the open estate design — this is residents' perception rather than documented crime events. No specific violent incidents or red-zone designation found for this zone.",
    "query": "Taliedo - Morsenchio - Q.re Forlanini, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 4"
   },
   {
    "name": "Triulzo Superiore",
@@ -3235,7 +3271,8 @@
    "text": "A small, rural former hamlet on Milan's southern agricultural edge near Chiaravalle, largely residential and agricultural in character. No documented safety concerns or crime reports were found — a quiet, low-profile periphery area. General Milan-wide caution applies.",
    "query": "Triulzo Superiore, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 4"
   },
   {
    "name": "Chiaravalle",
@@ -3285,7 +3322,8 @@
    "text": "A small, semi-rural district on Milan's southern edge built around the historic Chiaravalle Abbey, within the Parco Agricolo Sud agricultural park. No documented recent crime clusters or safety incidents — a quiet residential/agricultural fringe with modest touristic interest (the abbey itself). General Milan-wide caution applies.",
    "query": "Chiaravalle, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 5"
   },
   {
    "name": "Scalo Romana",
@@ -3375,7 +3413,8 @@
    "text": "A former rail yard near Porta Romana, currently one of Milan's biggest active redevelopment sites — home to the Milano Cortina 2026 Olympic Village, being converted into student housing. Police records show drug-dealing arrests in the area as recently as 2020, and it remains a rail/construction-adjacent area, so ordinary station-area caution at night is reasonable, though there's no evidence of an ongoing acute problem.",
    "query": "Scalo Romana, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 5"
   },
   {
    "name": "Morivione",
@@ -3433,7 +3472,8 @@
    "text": "Mostly a quiet, mixed residential and former-industrial district near the Tibaldi railway stop. Local press has repeatedly documented one specific site — an abandoned ex-factory used as a squat for drug dealing and theft. A localised, site-specific issue rather than a neighbourhood-wide one; the district generally is unremarkable.",
    "query": "Morivione, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 5"
   },
   {
    "name": "Vigentino - Q.re Fatima",
@@ -3515,7 +3555,8 @@
    "text": "A largely residential district along via Ripamonti. Local coverage documents recurring issues with unauthorised occupation, theft and small-scale drug dealing concentrated in specific pockets — one bar was closed by the local authorities as a known gathering point after resident complaints. Localised, chronic quality-of-life issues rather than violent crime, justifying some caution after dark in that specific corridor.",
    "query": "Vigentino - Q.re Fatima, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 5"
   },
   {
    "name": "Quintosole",
@@ -3593,7 +3634,8 @@
    "text": "A tiny historic rural hamlet inside the Parco Agricolo Sud Milano, built around old farmsteads and a crumbling 15th-century hunting lodge — a quiet countryside pocket at the city's edge. No safety concerns found in research beyond heritage/real-estate coverage.",
    "query": "Quintosole, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 5"
   },
   {
    "name": "Ronchetto delle Rane",
@@ -3631,7 +3673,8 @@
    "text": "A small, village-like district described locally as 'the city in the countryside' — low-density, semi-rural, and largely residential. No crime or safety-related coverage was found. General Milan-wide caution applies.",
    "query": "Ronchetto delle Rane, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 5"
   },
   {
    "name": "Gratosoglio - Q.re Missaglia - Q.re Terrazze",
@@ -3741,7 +3784,8 @@
    "text": "This social-housing district has well-documented, recurring safety issues: illegally occupied public housing, an armed masked raid and shooting inside occupied housing in mid-2026 that wounded one person, long-running drug dealing, and residents' own campaigns over insecurity. The bordering town has also seen reinforced police measures partly tied to this area. A purely residential zone with no touristic reason to visit, and the most concrete recent evidence of serious incidents among Milan's outer zones.",
    "query": "Gratosoglio - Q.re Missaglia - Q.re Terrazze, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 5"
   },
   {
    "name": "Stadera - Chiesa Rossa - Q.re Torretta - Conca Fallata",
@@ -3855,7 +3899,8 @@
    "text": "A mixed social-housing and residential district, also home to the historic Chiesa Rossa church. Local press has documented specific chronic problem sites — a disused former bus depot used by dealers and vagrants, and the closure of an unauthorised encampment on security grounds. Recurring, localised issues rather than violent crime affecting the whole neighbourhood; the area overall, including the church, is not flagged as broadly dangerous.",
    "query": "Stadera - Chiesa Rossa - Q.re Torretta - Conca Fallata, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 5"
   },
   {
    "name": "Tibaldi",
@@ -3913,7 +3958,8 @@
    "text": "A small, mostly institutional and residential district best known for the newly built (2022) 'green' Tibaldi–Università Bocconi railway station serving the nearby Bocconi campus. No documented safety concerns found — a calm, university-adjacent transit node.",
    "query": "Tibaldi, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 5"
   },
   {
    "name": "Moncucco - San Cristoforo",
@@ -3987,7 +4033,8 @@
    "text": "A former industrial area along the Naviglio Grande near the San Cristoforo railway station, currently undergoing active urban redevelopment. No documented recurring crime or safety issues were found in recent local news. General Milan-wide caution applies.",
    "query": "Moncucco - San Cristoforo, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 6"
   },
   {
    "name": "Barona",
@@ -4077,7 +4124,8 @@
    "text": "Home to a well-documented organised-crime group under active prosecution through 2025-2026 for drug trafficking, weapons trafficking, extortion and violent assault, with roughly 500 years of combined first-instance sentences handed down. The Comune's own security mapping also flags open drug dealing on one specific street within Barona. A residential/semi-industrial district, not a tourist destination, but the concentration of documented organised-crime activity is unusually high.",
    "query": "Barona, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 6"
   },
   {
    "name": "Cantalupa",
@@ -4139,7 +4187,8 @@
    "text": "A small, quiet residential district sometimes described locally as overlooked. No documented safety concerns or crime patterns were found in research — search results returned only real-estate and business listings. General Milan-wide caution applies.",
    "query": "Cantalupa, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 6"
   },
   {
    "name": "Ronchetto sul Naviglio - Q.re Lodovico il Moro",
@@ -4245,7 +4294,8 @@
    "text": "A residential district along the Naviglio Grande, largely public-housing blocks undergoing redevelopment. The only crime-related item found was a single individual stalking case, not an area-wide pattern. No recurring drug-dealing, gang, or red-zone issues found. General Milan-wide caution applies.",
    "query": "Ronchetto sul Naviglio - Q.re Lodovico il Moro, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 6"
   },
   {
    "name": "Porta Genova",
@@ -4311,7 +4361,8 @@
    "text": "A real, tourist-relevant area — the station and district bordering the Navigli/Darsena canal nightlife zone, popular for bars, restaurants and evening strolls. Police records document a gang operating out of Porta Genova station and group robberies targeting solitary young people at night near the station and Darsena, plus reports of worsening late-night disorder around the Navigli. By day it's a pleasant, heavily-visited canal district with no particular concern; caution (watch belongings, avoid isolated spots) is warranted late at night, especially on weekends.",
    "query": "Porta Genova, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 6"
   },
   {
    "name": "Porta Magenta",
@@ -4381,7 +4432,8 @@
    "text": "An elegant, tree-lined residential and shopping area near Corso Vercelli and Parco Sempione, explicitly named among Milan's safer zones in a recent crime-index ranking. No documented recurring safety issues found. A pleasant area for visitors with no particular safety concern day or night.",
    "query": "Porta Magenta, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 7"
   },
   {
    "name": "Bande Nere",
@@ -4479,7 +4531,8 @@
    "text": "A residential district centred on Piazzale Giovanni delle Bande Nere and its metro stop. Documented issues include a robbery near the metro station as part of a wider police crackdown that also netted drug-dealing arrests, and a poorly-lit wooded green area near the piazzale reported as used for drinking after dark. The bordering Bande Nere–Baggio–Giambellino corridor was the site of a very large joint police operation in July 2026. Daytime is unremarkable; caution is warranted at night, particularly around the park and metro area.",
    "query": "Bande Nere, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 6"
   },
   {
    "name": "Lorenteggio",
@@ -4597,7 +4650,8 @@
    "text": "One of Milan's most consistently and currently documented trouble spots in local press. The Giambellino-Lorenteggio public housing area has been named directly in 'red zone' roundups for clashes between rival groups, and one specific street has years of coverage of illegal occupations, open drug dealing and decay, prompting repeated large multi-agency police operations — including one in July 2026 with nearly 200 officers, drones and K-9 units — and a November 2025 report on an armed drug operation making explicit violence threats. A residential/public-housing area, not a tourist destination, but the volume and recency of documented coverage is unusually high for Milan.",
    "query": "Lorenteggio, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 6"
   },
   {
    "name": "Muggiano",
@@ -4643,7 +4697,8 @@
    "text": "A small, largely residential district on Milan's western edge, historically named in official reports about illegal occupations. The Comune and prefecture set up dedicated mobile police patrols in 2026 specifically covering Muggiano, along with Baggio and Dergano, in response to decay and robberies — a current, official-source indicator of localised concern. Not a tourist area; daytime is unremarkable, with some added caution warranted at night.",
    "query": "Muggiano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 7"
   },
   {
    "name": "Baggio - Q.re degli Olmi - Q.re Valsesia",
@@ -4781,7 +4836,8 @@
    "text": "A peripheral, largely residential district (formerly a separate village annexed into Milan) with a historic core but also known local trouble spots. Authorities have run repeated large multi-agency operations targeting drug dealing and street robbery around specific piazzas, with arrests reported as recently as July 2026. During the day an ordinary outer-Milan neighbourhood; extra caution is warranted at night around known hotspots, though this is not an area typical tourist itineraries pass through.",
    "query": "Baggio - Q.re degli Olmi - Q.re Valsesia, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 7"
   },
   {
    "name": "Forze Armate",
@@ -4907,7 +4963,8 @@
    "text": "A residential district built around Viale Forze Armate. Local news documents a bar that became a known drug-dealing spot after closing during Covid, a shooting following a dispute over an unpaid bill, and police clearing squatted ex-military warehouses in the area. Localised, documented issues rather than widespread danger, supporting added caution after dark; daytime the area is an ordinary residential quarter.",
    "query": "Forze Armate, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 7"
   },
   {
    "name": "De Angeli - Monte Rosa",
@@ -4981,7 +5038,8 @@
    "text": "A well-established, mostly residential and shopping district around the De Angeli metro hub and corso Vercelli. No documented recent safety concerns or crime clusters found. A normal, comfortable inner-Milan neighbourhood that visitors pass through for shopping; general Milan-wide caution applies but nothing more.",
    "query": "De Angeli - Monte Rosa, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 7"
   },
   {
    "name": "Tre Torri",
@@ -5027,7 +5085,8 @@
    "text": "The modern CityLife business and shopping district (skyscrapers, mall, park) — a touristic, well-monitored, affluent area. The only notable recent incident found was a structural one (a sign partially detaching from a tower, prompting a temporary closure while repairs were made), not a crime or personal-safety issue. No safety concerns were found for the area generally.",
    "query": "Tre Torri, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "Stadio - Ippodromi",
@@ -5129,7 +5188,8 @@
    "text": "Covers San Siro stadium and the two racetracks. Outside of events it's a quiet, park-like area popular for stadium tours and racing. On match days — especially derbies — there is documented ultras-related risk, with both clubs tightening entry controls and facial recognition after past clashes. Daytime visits (tours, races) are unremarkable; caution is warranted around match/event crowds, particularly at night.",
    "query": "Stadio - Ippodromi, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 7"
   },
   {
    "name": "Quarto Cagnino",
@@ -5195,7 +5255,8 @@
    "text": "A small, quiet outer-western district built around a historic village core, with local associations focused on preserving its heritage character. The only safety-adjacent coverage found was an older residents' request for more security presence on one street; no recent crime clusters or notable incidents found.",
    "query": "Quarto Cagnino, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 7"
   },
   {
    "name": "Quinto Romano",
@@ -5277,7 +5338,8 @@
    "text": "A far-outer, semi-rural residential district. Coverage found relates mainly to a road-safety concern after a traffic accident and an encampment cleared by authorities some years back — neither indicates an ongoing crime or personal-safety issue. No recent drug-dealing or crime-cluster reporting specific to this zone was found.",
    "query": "Quinto Romano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 7"
   },
   {
    "name": "Figino",
@@ -5347,7 +5409,8 @@
    "text": "A small, far-outer semi-rural village district on Milan's western edge. The main incident found was a nighttime ATM robbery at a bank branch — a property crime typical of organised gangs targeting isolated cash machines across Milan's periphery, not a threat to pedestrians. No other crime clusters found; a quiet, largely residential/rural fringe area with essentially no tourist relevance.",
    "query": "Figino, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 7"
   },
   {
    "name": "Trenno",
@@ -5397,7 +5460,8 @@
    "text": "Best known for the large Parco di Trenno, a popular green space that draws visitors and is generally calm and pleasant by day. Local reporting shows the park has occasionally been part of city-wide sweeps for petty disorder, with a handful of arrests, and isolated incidents involving park rangers. As with large Milan parks generally, fine to visit by day but ordinary caution is advisable at night given how expansive and less populated it becomes.",
    "query": "Trenno, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "Q.re Gallaratese - Q.re San Leonardo - Lampugnano",
@@ -5523,7 +5587,8 @@
    "text": "Gallaratese and San Leonardo are largely residential (Gallaratese known for modernist architecture, including the 'Monte Amiata' complex), with older reporting of burglaries that once prompted resident patrols, but nothing alarming for a visitor passing through. The real, well-documented concern is the Lampugnano hub (metro terminus plus the intercity coach station): multiple 2023-2026 reports describe recurring theft, aggressive unlicensed touts, drug dealing, and a nighttime assault, with the city repeatedly increasing patrols. Daytime with police presence is calmer; avoid loitering around the bus terminal after dark.",
    "query": "Q.re Gallaratese - Q.re San Leonardo - Lampugnano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "QT 8",
@@ -5593,7 +5658,8 @@
    "text": "A well-known historic modernist residential district (built for the 1947 Milan Triennale, including the Monte Stella hill park), generally calm with no chronic crime pattern documented. One notable recent incident — a robbery near via Martino Bassi in which a security guard fired shots at an attacker who tried to steal his phone (December 2025) — reads as an isolated event rather than a recurring problem. No particular daytime concern; ordinary big-city caution at night.",
    "query": "QT 8, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "Portello",
@@ -5651,7 +5717,8 @@
    "text": "A redeveloped, modern business and residential district next to CityLife and the Fiera Milano City exhibition area, described in local press as one of Milan's more regenerated quarters. No documented safety concerns specific to this zone were found; general Milan-wide caution applies.",
    "query": "Portello, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 8"
   },
   {
    "name": "Pagano",
@@ -5729,7 +5796,8 @@
    "text": "A settled, largely upper-middle-class residential neighbourhood between CityLife and the Fiera/Wagner area. No documented crime clusters or safety incidents found — coverage is limited to real-estate and urban-regeneration pieces. General Milan-wide caution applies, no particular concern.",
    "query": "Pagano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 8"
   },
   {
    "name": "Ghisolfa",
@@ -5799,7 +5867,8 @@
    "text": "A mixed residential and light-industrial area near the rail lines north of Sempione. The only notable recent local coverage found concerned a homelessness-related death, a social issue rather than a crime or safety threat to visitors. No documented pattern of theft, drug dealing, or violent crime specific to this zone.",
    "query": "Ghisolfa, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 8"
   },
   {
    "name": "Villapizzone - Cagnola - Boldinasco",
@@ -5901,7 +5970,8 @@
    "text": "A quiet, mostly residential and rail-adjacent district. Local reporting described chronic urban decay around the station and piazza — littering, vandalised cars, tension around an informal encampment — with a resident warning about ongoing neglect. No evidence of violent crime or organised drug dealing, just documented decay concentrated near the station and piazza at night.",
    "query": "Villapizzone - Cagnola - Boldinasco, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "Maggiore - Musocco - Certosa",
@@ -6007,7 +6077,8 @@
    "text": "Primarily an industrial/logistics and cemetery district, with the Milano Certosa railway station as its main transit point. Certosa station has real, serious, and recent documented problems: police have made drug-dealing arrests in the station underpass, and in May 2026 a young man was fatally stabbed by a group at the station, triggering political controversy over station security and a large follow-up police operation. Travellers should avoid lingering at or around Certosa station, especially at night; the wider surrounding area has no comparable documented issues.",
    "query": "Maggiore - Musocco - Certosa, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "Cascina Merlata",
@@ -6101,7 +6172,8 @@
    "text": "A newly built district on the former Expo 2015 site, largely residential and generally calm. Since a shopping centre opened nearby, local reporting documents recurring problems around it — bullying, drug dealing and youth-gang incidents, including a knife attack that wounded a teenager outside the mall — prompting a resident committee and increased police patrols. Daytime shopping-centre visits appear unaffected; caution is warranted around the mall's public gardens in the evening.",
    "query": "Cascina Merlata, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "Roserio",
@@ -6237,7 +6309,8 @@
    "text": "A former industrial enclave currently undergoing demolition and redevelopment into offices and mixed-use buildings, not a residential or tourist district. No documented crime or safety incidents found; coverage concerns urban regeneration only. Little reason for a traveller to visit this largely non-residential zone.",
    "query": "Stephenson, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 8"
   },
   {
    "name": "Quarto Oggiaro - Vialba - Musocco",
@@ -6327,7 +6400,8 @@
    "text": "Repeatedly named in Milan press as one of the city's more problematic peripheral neighbourhoods, with recurring documented drug dealing and a major police operation (dozens of arrests, hundreds of kilograms of drugs seized, dismantling a local drug ring). Local reporting also documented dealing near Certosa station and organised theft near a nearby shopping centre. A residential/social-housing periphery area with genuine, persistent, recurring issues — though residents and reporters caution it isn't uniformly dangerous throughout. Essentially no tourist draw.",
    "query": "Quarto Oggiaro - Vialba - Musocco, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 8"
   },
   {
    "name": "Bovisa",
@@ -6405,7 +6479,8 @@
    "text": "A former industrial district now home to a Politecnico di Milano university campus and design/nightlife venues — a genuinely mixed character with real reasons for visitors (students, design events) to be there. Local news documents a drug-distribution bust tied to a storage site, and residents have publicly protested a spate of robberies. Not a 'no concern' zone but not a documented no-go area either — ordinary urban caution, especially at night around the station and quieter former-industrial streets.",
    "query": "Bovisa, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Farini",
@@ -6483,7 +6558,8 @@
    "text": "The Scalo Farini area itself is a large ex-railway-yard redevelopment project (new park and mixed-use district), generally calm during the day. However, the adjacent streets near Piazzale Maciachini — around the Alcatraz nightclub, a real nightlife venue tourists visit — have repeated, well-documented incidents in 2024-2025: a tourist sexually assaulted outside the club, another tourist robbed, a necklace snatched from a third, plus reported drug dealing and prostitution nearby. A former deputy mayor publicly proposed a formal 'zona rossa' for this specific area. A real, recent, tourist-relevant nightlife-adjacent risk pattern, distinct from the calmer Scalo Farini redevelopment itself.",
    "query": "Farini, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Dergano",
@@ -6553,7 +6629,8 @@
    "text": "A primarily residential district around its own metro stop. Local news shows occasional street muggings and robberies — including an assault on a young woman walking home from work — but no evidence of organised drug-market or gang activity comparable to some other outer zones. Ordinary urban street-crime risk rather than a documented systemic problem; reasonable caution at night, no particular daytime concern.",
    "query": "Dergano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Affori",
@@ -6635,7 +6712,8 @@
    "text": "Described locally as a quiet, semi-independent former village absorbed into Milan, largely residential. No recent (2022-2026) pattern of documented violent crime, drug dealing, or gang activity specific to this zone was found. A calm residential area with only general Milan-wide caution.",
    "query": "Affori, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 9"
   },
   {
    "name": "Bovisasca",
@@ -6725,7 +6803,8 @@
    "text": "Described by local outlets as a remote, little-known residential periphery within a public-housing area near the Parco Nord green belt. No specific news coverage of drug dealing, violent crime clusters, or gang activity tied to this zone by name was found. A quiet, low-profile residential area with no documented safety concerns.",
    "query": "Bovisasca, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 9"
   },
   {
    "name": "Comasina",
@@ -6791,7 +6870,8 @@
    "text": "One of Milan's most consistently documented drug-dealing hotspots in local press. Recent, real incidents include a March 2025 bust of two underage dealers operating near a church, and a large joint operation resulting in 23 arrests that also implicated a compromised police officer. Coverage describes recurring police searches and controls in the neighbourhood. A genuine, recurring, well-sourced pattern of organised drug-market activity.",
    "query": "Comasina, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Bruzzano",
@@ -6877,7 +6957,8 @@
    "text": "Adjacent to Comasina near Parco Nord, showing the same documented pattern of organised drug dealing: a joint police operation with the neighbouring zone resulted in 23 arrests, and Milan police have separately publicised operations dismantling drug organisations specifically here, with coverage continuing into 2026. Largely residential/green periphery with genuine recurring drug-trade issues rather than one-off incidents.",
    "query": "Bruzzano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Parco Nord",
@@ -7007,7 +7088,8 @@
    "text": "One of Milan's largest and most popular parks, heavily used by joggers, cyclists and families, with an active park-vigilance service patrolling daily. Coverage has documented occasional petty theft — phone snatching and car break-ins near the park edges — described as recurring but low-level. As with any large green space, it's sensible to stick to lit, populated paths after dark.",
    "query": "Parco Nord, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 9"
   },
   {
    "name": "Parco delle Abbazie",
@@ -7341,7 +7423,8 @@
    "text": "Named for the historic abbeys within it, most notably the Abbazia di Chiaravalle, which draws regular visitors for guided tours, along with the surrounding park used for walking and cycling. No specific crime or safety incidents found — a quiet, semi-rural fringe area. Fine to explore by day, best avoided alone in the more isolated rural stretches after dark.",
    "query": "Parco delle Abbazie, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 5"
   },
   {
    "name": "Parco dei Navigli",
@@ -7519,7 +7602,8 @@
    "text": "Not the touristy Navigli canal nightlife district near the centre — this is the outer agricultural park zone in southern Milan, characterised by canals, historic farmhouses, and cycling routes. Attracts cycle-tourism and countryside walks but is otherwise rural and sparsely populated, with no documented crime issues found. A pleasant daytime destination, not somewhere to linger alone after dark given the lack of lighting and foot traffic.",
    "query": "Parco dei Navigli, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 6"
   },
   {
    "name": "Assiano",
@@ -7709,7 +7793,8 @@
    "text": "A small, largely forgotten rural borgo on Milan's western edge — decaying farmhouses, working agricultural land, almost no commercial or tourist infrastructure. Essentially no reason for a typical traveller to visit, and no documented safety incidents were found, simply because there's very little foot traffic of any kind. Treat like any isolated rural area: fine in daylight, not a place to be alone at night.",
    "query": "Assiano, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "no_findings"
+   "evidence": "no_findings",
+   "group": "Municipio 7"
   },
   {
    "name": "Monluè - Ponte Lambro",
@@ -7819,7 +7904,8 @@
    "text": "Ponte Lambro is a small, isolated borgo beyond the ring road with genuinely documented drug-dealing issues — local reporting describes vacant apartments from an abandoned renewal project becoming a haven for dealers, and a resident-led inspection documented drug trafficking and dumping in the adjacent park. A small residential district with limited services rather than a place travellers would typically pass through; caution is warranted, especially around the park and vacant housing after dark.",
    "query": "Monluè - Ponte Lambro, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 4"
   },
   {
    "name": "Parco Bosco in Città",
@@ -8181,7 +8267,8 @@
    "text": "A well-loved urban forest park in the San Siro area, popular with families and cyclists, and explicitly named among the five safest zones in Milan by a 2025 crime-index ranking. A genuinely pleasant, low-crime green space by day. The usual big-city-park caveat still applies at night: wooded, unlit areas away from the main paths are best avoided when walking alone after dark, even in a generally safe neighbourhood.",
    "query": "Parco Bosco in Città, Milan, Italy",
    "booking_scope": "area",
-   "evidence": "documented"
+   "evidence": "documented",
+   "group": "Municipio 7"
   }
  ]
 }
