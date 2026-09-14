@@ -1,0 +1,42 @@
+# Generated and cached files that must never reach a commit.
+#
+# Nothing in here is a build input. build_site.py reads data/scores/ only,
+# so ignoring the raw caches below cannot change what the site renders.
+
+# Per-city caches of raw upstream responses — the street-level JSON that
+# fetch_uk_city.py and fetch_london.py pull from data.police.uk. ~250 MB
+# across 21 cities, rewritten on demand, and read only by the score_*.py
+# step that turns them into the committed data/scores/ and
+# data/counts_*.json. Committing them is what cost ~17 MB of permanent
+# repo growth per city, which is unrecoverable once pushed.
+data/raw/
+data/raw_*/
+
+# Two exceptions, committed on purpose: Berlin and Zurich are one-shot
+# statistical downloads rather than a queryable rolling API, so there is no
+# re-fetch to fall back on. Zurich's upstream CSV has been 404ing since
+# 2 September 2026 (the breakage is on Kanton Zurich's publishing side) and
+# fetch_zurich.py now exits 0 on failure specifically so the committed copy
+# keeps serving the site's Zurich figures. These negations also keep
+# `git add` from silently skipping a newly fetched
+# data/raw_zurich/kreis_*.json.
+!data/raw_berlin/
+!data/raw_zurich/
+
+# QA and reproducibility reports. qa_full_site.py and
+# verify_reproducible.py default --report-dir to the repo root, and both CI
+# workflows pass a relative "qa_output" from the root, which lands in the
+# same place. pipeline/qa_output/ only appears if someone points
+# --report-dir there by hand.
+/qa_output/
+pipeline/qa_output/
+
+# The scratch build tree release.yml and reproducibility-check.yml create:
+# a full copy of pipeline/ + data/ plus a freshly built dist/.
+/candidate/
+
+# Local cruft. dist/ is deliberately NOT ignored — Vercel serves the
+# committed dist/, so the release commit has to contain it.
+__pycache__/
+*.pyc
+.DS_Store
