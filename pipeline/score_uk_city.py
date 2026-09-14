@@ -127,7 +127,15 @@ def main(key, label, force, centre_zoom=11):
             "text": describe({"total": r["total"], "rate_all": r["rate_all"]},
                              rank_of[id(r)], len(rows), force, window, top_day, top_night,
                              label.split(",")[0]),
-            "query": z["query"], "booking_scope": z.get("booking_scope", "area"),
+            # Ward names are not Booking destinations. Three were opened to
+            # check: "Ladywood, Birmingham" redirected to Booking's homepage,
+            # "Headingley, Leeds" resolved to a single hotel called Roomzzz
+            # Leeds Headingley, and only "Clifton Down, Bristol" landed
+            # somewhere real (a station radius). London's boroughs work because
+            # they are places Booking indexes; a ward is not. So these cities
+            # search the city, and the page says that is what the link does.
+            "query": "%s, United Kingdom" % label.split(",")[0],
+            "booking_scope": "city",
             "evidence": "documented",
             "coords": z["coords"],
         })
@@ -153,6 +161,12 @@ CITIES = {
     "nottingham": ("Nottingham, United Kingdom", "Nottinghamshire Police"),
     "cardiff": ("Cardiff, United Kingdom", "South Wales Police"),
     "leicester": ("Leicester, United Kingdom", "Leicestershire Police"),
+    "liverpool": ("Liverpool, United Kingdom", "Merseyside Police"),
+    "brighton": ("Brighton and Hove, United Kingdom", "Sussex Police"),
+    "york": ("York, United Kingdom", "North Yorkshire Police"),
+    "oxford": ("Oxford, United Kingdom", "Thames Valley Police"),
+    "cambridge": ("Cambridge, United Kingdom", "Cambridgeshire Constabulary"),
+    "bath": ("Bath, United Kingdom", "Avon and Somerset Constabulary"),
 }
 
 if __name__ == "__main__":

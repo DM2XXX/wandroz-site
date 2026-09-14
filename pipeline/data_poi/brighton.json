@@ -1,0 +1,104 @@
+{
+ "city": "brighton",
+ "pois": [
+  {
+   "name": "Royal Pavilion",
+   "category": "art",
+   "qid": "Q62364",
+   "lat": 50.82236,
+   "lon": -0.13772,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Brighton Pier",
+   "category": "art",
+   "qid": "Q2745160",
+   "lat": 50.8183,
+   "lon": -0.13662,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Brighton i360",
+   "category": "view",
+   "qid": "Q5968218",
+   "lat": 50.82135,
+   "lon": -0.1509,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Brighton Museum & Art Gallery",
+   "category": "art",
+   "qid": "Q2790574",
+   "lat": 50.8237,
+   "lon": -0.13804,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Brighton Marina",
+   "category": "square",
+   "qid": "Q4095760",
+   "lat": 50.8125,
+   "lon": -0.103,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "North Laine",
+   "category": "square",
+   "qid": "Q7055873",
+   "lat": 50.8264,
+   "lon": -0.13917,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Preston Park",
+   "category": "green",
+   "qid": "Q7241959",
+   "lat": 50.8414,
+   "lon": -0.14778,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Devil's Dyke",
+   "category": "view",
+   "qid": "Q5267123",
+   "lat": 50.885,
+   "lon": -0.205,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Kemptown",
+   "category": "night",
+   "qid": "Q6387157",
+   "lat": 50.81778,
+   "lon": -0.11639,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  }
+ ]
+}

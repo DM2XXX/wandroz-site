@@ -21,8 +21,13 @@ OUT = None
 ONS_BY_VINTAGE = {
     "2024": ("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/"
              "Wards_December_2024_Boundaries_UK_BGC/FeatureServer/0/query", "WD24CD", "WD24NM", "LAD24NM"),
-    "2021": ("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/"
-             "Wards_(December_2021)_UK_BGC/FeatureServer/0/query", "WD21CD", "WD21NM", "LAD21NM"),
+    # Liverpool and Brighton re-warded in 2023, so their current wards have no
+    # census population. The 2022 vintage is the last one the 2021 census can
+    # populate and the ONS still publishes its boundaries, which keeps the
+    # numerator and the denominator on the same geography.
+    "2022": ("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/"
+             "Wards_December_2022_Boundaries_UK_BGC/FeatureServer/0/query",
+             "WD22CD", "WD22NM", "LAD22NM"),
 }
 VINTAGE = os.environ.get("WARD_VINTAGE", "2024")
 ONS, CODE_F, NAME_F, LAD_F = ONS_BY_VINTAGE[VINTAGE]

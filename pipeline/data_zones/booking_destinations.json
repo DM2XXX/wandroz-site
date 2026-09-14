@@ -1,13 +1,1608 @@
 {
+ "barcelona/can-baro": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/diagonal-mar-i-el-front-maritim-del-poblenou": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-baix-guinardo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-barri-gotic": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciutat Vella, the district this area sits in: Booking returns 553 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-besos-i-el-maresme": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-camp-d-en-grassot-i-gracia-nova": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Gràcia, the district this area sits in: Booking returns 338 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-camp-de-l-arpa-del-clot": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-carmel": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-clot": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-coll": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Gràcia, the district this area sits in: Booking returns 338 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-fort-pienc": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches L'Eixample, the district this area sits in: Booking returns 1,530 properties (queried as Eixample: the article makes Booking match an apartment listing instead) there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-guinardo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-parc-i-la-llacuna-del-poblenou": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-poble-sec": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sants-Montjuïc, the district this area sits in: Booking returns 417 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-poblenou": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/el-raval": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciutat Vella, the district this area sits in: Booking returns 553 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/horta": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/hostafrancs": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sants-Montjuïc, the district this area sits in: Booking returns 417 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/l-antiga-esquerra-de-l-eixample": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches L'Eixample, the district this area sits in: Booking returns 1,530 properties (queried as Eixample: the article makes Booking match an apartment listing instead) there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-barceloneta": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciutat Vella, the district this area sits in: Booking returns 553 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-bordeta": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sants-Montjuïc, the district this area sits in: Booking returns 417 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-clota": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-dreta-de-l-eixample": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches L'Eixample, the district this area sits in: Booking returns 1,530 properties (queried as Eixample: the article makes Booking match an apartment listing instead) there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-font-d-en-fargues": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-font-de-la-guatlla": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sants-Montjuïc, the district this area sits in: Booking returns 417 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-marina-de-port": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sants-Montjuïc, the district this area sits in: Booking returns 417 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-marina-del-prat-vermell": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sants-Montjuïc, the district this area sits in: Booking returns 417 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-maternitat-i-sant-ramon": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Les Corts, the district this area sits in: Booking returns 99 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-nova-esquerra-de-l-eixample": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches L'Eixample, the district this area sits in: Booking returns 1,530 properties (queried as Eixample: the article makes Booking match an apartment listing instead) there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-sagrada-familia": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches L'Eixample, the district this area sits in: Booking returns 1,530 properties (queried as Eixample: the article makes Booking match an apartment listing instead) there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-salut": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Gràcia, the district this area sits in: Booking returns 338 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-teixonera": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-vall-d-hebron": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-verneda-i-la-pau": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-vila-de-gracia": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Gràcia, the district this area sits in: Booking returns 338 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/la-vila-olimpica-del-poblenou": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/les-corts": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Les Corts, the district this area sits in: Booking returns 99 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/montbau": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/pedralbes": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Les Corts, the district this area sits in: Booking returns 99 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/provencals-del-poblenou": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/sant-antoni": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches L'Eixample, the district this area sits in: Booking returns 1,530 properties (queried as Eixample: the article makes Booking match an apartment listing instead) there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/sant-genis-dels-agudells": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Horta-Guinardó, the district this area sits in: Booking returns 82 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/sant-marti-de-provencals": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Sant Martí, the district this area sits in: Booking returns 331 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/sant-pere-santa-caterina-i-la-ribera": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciutat Vella, the district this area sits in: Booking returns 553 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
  "barcelona/sants": {
   "class": "TRAVELLER_ALIAS",
   "checked": "2026-09-14",
-  "note": "Spain > Catalonia > Barcelona > Sants-Montjuïc, 417 properties — the district, shared by both barris"
+  "note": "searches Sants-Montjuïc, the district this area sits in: Booking returns 417 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
  },
  "barcelona/sants-badal": {
   "class": "TRAVELLER_ALIAS",
   "checked": "2026-09-14",
-  "note": "Spain > Catalonia > Barcelona > Sants-Montjuïc, 417 properties — the district, shared by both barris"
+  "note": "searches Sants-Montjuïc, the district this area sits in: Booking returns 417 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "barcelona/vallcarca-i-els-penitents": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Gràcia, the district this area sits in: Booking returns 338 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/adlershof": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/albrechtstrasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Steglitz-Zehlendorf, the district this area sits in: Booking returns 49 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/alexanderplatz": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/allende-viertel": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/alt-hohenschonhausen-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/alt-hohenschonhausen-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/alt-lichtenberg": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/alt-treptow": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/altglienicke": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/altstadt-kopenick": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/baumschulenweg": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/biesdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/blankenburg-heinersdorf-marchenland": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/blankenfelde-niederschonhausen": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/bohnsdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/britz": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/britz-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/brunnenstrasse-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/brunnenstrasse-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/brunsbutteler-damm": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/buch": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/buchholz": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/buckow": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/buckow-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/charlottenburg-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/dammvorstadt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/drakestrasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Steglitz-Zehlendorf, the district this area sits in: Booking returns 49 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/falkenhagener-feld": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/fennpfuhl": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/frankfurter-allee-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Friedrichshain-Kreuzberg, the district this area sits in: Booking returns 334 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/frankfurter-allee-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/frankfurter-allee-sud-fk": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Friedrichshain-Kreuzberg, the district this area sits in: Booking returns 334 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/friedenau-ost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/friedenau-west": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/friedrichsfelde-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/friedrichsfelde-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/friedrichshagen": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/gatow-kladow": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/gropiusstadt-ost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/gropiusstadt-west": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/grunau": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/grunewald": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/hakenfelde": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/halensee": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/haselhorst": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/heerstrasse-charlottenburg-wilmersdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/heerstrasse-spandau": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/hellersdorf-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/hellersdorf-ost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/hellersdorf-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/helmholtzplatz": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/johannisthal": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/karl-marx-allee-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Friedrichshain-Kreuzberg, the district this area sits in: Booking returns 334 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/karl-marx-allee-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Friedrichshain-Kreuzberg, the district this area sits in: Booking returns 334 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/karlshorst": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/karow": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/kaulsdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/kollnische-heide": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/kollnische-vorstadt-spindlersfeld": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/kopenick-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/kopenick-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/lankwitz": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Steglitz-Zehlendorf, the district this area sits in: Booking returns 49 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/lichtenrade-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/lichtenrade-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/lietzenburger-strasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/mahlsdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/malchow-wartenberg-und-falkenberg": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/mariendorf-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/mariendorf-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/marienfelde-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/marienfelde-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/marzahn-mitte": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/marzahn-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/marzahn-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Marzahn-Hellersdorf, the district this area sits in: Booking returns 43 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/mierendorffplatz": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/moabit-ost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/moabit-west": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/muggelheim": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/mv-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/mv-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/neu-hohenschonhausen-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/neu-hohenschonhausen-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/neu-lichtenberg": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/neukollner-mitte-zentrum": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/niederschoneweide": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/nord-1-frohnau-hermsdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/nord-2-waidmannslust-wittenau-lubars": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/nordliche-luisenstadt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Friedrichshain-Kreuzberg, the district this area sits in: Booking returns 334 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/oberschoneweide": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/osloer-strasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/ost-1-reginhardstrasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/ost-2-alt-reinickendorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/ostpreussendamm": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Steglitz-Zehlendorf, the district this area sits in: Booking returns 49 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/otto-suhr-allee-kantstrasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/pankow-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/pankow-zentrum": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/parkviertel": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/planterwald": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/prenzlauer-berg-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/prenzlauer-berg-nordwest": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/prenzlauer-berg-ost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/prenzlauer-berg-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/prenzlauer-berg-sudwest": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/rahnsdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/regierungsviertel": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/reuterstrasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/rixdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/rollbergesiedlung": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/rudow": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/rummelsburger-bucht": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Lichtenberg, the district this area sits in: Booking returns 56 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schillerpromenade": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Neukölln, the district this area sits in: Booking returns 112 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schloss-charlottenburg": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schlossstrasse": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Steglitz-Zehlendorf, the district this area sits in: Booking returns 49 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schmargendorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schmockwitz": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Treptow-Köpenick, the district this area sits in: Booking returns 125 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schoneberg-nordost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schoneberg-nordwest": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schoneberg-sudost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schoneberg-sudwest": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/schonholz-wilhelmsruh-rosenthal": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/siemensstadt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/spandau-mitte": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/sudliche-friedrichstadt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Friedrichshain-Kreuzberg, the district this area sits in: Booking returns 334 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/sudliche-luisenstadt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Friedrichshain-Kreuzberg, the district this area sits in: Booking returns 334 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/teltower-damm": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Steglitz-Zehlendorf, the district this area sits in: Booking returns 49 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/tempelhof-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/tempelhof-sudost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/tempelhof-sudwest": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tempelhof-Schöneberg, the district this area sits in: Booking returns 128 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/tempelhofer-vorstadt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Friedrichshain-Kreuzberg, the district this area sits in: Booking returns 334 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/tiergarten-sud": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/volkspark-wilmersdorf": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/wedding-zentrum": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Mitte, the district this area sits in: Booking returns 460 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/weissensee": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/weissensee-ost": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Pankow, the district this area sits in: Booking returns 337 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/west-1-tegel-sud-flughafensee": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/west-2-heiligensee-konradshohe": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/west-3-borsigwalde-freie-scholle": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/west-4-auguste-viktoria-allee": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/west-5-tegel": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Reinickendorf, the district this area sits in: Booking returns 37 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/westend": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Charlottenburg-Wilmersdorf, the district this area sits in: Booking returns 333 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/wilhelmstadt": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Spandau, the district this area sits in: Booking returns 52 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/zehlendorf-nord": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Steglitz-Zehlendorf, the district this area sits in: Booking returns 49 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "berlin/zehlendorf-sudwest": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Steglitz-Zehlendorf, the district this area sits in: Booking returns 49 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "birmingham/acocks-green": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/allens-cross": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/alum-rock": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/aston": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/balsall-heath-west": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/bartley-green": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/billesley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/birchfield": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/bordesley-green": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/bordesley-highgate": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/bournbrook-selly-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/bournville-cotteridge": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/brandwood-king-s-heath": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/bromford-hodge-hill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/castle-vale": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/druids-heath-monyhull": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/edgbaston": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/erdington": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/frankley-great-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/garretts-green": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/glebe-farm-tile-cross": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/gravelly-hill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/hall-green-north": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/hall-green-south": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/handsworth": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/handsworth-wood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/harborne": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/heartlands": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/highter-s-heath": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/holyhead": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/king-s-norton-north": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/king-s-norton-south": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/kingstanding": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/ladywood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/longbridge-west-heath": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/lozells": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/moseley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/nechells": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/newtown": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/north-edgbaston": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/northfield": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/oscott": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/perry-barr": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/perry-common": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/pype-hayes": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/quinton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/rubery-rednal": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/shard-end": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sheldon": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/small-heath": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/soho-jewellery-quarter": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/south-yardley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sparkbrook-balsall-heath-east": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sparkhill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/stirchley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/stockland-green": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sutton-four-oaks": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sutton-mere-green": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sutton-reddicap": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sutton-roughley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sutton-trinity": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sutton-vesey": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sutton-walmley-minworth": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/sutton-wylde-green": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/tyseley-hay-mills": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/ward-end": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/weoley-selly-oak": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/yardley-east": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "birmingham/yardley-west-stechford": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/ashley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/avonmouth-and-lawrence-weston": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/bedminster": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/bishopston-and-ashley-down": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/bishopsworth": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/brislington-east": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/brislington-west": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/central": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/clifton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/clifton-down": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/cotham": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/easton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/eastville": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/filwood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/frome-vale": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/hartcliffe-and-withywood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/henbury-and-brentry": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/hengrove-and-whitchurch-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/hillfields": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/horfield": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/hotwells-and-harbourside": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/knowle": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/lawrence-hill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/lockleaze": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/redland": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/southmead": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/southville": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/st-george-central": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/st-george-troopers-hill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/st-george-west": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/stockwood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/stoke-bishop": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/westbury-on-trym-and-henleaze": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "bristol/windmill-hill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/adamsdown": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/butetown": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/caerau": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/canton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/cathays": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/cyncoed": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/ely": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/fairwater": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/gabalfa": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/grangetown": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/heath": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/lisvane-and-thornhill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/llandaff": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/llandaff-north": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/llanishen": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/llanrumney": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/pentwyn": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/pentyrch-and-st-fagans": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/penylan": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/plasnewydd": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/pontprennau-and-old-st-mellons": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/radyr": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/rhiwbina": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/riverside": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/rumney": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/splott": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/trowbridge": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "cardiff/whitchurch-and-tongwynlais": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
  },
  "firenze/novoli-baracca-est": {
   "class": "TRAVELLER_ALIAS",
@@ -44,25 +1639,790 @@
   "checked": "2026-09-14",
   "note": "Italy > Tuscany > Florence > Santa Croce, 478 properties"
  },
+ "leeds/adel-wharfedale": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/alwoodley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/ardsley-robin-hood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/armley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/beeston-holbeck": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/bramley-stanningley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/burmantofts-richmond-hill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/calverley-farsley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/chapel-allerton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/cross-gates-whinmoor": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/farnley-wortley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/garforth-swillington": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/gipton-harehills": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/guiseley-rawdon": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/harewood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/headingley-hyde-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/horsforth": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/hunslet-riverside": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/killingbeck-seacroft": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/kippax-methley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/kirkstall": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/little-london-woodhouse": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/middleton-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/moortown": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/morley-north": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/morley-south": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/otley-yeadon": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/pudsey": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/rothwell": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/roundhay": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/temple-newsam": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/weetwood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leeds/wetherby": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/abbey": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/aylestone": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/beaumont-leys": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/belgrave": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/braunstone-park-rowley-fields": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/castle": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/evington": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/eyres-monsell": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/fosse": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/humberstone-hamilton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/knighton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/north-evington": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/rushey-mead": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/saffron": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/spinney-hills": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/stoneygate": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/thurncourt": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/troon": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/westcotes": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/western": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "leicester/wycliffe": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "madrid/abrantes": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Carabanchel, the district this area sits in: Booking returns 169 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/acacias": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Arganzuela, the district this area sits in: Booking returns 307 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/adelfas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Retiro, the district this area sits in: Booking returns 161 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/almagro": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamberí, the district this area sits in: Booking returns 290 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/almenara": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tetuán, the district this area sits in: Booking returns 361 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/almendrales": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Usera, the district this area sits in: Booking returns 122 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/apostol-santiago": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Hortaleza, the district this area sits in: Booking returns 114 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/arapiles": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamberí, the district this area sits in: Booking returns 290 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/aravaca": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moncloa - Aravaca, the district this area sits in: Booking returns 155 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/arguelles": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moncloa - Aravaca, the district this area sits in: Booking returns 155 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/atalaya": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/atocha": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Arganzuela, the district this area sits in: Booking returns 307 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/bellas-vistas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tetuán, the district this area sits in: Booking returns 361 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/berruguete": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tetuán, the district this area sits in: Booking returns 361 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/buenavista": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Carabanchel, the district this area sits in: Booking returns 169 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/canillas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Hortaleza, the district this area sits in: Booking returns 114 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/casa-de-campo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moncloa - Aravaca, the district this area sits in: Booking returns 155 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/casco-historico-de-vallecas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Villa de Vallecas, the district this area sits in: Booking returns 48 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/castellana": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Salamanca, the district this area sits in: Booking returns 385 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/castilla": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamartín, the district this area sits in: Booking returns 203 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/castillejos": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tetuán, the district this area sits in: Booking returns 361 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
  "madrid/chamberi": {
   "class": "EXACT_AREA",
   "checked": "2026-09-14",
   "note": "Spain > Community of Madrid > Madrid > Chamberi, 290 properties"
  },
+ "madrid/chopera": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Arganzuela, the district this area sits in: Booking returns 307 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/ciudad-jardin": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamartín, the district this area sits in: Booking returns 203 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/ciudad-universitaria": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moncloa - Aravaca, the district this area sits in: Booking returns 155 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/colina": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/comillas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Carabanchel, the district this area sits in: Booking returns 169 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/cortes": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Centro, the district this area sits in: Booking returns 2,956 properties, as Madrid City Center there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/costillares": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/cuatro-caminos": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tetuán, the district this area sits in: Booking returns 361 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/delicias": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Arganzuela, the district this area sits in: Booking returns 307 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/el-goloso": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Fuencarral - El Pardo, the district this area sits in: Booking returns 80 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/el-pardo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Fuencarral - El Pardo, the district this area sits in: Booking returns 80 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/el-plantio": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moncloa - Aravaca, the district this area sits in: Booking returns 155 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/el-viso": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamartín, the district this area sits in: Booking returns 203 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
  "madrid/embajadores": {
   "class": "TRAVELLER_ALIAS",
   "checked": "2026-09-14",
-  "note": "Spain > Community of Madrid > Madrid > Embajadores Metro Station, 4,901 properties — right place, station radius rather than the barrio"
+  "note": "searches Centro, the district this area sits in: Booking returns 2,956 properties, as Madrid City Center there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/ensanche-de-vallecas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Villa de Vallecas, the district this area sits in: Booking returns 48 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/entrevias": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Puente de Vallecas, the district this area sits in: Booking returns 167 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/estrella": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Retiro, the district this area sits in: Booking returns 161 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/fontarron": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moratalaz, the district this area sits in: Booking returns 20 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/fuente-del-berro": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Salamanca, the district this area sits in: Booking returns 385 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/fuentelarreina": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Fuencarral - El Pardo, the district this area sits in: Booking returns 80 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/gaztambide": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamberí, the district this area sits in: Booking returns 290 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/goya": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Salamanca, the district this area sits in: Booking returns 385 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/guindalera": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Salamanca, the district this area sits in: Booking returns 385 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/hispanoamerica": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamartín, the district this area sits in: Booking returns 203 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/horcajo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moratalaz, the district this area sits in: Booking returns 20 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/ibiza": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Retiro, the district this area sits in: Booking returns 161 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/imperial": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Arganzuela, the district this area sits in: Booking returns 307 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/justicia": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Centro, the district this area sits in: Booking returns 2,956 properties, as Madrid City Center there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/la-concepcion": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/la-paz": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Fuencarral - El Pardo, the district this area sits in: Booking returns 80 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/legazpi": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Arganzuela, the district this area sits in: Booking returns 307 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/lista": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Salamanca, the district this area sits in: Booking returns 385 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/los-jeronimos": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Retiro, the district this area sits in: Booking returns 161 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/marroquina": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moratalaz, the district this area sits in: Booking returns 20 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/media-legua": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moratalaz, the district this area sits in: Booking returns 20 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/mirasierra": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Fuencarral - El Pardo, the district this area sits in: Booking returns 80 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/moscardo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Usera, the district this area sits in: Booking returns 122 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/nino-jesus": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Retiro, the district this area sits in: Booking returns 161 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/nueva-espana": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamartín, the district this area sits in: Booking returns 203 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/numancia": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Puente de Vallecas, the district this area sits in: Booking returns 167 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/opanel": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Carabanchel, the district this area sits in: Booking returns 169 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/orcasitas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Usera, the district this area sits in: Booking returns 122 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/orcasur": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Usera, the district this area sits in: Booking returns 122 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/pacifico": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Retiro, the district this area sits in: Booking returns 161 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/palacio": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Centro, the district this area sits in: Booking returns 2,956 properties, as Madrid City Center there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/palomas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Hortaleza, the district this area sits in: Booking returns 114 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/palomeras-bajas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Puente de Vallecas, the district this area sits in: Booking returns 167 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/palomeras-sureste": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Puente de Vallecas, the district this area sits in: Booking returns 167 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/palos-de-la-frontera": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Arganzuela, the district this area sits in: Booking returns 307 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/pavones": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moratalaz, the district this area sits in: Booking returns 20 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/penagrande": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Fuencarral - El Pardo, the district this area sits in: Booking returns 80 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/pilar": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Fuencarral - El Pardo, the district this area sits in: Booking returns 80 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/pinar-del-rey": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Hortaleza, the district this area sits in: Booking returns 114 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/piovera": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Hortaleza, the district this area sits in: Booking returns 114 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/portazgo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Puente de Vallecas, the district this area sits in: Booking returns 167 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/pradolongo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Usera, the district this area sits in: Booking returns 122 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/prosperidad": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamartín, the district this area sits in: Booking returns 203 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/pueblo-nuevo": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/puerta-bonita": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Carabanchel, the district this area sits in: Booking returns 169 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/quintana": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/recoletos": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Salamanca, the district this area sits in: Booking returns 385 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/rios-rosas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamberí, the district this area sits in: Booking returns 290 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/san-diego": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Puente de Vallecas, the district this area sits in: Booking returns 167 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/san-fermin": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Usera, the district this area sits in: Booking returns 122 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/san-isidro": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Carabanchel, the district this area sits in: Booking returns 169 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/san-juan-bautista": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/san-pascual": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/santa-eugenia": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Villa de Vallecas, the district this area sits in: Booking returns 48 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
  },
  "madrid/sol": {
   "class": "TRAVELLER_ALIAS",
   "checked": "2026-09-14",
-  "note": "Spain > Community of Madrid > Madrid > Puerta del Sol, 5,187 properties — a landmark radius, wider than the barrio"
+  "note": "searches Centro, the district this area sits in: Booking returns 2,956 properties, as Madrid City Center there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/trafalgar": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamberí, the district this area sits in: Booking returns 290 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
  },
  "madrid/universidad": {
   "class": "TRAVELLER_ALIAS",
   "checked": "2026-09-14",
-  "note": "the barrio is Malasana to a visitor; \"Universidad, Madrid, Spain\" resolved to Universidad Autonoma de Madrid, the campus 8 km north, so the query now says Malasana — 554 properties in the right place"
+  "note": "searches Centro, the district this area sits in: Booking returns 2,956 properties, as Madrid City Center there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/valdeacederas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Tetuán, the district this area sits in: Booking returns 361 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/valdefuentes": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Hortaleza, the district this area sits in: Booking returns 114 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/valdemarin": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moncloa - Aravaca, the district this area sits in: Booking returns 155 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/valdezarza": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moncloa - Aravaca, the district this area sits in: Booking returns 155 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/vallehermoso": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Chamberí, the district this area sits in: Booking returns 290 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/valverde": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Fuencarral - El Pardo, the district this area sits in: Booking returns 80 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/ventas": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Ciudad Lineal, the district this area sits in: Booking returns 205 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/vinateros": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Moratalaz, the district this area sits in: Booking returns 20 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/vista-alegre": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Carabanchel, the district this area sits in: Booking returns 169 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
+ },
+ "madrid/zofio": {
+  "class": "TRAVELLER_ALIAS",
+  "checked": "2026-09-14",
+  "note": "searches Usera, the district this area sits in: Booking returns 122 properties there. The area's own name is a statistical micro-unit, not a Booking destination."
  },
  "napoli/municipalita-1": {
   "class": "EXACT_AREA",
@@ -113,6 +2473,236 @@
   "class": "CITY_FALLBACK",
   "checked": "2026-09-14",
   "note": "no Booking area exists: Quartieri Spagnoli, Montecalvario, Sanità and Piazza Garibaldi each returned a single property, Scampia and Ponticelli returned nothing. Falls back to Naples, 7,175 properties, and the page says so"
+ },
+ "newcastle/arthur-s-hill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/benwell-scotswood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/blakelaw": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/byker": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/callerton-throckley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/castle": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/chapel": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/dene-south-gosforth": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/denton-westerhope": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/elswick": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/fawdon-west-gosforth": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/gosforth": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/heaton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/kenton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/kingston-park-south-newbiggin-hall": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/lemington": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/manor-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/monument": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/north-jesmond": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/ouseburn": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/parklands": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/south-jesmond": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/walker": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/walkergate": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/west-fenham": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "newcastle/wingrove": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/aspley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/basford": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/berridge": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/bestwood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/bilborough": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/bulwell": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/bulwell-forest": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/castle": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/clifton-east": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/clifton-west": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/dales": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/hyson-green-arboretum": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/leen-valley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/lenton-wollaton-east": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/mapperley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/meadows": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/radford": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/sherwood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/st-ann-s": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "nottingham/wollaton-west": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
  },
  "paris/amerique": {
   "class": "TRAVELLER_ALIAS",
@@ -528,5 +3118,145 @@
   "class": "EXACT_AREA",
   "checked": "2026-09-14",
   "note": "Italy > Lazio > Rome > Trastevere, 1,061 properties"
+ },
+ "sheffield/beauchief-and-greenhill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/beighton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/birley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/broomhill-and-sharrow-vale": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/burngreave": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/city": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/crookes-and-crosspool": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/darnall": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/dore-and-totley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/east-ecclesfield": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/ecclesall": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/firth-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/fulwood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/gleadless-valley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/graves-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/hillsborough": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/manor-castle": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/mosborough": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/nether-edge-and-sharrow": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/park-and-arbourthorne": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/richmond": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/shiregreen-and-brightside": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/southey": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/stannington": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/stocksbridge-and-upper-don": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/walkley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/west-ecclesfield": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "sheffield/woodhouse": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
  }
 }
