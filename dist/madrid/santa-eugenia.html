@@ -19,6 +19,13 @@
   .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
   .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
   .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
   .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
   #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
   .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
@@ -54,6 +61,7 @@
     
     <span class="badge red">Higher caution advised</span> <span class="badge-label">day</span>
     <span class="badge red">Higher caution advised</span> <span class="badge-label">night</span>
+    
     
   </div>
   <div id="minimap"></div>

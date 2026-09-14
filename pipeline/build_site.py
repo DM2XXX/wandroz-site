@@ -272,7 +272,7 @@ def evidence_stats():
         with open(path) as f:
             zones = json.load(f)["zones"]
         areas += len(zones)
-        no_findings += sum(1 for z in zones if z.get("day") == "grey" and z.get("night") == "grey")
+        no_findings += sum(1 for z in zones if z.get("evidence") == "no_findings")
     rows = []
     for key in per_tier[RESEARCH_BASED]:
         path = os.path.join(ZONES_DIR, f"{key}.json")
@@ -280,7 +280,7 @@ def evidence_stats():
             continue
         with open(path) as f:
             zones = json.load(f)["zones"]
-        nf = sum(1 for z in zones if z.get("day") == "grey" and z.get("night") == "grey")
+        nf = sum(1 for z in zones if z.get("evidence") == "no_findings")
         rows.append({"city": CITY_LABEL_FOR_KEY.get(key, key.title()),
                      "areas": len(zones), "rated": len(zones) - nf, "no_findings": nf,
                      "reviewed": REVIEW_DATE.get(key, "—")})
@@ -319,9 +319,11 @@ def method_note(city_key, city_label, no_findings=False):
                 "This area was reviewed as part of a structured local-source assessment — the same "
                 "area-level review applied to every neighbourhood in %s, drawing on local and national "
                 "news, municipal and police-published material and official surveys where they exist. "
-                "The review reached nothing traveller-relevant for this area, so it carries no rating. "
-                "That is deliberate: an absence of reporting is not evidence that an area is safe, and "
-                "Wandroz does not convert one into the other." % city_label
+                "It returned nothing traveller-relevant specific to this area. The rating above "
+                "therefore rests on that absence together with the character of the area, and is "
+                "marked \u201cno area-specific findings\u201d: it carries less weight than the ratings "
+                "on this map that are built on named sources, and it is not a positive finding of "
+                "safety." % city_label
             )
         return (
             "This rating comes from a structured local-source assessment. This specific area was "
@@ -535,11 +537,23 @@ def attach_boundaries(cities):
                 b["coords"] = match["coords"]
 
 
-# grey is no longer "we have not got to this yet". It is a finding in its own
-# right: the area was reviewed and nothing traveller-relevant was documented.
-# That is deliberately not phrased as a safety level, because an empty search
-# is not evidence of safety.
-EN_TONE_BADGE = {"green": "Relatively safer", "yellow": "Average", "red": "Higher caution advised", "grey": "Reviewed — no findings"}
+EN_TONE_BADGE = {"green": "Relatively safer", "yellow": "Average", "red": "Higher caution advised", "grey": "Not covered"}
+
+# Every area carries a rating. What differs is what stands behind it, and that
+# is a separate field rather than a fourth colour: a map of a major city that
+# shrugs at a third of its districts is not useful, but a green earned by an
+# empty search is not the same claim as a green earned by sources, and the
+# site has to be able to say which is which.
+EVIDENCE_LABEL = {
+    "documented": "",
+    "no_findings": "No area-specific findings",
+}
+EVIDENCE_NOTE = (
+    "Sources were reviewed for this area and returned nothing traveller-relevant. "
+    "The rating reflects that absence together with the character of the area — "
+    "it is not a positive finding of safety, and it carries less weight than a "
+    "rating built on documented sources."
+)
 
 # Short, plain-language descriptor for each tone, used inside FAQ answer
 # sentences below (EN_TONE_BADGE is a label for a UI badge, not a sentence
@@ -557,7 +571,7 @@ def tone_descriptor(tone, city_label):
         "green": "relatively safer than most other neighbourhoods in {city}",
         "yellow": "roughly average compared to other neighbourhoods in {city}",
         "red": "an area where the data suggests extra caution relative to other neighbourhoods in {city}",
-        "grey": "reviewed with no traveller-relevant concern documented",
+        "grey": "not covered by this dataset",
     }.get(tone, tone)
     return phrase.format(city=city_label) if "{city}" in phrase else phrase
 
@@ -638,26 +652,30 @@ def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIME
             f"and labelled as such rather than presented as evidenced."
         )
 
-    # An area-level review that reached no source is not a rating, and the
-    # answer to "is it safe?" has to say so rather than borrow the wording of
-    # one. This is the no-coverage rule at the point where a visitor reads it.
-    if zone["day"] == "grey" and zone["night"] == "grey":
-        no_findings = (
-            f"{name} was reviewed at area level and no traveller-relevant safety concern was documented "
-            f"for it in the sources checked. Wandroz records that as no findings, not as a safety "
-            f"rating: an absence of reporting is not evidence that an area is safe. {basis_sentence}"
-        )
+    # Where the area-level review reached nothing specific, the rating still
+    # stands — every area on a city map carries one — but the answer says what
+    # it rests on. A green earned by an empty search is not the same claim as a
+    # green earned by sources, and a visitor is entitled to know which they are
+    # reading.
+    if zone.get("evidence") == "no_findings":
         faqs = [
-            {"q": f"Is {name} safe?", "a": no_findings},
-            {"q": f"Why does {name} have no rating?",
-             "a": (f"Because the review found nothing to rate it on. Areas with documented, sourced "
-                   f"signals get a level; areas without them are shown as reviewed with no findings, so "
-                   f"you can tell the difference between an area that was checked and came back clear of "
-                   f"documented issues and one that was never looked at. Both are treated as "
-                   f"inconclusive here rather than as reassurance.")},
+            {"q": f"Is {name} safe?",
+             "a": (f"Wandroz rates {name} in {city_label} as {day_desc}. That rating rests on an "
+                   f"area-level review that reached no traveller-relevant reporting specific to "
+                   f"{name} — no incidents, no recurring problems, nothing documented either way — "
+                   f"read together with the character of the area. It is not a positive finding of "
+                   f"safety: an absence of reporting is weaker evidence than the sourced ratings "
+                   f"elsewhere on this map, and it is marked as such wherever it appears.")},
+            {"q": f"What was checked for {name}?",
+             "a": (f"The same area-level review every other neighbourhood on the {city_label} map "
+                   f"gets: local and national news, municipal and police-published material, and "
+                   f"official surveys where they exist, searched for this specific area. {name} "
+                   f"returned nothing traveller-relevant, which is common for smaller administrative "
+                   f"areas without a press profile of their own. Where a review does return "
+                   f"something, the sources are named on the area's page.")},
             {"q": f"Is {name} a good area to stay in as a tourist?",
-             "a": (f"Nothing documented argues against it, and nothing documented argues for it either. "
-                   f"For a stay, weigh it against the rated areas on the {city_label} map and check "
+             "a": (f"Nothing documented argues against it. For a stay, weigh that against the areas "
+                   f"on the {city_label} map whose ratings are backed by named sources, and check "
                    f"recent reviews for the specific street. You can search accommodation already "
                    f"scoped to this area using the Booking.com link on this page.")},
         ]
@@ -937,6 +955,8 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             "night_label": tone_badge.get(z["night"], z["night"]),
             "text": z["text"], "query": z["query"],
             "coords": z["coords"], "url": z_url,
+            "evidence": z.get("evidence", "documented"),
+            "evidence_label": EVIDENCE_LABEL.get(z.get("evidence", "documented"), ""),
         }
         if extra_zone_data:
             zone_js["burglary"] = extra_zone_data.get(z["name"])
@@ -954,6 +974,8 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         label_day=ui["label_day"], label_night=ui["label_night"],
         legend_green=ui["legend_green"], legend_yellow=legend_yellow,
         legend_red=ui["legend_red"], legend_grey=ui["legend_grey"],
+        has_grey=any(z["day"] == "grey" or z["night"] == "grey" for z in zones),
+        has_no_findings=any(z.get("evidence") == "no_findings" for z in zones),
         label_zone_detail=ui["label_zone_detail"], label_click_hint=ui["label_click_hint"],
         label_all_zones=ui["label_all_zones"], label_booking=ui["label_booking"],
         label_more=ui["label_more"], label_not_covered="",
@@ -978,6 +1000,8 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             out_path = os.path.join(zdir, "index.html")
             z_canonical = f"{SITE_URL}/{url_slug}/{z['slug']}/"
         zone_ctx = dict(z)
+        zone_ctx["evidence_label"] = EVIDENCE_LABEL.get(z.get("evidence", "documented"), "")
+        zone_ctx["evidence_note"] = EVIDENCE_NOTE if z.get("evidence") == "no_findings" else ""
         zone_ctx["day_label"] = tone_badge.get(z["day"], z["day"])
         zone_ctx["night_label"] = tone_badge.get(z["night"], z["night"])
         if extra_zone_data:
@@ -998,7 +1022,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
                                 if z.get("booking_scope", "area") == "area"
                                 else BOOKING_CITY_SCOPE_NOTE),
             data_note=method_note(city_key, data["label"],
-                                  no_findings=(z["day"] == "grey" and z["night"] == "grey")),
+                                  no_findings=(z.get("evidence") == "no_findings")),
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
             evidence_tag=evidence_line(city_key, len(zones)),
             faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
@@ -1092,6 +1116,8 @@ def render_london_map(cities):
         label_day="day", label_night="night",
         legend_green=EN_TONE_BADGE["green"], legend_yellow=EN_TONE_BADGE["yellow"],
         legend_red=EN_TONE_BADGE["red"], legend_grey=EN_TONE_BADGE["grey"],
+        has_grey=any(z["day"] == "grey" or z["night"] == "grey" for z in js_zones),
+        has_no_findings=False,
         label_zone_detail="Borough detail", label_click_hint="Click a borough on the map to see its level, the reasoning, and a Booking.com link for that area.",
         label_all_zones="All boroughs", label_booking="Search accommodation here on Booking.com →",
         label_more="See the auto-updating live data →",
@@ -1300,7 +1326,7 @@ TORINO_UI = {
     "legend_green": "Calm — no particular concern",
     "legend_yellow": "Caution — fine by day, be more careful in the evening/night",
     "legend_red": "Not recommended for a tourist — known, recurring issues",
-    "legend_grey": "Reviewed — no traveller-relevant findings documented; not a safety rating",
+    "legend_grey": "Not covered by this dataset",
     "label_zone_detail": "Zone detail", "label_click_hint": "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.",
     "label_all_zones": "All neighbourhoods", "label_booking": "Search accommodation here on Booking.com →",
     "label_more": "See the full page →",

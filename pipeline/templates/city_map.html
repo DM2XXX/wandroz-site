@@ -45,6 +45,10 @@
   .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
   .legend-item { display:flex; align-items:center; gap:8px; }
   .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
+  .legend-dash { display:flex; align-items:center; gap:8px; }
+  .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
+  .ev-flag { display:flex; gap:7px; align-items:flex-start; font-size:12px; color:#5b6670; margin:6px 0 2px; line-height:1.45; }
+  .ev-dot { flex:none; width:9px; height:9px; margin-top:3px; border-radius:50%; border:1.5px dashed #7a8190; }
   .legend-poi-item { display:flex; align-items:center; gap:8px; }
   .legend-poi-item.off { display:none; }
   /* Sights sit on top of the safety colours, so they carry none of their own:
@@ -201,7 +205,8 @@
     <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">{{ legend_green }}</span></div>
     <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">{{ legend_yellow }}</span></div>
     <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">{{ legend_red }}</span></div>
-    <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">{{ legend_grey }}</span></div>
+    {% if has_grey %}<div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">{{ legend_grey }}</span></div>{% endif %}
+    {% if has_no_findings %}<div class="legend-dash"><i></i> <span>Dashed outline: no area-specific findings</span></div>{% endif %}
     {% if pois %}<div class="legend-poi-sep" id="legendPoiSep"></div>
     <div id="legendPoi"></div>{% endif %}
   </div>
@@ -318,16 +323,17 @@
     if (burglaryMode) { renderBurglaryDetail(z); return; }
     var tone = toneOf(z);
     var html = '<div class="zn">' + z.name + '</div>';
-    if (z.day === 'grey' && z.night === 'grey') {
-      // Nothing was found, so there is nothing to split into day and night:
-      // two identical badges would dress an absence up as a measurement.
-      html += badge('grey', z.day_label || 'Reviewed — no findings');
-    } else if (SHOW_TOGGLE) {
+    if (SHOW_TOGGLE) {
       html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
     } else if (z.covered) {
       html += badge(tone, z.tone_label || tone);
     } else {
       html += badge('grey', z.tone_label || '');
+    }
+    if (z.evidence === 'no_findings') {
+      html += '<div class="ev-flag"><span class="ev-dot"></span>' + z.evidence_label +
+              ' — the review reached no reporting specific to this area, so the rating rests on that ' +
+              'absence rather than on named sources.</div>';
     }
     if (z.text) {
       html += '<div class="body-text">' + z.text + '</div>';
@@ -349,7 +355,8 @@
     document.getElementById('legendGreenText').textContent = set.green;
     document.getElementById('legendYellowText').textContent = set.yellow;
     document.getElementById('legendRedText').textContent = set.red;
-    document.getElementById('legendGreyText').textContent = set.grey;
+    var greyEl = document.getElementById('legendGreyText');
+    if (greyEl) { greyEl.textContent = set.grey; }
   }
 
   function draw() {
@@ -357,7 +364,13 @@
     layers = [];
     ZONES.forEach(function(z){
       var tone = toneOf(z);
-      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight:2, fillOpacity:0.32 }).addTo(map);
+      // Dashed where the rating rests on an absence of reporting rather than
+      // on sources: the colour still carries the judgement, the outline says
+      // how much evidence is behind it.
+      var thin = z.evidence === 'no_findings';
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight: thin ? 1.5 : 2,
+                                       dashArray: thin ? '5,4' : null,
+                                       fillOpacity: 0.32 }).addTo(map);
       // Name is visible on hover (not just after a click) via a sticky
       // tooltip, plus a highlight so it's obvious which zone you're over —
       // click still opens the full detail card.

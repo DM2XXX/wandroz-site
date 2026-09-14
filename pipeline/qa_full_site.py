@@ -504,6 +504,10 @@ SOURCE_REACHED_RE = re.compile(
     r"|\b(19|20)\d\d\b.{0,60}\b(report|reported|data|figures|survey|statistics|cases|incidents|arrests|"
     r"operation|complaint|coverage)"
     r"|\bcrimes per 1,?000\b|\bper 1,?000 population\b"
+    # A described, concrete event is a source reached, however it is worded.
+    r"|\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(19|20)\d\d\b"
+    r"|\b(dismantled|investigated for|prosecut|convicted|arrested|arrests|raid|crackdown|seizure|"
+    r"molotov|stabbing|shooting|brawl|altercation|mugging|snatching)\b"
     r"|\b(ayuntamiento|comune|municipio|city of|stadt|mairie|prefecture|prefettura|questura|police|polizia|"
     r"polizei|policie|mossos|garda|carabinieri|guardia civil|statistics|statistical|survey|census|"
     r"court of appeal|ministry|ministero|kantonspolizei|met police|police scotland|churchill support|datamap)\b",
@@ -525,8 +529,14 @@ def review_reached_a_source(text):
 
 
 def check_no_coverage_rule(F):
-    """No source reached means no rating. Checked against the source data, so
-    it holds for every city on a local-source assessment, present and future."""
+    """An absence of reporting must be labelled as one, everywhere it is shown.
+
+    The site promised in writing that an absence of negative coverage is
+    inconclusive while rating 178 such areas "calm — no particular concern"
+    with nothing to distinguish them from areas backed by named sources. The
+    ratings stay; the distinction is now a field, and this is what keeps it
+    honest — checked against the source data, so it holds for every city on a
+    local-source assessment, present and future."""
     for key, meta in BS.CITY_METHODOLOGY.items():
         if meta["tier"] != BS.RESEARCH_BASED:
             continue
@@ -539,15 +549,15 @@ def check_no_coverage_rule(F):
                 continue
             if review_reached_a_source(text):
                 continue          # sources were reached and showed nothing adverse
-            # The rule bites on false reassurance specifically. An area shown
-            # as calm day and night on the strength of an empty search is the
-            # defect; a cautious tone reasoned from context (isolated, unlit,
-            # no footfall) is a judgement the page states, not a claim of
-            # safety, so it is left alone.
-            if (z.get("day"), z.get("night")) == ("green", "green"):
-                F.fail("METHODOLOGY", "no-coverage-rated", "%s/%s" % (key, z["slug"]),
-                       "the review reached no source for this area, but it is rated calm day and "
-                       "night — an absence of reporting is not evidence of safety")
+            # Every area carries a colour — these are major cities and a map
+            # that shrugs at a third of them is not useful. What the rule
+            # enforces is that the colour never passes an empty search off as
+            # a sourced finding: the area must be flagged no_findings, and
+            # that flag is what the map, the badge and the FAQ disclose.
+            if z.get("evidence") != "no_findings":
+                F.fail("METHODOLOGY", "unflagged-absence", "%s/%s" % (key, z["slug"]),
+                       "the review reached no source for this area, yet it is rated as if it had: "
+                       "set evidence=no_findings so the rating discloses what it rests on")
 
 
 def check_forbidden_copy(dist, F):
