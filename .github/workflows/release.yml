@@ -82,8 +82,13 @@ jobs:
           # paths on top of main only adds and updates: a file the branch
           # deleted survived into the build, which is how a renamed sights file
           # came back as an orphan and failed the gate.
-          rm -rf pipeline .github
-          git checkout "$SRC" -- pipeline .github
+          # data/ is source too. It holds the scores the pages are built from,
+          # and leaving it out meant a release could publish a rebuild of the
+          # generator against last month's numbers: London kept saying
+          # April-June after its scores had been refreshed to May-July on the
+          # branch, because the branch's data never travelled with it.
+          rm -rf pipeline .github data
+          git checkout "$SRC" -- pipeline .github data
           echo "Source taken from $SRC"
 
       - name: Install dependencies
@@ -119,7 +124,7 @@ jobs:
           rm -rf candidate
           git config user.name "wandroz-release"
           git config user.email "release@wandroz.com"
-          git add -A pipeline .github dist
+          git add -A pipeline .github data dist
           if git diff --cached --quiet; then
             echo "::error::nothing to release — main already matches this build"
             exit 1
