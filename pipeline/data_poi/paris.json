@@ -187,6 +187,72 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 17
+  },
+  {
+   "name": "Rue Oberkampf",
+   "category": "night",
+   "qid": "Q2373366",
+   "lat": 48.8654,
+   "lon": 2.37633,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Pigalle",
+   "category": "night",
+   "qid": "Q576507",
+   "lat": 48.882277777778,
+   "lon": 2.3373611111111,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Bastille",
+   "category": "night",
+   "qid": "Q1865480",
+   "lat": 48.853333,
+   "lon": 2.369167,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
+  },
+  {
+   "name": "Tuileries Garden",
+   "category": "green",
+   "qid": "Q818517",
+   "lat": 48.86367,
+   "lon": 2.32669,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 21
+  },
+  {
+   "name": "Jardin des Plantes",
+   "category": "green",
+   "qid": "Q730948",
+   "lat": 48.84404,
+   "lon": 2.35969,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 22
+  },
+  {
+   "name": "Parc des Buttes-Chaumont",
+   "category": "green",
+   "qid": "Q532113",
+   "lat": 48.87954,
+   "lon": 2.3838,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 23
   }
  ]
 }

@@ -145,6 +145,50 @@
    "rank": 13
   },
   {
+   "name": "Port Olímpic",
+   "category": "night",
+   "qid": "Q171204",
+   "lat": 41.38666667,
+   "lon": 2.20027778,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "El Poble-sec",
+   "category": "night",
+   "qid": "Q980253",
+   "lat": 41.37278,
+   "lon": 2.1625,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Parc de la Ciutadella",
+   "category": "green",
+   "qid": "Q301135",
+   "lat": 41.388111,
+   "lon": 2.187517,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Jardins de Laribal",
+   "category": "green",
+   "qid": "Q14849519",
+   "lat": 41.36768,
+   "lon": 2.15782,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
    "name": "Camp Nou",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -153,7 +197,7 @@
    "lat": 41.380833,
    "lon": 2.122778,
    "qid": "Q159848",
-   "rank": 14
+   "rank": 18
   }
  ]
 }

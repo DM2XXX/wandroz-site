@@ -159,9 +159,8 @@ CITY_LINKS_BY_COUNTRY = group_cities_by_country(CITY_LINKS, name_key="label")
 # knowledge and public reputation") regardless of which tier applied. That
 # mismatch is exactly the contradiction flagged in the September 2026 deep
 # QA review: e.g. Berlin/Amsterdam/Prague/Oslo/Munich/Stockholm/Brussels/
-# Edinburgh are driven by a real official police/government statistic (see
-# each city's own *_BANNER text below, which already discloses this
-# correctly) yet their FAQ implied a guess. This dict is the single source
+# Edinburgh are driven by a real official police/government statistic yet
+# their FAQ implied a guess. This dict is the single source
 # of truth for that classification — build_faq_illustrative(), the legend
 # text and the homepage's per-city evidence tag all read from it, so a
 # newly added city only needs one correct entry here instead of getting
@@ -181,7 +180,7 @@ CITY_LINKS_BY_COUNTRY = group_cities_by_country(CITY_LINKS, name_key="label")
 #
 # crime_source, where given, is a short human-readable citation used in FAQ
 # copy for OFFICIAL_SNAPSHOT cities — kept short deliberately; the full
-# citation with dataset names/years lives in each city's *_BANNER text.
+# citation with dataset names and years lives on the methodology page.
 OFFICIAL_SNAPSHOT = "OFFICIAL_SNAPSHOT"
 RESEARCH_BASED = "RESEARCH_BASED"
 MANUAL_EXPERIMENTAL = "MANUAL_EXPERIMENTAL"
@@ -230,6 +229,27 @@ CITY_METHODOLOGY = {
 # Wording is deliberately conservative. MANUAL_EXPERIMENTAL gets a neutral
 # label rather than anything implying a data source, because Turin and Zurich
 # have none: their ratings are a qualitative first pass.
+# The yellow box on a city map used to run five lines and explain London to
+# someone reading about Zurich. It now says what the shapes are and how the
+# levels were made, in one line, and sends the rest to the methodology page
+# where a reader who wants the sources will go looking anyway.
+DATA_BANNER = {
+    OFFICIAL_SNAPSHOT: "Official neighbourhood boundaries; safety levels from official recorded-crime data.",
+    RESEARCH_BASED: "Official neighbourhood boundaries; safety levels from current local press research, not an official crime dataset.",
+    MANUAL_EXPERIMENTAL: "Official neighbourhood boundaries; safety levels are a first manual pass, not an official crime dataset.",
+}
+# Zurich is the one city with a real official figure underneath a manual
+# rating, and that is worth the extra clause.
+DATA_BANNER_EXTRA = {
+    "zurigo": " Each neighbourhood also shows the Kantonspolizei's burglary rate for its district.",
+}
+
+
+def data_banner(city_key):
+    line = DATA_BANNER[CITY_METHODOLOGY[city_key]["tier"]]
+    return line + DATA_BANNER_EXTRA.get(city_key, "")
+
+
 EVIDENCE_TAG = {
     OFFICIAL_SNAPSHOT: "🟢 Official crime data",
     RESEARCH_BASED: "🟡 Local source research",
@@ -658,7 +678,7 @@ def build_zurich_zone_burglary():
     return zone_data
 
 
-def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banner, neigh_note, extra_zone_data=None, flat=False):
+def render_illustrative_city(city_key, url_slug, ui, tone_badge, neigh_note, extra_zone_data=None, flat=False):
     """Render a full-city interactive map (day/night toggle, click-a-zone
     detail sidebar) plus one detail sub-page per neighbourhood, for a city
     whose ratings are an illustrative first pass rather than an automated
@@ -747,7 +767,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, data_note_banne
         page_title=ui["page_title"], page_description=ui["page_description"],
         canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
         page_h1=ui["page_h1"], page_lead=ui["page_lead"],
-        data_note=data_note_banner, show_toggle=show_toggle,
+        data_note=data_banner(city_key), show_toggle=show_toggle,
         label_day=ui["label_day"], label_night=ui["label_night"],
         legend_green=ui["legend_green"], legend_yellow=legend_yellow,
         legend_red=ui["legend_red"], legend_grey=ui["legend_grey"],
@@ -870,28 +890,11 @@ def render_london_map(cities):
     map_tpl = env.get_template("city_map.html")
     canonical = f"{SITE_URL}/london/"
     total_zones = len(js_zones)
-    not_covered = total_zones - live_count
-    if live_count >= total_zones - 1:
-        # The only realistic gap left is the City of London (structurally
-        # excluded — separate police force), so say so plainly instead of
-        # a vague "the rest" once coverage is effectively complete.
-        coverage_sentence = (
-            f"{live_count} of {total_zones} boroughs — every London borough except the City of London, which is "
-            "policed separately and isn't covered by this dataset — are refreshed automatically every month."
-        )
-    else:
-        coverage_sentence = (
-            f"{live_count} of {total_zones} boroughs are refreshed automatically every month; the other "
-            f"{not_covered} reflect the same real dataset from when this map was built and aren't on the automatic "
-            "refresh yet."
-        )
+    # One line, like every other city: the reader who wants the dataset,
+    # the normalisation and the caveats follows the methodology link.
     data_note = (
-        f"Boundaries and ratings are based on real Metropolitan Police crime data (data.police.uk). {coverage_sentence} "
-        "Each covered borough's day score (property crime) and night score (violence, robbery, street theft, public "
-        "order, anti-social behaviour — a category-mix proxy, not literal time-stamped data) are normalised by an "
-        f"estimated workday/footfall population rather than resident population, then rated against the AVERAGE of "
-        f"the {live_count} boroughs currently covered (not yet a fixed, borough-independent scale). Click one and "
-        "follow the link for the live current numbers and full methodology."
+        f"Boundaries and ratings come from real Metropolitan Police crime data (data.police.uk); "
+        f"{live_count} of {total_zones} boroughs refresh automatically every month."
     )
     html = map_tpl.render(
         lang="en", city_label="London", tagline="Neighbourhood safety for travellers",
@@ -1152,22 +1155,10 @@ BARCELONA_UI.update({
     "neigh_title": "Is {name} in Barcelona safe? | Wandroz",
 })
 
-TORINO_BANNER = (
-    "Neighbourhood shapes are the City of Turin's real official boundaries (the \"Quartieri\" dataset). Safety "
-    "levels, on the other hand, are a first manual pass — general knowledge, not a geolocated crime dataset — "
-    "unlike London. See the methodology page for details."
-)
 TORINO_NEIGH_NOTE = (
     "Risk levels for Turin are a qualitative judgment call based on general knowledge and public reputation of "
     "each neighbourhood, not an official geolocated crime dataset — unlike London, no open municipal dataset at "
     "this level of detail exists yet for Turin."
-)
-ZURIGO_BANNER = (
-    "Neighbourhood shapes are the City of Zurich's real official boundaries (the \"Statistische Quartiere\" "
-    "dataset). Safety levels are a first manual pass — general knowledge, not a geolocated crime dataset — unlike "
-    "London. Where available, each neighbourhood page below also shows one real, official data point: the "
-    "Kantonspolizei Zürich's burglary rate for its wider city district (Kreis) — narrower and coarser than "
-    "London's pipeline, but genuine and current. See the methodology page for details."
 )
 ZURIGO_NEIGH_NOTE = (
     "Risk levels for Zurich are a qualitative judgment call based on general knowledge and public reputation of "
@@ -1175,15 +1166,6 @@ ZURIGO_NEIGH_NOTE = (
     "this level of detail exists yet for Zurich."
 )
 
-MILANO_BANNER = (
-    "Neighbourhood shapes are the Comune di Milano's real official boundaries (the \"Nuclei d'Identità Locale\" "
-    "dataset), covering all 88 official zones. Unlike Turin/Zurich's general-knowledge first pass, Milan's safety "
-    "levels are Wandroz's Level 2 approach: genuine current local/national press research per area, honestly "
-    "disclosed as press-based rather than official crime statistics — no open geolocated crime dataset exists for "
-    "Milan (checked against the Comune, Regione Lombardia and local police). Where no specific news coverage was "
-    "found for a zone, that is stated plainly rather than assumed either way. See the methodology page for "
-    "details and sources."
-)
 MILANO_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Milan: genuine current local/national press research for this "
     "specific area (not blind guessing, not fabricated crime statistics), honestly disclosed as press-based "
@@ -1191,14 +1173,6 @@ MILANO_NEIGH_NOTE = (
     "the methodology page for what was checked and how this differs from London's automated official-data pipeline."
 )
 
-ROMA_BANNER = (
-    "Neighbourhood shapes are Roma Capitale's real official boundaries (the \"Zone Urbanistiche\" dataset, via the "
-    "Comune's Geoportale), covering all 155 official zones. Like Milan, Rome's safety levels are Wandroz's Level 2 "
-    "approach: genuine current local/national press research per area, honestly disclosed as press-based rather "
-    "than official crime statistics — no open geolocated crime dataset exists for Rome (Italy does not publish one "
-    "at neighbourhood level). Where no specific news coverage was found for a zone, that is stated plainly rather "
-    "than assumed either way. See the methodology page for details and sources."
-)
 ROMA_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Rome: genuine current local/national press research for this "
     "specific area (not blind guessing, not fabricated crime statistics), honestly disclosed as press-based "
@@ -1206,17 +1180,6 @@ ROMA_NEIGH_NOTE = (
     "the methodology page for what was checked and how this differs from London's automated official-data pipeline."
 )
 
-BARCELONA_BANNER = (
-    "Neighbourhood shapes are the Ajuntament de Barcelona's real official administrative boundaries (73 official "
-    "\"barris\", grouped into 10 districts), reached via a direct GeoJSON conversion of the Ajuntament's own "
-    "shapefile dataset (the portal's own raw endpoint was bot-gated for automated access at build time, so a "
-    "mirror that republishes the same official geometry unmodified was used instead). Like Milan, Rome and Turin, "
-    "Barcelona's safety levels are Wandroz's Level 2 approach: genuine current local/national press research per "
-    "barri, honestly disclosed as press-based rather than official crime statistics — no open geolocated crime "
-    "dataset exists for Barcelona at neighbourhood level (checked against the Ajuntament's own open-data portal). "
-    "Where no specific news coverage was found for a barri, that is stated plainly rather than assumed either "
-    "way. See the methodology page for details and sources."
-)
 BARCELONA_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Barcelona: genuine current local/national press research for "
     "this specific barri (not blind guessing, not fabricated crime statistics), honestly disclosed as "
@@ -1233,16 +1196,6 @@ MADRID_UI.update({
     "neigh_title": "Is {name} in Madrid safe? | Wandroz",
 })
 
-MADRID_BANNER = (
-    "Neighbourhood shapes are the Ayuntamiento de Madrid's real official administrative boundaries (131 official "
-    "\"barrios\", grouped into 21 districts), sourced directly from the city's own Geoportal (geoportal.madrid.es) "
-    "TopoJSON dataset. Like Milan, Rome, Turin and Barcelona, Madrid's safety levels are Wandroz's Level 2 "
-    "approach: genuine current local/national press research per barrio, honestly disclosed as press-based "
-    "rather than official crime statistics — no open geolocated crime dataset exists for Madrid at neighbourhood "
-    "level (checked against both the Ayuntamiento's own open-data portal and the Comunidad de Madrid's "
-    "statistical offerings). Where no specific news coverage was found for a barrio, that is stated plainly "
-    "rather than assumed either way. See the methodology page for details and sources."
-)
 MADRID_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Madrid: genuine current local/national press research for "
     "this specific barrio (not blind guessing, not fabricated crime statistics), honestly disclosed as "
@@ -1259,16 +1212,6 @@ VIENNA_UI.update({
     "neigh_title": "Is {name} in Vienna safe? | Wandroz",
 })
 
-VIENNA_BANNER = (
-    "District shapes are Vienna's real official administrative boundaries (the 23 \"Bezirke\"), sourced from "
-    "Statistik Austria's own official boundary dataset. Like Milan, Rome, Turin, Barcelona and Madrid, Vienna's "
-    "safety levels are Wandroz's Level 2 approach: genuine current local/national press research per district, "
-    "honestly disclosed as press-based rather than official crime statistics — Austria has no open, geolocated "
-    "Bezirk-level crime dataset (Statistik Austria and the Bundeskriminalamt's PKS only publish at Bundesland/"
-    "state level; an internal police spatial-crime-analysis tool exists but is not public). Where no specific "
-    "news coverage was found for a district, that is stated plainly rather than assumed either way. See the "
-    "methodology page for details and sources."
-)
 VIENNA_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Vienna: genuine current local/national press research for "
     "this specific district (not blind guessing, not fabricated crime statistics), honestly disclosed as "
@@ -1285,16 +1228,6 @@ LISBON_UI.update({
     "neigh_title": "Is {name} in Lisbon safe? | Wandroz",
 })
 
-LISBON_BANNER = (
-    "Neighbourhood shapes are Lisbon's real official administrative boundaries (the 24 \"freguesias\", civil "
-    "parishes since the 2012 reform), sourced directly from the Câmara Municipal de Lisboa's own Lisboa Aberta "
-    "open-data portal. Like Milan, Rome, Turin, Barcelona, Madrid and Vienna, Lisbon's safety levels are "
-    "Wandroz's Level 2 approach: genuine current local/national press research per freguesia, honestly "
-    "disclosed as press-based rather than official crime statistics — Portugal has no open, geolocated "
-    "freguesia-level crime dataset (the Sistema de Segurança Interna's annual RASI report is PDF-only and "
-    "reports only at municipality/national level). Where no specific news coverage was found for a freguesia, "
-    "that is stated plainly rather than assumed either way. See the methodology page for details and sources."
-)
 LISBON_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Lisbon: genuine current local/national press research for "
     "this specific freguesia (not blind guessing, not fabricated crime statistics), honestly disclosed as "
@@ -1311,17 +1244,6 @@ PARIS_UI.update({
     "neigh_title": "Is {name} in Paris safe? | Wandroz",
 })
 
-PARIS_BANNER = (
-    "Neighbourhood shapes are Paris's real official administrative boundaries (the 80 \"quartiers "
-    "administratifs\", 4 per arrondissement across all 20 arrondissements), sourced directly from the City of "
-    "Paris's own opendata.paris.fr open-data portal. Like Milan, Rome, Turin, Barcelona, Madrid, Vienna and "
-    "Lisbon, Paris's safety levels are Wandroz's Level 2 approach: genuine current local/national press "
-    "research per quartier, honestly disclosed as press-based rather than official crime statistics — France's "
-    "SSMSI crime dataset is published only at commune level, and Paris is a single commune, so no official "
-    "arrondissement- or quartier-level crime breakdown exists. Where no specific news coverage was found for a "
-    "quartier, that is stated plainly rather than assumed either way. See the methodology page for details and "
-    "sources."
-)
 PARIS_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Paris: genuine current local/national press research for "
     "this specific quartier (not blind guessing, not fabricated crime statistics), honestly disclosed as "
@@ -1338,16 +1260,6 @@ BERLIN_UI.update({
     "neigh_title": "Is {name} in Berlin safe? | Wandroz",
 })
 
-BERLIN_BANNER = (
-    "Neighbourhood shapes are Polizei Berlin's real official \"Bezirksregion\" boundaries (143 zones, via the "
-    "Kriminalitätsatlas Berlin / LKA St 14). Unlike Milan and Rome's press-research approach, Berlin's safety "
-    "levels come from a real official police statistic — the 2025 Häufigkeitszahl (total recorded offences per "
-    "100,000 registered residents) per zone — the same kind of open geolocated data London's pipeline uses, "
-    "though here as one annual figure rather than a live day/night feed, so the source data has no time-of-day "
-    "breakdown and this map shows one consistent level per zone rather than a day/night toggle. HZ counts "
-    "against registered residents, not footfall, so busy tourist, shopping or transit areas can read higher "
-    "without that meaning elevated risk per visit — see the methodology page for details."
-)
 BERLIN_NEIGH_NOTE = (
     "This rating for Berlin is a real official police statistic — Polizei Berlin's 2025 Häufigkeitszahl (total "
     "recorded offences per 100,000 registered residents) for this Bezirksregion — not a qualitative or "
@@ -1364,17 +1276,6 @@ AMSTERDAM_UI.update({
     "neigh_title": "Is {name} in Amsterdam safe? | Wandroz",
 })
 
-AMSTERDAM_BANNER = (
-    "Neighbourhood shapes are the Gemeente Amsterdam's real official \"wijk\" boundaries (110 zones, via "
-    "api.data.amsterdam.nl). Like Berlin, Amsterdam's safety levels come from a real official statistic — CBS "
-    "(Statistics Netherlands) registered crimes per wijk for 2025, converted to a rate per 100,000 residents "
-    "using CBS's own 2025 population figures per wijk — rather than Milan/Rome's press-research approach. This "
-    "rate is calculated against registered residents, not footfall, so high-traffic tourist/shopping/transit "
-    "areas (like the city centre) can read higher without that meaning elevated risk per visit, and a few very "
-    "sparsely populated wijken (harbour/industrial fringe areas) can swing sharply from a handful of cases. The "
-    "source data has no time-of-day breakdown, so — like Berlin — this map shows one consistent level per wijk "
-    "rather than a day/night toggle; see the methodology page for details."
-)
 AMSTERDAM_NEIGH_NOTE = (
     "This rating for Amsterdam is a real official statistic — CBS's 2025 registered crimes for this wijk, "
     "converted to a rate per 100,000 residents using CBS's own 2025 population figures — not a qualitative or "
@@ -1392,18 +1293,6 @@ PRAHA_UI.update({
     "neigh_title": "Is {name} in Prague safe? | Wandroz",
 })
 
-PRAHA_BANNER = (
-    "Neighbourhood shapes are Prague's real official 57 \"mestske casti\" (city districts, boundaries via "
-    "OpenStreetMap's administrative-boundary data). Like Berlin and Amsterdam, Prague's safety levels come from a "
-    "real official statistic — Policie CR's (Czech Police) total registered incidents per district for 2024, via "
-    "the official kriminalita.policie.gov.cz portal, converted to a rate per 100,000 residents using CSU (Czech "
-    "Statistical Office) 2024 population figures per district — rather than Milan/Rome's press-research approach. "
-    "This rate is calculated against registered residents, not footfall, so high-traffic tourist/shopping/transit "
-    "areas (like Praha 1's historic centre) can read higher without that meaning elevated risk per visit, and a "
-    "few very sparsely populated outer districts can swing sharply from a handful of cases. The source data has "
-    "no time-of-day breakdown, so — like Berlin and Amsterdam — this map shows one consistent level per district "
-    "rather than a day/night toggle; see the methodology page for details."
-)
 PRAHA_NEIGH_NOTE = (
     "This rating for Prague is a real official statistic — Policie CR's total registered incidents for this "
     "district in 2024 (via kriminalita.policie.gov.cz), converted to a rate per 100,000 residents using CSU's "
@@ -1422,22 +1311,6 @@ OSLO_UI.update({
     "neigh_title": "Is {name} in Oslo safe? | Wandroz",
 })
 
-OSLO_BANNER = (
-    "Neighbourhood shapes are Oslo's real official 15 bydeler (city boroughs, boundaries via OpenStreetMap's "
-    "administrative-boundary data) plus Sentrum, the city centre — 16 zones, none excluded. Like Berlin, Amsterdam "
-    "and Prague, Oslo's safety levels come from a real official statistic — Oslo kommune's own Statistikkbanken "
-    "figures on reported offences by place of occurrence per bydel for 2024, converted to a rate per 100,000 "
-    "residents using the same Statistikkbanken's 2024 population figures per bydel — rather than Milan/Rome's "
-    "press-research approach. Sentrum is not one of the 15 administrative bydeler and has no bydel-level population "
-    "figure, so its rating instead combines Oslo kommune's own crime figure for Sentrum with a population figure "
-    "for the same area from Statistics Norway (SSB); the resulting rate is roughly 60x the citywide average, a "
-    "statistical artefact of Sentrum's tiny resident base against its huge footfall — see the methodology page and "
-    "Sentrum's own zone page for the full explanation. This rate is calculated against registered residents, not "
-    "footfall, so high-traffic central/nightlife/shopping bydeler (like Gamle Oslo or Frogner) can read higher "
-    "without that meaning elevated risk per visit. The source data has no time-of-day breakdown, so — like Berlin, "
-    "Amsterdam and Prague — this map shows one consistent level per bydel rather than a day/night toggle; see the "
-    "methodology page for details."
-)
 OSLO_NEIGH_NOTE = (
     "This rating for Oslo is a real official statistic — Oslo kommune's own Statistikkbanken figure for reported "
     "offences by place of occurrence in this bydel in 2024, converted to a rate per 100,000 residents using the "
@@ -1455,19 +1328,6 @@ MUNICH_UI.update({
     "neigh_title": "Is {name} in Munich safe? | Wandroz",
 })
 
-MUNICH_BANNER = (
-    "Neighbourhood shapes are Munich's real official 25 Stadtbezirke (city districts, boundaries via "
-    "GeodatenService München's own boundary data). Like Berlin, Amsterdam, Prague and Oslo, Munich's safety levels "
-    "come from a real official statistic — Polizeipräsidium München and the Statistisches Amt München's own "
-    "published 2025 total recorded-offence counts per Stadtbezirk, converted to a rate per 100,000 residents using "
-    "each district's 31 December 2024 population — rather than Milan/Rome's press-research approach. This rate is "
-    "calculated against registered residents, not footfall, so high-traffic central/station/nightlife districts — "
-    "especially Altstadt-Lehel (the historic centre around Marienplatz) and Ludwigsvorstadt-Isarvorstadt "
-    "(Hauptbahnhof and the Glockenbach nightlife district) — can read higher without that meaning elevated risk "
-    "per visit. The source data has no time-of-day breakdown, so — like Berlin, Amsterdam, Prague and Oslo — this "
-    "map shows one consistent level per Stadtbezirk rather than a day/night toggle; see the methodology page for "
-    "details."
-)
 MUNICH_NEIGH_NOTE = (
     "This rating for Munich is a real official statistic — Polizeipräsidium München and the Statistisches Amt "
     "München's own published 2025 total recorded-offence count for this Stadtbezirk, converted to a rate per "
@@ -1486,18 +1346,6 @@ STOCKHOLM_UI.update({
     "neigh_title": "Is {name} in Stockholm safe? | Wandroz",
 })
 
-STOCKHOLM_BANNER = (
-    "Neighbourhood shapes are Stockholm's real official 11 stadsdelsnämnder (city district committees, boundaries "
-    "via Stockholms stad's own 'Stadskartans Stadsdelsnämnder 2023' dataset). Like Berlin, Amsterdam, Prague, Oslo "
-    "and Munich, Stockholm's safety levels come from a real official statistic — Brå (Brottsförebyggande rådet)'s "
-    "own 2025 total reported-offence counts per district, converted to a rate per 100,000 residents using each "
-    "district's 31 December 2024 population (Stockholms stad) — rather than Milan/Rome's press-research approach. "
-    "This rate is calculated against registered residents, not footfall, so high-traffic central/station/nightlife "
-    "districts — especially Norra innerstaden (the inner-city core around Centralstationen) and Södermalm "
-    "(nightlife and restaurants) — can read higher without that meaning elevated risk per visit. The source data "
-    "has no time-of-day breakdown, so — like Berlin, Amsterdam, Prague, Oslo and Munich — this map shows one "
-    "consistent level per district rather than a day/night toggle; see the methodology page for details."
-)
 STOCKHOLM_NEIGH_NOTE = (
     "This rating for Stockholm is a real official statistic — Brå (Brottsförebyggande rådet)'s own published 2025 "
     "total reported-offence count for this district, converted to a rate per 100,000 residents using Stockholms "
@@ -1515,19 +1363,6 @@ BRUSSELS_UI.update({
     "neigh_title": "Is {name} in Brussels safe? | Wandroz",
 })
 
-BRUSSELS_BANNER = (
-    "Neighbourhood shapes are the Brussels-Capital Region's real official 19 communes (boundaries via "
-    "opendata.brussels.be). Like Berlin, Amsterdam, Prague, Oslo, Munich and Stockholm, Brussels' safety levels "
-    "come from a real official statistic — BISA (Brussels Institute for Statistics and Analysis), citing Federale "
-    "Politie figures, and their own published 2025 total registered crime counts per commune, converted to a rate "
-    "per 100,000 residents using Statbel's own 2025 population figures per commune — rather than a press-research "
-    "approach. This rate is calculated against registered residents, not footfall, so high-traffic central/"
-    "station/nightlife communes — especially the City of Brussels (the historic Pentagon centre, Gare Centrale, "
-    "Gare du Nord) and Saint-Gilles (Gare du Midi, Brussels' Eurostar/international rail hub) — can read higher "
-    "without that meaning elevated risk per visit. The source data has no time-of-day breakdown, so — like "
-    "Berlin, Amsterdam, Prague, Oslo, Munich and Stockholm — this map shows one consistent level per commune "
-    "rather than a day/night toggle; see the methodology page for details."
-)
 BRUSSELS_NEIGH_NOTE = (
     "This rating for Brussels is a real official statistic — BISA (Brussels Institute for Statistics and "
     "Analysis), citing Federale Politie figures, and their own published 2025 total registered crime count for "
@@ -1546,17 +1381,6 @@ ATHENS_UI.update({
     "neigh_title": "Is {name} in Athens safe? | Wandroz",
 })
 
-ATHENS_BANNER = (
-    "District shapes are Athens' real official administrative boundaries (the 7 \"Δημοτικές Κοινότητες\", "
-    "Municipal Districts, a holdover unit from the 2011 \"Kallikratis\" local-government reform), sourced "
-    "directly from the City of Athens' own official GIS portal (gis.cityofathens.gr). Like Milan, Rome, Turin, "
-    "Barcelona, Madrid, Vienna, Lisbon and Paris, Athens' safety levels are Wandroz's Level 2 approach: genuine "
-    "current local/national press research per district, honestly disclosed as press-based rather than official "
-    "crime statistics — Greece has no open, geolocated neighbourhood-level crime dataset (the Hellenic Police "
-    "publish only national and regional aggregate statistics). Where no specific news coverage was found for "
-    "part of a district, that is stated plainly rather than assumed either way. All 7 official Municipal "
-    "Districts are mapped, none excluded. See the methodology page for details and sources."
-)
 ATHENS_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Athens: genuine current local/national press research for "
     "this specific Municipal District (not blind guessing, not fabricated crime statistics), honestly disclosed "
@@ -1573,17 +1397,6 @@ VENEZIA_UI.update({
     "neigh_title": "Is {name} in Venice safe? | Wandroz",
 })
 
-VENEZIA_BANNER = (
-    "District shapes are Venice's real official administrative boundaries (the 6 \"Municipalità\" established in "
-    "2005), covering the whole Comune di Venezia — the historic lagoon islands (Venezia-Murano-Burano, "
-    "Lido-Pellestrina) as well as the mainland districts (Mestre-Carpenedo, Marghera, Favaro Veneto, "
-    "Chirignago-Zelarino). Like Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris and Athens, Venice's "
-    "safety levels are Wandroz's Level 2 approach: genuine current local/national press research per district, "
-    "honestly disclosed as press-based rather than official crime statistics — Italy has no open, geolocated "
-    "neighbourhood-level crime dataset. Where no specific news coverage was found for part of a district, that "
-    "is stated plainly rather than assumed either way. All 6 official Municipalità are mapped, none excluded. "
-    "See the methodology page for details and sources."
-)
 VENEZIA_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Venice: genuine current local/national press research for "
     "this specific Municipalità (not blind guessing, not fabricated crime statistics), honestly disclosed as "
@@ -1608,20 +1421,6 @@ FIRENZE_UI.update({
 # Carried over verbatim from the hand-built dist/firenze/index.html that this
 # city was recovered from — it is Florence's honesty disclosure, so migrating
 # it must not paraphrase it. Same text as firenze.json's dataNote.
-FIRENZE_BANNER = (
-    "Neighbourhood shapes are the real official 'Aree elementari 2021' (elementary "
-    "statistical zones) published by Comune di Firenze's own Planning/Control/Statistics "
-    "Service — 74 zones covering the whole comune, the finest official government-published "
-    "neighbourhood-equivalent unit for the city. Like Milan, Rome, Turin, Barcelona, Madrid, "
-    "Vienna, Lisbon, Paris, Athens, Venice and Dublin, Florence's safety levels are Wandroz's "
-    "Level 2 approach: genuine current local/national press research per zone, honestly "
-    "disclosed as press-based rather than official crime statistics — Italy has no open, "
-    "geolocated neighbourhood-level crime dataset. Where no specific news coverage was found "
-    "for a zone, that is stated plainly rather than assumed either way — most of Florence's 74 "
-    "zones are ordinary residential or suburban areas with nothing notable in local coverage. "
-    "All 74 official Aree elementari are mapped, none excluded. See the methodology page for "
-    "details and sources."
-)
 
 FIRENZE_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Florence: genuine current local/national "
@@ -1638,17 +1437,6 @@ DUBLIN_UI.update({
     "neigh_title": "Is {name} in Dublin safe? | Wandroz",
 })
 
-DUBLIN_BANNER = (
-    "District shapes are Dublin City Council's real official Local Electoral Areas (LEAs) — the government "
-    "electoral geography used for Dublin City Council elections. Like Milan, Rome, Turin, Barcelona, Madrid, "
-    "Vienna, Lisbon, Paris, Athens and Venice, Dublin's safety levels are Wandroz's Level 2 approach: genuine "
-    "current local/national press research per district, honestly disclosed as press-based rather than "
-    "official crime statistics — Ireland has no current, live, geolocated neighbourhood-level crime dataset "
-    "(the only near-candidate, a historical Garda-station dataset, is confirmed to cover only 2003-2015 with "
-    "no live update). Where no specific news coverage was found for part of a district, that is stated "
-    "plainly rather than assumed either way. All 11 official Local Electoral Areas are mapped, none excluded. "
-    "See the methodology page for details and sources."
-)
 DUBLIN_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Dublin: genuine current local/national press research for "
     "this specific Local Electoral Area (not blind guessing, not fabricated crime statistics), honestly "
@@ -1665,20 +1453,6 @@ EDINBURGH_UI.update({
     "neigh_title": "Is {name} in Edinburgh safe? | Wandroz",
 })
 
-EDINBURGH_BANNER = (
-    "Ward shapes are the real official administrative boundaries of the City of Edinburgh Council's 17 wards, "
-    "sourced directly from the Council's own ArcGIS map service (edinburghcouncilmaps.info, Open Government "
-    "Licence v3.0). Unlike most other Level 2 cities on Wandroz, Edinburgh's safety levels here are anchored "
-    "to genuine, real, numeric crimes-per-1,000-population figures per ward for 2023/24 (Churchill Support "
-    "Services' analysis of Scottish Government data, published via the Scottish Daily Express), independently "
-    "corroborated by a second analysis of Police Scotland's own published crime data through end of 2025 "
-    "(datamap-scotland.co.uk) — both agree on the same highest- and lowest-crime wards. Neither official "
-    "source splits crime by time of day, so day and night ratings are the same for every ward unless specific, "
-    "dated local press coverage documented a night-specific pattern (as for City Centre's Cowgate/Grassmarket "
-    "nightlife area). Where no such specific incident was found, that is stated plainly rather than assumed "
-    "either way. All 17 official wards are mapped, none excluded. See the methodology page for details and "
-    "sources."
-)
 EDINBURGH_NEIGH_NOTE = (
     "This rating for Edinburgh is anchored to a genuine, real, numeric crimes-per-1,000-population figure for "
     "this specific ward (not blind guessing, not fabricated crime statistics), cross-checked against a second "
@@ -1695,20 +1469,6 @@ NAPOLI_UI.update({
     "neigh_title": "Is {name} in Naples safe? | Wandroz",
 })
 
-NAPOLI_BANNER = (
-    "Zone shapes are the real official administrative boundaries of Naples's 10 \"Municipalità\" (established "
-    "2005, each grouping several traditional quartieri) — the finest official government-defined neighbourhood "
-    "unit for the city. The Comune di Napoli's own GIS portal (sit.comune.napoli.it) has a broken server-side "
-    "SSL certificate that makes it unreachable, so these boundaries were instead sourced from OpenStreetMap's "
-    "own tagged administrative-boundary relations for each Municipalità (admin_level 10, cross-checked against "
-    "Wikidata/Wikipedia references) — the same genuine, officially-modelled geometry, reached through a working "
-    "channel. Like Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, Venice and Dublin, "
-    "Naples's safety levels are Wandroz's Level 2 approach: genuine current local/national press research per "
-    "Municipalità, honestly disclosed as press-based rather than official crime statistics — Italy does not "
-    "publish an open, geolocated crime dataset at this level of detail. Where no specific news coverage was "
-    "found for a Municipalità, that is stated plainly rather than assumed either way. All 10 official "
-    "Municipalità are mapped, none excluded. See the methodology page for details and sources."
-)
 NAPOLI_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Naples: genuine current local/national press research for "
     "this specific Municipalità (not blind guessing, not fabricated crime statistics), honestly disclosed as "
@@ -1725,23 +1485,6 @@ BUDAPEST_UI.update({
     "neigh_title": "Is {name} in Budapest safe? | Wandroz",
 })
 
-BUDAPEST_BANNER = (
-    "Zone shapes are the real official administrative boundaries of Budapest's 23 \"kerületek\" (districts) — "
-    "each with its own local government — the finest official government-defined neighbourhood unit for the "
-    "city. Hungary's own PRE-STAT crime-statistics portal was checked first as a possible official per-district "
-    "data source, but it turned out not to be usable: citizen access requires an authenticated Hungarian "
-    "government-portal (Ügyfélkapu) login this build could not obtain, and its own documentation says it does "
-    "not break data down to kerület level in any case. No other official open, geolocated crime dataset at "
-    "kerület level could be found (Hungary's national statistics office only publishes county- and national-"
-    "level figures), so boundaries were instead sourced from OpenStreetMap's own tagged administrative-boundary "
-    "relations for each kerület (admin_level 9) — the same genuine, officially-modelled geometry, reached "
-    "through a working channel. Like Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, "
-    "Venice, Dublin and Naples, Budapest's safety levels are Wandroz's Level 2 approach: genuine current local/"
-    "national press research per kerület, honestly disclosed as press-based rather than official crime "
-    "statistics. Where no specific news coverage was found for a kerület, or where sources genuinely "
-    "disagreed, that is stated plainly rather than assumed either way. All 23 official kerületek are mapped, "
-    "none excluded. See the methodology page for details and sources."
-)
 BUDAPEST_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Budapest: genuine current local/national press research for "
     "this specific kerület (not blind guessing, not fabricated crime statistics), honestly disclosed as "
@@ -1758,25 +1501,6 @@ KRAKOW_UI.update({
     "neigh_title": "Is {name} in Kraków safe? | Wandroz",
 })
 
-KRAKOW_BANNER = (
-    "Zone shapes are the real official administrative boundaries of Kraków's 18 \"dzielnice\" (districts) — "
-    "each with its own local government — the finest official government-defined neighbourhood unit for the "
-    "city. Poland's national Krajowa Mapa Zagrożeń Bezpieczeństwa (National Security Threat Map) was checked "
-    "first as a possible official per-district data source, but it turned out not to be usable: it is a "
-    "crowd-sourced map of individual citizen-reported nuisances (speeding, public drinking, stray animals), "
-    "not aggregated crime statistics, with no per-district breakdown or export. No other official open, "
-    "geolocated crime dataset at dzielnica level could be found, so boundaries were instead sourced from "
-    "OpenStreetMap's own tagged administrative-boundary relations for each dzielnica (admin_level 9), each "
-    "cross-checked against its own Polish Wikipedia \"Dzielnica N\" article — the same genuine, "
-    "officially-modelled geometry used for every other city here. Like Milan, Rome, Turin, Barcelona, Madrid, "
-    "Vienna, Lisbon, Paris, Athens, Venice, Dublin, Naples and Budapest, Kraków's safety levels are Wandroz's "
-    "Level 2 approach: genuine current local press reporting and the City of Kraków's own official "
-    "resident-safety survey, honestly disclosed as press- and survey-based rather than an official crime feed. "
-    "Two of the sources used report figures only in police-defined groupings spanning two or three dzielnice "
-    "at once, disclosed per zone rather than presented as a precise single-district figure. Where sources "
-    "genuinely disagreed, that is stated plainly rather than assumed either way. All 18 official dzielnice are "
-    "mapped, none excluded. See the methodology page for details and sources."
-)
 KRAKOW_NEIGH_NOTE = (
     "This rating is Wandroz's Level 2 approach for Kraków: genuine current local press reporting and the City "
     "of Kraków's own official resident-safety survey for this specific dzielnica (not blind guessing, not "
@@ -2101,61 +1825,61 @@ def main():
     for path in copied:
         print(f"Copied {path}")
 
-    torino_urls = render_illustrative_city("torino", "torino", TORINO_UI, EN_TONE_BADGE, TORINO_BANNER, TORINO_NEIGH_NOTE)
+    torino_urls = render_illustrative_city("torino", "torino", TORINO_UI, EN_TONE_BADGE, TORINO_NEIGH_NOTE)
     sitemap_urls.extend(torino_urls)
     zurich_zone_burglary = build_zurich_zone_burglary()
     zurigo_urls = render_illustrative_city(
-        "zurigo", "zurigo", ZURIGO_UI, EN_TONE_BADGE, ZURIGO_BANNER, ZURIGO_NEIGH_NOTE,
+        "zurigo", "zurigo", ZURIGO_UI, EN_TONE_BADGE, ZURIGO_NEIGH_NOTE,
         extra_zone_data=zurich_zone_burglary,
     )
     sitemap_urls.extend(zurigo_urls)
     london_map_urls = render_london_map(cities)
     sitemap_urls.extend(london_map_urls)
-    milano_urls = render_illustrative_city("milano", "milano", MILANO_UI, EN_TONE_BADGE, MILANO_BANNER, MILANO_NEIGH_NOTE)
+    milano_urls = render_illustrative_city("milano", "milano", MILANO_UI, EN_TONE_BADGE, MILANO_NEIGH_NOTE)
     sitemap_urls.extend(milano_urls)
-    roma_urls = render_illustrative_city("roma", "roma", ROMA_UI, EN_TONE_BADGE, ROMA_BANNER, ROMA_NEIGH_NOTE, flat=True)
+    roma_urls = render_illustrative_city("roma", "roma", ROMA_UI, EN_TONE_BADGE, ROMA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(roma_urls)
-    berlin_urls = render_illustrative_city("berlin", "berlin", BERLIN_UI, EN_TONE_BADGE, BERLIN_BANNER, BERLIN_NEIGH_NOTE, flat=True)
+    berlin_urls = render_illustrative_city("berlin", "berlin", BERLIN_UI, EN_TONE_BADGE, BERLIN_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(berlin_urls)
-    amsterdam_urls = render_illustrative_city("amsterdam", "amsterdam", AMSTERDAM_UI, EN_TONE_BADGE, AMSTERDAM_BANNER, AMSTERDAM_NEIGH_NOTE, flat=True)
+    amsterdam_urls = render_illustrative_city("amsterdam", "amsterdam", AMSTERDAM_UI, EN_TONE_BADGE, AMSTERDAM_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(amsterdam_urls)
-    praha_urls = render_illustrative_city("praha", "praha", PRAHA_UI, EN_TONE_BADGE, PRAHA_BANNER, PRAHA_NEIGH_NOTE, flat=True)
+    praha_urls = render_illustrative_city("praha", "praha", PRAHA_UI, EN_TONE_BADGE, PRAHA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(praha_urls)
-    oslo_urls = render_illustrative_city("oslo", "oslo", OSLO_UI, EN_TONE_BADGE, OSLO_BANNER, OSLO_NEIGH_NOTE, flat=True)
+    oslo_urls = render_illustrative_city("oslo", "oslo", OSLO_UI, EN_TONE_BADGE, OSLO_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(oslo_urls)
-    munich_urls = render_illustrative_city("munich", "monaco-di-baviera", MUNICH_UI, EN_TONE_BADGE, MUNICH_BANNER, MUNICH_NEIGH_NOTE, flat=True)
+    munich_urls = render_illustrative_city("munich", "monaco-di-baviera", MUNICH_UI, EN_TONE_BADGE, MUNICH_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(munich_urls)
-    stockholm_urls = render_illustrative_city("stockholm", "stockholm", STOCKHOLM_UI, EN_TONE_BADGE, STOCKHOLM_BANNER, STOCKHOLM_NEIGH_NOTE, flat=True)
+    stockholm_urls = render_illustrative_city("stockholm", "stockholm", STOCKHOLM_UI, EN_TONE_BADGE, STOCKHOLM_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(stockholm_urls)
-    barcelona_urls = render_illustrative_city("barcelona", "barcelona", BARCELONA_UI, EN_TONE_BADGE, BARCELONA_BANNER, BARCELONA_NEIGH_NOTE, flat=True)
+    barcelona_urls = render_illustrative_city("barcelona", "barcelona", BARCELONA_UI, EN_TONE_BADGE, BARCELONA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(barcelona_urls)
-    madrid_urls = render_illustrative_city("madrid", "madrid", MADRID_UI, EN_TONE_BADGE, MADRID_BANNER, MADRID_NEIGH_NOTE, flat=True)
+    madrid_urls = render_illustrative_city("madrid", "madrid", MADRID_UI, EN_TONE_BADGE, MADRID_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(madrid_urls)
-    vienna_urls = render_illustrative_city("vienna", "vienna", VIENNA_UI, EN_TONE_BADGE, VIENNA_BANNER, VIENNA_NEIGH_NOTE, flat=True)
+    vienna_urls = render_illustrative_city("vienna", "vienna", VIENNA_UI, EN_TONE_BADGE, VIENNA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(vienna_urls)
-    lisbon_urls = render_illustrative_city("lisbon", "lisbon", LISBON_UI, EN_TONE_BADGE, LISBON_BANNER, LISBON_NEIGH_NOTE, flat=True)
+    lisbon_urls = render_illustrative_city("lisbon", "lisbon", LISBON_UI, EN_TONE_BADGE, LISBON_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(lisbon_urls)
-    paris_urls = render_illustrative_city("paris", "paris", PARIS_UI, EN_TONE_BADGE, PARIS_BANNER, PARIS_NEIGH_NOTE, flat=True)
+    paris_urls = render_illustrative_city("paris", "paris", PARIS_UI, EN_TONE_BADGE, PARIS_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(paris_urls)
-    brussels_urls = render_illustrative_city("brussels", "brussels", BRUSSELS_UI, EN_TONE_BADGE, BRUSSELS_BANNER, BRUSSELS_NEIGH_NOTE, flat=True)
+    brussels_urls = render_illustrative_city("brussels", "brussels", BRUSSELS_UI, EN_TONE_BADGE, BRUSSELS_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(brussels_urls)
-    athens_urls = render_illustrative_city("athens", "athens", ATHENS_UI, EN_TONE_BADGE, ATHENS_BANNER, ATHENS_NEIGH_NOTE, flat=True)
+    athens_urls = render_illustrative_city("athens", "athens", ATHENS_UI, EN_TONE_BADGE, ATHENS_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(athens_urls)
-    venezia_urls = render_illustrative_city("venezia", "venezia", VENEZIA_UI, EN_TONE_BADGE, VENEZIA_BANNER, VENEZIA_NEIGH_NOTE, flat=True)
+    venezia_urls = render_illustrative_city("venezia", "venezia", VENEZIA_UI, EN_TONE_BADGE, VENEZIA_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(venezia_urls)
-    dublin_urls = render_illustrative_city("dublin", "dublin", DUBLIN_UI, EN_TONE_BADGE, DUBLIN_BANNER, DUBLIN_NEIGH_NOTE, flat=True)
+    dublin_urls = render_illustrative_city("dublin", "dublin", DUBLIN_UI, EN_TONE_BADGE, DUBLIN_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(dublin_urls)
-    edinburgh_urls = render_illustrative_city("edinburgh", "edinburgh", EDINBURGH_UI, EN_TONE_BADGE, EDINBURGH_BANNER, EDINBURGH_NEIGH_NOTE, flat=True)
+    edinburgh_urls = render_illustrative_city("edinburgh", "edinburgh", EDINBURGH_UI, EN_TONE_BADGE, EDINBURGH_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(edinburgh_urls)
-    napoli_urls = render_illustrative_city("napoli", "napoli", NAPOLI_UI, EN_TONE_BADGE, NAPOLI_BANNER, NAPOLI_NEIGH_NOTE, flat=True)
+    napoli_urls = render_illustrative_city("napoli", "napoli", NAPOLI_UI, EN_TONE_BADGE, NAPOLI_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(napoli_urls)
-    budapest_urls = render_illustrative_city("budapest", "budapest", BUDAPEST_UI, EN_TONE_BADGE, BUDAPEST_BANNER, BUDAPEST_NEIGH_NOTE, flat=True)
+    budapest_urls = render_illustrative_city("budapest", "budapest", BUDAPEST_UI, EN_TONE_BADGE, BUDAPEST_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(budapest_urls)
-    krakow_urls = render_illustrative_city("krakow", "krakow", KRAKOW_UI, EN_TONE_BADGE, KRAKOW_BANNER, KRAKOW_NEIGH_NOTE, flat=True)
+    krakow_urls = render_illustrative_city("krakow", "krakow", KRAKOW_UI, EN_TONE_BADGE, KRAKOW_NEIGH_NOTE, flat=True)
     sitemap_urls.extend(krakow_urls)
     firenze_urls = render_illustrative_city(
         "firenze", "firenze", FIRENZE_UI, EN_TONE_BADGE,
-        FIRENZE_BANNER, FIRENZE_NEIGH_NOTE, flat=True,
+        FIRENZE_NEIGH_NOTE, flat=True,
     )
     sitemap_urls.extend(firenze_urls)
     print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)}), Firenze ({len(firenze_urls)})")

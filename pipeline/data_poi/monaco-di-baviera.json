@@ -112,6 +112,50 @@
    "rank": 10
   },
   {
+   "name": "Glockenbachviertel",
+   "category": "night",
+   "qid": "Q1531839",
+   "lat": 48.1311,
+   "lon": 11.5694,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Gärtnerplatz",
+   "category": "night",
+   "qid": "Q1558849",
+   "lat": 48.1317,
+   "lon": 11.576,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Hofgarten",
+   "category": "green",
+   "qid": "Q707673",
+   "lat": 48.14274,
+   "lon": 11.58046,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Westpark",
+   "category": "green",
+   "qid": "Q994667",
+   "lat": 48.12439,
+   "lon": 11.52229,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
    "name": "Nymphenburg Palace",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -120,7 +164,7 @@
    "lat": 48.158056,
    "lon": 11.503611,
    "qid": "Q131631",
-   "rank": 11
+   "rank": 15
   },
   {
    "name": "BMW Welt",
@@ -131,7 +175,7 @@
    "lat": 48.17694,
    "lon": 11.55667,
    "qid": "Q699614",
-   "rank": 12
+   "rank": 16
   },
   {
    "name": "Olympiaturm",
@@ -142,7 +186,7 @@
    "poi_type": "VIEWPOINT",
    "status": "OPEN",
    "map_priority": 2,
-   "rank": 13
+   "rank": 17
   }
  ]
 }

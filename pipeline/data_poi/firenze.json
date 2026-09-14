@@ -165,6 +165,61 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 15
+  },
+  {
+   "name": "Piazza Santa Croce",
+   "category": "night",
+   "qid": "Q1017385",
+   "lat": 43.76885,
+   "lon": 11.26148056,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "San Frediano",
+   "category": "night",
+   "qid": "Q3642522",
+   "lat": 43.77009722,
+   "lon": 11.24222222,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Giardino Bardini",
+   "category": "green",
+   "qid": "Q3763846",
+   "lat": 43.76422,
+   "lon": 11.25695,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Giardino delle Rose",
+   "category": "green",
+   "qid": "Q3105331",
+   "lat": 43.76295,
+   "lon": 11.26319,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Parco delle Cascine",
+   "category": "green",
+   "qid": "Q3364250",
+   "lat": 43.78304,
+   "lon": 11.21573,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
   }
  ]
 }

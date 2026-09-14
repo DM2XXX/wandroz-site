@@ -121,6 +121,50 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 11
+  },
+  {
+   "name": "Cowgate",
+   "category": "night",
+   "qid": "Q3752621",
+   "lat": 55.9486,
+   "lon": -3.18833,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Leith Shore",
+   "category": "night",
+   "qid": "Q1018540",
+   "lat": 55.9801,
+   "lon": -3.17005,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Royal Botanic Garden",
+   "category": "green",
+   "qid": "Q1807521",
+   "lat": 55.96532,
+   "lon": -3.20845,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "The Meadows",
+   "category": "green",
+   "qid": "Q7750795",
+   "lat": 55.94235,
+   "lon": -3.19173,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
   }
  ]
 }

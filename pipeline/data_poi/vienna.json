@@ -176,6 +176,50 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 16
+  },
+  {
+   "name": "Bermuda Triangle",
+   "category": "night",
+   "qid": "Q822070",
+   "lat": 48.2117,
+   "lon": 16.3753,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Gürtel",
+   "category": "night",
+   "qid": "Q38956584",
+   "lat": 48.1991666667,
+   "lon": 16.3386944444,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Volksgarten",
+   "category": "green",
+   "qid": "Q875751",
+   "lat": 48.20805,
+   "lon": 16.36173,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Augarten",
+   "category": "green",
+   "qid": "Q143265",
+   "lat": 48.2245,
+   "lon": 16.3766,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
   }
  ]
 }

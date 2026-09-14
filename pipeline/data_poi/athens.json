@@ -154,6 +154,28 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 14
+  },
+  {
+   "name": "Gazi",
+   "category": "night",
+   "qid": "Q1496656",
+   "lat": 37.97805556,
+   "lon": 23.71444444,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Pedion tou Areos",
+   "category": "green",
+   "qid": "Q932606",
+   "lat": 37.99373,
+   "lon": 23.74044,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
   }
  ]
 }

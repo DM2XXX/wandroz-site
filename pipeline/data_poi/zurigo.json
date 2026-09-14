@@ -155,6 +155,50 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 14
+  },
+  {
+   "name": "Zürich West (Escher-Wyss)",
+   "category": "night",
+   "qid": "Q1254111",
+   "lat": 47.3908,
+   "lon": 8.5225,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Arboretum Zürich",
+   "category": "green",
+   "qid": "Q630465",
+   "lat": 47.36278,
+   "lon": 8.53633,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Rieterpark",
+   "category": "green",
+   "qid": "Q692097",
+   "lat": 47.35788,
+   "lon": 8.53051,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Chinese Garden",
+   "category": "green",
+   "qid": "Q688113",
+   "lat": 47.35497,
+   "lon": 8.55199,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
   }
  ]
 }

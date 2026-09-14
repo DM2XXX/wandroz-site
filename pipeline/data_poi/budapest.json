@@ -154,6 +154,39 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 14
+  },
+  {
+   "name": "Gozsdu Courtyard",
+   "category": "night",
+   "qid": "Q1027774",
+   "lat": 47.498601,
+   "lon": 19.059088,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Szimpla Kert",
+   "category": "night",
+   "qid": "Q3509700",
+   "lat": 47.497,
+   "lon": 19.0632,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "City Park (Városliget)",
+   "category": "green",
+   "qid": "Q427016",
+   "lat": 47.51458,
+   "lon": 19.08353,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
   }
  ]
 }

@@ -72,15 +72,19 @@
   /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
      una griglia auto-fill produceva una singola fascia orizzontale di dodici
      voci, illeggibile e slegata dal resto della pagina. */
-  .poi-list-wrap { margin-top:22px; padding:0 24px; }
-  .poi-list-wrap h2 { font-size:15px; margin:0 0 10px; font-weight:700; }
-  ol.poi-list { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; }
-  ol.poi-list li { display:flex; align-items:center; gap:9px; padding:5px 0; font-size:13px;
-                   break-inside:avoid; border-bottom:1px solid var(--line); cursor:pointer; }
-  @media (max-width: 720px){ ol.poi-list { columns:1; } }
-  ol.poi-list .n { flex:none; width:20px; height:20px; border-radius:50%; background:#16232b; color:#fff;
-                   font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; }
-  ol.poi-list .c { margin-left:auto; font-size:15px; }
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
   .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
   .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
   .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
@@ -117,6 +121,10 @@
        libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
        invece di finire in fondo alla pagina sopra la legenda. */
     .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
     .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
     .zone-list ul { columns:2; }
   }
@@ -212,7 +220,7 @@
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Oslo, Norway</nav>
 <h1 class="page-title">Oslo neighbourhoods</h1>
 <p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
-<div class="notice">Neighbourhood shapes are Oslo&#39;s real official 15 bydeler (city boroughs, boundaries via OpenStreetMap&#39;s administrative-boundary data) plus Sentrum, the city centre — 16 zones, none excluded. Like Berlin, Amsterdam and Prague, Oslo&#39;s safety levels come from a real official statistic — Oslo kommune&#39;s own Statistikkbanken figures on reported offences by place of occurrence per bydel for 2024, converted to a rate per 100,000 residents using the same Statistikkbanken&#39;s 2024 population figures per bydel — rather than Milan/Rome&#39;s press-research approach. Sentrum is not one of the 15 administrative bydeler and has no bydel-level population figure, so its rating instead combines Oslo kommune&#39;s own crime figure for Sentrum with a population figure for the same area from Statistics Norway (SSB); the resulting rate is roughly 60x the citywide average, a statistical artefact of Sentrum&#39;s tiny resident base against its huge footfall — see the methodology page and Sentrum&#39;s own zone page for the full explanation. This rate is calculated against registered residents, not footfall, so high-traffic central/nightlife/shopping bydeler (like Gamle Oslo or Frogner) can read higher without that meaning elevated risk per visit. The source data has no time-of-day breakdown, so — like Berlin, Amsterdam and Prague — this map shows one consistent level per bydel rather than a day/night toggle; see the methodology page for details.</div>
+<div class="notice">Official neighbourhood boundaries; safety levels from official recorded-crime data. <a href="/methodology.html">How we rate &rarr;</a></div>
 
 <div class="poi-bar" id="poiBar"></div>
 
@@ -295,7 +303,7 @@
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
-  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.906944, "lon": 10.753611, "name": "Oslo Opera House", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.90575, "lon": 10.755306, "name": "Munch Museum", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.906606, "lon": 10.736248, "name": "Akershus Fortress", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.917222, "lon": 10.7275, "name": "Royal Palace, Oslo", "rank": 4}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 59.927667, "lon": 10.698889, "name": "Vigeland installation", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.903333, "lon": 10.699444, "name": "Fram Museum", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.911667, "lon": 10.729167, "name": "National Museum of Art, Architecture and Design", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 59.909722, "lon": 10.726667, "name": "Aker Brygge", "rank": 8}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 59.92307, "lon": 10.75622, "name": "Gr\u00fcnerl\u00f8kka", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 59.913055555556, "lon": 10.740833333333, "name": "Karl Johans gate", "rank": 10}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 59.963889, "lon": 10.667778, "name": "Holmenkollbakken", "rank": 12}];
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.906944, "lon": 10.753611, "name": "Oslo Opera House", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.90575, "lon": 10.755306, "name": "Munch Museum", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.906606, "lon": 10.736248, "name": "Akershus Fortress", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.917222, "lon": 10.7275, "name": "Royal Palace, Oslo", "rank": 4}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 59.927667, "lon": 10.698889, "name": "Vigeland installation", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.903333, "lon": 10.699444, "name": "Fram Museum", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.911667, "lon": 10.729167, "name": "National Museum of Art, Architecture and Design", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 59.909722, "lon": 10.726667, "name": "Aker Brygge", "rank": 8}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 59.92307, "lon": 10.75622, "name": "Gr\u00fcnerl\u00f8kka", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 59.913055555556, "lon": 10.740833333333, "name": "Karl Johans gate", "rank": 10}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 59.914943, "lon": 10.748826, "name": "Youngstorget", "rank": 11}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 59.91837, "lon": 10.76975, "name": "Oslo Botanical Garden", "rank": 12}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 59.90417, "lon": 10.76366, "name": "Middelalderparken", "rank": 13}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 59.963889, "lon": 10.667778, "name": "Holmenkollbakken", "rank": 15}];
   var POI_ALL = "All";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 some risk factors reported, no particular time-of-day pattern in the data", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
   var L_LEGEND_BURGLARY = {
@@ -549,17 +557,15 @@
   // A name stays on screen only where it collides with nothing — not with
   // another name, not with another pin, not with the edge. Names are tried in
   // rank order, so when two compete the better-known place keeps its label.
-  // Filtering to one category empties the map, which is exactly when someone
-  // who does not know the city needs the names, so the zoom bar drops too.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
   function poiLabels() {
     poiMarkers.forEach(function (m) {
       if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
     });
     var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
     if (!vis.length) return;
-    var z = map.getZoom();
-    var minZoom = vis.length <= 5 ? 11 : (vis.length <= 8 ? 13 : 14);
-    if (z < minZoom) return;
     var size = map.getSize();
     var taken = vis.map(function (m) {
       var pt = map.latLngToContainerPoint(m.getLatLng());
@@ -643,8 +649,7 @@
     POIS.forEach(function (p) {
       var li = document.createElement('li');
       li.setAttribute('data-cat', p.cat);
-      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name +
-                     '</span><span class="c">' + p.icon + '</span>';
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
       li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
       ol.appendChild(li);
     });
@@ -658,7 +663,7 @@
     if (!ol) return;
     Array.prototype.forEach.call(ol.children, function (li) {
       var show = c === null || li.getAttribute('data-cat') === c;
-      li.style.display = show ? 'flex' : 'none';
+      li.style.display = show ? 'inline-flex' : 'none';
     });
   }
 

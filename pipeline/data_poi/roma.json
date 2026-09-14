@@ -176,6 +176,61 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 16
+  },
+  {
+   "name": "Testaccio",
+   "category": "night",
+   "qid": "Q1751443",
+   "lat": 41.87611111,
+   "lon": 12.475,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Monti",
+   "category": "night",
+   "qid": "Q1419959",
+   "lat": 41.894962,
+   "lon": 12.4892253,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "San Lorenzo",
+   "category": "night",
+   "qid": "Q541703",
+   "lat": 41.897102,
+   "lon": 12.515745,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Villa Torlonia",
+   "category": "green",
+   "qid": "Q474857",
+   "lat": 41.91379,
+   "lon": 12.51209,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
+  },
+  {
+   "name": "Villa Ada",
+   "category": "green",
+   "qid": "Q2000387",
+   "lat": 41.93201,
+   "lon": 12.50181,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 21
   }
  ]
 }

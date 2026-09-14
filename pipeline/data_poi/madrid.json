@@ -134,6 +134,50 @@
    "rank": 12
   },
   {
+   "name": "Chueca",
+   "category": "night",
+   "qid": "Q284642",
+   "lat": 40.421666666667,
+   "lon": -3.6980555555556,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Royal Botanic Garden",
+   "category": "green",
+   "qid": "Q1794858",
+   "lat": 40.41117,
+   "lon": -3.69075,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Parque del Oeste",
+   "category": "green",
+   "qid": "Q2369398",
+   "lat": 40.42957,
+   "lon": -3.72443,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Madrid Río",
+   "category": "green",
+   "qid": "Q6062341",
+   "lat": 40.40061,
+   "lon": -3.70984,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
    "name": "Santiago Bernabéu Stadium",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -142,7 +186,7 @@
    "lat": 40.45306,
    "lon": -3.68835,
    "qid": "Q164027",
-   "rank": 13
+   "rank": 17
   }
  ]
 }

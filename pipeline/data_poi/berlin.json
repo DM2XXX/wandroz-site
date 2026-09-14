@@ -156,6 +156,61 @@
    "rank": 14
   },
   {
+   "name": "Friedrichshain",
+   "category": "night",
+   "qid": "Q317056",
+   "lat": 52.515833,
+   "lon": 13.454167,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Simon-Dach-Straße",
+   "category": "night",
+   "qid": "Q2287320",
+   "lat": 52.51166667,
+   "lon": 13.45694444,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Volkspark Friedrichshain",
+   "category": "green",
+   "qid": "Q648023",
+   "lat": 52.52716,
+   "lon": 13.43519,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Mauerpark",
+   "category": "green",
+   "qid": "Q639887",
+   "lat": 52.54377,
+   "lon": 13.40227,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Viktoriapark",
+   "category": "green",
+   "qid": "Q566495",
+   "lat": 52.48747,
+   "lon": 13.38081,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
    "name": "Charlottenburg Palace",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -164,7 +219,7 @@
    "lat": 52.521111,
    "lon": 13.295833,
    "qid": "Q154996",
-   "rank": 15
+   "rank": 20
   }
  ]
 }

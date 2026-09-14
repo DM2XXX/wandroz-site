@@ -143,6 +143,50 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 13
+  },
+  {
+   "name": "Camden Street",
+   "category": "night",
+   "qid": "Q5025820",
+   "lat": 53.333915,
+   "lon": -6.265208,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Portobello",
+   "category": "night",
+   "qid": "Q649057",
+   "lat": 53.330414,
+   "lon": -6.265256,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Merrion Square",
+   "category": "green",
+   "qid": "Q630780",
+   "lat": 53.33968,
+   "lon": -6.24917,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "National Botanic Gardens",
+   "category": "green",
+   "qid": "Q841037",
+   "lat": 53.37219,
+   "lon": -6.27324,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
   }
  ]
 }

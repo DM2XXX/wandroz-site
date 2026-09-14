@@ -143,6 +143,61 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 13
+  },
+  {
+   "name": "Leidseplein",
+   "category": "night",
+   "qid": "Q1409805",
+   "lat": 52.364133,
+   "lon": 4.882969,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Rembrandtplein",
+   "category": "night",
+   "qid": "Q1579642",
+   "lat": 52.366019,
+   "lon": 4.896642,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Oosterpark",
+   "category": "green",
+   "qid": "Q2718912",
+   "lat": 52.36022,
+   "lon": 4.92042,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Westerpark",
+   "category": "green",
+   "qid": "Q2187279",
+   "lat": 52.38727,
+   "lon": 4.87231,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Hortus Botanicus",
+   "category": "green",
+   "qid": "Q1576733",
+   "lat": 52.36664,
+   "lon": 4.90778,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
   }
  ]
 }

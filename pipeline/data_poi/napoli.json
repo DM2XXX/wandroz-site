@@ -165,6 +165,50 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 15
+  },
+  {
+   "name": "Piazza Bellini",
+   "category": "night",
+   "qid": "Q1235318",
+   "lat": 40.84958,
+   "lon": 14.252121,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Vomero",
+   "category": "night",
+   "qid": "Q671420",
+   "lat": 40.84361111,
+   "lon": 14.22694444,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Villa Floridiana",
+   "category": "green",
+   "qid": "Q718315",
+   "lat": 40.84058,
+   "lon": 14.23065,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Orto Botanico di Napoli",
+   "category": "green",
+   "qid": "Q848422",
+   "lat": 40.86255,
+   "lon": 14.2625,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
   }
  ]
 }

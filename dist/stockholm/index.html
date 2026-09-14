@@ -72,15 +72,19 @@
   /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
      una griglia auto-fill produceva una singola fascia orizzontale di dodici
      voci, illeggibile e slegata dal resto della pagina. */
-  .poi-list-wrap { margin-top:22px; padding:0 24px; }
-  .poi-list-wrap h2 { font-size:15px; margin:0 0 10px; font-weight:700; }
-  ol.poi-list { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; }
-  ol.poi-list li { display:flex; align-items:center; gap:9px; padding:5px 0; font-size:13px;
-                   break-inside:avoid; border-bottom:1px solid var(--line); cursor:pointer; }
-  @media (max-width: 720px){ ol.poi-list { columns:1; } }
-  ol.poi-list .n { flex:none; width:20px; height:20px; border-radius:50%; background:#16232b; color:#fff;
-                   font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; }
-  ol.poi-list .c { margin-left:auto; font-size:15px; }
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
   .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
   .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
   .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
@@ -117,6 +121,10 @@
        libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
        invece di finire in fondo alla pagina sopra la legenda. */
     .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
     .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
     .zone-list ul { columns:2; }
   }
@@ -212,7 +220,7 @@
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Stockholm, Sweden</nav>
 <h1 class="page-title">Stockholm neighbourhoods</h1>
 <p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
-<div class="notice">Neighbourhood shapes are Stockholm&#39;s real official 11 stadsdelsnämnder (city district committees, boundaries via Stockholms stad&#39;s own &#39;Stadskartans Stadsdelsnämnder 2023&#39; dataset). Like Berlin, Amsterdam, Prague, Oslo and Munich, Stockholm&#39;s safety levels come from a real official statistic — Brå (Brottsförebyggande rådet)&#39;s own 2025 total reported-offence counts per district, converted to a rate per 100,000 residents using each district&#39;s 31 December 2024 population (Stockholms stad) — rather than Milan/Rome&#39;s press-research approach. This rate is calculated against registered residents, not footfall, so high-traffic central/station/nightlife districts — especially Norra innerstaden (the inner-city core around Centralstationen) and Södermalm (nightlife and restaurants) — can read higher without that meaning elevated risk per visit. The source data has no time-of-day breakdown, so — like Berlin, Amsterdam, Prague, Oslo and Munich — this map shows one consistent level per district rather than a day/night toggle; see the methodology page for details.</div>
+<div class="notice">Official neighbourhood boundaries; safety levels from official recorded-crime data. <a href="/methodology.html">How we rate &rarr;</a></div>
 
 <div class="poi-bar" id="poiBar"></div>
 
@@ -285,7 +293,7 @@
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
-  var POIS = [{"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 59.325, "lon": 18.070833, "name": "Gamla stan", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.326667, "lon": 18.071667, "name": "Stockholm Palace", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.32807, "lon": 18.09139, "name": "Vasa Museum", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.32445, "lon": 18.101, "name": "Skansen", "rank": 4}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 59.325, "lon": 18.116667, "name": "Djurg\u00e5rden", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.3275, "lon": 18.054722, "name": "Stockholm City Hall", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.32639, "lon": 18.08361, "name": "Moderna Museet", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.325, "lon": 18.096389, "name": "ABBA The Museum", "rank": 8}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 59.33597, "lon": 18.07808, "name": "\u00d6stermalm Market Hall", "rank": 9}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 59.32072, "lon": 18.06031, "name": "Monteliusv\u00e4gen", "rank": 10}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 59.3136, "lon": 18.0711, "name": "S\u00f6dermalm", "rank": 11}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.321694, "lon": 17.886383, "name": "Drottningholm Palace", "rank": 12}];
+  var POIS = [{"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 59.325, "lon": 18.070833, "name": "Gamla stan", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.326667, "lon": 18.071667, "name": "Stockholm Palace", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.32807, "lon": 18.09139, "name": "Vasa Museum", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.32445, "lon": 18.101, "name": "Skansen", "rank": 4}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 59.325, "lon": 18.116667, "name": "Djurg\u00e5rden", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.3275, "lon": 18.054722, "name": "Stockholm City Hall", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.32639, "lon": 18.08361, "name": "Moderna Museet", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 59.325, "lon": 18.096389, "name": "ABBA The Museum", "rank": 8}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 59.33597, "lon": 18.07808, "name": "\u00d6stermalm Market Hall", "rank": 9}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 59.32072, "lon": 18.06031, "name": "Monteliusv\u00e4gen", "rank": 10}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 59.3136, "lon": 18.0711, "name": "S\u00f6dermalm", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 59.336111, "lon": 18.072778, "name": "Stureplan", "rank": 12}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 59.3311, "lon": 18.07161, "name": "Kungstr\u00e4dg\u00e5rden", "rank": 13}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 59.33932, "lon": 18.07306, "name": "Humleg\u00e5rden", "rank": 14}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 59.321694, "lon": 17.886383, "name": "Drottningholm Palace", "rank": 15}];
   var POI_ALL = "All";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 some risk factors reported, no particular time-of-day pattern in the data", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
   var L_LEGEND_BURGLARY = {
@@ -539,17 +547,15 @@
   // A name stays on screen only where it collides with nothing — not with
   // another name, not with another pin, not with the edge. Names are tried in
   // rank order, so when two compete the better-known place keeps its label.
-  // Filtering to one category empties the map, which is exactly when someone
-  // who does not know the city needs the names, so the zoom bar drops too.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
   function poiLabels() {
     poiMarkers.forEach(function (m) {
       if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
     });
     var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
     if (!vis.length) return;
-    var z = map.getZoom();
-    var minZoom = vis.length <= 5 ? 11 : (vis.length <= 8 ? 13 : 14);
-    if (z < minZoom) return;
     var size = map.getSize();
     var taken = vis.map(function (m) {
       var pt = map.latLngToContainerPoint(m.getLatLng());
@@ -633,8 +639,7 @@
     POIS.forEach(function (p) {
       var li = document.createElement('li');
       li.setAttribute('data-cat', p.cat);
-      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name +
-                     '</span><span class="c">' + p.icon + '</span>';
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
       li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
       ol.appendChild(li);
     });
@@ -648,7 +653,7 @@
     if (!ol) return;
     Array.prototype.forEach.call(ol.children, function (li) {
       var show = c === null || li.getAttribute('data-cat') === c;
-      li.style.display = show ? 'flex' : 'none';
+      li.style.display = show ? 'inline-flex' : 'none';
     });
   }
 

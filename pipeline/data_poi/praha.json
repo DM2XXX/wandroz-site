@@ -154,6 +154,50 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 14
+  },
+  {
+   "name": "Dlouhá street",
+   "category": "night",
+   "qid": "Q11812534",
+   "lat": 50.08842,
+   "lon": 14.42156,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Stromovka",
+   "category": "green",
+   "qid": "Q3500538",
+   "lat": 50.10677,
+   "lon": 14.41766,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Royal Garden (Prague Castle)",
+   "category": "green",
+   "qid": "Q2503978",
+   "lat": 50.09305,
+   "lon": 14.40204,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Havlíčkovy sady",
+   "category": "green",
+   "qid": "Q12019297",
+   "lat": 50.06892,
+   "lon": 14.44443,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
   }
  ]
 }

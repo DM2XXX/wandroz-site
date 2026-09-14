@@ -72,15 +72,19 @@
   /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
      una griglia auto-fill produceva una singola fascia orizzontale di dodici
      voci, illeggibile e slegata dal resto della pagina. */
-  .poi-list-wrap { margin-top:22px; padding:0 24px; }
-  .poi-list-wrap h2 { font-size:15px; margin:0 0 10px; font-weight:700; }
-  ol.poi-list { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; }
-  ol.poi-list li { display:flex; align-items:center; gap:9px; padding:5px 0; font-size:13px;
-                   break-inside:avoid; border-bottom:1px solid var(--line); cursor:pointer; }
-  @media (max-width: 720px){ ol.poi-list { columns:1; } }
-  ol.poi-list .n { flex:none; width:20px; height:20px; border-radius:50%; background:#16232b; color:#fff;
-                   font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; }
-  ol.poi-list .c { margin-left:auto; font-size:15px; }
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
   .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
   .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
   .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
@@ -117,6 +121,10 @@
        libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
        invece di finire in fondo alla pagina sopra la legenda. */
     .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
     .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
     .zone-list ul { columns:2; }
   }
@@ -177,7 +185,7 @@
 <nav class="crumbs"><a href="/">{{ nav_home }}</a> &rsaquo; {{ city_label }}</nav>
 <h1 class="page-title">{{ page_h1 }}</h1>
 <p class="lead">{{ page_lead }}</p>
-{% if data_note %}<div class="notice">{{ data_note }}</div>{% endif %}
+{% if data_note %}<div class="notice">{{ data_note }} <a href="/methodology.html">How we rate &rarr;</a></div>{% endif %}
 
 {% if pois %}<div class="poi-bar" id="poiBar"></div>{% endif %}
 
@@ -484,17 +492,15 @@
   // A name stays on screen only where it collides with nothing — not with
   // another name, not with another pin, not with the edge. Names are tried in
   // rank order, so when two compete the better-known place keeps its label.
-  // Filtering to one category empties the map, which is exactly when someone
-  // who does not know the city needs the names, so the zoom bar drops too.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
   function poiLabels() {
     poiMarkers.forEach(function (m) {
       if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
     });
     var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
     if (!vis.length) return;
-    var z = map.getZoom();
-    var minZoom = vis.length <= 5 ? 11 : (vis.length <= 8 ? 13 : 14);
-    if (z < minZoom) return;
     var size = map.getSize();
     var taken = vis.map(function (m) {
       var pt = map.latLngToContainerPoint(m.getLatLng());
@@ -578,8 +584,7 @@
     POIS.forEach(function (p) {
       var li = document.createElement('li');
       li.setAttribute('data-cat', p.cat);
-      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name +
-                     '</span><span class="c">' + p.icon + '</span>';
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
       li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
       ol.appendChild(li);
     });
@@ -593,7 +598,7 @@
     if (!ol) return;
     Array.prototype.forEach.call(ol.children, function (li) {
       var show = c === null || li.getAttribute('data-cat') === c;
-      li.style.display = show ? 'flex' : 'none';
+      li.style.display = show ? 'inline-flex' : 'none';
     });
   }
 

@@ -178,6 +178,61 @@
    "rank": 16
   },
   {
+   "name": "Shoreditch",
+   "category": "night",
+   "qid": "Q1027127",
+   "lat": 51.526,
+   "lon": -0.078,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Camden Town",
+   "category": "night",
+   "qid": "Q149836",
+   "lat": 51.541,
+   "lon": -0.1433,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "St James's Park",
+   "category": "green",
+   "qid": "Q216914",
+   "lat": 51.50311,
+   "lon": -0.13442,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Regent's Park",
+   "category": "green",
+   "qid": "Q739341",
+   "lat": 51.53015,
+   "lon": -0.1554,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
+  },
+  {
+   "name": "Kensington Gardens",
+   "category": "green",
+   "qid": "Q822607",
+   "lat": 51.50665,
+   "lon": -0.1802,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 21
+  },
+  {
    "name": "Natural History Museum",
    "category": "art",
    "poi_type": "MUSEUM",
@@ -186,7 +241,7 @@
    "lat": 51.496111,
    "lon": -0.176111,
    "qid": "Q309388",
-   "rank": 17
+   "rank": 22
   }
  ]
 }

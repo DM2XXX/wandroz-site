@@ -146,6 +146,61 @@
    "rank": 13
   },
   {
+   "name": "Corso Como",
+   "category": "night",
+   "qid": "Q3694611",
+   "lat": 45.482032,
+   "lon": 9.187317,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Isola",
+   "category": "night",
+   "qid": "Q3802662",
+   "lat": 45.48777778,
+   "lon": 9.18888889,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Porta Venezia",
+   "category": "night",
+   "qid": "Q2104876",
+   "lat": 45.47438,
+   "lon": 9.20501,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Giardini Indro Montanelli",
+   "category": "green",
+   "qid": "Q169090",
+   "lat": 45.47453,
+   "lon": 9.2,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Biblioteca degli Alberi",
+   "category": "green",
+   "qid": "Q48810344",
+   "lat": 45.48368,
+   "lon": 9.1932,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
    "name": "Mercato Centrale Milano",
    "category": "food",
    "qid": "Q123385015",
@@ -154,7 +209,7 @@
    "poi_type": "MARKET",
    "status": "OPEN",
    "map_priority": 2,
-   "rank": 14
+   "rank": 19
   }
  ]
 }

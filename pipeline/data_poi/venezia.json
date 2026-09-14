@@ -134,6 +134,28 @@
    "rank": 12
   },
   {
+   "name": "Campo Santa Margherita",
+   "category": "night",
+   "qid": "Q2248913",
+   "lat": 45.4344,
+   "lon": 12.323822,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Giardini Papadopoli",
+   "category": "green",
+   "qid": "Q3105321",
+   "lat": 45.43846,
+   "lon": 12.32072,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
    "name": "Murano",
    "category": "square",
    "poi_type": "AREA",
@@ -142,7 +164,7 @@
    "lat": 45.4575,
    "lon": 12.353611,
    "qid": "Q52437",
-   "rank": 13
+   "rank": 15
   },
   {
    "name": "Giardini della Biennale",
@@ -153,7 +175,7 @@
    "poi_type": "PARK",
    "status": "OPEN",
    "map_priority": 2,
-   "rank": 14
+   "rank": 16
   },
   {
    "name": "Burano",
@@ -164,7 +186,7 @@
    "lat": 45.485556,
    "lon": 12.4175,
    "qid": "Q52439",
-   "rank": 15
+   "rank": 17
   }
  ]
 }

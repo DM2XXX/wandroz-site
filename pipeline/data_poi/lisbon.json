@@ -113,6 +113,50 @@
    "rank": 10
   },
   {
+   "name": "Pink Street (Rua Nova do Carvalho)",
+   "category": "night",
+   "qid": "Q94677028",
+   "lat": 38.707231,
+   "lon": -9.143801,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Jardim da Estrela",
+   "category": "green",
+   "qid": "Q10306236",
+   "lat": 38.71464,
+   "lon": -9.15905,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Jardim do Príncipe Real",
+   "category": "green",
+   "qid": "Q1107447",
+   "lat": 38.71629,
+   "lon": -9.14865,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Jardim Botânico",
+   "category": "green",
+   "qid": "Q943407",
+   "lat": 38.71851,
+   "lon": -9.14889,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
    "name": "Belém Tower",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -121,7 +165,7 @@
    "lat": 38.691389,
    "lon": -9.215833,
    "qid": "Q215003",
-   "rank": 11
+   "rank": 15
   },
   {
    "name": "Jerónimos Monastery",
@@ -132,7 +176,7 @@
    "lat": 38.697846,
    "lon": -9.205601,
    "qid": "Q272781",
-   "rank": 12
+   "rank": 16
   },
   {
    "name": "Padrão dos Descobrimentos",
@@ -143,7 +187,7 @@
    "lat": 38.693676,
    "lon": -9.20569,
    "qid": "Q1133712",
-   "rank": 13
+   "rank": 17
   }
  ]
 }

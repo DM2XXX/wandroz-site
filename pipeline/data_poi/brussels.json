@@ -123,6 +123,50 @@
    "rank": 11
   },
   {
+   "name": "Place Flagey",
+   "category": "night",
+   "qid": "Q1070882",
+   "lat": 50.827793,
+   "lon": 4.372414,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Rue du Marché au Charbon",
+   "category": "night",
+   "qid": "Q3452438",
+   "lat": 50.846206,
+   "lon": 4.348682,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Brussels Park",
+   "category": "green",
+   "qid": "Q1892311",
+   "lat": 50.84458,
+   "lon": 4.36365,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Bois de la Cambre",
+   "category": "green",
+   "qid": "Q833646",
+   "lat": 50.80652,
+   "lon": 4.37987,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
    "name": "Atomium",
    "category": "view",
    "poi_type": "LANDMARK",
@@ -131,7 +175,7 @@
    "lat": 50.895,
    "lon": 4.341389,
    "qid": "Q180901",
-   "rank": 12
+   "rank": 16
   }
  ]
 }

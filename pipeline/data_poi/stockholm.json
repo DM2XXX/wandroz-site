@@ -123,6 +123,39 @@
    "rank": 11
   },
   {
+   "name": "Stureplan",
+   "category": "night",
+   "qid": "Q2261112",
+   "lat": 59.336111,
+   "lon": 18.072778,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Kungsträdgården",
+   "category": "green",
+   "qid": "Q926316",
+   "lat": 59.3311,
+   "lon": 18.07161,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Humlegården",
+   "category": "green",
+   "qid": "Q1637097",
+   "lat": 59.33932,
+   "lon": 18.07306,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
    "name": "Drottningholm Palace",
    "category": "art",
    "poi_type": "LANDMARK",
@@ -131,7 +164,7 @@
    "lat": 59.321694,
    "lon": 17.886383,
    "qid": "Q208559",
-   "rank": 12
+   "rank": 15
   }
  ]
 }

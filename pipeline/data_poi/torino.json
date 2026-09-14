@@ -145,6 +145,61 @@
    "rank": 13
   },
   {
+   "name": "Quadrilatero Romano",
+   "category": "night",
+   "qid": "Q3926603",
+   "lat": 45.07538,
+   "lon": 7.6797,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Piazza Vittorio Veneto",
+   "category": "night",
+   "qid": "Q3902364",
+   "lat": 45.064805555556,
+   "lon": 7.6954166666667,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "San Salvario",
+   "category": "night",
+   "qid": "Q3947924",
+   "lat": 45.05555556,
+   "lon": 7.67972222,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Parco Dora",
+   "category": "green",
+   "qid": "Q3895386",
+   "lat": 45.08971,
+   "lon": 7.66644,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Giardini Reali",
+   "category": "green",
+   "qid": "Q3763810",
+   "lat": 45.07245,
+   "lon": 7.68927,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
    "name": "Basilica of Superga",
    "category": "view",
    "poi_type": "LANDMARK",
@@ -153,7 +208,7 @@
    "lat": 45.08062,
    "lon": 7.767366,
    "qid": "Q1145261",
-   "rank": 14
+   "rank": 19
   },
   {
    "name": "Palazzina di caccia of Stupinigi",
@@ -164,7 +219,7 @@
    "lat": 44.995,
    "lon": 7.603889,
    "qid": "Q19834",
-   "rank": 15
+   "rank": 20
   }
  ]
 }

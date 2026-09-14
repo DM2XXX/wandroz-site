@@ -143,6 +143,28 @@
    "status": "OPEN",
    "map_priority": 3,
    "rank": 13
+  },
+  {
+   "name": "Jordan Park",
+   "category": "green",
+   "qid": "Q11811579",
+   "lat": 50.06271,
+   "lon": 19.91599,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Jagiellonian Botanic Garden",
+   "category": "green",
+   "qid": "Q2619332",
+   "lat": 50.06251,
+   "lon": 19.95748,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
   }
  ]
 }
