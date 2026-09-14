@@ -1,0 +1,82 @@
+{
+ "city": "southampton",
+ "pois": [
+  {
+   "name": "St Mary's Stadium",
+   "category": "art",
+   "qid": "Q567339",
+   "lat": 50.90583,
+   "lon": -1.39111,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "SeaCity Museum",
+   "category": "art",
+   "qid": "Q7439809",
+   "lat": 50.90802,
+   "lon": -1.40766,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Southampton City Art Gallery",
+   "category": "art",
+   "qid": "Q7569107",
+   "lat": 50.9085,
+   "lon": -1.4065,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Bargate",
+   "category": "art",
+   "qid": "Q4860547",
+   "lat": 50.9027,
+   "lon": -1.40413,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Southampton Tudor House and Garden",
+   "category": "art",
+   "qid": "Q7569167",
+   "lat": 50.8996,
+   "lon": -1.40599,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Ocean Village",
+   "category": "square",
+   "qid": "Q7076115",
+   "lat": 50.895,
+   "lon": -1.39,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Southampton Common",
+   "category": "green",
+   "qid": "Q7569113",
+   "lat": 50.9262,
+   "lon": -1.4109,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  }
+ ]
+}

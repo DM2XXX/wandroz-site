@@ -1,10 +1,10 @@
 {
   "dist": "/Users/dm2/wandroz/repo/dist",
-  "pages_audited": 1657,
-  "cities_expected": 39,
-  "cities_built": 39,
+  "pages_audited": 1708,
+  "cities_expected": 42,
+  "cities_built": 42,
   "cities_missing": [],
-  "cities_audited": 38,
+  "cities_audited": 41,
   "zone_counts": {
     "amsterdam": 110,
     "athens": 7,
@@ -18,6 +18,7 @@
     "budapest": 23,
     "cambridge": 14,
     "cardiff": 28,
+    "coventry": 18,
     "dublin": 11,
     "edinburgh": 17,
     "firenze": 74,
@@ -35,9 +36,11 @@
     "oslo": 16,
     "oxford": 24,
     "paris": 80,
+    "portsmouth": 14,
     "praha": 57,
     "roma": 155,
     "sheffield": 28,
+    "southampton": 16,
     "stockholm": 11,
     "torino": 23,
     "venezia": 6,
@@ -45,36 +48,36 @@
     "york": 21,
     "zurigo": 34
   },
-  "zones_in_source": 1580,
+  "zones_in_source": 1628,
   "florence": {
     "expected": 75,
     "generated": 75
   },
   "navigation": {
-    "expected_cities_per_hub": 39,
+    "expected_cities_per_hub": 42,
     "hubs_with_incomplete_switcher": []
   },
   "booking": {
     "URL_STRUCTURE_PASS": {
-      "PASS": 1612
+      "PASS": 1660
     },
     "WANDROZ_QUERY_MATCH": {
-      "PASS": 1612
+      "PASS": 1660
     },
     "BOOKING_DESTINATION_VERIFIED": {
       "MANUAL_VERIFICATION_REQUIRED": 961,
-      "PASS": 651
+      "PASS": 699
     },
     "AFFILIATE_ATTRIBUTION_VERIFIED": {
-      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1612
+      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1660
     },
     "destination_class": {
       "UNVERIFIED": 961,
       "TRAVELLER_ALIAS": 382,
-      "CITY_FALLBACK": 266,
+      "CITY_FALLBACK": 314,
       "EXACT_AREA": 3
     },
-    "ctas_total": 1612
+    "ctas_total": 1660
   },
   "correction_email": {
     "canonical": "hellowandroz@gmail.com",
@@ -148,7 +151,7 @@
       "category": "BOOKING",
       "check": "affiliate-attribution",
       "target": "site-wide",
-      "message": "1612 of 1612 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
+      "message": "1660 of 1660 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
     }
   ]
 }

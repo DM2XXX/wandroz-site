@@ -1604,6 +1604,96 @@
   "checked": "2026-09-14",
   "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
  },
+ "coventry/bablake": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/binley-and-willenhall": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/cheylesmore": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/earlsdon": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/foleshill": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/henley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/holbrook": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/longford": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/lower-stoke": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/radford": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/sherbourne": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/st-michael-s": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/upper-stoke": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/wainbody": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/westwood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/whoberley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/woodlands": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "coventry/wyken": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
  "firenze/novoli-baracca-est": {
   "class": "TRAVELLER_ALIAS",
   "checked": "2026-09-14",
@@ -3104,6 +3194,76 @@
   "checked": "2026-09-14",
   "note": "arrondissement destination, same pattern and breadcrumb as the five opened on 2026-09-14; the quartier itself is not a Booking destination"
  },
+ "portsmouth/baffins": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/central-southsea": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/charles-dickens": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/copnor": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/cosham": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/drayton-and-farlington": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/eastney-and-craneswater": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/fratton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/hilsea": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/milton": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/nelson": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/paulsgrove": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/st-jude": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "portsmouth/st-thomas": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
  "roma/acilia-nord": {
   "class": "TRAVELLER_ALIAS",
   "checked": "2026-09-14",
@@ -3258,5 +3418,85 @@
   "class": "CITY_FALLBACK",
   "checked": "2026-09-14",
   "note": "ward names are not Booking destinations in these cities — \"Ladywood, Birmingham\" redirected to Booking's homepage and \"Headingley, Leeds\" returned a single hotel — so the link searches the city and the page says so"
+ },
+ "southampton/bargate": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/bassett": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/bevois": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/bitterne": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/bitterne-park": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/coxford": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/freemantle": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/harefield": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/millbrook": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/peartree": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/portswood": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/redbridge": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/shirley": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/sholing": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/swaythling": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
+ },
+ "southampton/woolston": {
+  "class": "CITY_FALLBACK",
+  "checked": "2026-09-14",
+  "note": "ward names are not Booking destinations in these cities, so the link searches the city, which does resolve — checked for Plymouth (418 properties), Norwich (487) and Newcastle upon Tyne (363)"
  }
 }

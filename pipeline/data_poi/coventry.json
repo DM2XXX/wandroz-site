@@ -1,0 +1,93 @@
+{
+ "city": "coventry",
+ "pois": [
+  {
+   "name": "Coventry Building Society Arena",
+   "category": "art",
+   "qid": "Q842077",
+   "lat": 52.44806,
+   "lon": -1.49556,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Coventry Cathedral",
+   "category": "art",
+   "qid": "Q1138070",
+   "lat": 52.40833,
+   "lon": -1.50722,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Herbert Art Gallery and Museum",
+   "category": "art",
+   "qid": "Q917262",
+   "lat": 52.40722,
+   "lon": -1.50622,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Coventry Transport Museum",
+   "category": "art",
+   "qid": "Q5179119",
+   "lat": 52.4108,
+   "lon": -1.5092,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Lady Godiva",
+   "category": "square",
+   "qid": "Q17540305",
+   "lat": 52.408,
+   "lon": -1.5104,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "War Memorial Park",
+   "category": "green",
+   "qid": "Q7968477",
+   "lat": 52.3901,
+   "lon": -1.52311,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Spon Street",
+   "category": "square",
+   "qid": "Q7578942",
+   "lat": 52.408,
+   "lon": -1.51632,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Fargo Village",
+   "category": "night",
+   "qid": "Q48814900",
+   "lat": 52.4078,
+   "lon": -1.49381,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  }
+ ]
+}

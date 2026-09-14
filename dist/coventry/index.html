@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is my Coventry neighbourhood safe? — Wandroz</title>
+<meta name="description" content="Interactive map of Coventry&#39;s official wards with real street-level police crime data, day and night.">
+<link rel="canonical" href="https://www.wandroz.com/coventry/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Is my Coventry neighbourhood safe? — Wandroz">
+<meta property="og:description" content="Interactive map of Coventry&#39;s official wards with real street-level police crime data, day and night.">
+<meta property="og:url" content="https://www.wandroz.com/coventry/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
+  .switch.on { background: var(--accent); }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
+  .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
+  /* Era un pannello giallo di cinque righe che spiegava la metodologia di
+     Londra a chi stava leggendo di Zurigo. Una riga: su cosa si basa la
+     mappa, e il link a chi vuole il resto. */
+  .evidence { font-size:12.5px; color:var(--muted); margin:10px 24px 14px; display:flex;
+              flex-wrap:wrap; align-items:center; gap:8px; }
+  .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
+  .map-wrap { position:relative; padding: 0 24px 28px; }
+  #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
+  .legend-dash { display:flex; align-items:center; gap:8px; }
+  .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
+  .ev-flag { display:flex; gap:7px; align-items:flex-start; font-size:12px; color:#5b6670; margin:6px 0 2px; line-height:1.45; }
+  .ev-dot { flex:none; width:9px; height:9px; margin-top:3px; border-radius:50%; border:1.5px dashed #7a8190; }
+  .legend-poi-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-item.off { display:none; }
+  /* Sights sit on top of the safety colours, so they carry none of their own:
+     a white disc with a dark edge reads on green, amber and red alike, and the
+     icon does the work of saying what the place is. */
+  .poi-ico { display:flex; align-items:center; justify-content:center; width:26px; height:26px;
+             background:#fff; border:2px solid #16232b; border-radius:50%;
+             box-shadow:0 1px 5px rgba(0,0,0,.38); font-size:13px; position:relative; }
+  .poi-num { position:absolute; right:-6px; top:-6px; width:16px; height:16px; border-radius:50%;
+             background:#16232b; color:#fff; border:1.5px solid #fff; font-size:10px; font-weight:800;
+             display:flex; align-items:center; justify-content:center; }
+  .poi-lab-tt { background:rgba(255,255,255,.96); border:1px solid rgba(22,35,43,.18); border-radius:5px;
+                padding:2px 7px; font-size:11.5px; font-weight:700; color:#16232b;
+                box-shadow:0 1px 4px rgba(0,0,0,.18); }
+  .poi-lab-tt::before { display:none; }
+  /* I filtri restano raggiungibili mentre si guarda la mappa, invece di finire
+     fuori schermo appena si scorre: prima non si poteva cambiare filtro senza
+     prima uscire dalla mappa, che sul telefono e' il gesto piu' difficile. */
+  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
+             position:sticky; top:0; z-index:1100; background:rgba(247,248,250,.94);
+             backdrop-filter:blur(6px); }
+  .poi-reset { position:absolute; left:36px; bottom:40px; z-index:1000; border:1px solid var(--line);
+               background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
+               font-size:12.5px; font-weight:600; color:#3a4750; cursor:pointer;
+               box-shadow:0 1px 5px rgba(0,0,0,.18); -webkit-tap-highlight-color:transparent; }
+  .poi-reset:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .poi-chip { border:1px solid var(--line); background:#fff; color:#4a5a63; border-radius:999px;
+              padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
+  /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
+     una griglia auto-fill produceva una singola fascia orizzontale di dodici
+     voci, illeggibile e slegata dal resto della pagina. */
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
+  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
+  .map-detail .close-btn:hover { color:var(--ink); }
+  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
+  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
+  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
+  .map-detail .cta.secondary { background: var(--accent); }
+  .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
+  .leaflet-tooltip.zone-tooltip::before { display:none; }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  .zone-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px 22px; }
+  .zone-group h3 { font-size:12.5px; margin:0 0 6px; font-weight:700; display:flex; align-items:center; gap:6px;
+                   border-bottom:1px solid var(--line); padding-bottom:5px; }
+  .zone-group ul { columns:1; font-size:13px; }
+  .zg-count { font-weight:600; color:var(--muted); font-size:11px; margin-left:auto; }
+  .zg-dot { font-size:10px; line-height:1; padding:2px 5px; border-radius:8px; color:#fff; font-weight:700; }
+  .zg-dot.green { background:#2e7d46; } .zg-dot.yellow { background:#c98a02; }
+  .zg-dot.red { background:#c0392b; } .zg-dot.grey { background:#7a8190; }
+  @media (max-width: 720px){
+    /* 520px su un telefono riempiva quasi tutto lo schermo: qualunque tentativo
+       di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
+       400px lascia pagina sopra e sotto su cui appoggiare il pollice. */
+    #map{ height:400px; }
+    .map-wrap { padding: 0 12px 24px; }
+    /* Sovrapposta, la legenda copriva meta' di una mappa larga 351px, e i pin
+       che finivano sotto erano semplicemente invisibili. Su telefono scende
+       quindi sotto la mappa, su una riga sola, e non nasconde piu' niente. */
+    .map-legend { position:static; max-width:none; margin-top:10px; padding:10px 2px 0;
+                  background:none; backdrop-filter:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
+                  flex-direction:row; flex-wrap:wrap; gap:6px 16px; font-size:11px; }
+    /* Con la legenda spostata sotto, l'angolo in alto a destra della mappa e'
+       libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
+       invece di finire in fondo alla pagina sopra la legenda. */
+    .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
+    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
+    .zone-list ul { columns:2; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">City</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        <optgroup label="🇬🇧 United Kingdom">
+          <option value="https://www.wandroz.com/london/" >London</option>
+          <option value="https://www.wandroz.com/edinburgh/" >Edinburgh</option>
+          <option value="https://www.wandroz.com/birmingham/" >Birmingham</option>
+          <option value="https://www.wandroz.com/leeds/" >Leeds</option>
+          <option value="https://www.wandroz.com/bristol/" >Bristol</option>
+          <option value="https://www.wandroz.com/sheffield/" >Sheffield</option>
+          <option value="https://www.wandroz.com/newcastle/" >Newcastle upon Tyne</option>
+          <option value="https://www.wandroz.com/nottingham/" >Nottingham</option>
+          <option value="https://www.wandroz.com/cardiff/" >Cardiff</option>
+          <option value="https://www.wandroz.com/leicester/" >Leicester</option>
+          <option value="https://www.wandroz.com/liverpool/" >Liverpool</option>
+          <option value="https://www.wandroz.com/brighton/" >Brighton and Hove</option>
+          <option value="https://www.wandroz.com/york/" >York</option>
+          <option value="https://www.wandroz.com/oxford/" >Oxford</option>
+          <option value="https://www.wandroz.com/cambridge/" >Cambridge</option>
+          <option value="https://www.wandroz.com/bath/" >Bath</option>
+          <option value="https://www.wandroz.com/coventry/" selected>Coventry</option>
+          <option value="https://www.wandroz.com/southampton/" >Southampton</option>
+          <option value="https://www.wandroz.com/portsmouth/" >Portsmouth</option>
+        </optgroup>
+        <optgroup label="🇮🇹 Italy">
+          <option value="https://www.wandroz.com/torino/" >Turin</option>
+          <option value="https://www.wandroz.com/milano/" >Milan</option>
+          <option value="https://www.wandroz.com/roma/" >Rome</option>
+          <option value="https://www.wandroz.com/venezia/" >Venice</option>
+          <option value="https://www.wandroz.com/firenze/" >Florence</option>
+          <option value="https://www.wandroz.com/napoli/" >Naples</option>
+        </optgroup>
+        <optgroup label="🇩🇪 Germany">
+          <option value="https://www.wandroz.com/berlin/" >Berlin</option>
+          <option value="https://www.wandroz.com/monaco-di-baviera/" >Munich</option>
+        </optgroup>
+        <optgroup label="🇪🇸 Spain">
+          <option value="https://www.wandroz.com/barcelona/" >Barcelona</option>
+          <option value="https://www.wandroz.com/madrid/" >Madrid</option>
+        </optgroup>
+        <optgroup label="🇳🇱 Netherlands">
+          <option value="https://www.wandroz.com/amsterdam/" >Amsterdam</option>
+        </optgroup>
+        <optgroup label="🇨🇭 Switzerland">
+          <option value="https://www.wandroz.com/zurigo/" >Zurich</option>
+        </optgroup>
+        <optgroup label="🇨🇿 Czechia">
+          <option value="https://www.wandroz.com/praha/" >Prague</option>
+        </optgroup>
+        <optgroup label="🇳🇴 Norway">
+          <option value="https://www.wandroz.com/oslo/" >Oslo</option>
+        </optgroup>
+        <optgroup label="🇸🇪 Sweden">
+          <option value="https://www.wandroz.com/stockholm/" >Stockholm</option>
+        </optgroup>
+        <optgroup label="🇦🇹 Austria">
+          <option value="https://www.wandroz.com/vienna/" >Vienna</option>
+        </optgroup>
+        <optgroup label="🇵🇹 Portugal">
+          <option value="https://www.wandroz.com/lisbon/" >Lisbon</option>
+        </optgroup>
+        <optgroup label="🇫🇷 France">
+          <option value="https://www.wandroz.com/paris/" >Paris</option>
+        </optgroup>
+        <optgroup label="🇧🇪 Belgium">
+          <option value="https://www.wandroz.com/brussels/" >Brussels</option>
+        </optgroup>
+        <optgroup label="🇬🇷 Greece">
+          <option value="https://www.wandroz.com/athens/" >Athens</option>
+        </optgroup>
+        <optgroup label="🇮🇪 Ireland">
+          <option value="https://www.wandroz.com/dublin/" >Dublin</option>
+        </optgroup>
+        <optgroup label="🇭🇺 Hungary">
+          <option value="https://www.wandroz.com/budapest/" >Budapest</option>
+        </optgroup>
+        <optgroup label="🇵🇱 Poland">
+          <option value="https://www.wandroz.com/krakow/" >Kraków</option>
+        </optgroup>
+      </select>
+    </div>
+    
+    <div class="switch-wrap" id="dnSwitchWrap">
+      <span>day</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>night</span>
+    </div>
+    
+    
+    <nav class="wz-nav">
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+<nav class="crumbs"><a href="/">Home</a> &rsaquo; Coventry, United Kingdom</nav>
+<h1 class="page-title">Coventry wards</h1>
+<p class="lead">Click a ward on the map to see its level, the recorded figures behind it, and a Booking.com link for that area.</p>
+<p class="evidence">🟢 Official crime data · West Midlands Police, data.police.uk <a href="/methodology.html">Methodology &rarr;</a></p>
+
+<div class="poi-bar" id="poiBar"></div>
+
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="map-legend" id="legendBox">
+    <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
+    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
+    <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
+    
+    
+    <div class="legend-poi-sep" id="legendPoiSep"></div>
+    <div id="legendPoi"></div>
+  </div>
+  <button type="button" class="poi-reset" id="poiReset">Reset view</button>
+  <div class="map-detail" id="detailBox">
+    <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<div class="poi-list-wrap">
+  <h2>Sights on this map</h2>
+  <ol class="poi-list" id="poiList"></ol>
+</div>
+
+
+<div class="zone-list">
+  <h2>All wards</h2>
+  
+  <ul>
+    
+    <li><a href="/coventry/bablake.html">Bablake</a></li>
+    
+    <li><a href="/coventry/binley-and-willenhall.html">Binley and Willenhall</a></li>
+    
+    <li><a href="/coventry/cheylesmore.html">Cheylesmore</a></li>
+    
+    <li><a href="/coventry/earlsdon.html">Earlsdon</a></li>
+    
+    <li><a href="/coventry/foleshill.html">Foleshill</a></li>
+    
+    <li><a href="/coventry/henley.html">Henley</a></li>
+    
+    <li><a href="/coventry/holbrook.html">Holbrook</a></li>
+    
+    <li><a href="/coventry/longford.html">Longford</a></li>
+    
+    <li><a href="/coventry/lower-stoke.html">Lower Stoke</a></li>
+    
+    <li><a href="/coventry/radford.html">Radford</a></li>
+    
+    <li><a href="/coventry/sherbourne.html">Sherbourne</a></li>
+    
+    <li><a href="/coventry/st-michael-s.html">St Michael&#39;s</a></li>
+    
+    <li><a href="/coventry/upper-stoke.html">Upper Stoke</a></li>
+    
+    <li><a href="/coventry/wainbody.html">Wainbody</a></li>
+    
+    <li><a href="/coventry/westwood.html">Westwood</a></li>
+    
+    <li><a href="/coventry/whoberley.html">Whoberley</a></li>
+    
+    <li><a href="/coventry/woodlands.html">Woodlands</a></li>
+    
+    <li><a href="/coventry/wyken.html">Wyken</a></li>
+    
+  </ul>
+  
+</div>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = [{"coords": [[[52.4534, -1.51977], [52.4532, -1.52283], [52.4522, -1.52398], [52.45159, -1.52556], [52.44936, -1.52314], [52.44867, -1.52461], [52.44993, -1.52721], [52.44929, -1.52881], [52.44735, -1.5273], [52.44548, -1.52665], [52.44476, -1.52703], [52.4452, -1.5305], [52.44305, -1.53074], [52.44307, -1.53182], [52.4425, -1.53194], [52.44262, -1.53119], [52.44084, -1.53117], [52.43893, -1.5305], [52.43866, -1.52758], [52.44022, -1.5274], [52.44019, -1.52673], [52.44235, -1.52637], [52.44257, -1.52364], [52.44236, -1.52235], [52.43933, -1.52299], [52.43539, -1.52256], [52.43549, -1.52519], [52.43422, -1.5243], [52.43346, -1.52462], [52.43275, -1.52426], [52.4319, -1.52492], [52.4297, -1.52549], [52.42833, -1.52787], [52.42849, -1.52894], [52.42627, -1.52717], [52.42534, -1.5258], [52.42276, -1.52826], [52.41873, -1.52927], [52.42136, -1.53464], [52.42578, -1.53849], [52.42768, -1.54063], [52.42957, -1.54047], [52.42995, -1.54127], [52.42894, -1.54276], [52.42798, -1.54278], [52.42762, -1.54671], [52.42813, -1.54678], [52.428, -1.54877], [52.42623, -1.54874], [52.42581, -1.54919], [52.42571, -1.55084], [52.42472, -1.55159], [52.42344, -1.54848], [52.4209, -1.54972], [52.41928, -1.54871], [52.4197, -1.54955], [52.41963, -1.55135], [52.42077, -1.55449], [52.42031, -1.5551], [52.4203, -1.5559], [52.4215, -1.55892], [52.42238, -1.56387], [52.42243, -1.56632], [52.42189, -1.57028], [52.42398, -1.57136], [52.42628, -1.57393], [52.42264, -1.5767], [52.42265, -1.5771], [52.42172, -1.57783], [52.4202, -1.5786], [52.41966, -1.57822], [52.41949, -1.57899], [52.41781, -1.5801], [52.41798, -1.58426], [52.41743, -1.58471], [52.41813, -1.58881], [52.41883, -1.58846], [52.41899, -1.58985], [52.41846, -1.5901], [52.42033, -1.59813], [52.42108, -1.59776], [52.42118, -1.5983], [52.42197, -1.59812], [52.42205, -1.60033], [52.4213, -1.60059], [52.42135, -1.60124], [52.42045, -1.60162], [52.42063, -1.6023], [52.42005, -1.60386], [52.4196, -1.60334], [52.41997, -1.60225], [52.41997, -1.60168], [52.41954, -1.60124], [52.41976, -1.60059], [52.41606, -1.60218], [52.41678, -1.60324], [52.41868, -1.60471], [52.42234, -1.61109], [52.42275, -1.61105], [52.42411, -1.60938], [52.42539, -1.60645], [52.42584, -1.60724], [52.42626, -1.61058], [52.42722, -1.61329], [52.42797, -1.61445], [52.43213, -1.6114], [52.4311, -1.60811], [52.431, -1.60655], [52.43292, -1.60624], [52.43363, -1.60975], [52.4349, -1.60974], [52.43571, -1.60894], [52.43656, -1.60958], [52.43798, -1.60956], [52.43884, -1.60827], [52.43905, -1.60733], [52.44005, -1.60569], [52.44004, -1.6044], [52.4395, -1.59898], [52.43844, -1.59668], [52.43969, -1.59586], [52.43993, -1.59523], [52.44536, -1.59285], [52.44858, -1.59367], [52.44871, -1.59422], [52.45008, -1.59531], [52.4514, -1.5959], [52.45182, -1.59365], [52.45305, -1.5948], [52.4535, -1.59354], [52.45592, -1.59549], [52.45599, -1.59461], [52.45659, -1.59565], [52.45759, -1.59574], [52.45845, -1.59652], [52.46069, -1.59492], [52.46146, -1.594], [52.46157, -1.59306], [52.4611, -1.58999], [52.46191, -1.58986], [52.46017, -1.58564], [52.45815, -1.5787], [52.45844, -1.57752], [52.45792, -1.57404], [52.45609, -1.56842], [52.45598, -1.56296], [52.45522, -1.56119], [52.45667, -1.55852], [52.45644, -1.55429], [52.45686, -1.554], [52.45704, -1.55142], [52.4593, -1.54923], [52.45959, -1.54756], [52.46146, -1.54526], [52.4648, -1.53994], [52.46243, -1.53701], [52.45951, -1.53494], [52.45709, -1.52968], [52.45637, -1.52596], [52.45633, -1.52209], [52.45682, -1.51763], [52.45516, -1.51912], [52.4534, -1.51977]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Bablake", "night": "green", "night_label": "Relatively safer", "query": "Coventry, United Kingdom", "slug": "bablake", "text": "West Midlands Police recorded 280 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 5.4 per 1,000 residents, the 17th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by vehicle crime (14), burglary (7), shoplifting (1); the evening/night score by violent crime (41), public order (6), anti social behaviour (5). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/bablake.html"}, {"coords": [[[52.39588, -1.43225], [52.39504, -1.43266], [52.39227, -1.43582], [52.38638, -1.44496], [52.38376, -1.4509], [52.38157, -1.45926], [52.37967, -1.46313], [52.37745, -1.46146], [52.3764, -1.46292], [52.37805, -1.46538], [52.37854, -1.46575], [52.37863, -1.46538], [52.37902, -1.46629], [52.37978, -1.46686], [52.38074, -1.46895], [52.38289, -1.47092], [52.38575, -1.47698], [52.38892, -1.47989], [52.39037, -1.48222], [52.39192, -1.47619], [52.39361, -1.47195], [52.39559, -1.46844], [52.39794, -1.46551], [52.40463, -1.46041], [52.40366, -1.45799], [52.40417, -1.45693], [52.40369, -1.45611], [52.40372, -1.45377], [52.40345, -1.45342], [52.40315, -1.45054], [52.4027, -1.45045], [52.40248, -1.44658], [52.40292, -1.44597], [52.40281, -1.44559], [52.40217, -1.44568], [52.40126, -1.44365], [52.40096, -1.44397], [52.40036, -1.44254], [52.4, -1.44296], [52.39864, -1.4409], [52.39783, -1.43832], [52.39653, -1.43588], [52.39588, -1.43225]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Binley and Willenhall", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "binley-and-willenhall", "text": "West Midlands Police recorded 568 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.7 per 1,000 residents, the 4th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (17), vehicle crime (12), drugs (7); the evening/night score by violent crime (81), public order (15), anti social behaviour (10). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/binley-and-willenhall.html"}, {"coords": [[[52.39618, -1.48671], [52.39361, -1.47195], [52.39192, -1.47619], [52.39037, -1.48222], [52.38892, -1.47989], [52.38575, -1.47698], [52.38289, -1.47092], [52.38074, -1.46895], [52.37978, -1.46686], [52.37902, -1.46629], [52.37863, -1.46538], [52.37854, -1.46575], [52.37805, -1.46538], [52.3764, -1.46292], [52.37522, -1.46118], [52.37482, -1.46045], [52.37408, -1.46208], [52.37377, -1.46375], [52.37327, -1.46401], [52.37454, -1.46633], [52.37553, -1.4647], [52.3772, -1.46661], [52.37647, -1.47101], [52.37471, -1.47591], [52.37432, -1.48041], [52.37712, -1.48228], [52.37683, -1.4866], [52.37781, -1.5045], [52.37813, -1.50447], [52.37877, -1.50937], [52.37977, -1.509], [52.3797, -1.50849], [52.37999, -1.5084], [52.37986, -1.50696], [52.38136, -1.50759], [52.38215, -1.50578], [52.38329, -1.50434], [52.38203, -1.50116], [52.38366, -1.50036], [52.38461, -1.50334], [52.38578, -1.50266], [52.38691, -1.50618], [52.38725, -1.50682], [52.38751, -1.50636], [52.38812, -1.50738], [52.38785, -1.50789], [52.38868, -1.50919], [52.38891, -1.50886], [52.38892, -1.50962], [52.38976, -1.51033], [52.38969, -1.51091], [52.3901, -1.51158], [52.39036, -1.51098], [52.39058, -1.51128], [52.3903, -1.51186], [52.39059, -1.51244], [52.39103, -1.51284], [52.39145, -1.5124], [52.39121, -1.5128], [52.39156, -1.51351], [52.39079, -1.51462], [52.39106, -1.51551], [52.39516, -1.51598], [52.39665, -1.51686], [52.40106, -1.5158], [52.39618, -1.48671]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Cheylesmore", "night": "green", "night_label": "Relatively safer", "query": "Coventry, United Kingdom", "slug": "cheylesmore", "text": "West Midlands Police recorded 311 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.6 per 1,000 residents, the 12th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by vehicle crime (18), burglary (7), shoplifting (6); the evening/night score by violent crime (37), anti social behaviour (8), public order (4). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/cheylesmore.html"}, {"coords": [[[52.40389, -1.52565], [52.40274, -1.52395], [52.40195, -1.52183], [52.40106, -1.5158], [52.39665, -1.51686], [52.39516, -1.51598], [52.39106, -1.51551], [52.39079, -1.51462], [52.39156, -1.51351], [52.39121, -1.5128], [52.39145, -1.5124], [52.39103, -1.51284], [52.39059, -1.51244], [52.3903, -1.51186], [52.39058, -1.51128], [52.39036, -1.51098], [52.3901, -1.51158], [52.38969, -1.51091], [52.38976, -1.51033], [52.38892, -1.50962], [52.38891, -1.50886], [52.38868, -1.50919], [52.38785, -1.50789], [52.38812, -1.50738], [52.38751, -1.50636], [52.38725, -1.50682], [52.38691, -1.50618], [52.38578, -1.50266], [52.38461, -1.50334], [52.38366, -1.50036], [52.38203, -1.50116], [52.38329, -1.50434], [52.38215, -1.50578], [52.38136, -1.50759], [52.37986, -1.50696], [52.37999, -1.5084], [52.3797, -1.50849], [52.37977, -1.509], [52.37877, -1.50937], [52.37984, -1.51608], [52.38182, -1.51636], [52.38563, -1.51593], [52.38713, -1.51923], [52.38792, -1.51971], [52.38733, -1.52135], [52.38771, -1.52339], [52.38391, -1.52803], [52.39053, -1.5473], [52.39176, -1.54985], [52.39431, -1.55371], [52.39679, -1.55627], [52.40133, -1.55867], [52.40701, -1.5591], [52.4069, -1.55859], [52.40723, -1.55786], [52.40695, -1.55592], [52.40668, -1.556], [52.40663, -1.55558], [52.40697, -1.55522], [52.40744, -1.55258], [52.40647, -1.55241], [52.40624, -1.55026], [52.40595, -1.54926], [52.40544, -1.54879], [52.4049, -1.54689], [52.40416, -1.54615], [52.40389, -1.54708], [52.40346, -1.54657], [52.40161, -1.54343], [52.40212, -1.54299], [52.4006, -1.54108], [52.40144, -1.53384], [52.40172, -1.52696], [52.40335, -1.52634], [52.40389, -1.52565]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Earlsdon", "night": "green", "night_label": "Relatively safer", "query": "Coventry, United Kingdom", "slug": "earlsdon", "text": "West Midlands Police recorded 268 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 5.8 per 1,000 residents, the 14th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by vehicle crime (14), shoplifting (13), burglary (7); the evening/night score by violent crime (33), public order (6), anti social behaviour (2). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/earlsdon.html"}, {"coords": [[[52.43067, -1.48605], [52.42809, -1.48519], [52.42149, -1.48695], [52.42149, -1.48739], [52.42027, -1.48796], [52.42052, -1.48848], [52.41901, -1.48916], [52.41751, -1.49122], [52.41754, -1.4954], [52.41969, -1.49789], [52.41225, -1.50774], [52.41307, -1.5092], [52.41564, -1.5095], [52.42134, -1.50566], [52.42168, -1.50693], [52.42166, -1.5083], [52.42159, -1.50884], [52.42099, -1.50903], [52.42094, -1.51255], [52.43293, -1.50509], [52.43944, -1.50101], [52.44432, -1.49699], [52.44445, -1.4967], [52.44322, -1.49645], [52.44287, -1.49593], [52.44372, -1.49386], [52.44273, -1.49314], [52.44304, -1.48946], [52.4434, -1.48924], [52.44307, -1.48871], [52.44137, -1.48801], [52.4377, -1.48761], [52.43425, -1.4907], [52.43256, -1.48812], [52.43067, -1.48605]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Foleshill", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "foleshill", "text": "West Midlands Police recorded 790 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 11.7 per 1,000 residents, the 3rd highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (21), vehicle crime (15), drugs (12); the evening/night score by violent crime (101), public order (19), anti social behaviour (14). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/foleshill.html"}, {"coords": [[[52.44966, -1.45217], [52.44755, -1.44605], [52.4483, -1.44547], [52.44742, -1.44365], [52.44709, -1.44437], [52.44679, -1.44364], [52.44639, -1.44434], [52.44643, -1.44501], [52.44308, -1.44646], [52.4426, -1.44665], [52.44027, -1.43982], [52.43969, -1.44009], [52.43753, -1.43187], [52.43679, -1.43169], [52.43679, -1.42993], [52.43578, -1.42879], [52.4348, -1.42521], [52.434, -1.42415], [52.43291, -1.42394], [52.43071, -1.42443], [52.41569, -1.4324], [52.41548, -1.43396], [52.41643, -1.43525], [52.41656, -1.43628], [52.41826, -1.43555], [52.41875, -1.43634], [52.41941, -1.43886], [52.41988, -1.44365], [52.42041, -1.44524], [52.42129, -1.44607], [52.42457, -1.44699], [52.42618, -1.4487], [52.42682, -1.44994], [52.42587, -1.45176], [52.42539, -1.45408], [52.42534, -1.45861], [52.42594, -1.46196], [52.42663, -1.46407], [52.42849, -1.46524], [52.42945, -1.46687], [52.42971, -1.46854], [52.42777, -1.47151], [52.42753, -1.47413], [52.42827, -1.47565], [52.42874, -1.47551], [52.42936, -1.47626], [52.43005, -1.47597], [52.43023, -1.47548], [52.43002, -1.47473], [52.43208, -1.47067], [52.43297, -1.47081], [52.43492, -1.46878], [52.43575, -1.46913], [52.43614, -1.46864], [52.43712, -1.46892], [52.43785, -1.46852], [52.43855, -1.4694], [52.43964, -1.46943], [52.44269, -1.46834], [52.44368, -1.46855], [52.44395, -1.46801], [52.44565, -1.46742], [52.44704, -1.46755], [52.44829, -1.4681], [52.44851, -1.47217], [52.44903, -1.47198], [52.44887, -1.47138], [52.44952, -1.47089], [52.45072, -1.46844], [52.45103, -1.46878], [52.45136, -1.46803], [52.44738, -1.45876], [52.44815, -1.45789], [52.44765, -1.4569], [52.44966, -1.45217]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Henley", "night": "red", "night_label": "Higher caution advised", "query": "Coventry, United Kingdom", "slug": "henley", "text": "West Midlands Police recorded 801 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 12.6 per 1,000 residents, the 2nd highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (17), vehicle crime (14), drugs (5); the evening/night score by violent crime (149), public order (15), anti social behaviour (12). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/henley.html"}, {"coords": [[[52.45103, -1.50003], [52.44931, -1.49955], [52.44616, -1.49715], [52.44432, -1.49699], [52.43944, -1.50101], [52.43293, -1.50509], [52.43419, -1.50581], [52.4339, -1.50742], [52.43391, -1.51153], [52.43456, -1.52099], [52.43531, -1.52112], [52.43539, -1.52256], [52.43933, -1.52299], [52.44236, -1.52235], [52.44257, -1.52364], [52.44235, -1.52637], [52.44019, -1.52673], [52.44022, -1.5274], [52.43866, -1.52758], [52.43893, -1.5305], [52.44084, -1.53117], [52.44262, -1.53119], [52.4425, -1.53194], [52.44307, -1.53182], [52.44305, -1.53074], [52.4452, -1.5305], [52.44476, -1.52703], [52.44548, -1.52665], [52.44735, -1.5273], [52.44929, -1.52881], [52.44993, -1.52721], [52.44867, -1.52461], [52.44936, -1.52314], [52.45159, -1.52556], [52.4522, -1.52398], [52.4532, -1.52283], [52.4534, -1.51977], [52.45007, -1.50501], [52.45076, -1.50297], [52.45103, -1.50003]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Holbrook", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "holbrook", "text": "West Midlands Police recorded 400 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.8 per 1,000 residents, the 11th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (11), vehicle crime (9), burglary (6); the evening/night score by violent crime (61), public order (8), anti social behaviour (6). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/holbrook.html"}, {"coords": [[[52.45516, -1.45905], [52.45475, -1.45875], [52.45363, -1.4604], [52.44966, -1.45217], [52.44765, -1.4569], [52.44815, -1.45789], [52.44738, -1.45876], [52.45136, -1.46803], [52.45103, -1.46878], [52.45072, -1.46844], [52.44952, -1.47089], [52.44887, -1.47138], [52.44903, -1.47198], [52.44851, -1.47217], [52.44829, -1.4681], [52.44704, -1.46755], [52.44565, -1.46742], [52.44395, -1.46801], [52.44368, -1.46855], [52.44269, -1.46834], [52.43964, -1.46943], [52.43855, -1.4694], [52.43785, -1.46852], [52.43712, -1.46892], [52.43614, -1.46864], [52.43575, -1.46913], [52.43492, -1.46878], [52.43297, -1.47081], [52.43208, -1.47067], [52.43002, -1.47473], [52.43023, -1.47548], [52.43005, -1.47597], [52.42936, -1.47626], [52.4299, -1.47685], [52.42956, -1.4776], [52.42986, -1.47792], [52.42968, -1.47843], [52.432, -1.47975], [52.43187, -1.48039], [52.43319, -1.48177], [52.43067, -1.48605], [52.43256, -1.48812], [52.43425, -1.4907], [52.4377, -1.48761], [52.44137, -1.48801], [52.44307, -1.48871], [52.4434, -1.48924], [52.44304, -1.48946], [52.44273, -1.49314], [52.44372, -1.49386], [52.44287, -1.49593], [52.44322, -1.49645], [52.44445, -1.4967], [52.44432, -1.49699], [52.44616, -1.49715], [52.44931, -1.49955], [52.45103, -1.50003], [52.45098, -1.49883], [52.45212, -1.49601], [52.45193, -1.49557], [52.45269, -1.49433], [52.45298, -1.49482], [52.45458, -1.4926], [52.45488, -1.49291], [52.45501, -1.49171], [52.45652, -1.49142], [52.45662, -1.49192], [52.4575, -1.49202], [52.45845, -1.49279], [52.4586, -1.49199], [52.458, -1.48965], [52.45842, -1.48936], [52.45852, -1.48821], [52.45823, -1.48679], [52.45765, -1.48682], [52.45772, -1.48502], [52.45721, -1.48455], [52.45812, -1.48313], [52.45802, -1.48276], [52.45711, -1.4791], [52.45683, -1.47893], [52.457, -1.47735], [52.45642, -1.47286], [52.457, -1.47084], [52.45852, -1.46635], [52.45807, -1.46423], [52.4583, -1.46387], [52.45784, -1.46201], [52.45578, -1.46133], [52.4558, -1.46057], [52.45523, -1.46033], [52.4556, -1.45978], [52.45516, -1.45905]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Longford", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "longford", "text": "West Midlands Police recorded 630 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.4 per 1,000 residents, the 5th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (24), vehicle crime (13), burglary (10); the evening/night score by violent crime (87), public order (15), anti social behaviour (11). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/longford.html"}, {"coords": [[[52.40463, -1.46041], [52.39794, -1.46551], [52.39559, -1.46844], [52.39361, -1.47195], [52.39618, -1.48671], [52.39806, -1.48926], [52.39995, -1.49012], [52.40698, -1.48865], [52.40689, -1.48799], [52.40625, -1.48451], [52.40871, -1.48392], [52.41052, -1.4841], [52.41154, -1.47996], [52.41116, -1.47742], [52.41139, -1.47261], [52.41366, -1.47217], [52.41409, -1.47169], [52.41551, -1.4643], [52.41693, -1.46046], [52.41652, -1.45999], [52.41633, -1.46049], [52.41401, -1.45912], [52.41387, -1.45851], [52.41367, -1.4592], [52.41032, -1.46019], [52.41007, -1.4595], [52.40661, -1.45945], [52.40463, -1.46041]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Lower Stoke", "night": "green", "night_label": "Relatively safer", "query": "Coventry, United Kingdom", "slug": "lower-stoke", "text": "West Midlands Police recorded 501 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.0 per 1,000 residents, the 10th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (20), vehicle crime (15), burglary (7); the evening/night score by violent crime (69), anti social behaviour (6), public order (5). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/lower-stoke.html"}, {"coords": [[[52.43539, -1.52256], [52.43531, -1.52112], [52.43456, -1.52099], [52.43391, -1.51153], [52.4339, -1.50742], [52.43419, -1.50581], [52.43293, -1.50509], [52.42094, -1.51255], [52.42099, -1.50903], [52.42159, -1.50884], [52.42166, -1.5083], [52.42168, -1.50693], [52.42134, -1.50566], [52.41564, -1.5095], [52.41307, -1.5092], [52.41163, -1.51495], [52.41485, -1.51487], [52.41705, -1.51669], [52.4135, -1.52296], [52.41625, -1.52535], [52.41873, -1.52927], [52.42276, -1.52826], [52.42534, -1.5258], [52.42627, -1.52717], [52.42849, -1.52894], [52.42833, -1.52787], [52.4297, -1.52549], [52.4319, -1.52492], [52.43275, -1.52426], [52.43346, -1.52462], [52.43422, -1.5243], [52.43549, -1.52519], [52.43539, -1.52256]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Radford", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "radford", "text": "West Midlands Police recorded 516 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.5 per 1,000 residents, the 7th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by vehicle crime (17), burglary (10), shoplifting (6); the evening/night score by violent crime (79), public order (11), anti social behaviour (6). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/radford.html"}, {"coords": [[[52.41873, -1.52927], [52.41625, -1.52535], [52.4135, -1.52296], [52.41705, -1.51669], [52.41485, -1.51487], [52.41163, -1.51495], [52.41036, -1.51773], [52.40888, -1.51921], [52.40722, -1.5197], [52.40605, -1.51884], [52.4056, -1.52046], [52.40582, -1.52257], [52.40389, -1.52565], [52.40612, -1.52744], [52.40847, -1.52782], [52.40819, -1.5368], [52.40969, -1.5355], [52.40987, -1.53621], [52.40942, -1.53664], [52.41007, -1.53933], [52.41264, -1.54542], [52.41199, -1.54615], [52.41265, -1.54795], [52.41248, -1.5486], [52.41403, -1.55007], [52.41754, -1.55178], [52.4194, -1.55364], [52.42031, -1.5551], [52.42077, -1.55449], [52.41963, -1.55135], [52.4197, -1.54955], [52.41928, -1.54871], [52.4209, -1.54972], [52.42344, -1.54848], [52.42472, -1.55159], [52.42571, -1.55084], [52.42581, -1.54919], [52.42623, -1.54874], [52.428, -1.54877], [52.42813, -1.54678], [52.42762, -1.54671], [52.42798, -1.54278], [52.42894, -1.54276], [52.42995, -1.54127], [52.42957, -1.54047], [52.42768, -1.54063], [52.42578, -1.53849], [52.42136, -1.53464], [52.41873, -1.52927]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Sherbourne", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "sherbourne", "text": "West Midlands Police recorded 386 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.5 per 1,000 residents, the 9th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by vehicle crime (10), burglary (7), shoplifting (7); the evening/night score by violent crime (52), public order (10), anti social behaviour (8). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/sherbourne.html"}, {"coords": [[[52.42149, -1.48695], [52.41507, -1.48701], [52.41085, -1.48785], [52.40689, -1.48799], [52.40698, -1.48865], [52.39995, -1.49012], [52.39806, -1.48926], [52.39618, -1.48671], [52.40106, -1.5158], [52.40195, -1.52183], [52.40274, -1.52395], [52.40389, -1.52565], [52.40582, -1.52257], [52.4056, -1.52046], [52.40605, -1.51884], [52.40722, -1.5197], [52.40888, -1.51921], [52.41036, -1.51773], [52.41163, -1.51495], [52.41307, -1.5092], [52.41225, -1.50774], [52.41969, -1.49789], [52.41754, -1.4954], [52.41751, -1.49122], [52.41901, -1.48916], [52.42052, -1.48848], [52.42027, -1.48796], [52.42149, -1.48739], [52.42149, -1.48695]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "St Michael\u0027s", "night": "red", "night_label": "Higher caution advised", "query": "Coventry, United Kingdom", "slug": "st-michael-s", "text": "West Midlands Police recorded 2,366 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 27.2 per 1,000 residents, the 1st highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (110), drugs (40), vehicle crime (32); the evening/night score by violent crime (318), public order (53), anti social behaviour (32). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/st-michael-s.html"}, {"coords": [[[52.42936, -1.47626], [52.42874, -1.47551], [52.42827, -1.47565], [52.42753, -1.47413], [52.42777, -1.47151], [52.42971, -1.46854], [52.42945, -1.46687], [52.42849, -1.46524], [52.42663, -1.46407], [52.42594, -1.46196], [52.42451, -1.46265], [52.42489, -1.46428], [52.42404, -1.46496], [52.42355, -1.46465], [52.4224, -1.46922], [52.42202, -1.46963], [52.42305, -1.47277], [52.42476, -1.47398], [52.42433, -1.47428], [52.42269, -1.47324], [52.42127, -1.47123], [52.41843, -1.46336], [52.41693, -1.46046], [52.41551, -1.4643], [52.41409, -1.47169], [52.41366, -1.47217], [52.41139, -1.47261], [52.41116, -1.47742], [52.41154, -1.47996], [52.41052, -1.4841], [52.40871, -1.48392], [52.40625, -1.48451], [52.40689, -1.48799], [52.41085, -1.48785], [52.41507, -1.48701], [52.42149, -1.48695], [52.42809, -1.48519], [52.43067, -1.48605], [52.43319, -1.48177], [52.43187, -1.48039], [52.432, -1.47975], [52.42968, -1.47843], [52.42986, -1.47792], [52.42956, -1.4776], [52.4299, -1.47685], [52.42936, -1.47626]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Upper Stoke", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "upper-stoke", "text": "West Midlands Police recorded 510 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.7 per 1,000 residents, the 6th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by vehicle crime (18), drugs (7), burglary (7); the evening/night score by violent crime (84), public order (8), anti social behaviour (7). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/upper-stoke.html"}, {"coords": [[[52.39053, -1.5473], [52.38391, -1.52803], [52.38771, -1.52339], [52.38733, -1.52135], [52.38792, -1.51971], [52.38713, -1.51923], [52.38563, -1.51593], [52.38182, -1.51636], [52.37984, -1.51608], [52.37877, -1.50937], [52.37813, -1.50447], [52.37781, -1.5045], [52.37582, -1.50817], [52.37322, -1.50927], [52.37004, -1.51301], [52.36902, -1.51372], [52.37019, -1.515], [52.37194, -1.51798], [52.37355, -1.51847], [52.37309, -1.52], [52.37455, -1.52108], [52.37555, -1.51981], [52.37751, -1.52278], [52.3794, -1.52465], [52.37786, -1.52992], [52.37622, -1.53266], [52.37761, -1.53548], [52.36927, -1.54568], [52.36663, -1.54189], [52.36604, -1.54288], [52.36634, -1.54334], [52.36536, -1.54681], [52.36634, -1.54939], [52.36389, -1.55241], [52.3651, -1.55501], [52.36504, -1.55556], [52.36573, -1.55745], [52.36775, -1.55584], [52.36866, -1.55825], [52.36973, -1.55691], [52.37206, -1.55555], [52.37246, -1.55676], [52.3737, -1.5549], [52.37442, -1.55499], [52.3756, -1.5593], [52.37689, -1.56264], [52.37919, -1.56315], [52.38229, -1.56482], [52.38478, -1.5678], [52.38731, -1.56807], [52.38848, -1.57019], [52.39171, -1.56945], [52.39181, -1.56869], [52.39025, -1.55848], [52.38955, -1.55739], [52.39046, -1.55572], [52.39028, -1.54782], [52.39053, -1.5473]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Wainbody", "night": "green", "night_label": "Relatively safer", "query": "Coventry, United Kingdom", "slug": "wainbody", "text": "West Midlands Police recorded 183 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 4.0 per 1,000 residents, the 18th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (9), vehicle crime (6), bicycle theft (4); the evening/night score by violent crime (21), public order (2), anti social behaviour (2). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/wainbody.html"}, {"coords": [[[52.40701, -1.5591], [52.40133, -1.55867], [52.39679, -1.55627], [52.39431, -1.55371], [52.39176, -1.54985], [52.39053, -1.5473], [52.39028, -1.54782], [52.39046, -1.55572], [52.38955, -1.55739], [52.39025, -1.55848], [52.39181, -1.56869], [52.39171, -1.56945], [52.38848, -1.57019], [52.38731, -1.56807], [52.38478, -1.5678], [52.38421, -1.57054], [52.38367, -1.56878], [52.3829, -1.56956], [52.38336, -1.57137], [52.38254, -1.57302], [52.38279, -1.57671], [52.38458, -1.57579], [52.38489, -1.58012], [52.38611, -1.588], [52.38789, -1.59394], [52.38746, -1.59472], [52.38824, -1.59739], [52.38804, -1.59769], [52.3893, -1.60107], [52.38975, -1.60251], [52.39036, -1.60314], [52.39148, -1.6016], [52.39287, -1.60104], [52.39287, -1.60002], [52.39506, -1.60077], [52.39495, -1.60225], [52.39581, -1.60269], [52.39594, -1.60159], [52.40001, -1.60427], [52.40179, -1.6044], [52.40347, -1.60431], [52.40374, -1.60122], [52.40465, -1.60133], [52.40448, -1.60368], [52.40593, -1.6058], [52.40729, -1.60588], [52.40776, -1.6034], [52.40816, -1.60133], [52.40777, -1.60116], [52.40779, -1.59684], [52.40715, -1.59672], [52.4072, -1.59544], [52.40616, -1.59519], [52.40509, -1.59311], [52.40389, -1.59174], [52.40195, -1.59156], [52.40173, -1.59147], [52.40181, -1.59089], [52.40131, -1.59075], [52.40214, -1.57833], [52.40316, -1.57874], [52.40299, -1.57656], [52.40327, -1.57287], [52.40287, -1.57279], [52.40297, -1.57192], [52.40925, -1.57431], [52.40982, -1.57386], [52.40832, -1.56832], [52.40701, -1.5591]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Westwood", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "westwood", "text": "West Midlands Police recorded 494 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.0 per 1,000 residents, the 8th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (11), vehicle crime (7), burglary (7); the evening/night score by violent crime (77), anti social behaviour (10), public order (8). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/westwood.html"}, {"coords": [[[52.42031, -1.5551], [52.4194, -1.55364], [52.41754, -1.55178], [52.41403, -1.55007], [52.41248, -1.5486], [52.41265, -1.54795], [52.41199, -1.54615], [52.41264, -1.54542], [52.41007, -1.53933], [52.40942, -1.53664], [52.40987, -1.53621], [52.40969, -1.5355], [52.40819, -1.5368], [52.40847, -1.52782], [52.40612, -1.52744], [52.40389, -1.52565], [52.40335, -1.52634], [52.40172, -1.52696], [52.40144, -1.53384], [52.4006, -1.54108], [52.40212, -1.54299], [52.40161, -1.54343], [52.40346, -1.54657], [52.40389, -1.54708], [52.40416, -1.54615], [52.4049, -1.54689], [52.40544, -1.54879], [52.40595, -1.54926], [52.40624, -1.55026], [52.40647, -1.55241], [52.40744, -1.55258], [52.40697, -1.55522], [52.40663, -1.55558], [52.40668, -1.556], [52.40695, -1.55592], [52.40723, -1.55786], [52.4069, -1.55859], [52.40701, -1.5591], [52.40895, -1.55947], [52.41068, -1.56074], [52.41174, -1.56217], [52.41383, -1.56639], [52.41519, -1.56789], [52.42189, -1.57028], [52.42243, -1.56632], [52.42238, -1.56387], [52.4215, -1.55892], [52.4203, -1.5559], [52.42031, -1.5551]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Whoberley", "night": "green", "night_label": "Relatively safer", "query": "Coventry, United Kingdom", "slug": "whoberley", "text": "West Midlands Police recorded 254 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 5.5 per 1,000 residents, the 16th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by vehicle crime (10), shoplifting (3), drugs (2); the evening/night score by violent crime (42), public order (4), anti social behaviour (2). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/whoberley.html"}, {"coords": [[[52.42189, -1.57028], [52.41519, -1.56789], [52.41383, -1.56639], [52.41174, -1.56217], [52.41068, -1.56074], [52.40895, -1.55947], [52.40701, -1.5591], [52.40832, -1.56832], [52.40982, -1.57386], [52.40925, -1.57431], [52.40297, -1.57192], [52.40287, -1.57279], [52.40327, -1.57287], [52.40299, -1.57656], [52.40316, -1.57874], [52.40214, -1.57833], [52.40131, -1.59075], [52.40181, -1.59089], [52.40173, -1.59147], [52.40195, -1.59156], [52.40389, -1.59174], [52.40509, -1.59311], [52.40616, -1.59519], [52.4072, -1.59544], [52.40715, -1.59672], [52.40779, -1.59684], [52.40777, -1.60116], [52.40816, -1.60133], [52.40776, -1.6034], [52.40913, -1.60405], [52.4092, -1.60369], [52.41591, -1.60461], [52.41583, -1.6022], [52.41606, -1.60218], [52.41976, -1.60059], [52.41954, -1.60124], [52.41997, -1.60168], [52.41997, -1.60225], [52.4196, -1.60334], [52.42005, -1.60386], [52.42063, -1.6023], [52.42045, -1.60162], [52.42135, -1.60124], [52.4213, -1.60059], [52.42205, -1.60033], [52.42197, -1.59812], [52.42118, -1.5983], [52.42108, -1.59776], [52.42033, -1.59813], [52.41846, -1.5901], [52.41899, -1.58985], [52.41883, -1.58846], [52.41813, -1.58881], [52.41743, -1.58471], [52.41798, -1.58426], [52.41781, -1.5801], [52.41949, -1.57899], [52.41966, -1.57822], [52.4202, -1.5786], [52.42172, -1.57783], [52.42265, -1.5771], [52.42264, -1.5767], [52.42628, -1.57393], [52.42398, -1.57136], [52.42189, -1.57028]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Woodlands", "night": "yellow", "night_label": "Average", "query": "Coventry, United Kingdom", "slug": "woodlands", "text": "West Midlands Police recorded 351 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.6 per 1,000 residents, the 13th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (7), vehicle crime (7), burglary (5); the evening/night score by violent crime (58), anti social behaviour (12), public order (5). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/woodlands.html"}, {"coords": [[[52.41569, -1.4324], [52.41258, -1.43478], [52.41055, -1.43784], [52.40976, -1.438], [52.40792, -1.43725], [52.40271, -1.43264], [52.40028, -1.43103], [52.39812, -1.43088], [52.39588, -1.43225], [52.39653, -1.43588], [52.39783, -1.43832], [52.39864, -1.4409], [52.4, -1.44296], [52.40036, -1.44254], [52.40096, -1.44397], [52.40126, -1.44365], [52.40217, -1.44568], [52.40281, -1.44559], [52.40292, -1.44597], [52.40248, -1.44658], [52.4027, -1.45045], [52.40315, -1.45054], [52.40345, -1.45342], [52.40372, -1.45377], [52.40369, -1.45611], [52.40417, -1.45693], [52.40366, -1.45799], [52.40463, -1.46041], [52.40661, -1.45945], [52.41007, -1.4595], [52.41032, -1.46019], [52.41367, -1.4592], [52.41387, -1.45851], [52.41401, -1.45912], [52.41633, -1.46049], [52.41652, -1.45999], [52.41693, -1.46046], [52.41843, -1.46336], [52.42127, -1.47123], [52.42269, -1.47324], [52.42433, -1.47428], [52.42476, -1.47398], [52.42305, -1.47277], [52.42202, -1.46963], [52.4224, -1.46922], [52.42355, -1.46465], [52.42404, -1.46496], [52.42489, -1.46428], [52.42451, -1.46265], [52.42594, -1.46196], [52.42534, -1.45861], [52.42539, -1.45408], [52.42587, -1.45176], [52.42682, -1.44994], [52.42618, -1.4487], [52.42457, -1.44699], [52.42129, -1.44607], [52.42041, -1.44524], [52.41988, -1.44365], [52.41941, -1.43886], [52.41875, -1.43634], [52.41826, -1.43555], [52.41656, -1.43628], [52.41643, -1.43525], [52.41548, -1.43396], [52.41569, -1.4324]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Wyken", "night": "green", "night_label": "Relatively safer", "query": "Coventry, United Kingdom", "slug": "wyken", "text": "West Midlands Police recorded 296 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 5.8 per 1,000 residents, the 15th highest rate of Coventry\u0027s 18 wards. The daytime score here is driven by shoplifting (14), vehicle crime (12), burglary (5); the evening/night score by violent crime (35), anti social behaviour (5), public order (4). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/coventry/wyken.html"}];
+  var CENTER = [52.4166, -1.5176];
+  var ZOOM = 11;
+  var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = "Click a ward on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_BOOKING = "Search accommodation here on Booking.com \u2192";
+  var L_MORE = "See the full page \u2192";
+  var L_NOTCOVERED = "";
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.44806, "lon": -1.49556, "name": "Coventry Building Society Arena", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.40833, "lon": -1.50722, "name": "Coventry Cathedral", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.40722, "lon": -1.50622, "name": "Herbert Art Gallery and Museum", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.4108, "lon": -1.5092, "name": "Coventry Transport Museum", "rank": 4}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 52.408, "lon": -1.5104, "name": "Lady Godiva", "rank": 5}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.3901, "lon": -1.52311, "name": "War Memorial Park", "rank": 6}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 52.408, "lon": -1.51632, "name": "Spon Street", "rank": 7}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 52.4078, "lon": -1.49381, "name": "Fargo Village", "rank": 8}];
+  var POI_ALL = "All";
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
+
+  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+
+  // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi
+  // dalla citta' e non trovare piu' la strada indietro — con l'unico rimedio di
+  // ricaricare la pagina. Questo e' il fondo di ripiego, per le citta' che non
+  // hanno ancora sights; dove ci sono, lo rifissa poiFitAll() sulla vista che
+  // li contiene tutti.
+  var POI_HOME = null;
+  map.setMinZoom(Math.max(3, ZOOM - 2));
+  map.setMaxBounds(L.latLngBounds(
+    L.latLng(CENTER[0] - 0.55, CENTER[1] - 0.75),
+    L.latLng(CENTER[0] + 0.55, CENTER[1] + 0.75)
+  ));
+  map.options.maxBoundsViscosity = 0.7;
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var burglaryMode = false;
+  var layers = [];
+  var lastZone = null;
+
+  function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  var detailPanel = document.getElementById('detailBox');
+
+  function showPanel() { detailPanel.classList.add('visible'); }
+  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; }
+  document.getElementById('detailClose').addEventListener('click', hidePanel);
+
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.covered) {
+      html += badge(tone, z.tone_label || tone);
+    } else {
+      html += badge('grey', z.tone_label || '');
+    }
+    if (z.evidence === 'no_findings') {
+      html += '<div class="ev-flag"><span class="ev-dot"></span>' + z.evidence_label +
+              ' — the review reached no reporting specific to this area, so the rating rests on that ' +
+              'absence rather than on named sources.</div>';
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.covered) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    var greyEl = document.getElementById('legendGreyText');
+    if (greyEl) { greyEl.textContent = set.grey; }
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    ZONES.forEach(function(z){
+      var tone = toneOf(z);
+      // Dashed where the rating rests on an absence of reporting rather than
+      // on sources: the colour still carries the judgement, the outline says
+      // how much evidence is behind it.
+      var thin = z.evidence === 'no_findings';
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight: thin ? 1.5 : 2,
+                                       dashArray: thin ? '5,4' : null,
+                                       fillOpacity: 0.32 }).addTo(map);
+      // Name is visible on hover (not just after a click) via a sticky
+      // tooltip, plus a highlight so it's obvious which zone you're over —
+      // click still opens the full detail card.
+      poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
+      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
+      poly.on('mouseout', function(){ poly.setStyle({ weight:2 }); });
+      poly.on('click', function(){ renderDetail(z); });
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+      if (lastZone && !burglaryMode) renderDetail(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) renderDetail(lastZone);
+    });
+  }
+
+  // ---------------------------------------------------------------------
+  // Sights, laid over the safety map
+  //
+  // The point of the pairing is that a visitor sees what is worth going to
+  // AND which safety area it sits in, on one map. So the pins carry no colour
+  // of their own — colour belongs to safety. The opening view used to be the
+  // safety geography alone, which left a distant sight like Superga or
+  // Stupinigi off screen: a pin nobody can see is a pin that does not exist.
+  // The view now covers every sight as well as every zone.
+  // ---------------------------------------------------------------------
+  var poiMarkers = [];
+  var poiLeaders = [];
+  var POI_SPREAD = 34;
+
+  function poiBuild() {
+    if (!POIS || !POIS.length) return;
+    POIS.forEach(function (p) {
+      var m = L.marker([p.lat, p.lon], { icon: L.divIcon({
+        className: '', iconSize: [26, 26], iconAnchor: [13, 13],
+        html: '<div class="poi-ico">' + p.icon + '<span class="poi-num">' + p.rank + '</span></div>'
+      })});
+      m.bindTooltip(p.name, { direction: 'right', offset: [15, 0], className: 'poi-lab-tt' });
+      m.bindPopup('<b>' + p.name + '</b><br><span style="color:#5b6670">' + p.cat_label + '</span>');
+      m.poiCat = p.cat; m.poiRank = p.rank; m.poiName = p.name;
+      m.addTo(map); poiMarkers.push(m);
+    });
+    poiFitAll();
+    poiChips();
+    poiLegend(null);
+    poiListing();
+    map.on('zoomend moveend', poiRefresh);
+    window.addEventListener('resize', function () { poiHome(false); poiRefresh(); });
+    poiRefresh();
+  }
+
+  // Tutti i sights devono stare nella vista d'apertura, e quella vista diventa
+  // anche il limite: non si rimpicciolisce oltre, non ci si allontana oltre, e
+  // "Reset view" riporta esattamente qui. Cosi' da telefono non si finisce mai
+  // in un punto da cui non si sa tornare.
+  function poiFitAll() {
+    // Si parte dalla vista decisa dalla sicurezza e la si allarga solo quanto
+    // basta a farci stare i pin: dove sono gia' tutti dentro, l'inquadratura
+    // resta esattamente quella di prima.
+    var b = map.getBounds();
+    poiMarkers.forEach(function (m) { b.extend(m.poiReal || m.getLatLng()); });
+    POI_HOME = b;
+    poiHome(true);
+  }
+
+  // Il fondo dipende da quanto e' grande la mappa, che cambia ruotando il
+  // telefono, quindi si ricalcola anche al resize. Fissarlo una volta sola
+  // lasciava un minZoom piu' stretto della vista d'apertura: cioe' proprio il
+  // caso in cui, dopo aver zoomato, non si riusciva piu' a tornare indietro.
+  function poiHome(recenter) {
+    if (!POI_HOME) return;
+    map.setMinZoom(3);
+    map.invalidateSize(false);
+    var z = map.getBoundsZoom(POI_HOME, false, L.point(28, 28));
+    if (recenter) map.setView(POI_HOME.getCenter(), z, { animate: false });
+    map.setMinZoom(z);
+    map.setMaxBounds(POI_HOME.pad(0.35));
+  }
+
+  // Pins closer than POI_SPREAD px are fanned onto a small circle with a
+  // hairline back to the true spot: all of them stay clickable instead of
+  // stacking, and none of them lies about where it is.
+  function poiDeclutter() {
+    poiLeaders.forEach(function (l) { map.removeLayer(l); });
+    poiLeaders = [];
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    vis.forEach(function (m) {
+      if (!m.poiReal) m.poiReal = m.getLatLng();
+      m.setLatLng(m.poiReal);
+    });
+    vis.forEach(function (m) { m.poiPt = map.latLngToLayerPoint(m.getLatLng()); });
+    var groups = [];
+    vis.forEach(function (m) {
+      var g = null;
+      groups.forEach(function (gr) {
+        if (!g && gr.some(function (o) { return o.poiPt.distanceTo(m.poiPt) < POI_SPREAD; })) g = gr;
+      });
+      if (g) { g.push(m); } else { groups.push([m]); }
+    });
+    groups.forEach(function (g) {
+      if (g.length === 1) return;
+      var cx = 0, cy = 0;
+      g.forEach(function (m) { cx += m.poiPt.x; cy += m.poiPt.y; });
+      cx /= g.length; cy /= g.length;
+      var R = Math.max(26, 12 + g.length * 6);
+      g.sort(function (a, b) { return a.poiRank - b.poiRank; });
+      g.forEach(function (m, i) {
+        var ang = (2 * Math.PI * i) / g.length - Math.PI / 2;
+        m.setLatLng(map.layerPointToLatLng(L.point(cx + R * Math.cos(ang), cy + R * Math.sin(ang))));
+        poiLeaders.push(L.polyline([m.poiReal, m.getLatLng()],
+          { color: '#16232b', weight: 1, opacity: .38, interactive: false }).addTo(map));
+      });
+    });
+  }
+
+  function poiOverlap(a, b) { return !(a.r < b.l || b.r < a.l || a.b < b.t || b.b < a.t); }
+
+  // A name stays on screen only where it collides with nothing — not with
+  // another name, not with another pin, not with the edge. Names are tried in
+  // rank order, so when two compete the better-known place keeps its label.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
+  function poiLabels() {
+    poiMarkers.forEach(function (m) {
+      if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
+    });
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    if (!vis.length) return;
+    var size = map.getSize();
+    var taken = vis.map(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      return { l: pt.x - 15, r: pt.x + 15, t: pt.y - 15, b: pt.y + 15 };
+    });
+    vis.slice().sort(function (a, b) { return a.poiRank - b.poiRank; }).forEach(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      var w = 10 + m.poiName.length * 6.6, h = 18;
+      var cand = [
+        { d: 'right', o: [15, 0],  b: { l: pt.x + 16, r: pt.x + 16 + w, t: pt.y - h / 2, b: pt.y + h / 2 } },
+        { d: 'left',  o: [-15, 0], b: { l: pt.x - 16 - w, r: pt.x - 16, t: pt.y - h / 2, b: pt.y + h / 2 } }
+      ];
+      var ok = null;
+      cand.forEach(function (c) {
+        if (ok) return;
+        if (c.b.l < 8 || c.b.r > size.x - 8) return;
+        var clash = false;
+        taken.forEach(function (t) { if (poiOverlap(c.b, t)) clash = true; });
+        if (!clash) ok = c;
+      });
+      if (!ok) return;
+      taken.push(ok.b);
+      m.poiPerm = L.tooltip({ permanent: true, direction: ok.d, offset: ok.o,
+                              className: 'poi-lab-tt', interactive: false })
+                   .setLatLng(m.getLatLng()).setContent(m.poiName).addTo(map);
+    });
+  }
+
+  function poiRefresh() { poiDeclutter(); poiLabels(); }
+
+  // La legenda deve dire quello che si vede. Filtrando su "Green space" le
+  // altre voci descrivono pin che in quel momento non ci sono, quindi
+  // spariscono con loro invece di restare a promettere icone assenti.
+  function poiLegend(active) {
+    var box = document.getElementById('legendPoi');
+    if (!box) return;
+    var seen = {};
+    POIS.forEach(function (p) { seen[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    box.innerHTML = '';
+    Object.keys(seen).forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'legend-poi-item' + (active && active !== c ? ' off' : '');
+      row.textContent = seen[c];
+      box.appendChild(row);
+    });
+  }
+
+  function poiChips() {
+    var bar = document.getElementById('poiBar');
+    if (!bar) return;
+    var cats = [null];
+    POIS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); });
+    var labelOf = {};
+    POIS.forEach(function (p) { labelOf[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    cats.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'poi-chip';
+      b.textContent = c === null ? POI_ALL : labelOf[c];
+      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(bar.children, function (x, k) {
+          x.setAttribute('aria-pressed', cats[k] === c ? 'true' : 'false');
+        });
+        poiMarkers.forEach(function (m) {
+          if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
+        });
+        poiLegend(c);
+        poiListFilter(c);
+        poiRefresh();
+      });
+      bar.appendChild(b);
+    });
+  }
+
+  // On a narrow screen a twenty-character label has nowhere to go, so the
+  // numbered list is where the names live: the pin shows the number, the list
+  // gives the name, and tapping one flies the map there.
+  function poiListing() {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    POIS.forEach(function (p) {
+      var li = document.createElement('li');
+      li.setAttribute('data-cat', p.cat);
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
+      li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
+      ol.appendChild(li);
+    });
+  }
+
+  // Filtrando su "Art & history" la mappa mostra solo quei pin: l'elenco qui
+  // sotto e' la stessa cosa scritta, quindi si filtra con lei. I numeri non si
+  // rinumerano, altrimenti non corrisponderebbero piu' ai pin.
+  function poiListFilter(c) {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    Array.prototype.forEach.call(ol.children, function (li) {
+      var show = c === null || li.getAttribute('data-cat') === c;
+      li.style.display = show ? 'inline-flex' : 'none';
+    });
+  }
+
+  var poiResetBtn = document.getElementById('poiReset');
+  if (poiResetBtn) {
+    poiResetBtn.addEventListener('click', function () {
+      if (POI_HOME) { poiHome(true); } else { map.setView(CENTER, ZOOM); }
+      hidePanel();
+    });
+  }
+
+  poiBuild();
+
+</script>
+</body>
+</html>
