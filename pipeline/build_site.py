@@ -1194,11 +1194,21 @@ def group_zones(zones, js_zones):
             buckets[g] = []
             order.append(g)
         buckets[g].append(z)
+    ROMAN = {"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7, "VIII": 8,
+             "IX": 9, "X": 10, "XI": 11, "XII": 12, "XIII": 13, "XIV": 14, "XV": 15,
+             "XVI": 16, "XVII": 17, "XVIII": 18, "XIX": 19, "XX": 20}
+
     def natural(name):
-        # "10th arrondissement" must not sort before "1st": headings that carry
-        # a number are ordered by it, everything else alphabetically.
+        # "10th arrondissement" must not sort before "1st", and Rome's
+        # Municipio IX must not sort before Municipio V — which is exactly what
+        # alphabetical order does to Roman numerals.
         m = re.match(r"^(\d+)", name)
-        return (0, int(m.group(1)), "") if m else (1, 0, name.lower())
+        if m:
+            return (0, int(m.group(1)), "")
+        m = re.search(r"\b([IVXL]+)$", name)
+        if m and m.group(1) in ROMAN:
+            return (0, ROMAN[m.group(1)], "")
+        return (1, 0, name.lower())
 
     out = []
     for name in sorted(order, key=natural):
