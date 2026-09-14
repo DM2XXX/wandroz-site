@@ -60,8 +60,12 @@ a:hover { text-decoration:underline; }
   border-bottom: 1px solid var(--line);
   display:flex; align-items:center; justify-content:space-between;
   flex-wrap:wrap; gap:14px;
-  position: sticky; top:0; z-index: 20;
+  z-index: 20;
 }
+/* Non e' piu' appiccicato in alto. Da sticky, tutto quello che scorreva gli
+   passava sotto e la barra opaca tagliava il titolo a meta' lettera: sembra
+   un errore di rendering, non una scelta. Sulle pagine citta' la barra dei
+   filtri resta sticky per conto suo, che e' dove serviva davvero. */
 .wz-brand { display:flex; align-items:center; gap:11px; text-decoration:none; color:inherit; }
 .wz-brand:hover { text-decoration:none; }
 .wz-logo { border-radius:10px; display:block; object-fit:cover; flex-shrink:0; box-shadow: var(--shadow-sm); }
@@ -129,32 +133,32 @@ footer.wz-footer a { color: var(--muted); }
 @media (min-width: 721px){
   /* Il logo ha width/height nell'HTML, quindi qui serve !important per
      scavalcarli: senza, il marchio resta a 34px mentre tutto intorno cresce. */
-  .wz-logo { width:42px !important; height:42px !important; border-radius:12px; }
-  .wz-brand { gap:13px; }
-  .wz-brand .wz-name { font-size:19px; }
-  .wz-brand .wz-tagline { font-size:13.5px; }
-  .wz-nav a { font-size:15px; margin-left:24px; }
+  .wz-logo { width:59px !important; height:59px !important; border-radius:16px; }
+  .wz-brand { gap:15px; }
+  .wz-brand .wz-name { font-size:26.5px; }
+  .wz-brand .wz-tagline { font-size:15px; }
+  .wz-nav a { font-size:21px; margin-left:28px; }
   .badge { font-size:13.5px; padding:5px 14px; }
   .btn-primary, .btn-secondary { font-size:16px; padding:13px 22px; }
   .note { font-size:15px; }
   footer.wz-footer { font-size:13.5px; }
 }
 @media (min-width: 1800px){
-  .wz-logo { width:50px !important; height:50px !important; border-radius:14px; }
-  .wz-brand { gap:15px; }
-  .wz-brand .wz-name { font-size:21px; }
-  .wz-brand .wz-tagline { font-size:15px; }
-  .wz-nav a { font-size:16.5px; }
+  .wz-logo { width:70px !important; height:70px !important; border-radius:18px; }
+  .wz-brand { gap:17px; }
+  .wz-brand .wz-name { font-size:29.5px; }
+  .wz-brand .wz-tagline { font-size:17px; }
+  .wz-nav a { font-size:23px; }
   .badge { font-size:15px; padding:6px 16px; }
   .btn-primary, .btn-secondary { font-size:17.5px; }
   .note { font-size:16.5px; }
   footer.wz-footer { font-size:15px; }
 }
 @media (min-width: 2400px){
-  .wz-logo { width:58px !important; height:58px !important; border-radius:16px; }
-  .wz-brand .wz-name { font-size:24px; }
-  .wz-brand .wz-tagline { font-size:17px; }
-  .wz-nav a { font-size:18.5px; }
+  .wz-logo { width:81px !important; height:81px !important; border-radius:20px; }
+  .wz-brand .wz-name { font-size:33.5px; }
+  .wz-brand .wz-tagline { font-size:19px; }
+  .wz-nav a { font-size:26px; }
   footer.wz-footer { font-size:16.5px; }
 }
 
