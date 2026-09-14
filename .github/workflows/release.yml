@@ -155,7 +155,11 @@ jobs:
             else echo "  FAIL $1: expected $2, got $3"; fail=1; fi
           }
           curl -s --max-time 30 https://www.wandroz.com/sitemap.xml -o /tmp/sm.xml
-          check "sitemap URLs" "1237" "$(grep -c '<loc>' /tmp/sm.xml)"
+          # Compare production against the build that was just published, not
+          # against a number typed here a month ago: this assertion failed a
+          # release for finding 1,241 URLs where it expected 1,237, which was
+          # four new pages doing exactly what they were supposed to do.
+          check "sitemap URLs" "$(grep -c '<loc>' dist/sitemap.xml)" "$(grep -c '<loc>' /tmp/sm.xml)"
           curl -s --max-time 30 https://www.wandroz.com/ -o /tmp/home.html
           check "'Official boundaries' on homepage" "0" "$(grep -c 'Official boundaries' /tmp/home.html || true)"
           curl -s --max-time 30 https://www.wandroz.com/berlin/adlershof.html -o /tmp/p.html
