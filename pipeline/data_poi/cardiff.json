@@ -1,0 +1,137 @@
+{
+ "city": "cardiff",
+ "pois": [
+  {
+   "name": "Millennium Stadium",
+   "category": "art",
+   "qid": "Q204496",
+   "lat": 51.47806,
+   "lon": -3.1825,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Cardiff Castle",
+   "category": "art",
+   "qid": "Q1035742",
+   "lat": 51.48231,
+   "lon": -3.18111,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "National Museum Cardiff",
+   "category": "art",
+   "qid": "Q1321874",
+   "lat": 51.48558,
+   "lon": -3.17713,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Llandaff Cathedral",
+   "category": "art",
+   "qid": "Q747856",
+   "lat": 51.49583,
+   "lon": -3.21806,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Wales Millennium Centre",
+   "category": "art",
+   "qid": "Q2631977",
+   "lat": 51.46504,
+   "lon": -3.16353,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Cardiff Bay",
+   "category": "square",
+   "qid": "Q3396731",
+   "lat": 51.463,
+   "lon": -3.164,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Bute Park",
+   "category": "green",
+   "qid": "Q3399164",
+   "lat": 51.489,
+   "lon": -3.189,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Roath Park",
+   "category": "green",
+   "qid": "Q7339918",
+   "lat": 51.5064,
+   "lon": -3.1751,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Cardiff Market",
+   "category": "food",
+   "qid": "Q5038445",
+   "lat": 51.4801,
+   "lon": -3.1787,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Mermaid Quay",
+   "category": "night",
+   "qid": "Q6819858",
+   "lat": 51.4636,
+   "lon": -3.16504,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Techniquest",
+   "category": "art",
+   "qid": "Q7692405",
+   "lat": 51.4629,
+   "lon": -3.1677,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "St Mary Street",
+   "category": "night",
+   "qid": "Q117763314",
+   "lat": 51.4776,
+   "lon": -3.1775,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  }
+ ]
+}

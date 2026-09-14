@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is my Sheffield neighbourhood safe? — Wandroz</title>
+<meta name="description" content="Interactive map of Sheffield&#39;s official wards with real street-level police crime data, day and night.">
+<link rel="canonical" href="https://www.wandroz.com/sheffield/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Is my Sheffield neighbourhood safe? — Wandroz">
+<meta property="og:description" content="Interactive map of Sheffield&#39;s official wards with real street-level police crime data, day and night.">
+<meta property="og:url" content="https://www.wandroz.com/sheffield/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
+  .switch.on { background: var(--accent); }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
+  .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
+  /* Era un pannello giallo di cinque righe che spiegava la metodologia di
+     Londra a chi stava leggendo di Zurigo. Una riga: su cosa si basa la
+     mappa, e il link a chi vuole il resto. */
+  .evidence { font-size:12.5px; color:var(--muted); margin:10px 24px 14px; display:flex;
+              flex-wrap:wrap; align-items:center; gap:8px; }
+  .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
+  .map-wrap { position:relative; padding: 0 24px 28px; }
+  #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
+  .legend-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
+  .legend-dash { display:flex; align-items:center; gap:8px; }
+  .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
+  .ev-flag { display:flex; gap:7px; align-items:flex-start; font-size:12px; color:#5b6670; margin:6px 0 2px; line-height:1.45; }
+  .ev-dot { flex:none; width:9px; height:9px; margin-top:3px; border-radius:50%; border:1.5px dashed #7a8190; }
+  .legend-poi-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-item.off { display:none; }
+  /* Sights sit on top of the safety colours, so they carry none of their own:
+     a white disc with a dark edge reads on green, amber and red alike, and the
+     icon does the work of saying what the place is. */
+  .poi-ico { display:flex; align-items:center; justify-content:center; width:26px; height:26px;
+             background:#fff; border:2px solid #16232b; border-radius:50%;
+             box-shadow:0 1px 5px rgba(0,0,0,.38); font-size:13px; position:relative; }
+  .poi-num { position:absolute; right:-6px; top:-6px; width:16px; height:16px; border-radius:50%;
+             background:#16232b; color:#fff; border:1.5px solid #fff; font-size:10px; font-weight:800;
+             display:flex; align-items:center; justify-content:center; }
+  .poi-lab-tt { background:rgba(255,255,255,.96); border:1px solid rgba(22,35,43,.18); border-radius:5px;
+                padding:2px 7px; font-size:11.5px; font-weight:700; color:#16232b;
+                box-shadow:0 1px 4px rgba(0,0,0,.18); }
+  .poi-lab-tt::before { display:none; }
+  /* I filtri restano raggiungibili mentre si guarda la mappa, invece di finire
+     fuori schermo appena si scorre: prima non si poteva cambiare filtro senza
+     prima uscire dalla mappa, che sul telefono e' il gesto piu' difficile. */
+  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
+             position:sticky; top:0; z-index:1100; background:rgba(247,248,250,.94);
+             backdrop-filter:blur(6px); }
+  .poi-reset { position:absolute; left:36px; bottom:40px; z-index:1000; border:1px solid var(--line);
+               background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
+               font-size:12.5px; font-weight:600; color:#3a4750; cursor:pointer;
+               box-shadow:0 1px 5px rgba(0,0,0,.18); -webkit-tap-highlight-color:transparent; }
+  .poi-reset:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .poi-chip { border:1px solid var(--line); background:#fff; color:#4a5a63; border-radius:999px;
+              padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
+  /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
+     una griglia auto-fill produceva una singola fascia orizzontale di dodici
+     voci, illeggibile e slegata dal resto della pagina. */
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:14px 0 0; padding:0 24px; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:rgba(255,255,255,.98); backdrop-filter:blur(8px); border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
+  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
+  .map-detail .close-btn:hover { color:var(--ink); }
+  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
+  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
+  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
+  .map-detail .cta.secondary { background: var(--accent); }
+  .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
+  .leaflet-tooltip.zone-tooltip::before { display:none; }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  .zone-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px 22px; }
+  .zone-group h3 { font-size:12.5px; margin:0 0 6px; font-weight:700; display:flex; align-items:center; gap:6px;
+                   border-bottom:1px solid var(--line); padding-bottom:5px; }
+  .zone-group ul { columns:1; font-size:13px; }
+  .zg-count { font-weight:600; color:var(--muted); font-size:11px; margin-left:auto; }
+  .zg-dot { font-size:10px; line-height:1; padding:2px 5px; border-radius:8px; color:#fff; font-weight:700; }
+  .zg-dot.green { background:#2e7d46; } .zg-dot.yellow { background:#c98a02; }
+  .zg-dot.red { background:#c0392b; } .zg-dot.grey { background:#7a8190; }
+  @media (max-width: 720px){
+    /* 520px su un telefono riempiva quasi tutto lo schermo: qualunque tentativo
+       di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
+       400px lascia pagina sopra e sotto su cui appoggiare il pollice. */
+    #map{ height:400px; }
+    .map-wrap { padding: 0 12px 24px; }
+    /* Sovrapposta, la legenda copriva meta' di una mappa larga 351px, e i pin
+       che finivano sotto erano semplicemente invisibili. Su telefono scende
+       quindi sotto la mappa, su una riga sola, e non nasconde piu' niente. */
+    .map-legend { position:static; max-width:none; margin-top:10px; padding:10px 2px 0;
+                  background:none; backdrop-filter:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
+                  flex-direction:row; flex-wrap:wrap; gap:6px 16px; font-size:11px; }
+    /* Con la legenda spostata sotto, l'angolo in alto a destra della mappa e'
+       libero: il pulsante ci sta sopra, sempre raggiungibile col pollice,
+       invece di finire in fondo alla pagina sopra la legenda. */
+    .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
+    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
+    .zone-list ul { columns:2; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">City</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        <optgroup label="🇬🇧 United Kingdom">
+          <option value="https://www.wandroz.com/london/" >London</option>
+          <option value="https://www.wandroz.com/edinburgh/" >Edinburgh</option>
+          <option value="https://www.wandroz.com/birmingham/" >Birmingham</option>
+          <option value="https://www.wandroz.com/leeds/" >Leeds</option>
+          <option value="https://www.wandroz.com/bristol/" >Bristol</option>
+          <option value="https://www.wandroz.com/sheffield/" selected>Sheffield</option>
+          <option value="https://www.wandroz.com/newcastle/" >Newcastle upon Tyne</option>
+          <option value="https://www.wandroz.com/nottingham/" >Nottingham</option>
+          <option value="https://www.wandroz.com/cardiff/" >Cardiff</option>
+          <option value="https://www.wandroz.com/leicester/" >Leicester</option>
+        </optgroup>
+        <optgroup label="🇮🇹 Italy">
+          <option value="https://www.wandroz.com/torino/" >Turin</option>
+          <option value="https://www.wandroz.com/milano/" >Milan</option>
+          <option value="https://www.wandroz.com/roma/" >Rome</option>
+          <option value="https://www.wandroz.com/venezia/" >Venice</option>
+          <option value="https://www.wandroz.com/firenze/" >Florence</option>
+          <option value="https://www.wandroz.com/napoli/" >Naples</option>
+        </optgroup>
+        <optgroup label="🇩🇪 Germany">
+          <option value="https://www.wandroz.com/berlin/" >Berlin</option>
+          <option value="https://www.wandroz.com/monaco-di-baviera/" >Munich</option>
+        </optgroup>
+        <optgroup label="🇪🇸 Spain">
+          <option value="https://www.wandroz.com/barcelona/" >Barcelona</option>
+          <option value="https://www.wandroz.com/madrid/" >Madrid</option>
+        </optgroup>
+        <optgroup label="🇳🇱 Netherlands">
+          <option value="https://www.wandroz.com/amsterdam/" >Amsterdam</option>
+        </optgroup>
+        <optgroup label="🇨🇭 Switzerland">
+          <option value="https://www.wandroz.com/zurigo/" >Zurich</option>
+        </optgroup>
+        <optgroup label="🇨🇿 Czechia">
+          <option value="https://www.wandroz.com/praha/" >Prague</option>
+        </optgroup>
+        <optgroup label="🇳🇴 Norway">
+          <option value="https://www.wandroz.com/oslo/" >Oslo</option>
+        </optgroup>
+        <optgroup label="🇸🇪 Sweden">
+          <option value="https://www.wandroz.com/stockholm/" >Stockholm</option>
+        </optgroup>
+        <optgroup label="🇦🇹 Austria">
+          <option value="https://www.wandroz.com/vienna/" >Vienna</option>
+        </optgroup>
+        <optgroup label="🇵🇹 Portugal">
+          <option value="https://www.wandroz.com/lisbon/" >Lisbon</option>
+        </optgroup>
+        <optgroup label="🇫🇷 France">
+          <option value="https://www.wandroz.com/paris/" >Paris</option>
+        </optgroup>
+        <optgroup label="🇧🇪 Belgium">
+          <option value="https://www.wandroz.com/brussels/" >Brussels</option>
+        </optgroup>
+        <optgroup label="🇬🇷 Greece">
+          <option value="https://www.wandroz.com/athens/" >Athens</option>
+        </optgroup>
+        <optgroup label="🇮🇪 Ireland">
+          <option value="https://www.wandroz.com/dublin/" >Dublin</option>
+        </optgroup>
+        <optgroup label="🇭🇺 Hungary">
+          <option value="https://www.wandroz.com/budapest/" >Budapest</option>
+        </optgroup>
+        <optgroup label="🇵🇱 Poland">
+          <option value="https://www.wandroz.com/krakow/" >Kraków</option>
+        </optgroup>
+      </select>
+    </div>
+    
+    <div class="switch-wrap" id="dnSwitchWrap">
+      <span>day</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>night</span>
+    </div>
+    
+    
+    <nav class="wz-nav">
+      <a href="/">Home</a>
+      <a href="/methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+<nav class="crumbs"><a href="/">Home</a> &rsaquo; Sheffield, United Kingdom</nav>
+<h1 class="page-title">Sheffield wards</h1>
+<p class="lead">Click a ward on the map to see its level, the recorded figures behind it, and a Booking.com link for that area.</p>
+<p class="evidence">🟢 Official crime data · South Yorkshire Police, data.police.uk <a href="/methodology.html">Methodology &rarr;</a></p>
+
+<div class="poi-bar" id="poiBar"></div>
+
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="map-legend" id="legendBox">
+    <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
+    <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
+    <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
+    
+    
+    <div class="legend-poi-sep" id="legendPoiSep"></div>
+    <div id="legendPoi"></div>
+  </div>
+  <button type="button" class="poi-reset" id="poiReset">Reset view</button>
+  <div class="map-detail" id="detailBox">
+    <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<div class="poi-list-wrap">
+  <h2>Sights on this map</h2>
+  <ol class="poi-list" id="poiList"></ol>
+</div>
+
+
+<div class="zone-list">
+  <h2>All wards</h2>
+  
+  <ul>
+    
+    <li><a href="/sheffield/beauchief-and-greenhill.html">Beauchief and Greenhill</a></li>
+    
+    <li><a href="/sheffield/beighton.html">Beighton</a></li>
+    
+    <li><a href="/sheffield/birley.html">Birley</a></li>
+    
+    <li><a href="/sheffield/broomhill-and-sharrow-vale.html">Broomhill and Sharrow Vale</a></li>
+    
+    <li><a href="/sheffield/burngreave.html">Burngreave</a></li>
+    
+    <li><a href="/sheffield/city.html">City</a></li>
+    
+    <li><a href="/sheffield/crookes-and-crosspool.html">Crookes and Crosspool</a></li>
+    
+    <li><a href="/sheffield/darnall.html">Darnall</a></li>
+    
+    <li><a href="/sheffield/dore-and-totley.html">Dore and Totley</a></li>
+    
+    <li><a href="/sheffield/east-ecclesfield.html">East Ecclesfield</a></li>
+    
+    <li><a href="/sheffield/ecclesall.html">Ecclesall</a></li>
+    
+    <li><a href="/sheffield/firth-park.html">Firth Park</a></li>
+    
+    <li><a href="/sheffield/fulwood.html">Fulwood</a></li>
+    
+    <li><a href="/sheffield/gleadless-valley.html">Gleadless Valley</a></li>
+    
+    <li><a href="/sheffield/graves-park.html">Graves Park</a></li>
+    
+    <li><a href="/sheffield/hillsborough.html">Hillsborough</a></li>
+    
+    <li><a href="/sheffield/manor-castle.html">Manor Castle</a></li>
+    
+    <li><a href="/sheffield/mosborough.html">Mosborough</a></li>
+    
+    <li><a href="/sheffield/nether-edge-and-sharrow.html">Nether Edge and Sharrow</a></li>
+    
+    <li><a href="/sheffield/park-and-arbourthorne.html">Park and Arbourthorne</a></li>
+    
+    <li><a href="/sheffield/richmond.html">Richmond</a></li>
+    
+    <li><a href="/sheffield/shiregreen-and-brightside.html">Shiregreen and Brightside</a></li>
+    
+    <li><a href="/sheffield/southey.html">Southey</a></li>
+    
+    <li><a href="/sheffield/stannington.html">Stannington</a></li>
+    
+    <li><a href="/sheffield/stocksbridge-and-upper-don.html">Stocksbridge and Upper Don</a></li>
+    
+    <li><a href="/sheffield/walkley.html">Walkley</a></li>
+    
+    <li><a href="/sheffield/west-ecclesfield.html">West Ecclesfield</a></li>
+    
+    <li><a href="/sheffield/woodhouse.html">Woodhouse</a></li>
+    
+  </ul>
+  
+</div>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = [{"coords": [[[53.32845, -1.4617], [53.32725, -1.46024], [53.32641, -1.45804], [53.3263, -1.45659], [53.32511, -1.45637], [53.32497, -1.45513], [53.32428, -1.45431], [53.32347, -1.45582], [53.32187, -1.45522], [53.32177, -1.45728], [53.32071, -1.45726], [53.31973, -1.45973], [53.32008, -1.45997], [53.32021, -1.46167], [53.31979, -1.46322], [53.31801, -1.46721], [53.31716, -1.46787], [53.31719, -1.46962], [53.31849, -1.47439], [53.31928, -1.47692], [53.31933, -1.4796], [53.31872, -1.47969], [53.31888, -1.4825], [53.31852, -1.48463], [53.31875, -1.48472], [53.31738, -1.49107], [53.3174, -1.49233], [53.31673, -1.4931], [53.31639, -1.49613], [53.31686, -1.49787], [53.31917, -1.49919], [53.31965, -1.50017], [53.32043, -1.49976], [53.32194, -1.49679], [53.32292, -1.49843], [53.32383, -1.501], [53.32316, -1.50273], [53.32129, -1.50469], [53.32173, -1.50645], [53.32133, -1.50677], [53.32196, -1.50808], [53.32242, -1.5077], [53.32401, -1.51064], [53.32498, -1.5106], [53.32549, -1.51214], [53.3262, -1.51262], [53.32657, -1.51496], [53.33018, -1.51458], [53.33169, -1.51345], [53.33298, -1.51182], [53.33334, -1.51186], [53.3337, -1.51301], [53.33409, -1.51435], [53.33648, -1.5135], [53.33845, -1.5108], [53.33836, -1.50915], [53.33773, -1.50793], [53.3382, -1.50702], [53.3377, -1.50638], [53.33794, -1.50555], [53.33771, -1.5052], [53.34487, -1.49496], [53.34432, -1.49473], [53.34419, -1.49383], [53.34468, -1.49155], [53.34503, -1.49104], [53.34476, -1.49114], [53.34413, -1.48979], [53.34396, -1.49027], [53.34335, -1.48854], [53.34236, -1.48956], [53.34252, -1.48907], [53.3408, -1.48615], [53.34004, -1.48717], [53.33851, -1.48687], [53.33894, -1.48576], [53.33738, -1.48502], [53.33761, -1.48372], [53.33745, -1.48238], [53.33598, -1.48193], [53.33595, -1.48109], [53.33407, -1.47968], [53.33157, -1.47633], [53.32667, -1.47353], [53.32762, -1.46907], [53.33052, -1.46311], [53.32837, -1.46227], [53.32845, -1.4617]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Beauchief and Greenhill", "night": "yellow", "night_label": "Average", "query": "Beauchief and Greenhill, Sheffield, United Kingdom", "slug": "beauchief-and-greenhill", "text": "South Yorkshire Police recorded 619 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.6 per 1,000 residents, the 11th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (20), burglary (10), vehicle crime (5); the evening/night score by violent crime (84), anti social behaviour (30), public order (16). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/beauchief-and-greenhill.html"}, {"coords": [[[53.35352, -1.33775], [53.35191, -1.3354], [53.35241, -1.33208], [53.35101, -1.33059], [53.34928, -1.33117], [53.34885, -1.33043], [53.3489, -1.32864], [53.34128, -1.32599], [53.33696, -1.32557], [53.33667, -1.32859], [53.33517, -1.32892], [53.3349, -1.34492], [53.33704, -1.34545], [53.33998, -1.34504], [53.34106, -1.34533], [53.34208, -1.34639], [53.34393, -1.3504], [53.34315, -1.35213], [53.34347, -1.35968], [53.34297, -1.36365], [53.33682, -1.36231], [53.33523, -1.36067], [53.33507, -1.36182], [53.33452, -1.36271], [53.33467, -1.36624], [53.33504, -1.36707], [53.33413, -1.37079], [53.33425, -1.37245], [53.33493, -1.37349], [53.33476, -1.37358], [53.33594, -1.37863], [53.33398, -1.38015], [53.33498, -1.38133], [53.33363, -1.38392], [53.33488, -1.38657], [53.33623, -1.38892], [53.33645, -1.38882], [53.3377, -1.38866], [53.34069, -1.39065], [53.34338, -1.38269], [53.34328, -1.37976], [53.34632, -1.37537], [53.34698, -1.37664], [53.34761, -1.37704], [53.34723, -1.37967], [53.34961, -1.38484], [53.35087, -1.386], [53.35133, -1.38337], [53.35057, -1.37975], [53.35001, -1.36022], [53.34968, -1.35762], [53.35371, -1.34836], [53.35412, -1.34678], [53.35433, -1.34364], [53.35352, -1.33775]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Beighton", "night": "yellow", "night_label": "Average", "query": "Beighton, Sheffield, United Kingdom", "slug": "beighton", "text": "South Yorkshire Police recorded 519 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.8 per 1,000 residents, the 15th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (28), burglary (7), vehicle crime (6); the evening/night score by violent crime (52), anti social behaviour (41), public order (13). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/beighton.html"}, {"coords": [[[53.35133, -1.38337], [53.35087, -1.386], [53.34961, -1.38484], [53.34723, -1.37967], [53.34761, -1.37704], [53.34698, -1.37664], [53.34632, -1.37537], [53.34328, -1.37976], [53.34338, -1.38269], [53.34069, -1.39065], [53.3377, -1.38866], [53.33645, -1.38882], [53.33601, -1.38946], [53.33598, -1.3907], [53.3394, -1.4064], [53.3401, -1.40757], [53.34085, -1.40679], [53.34197, -1.40875], [53.34199, -1.41103], [53.3411, -1.41238], [53.34097, -1.41211], [53.33962, -1.41303], [53.33881, -1.41259], [53.33793, -1.41385], [53.33833, -1.41451], [53.33701, -1.41611], [53.33457, -1.42087], [53.33505, -1.42118], [53.33503, -1.42227], [53.33531, -1.4224], [53.33537, -1.4231], [53.33594, -1.42349], [53.33615, -1.42779], [53.33769, -1.43361], [53.33743, -1.43391], [53.33745, -1.43674], [53.33637, -1.44087], [53.33738, -1.44214], [53.33762, -1.44307], [53.34102, -1.43795], [53.34156, -1.43623], [53.34244, -1.43086], [53.34468, -1.42754], [53.34476, -1.42742], [53.34453, -1.4255], [53.34477, -1.42512], [53.3452, -1.42553], [53.3457, -1.42431], [53.34705, -1.42312], [53.34791, -1.42141], [53.34927, -1.41537], [53.34903, -1.41519], [53.34914, -1.41462], [53.3502, -1.41271], [53.35225, -1.41224], [53.3527, -1.41035], [53.3532, -1.41022], [53.35385, -1.40906], [53.35401, -1.40828], [53.35365, -1.40675], [53.35399, -1.40411], [53.35403, -1.39962], [53.35503, -1.39678], [53.35456, -1.39547], [53.35496, -1.39302], [53.35456, -1.39125], [53.35503, -1.38773], [53.35244, -1.38532], [53.35133, -1.38337]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Birley", "night": "green", "night_label": "Relatively safer", "query": "Birley, Sheffield, United Kingdom", "slug": "birley", "text": "South Yorkshire Police recorded 369 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.4 per 1,000 residents, the 18th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by vehicle crime (10), burglary (4), shoplifting (4); the evening/night score by violent crime (49), anti social behaviour (22), public order (5). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/birley.html"}, {"coords": [[[53.38208, -1.48421], [53.38033, -1.48406], [53.38014, -1.48351], [53.37972, -1.4835], [53.37976, -1.48407], [53.37878, -1.48405], [53.37884, -1.48213], [53.37849, -1.48213], [53.37849, -1.48052], [53.37797, -1.48032], [53.37861, -1.47921], [53.37731, -1.47772], [53.37626, -1.47957], [53.37682, -1.48134], [53.37617, -1.4824], [53.3741, -1.47911], [53.37317, -1.48119], [53.3728, -1.48392], [53.37205, -1.48354], [53.37157, -1.48479], [53.37086, -1.48501], [53.369, -1.49071], [53.36728, -1.48879], [53.36623, -1.49017], [53.36668, -1.49058], [53.3666, -1.49095], [53.36568, -1.49045], [53.36547, -1.49219], [53.3657, -1.49296], [53.36491, -1.4945], [53.36555, -1.495], [53.36525, -1.49604], [53.36462, -1.49587], [53.36519, -1.49629], [53.36505, -1.49679], [53.36447, -1.49638], [53.36434, -1.49697], [53.36432, -1.49763], [53.36473, -1.49794], [53.36498, -1.50027], [53.3643, -1.50025], [53.36427, -1.50238], [53.36398, -1.50316], [53.36351, -1.50303], [53.36315, -1.50401], [53.3635, -1.50442], [53.36294, -1.50644], [53.36311, -1.50679], [53.36572, -1.50614], [53.36701, -1.50246], [53.3674, -1.50207], [53.36806, -1.50197], [53.36851, -1.50387], [53.36931, -1.50538], [53.37098, -1.5056], [53.37132, -1.50272], [53.37185, -1.50304], [53.3718, -1.50357], [53.37409, -1.50544], [53.37423, -1.50504], [53.37478, -1.50516], [53.37508, -1.50577], [53.37541, -1.50482], [53.37535, -1.50598], [53.37578, -1.50635], [53.3746, -1.51001], [53.37552, -1.51392], [53.37689, -1.51413], [53.37871, -1.50896], [53.37956, -1.50809], [53.38064, -1.5078], [53.38078, -1.50226], [53.38133, -1.50155], [53.38091, -1.50033], [53.38354, -1.49765], [53.38379, -1.49804], [53.38684, -1.4971], [53.38692, -1.49112], [53.38634, -1.49105], [53.38544, -1.49276], [53.38487, -1.49217], [53.38392, -1.49004], [53.38208, -1.48421]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Broomhill and Sharrow Vale", "night": "green", "night_label": "Relatively safer", "query": "Broomhill and Sharrow Vale, Sheffield, United Kingdom", "slug": "broomhill-and-sharrow-vale", "text": "South Yorkshire Police recorded 562 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 8.5 per 1,000 residents, the 17th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (48), vehicle crime (9), burglary (9); the evening/night score by violent crime (50), anti social behaviour (27), public order (16). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/broomhill-and-sharrow-vale.html"}, {"coords": [[[53.41295, -1.43882], [53.41092, -1.43979], [53.41083, -1.44115], [53.40856, -1.44076], [53.40786, -1.44021], [53.40691, -1.43611], [53.40594, -1.43365], [53.40601, -1.43042], [53.40141, -1.43712], [53.39442, -1.44353], [53.38986, -1.44944], [53.38989, -1.45029], [53.3889, -1.45321], [53.38843, -1.45914], [53.38806, -1.45985], [53.38983, -1.4656], [53.39394, -1.47527], [53.39617, -1.48038], [53.39795, -1.48267], [53.40064, -1.48424], [53.40419, -1.48407], [53.406, -1.48467], [53.40771, -1.48641], [53.41053, -1.49121], [53.41126, -1.48924], [53.41018, -1.48775], [53.41021, -1.48878], [53.40976, -1.48822], [53.40938, -1.48499], [53.40913, -1.48496], [53.41024, -1.48375], [53.4107, -1.47888], [53.41152, -1.4773], [53.41169, -1.47548], [53.41285, -1.47361], [53.41324, -1.47176], [53.4125, -1.46717], [53.41166, -1.46472], [53.41233, -1.46386], [53.41317, -1.46366], [53.4126, -1.46133], [53.4127, -1.45912], [53.41366, -1.45448], [53.41267, -1.45291], [53.41485, -1.45043], [53.4152, -1.44885], [53.41517, -1.44828], [53.4136, -1.44977], [53.41356, -1.44938], [53.41296, -1.44941], [53.41257, -1.44318], [53.41319, -1.44305], [53.41314, -1.44234], [53.41349, -1.44223], [53.41295, -1.43882]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Burngreave", "night": "red", "night_label": "Higher caution advised", "query": "Burngreave, Sheffield, United Kingdom", "slug": "burngreave", "text": "South Yorkshire Police recorded 1,434 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 17.5 per 1,000 residents, the 3rd highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (55), vehicle crime (16), burglary (15); the evening/night score by violent crime (176), anti social behaviour (80), public order (42). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/burngreave.html"}, {"coords": [[[53.38806, -1.45985], [53.38669, -1.45585], [53.38624, -1.45264], [53.38524, -1.45388], [53.38516, -1.45547], [53.38385, -1.45911], [53.3831, -1.45888], [53.38241, -1.4601], [53.38107, -1.46091], [53.37555, -1.46153], [53.37454, -1.46249], [53.3744, -1.46163], [53.37121, -1.46153], [53.36842, -1.46331], [53.36478, -1.46855], [53.36704, -1.47115], [53.37159, -1.47258], [53.37119, -1.47544], [53.37033, -1.47642], [53.37071, -1.47751], [53.37315, -1.47634], [53.3741, -1.47911], [53.37617, -1.4824], [53.37682, -1.48134], [53.37626, -1.47957], [53.37731, -1.47772], [53.37861, -1.47921], [53.37797, -1.48032], [53.37849, -1.48052], [53.37849, -1.48213], [53.37884, -1.48213], [53.37878, -1.48405], [53.37976, -1.48407], [53.37972, -1.4835], [53.38014, -1.48351], [53.38033, -1.48406], [53.38208, -1.48421], [53.38199, -1.48211], [53.38284, -1.47822], [53.38372, -1.47958], [53.38501, -1.47653], [53.38511, -1.47529], [53.38555, -1.47519], [53.3858, -1.47735], [53.38707, -1.47932], [53.38868, -1.47724], [53.39063, -1.47978], [53.39125, -1.48054], [53.39394, -1.47527], [53.38983, -1.4656], [53.38806, -1.45985]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "City", "night": "red", "night_label": "Higher caution advised", "query": "City, Sheffield, United Kingdom", "slug": "city", "text": "South Yorkshire Police recorded 2,191 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 34.0 per 1,000 residents, the 1st highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (96), drugs (25), vehicle crime (25); the evening/night score by violent crime (216), anti social behaviour (112), public order (77). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/city.html"}, {"coords": [[[53.39074, -1.51807], [53.38918, -1.51531], [53.38851, -1.51267], [53.38751, -1.51231], [53.38707, -1.51114], [53.389, -1.51014], [53.38895, -1.50925], [53.38934, -1.50826], [53.38884, -1.50678], [53.3895, -1.50634], [53.38917, -1.50562], [53.39077, -1.50331], [53.38948, -1.5012], [53.38892, -1.49909], [53.38813, -1.49855], [53.38814, -1.49795], [53.38684, -1.4971], [53.38379, -1.49804], [53.38354, -1.49765], [53.38091, -1.50033], [53.38133, -1.50155], [53.38078, -1.50226], [53.38064, -1.5078], [53.37956, -1.50809], [53.37871, -1.50896], [53.37689, -1.51413], [53.37777, -1.5156], [53.3776, -1.51601], [53.37736, -1.51575], [53.37634, -1.51636], [53.37613, -1.51731], [53.37696, -1.51814], [53.37513, -1.52223], [53.37386, -1.52701], [53.37374, -1.52919], [53.37426, -1.53149], [53.37413, -1.53327], [53.37502, -1.53394], [53.37589, -1.53315], [53.37605, -1.53386], [53.37539, -1.53429], [53.37525, -1.53588], [53.37471, -1.53587], [53.37491, -1.53627], [53.3745, -1.53771], [53.3747, -1.53786], [53.37456, -1.53921], [53.37407, -1.53943], [53.37457, -1.5397], [53.37483, -1.53935], [53.37477, -1.53996], [53.37535, -1.54019], [53.37754, -1.54504], [53.37816, -1.54476], [53.38246, -1.54715], [53.38254, -1.54643], [53.38341, -1.54686], [53.38359, -1.54602], [53.38315, -1.54539], [53.38391, -1.54128], [53.38386, -1.53965], [53.38417, -1.53843], [53.384, -1.53668], [53.38464, -1.53655], [53.38592, -1.53374], [53.38696, -1.53232], [53.38732, -1.53057], [53.38784, -1.52982], [53.38785, -1.5289], [53.38847, -1.52799], [53.38856, -1.52667], [53.39069, -1.52331], [53.39053, -1.52161], [53.39113, -1.5203], [53.39063, -1.51929], [53.39074, -1.51807]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Crookes and Crosspool", "night": "green", "night_label": "Relatively safer", "query": "Crookes and Crosspool, Sheffield, United Kingdom", "slug": "crookes-and-crosspool", "text": "South Yorkshire Police recorded 187 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 3.6 per 1,000 residents, the 26th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by vehicle crime (5), shoplifting (3), burglary (2); the evening/night score by anti social behaviour (16), violent crime (14), public order (4). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/crookes-and-crosspool.html"}, {"coords": [[[53.41316, -1.39067], [53.41227, -1.38996], [53.41097, -1.38711], [53.41029, -1.38639], [53.40728, -1.38463], [53.40549, -1.38295], [53.4051, -1.38207], [53.40392, -1.38177], [53.40347, -1.38304], [53.40104, -1.38176], [53.39923, -1.37744], [53.39831, -1.37699], [53.39782, -1.37761], [53.39681, -1.37919], [53.39437, -1.37592], [53.39283, -1.37625], [53.39214, -1.3775], [53.39185, -1.37908], [53.39096, -1.37983], [53.39104, -1.38057], [53.39019, -1.38183], [53.38851, -1.38627], [53.38737, -1.38835], [53.38607, -1.38995], [53.38332, -1.39118], [53.38011, -1.39316], [53.37682, -1.39851], [53.37529, -1.40226], [53.3746, -1.40651], [53.37451, -1.41028], [53.37488, -1.41289], [53.38018, -1.42988], [53.38097, -1.43193], [53.38358, -1.43498], [53.38443, -1.43696], [53.38457, -1.44834], [53.38524, -1.45388], [53.38624, -1.45264], [53.38669, -1.45585], [53.38806, -1.45985], [53.38843, -1.45914], [53.3889, -1.45321], [53.38989, -1.45029], [53.38986, -1.44944], [53.39442, -1.44353], [53.40141, -1.43712], [53.40601, -1.43042], [53.40956, -1.42504], [53.40937, -1.4245], [53.40967, -1.42276], [53.41019, -1.42245], [53.41124, -1.41935], [53.41342, -1.41689], [53.41648, -1.41215], [53.41738, -1.41125], [53.4182, -1.41177], [53.42035, -1.4085], [53.42277, -1.4039], [53.42462, -1.39832], [53.42482, -1.39729], [53.42435, -1.39687], [53.42436, -1.39634], [53.42386, -1.39622], [53.42512, -1.3873], [53.42539, -1.38236], [53.42521, -1.38172], [53.42545, -1.38172], [53.42492, -1.38164], [53.42417, -1.38044], [53.4224, -1.37966], [53.42153, -1.38233], [53.42104, -1.38233], [53.42054, -1.38442], [53.42, -1.39353], [53.41838, -1.39266], [53.41861, -1.38938], [53.4178, -1.38919], [53.41529, -1.39167], [53.41316, -1.39067]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Darnall", "night": "red", "night_label": "Higher caution advised", "query": "Darnall, Sheffield, United Kingdom", "slug": "darnall", "text": "South Yorkshire Police recorded 1,176 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 17.6 per 1,000 residents, the 2nd highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (82), vehicle crime (24), drugs (20); the evening/night score by violent crime (103), anti social behaviour (51), public order (32). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/darnall.html"}, {"coords": [[[53.3337, -1.51301], [53.33334, -1.51186], [53.33298, -1.51182], [53.33169, -1.51345], [53.33018, -1.51458], [53.32657, -1.51496], [53.3262, -1.51262], [53.32549, -1.51214], [53.32498, -1.5106], [53.32401, -1.51064], [53.32242, -1.5077], [53.32196, -1.50808], [53.32133, -1.50677], [53.32173, -1.50645], [53.32129, -1.50469], [53.32316, -1.50273], [53.32383, -1.501], [53.32292, -1.49843], [53.32194, -1.49679], [53.32043, -1.49976], [53.31965, -1.50017], [53.31917, -1.49919], [53.31686, -1.49787], [53.31639, -1.49613], [53.3159, -1.50071], [53.31758, -1.50213], [53.31605, -1.51049], [53.31379, -1.51526], [53.31341, -1.5159], [53.3126, -1.51613], [53.31221, -1.51734], [53.3123, -1.51911], [53.31286, -1.5212], [53.31277, -1.52155], [53.31174, -1.52163], [53.31246, -1.52418], [53.3121, -1.52579], [53.31147, -1.52632], [53.3104, -1.52619], [53.31033, -1.5282], [53.31088, -1.52867], [53.3107, -1.5289], [53.31092, -1.52941], [53.31044, -1.53003], [53.31067, -1.53012], [53.31042, -1.53103], [53.31065, -1.53121], [53.30999, -1.53146], [53.3099, -1.53201], [53.30875, -1.53184], [53.30846, -1.53285], [53.30765, -1.53341], [53.30764, -1.53309], [53.30717, -1.53341], [53.30687, -1.53297], [53.30649, -1.53337], [53.30622, -1.53312], [53.30552, -1.53458], [53.30572, -1.53499], [53.30526, -1.53504], [53.30508, -1.53679], [53.30475, -1.53677], [53.30483, -1.53901], [53.30453, -1.53924], [53.30468, -1.54094], [53.30494, -1.54093], [53.30467, -1.54166], [53.30529, -1.5426], [53.30665, -1.54686], [53.30698, -1.54908], [53.30623, -1.5504], [53.3059, -1.55354], [53.30609, -1.55479], [53.30547, -1.55685], [53.30532, -1.55846], [53.30576, -1.55793], [53.3066, -1.56183], [53.30824, -1.55969], [53.30974, -1.55912], [53.31144, -1.55655], [53.31155, -1.55575], [53.31372, -1.55849], [53.3137, -1.56018], [53.31582, -1.56136], [53.3158, -1.56226], [53.31363, -1.56409], [53.31357, -1.56609], [53.31476, -1.5675], [53.31437, -1.57049], [53.31338, -1.57391], [53.31277, -1.57316], [53.31174, -1.58053], [53.31431, -1.58124], [53.31572, -1.583], [53.31643, -1.58129], [53.3167, -1.57892], [53.32159, -1.5849], [53.3214, -1.5869], [53.32088, -1.58729], [53.31993, -1.58677], [53.3183, -1.59038], [53.31132, -1.59909], [53.31461, -1.5992], [53.31567, -1.60067], [53.31697, -1.60061], [53.31821, -1.60153], [53.31914, -1.60389], [53.32266, -1.6092], [53.31826, -1.61943], [53.31653, -1.62506], [53.31624, -1.62759], [53.31638, -1.62828], [53.32084, -1.63273], [53.32537, -1.62684], [53.32585, -1.62792], [53.32855, -1.62726], [53.32922, -1.62643], [53.33046, -1.62358], [53.33117, -1.6237], [53.33168, -1.62209], [53.33367, -1.62211], [53.33538, -1.61951], [53.33638, -1.6168], [53.33782, -1.61574], [53.33884, -1.61437], [53.34162, -1.61214], [53.34322, -1.6123], [53.3433, -1.60881], [53.34271, -1.60764], [53.34241, -1.60425], [53.34261, -1.60158], [53.34495, -1.59146], [53.34592, -1.59055], [53.34677, -1.58832], [53.34772, -1.57899], [53.34824, -1.57694], [53.34924, -1.56827], [53.34967, -1.56857], [53.35027, -1.5664], [53.35059, -1.56616], [53.34998, -1.56515], [53.35004, -1.5642], [53.34972, -1.56375], [53.35283, -1.53645], [53.35181, -1.53617], [53.35229, -1.53437], [53.34927, -1.53079], [53.34942, -1.53038], [53.34781, -1.52802], [53.34856, -1.52733], [53.34953, -1.52858], [53.3501, -1.52631], [53.35051, -1.52619], [53.35017, -1.52545], [53.35039, -1.52467], [53.35088, -1.5246], [53.35163, -1.52341], [53.35124, -1.52131], [53.35178, -1.52056], [53.35145, -1.51954], [53.35111, -1.51921], [53.35092, -1.51974], [53.35032, -1.51965], [53.34803, -1.52079], [53.34689, -1.52069], [53.3465, -1.51976], [53.34509, -1.51843], [53.34291, -1.51748], [53.34056, -1.51795], [53.33998, -1.51851], [53.3399, -1.51919], [53.33718, -1.51943], [53.3375, -1.52688], [53.3351, -1.52851], [53.33532, -1.53048], [53.3351, -1.53057], [53.33479, -1.52886], [53.33347, -1.52907], [53.33414, -1.53168], [53.33355, -1.53262], [53.33292, -1.53237], [53.33247, -1.53124], [53.333, -1.52794], [53.33297, -1.52558], [53.3317, -1.52422], [53.33109, -1.52197], [53.32996, -1.51992], [53.33054, -1.51887], [53.32993, -1.51754], [53.3297, -1.51575], [53.33294, -1.51393], [53.3337, -1.51301]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Dore and Totley", "night": "green", "night_label": "Relatively safer", "query": "Dore and Totley, Sheffield, United Kingdom", "slug": "dore-and-totley", "text": "South Yorkshire Police recorded 219 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 3.9 per 1,000 residents, the 25th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by burglary (7), vehicle crime (3), shoplifting (2); the evening/night score by violent crime (21), anti social behaviour (16), public order (7). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/dore-and-totley.html"}, {"coords": [[[53.47179, -1.45592], [53.47175, -1.45522], [53.46195, -1.44774], [53.45864, -1.44525], [53.45712, -1.44493], [53.45565, -1.44371], [53.45452, -1.44426], [53.4508, -1.44425], [53.44728, -1.44293], [53.44412, -1.44032], [53.44053, -1.43655], [53.43828, -1.43334], [53.43758, -1.43442], [53.43793, -1.43744], [53.43817, -1.43764], [53.43774, -1.43934], [53.43803, -1.43998], [53.43859, -1.44003], [53.43924, -1.4419], [53.43885, -1.44222], [53.43874, -1.44397], [53.43959, -1.44628], [53.43938, -1.44786], [53.43981, -1.44926], [53.43904, -1.45097], [53.43927, -1.45185], [53.43867, -1.45258], [53.43862, -1.45326], [53.43833, -1.45328], [53.43818, -1.45416], [53.43629, -1.45572], [53.43593, -1.4554], [53.43546, -1.45605], [53.43276, -1.45458], [53.43042, -1.45585], [53.42955, -1.45801], [53.42809, -1.4633], [53.42811, -1.46446], [53.42838, -1.46471], [53.42826, -1.46583], [53.42895, -1.46586], [53.42924, -1.4644], [53.42973, -1.46411], [53.4301, -1.46443], [53.43012, -1.46389], [53.43052, -1.46425], [53.43018, -1.4661], [53.43051, -1.46668], [53.43038, -1.47105], [53.43214, -1.47324], [53.4326, -1.47195], [53.43417, -1.4746], [53.43656, -1.47453], [53.43698, -1.47532], [53.4374, -1.4749], [53.43774, -1.47915], [53.43733, -1.47914], [53.43677, -1.48573], [53.43816, -1.48528], [53.43846, -1.48318], [53.43944, -1.48376], [53.43949, -1.48323], [53.44096, -1.48343], [53.44075, -1.48471], [53.4412, -1.48413], [53.4416, -1.48466], [53.44184, -1.48412], [53.44164, -1.48164], [53.44196, -1.48075], [53.4433, -1.47994], [53.44576, -1.47676], [53.44677, -1.47974], [53.44799, -1.47952], [53.44885, -1.47593], [53.44952, -1.47648], [53.44956, -1.47709], [53.44993, -1.47533], [53.45119, -1.47695], [53.45382, -1.47366], [53.45498, -1.47733], [53.45477, -1.47902], [53.45533, -1.48035], [53.45778, -1.48174], [53.4581, -1.481], [53.45751, -1.48049], [53.45762, -1.4801], [53.45687, -1.47863], [53.45775, -1.4774], [53.45824, -1.47493], [53.45971, -1.47732], [53.46353, -1.47829], [53.46391, -1.48118], [53.46327, -1.48104], [53.46319, -1.48193], [53.46404, -1.48196], [53.46421, -1.48421], [53.46513, -1.48343], [53.46525, -1.48376], [53.46577, -1.48344], [53.46605, -1.48207], [53.46644, -1.48173], [53.46623, -1.4814], [53.46675, -1.47999], [53.46654, -1.47948], [53.46671, -1.47863], [53.46702, -1.47862], [53.46703, -1.477], [53.4676, -1.47535], [53.46737, -1.47424], [53.46922, -1.47253], [53.47027, -1.47434], [53.47117, -1.47326], [53.47139, -1.47129], [53.47263, -1.47224], [53.47503, -1.4684], [53.47673, -1.46789], [53.47806, -1.4669], [53.4783, -1.46515], [53.47772, -1.4632], [53.47636, -1.46168], [53.47579, -1.46032], [53.47193, -1.45652], [53.47179, -1.45592]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "East Ecclesfield", "night": "green", "night_label": "Relatively safer", "query": "East Ecclesfield, Sheffield, United Kingdom", "slug": "east-ecclesfield", "text": "South Yorkshire Police recorded 378 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 7.0 per 1,000 residents, the 19th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (11), burglary (6), vehicle crime (5); the evening/night score by violent crime (44), anti social behaviour (27), public order (8). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/east-ecclesfield.html"}, {"coords": [[[53.36931, -1.50538], [53.36851, -1.50387], [53.36806, -1.50197], [53.3674, -1.50207], [53.36701, -1.50246], [53.36572, -1.50614], [53.36311, -1.50679], [53.36294, -1.50644], [53.3597, -1.50825], [53.35898, -1.50555], [53.35861, -1.50542], [53.35874, -1.50499], [53.35787, -1.5028], [53.35761, -1.50242], [53.35741, -1.50269], [53.35637, -1.49997], [53.35504, -1.49289], [53.35479, -1.49282], [53.35505, -1.49272], [53.35488, -1.49178], [53.35451, -1.4929], [53.34988, -1.48793], [53.34765, -1.49062], [53.34487, -1.49496], [53.33771, -1.5052], [53.33794, -1.50555], [53.3377, -1.50638], [53.3382, -1.50702], [53.33773, -1.50793], [53.33836, -1.50915], [53.33845, -1.5108], [53.33648, -1.5135], [53.33409, -1.51435], [53.3337, -1.51301], [53.33294, -1.51393], [53.3297, -1.51575], [53.32993, -1.51754], [53.33054, -1.51887], [53.32996, -1.51992], [53.33109, -1.52197], [53.3317, -1.52422], [53.33297, -1.52558], [53.333, -1.52794], [53.33247, -1.53124], [53.33292, -1.53237], [53.33355, -1.53262], [53.33414, -1.53168], [53.33347, -1.52907], [53.33479, -1.52886], [53.3351, -1.53057], [53.33532, -1.53048], [53.3351, -1.52851], [53.3375, -1.52688], [53.33718, -1.51943], [53.3399, -1.51919], [53.33998, -1.51851], [53.34056, -1.51795], [53.34291, -1.51748], [53.34509, -1.51843], [53.3465, -1.51976], [53.34689, -1.52069], [53.34803, -1.52079], [53.35032, -1.51965], [53.35092, -1.51974], [53.35111, -1.51921], [53.35145, -1.51954], [53.35178, -1.52056], [53.35124, -1.52131], [53.35163, -1.52341], [53.35088, -1.5246], [53.35039, -1.52467], [53.35017, -1.52545], [53.35051, -1.52619], [53.3501, -1.52631], [53.34953, -1.52858], [53.34856, -1.52733], [53.34781, -1.52802], [53.34942, -1.53038], [53.34927, -1.53079], [53.35229, -1.53437], [53.35181, -1.53617], [53.35283, -1.53645], [53.35287, -1.53613], [53.35383, -1.53699], [53.35492, -1.5421], [53.3562, -1.54392], [53.35912, -1.54305], [53.35983, -1.54235], [53.35977, -1.54042], [53.35903, -1.53765], [53.35863, -1.53715], [53.35752, -1.53732], [53.35766, -1.53592], [53.35835, -1.5353], [53.35733, -1.53429], [53.35741, -1.53287], [53.35822, -1.53055], [53.35844, -1.52878], [53.35808, -1.52722], [53.35959, -1.52613], [53.36016, -1.52453], [53.3612, -1.52573], [53.36254, -1.52559], [53.36287, -1.52647], [53.3637, -1.52652], [53.364, -1.52521], [53.36498, -1.52354], [53.36678, -1.52241], [53.36714, -1.52169], [53.36781, -1.52155], [53.36897, -1.5198], [53.36888, -1.51781], [53.36928, -1.51689], [53.36873, -1.51117], [53.36975, -1.50967], [53.36998, -1.50862], [53.36943, -1.50737], [53.36931, -1.50538]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Ecclesall", "night": "green", "night_label": "Relatively safer", "query": "Ecclesall, Sheffield, United Kingdom", "slug": "ecclesall", "text": "South Yorkshire Police recorded 209 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 3.4 per 1,000 residents, the 27th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (17), burglary (5), vehicle crime (2); the evening/night score by anti social behaviour (16), violent crime (16), public order (4). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/ecclesall.html"}, {"coords": [[[53.41295, -1.43882], [53.41349, -1.44223], [53.41314, -1.44234], [53.41319, -1.44305], [53.41257, -1.44318], [53.41296, -1.44941], [53.41356, -1.44938], [53.4136, -1.44977], [53.41517, -1.44828], [53.4152, -1.44885], [53.41485, -1.45043], [53.41267, -1.45291], [53.41366, -1.45448], [53.4127, -1.45912], [53.4126, -1.46133], [53.41317, -1.46366], [53.41233, -1.46386], [53.41166, -1.46472], [53.4125, -1.46717], [53.41324, -1.47176], [53.41285, -1.47361], [53.41169, -1.47548], [53.41152, -1.4773], [53.41259, -1.48176], [53.41377, -1.48369], [53.4149, -1.48239], [53.41747, -1.48125], [53.41795, -1.48038], [53.42142, -1.48063], [53.4252, -1.47919], [53.42789, -1.47872], [53.42772, -1.47783], [53.42795, -1.47552], [53.42743, -1.47213], [53.42826, -1.46583], [53.42838, -1.46471], [53.42811, -1.46446], [53.42809, -1.4633], [53.42955, -1.45801], [53.42412, -1.45611], [53.42212, -1.45498], [53.42247, -1.4535], [53.42413, -1.45009], [53.4242, -1.4433], [53.4228, -1.44112], [53.42123, -1.43638], [53.41882, -1.43556], [53.41693, -1.42976], [53.41659, -1.43005], [53.41623, -1.431], [53.41648, -1.43147], [53.41484, -1.43507], [53.41498, -1.43701], [53.41275, -1.43781], [53.41295, -1.43882]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Firth Park", "night": "red", "night_label": "Higher caution advised", "query": "Firth Park, Sheffield, United Kingdom", "slug": "firth-park", "text": "South Yorkshire Police recorded 860 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 12.8 per 1,000 residents, the 6th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by burglary (9), vehicle crime (7), drugs (6); the evening/night score by violent crime (118), anti social behaviour (50), public order (24). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/firth-park.html"}, {"coords": [[[53.38341, -1.54686], [53.38254, -1.54643], [53.38246, -1.54715], [53.37816, -1.54476], [53.37754, -1.54504], [53.37535, -1.54019], [53.37477, -1.53996], [53.37483, -1.53935], [53.37457, -1.5397], [53.37407, -1.53943], [53.37456, -1.53921], [53.3747, -1.53786], [53.3745, -1.53771], [53.37491, -1.53627], [53.37471, -1.53587], [53.37525, -1.53588], [53.37539, -1.53429], [53.37605, -1.53386], [53.37589, -1.53315], [53.37502, -1.53394], [53.37413, -1.53327], [53.37426, -1.53149], [53.37374, -1.52919], [53.37386, -1.52701], [53.37513, -1.52223], [53.37696, -1.51814], [53.37613, -1.51731], [53.37634, -1.51636], [53.37736, -1.51575], [53.3776, -1.51601], [53.37777, -1.5156], [53.37689, -1.51413], [53.37552, -1.51392], [53.3746, -1.51001], [53.37578, -1.50635], [53.37535, -1.50598], [53.37541, -1.50482], [53.37508, -1.50577], [53.37478, -1.50516], [53.37423, -1.50504], [53.37409, -1.50544], [53.3718, -1.50357], [53.37185, -1.50304], [53.37132, -1.50272], [53.37098, -1.5056], [53.36931, -1.50538], [53.36943, -1.50737], [53.36998, -1.50862], [53.36975, -1.50967], [53.36873, -1.51117], [53.36928, -1.51689], [53.36888, -1.51781], [53.36897, -1.5198], [53.36781, -1.52155], [53.36714, -1.52169], [53.36678, -1.52241], [53.36498, -1.52354], [53.364, -1.52521], [53.3637, -1.52652], [53.36287, -1.52647], [53.36254, -1.52559], [53.3612, -1.52573], [53.36016, -1.52453], [53.35959, -1.52613], [53.35808, -1.52722], [53.35844, -1.52878], [53.35822, -1.53055], [53.35741, -1.53287], [53.35733, -1.53429], [53.35835, -1.5353], [53.35766, -1.53592], [53.35752, -1.53732], [53.35863, -1.53715], [53.35903, -1.53765], [53.35977, -1.54042], [53.35983, -1.54235], [53.35912, -1.54305], [53.3562, -1.54392], [53.35492, -1.5421], [53.35383, -1.53699], [53.35287, -1.53613], [53.35283, -1.53645], [53.34972, -1.56375], [53.35004, -1.5642], [53.34998, -1.56515], [53.35059, -1.56616], [53.35027, -1.5664], [53.34967, -1.56857], [53.34924, -1.56827], [53.34824, -1.57694], [53.34772, -1.57899], [53.34677, -1.58832], [53.34592, -1.59055], [53.35085, -1.61563], [53.35206, -1.6256], [53.3538, -1.62835], [53.35616, -1.63059], [53.36418, -1.65788], [53.36689, -1.66395], [53.37367, -1.64027], [53.37327, -1.63542], [53.37358, -1.62884], [53.37616, -1.62659], [53.37779, -1.62426], [53.37907, -1.62464], [53.38003, -1.62398], [53.38133, -1.62434], [53.38292, -1.62324], [53.38391, -1.62364], [53.38417, -1.62183], [53.38513, -1.62025], [53.38485, -1.61495], [53.38509, -1.61378], [53.38351, -1.60892], [53.38298, -1.60814], [53.38271, -1.60513], [53.38303, -1.60411], [53.38244, -1.60209], [53.38243, -1.60085], [53.3819, -1.59925], [53.38138, -1.59961], [53.38067, -1.59903], [53.3799, -1.59924], [53.37959, -1.59848], [53.37907, -1.5984], [53.3793, -1.59716], [53.37839, -1.59601], [53.37786, -1.59287], [53.37717, -1.59241], [53.37729, -1.5904], [53.3777, -1.58903], [53.37723, -1.58855], [53.37718, -1.58721], [53.37676, -1.58649], [53.3771, -1.58488], [53.37675, -1.58375], [53.3769, -1.58089], [53.37633, -1.57918], [53.3764, -1.5771], [53.37715, -1.57624], [53.37654, -1.57506], [53.37648, -1.57253], [53.37753, -1.56873], [53.37838, -1.56876], [53.37825, -1.56755], [53.37877, -1.56758], [53.37957, -1.56615], [53.38106, -1.56522], [53.3815, -1.56282], [53.38149, -1.56084], [53.38255, -1.55822], [53.38208, -1.55768], [53.38149, -1.55546], [53.38193, -1.55121], [53.38335, -1.54878], [53.38341, -1.54686]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Fulwood", "night": "green", "night_label": "Relatively safer", "query": "Fulwood, Sheffield, United Kingdom", "slug": "fulwood", "text": "South Yorkshire Police recorded 178 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 3.3 per 1,000 residents, the 28th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by vehicle crime (7), burglary (4), shoplifting (1); the evening/night score by violent crime (19), anti social behaviour (10), public order (6). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/fulwood.html"}, {"coords": [[[53.34468, -1.42754], [53.34244, -1.43086], [53.34156, -1.43623], [53.34102, -1.43795], [53.33762, -1.44307], [53.3378, -1.44383], [53.33754, -1.4483], [53.33852, -1.45174], [53.33981, -1.45897], [53.34039, -1.45526], [53.34098, -1.45425], [53.34234, -1.45375], [53.34534, -1.45594], [53.34655, -1.45562], [53.34873, -1.45692], [53.35007, -1.45708], [53.34972, -1.45751], [53.3512, -1.45832], [53.35091, -1.45972], [53.3515, -1.46254], [53.35179, -1.46776], [53.35094, -1.4713], [53.35152, -1.47504], [53.34993, -1.47766], [53.35054, -1.4779], [53.35046, -1.47864], [53.3509, -1.47863], [53.35106, -1.48171], [53.35254, -1.48174], [53.35175, -1.48202], [53.35403, -1.48336], [53.35866, -1.47637], [53.36478, -1.46855], [53.36842, -1.46331], [53.36789, -1.46278], [53.36191, -1.46325], [53.36132, -1.46402], [53.36075, -1.46424], [53.36021, -1.46355], [53.35988, -1.46417], [53.35786, -1.45964], [53.35698, -1.45456], [53.35705, -1.45173], [53.3559, -1.44739], [53.35498, -1.44645], [53.3547, -1.44693], [53.3545, -1.44627], [53.35479, -1.44606], [53.35439, -1.44431], [53.35371, -1.44389], [53.35374, -1.44318], [53.3525, -1.44235], [53.35223, -1.44263], [53.35096, -1.43729], [53.34987, -1.43535], [53.34814, -1.43365], [53.34695, -1.43489], [53.34468, -1.42754]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Gleadless Valley", "night": "yellow", "night_label": "Average", "query": "Gleadless Valley, Sheffield, United Kingdom", "slug": "gleadless-valley", "text": "South Yorkshire Police recorded 641 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.3 per 1,000 residents, the 13th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (20), vehicle crime (9), burglary (8); the evening/night score by violent crime (75), anti social behaviour (36), public order (16). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/gleadless-valley.html"}, {"coords": [[[53.33762, -1.44307], [53.33738, -1.44214], [53.33726, -1.44303], [53.33157, -1.4508], [53.33072, -1.45394], [53.33069, -1.45988], [53.32939, -1.45664], [53.32866, -1.45752], [53.32873, -1.45828], [53.3297, -1.45994], [53.32845, -1.4617], [53.32837, -1.46227], [53.33052, -1.46311], [53.32762, -1.46907], [53.32667, -1.47353], [53.33157, -1.47633], [53.33407, -1.47968], [53.33595, -1.48109], [53.33598, -1.48193], [53.33745, -1.48238], [53.33761, -1.48372], [53.33738, -1.48502], [53.33894, -1.48576], [53.33851, -1.48687], [53.34004, -1.48717], [53.3408, -1.48615], [53.34252, -1.48907], [53.34236, -1.48956], [53.34335, -1.48854], [53.34396, -1.49027], [53.34413, -1.48979], [53.34476, -1.49114], [53.34503, -1.49104], [53.34468, -1.49155], [53.34419, -1.49383], [53.34432, -1.49473], [53.34487, -1.49496], [53.34765, -1.49062], [53.34988, -1.48793], [53.35403, -1.48336], [53.35175, -1.48202], [53.35254, -1.48174], [53.35106, -1.48171], [53.3509, -1.47863], [53.35046, -1.47864], [53.35054, -1.4779], [53.34993, -1.47766], [53.35152, -1.47504], [53.35094, -1.4713], [53.35179, -1.46776], [53.3515, -1.46254], [53.35091, -1.45972], [53.3512, -1.45832], [53.34972, -1.45751], [53.35007, -1.45708], [53.34873, -1.45692], [53.34655, -1.45562], [53.34534, -1.45594], [53.34234, -1.45375], [53.34098, -1.45425], [53.34039, -1.45526], [53.33981, -1.45897], [53.33852, -1.45174], [53.33754, -1.4483], [53.3378, -1.44383], [53.33762, -1.44307]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Graves Park", "night": "green", "night_label": "Relatively safer", "query": "Graves Park, Sheffield, United Kingdom", "slug": "graves-park", "text": "South Yorkshire Police recorded 318 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.2 per 1,000 residents, the 22nd highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (14), burglary (6), vehicle crime (4); the evening/night score by violent crime (38), anti social behaviour (19), public order (6). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/graves-park.html"}, {"coords": [[[53.41053, -1.49121], [53.40771, -1.48641], [53.406, -1.48467], [53.40419, -1.48407], [53.40064, -1.48424], [53.39795, -1.48267], [53.39617, -1.48038], [53.39394, -1.47527], [53.39125, -1.48054], [53.39063, -1.47978], [53.39018, -1.48097], [53.39153, -1.48393], [53.39445, -1.48867], [53.39703, -1.48995], [53.39855, -1.49124], [53.39933, -1.49439], [53.40238, -1.50069], [53.40111, -1.50299], [53.4009, -1.50453], [53.39981, -1.50737], [53.39977, -1.51163], [53.40043, -1.51422], [53.40025, -1.51555], [53.40044, -1.51971], [53.40116, -1.52165], [53.40267, -1.52389], [53.40268, -1.52602], [53.40411, -1.52514], [53.40549, -1.52599], [53.4055, -1.52553], [53.40723, -1.52666], [53.40712, -1.52746], [53.40868, -1.52907], [53.40934, -1.52646], [53.41027, -1.52623], [53.4111, -1.52481], [53.41052, -1.52364], [53.41316, -1.52215], [53.41403, -1.52094], [53.41541, -1.51595], [53.4161, -1.5146], [53.41653, -1.51124], [53.41841, -1.51352], [53.42132, -1.51878], [53.42165, -1.51814], [53.42361, -1.52168], [53.4238, -1.52184], [53.42556, -1.51928], [53.42375, -1.51068], [53.41948, -1.49999], [53.41777, -1.49769], [53.41053, -1.49121]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Hillsborough", "night": "yellow", "night_label": "Average", "query": "Hillsborough, Sheffield, United Kingdom", "slug": "hillsborough", "text": "South Yorkshire Police recorded 647 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 11.3 per 1,000 residents, the 10th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (20), vehicle crime (11), burglary (4); the evening/night score by violent crime (66), anti social behaviour (57), public order (19). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/hillsborough.html"}, {"coords": [[[53.3746, -1.40651], [53.37166, -1.40484], [53.37193, -1.40611], [53.37168, -1.40735], [53.36977, -1.40824], [53.36897, -1.41026], [53.36735, -1.41034], [53.36733, -1.41113], [53.36772, -1.41138], [53.36718, -1.4119], [53.36586, -1.41661], [53.36505, -1.41601], [53.36352, -1.42007], [53.36378, -1.42142], [53.36262, -1.42194], [53.36141, -1.42316], [53.36116, -1.42382], [53.36129, -1.42518], [53.36039, -1.42605], [53.36069, -1.42755], [53.36052, -1.42798], [53.36086, -1.42869], [53.36642, -1.43759], [53.36657, -1.43804], [53.36634, -1.43862], [53.36757, -1.44057], [53.37124, -1.44413], [53.37095, -1.44485], [53.36995, -1.44475], [53.37002, -1.44537], [53.36919, -1.44567], [53.37364, -1.45013], [53.37367, -1.45093], [53.37325, -1.45129], [53.37331, -1.45243], [53.37376, -1.45276], [53.3744, -1.46163], [53.37454, -1.46249], [53.37555, -1.46153], [53.38107, -1.46091], [53.38241, -1.4601], [53.3831, -1.45888], [53.38385, -1.45911], [53.38516, -1.45547], [53.38524, -1.45388], [53.38457, -1.44834], [53.38443, -1.43696], [53.38358, -1.43498], [53.38097, -1.43193], [53.38018, -1.42988], [53.37488, -1.41289], [53.37451, -1.41028], [53.3746, -1.40651]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Manor Castle", "night": "red", "night_label": "Higher caution advised", "query": "Manor Castle, Sheffield, United Kingdom", "slug": "manor-castle", "text": "South Yorkshire Police recorded 910 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 13.4 per 1,000 residents, the 4th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (19), burglary (17), vehicle crime (14); the evening/night score by violent crime (116), anti social behaviour (53), public order (21). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/manor-castle.html"}, {"coords": [[[53.33696, -1.32557], [53.33354, -1.32482], [53.32881, -1.32467], [53.32913, -1.32766], [53.32897, -1.3283], [53.3277, -1.32877], [53.32733, -1.32813], [53.32681, -1.32816], [53.3235, -1.33242], [53.32293, -1.33281], [53.32246, -1.33222], [53.32206, -1.33231], [53.32102, -1.33456], [53.32033, -1.33452], [53.31796, -1.33658], [53.3166, -1.33655], [53.31587, -1.33767], [53.31553, -1.34026], [53.31608, -1.34163], [53.31699, -1.34089], [53.3179, -1.34305], [53.31855, -1.34731], [53.31887, -1.34724], [53.31911, -1.35347], [53.31849, -1.36178], [53.31757, -1.36295], [53.31577, -1.36192], [53.31504, -1.36262], [53.3152, -1.36417], [53.31588, -1.36545], [53.31608, -1.37165], [53.31725, -1.37413], [53.31742, -1.37704], [53.31709, -1.37815], [53.31723, -1.37961], [53.31699, -1.38062], [53.31783, -1.38366], [53.31758, -1.38435], [53.31778, -1.38508], [53.31763, -1.38674], [53.31804, -1.38686], [53.31788, -1.3873], [53.3184, -1.38786], [53.31873, -1.38926], [53.31851, -1.38993], [53.32265, -1.392], [53.32608, -1.39043], [53.32829, -1.3912], [53.33102, -1.39034], [53.33164, -1.39072], [53.33318, -1.38873], [53.33452, -1.38792], [53.3341, -1.38723], [53.33488, -1.38657], [53.33363, -1.38392], [53.33498, -1.38133], [53.33398, -1.38015], [53.33594, -1.37863], [53.33476, -1.37358], [53.33493, -1.37349], [53.33425, -1.37245], [53.33413, -1.37079], [53.33504, -1.36707], [53.33467, -1.36624], [53.33452, -1.36271], [53.33507, -1.36182], [53.33523, -1.36067], [53.33682, -1.36231], [53.34297, -1.36365], [53.34347, -1.35968], [53.34315, -1.35213], [53.34393, -1.3504], [53.34208, -1.34639], [53.34106, -1.34533], [53.33998, -1.34504], [53.33704, -1.34545], [53.3349, -1.34492], [53.33517, -1.32892], [53.33667, -1.32859], [53.33696, -1.32557]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Mosborough", "night": "green", "night_label": "Relatively safer", "query": "Mosborough, Sheffield, United Kingdom", "slug": "mosborough", "text": "South Yorkshire Police recorded 472 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.1 per 1,000 residents, the 16th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (38), burglary (6), drugs (2); the evening/night score by violent crime (45), anti social behaviour (22), public order (11). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/mosborough.html"}, {"coords": [[[53.36478, -1.46855], [53.35866, -1.47637], [53.35403, -1.48336], [53.34988, -1.48793], [53.35451, -1.4929], [53.35488, -1.49178], [53.35505, -1.49272], [53.35479, -1.49282], [53.35504, -1.49289], [53.35637, -1.49997], [53.35741, -1.50269], [53.35761, -1.50242], [53.35787, -1.5028], [53.35874, -1.50499], [53.35861, -1.50542], [53.35898, -1.50555], [53.3597, -1.50825], [53.36294, -1.50644], [53.3635, -1.50442], [53.36315, -1.50401], [53.36351, -1.50303], [53.36398, -1.50316], [53.36427, -1.50238], [53.3643, -1.50025], [53.36498, -1.50027], [53.36473, -1.49794], [53.36432, -1.49763], [53.36434, -1.49697], [53.36447, -1.49638], [53.36505, -1.49679], [53.36519, -1.49629], [53.36462, -1.49587], [53.36525, -1.49604], [53.36555, -1.495], [53.36491, -1.4945], [53.3657, -1.49296], [53.36547, -1.49219], [53.36568, -1.49045], [53.3666, -1.49095], [53.36668, -1.49058], [53.36623, -1.49017], [53.36728, -1.48879], [53.369, -1.49071], [53.37086, -1.48501], [53.37157, -1.48479], [53.37205, -1.48354], [53.3728, -1.48392], [53.37317, -1.48119], [53.3741, -1.47911], [53.37315, -1.47634], [53.37071, -1.47751], [53.37033, -1.47642], [53.37119, -1.47544], [53.37159, -1.47258], [53.36704, -1.47115], [53.36478, -1.46855]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Nether Edge and Sharrow", "night": "yellow", "night_label": "Average", "query": "Nether Edge and Sharrow, Sheffield, United Kingdom", "slug": "nether-edge-and-sharrow", "text": "South Yorkshire Police recorded 709 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 9.9 per 1,000 residents, the 14th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (22), vehicle crime (12), burglary (10); the evening/night score by violent crime (74), anti social behaviour (48), public order (24). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/nether-edge-and-sharrow.html"}, {"coords": [[[53.36086, -1.42869], [53.35927, -1.42855], [53.3536, -1.42523], [53.35085, -1.42421], [53.34716, -1.42488], [53.34476, -1.42742], [53.34468, -1.42754], [53.34695, -1.43489], [53.34814, -1.43365], [53.34987, -1.43535], [53.35096, -1.43729], [53.35223, -1.44263], [53.3525, -1.44235], [53.35374, -1.44318], [53.35371, -1.44389], [53.35439, -1.44431], [53.35479, -1.44606], [53.3545, -1.44627], [53.3547, -1.44693], [53.35498, -1.44645], [53.3559, -1.44739], [53.35705, -1.45173], [53.35698, -1.45456], [53.35786, -1.45964], [53.35988, -1.46417], [53.36021, -1.46355], [53.36075, -1.46424], [53.36132, -1.46402], [53.36191, -1.46325], [53.36789, -1.46278], [53.36842, -1.46331], [53.37121, -1.46153], [53.3744, -1.46163], [53.37376, -1.45276], [53.37331, -1.45243], [53.37325, -1.45129], [53.37367, -1.45093], [53.37364, -1.45013], [53.36919, -1.44567], [53.37002, -1.44537], [53.36995, -1.44475], [53.37095, -1.44485], [53.37124, -1.44413], [53.36757, -1.44057], [53.36634, -1.43862], [53.36657, -1.43804], [53.36642, -1.43759], [53.36086, -1.42869]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Park and Arbourthorne", "night": "yellow", "night_label": "Average", "query": "Park and Arbourthorne, Sheffield, United Kingdom", "slug": "park-and-arbourthorne", "text": "South Yorkshire Police recorded 640 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 11.4 per 1,000 residents, the 9th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by vehicle crime (11), burglary (10), shoplifting (6); the evening/night score by violent crime (83), anti social behaviour (42), public order (20). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/park-and-arbourthorne.html"}, {"coords": [[[53.35503, -1.38773], [53.35456, -1.39125], [53.35496, -1.39302], [53.35456, -1.39547], [53.35503, -1.39678], [53.35403, -1.39962], [53.35399, -1.40411], [53.35365, -1.40675], [53.35401, -1.40828], [53.35385, -1.40906], [53.3532, -1.41022], [53.3527, -1.41035], [53.35225, -1.41224], [53.3502, -1.41271], [53.34914, -1.41462], [53.34903, -1.41519], [53.34927, -1.41537], [53.34791, -1.42141], [53.34705, -1.42312], [53.3457, -1.42431], [53.3452, -1.42553], [53.34477, -1.42512], [53.34453, -1.4255], [53.34476, -1.42742], [53.34716, -1.42488], [53.35085, -1.42421], [53.3536, -1.42523], [53.35927, -1.42855], [53.36086, -1.42869], [53.36052, -1.42798], [53.36069, -1.42755], [53.36039, -1.42605], [53.36129, -1.42518], [53.36116, -1.42382], [53.36141, -1.42316], [53.36262, -1.42194], [53.36378, -1.42142], [53.36352, -1.42007], [53.36505, -1.41601], [53.36586, -1.41661], [53.36718, -1.4119], [53.36772, -1.41138], [53.36733, -1.41113], [53.36735, -1.41034], [53.36897, -1.41026], [53.36977, -1.40824], [53.37168, -1.40735], [53.37193, -1.40611], [53.37166, -1.40484], [53.36947, -1.40206], [53.36775, -1.3969], [53.36806, -1.39661], [53.36897, -1.39832], [53.36965, -1.39744], [53.3718, -1.3977], [53.37183, -1.3971], [53.37218, -1.39715], [53.37229, -1.39605], [53.37328, -1.39428], [53.37304, -1.39384], [53.37436, -1.39153], [53.37137, -1.38753], [53.37115, -1.38653], [53.37131, -1.38522], [53.36929, -1.38284], [53.36548, -1.38006], [53.36303, -1.37499], [53.36237, -1.37715], [53.36242, -1.37995], [53.36219, -1.38047], [53.36394, -1.3892], [53.3601, -1.38792], [53.35626, -1.38873], [53.35503, -1.38773]]], "day": "red", "day_label": "Higher caution advised", "evidence": "documented", "evidence_label": "", "name": "Richmond", "night": "yellow", "night_label": "Average", "query": "Richmond, Sheffield, United Kingdom", "slug": "richmond", "text": "South Yorkshire Police recorded 669 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 11.9 per 1,000 residents, the 8th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (58), burglary (10), vehicle crime (7); the evening/night score by violent crime (66), anti social behaviour (32), public order (15). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/richmond.html"}, {"coords": [[[53.43828, -1.43334], [53.43391, -1.42565], [53.42986, -1.41808], [53.42792, -1.41639], [53.42771, -1.41581], [53.42723, -1.41577], [53.42466, -1.41227], [53.42334, -1.41144], [53.42276, -1.40995], [53.42149, -1.40972], [53.42035, -1.4085], [53.4182, -1.41177], [53.41738, -1.41125], [53.41648, -1.41215], [53.41342, -1.41689], [53.41124, -1.41935], [53.41019, -1.42245], [53.40967, -1.42276], [53.40937, -1.4245], [53.40956, -1.42504], [53.40601, -1.43042], [53.40594, -1.43365], [53.40691, -1.43611], [53.40786, -1.44021], [53.40856, -1.44076], [53.41083, -1.44115], [53.41092, -1.43979], [53.41295, -1.43882], [53.41275, -1.43781], [53.41498, -1.43701], [53.41484, -1.43507], [53.41648, -1.43147], [53.41623, -1.431], [53.41659, -1.43005], [53.41693, -1.42976], [53.41882, -1.43556], [53.42123, -1.43638], [53.4228, -1.44112], [53.4242, -1.4433], [53.42413, -1.45009], [53.42247, -1.4535], [53.42212, -1.45498], [53.42412, -1.45611], [53.42955, -1.45801], [53.43042, -1.45585], [53.43276, -1.45458], [53.43546, -1.45605], [53.43593, -1.4554], [53.43629, -1.45572], [53.43818, -1.45416], [53.43833, -1.45328], [53.43862, -1.45326], [53.43867, -1.45258], [53.43927, -1.45185], [53.43904, -1.45097], [53.43981, -1.44926], [53.43938, -1.44786], [53.43959, -1.44628], [53.43874, -1.44397], [53.43885, -1.44222], [53.43924, -1.4419], [53.43859, -1.44003], [53.43803, -1.43998], [53.43774, -1.43934], [53.43817, -1.43764], [53.43793, -1.43744], [53.43758, -1.43442], [53.43828, -1.43334]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Shiregreen and Brightside", "night": "yellow", "night_label": "Average", "query": "Shiregreen and Brightside, Sheffield, United Kingdom", "slug": "shiregreen-and-brightside", "text": "South Yorkshire Police recorded 742 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 12.0 per 1,000 residents, the 7th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by burglary (10), vehicle crime (10), drugs (7); the evening/night score by violent crime (93), anti social behaviour (49), public order (18). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/shiregreen-and-brightside.html"}, {"coords": [[[53.42826, -1.46583], [53.42743, -1.47213], [53.42795, -1.47552], [53.42772, -1.47783], [53.42789, -1.47872], [53.4252, -1.47919], [53.42142, -1.48063], [53.41795, -1.48038], [53.41747, -1.48125], [53.4149, -1.48239], [53.41377, -1.48369], [53.41259, -1.48176], [53.41152, -1.4773], [53.4107, -1.47888], [53.41024, -1.48375], [53.40913, -1.48496], [53.40938, -1.48499], [53.40976, -1.48822], [53.41021, -1.48878], [53.41018, -1.48775], [53.41126, -1.48924], [53.41053, -1.49121], [53.41777, -1.49769], [53.41948, -1.49999], [53.42375, -1.51068], [53.42556, -1.51928], [53.42581, -1.51832], [53.42643, -1.51884], [53.42657, -1.51762], [53.4261, -1.51704], [53.42663, -1.51471], [53.42732, -1.51384], [53.42843, -1.51426], [53.429, -1.51328], [53.42984, -1.51289], [53.42974, -1.51214], [53.43004, -1.512], [53.43042, -1.5096], [53.43006, -1.50901], [53.43036, -1.50746], [53.43, -1.50703], [53.43049, -1.50622], [53.43111, -1.5064], [53.43046, -1.50528], [53.43109, -1.50187], [53.42946, -1.49891], [53.4334, -1.49737], [53.43408, -1.49396], [53.43379, -1.49085], [53.43658, -1.49249], [53.43689, -1.48924], [53.43595, -1.48898], [53.43578, -1.48788], [53.43605, -1.48699], [53.43553, -1.48652], [53.43677, -1.48573], [53.43733, -1.47914], [53.43774, -1.47915], [53.4374, -1.4749], [53.43698, -1.47532], [53.43656, -1.47453], [53.43417, -1.4746], [53.4326, -1.47195], [53.43214, -1.47324], [53.43038, -1.47105], [53.43051, -1.46668], [53.43018, -1.4661], [53.43052, -1.46425], [53.43012, -1.46389], [53.4301, -1.46443], [53.42973, -1.46411], [53.42924, -1.4644], [53.42895, -1.46586], [53.42826, -1.46583]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Southey", "night": "red", "night_label": "Higher caution advised", "query": "Southey, Sheffield, United Kingdom", "slug": "southey", "text": "South Yorkshire Police recorded 832 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 13.4 per 1,000 residents, the 5th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (11), burglary (9), drugs (7); the evening/night score by violent crime (109), anti social behaviour (44), public order (19). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/southey.html"}, {"coords": [[[53.42556, -1.51928], [53.4238, -1.52184], [53.42361, -1.52168], [53.42165, -1.51814], [53.42132, -1.51878], [53.41841, -1.51352], [53.41653, -1.51124], [53.4161, -1.5146], [53.41541, -1.51595], [53.41403, -1.52094], [53.41316, -1.52215], [53.41052, -1.52364], [53.4111, -1.52481], [53.41027, -1.52623], [53.40934, -1.52646], [53.40868, -1.52907], [53.40712, -1.52746], [53.40723, -1.52666], [53.4055, -1.52553], [53.40549, -1.52599], [53.40411, -1.52514], [53.40268, -1.52602], [53.40267, -1.52389], [53.40116, -1.52165], [53.40044, -1.51971], [53.40025, -1.51555], [53.40043, -1.51422], [53.39977, -1.51163], [53.39961, -1.51237], [53.39924, -1.51258], [53.39882, -1.51183], [53.39796, -1.51259], [53.3972, -1.51202], [53.39672, -1.51337], [53.39596, -1.51337], [53.39535, -1.51518], [53.39526, -1.5143], [53.39237, -1.51721], [53.39074, -1.51807], [53.39063, -1.51929], [53.39113, -1.5203], [53.39053, -1.52161], [53.39069, -1.52331], [53.38856, -1.52667], [53.38847, -1.52799], [53.38785, -1.5289], [53.38784, -1.52982], [53.38732, -1.53057], [53.38696, -1.53232], [53.38592, -1.53374], [53.38464, -1.53655], [53.384, -1.53668], [53.38417, -1.53843], [53.38386, -1.53965], [53.38391, -1.54128], [53.38315, -1.54539], [53.38359, -1.54602], [53.38341, -1.54686], [53.38335, -1.54878], [53.38193, -1.55121], [53.38149, -1.55546], [53.38208, -1.55768], [53.38255, -1.55822], [53.38149, -1.56084], [53.3815, -1.56282], [53.38106, -1.56522], [53.37957, -1.56615], [53.37877, -1.56758], [53.37825, -1.56755], [53.37838, -1.56876], [53.37753, -1.56873], [53.37648, -1.57253], [53.37654, -1.57506], [53.37715, -1.57624], [53.3764, -1.5771], [53.37633, -1.57918], [53.3769, -1.58089], [53.37675, -1.58375], [53.3771, -1.58488], [53.37676, -1.58649], [53.37718, -1.58721], [53.37723, -1.58855], [53.3777, -1.58903], [53.37729, -1.5904], [53.37717, -1.59241], [53.37786, -1.59287], [53.37839, -1.59601], [53.3793, -1.59716], [53.37907, -1.5984], [53.37959, -1.59848], [53.3799, -1.59924], [53.38067, -1.59903], [53.38138, -1.59961], [53.3819, -1.59925], [53.38243, -1.60085], [53.38244, -1.60209], [53.38303, -1.60411], [53.38271, -1.60513], [53.38298, -1.60814], [53.38351, -1.60892], [53.38509, -1.61378], [53.38485, -1.61495], [53.38513, -1.62025], [53.38417, -1.62183], [53.38391, -1.62364], [53.38292, -1.62324], [53.38133, -1.62434], [53.38003, -1.62398], [53.37907, -1.62464], [53.37779, -1.62426], [53.37616, -1.62659], [53.37358, -1.62884], [53.37327, -1.63542], [53.37367, -1.64027], [53.36689, -1.66395], [53.36933, -1.66391], [53.37316, -1.66271], [53.37425, -1.66329], [53.37525, -1.66219], [53.37629, -1.66178], [53.38171, -1.65602], [53.38485, -1.65353], [53.39191, -1.65382], [53.39303, -1.65472], [53.3935, -1.65901], [53.39353, -1.66511], [53.39307, -1.66809], [53.39694, -1.67298], [53.40178, -1.68183], [53.40116, -1.69452], [53.40506, -1.70497], [53.40581, -1.70397], [53.40829, -1.70413], [53.41066, -1.703], [53.41263, -1.70385], [53.41372, -1.70323], [53.41491, -1.70395], [53.41734, -1.70853], [53.41751, -1.71088], [53.41907, -1.71402], [53.4193, -1.71678], [53.42031, -1.71434], [53.42059, -1.71207], [53.42267, -1.7102], [53.42419, -1.70703], [53.42777, -1.70509], [53.42828, -1.70372], [53.428, -1.70301], [53.42824, -1.70052], [53.42945, -1.69939], [53.43025, -1.6997], [53.43092, -1.699], [53.43145, -1.69581], [53.43212, -1.69484], [53.43252, -1.69311], [53.43429, -1.69119], [53.43369, -1.68952], [53.43387, -1.68463], [53.43516, -1.67831], [53.43643, -1.67555], [53.4384, -1.67502], [53.43945, -1.67302], [53.44054, -1.67188], [53.44286, -1.66606], [53.44382, -1.65834], [53.4446, -1.65479], [53.44542, -1.65388], [53.44588, -1.65063], [53.44567, -1.64781], [53.44501, -1.64674], [53.4438, -1.64259], [53.44324, -1.64209], [53.44421, -1.64073], [53.44296, -1.63782], [53.44647, -1.63483], [53.44513, -1.62988], [53.44664, -1.63176], [53.44722, -1.62871], [53.44685, -1.62631], [53.44756, -1.626], [53.44625, -1.61926], [53.44584, -1.61949], [53.44457, -1.61377], [53.44435, -1.61153], [53.44276, -1.60911], [53.44487, -1.60698], [53.44326, -1.60273], [53.44475, -1.60098], [53.44212, -1.59436], [53.4397, -1.59612], [53.43839, -1.59562], [53.43767, -1.59582], [53.43598, -1.58567], [53.43616, -1.58358], [53.43739, -1.57876], [53.43727, -1.57738], [53.43376, -1.56967], [53.43009, -1.56609], [53.42588, -1.56281], [53.42867, -1.55262], [53.42915, -1.54727], [53.42977, -1.54476], [53.42856, -1.54079], [53.42925, -1.54043], [53.42921, -1.5395], [53.42959, -1.53978], [53.42903, -1.53627], [53.42977, -1.53512], [53.42904, -1.53411], [53.42928, -1.53351], [53.42906, -1.53306], [53.4287, -1.53376], [53.42797, -1.53328], [53.42929, -1.53082], [53.42894, -1.53021], [53.42933, -1.52935], [53.42878, -1.52844], [53.42985, -1.52628], [53.42702, -1.5224], [53.42556, -1.51928]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Stannington", "night": "green", "night_label": "Relatively safer", "query": "Stannington, Sheffield, United Kingdom", "slug": "stannington", "text": "South Yorkshire Police recorded 338 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.1 per 1,000 residents, the 23rd highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by burglary (4), vehicle crime (3), drugs (2); the evening/night score by violent crime (53), anti social behaviour (18), public order (7). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/stannington.html"}, {"coords": [[[53.49213, -1.62445], [53.49183, -1.6211], [53.49057, -1.61495], [53.49315, -1.61446], [53.49321, -1.61151], [53.49226, -1.6096], [53.49167, -1.60935], [53.49291, -1.60659], [53.49159, -1.60237], [53.49191, -1.60223], [53.48999, -1.59036], [53.48816, -1.58702], [53.48757, -1.58229], [53.48617, -1.57635], [53.48602, -1.57489], [53.48647, -1.56915], [53.48604, -1.56576], [53.48586, -1.56642], [53.48548, -1.56521], [53.4849, -1.56506], [53.48437, -1.5623], [53.48444, -1.56116], [53.48396, -1.56107], [53.48357, -1.55927], [53.48224, -1.55774], [53.48027, -1.55736], [53.47849, -1.54966], [53.47463, -1.54657], [53.47275, -1.54422], [53.47267, -1.54363], [53.47221, -1.54449], [53.47133, -1.54812], [53.46985, -1.54537], [53.46502, -1.54234], [53.46258, -1.53947], [53.46172, -1.53905], [53.4616, -1.53986], [53.46105, -1.54032], [53.45773, -1.53945], [53.45698, -1.54055], [53.45616, -1.54026], [53.45592, -1.54114], [53.45545, -1.55138], [53.45278, -1.55255], [53.45113, -1.54873], [53.44989, -1.54738], [53.44763, -1.55044], [53.44615, -1.55121], [53.44479, -1.54811], [53.44189, -1.54618], [53.44098, -1.5408], [53.44088, -1.5374], [53.43994, -1.53498], [53.43861, -1.53399], [53.43832, -1.53293], [53.43834, -1.53217], [53.43872, -1.53194], [53.43855, -1.52772], [53.43907, -1.52636], [53.44026, -1.52554], [53.44049, -1.52459], [53.44131, -1.52375], [53.44308, -1.52324], [53.44435, -1.52092], [53.44393, -1.51949], [53.44243, -1.51895], [53.44134, -1.51766], [53.4414, -1.51646], [53.43898, -1.51556], [53.43654, -1.51285], [53.43736, -1.515], [53.43677, -1.51455], [53.43427, -1.5116], [53.43111, -1.5064], [53.43049, -1.50622], [53.43, -1.50703], [53.43036, -1.50746], [53.43006, -1.50901], [53.43042, -1.5096], [53.43004, -1.512], [53.42974, -1.51214], [53.42984, -1.51289], [53.429, -1.51328], [53.42843, -1.51426], [53.42732, -1.51384], [53.42663, -1.51471], [53.4261, -1.51704], [53.42657, -1.51762], [53.42643, -1.51884], [53.42581, -1.51832], [53.42556, -1.51928], [53.42702, -1.5224], [53.42985, -1.52628], [53.42878, -1.52844], [53.42933, -1.52935], [53.42894, -1.53021], [53.42929, -1.53082], [53.42797, -1.53328], [53.4287, -1.53376], [53.42906, -1.53306], [53.42928, -1.53351], [53.42904, -1.53411], [53.42977, -1.53512], [53.42903, -1.53627], [53.42959, -1.53978], [53.42921, -1.5395], [53.42925, -1.54043], [53.42856, -1.54079], [53.42977, -1.54476], [53.42915, -1.54727], [53.42867, -1.55262], [53.42588, -1.56281], [53.43009, -1.56609], [53.43376, -1.56967], [53.43727, -1.57738], [53.43739, -1.57876], [53.43616, -1.58358], [53.43598, -1.58567], [53.43767, -1.59582], [53.43839, -1.59562], [53.4397, -1.59612], [53.44212, -1.59436], [53.44475, -1.60098], [53.44326, -1.60273], [53.44487, -1.60698], [53.44276, -1.60911], [53.44435, -1.61153], [53.44457, -1.61377], [53.44584, -1.61949], [53.44625, -1.61926], [53.44756, -1.626], [53.44685, -1.62631], [53.44722, -1.62871], [53.44664, -1.63176], [53.44513, -1.62988], [53.44647, -1.63483], [53.44296, -1.63782], [53.44421, -1.64073], [53.44324, -1.64209], [53.4438, -1.64259], [53.44501, -1.64674], [53.44567, -1.64781], [53.44588, -1.65063], [53.44542, -1.65388], [53.4446, -1.65479], [53.44382, -1.65834], [53.44286, -1.66606], [53.44054, -1.67188], [53.43945, -1.67302], [53.4384, -1.67502], [53.43643, -1.67555], [53.43516, -1.67831], [53.43387, -1.68463], [53.43369, -1.68952], [53.43429, -1.69119], [53.43252, -1.69311], [53.43212, -1.69484], [53.43145, -1.69581], [53.43092, -1.699], [53.43025, -1.6997], [53.42945, -1.69939], [53.42824, -1.70052], [53.428, -1.70301], [53.42828, -1.70372], [53.42777, -1.70509], [53.42419, -1.70703], [53.42267, -1.7102], [53.42059, -1.71207], [53.42031, -1.71434], [53.4193, -1.71678], [53.41943, -1.71832], [53.41892, -1.72335], [53.41764, -1.72515], [53.41599, -1.72995], [53.41718, -1.7324], [53.41969, -1.73508], [53.42099, -1.73976], [53.42529, -1.74501], [53.42616, -1.74672], [53.42778, -1.74626], [53.42876, -1.74472], [53.42957, -1.74412], [53.4313, -1.74427], [53.43242, -1.7449], [53.4356, -1.74856], [53.43912, -1.74973], [53.43987, -1.74931], [53.441, -1.74711], [53.44177, -1.74682], [53.44269, -1.74546], [53.44501, -1.74367], [53.44639, -1.74391], [53.44731, -1.74466], [53.44845, -1.74428], [53.45127, -1.74657], [53.45207, -1.74621], [53.45428, -1.74713], [53.4555, -1.74666], [53.45733, -1.74817], [53.45794, -1.74708], [53.45926, -1.74702], [53.46, -1.74622], [53.46071, -1.74649], [53.46199, -1.74526], [53.46341, -1.74682], [53.46406, -1.74783], [53.46492, -1.75215], [53.46485, -1.75366], [53.4643, -1.7542], [53.46392, -1.75571], [53.46389, -1.75819], [53.46356, -1.7594], [53.46395, -1.76469], [53.46477, -1.76844], [53.46573, -1.76995], [53.46693, -1.7705], [53.46702, -1.77272], [53.46833, -1.7762], [53.46988, -1.77704], [53.47045, -1.77804], [53.47248, -1.77797], [53.47422, -1.77906], [53.47497, -1.78081], [53.47572, -1.7857], [53.47535, -1.78645], [53.47569, -1.79071], [53.47601, -1.7909], [53.47578, -1.79111], [53.47668, -1.79233], [53.47651, -1.79276], [53.47711, -1.79342], [53.47726, -1.79432], [53.4784, -1.79532], [53.47893, -1.79685], [53.47867, -1.79833], [53.48096, -1.80143], [53.48191, -1.79208], [53.48254, -1.79028], [53.48446, -1.78696], [53.48478, -1.78363], [53.48435, -1.78053], [53.48251, -1.77387], [53.48241, -1.77103], [53.48104, -1.76594], [53.4814, -1.76398], [53.48109, -1.76278], [53.48125, -1.7619], [53.48076, -1.76052], [53.48105, -1.75746], [53.47991, -1.75108], [53.47986, -1.74912], [53.479, -1.74648], [53.47928, -1.74312], [53.47892, -1.74206], [53.4781, -1.74143], [53.47787, -1.74049], [53.47718, -1.73968], [53.47714, -1.7385], [53.47942, -1.73633], [53.48061, -1.73646], [53.48157, -1.73767], [53.48379, -1.73612], [53.4866, -1.73539], [53.48809, -1.73358], [53.4909, -1.73198], [53.49132, -1.73037], [53.49153, -1.72281], [53.49198, -1.72143], [53.49263, -1.7215], [53.49235, -1.72004], [53.49293, -1.71952], [53.49394, -1.71726], [53.49408, -1.71608], [53.49547, -1.71566], [53.49667, -1.71365], [53.49786, -1.71407], [53.4987, -1.71229], [53.49962, -1.7128], [53.49981, -1.71185], [53.50126, -1.71101], [53.50136, -1.70728], [53.50169, -1.70607], [53.5011, -1.70547], [53.50173, -1.70445], [53.50185, -1.7033], [53.5029, -1.70298], [53.50312, -1.70109], [53.50254, -1.69846], [53.50019, -1.69337], [53.49946, -1.69071], [53.49984, -1.69052], [53.49969, -1.68898], [53.49912, -1.6888], [53.49904, -1.6874], [53.49947, -1.68447], [53.49889, -1.68398], [53.49993, -1.68112], [53.50052, -1.68045], [53.50067, -1.66905], [53.4984, -1.65884], [53.4968, -1.65509], [53.49482, -1.64798], [53.49408, -1.64126], [53.49337, -1.63899], [53.49239, -1.63383], [53.49213, -1.62445]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Stocksbridge and Upper Don", "night": "green", "night_label": "Relatively safer", "query": "Stocksbridge and Upper Don, Sheffield, United Kingdom", "slug": "stocksbridge-and-upper-don", "text": "South Yorkshire Police recorded 315 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 5.7 per 1,000 residents, the 24th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by vehicle crime (5), shoplifting (3), burglary (2); the evening/night score by violent crime (45), anti social behaviour (21), public order (8). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/stocksbridge-and-upper-don.html"}, {"coords": [[[53.39063, -1.47978], [53.38868, -1.47724], [53.38707, -1.47932], [53.3858, -1.47735], [53.38555, -1.47519], [53.38511, -1.47529], [53.38501, -1.47653], [53.38372, -1.47958], [53.38284, -1.47822], [53.38199, -1.48211], [53.38208, -1.48421], [53.38392, -1.49004], [53.38487, -1.49217], [53.38544, -1.49276], [53.38634, -1.49105], [53.38692, -1.49112], [53.38684, -1.4971], [53.38814, -1.49795], [53.38813, -1.49855], [53.38892, -1.49909], [53.38948, -1.5012], [53.39077, -1.50331], [53.38917, -1.50562], [53.3895, -1.50634], [53.38884, -1.50678], [53.38934, -1.50826], [53.38895, -1.50925], [53.389, -1.51014], [53.38707, -1.51114], [53.38751, -1.51231], [53.38851, -1.51267], [53.38918, -1.51531], [53.39074, -1.51807], [53.39237, -1.51721], [53.39526, -1.5143], [53.39535, -1.51518], [53.39596, -1.51337], [53.39672, -1.51337], [53.3972, -1.51202], [53.39796, -1.51259], [53.39882, -1.51183], [53.39924, -1.51258], [53.39961, -1.51237], [53.39977, -1.51163], [53.39981, -1.50737], [53.4009, -1.50453], [53.40111, -1.50299], [53.40238, -1.50069], [53.39933, -1.49439], [53.39855, -1.49124], [53.39703, -1.48995], [53.39445, -1.48867], [53.39153, -1.48393], [53.39018, -1.48097], [53.39063, -1.47978]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Walkley", "night": "green", "night_label": "Relatively safer", "query": "Walkley, Sheffield, United Kingdom", "slug": "walkley", "text": "South Yorkshire Police recorded 438 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.4 per 1,000 residents, the 21st highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (5), vehicle crime (5), burglary (4); the evening/night score by violent crime (53), anti social behaviour (30), public order (12). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/walkley.html"}, {"coords": [[[53.47806, -1.4669], [53.47673, -1.46789], [53.47503, -1.4684], [53.47263, -1.47224], [53.47139, -1.47129], [53.47117, -1.47326], [53.47027, -1.47434], [53.46922, -1.47253], [53.46737, -1.47424], [53.4676, -1.47535], [53.46703, -1.477], [53.46702, -1.47862], [53.46671, -1.47863], [53.46654, -1.47948], [53.46675, -1.47999], [53.46623, -1.4814], [53.46644, -1.48173], [53.46605, -1.48207], [53.46577, -1.48344], [53.46525, -1.48376], [53.46513, -1.48343], [53.46421, -1.48421], [53.46404, -1.48196], [53.46319, -1.48193], [53.46327, -1.48104], [53.46391, -1.48118], [53.46353, -1.47829], [53.45971, -1.47732], [53.45824, -1.47493], [53.45775, -1.4774], [53.45687, -1.47863], [53.45762, -1.4801], [53.45751, -1.48049], [53.4581, -1.481], [53.45778, -1.48174], [53.45533, -1.48035], [53.45477, -1.47902], [53.45498, -1.47733], [53.45382, -1.47366], [53.45119, -1.47695], [53.44993, -1.47533], [53.44956, -1.47709], [53.44952, -1.47648], [53.44885, -1.47593], [53.44799, -1.47952], [53.44677, -1.47974], [53.44576, -1.47676], [53.4433, -1.47994], [53.44196, -1.48075], [53.44164, -1.48164], [53.44184, -1.48412], [53.4416, -1.48466], [53.4412, -1.48413], [53.44075, -1.48471], [53.44096, -1.48343], [53.43949, -1.48323], [53.43944, -1.48376], [53.43846, -1.48318], [53.43816, -1.48528], [53.43677, -1.48573], [53.43553, -1.48652], [53.43605, -1.48699], [53.43578, -1.48788], [53.43595, -1.48898], [53.43689, -1.48924], [53.43658, -1.49249], [53.43379, -1.49085], [53.43408, -1.49396], [53.4334, -1.49737], [53.42946, -1.49891], [53.43109, -1.50187], [53.43046, -1.50528], [53.43111, -1.5064], [53.43427, -1.5116], [53.43677, -1.51455], [53.43736, -1.515], [53.43654, -1.51285], [53.43898, -1.51556], [53.4414, -1.51646], [53.44134, -1.51766], [53.44243, -1.51895], [53.44393, -1.51949], [53.44435, -1.52092], [53.44496, -1.5205], [53.44579, -1.52067], [53.44712, -1.5198], [53.44728, -1.51916], [53.44932, -1.51833], [53.45029, -1.51653], [53.45142, -1.51317], [53.45387, -1.51493], [53.45724, -1.51818], [53.45794, -1.51671], [53.45833, -1.5174], [53.45964, -1.51503], [53.46059, -1.51631], [53.46181, -1.51486], [53.46367, -1.51481], [53.46576, -1.51178], [53.46662, -1.50786], [53.46844, -1.50758], [53.47178, -1.505], [53.47566, -1.50017], [53.48036, -1.49524], [53.48107, -1.49462], [53.48522, -1.49525], [53.48627, -1.49475], [53.48664, -1.49159], [53.48601, -1.48748], [53.4847, -1.48445], [53.48096, -1.47983], [53.47991, -1.47769], [53.47915, -1.47454], [53.47806, -1.4669]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "West Ecclesfield", "night": "green", "night_label": "Relatively safer", "query": "West Ecclesfield, Sheffield, United Kingdom", "slug": "west-ecclesfield", "text": "South Yorkshire Police recorded 340 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 6.5 per 1,000 residents, the 20th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (13), vehicle crime (6), drugs (2); the evening/night score by violent crime (42), anti social behaviour (16), public order (10). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/west-ecclesfield.html"}, {"coords": [[[53.3685, -1.36254], [53.36659, -1.36108], [53.36651, -1.35196], [53.36244, -1.34631], [53.3612, -1.34516], [53.3585, -1.34035], [53.35352, -1.33775], [53.35433, -1.34364], [53.35412, -1.34678], [53.35371, -1.34836], [53.34968, -1.35762], [53.35001, -1.36022], [53.35057, -1.37975], [53.35133, -1.38337], [53.35244, -1.38532], [53.35503, -1.38773], [53.35626, -1.38873], [53.3601, -1.38792], [53.36394, -1.3892], [53.36219, -1.38047], [53.36242, -1.37995], [53.36237, -1.37715], [53.36303, -1.37499], [53.36548, -1.38006], [53.36929, -1.38284], [53.37131, -1.38522], [53.37115, -1.38653], [53.37137, -1.38753], [53.37436, -1.39153], [53.37304, -1.39384], [53.37328, -1.39428], [53.37229, -1.39605], [53.37218, -1.39715], [53.37183, -1.3971], [53.3718, -1.3977], [53.36965, -1.39744], [53.36897, -1.39832], [53.36806, -1.39661], [53.36775, -1.3969], [53.36947, -1.40206], [53.37166, -1.40484], [53.3746, -1.40651], [53.37529, -1.40226], [53.37682, -1.39851], [53.38011, -1.39316], [53.38332, -1.39118], [53.38291, -1.38565], [53.38108, -1.37987], [53.37257, -1.36644], [53.37016, -1.36374], [53.3685, -1.36254]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "Woodhouse", "night": "yellow", "night_label": "Average", "query": "Woodhouse, Sheffield, United Kingdom", "slug": "woodhouse", "text": "South Yorkshire Police recorded 580 crimes inside this ward\u0027s official boundary over the 3 months to July 2026 \u2014 10.5 per 1,000 residents, the 12th highest rate of Sheffield\u0027s 28 wards. The daytime score here is driven by shoplifting (29), burglary (9), vehicle crime (7); the evening/night score by violent crime (69), anti social behaviour (29), public order (16). Rated against the average of the city\u0027s own wards, never against another city.", "url": "/sheffield/woodhouse.html"}];
+  var CENTER = [53.3892, -1.5057];
+  var ZOOM = 11;
+  var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = "Click a ward on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_BOOKING = "Search accommodation here on Booking.com \u2192";
+  var L_MORE = "See the full page \u2192";
+  var L_NOTCOVERED = "";
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 53.37028, "lon": -1.47083, "name": "Bramall Lane", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 53.38315, "lon": -1.46928, "name": "Sheffield Cathedral", "rank": 2}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 53.3725, "lon": -1.4975, "name": "Sheffield Botanical Gardens", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 53.3895, "lon": -1.47234, "name": "Kelham Island Museum", "rank": 4}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 53.37985, "lon": -1.468, "name": "Sheffield Winter Garden", "rank": 5}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 53.38, "lon": -1.4696, "name": "Peace Gardens", "rank": 6}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 53.369, "lon": -1.507, "name": "Endcliffe Park", "rank": 7}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 53.38061, "lon": -1.47616, "name": "West Street", "rank": 8}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 53.3732, "lon": -1.4812, "name": "Ecclesall Road", "rank": 9}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 53.3789, "lon": -1.4783, "name": "Devonshire Green", "rank": 10}];
+  var POI_ALL = "All";
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
+
+  var map = L.map('map', { scrollWheelZoom:true }).setView(CENTER, ZOOM);
+
+  // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi
+  // dalla citta' e non trovare piu' la strada indietro — con l'unico rimedio di
+  // ricaricare la pagina. Questo e' il fondo di ripiego, per le citta' che non
+  // hanno ancora sights; dove ci sono, lo rifissa poiFitAll() sulla vista che
+  // li contiene tutti.
+  var POI_HOME = null;
+  map.setMinZoom(Math.max(3, ZOOM - 2));
+  map.setMaxBounds(L.latLngBounds(
+    L.latLng(CENTER[0] - 0.55, CENTER[1] - 0.75),
+    L.latLng(CENTER[0] + 0.55, CENTER[1] + 0.75)
+  ));
+  map.options.maxBoundsViscosity = 0.7;
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var burglaryMode = false;
+  var layers = [];
+  var lastZone = null;
+
+  function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  var detailPanel = document.getElementById('detailBox');
+
+  function showPanel() { detailPanel.classList.add('visible'); }
+  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; }
+  document.getElementById('detailClose').addEventListener('click', hidePanel);
+
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.covered) {
+      html += badge(tone, z.tone_label || tone);
+    } else {
+      html += badge('grey', z.tone_label || '');
+    }
+    if (z.evidence === 'no_findings') {
+      html += '<div class="ev-flag"><span class="ev-dot"></span>' + z.evidence_label +
+              ' — the review reached no reporting specific to this area, so the rating rests on that ' +
+              'absence rather than on named sources.</div>';
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.covered) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    var greyEl = document.getElementById('legendGreyText');
+    if (greyEl) { greyEl.textContent = set.grey; }
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    ZONES.forEach(function(z){
+      var tone = toneOf(z);
+      // Dashed where the rating rests on an absence of reporting rather than
+      // on sources: the colour still carries the judgement, the outline says
+      // how much evidence is behind it.
+      var thin = z.evidence === 'no_findings';
+      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight: thin ? 1.5 : 2,
+                                       dashArray: thin ? '5,4' : null,
+                                       fillOpacity: 0.32 }).addTo(map);
+      // Name is visible on hover (not just after a click) via a sticky
+      // tooltip, plus a highlight so it's obvious which zone you're over —
+      // click still opens the full detail card.
+      poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
+      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
+      poly.on('mouseout', function(){ poly.setStyle({ weight:2 }); });
+      poly.on('click', function(){ renderDetail(z); });
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+      if (lastZone && !burglaryMode) renderDetail(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) renderDetail(lastZone);
+    });
+  }
+
+  // ---------------------------------------------------------------------
+  // Sights, laid over the safety map
+  //
+  // The point of the pairing is that a visitor sees what is worth going to
+  // AND which safety area it sits in, on one map. So the pins carry no colour
+  // of their own — colour belongs to safety. The opening view used to be the
+  // safety geography alone, which left a distant sight like Superga or
+  // Stupinigi off screen: a pin nobody can see is a pin that does not exist.
+  // The view now covers every sight as well as every zone.
+  // ---------------------------------------------------------------------
+  var poiMarkers = [];
+  var poiLeaders = [];
+  var POI_SPREAD = 34;
+
+  function poiBuild() {
+    if (!POIS || !POIS.length) return;
+    POIS.forEach(function (p) {
+      var m = L.marker([p.lat, p.lon], { icon: L.divIcon({
+        className: '', iconSize: [26, 26], iconAnchor: [13, 13],
+        html: '<div class="poi-ico">' + p.icon + '<span class="poi-num">' + p.rank + '</span></div>'
+      })});
+      m.bindTooltip(p.name, { direction: 'right', offset: [15, 0], className: 'poi-lab-tt' });
+      m.bindPopup('<b>' + p.name + '</b><br><span style="color:#5b6670">' + p.cat_label + '</span>');
+      m.poiCat = p.cat; m.poiRank = p.rank; m.poiName = p.name;
+      m.addTo(map); poiMarkers.push(m);
+    });
+    poiFitAll();
+    poiChips();
+    poiLegend(null);
+    poiListing();
+    map.on('zoomend moveend', poiRefresh);
+    window.addEventListener('resize', function () { poiHome(false); poiRefresh(); });
+    poiRefresh();
+  }
+
+  // Tutti i sights devono stare nella vista d'apertura, e quella vista diventa
+  // anche il limite: non si rimpicciolisce oltre, non ci si allontana oltre, e
+  // "Reset view" riporta esattamente qui. Cosi' da telefono non si finisce mai
+  // in un punto da cui non si sa tornare.
+  function poiFitAll() {
+    // Si parte dalla vista decisa dalla sicurezza e la si allarga solo quanto
+    // basta a farci stare i pin: dove sono gia' tutti dentro, l'inquadratura
+    // resta esattamente quella di prima.
+    var b = map.getBounds();
+    poiMarkers.forEach(function (m) { b.extend(m.poiReal || m.getLatLng()); });
+    POI_HOME = b;
+    poiHome(true);
+  }
+
+  // Il fondo dipende da quanto e' grande la mappa, che cambia ruotando il
+  // telefono, quindi si ricalcola anche al resize. Fissarlo una volta sola
+  // lasciava un minZoom piu' stretto della vista d'apertura: cioe' proprio il
+  // caso in cui, dopo aver zoomato, non si riusciva piu' a tornare indietro.
+  function poiHome(recenter) {
+    if (!POI_HOME) return;
+    map.setMinZoom(3);
+    map.invalidateSize(false);
+    var z = map.getBoundsZoom(POI_HOME, false, L.point(28, 28));
+    if (recenter) map.setView(POI_HOME.getCenter(), z, { animate: false });
+    map.setMinZoom(z);
+    map.setMaxBounds(POI_HOME.pad(0.35));
+  }
+
+  // Pins closer than POI_SPREAD px are fanned onto a small circle with a
+  // hairline back to the true spot: all of them stay clickable instead of
+  // stacking, and none of them lies about where it is.
+  function poiDeclutter() {
+    poiLeaders.forEach(function (l) { map.removeLayer(l); });
+    poiLeaders = [];
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    vis.forEach(function (m) {
+      if (!m.poiReal) m.poiReal = m.getLatLng();
+      m.setLatLng(m.poiReal);
+    });
+    vis.forEach(function (m) { m.poiPt = map.latLngToLayerPoint(m.getLatLng()); });
+    var groups = [];
+    vis.forEach(function (m) {
+      var g = null;
+      groups.forEach(function (gr) {
+        if (!g && gr.some(function (o) { return o.poiPt.distanceTo(m.poiPt) < POI_SPREAD; })) g = gr;
+      });
+      if (g) { g.push(m); } else { groups.push([m]); }
+    });
+    groups.forEach(function (g) {
+      if (g.length === 1) return;
+      var cx = 0, cy = 0;
+      g.forEach(function (m) { cx += m.poiPt.x; cy += m.poiPt.y; });
+      cx /= g.length; cy /= g.length;
+      var R = Math.max(26, 12 + g.length * 6);
+      g.sort(function (a, b) { return a.poiRank - b.poiRank; });
+      g.forEach(function (m, i) {
+        var ang = (2 * Math.PI * i) / g.length - Math.PI / 2;
+        m.setLatLng(map.layerPointToLatLng(L.point(cx + R * Math.cos(ang), cy + R * Math.sin(ang))));
+        poiLeaders.push(L.polyline([m.poiReal, m.getLatLng()],
+          { color: '#16232b', weight: 1, opacity: .38, interactive: false }).addTo(map));
+      });
+    });
+  }
+
+  function poiOverlap(a, b) { return !(a.r < b.l || b.r < a.l || a.b < b.t || b.b < a.t); }
+
+  // A name stays on screen only where it collides with nothing — not with
+  // another name, not with another pin, not with the edge. Names are tried in
+  // rank order, so when two compete the better-known place keeps its label.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
+  function poiLabels() {
+    poiMarkers.forEach(function (m) {
+      if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
+    });
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    if (!vis.length) return;
+    var size = map.getSize();
+    var taken = vis.map(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      return { l: pt.x - 15, r: pt.x + 15, t: pt.y - 15, b: pt.y + 15 };
+    });
+    vis.slice().sort(function (a, b) { return a.poiRank - b.poiRank; }).forEach(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      var w = 10 + m.poiName.length * 6.6, h = 18;
+      var cand = [
+        { d: 'right', o: [15, 0],  b: { l: pt.x + 16, r: pt.x + 16 + w, t: pt.y - h / 2, b: pt.y + h / 2 } },
+        { d: 'left',  o: [-15, 0], b: { l: pt.x - 16 - w, r: pt.x - 16, t: pt.y - h / 2, b: pt.y + h / 2 } }
+      ];
+      var ok = null;
+      cand.forEach(function (c) {
+        if (ok) return;
+        if (c.b.l < 8 || c.b.r > size.x - 8) return;
+        var clash = false;
+        taken.forEach(function (t) { if (poiOverlap(c.b, t)) clash = true; });
+        if (!clash) ok = c;
+      });
+      if (!ok) return;
+      taken.push(ok.b);
+      m.poiPerm = L.tooltip({ permanent: true, direction: ok.d, offset: ok.o,
+                              className: 'poi-lab-tt', interactive: false })
+                   .setLatLng(m.getLatLng()).setContent(m.poiName).addTo(map);
+    });
+  }
+
+  function poiRefresh() { poiDeclutter(); poiLabels(); }
+
+  // La legenda deve dire quello che si vede. Filtrando su "Green space" le
+  // altre voci descrivono pin che in quel momento non ci sono, quindi
+  // spariscono con loro invece di restare a promettere icone assenti.
+  function poiLegend(active) {
+    var box = document.getElementById('legendPoi');
+    if (!box) return;
+    var seen = {};
+    POIS.forEach(function (p) { seen[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    box.innerHTML = '';
+    Object.keys(seen).forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'legend-poi-item' + (active && active !== c ? ' off' : '');
+      row.textContent = seen[c];
+      box.appendChild(row);
+    });
+  }
+
+  function poiChips() {
+    var bar = document.getElementById('poiBar');
+    if (!bar) return;
+    var cats = [null];
+    POIS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); });
+    var labelOf = {};
+    POIS.forEach(function (p) { labelOf[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    cats.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'poi-chip';
+      b.textContent = c === null ? POI_ALL : labelOf[c];
+      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(bar.children, function (x, k) {
+          x.setAttribute('aria-pressed', cats[k] === c ? 'true' : 'false');
+        });
+        poiMarkers.forEach(function (m) {
+          if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
+        });
+        poiLegend(c);
+        poiListFilter(c);
+        poiRefresh();
+      });
+      bar.appendChild(b);
+    });
+  }
+
+  // On a narrow screen a twenty-character label has nowhere to go, so the
+  // numbered list is where the names live: the pin shows the number, the list
+  // gives the name, and tapping one flies the map there.
+  function poiListing() {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    POIS.forEach(function (p) {
+      var li = document.createElement('li');
+      li.setAttribute('data-cat', p.cat);
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
+      li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
+      ol.appendChild(li);
+    });
+  }
+
+  // Filtrando su "Art & history" la mappa mostra solo quei pin: l'elenco qui
+  // sotto e' la stessa cosa scritta, quindi si filtra con lei. I numeri non si
+  // rinumerano, altrimenti non corrisponderebbero piu' ai pin.
+  function poiListFilter(c) {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    Array.prototype.forEach.call(ol.children, function (li) {
+      var show = c === null || li.getAttribute('data-cat') === c;
+      li.style.display = show ? 'inline-flex' : 'none';
+    });
+  }
+
+  var poiResetBtn = document.getElementById('poiReset');
+  if (poiResetBtn) {
+    poiResetBtn.addEventListener('click', function () {
+      if (POI_HOME) { poiHome(true); } else { map.setView(CENTER, ZOOM); }
+      hidePanel();
+    });
+  }
+
+  poiBuild();
+
+</script>
+</body>
+</html>

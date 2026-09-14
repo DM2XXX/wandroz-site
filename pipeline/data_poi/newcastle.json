@@ -1,0 +1,159 @@
+{
+ "city": "newcastle",
+ "pois": [
+  {
+   "name": "St James’ Park",
+   "category": "art",
+   "qid": "Q191774",
+   "lat": 54.97556,
+   "lon": -1.62167,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Gateshead Millennium Bridge",
+   "category": "view",
+   "qid": "Q1930127",
+   "lat": 54.96944,
+   "lon": -1.59972,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Tyne Bridge",
+   "category": "view",
+   "qid": "Q2465864",
+   "lat": 54.96819,
+   "lon": -1.60625,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Newcastle upon Tyne Castle",
+   "category": "art",
+   "qid": "Q7721569",
+   "lat": 54.96883,
+   "lon": -1.61036,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Baltic Centre for Contemporary Art",
+   "category": "art",
+   "qid": "Q4852693",
+   "lat": 54.96917,
+   "lon": -1.59778,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Grey's Monument",
+   "category": "square",
+   "qid": "Q5608058",
+   "lat": 54.97383,
+   "lon": -1.61317,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Great North Museum: Hancock",
+   "category": "art",
+   "qid": "Q5647057",
+   "lat": 54.98,
+   "lon": -1.613,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Laing Art Gallery",
+   "category": "art",
+   "qid": "Q1800739",
+   "lat": 54.975,
+   "lon": -1.609,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Grainger Town",
+   "category": "square",
+   "qid": "Q5485277",
+   "lat": 54.9725,
+   "lon": -1.6114,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Jesmond Dene",
+   "category": "green",
+   "qid": "Q6185770",
+   "lat": 54.99,
+   "lon": -1.59,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Leazes Park",
+   "category": "green",
+   "qid": "Q6510821",
+   "lat": 54.977,
+   "lon": -1.623,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Bigg Market",
+   "category": "night",
+   "qid": "Q22087128",
+   "lat": 54.97142,
+   "lon": -1.61447,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Ouseburn Valley",
+   "category": "night",
+   "qid": "Q7111334",
+   "lat": 54.974,
+   "lon": -1.59,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Grainger Market",
+   "category": "food",
+   "qid": "Q17533958",
+   "lat": 54.9728,
+   "lon": -1.61491,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  }
+ ]
+}

@@ -148,6 +148,11 @@ CITIES = {
     "leeds": ("Leeds, United Kingdom", "West Yorkshire Police"),
     "liverpool": ("Liverpool, United Kingdom", "Merseyside Police"),
     "bristol": ("Bristol, United Kingdom", "Avon and Somerset Constabulary"),
+    "newcastle": ("Newcastle upon Tyne, United Kingdom", "Northumbria Police"),
+    "sheffield": ("Sheffield, United Kingdom", "South Yorkshire Police"),
+    "nottingham": ("Nottingham, United Kingdom", "Nottinghamshire Police"),
+    "cardiff": ("Cardiff, United Kingdom", "South Wales Police"),
+    "leicester": ("Leicester, United Kingdom", "Leicestershire Police"),
 }
 
 if __name__ == "__main__":

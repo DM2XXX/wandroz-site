@@ -808,11 +808,10 @@
   only moderate.
 </div>
 
-<h2>Birmingham, Leeds, Liverpool and Bristol: the same official feed as London</h2>
+<h2>{{ uk_cities|length }} English and Welsh cities: the same official feed as London</h2>
 <p style="font-size:13.5px;color:var(--muted);">
-  These four cities are built on London's own pipeline rather than beside it. West Midlands Police,
-  West Yorkshire Police, Merseyside Police and Avon and Somerset Constabulary all publish
-  street-level crime records to
+  {{ uk_cities|join(", ") }} are built on London's own pipeline rather than beside it.
+  {{ uk_forces|join(", ") }} all publish street-level crime records to
   <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a> — the same
   national feed London runs on — so every official ward is queried against its real ONS boundary
   polygon, not a circle around a centroid, and scored with the same category weights and the same
@@ -829,6 +828,13 @@
   per resident reads high. It is the highest in the city at 46 recorded crimes per 1,000 residents
   over the three months to July 2026; that number describes a city centre, not a warning to stay
   away from one.
+</div>
+<div class="note">
+  <strong>Why Liverpool and Brighton are not here.</strong> Both re-drew their wards after the 2021
+  census, so their current wards have no census population: the national statistics service returns
+  nothing for those codes. A rate needs a denominator measured over the same geography as its
+  numerator, and the alternative is crime counts divided by an estimate nobody published. They wait
+  for 2021-vintage boundaries or a newer official ward figure.
 </div>
 <div class="note">
   <strong>Why Manchester is not here.</strong> Manchester was the intended first city. Greater

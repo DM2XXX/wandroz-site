@@ -1,0 +1,104 @@
+{
+ "city": "leicester",
+ "pois": [
+  {
+   "name": "Leicester City Stadium",
+   "category": "art",
+   "qid": "Q620031",
+   "lat": 52.62028,
+   "lon": -1.14222,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Leicester Cathedral",
+   "category": "art",
+   "qid": "Q1137832",
+   "lat": 52.63472,
+   "lon": -1.13694,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Leicester Museum & Art Gallery",
+   "category": "art",
+   "qid": "Q7012302",
+   "lat": 52.6292,
+   "lon": -1.1278,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "National Space Centre",
+   "category": "art",
+   "qid": "Q3873189",
+   "lat": 52.65361,
+   "lon": -1.13222,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Abbey Park",
+   "category": "green",
+   "qid": "Q4664047",
+   "lat": 52.647,
+   "lon": -1.136,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Jewry Wall",
+   "category": "art",
+   "qid": "Q6190177",
+   "lat": 52.63504,
+   "lon": -1.1411,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Leicester Market",
+   "category": "food",
+   "qid": "Q6519199",
+   "lat": 52.63478,
+   "lon": -1.13306,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "King Richard III Visitor Centre",
+   "category": "art",
+   "qid": "Q56063688",
+   "lat": 52.6342,
+   "lon": -1.1362,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Braunstone Gate Bridge",
+   "category": "night",
+   "qid": "Q4958297",
+   "lat": 52.63172,
+   "lon": -1.14408,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  }
+ ]
+}
