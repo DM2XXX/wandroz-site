@@ -33,7 +33,13 @@
   .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
   .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
   .switch.burglary-on { background: #c98a02; }
-  .notice { font-size:13px; color:#6b5a10; background:#fff9e8; border:1px solid #f1dfa3; border-radius: var(--radius-sm); padding:12px 16px; margin: 12px 24px 16px; max-width:1080px; }
+  /* Era un pannello giallo di cinque righe che spiegava la metodologia di
+     Londra a chi stava leggendo di Zurigo. Una riga: su cosa si basa la
+     mappa, e il link a chi vuole il resto. */
+  .evidence { font-size:12.5px; color:var(--muted); margin:10px 24px 14px; display:flex;
+              flex-wrap:wrap; align-items:center; gap:8px; }
+  .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
   .map-wrap { position:relative; padding: 0 24px 28px; }
   #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
   .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
@@ -185,7 +191,7 @@
 <nav class="crumbs"><a href="/">{{ nav_home }}</a> &rsaquo; {{ city_label }}</nav>
 <h1 class="page-title">{{ page_h1 }}</h1>
 <p class="lead">{{ page_lead }}</p>
-{% if data_note %}<div class="notice">{{ data_note }} <a href="/methodology.html">How we rate &rarr;</a></div>{% endif %}
+{% if data_note %}<p class="evidence">{{ data_note }} <a href="/methodology.html">Methodology &rarr;</a></p>{% endif %}
 
 {% if pois %}<div class="poi-bar" id="poiBar"></div>{% endif %}
 
@@ -312,7 +318,11 @@
     if (burglaryMode) { renderBurglaryDetail(z); return; }
     var tone = toneOf(z);
     var html = '<div class="zn">' + z.name + '</div>';
-    if (SHOW_TOGGLE) {
+    if (z.day === 'grey' && z.night === 'grey') {
+      // Nothing was found, so there is nothing to split into day and night:
+      // two identical badges would dress an absence up as a measurement.
+      html += badge('grey', z.day_label || 'Reviewed — no findings');
+    } else if (SHOW_TOGGLE) {
       html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
     } else if (z.covered) {
       html += badge(tone, z.tone_label || tone);

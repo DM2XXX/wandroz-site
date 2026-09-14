@@ -114,8 +114,21 @@ FORBIDDEN_PHRASES = [
     ("Overall safety level", "superseded badge label"),
 ]
 
-# Only ever legitimate for MANUAL_EXPERIMENTAL cities.
-QUALITATIVE_PHRASES = ["qualitative first-pass", "general local knowledge", "public reputation"]
+# Retired vocabulary. These described the work as either more casual than it
+# is ("general local knowledge", "public reputation") or as an internal tier
+# number that means nothing to a reader ("Level 2"). They are now defects
+# anywhere in public output, not just off-tier.
+RETIRED_VOCABULARY = [
+    ("Level 2", "internal tier number; the page says which evidence class a city is on"),
+    ("Tier 2", "internal tier number"),
+    ("press research", "understates an area-level source review; say 'local-source assessment'"),
+    ("general local knowledge", "describes reviewed work as casual"),
+    ("public reputation", "describes reviewed work as casual"),
+    ("qualitative first-pass", "retired label; the class is 'limited-data assessment'"),
+    ("manual first-pass", "retired label"),
+    ("refreshed automatically every month", "the London refresh is gated and run on review, not unattended"),
+    ("refreshes automatically once a month", "same claim, same problem"),
+]
 
 # Addresses retired from public use. This list does NOT define what is
 # acceptable for the correction component — BS.CORRECTION_EMAIL alone does
@@ -377,11 +390,17 @@ def check_map_integrity(dist, reg, F):
             F.fail("METHODOLOGY", "toggle-matches-data", city,
                    "SHOW_TOGGLE=%s but source data %s a real day/night split"
                    % (show_toggle, "has" if expected_from_data else "has no"))
-        expected_badges = 2 if show_toggle else 1
+        # One exception to the city-level rule: a zone the review found nothing
+        # for carries a single "reviewed — no findings" badge, because there is
+        # no day and night to split. Two identical badges there would dress an
+        # absence of evidence up as a measurement.
         for slug in sorted(src_by_slug):
             page = zone_page_path(dist, city, slug, scheme)
             if not os.path.isfile(page):
                 continue
+            z = src_by_slug[slug]
+            no_findings = z.get("day") == "grey" and z.get("night") == "grey"
+            expected_badges = 1 if no_findings else (2 if show_toggle else 1)
             got = len(BADGE_RE.findall(read(page)))
             if got != expected_badges:
                 F.fail("METHODOLOGY", "badge-count", "%s/%s" % (city, slug),
@@ -441,11 +460,6 @@ def check_methodology(dist, reg, F):
                            "evidence tag is %r but tier %s requires %r"
                            % (present[0], tier, expected_tag))
 
-            for phrase in QUALITATIVE_PHRASES:
-                if phrase in text and tier != BS.MANUAL_EXPERIMENTAL:
-                    F.fail("METHODOLOGY", "no-qualitative-claim-off-tier", target,
-                           "%s tier page claims %r, which is only true for MANUAL_EXPERIMENTAL"
-                           % (tier, phrase))
             if tier == BS.RESEARCH_BASED and re.search(
                     r"official (crime|police) statistics for this", text, re.I):
                 F.fail("METHODOLOGY", "research-page-not-claiming-official", target,
@@ -464,10 +478,82 @@ def check_methodology(dist, reg, F):
                        "about its own rating")
 
 
+# An area whose review reached no source may not carry a colour. This is the
+# no-coverage rule, enforced rather than promised: the site said in writing
+# that an absence of reporting is inconclusive while rating 175 such areas
+# "calm — no particular concern".
+NO_FINDINGS_RE = re.compile(
+    r"no (specific|particular|notable|documented|dated|reported|significant|recent|quartier-specific|barri-specific)"
+    r"|searches turned up no|turned up no|no coverage found|no news coverage"
+    r"|nothing (specific|about crime)|no crime or safety reporting|little (or no )?(news|press) coverage", re.I)
+
+# Did the review actually reach anything? Two ways to tell, in order of
+# reliability: the "Sources checked" tail, when the text has one, and
+# otherwise any sign of a real source in the prose — a domain, an outlet, an
+# authority, a statistic, or a described report. The point of the check is to
+# catch an area rated on nothing, not to police how the note is phrased, so
+# anything that looks like a reached source counts.
+SOURCES_TAIL_RE = re.compile(r"Sources? (?:checked|consulted)[:,]?\s*(.+)$", re.I | re.S)
+EMPTY_TAIL_RE = re.compile(r"^\W*(no\b|none\b|not\b)", re.I)
+SOURCE_REACHED_RE = re.compile(
+    r"\b[a-z0-9][a-z0-9-]{2,}\.(com|it|es|cat|pt|fr|de|at|nl|be|cz|hu|pl|gr|ie|uk|eu|se|no|ch|info|net|org)\b"
+    r"|\b(local|national|italian|spanish|french|german|greek|dutch|portuguese|hungarian|polish|czech|scottish|"
+    r"irish|austrian|catalan)\s+(press|news|media|outlets?|reporting|coverage|journalism)"
+    r"|\b(press|news|media)\s+(coverage|reports?|reporting)\s+(found|located|describes|shows|documents)"
+    r"|\b(reported|reports|coverage found|described|documented|recorded)\b.{0,40}\b(19|20)\d\d\b"
+    r"|\b(19|20)\d\d\b.{0,60}\b(report|reported|data|figures|survey|statistics|cases|incidents|arrests|"
+    r"operation|complaint|coverage)"
+    r"|\bcrimes per 1,?000\b|\bper 1,?000 population\b"
+    r"|\b(ayuntamiento|comune|municipio|city of|stadt|mairie|prefecture|prefettura|questura|police|polizia|"
+    r"polizei|policie|mossos|garda|carabinieri|guardia civil|statistics|statistical|survey|census|"
+    r"court of appeal|ministry|ministero|kantonspolizei|met police|police scotland|churchill support|datamap)\b",
+    re.I)
+
+
+def review_reached_a_source(text):
+    m = SOURCES_TAIL_RE.search(text or "")
+    if m:
+        tail = m.group(1).strip()
+        if not EMPTY_TAIL_RE.match(tail):
+            return True
+        # A tail that starts with "No ..." can still list something after it.
+        rest = re.split(r"[;,]", tail)[1:]
+        if any(part.strip() and not EMPTY_TAIL_RE.match(part.strip()) for part in rest):
+            return True
+        return False
+    return bool(SOURCE_REACHED_RE.search(text or ""))
+
+
+def check_no_coverage_rule(F):
+    """No source reached means no rating. Checked against the source data, so
+    it holds for every city on a local-source assessment, present and future."""
+    for key, meta in BS.CITY_METHODOLOGY.items():
+        if meta["tier"] != BS.RESEARCH_BASED:
+            continue
+        src = load_zone_source(key)
+        if not src:
+            continue
+        for z in src.get("zones", []):
+            text = z.get("text") or ""
+            if not NO_FINDINGS_RE.search(text):
+                continue
+            if review_reached_a_source(text):
+                continue          # sources were reached and showed nothing adverse
+            # The rule bites on false reassurance specifically. An area shown
+            # as calm day and night on the strength of an empty search is the
+            # defect; a cautious tone reasoned from context (isolated, unlit,
+            # no footfall) is a judgement the page states, not a claim of
+            # safety, so it is left alone.
+            if (z.get("day"), z.get("night")) == ("green", "green"):
+                F.fail("METHODOLOGY", "no-coverage-rated", "%s/%s" % (key, z["slug"]),
+                       "the review reached no source for this area, but it is rated calm day and "
+                       "night — an absence of reporting is not evidence of safety")
+
+
 def check_forbidden_copy(dist, F):
     for path, rel in walk_html(dist):
         text = TAG_RE.sub(" ", read(path))
-        for phrase, why in FORBIDDEN_PHRASES:
+        for phrase, why in FORBIDDEN_PHRASES + RETIRED_VOCABULARY:
             if phrase in text:
                 F.fail("METHODOLOGY", "forbidden-copy", rel, "contains %r — %s" % (phrase, why))
 
@@ -904,6 +990,7 @@ def main():
     check_navigation(dist, reg, F)
     check_methodology(dist, reg, F)
     check_forbidden_copy(dist, F)
+    check_no_coverage_rule(F)
     check_contact(dist, F)
     check_seo(dist, reg, F)
     check_links(dist, F)

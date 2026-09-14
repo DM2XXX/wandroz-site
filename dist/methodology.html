@@ -71,47 +71,131 @@
 <p class="subtitle">Wandroz is early. This page explains exactly what today's scores are based on, what they leave out, and what changes as coverage grows — so you can decide how much to trust them.</p>
 
 <div class="card">
-  <strong>Wandroz uses three different kinds of evidence, and is honest about which one each city is on</strong>
-  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    <strong>London</strong> is the only city on a live, automated pipeline: borough scores come from the UK Home
-    Office's official street-level crime data, published monthly at
-    <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a>, and are recomputed
-    automatically every time the pipeline runs — no manual editing. 32 of
-    33 London boroughs are on this automated pipeline — every borough except the City of London, which is policed separately and isn't covered by this dataset.
+  <strong>Three classes of evidence. Every page tells you which one it is on.</strong>
+  <p style="margin:10px 0 0;font-size:13.5px;color:var(--muted);">
+    <strong>🟢 A — Official crime data.</strong> The rating is derived from an official police or government
+    crime statistic. <strong>London</strong> runs on the UK Home Office's street-level data, published monthly at
+    <a href="https://data.police.uk" target="_blank" rel="noopener">data.police.uk</a> and recomputed by pipeline,
+    not by hand: 32 of 33 boroughs are scored — every borough except the City of London, which is policed separately and is not in the dataset,
+    from the months the Met has actually published (April–June 2026). 7 further cities —
+    Berlin, Amsterdam, Prague, Oslo, Munich, Stockholm and Brussels — are driven by their own national or municipal
+    statistic, named on each city's map and in its section below. These are periodic snapshots, not live feeds, and
+    none of them splits crime by time of day.
   </p>
-  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    <strong>8 further cities — Berlin, Amsterdam, Prague, Oslo, Munich, Stockholm, Brussels and Edinburgh</strong> —
-    have safety ratings driven by a real official government or police crime statistic (Polizei Berlin's
-    Häufigkeitszahl, CBS's registered-crime figures, Policie ČR's data, Oslo kommune's Statistikkbanken, and so on
-    — each city's own map page names its exact source). These are snapshot statistics, not a live monthly-refreshed
-    feed like London's, and none of them split crime by time of day, so every zone shows one consistent level
-    rather than a genuine day/night rating — that's disclosed on the zone itself rather than shown as false
-    precision. See each city's section below for its exact source, year and any caveats (several are normalised
-    against resident population rather than footfall, which can read high-traffic tourist areas as riskier than
-    they are for a visitor — see "What this method gets wrong" for that caveat generally).
+  <p style="margin:10px 0 0;font-size:13.5px;color:var(--muted);">
+    <strong>🟡 B — Structured local-source assessment.</strong> 15 cities, where no
+    comparable neighbourhood-level official crime dataset is published at all. Each area is reviewed individually
+    against credible local sources and the findings are consolidated across them —
+    <strong>740 areas reviewed one by one</strong>, with the reasoning and the sources shown
+    on each area's own page. Wandroz does not manufacture crime statistics, and does not present source review as
+    equivalent to police data.
   </p>
-  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    <strong>13 cities — Milan, Rome, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, Venice, Dublin, Naples,
-    Budapest and Kraków</strong> — use Wandroz's "Level 2" approach: genuine, current, dated local and national
-    press research (plus official surveys where they exist) for each specific area, honestly disclosed as
-    press/survey-based rather than an official crime feed, because none of these countries publishes an open,
-    geolocated crime dataset at neighbourhood level. Where no specific coverage was found for an area, that's
-    stated plainly rather than assumed either way — an absence of negative news is treated as inconclusive, not
-    as evidence the area is safe.
+  <p style="margin:10px 0 0;font-size:13.5px;color:var(--muted);">
+    <strong>⚪ C — Limited-data assessment.</strong> 2 cities — Turin and Zurich — where no
+    official dataset is published and the area-level source review has not been completed yet. The ratings are
+    indicative and labelled as such, wherever they appear. Zurich additionally carries one real official layer,
+    Kantonspolizei Zürich's district burglary rate, shown alongside but not driving its rating.
   </p>
-  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    <strong>Turin and Zurich</strong> remain a manual, illustrative first pass — general local knowledge and public
-    reputation, not sourced research and not an official dataset. Zurich additionally carries one narrow real data
-    layer (Kantonspolizei Zürich's district-level burglary rate) shown alongside, but not driving, its day/night
-    rating. Treat these two cities' ratings as a preview of the map experience rather than a verified score.
-  </p>
-  <p style="margin:8px 0 0;font-size:13.5px;color:var(--muted);">
-    Every city's boundaries are always real official administrative geometry, regardless of tier — it's specifically
-    the safety <em>rating</em> that varies in how it's evidenced. Ratings are also only ever compared within the
-    same city, never across cities: a "green" in Turin and a "green" in Berlin come from two entirely unrelated
-    scales, not one shared, cross-city ranking.
+  <p style="margin:10px 0 0;font-size:13.5px;color:var(--muted);">
+    The three are never blended. Boundaries are official administrative geometry in every city regardless of class;
+    it is the <em>rating</em> whose evidence differs. Ratings are only ever comparable inside one city — a green in
+    Turin and a green in Berlin come from unrelated scales.
   </p>
 </div>
+
+<h2>How a structured local-source assessment is made</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  This is the method behind class B, in full, so it can be judged rather than taken on trust. It is deliberate,
+  documented work per area — and it is not a police dataset, which is why it is labelled differently from one.
+</p>
+<ol style="font-size:13.5px;color:var(--muted);line-height:1.65;padding-left:20px;">
+  <li><strong>Source collection.</strong> Before anything else, we check whether the city or country publishes an
+  open, geolocated crime dataset at neighbourhood level; where one exists, the city moves to class A and this
+  method is not used. Where none does, the review draws on established local and national news outlets, municipal
+  and government publications, police-published district figures where they exist, official reports, and credible
+  survey or research data. Not every class is available in every city — each city's section below names what was
+  actually used there, including where a source is a resident-perception survey or a market-data ranking rather
+  than a crime figure.</li>
+
+  <li><strong>Area-level review.</strong> Research is carried out per neighbourhood, not once per city. A
+  city-wide reputation is never copied across its areas: 740 areas each have their own
+  review and their own written reasoning.</li>
+
+  <li><strong>Signal identification.</strong> What the review looks for is traveller-relevant: theft and
+  pickpocketing, robbery, violent incidents, drug-related activity, persistent disorder, nightlife-related
+  trouble, transport-hub problems, and other repeatedly documented concerns that would change how a visitor uses
+  an area.</li>
+
+  <li><strong>Cross-source consolidation.</strong> A single article or one isolated incident is not a rating.
+  Signals are weighed together and in context — how often, how recently, how specific to that area, and whether
+  independent sources agree. Where sources conflict, both findings are stated on the area's page rather than
+  averaged into a number.</li>
+
+  <li><strong>Recency.</strong> Recent evidence carries more weight; older material is used where it establishes a
+  persistent local pattern rather than a one-off. Each area's page carries the dates of what was checked, and each
+  city's section below states when its review was carried out.</li>
+
+  <li><strong>Traveller relevance.</strong> What is being assessed is the context of a neighbourhood for a
+  visitor. It is not an estimate of any individual's probability of becoming a victim of crime, and it should not
+  be read as one.</li>
+
+  <li><strong>No coverage is not a clean bill of health.</strong> This is the rule the method lives or dies on.
+  Where the review reaches no source for an area, that area gets <em>no rating</em>: it is shown as
+  <strong>reviewed — no findings</strong>, in grey, and its page says so in as many words. Absence of reporting is
+  inconclusive, never evidence of safety. <strong>178 of 740 areas</strong>
+  currently sit in that state; 562 carry a rating because the review found something to base one
+  on. Areas where sources <em>were</em> reached and showed nothing adverse keep a rating — that is a finding, not
+  a silence, and the distinction is visible on the map.</li>
+
+  <li><strong>Transparency.</strong> The reasoning is published on the area's own page, with the sources that
+  produced it named there. Where the review reached nothing, the page states that too, instead of quietly
+  rendering the area the same colour as a checked one.</li>
+</ol>
+<h3 style="font-size:15px;margin:22px 0 8px;">Coverage, city by city</h3>
+<p style="font-size:13.5px;color:var(--muted);margin:0 0 10px;">
+  Every figure here is counted from the published data at build time, including the ones that are unflattering.
+  A low "rated" count means the review reached fewer sources in that city, not that the city is safe.
+</p>
+<table class="breakdown">
+  <tr><th>City</th><th>Areas reviewed</th><th>Rated</th><th>Reviewed — no findings</th><th>Review completed</th></tr>
+  
+  <tr><td>Rome</td><td>155</td><td>121</td><td>34</td><td>20 August 2026</td></tr>
+  
+  <tr><td>Madrid</td><td>131</td><td>106</td><td>25</td><td>30 August 2026</td></tr>
+  
+  <tr><td>Milan</td><td>88</td><td>67</td><td>21</td><td>17 August 2026</td></tr>
+  
+  <tr><td>Paris</td><td>80</td><td>26</td><td>54</td><td>31 August 2026</td></tr>
+  
+  <tr><td>Florence</td><td>74</td><td>31</td><td>43</td><td>13 September 2026</td></tr>
+  
+  <tr><td>Barcelona</td><td>73</td><td>72</td><td>1</td><td>27 August 2026</td></tr>
+  
+  <tr><td>Lisbon</td><td>24</td><td>24</td><td>0</td><td>30 August 2026</td></tr>
+  
+  <tr><td>Vienna</td><td>23</td><td>23</td><td>0</td><td>30 August 2026</td></tr>
+  
+  <tr><td>Budapest</td><td>23</td><td>23</td><td>0</td><td>11 September 2026</td></tr>
+  
+  <tr><td>Kraków</td><td>18</td><td>18</td><td>0</td><td>11 September 2026</td></tr>
+  
+  <tr><td>Edinburgh</td><td>17</td><td>17</td><td>0</td><td>10 September 2026</td></tr>
+  
+  <tr><td>Dublin</td><td>11</td><td>11</td><td>0</td><td>5 September 2026</td></tr>
+  
+  <tr><td>Naples</td><td>10</td><td>10</td><td>0</td><td>11 September 2026</td></tr>
+  
+  <tr><td>Athens</td><td>7</td><td>7</td><td>0</td><td>5 September 2026</td></tr>
+  
+  <tr><td>Venice</td><td>6</td><td>6</td><td>0</td><td>5 September 2026</td></tr>
+  
+</table>
+
+<p style="font-size:13.5px;color:var(--muted);">
+  What this method is not: it is not a crime count, it is not comparable between cities, and it does not become an
+  official statistic by being carefully done. Where a country starts publishing neighbourhood-level crime data,
+  that city moves to class A and its ratings are rebuilt on it.
+</p>
 
 <h2>How a score is built</h2>
 <p style="font-size:13.5px;color:var(--muted);">
@@ -185,7 +269,7 @@
   accumulates, but trades off responsiveness to genuinely recent changes.
 </div>
 
-<h2>Turin and Zurich: what's real today</h2>
+<h2>Turin and Zurich — limited-data assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Both cities were researched (16 August 2026) to see whether they could get their own automated pipeline like
   London's. The two turned out very different, and it's worth being specific about why rather than lumping them
@@ -214,7 +298,7 @@
   provides.
 </div>
 
-<h2>Milan: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Milan — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Milan was researched (17 August 2026) the same way Turin was: checked the Comune di Milano's open-data portal,
   Regione Lombardia, and local police/prefettura sources for a geolocated neighbourhood-level crime dataset. None
@@ -251,7 +335,7 @@
 <h2>Berlin: real official police data, annual not live</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Berlin (23 August 2026) is the second city on the site, after London, whose ratings come from an official,
-  geolocated police dataset rather than press research or general knowledge. Polizei Berlin publishes the
+  geolocated police dataset rather than an assessment. Polizei Berlin publishes the
   <a href="https://www.kriminalitaetsatlas.berlin.de">Kriminalitätsatlas Berlin</a>, a real crime map covering all
   143 official "Bezirksregionen" (Berlin's finest routinely-published statistical subdivision), which was used both
   for the zone boundaries themselves and for each zone's Häufigkeitszahl (HZ) — total recorded offences per
@@ -276,7 +360,7 @@
 <h2>Amsterdam: real official CBS crime and population data</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Amsterdam (23 August 2026) is the third city on the site whose ratings come from an official, geolocated
-  government dataset rather than press research or general knowledge. The zone boundaries are the Gemeente
+  government dataset rather than an assessment. The zone boundaries are the Gemeente
   Amsterdam's own official "wijk" boundaries (110 zones, via api.data.amsterdam.nl), and each zone's rating is
   computed from two real CBS (Statistics Netherlands) tables: registered crimes per wijk for 2025 (table
   47018NED) and population per wijk for 2025 (table 86165NED), combined into a rate per 100,000 residents — the
@@ -304,7 +388,7 @@
 <h2>Prague: real official Policie ČR crime and CSU population data</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Prague (24 August 2026) is the fourth city on the site whose ratings come from an official, geolocated
-  government dataset rather than press research or general knowledge. The zone boundaries are Prague's own
+  government dataset rather than an assessment. The zone boundaries are Prague's own
   official "městské části" (57 city districts, the full set of Praha 1–22 plus the 35 smaller named "Praha-X"
   districts, none excluded), and each zone's rating is computed from two real official sources: Policie ČR's
   (Czech national police) total registered incidents per district for 2024, via the official
@@ -333,7 +417,7 @@
 <h2>Oslo: real official Oslo kommune Statistikkbanken data</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Oslo (24 August 2026, updated same day) is the sixth city on the site whose ratings come from an official,
-  geolocated government dataset rather than press research or general knowledge, and the first built on a Norwegian
+  geolocated government dataset rather than an assessment, and the first built on a Norwegian
   municipal source. The zone boundaries are Oslo's own official 15 "bydeler" (city boroughs, each with its own
   elected local bydelsutvalg) plus <strong>Sentrum</strong>, the city centre — 16 zones, none excluded. Sentrum is
   not one of the 15 administrative bydeler and carries no population figure in Oslo kommune's own bydel-level data,
@@ -380,7 +464,7 @@
 <h2>Munich: real official Polizeipräsidium München and Statistisches Amt München data</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Munich (24 August 2026) is the seventh city on the site whose ratings come from an official, geolocated
-  government dataset rather than press research or general knowledge. The zone boundaries are Munich's own
+  government dataset rather than an assessment. The zone boundaries are Munich's own
   official 25 "Stadtbezirke" (city districts), none excluded, sourced directly from GeodatenService München's own
   boundary WFS. Each district's rating is computed from two real official sources: Polizeipräsidium München and the
   Statistisches Amt München's own published "Straftaten in den Stadtbezirken 2025" table (total recorded offences
@@ -415,7 +499,7 @@
 <h2>Stockholm: real official Brå and Stockholms stad data</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Stockholm (25 August 2026) is the eighth city on the site whose ratings come from an official, geolocated
-  government dataset rather than press research or general knowledge, and the first built on a Swedish national
+  government dataset rather than an assessment, and the first built on a Swedish national
   source. The zone boundaries are Stockholm's own official 11 "stadsdelsnämnder" (city district committees), none
   excluded, sourced directly from Stockholms stad's own "Stadskartans Stadsdelsnämnder 2023" boundary dataset. Each
   district's rating is computed from two real official sources: Brå (Brottsförebyggande rådet, Sweden's national
@@ -449,7 +533,7 @@
   mismatched schemes.
 </div>
 
-<h2>Barcelona: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Barcelona — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Barcelona (25 August 2026) was researched the same way Rome, Milan and Turin were: checked the Ajuntament de
   Barcelona's own open-data portal, Catalonia's regional statistics sources, and the Mossos d'Esquadra (Catalan
@@ -482,7 +566,7 @@
   which kind of concern (if any) the research actually found.
 </div>
 
-<h2>Madrid: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Madrid — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Madrid (28 August 2026) was researched the same way Barcelona, Rome, Milan and Turin were: checked the
   Ayuntamiento de Madrid's own open-data portal and the Comunidad de Madrid's statistical offerings for a
@@ -517,7 +601,7 @@
   (if any) the research actually found.
 </div>
 
-<h2>Vienna: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Vienna — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Vienna (30 August 2026) was researched the same way Barcelona and Madrid were: checked Statistik Austria and the
   Bundeskriminalamt's own published crime statistics (PKS/Kriminalitätsbericht) for a geolocated district-level
@@ -553,7 +637,7 @@
   states plainly which kind of concern (if any) the research actually found.
 </div>
 
-<h2>Lisbon: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Lisbon — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Lisbon (30 August 2026) was researched the same way Barcelona, Madrid and Vienna were: checked the Sistema de
   Segurança Interna's own published annual security report (RASI, "Relatório Anual de Segurança Interna") for a
@@ -588,7 +672,7 @@
   (if any) the research actually found.
 </div>
 
-<h2>Paris: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Paris — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Paris (31 August 2026) was researched the same way Barcelona, Madrid, Vienna and Lisbon were: checked France's
   official crime dataset (published by the SSMSI, Interstats, via data.gouv.fr) for a geolocated
@@ -627,7 +711,7 @@
 <h2>Brussels: real official BISA/Federale Politie and Statbel data</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Brussels (3 September 2026) is the ninth city on the site whose ratings come from an official, geolocated
-  government dataset rather than press research or general knowledge, and the first built on a Belgian source.
+  government dataset rather than an assessment, and the first built on a Belgian source.
   The zone boundaries are the Brussels-Capital Region's own official 19 communes, none excluded, sourced directly
   from opendata.brussels.be's own boundary dataset. Each commune's rating is computed from two real official
   sources: BISA (Brussels Institute for Statistics and Analysis)'s own published workbook of total registered
@@ -662,7 +746,7 @@
   or their real crime/population figures, which cover the whole commune either way.
 </div>
 
-<h2>Athens: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Athens — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Athens was researched the same way Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon and Paris were: checked
   for an open, geolocated neighbourhood-level crime dataset first. None exists — the Hellenic Police publish crime
@@ -679,7 +763,7 @@
   <strong>All 7 official Municipal Districts covered, none skipped.</strong> The 7 Δημοτικές Κοινότητες are the
   finest official government neighbourhood-equivalent unit for the Municipality of Athens (they subdivide further
   into 48 unofficial συνοικίες and 129 γειτονιές, but only the 7 Municipal Districts carry real, government-
-  published boundaries), so all 7 are mapped. This is coarser than most other Level 2 cities on the site, which
+  published boundaries), so all 7 are mapped. This is coarser than most other class B cities on the site, which
   means a single district's rating can span both a genuinely calm, upscale area and a specific pocket with a real
   documented problem — each district's page names the specific streets, squares or neighbourhoods the research
   actually found evidence for, rather than implying the whole district shares one uniform risk.
@@ -698,7 +782,7 @@
   tarred by the same district-level colour as a documented problem a few kilometres away.
 </div>
 
-<h2>Venice: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Venice — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Venice was researched the same way Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris and Athens were:
   checked for an open, geolocated neighbourhood-level crime dataset first. None exists for Italy at this level. The
@@ -716,7 +800,7 @@
 <div class="note" style="margin-bottom:10px;">
   <strong>All 6 official Municipalità covered, none skipped — mainland included.</strong> The 6 Municipalità are the
   finest official government-published neighbourhood-equivalent unit for the whole Comune di Venezia, so all 6 are
-  mapped, not just the postcard historic centre. This is coarser than most other Level 2 cities on the site, which
+  mapped, not just the postcard historic centre. This is coarser than most other class B cities on the site, which
   means a single district's rating can span both a genuinely calm area and a specific pocket with a real documented
   problem — each district's page names the specific streets, squares or areas the research actually found evidence
   for, rather than implying the whole district shares one uniform risk. One geometric simplification is disclosed
@@ -739,7 +823,7 @@
   association with the busier districts nearby.
 </div>
 
-<h2>Dublin: Tier 2 — genuine local press research, not a guess</h2>
+<h2>Dublin — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Dublin was researched the same way Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens and Venice
   were: checked for an open, geolocated neighbourhood-level crime dataset first. Ireland's only near-candidate — a
@@ -775,7 +859,7 @@
   the more serious districts nearby.
 </div>
 
-<h2>Kraków: Tier 2 — genuine local press and official-survey research, not a guess</h2>
+<h2>Kraków — structured local-source assessment</h2>
 <p style="font-size:13.5px;color:var(--muted);">
   Kraków was researched the same way Milan, Rome, Turin, Barcelona, Madrid, Vienna, Lisbon, Paris, Athens, Venice,
   Dublin, Naples and Budapest were: checked for an open, geolocated neighbourhood-level crime dataset first.
@@ -810,6 +894,56 @@
   only moderate.
 </div>
 
+<h2>Rome — structured local-source assessment</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Rome (reviewed 20 August 2026) uses Roma Capitale's own 155 official Zone Urbanistiche, taken from the Comune's
+  Geoportale. Italy publishes no open geolocated crime dataset at neighbourhood level, so each zona was reviewed
+  individually against Italian local and national reporting — RomaToday, Il Messaggero, Corriere della Sera, Il
+  Fatto and local outlets — plus municipal material where an area was subject to a public-order measure. The
+  reasoning and the dates are on each zona's page. Rome is also the clearest illustration of the no-coverage rule:
+  many Zone Urbanistiche are administrative slivers with no press profile of their own, and 34 of the 155 returned
+  nothing at all. Those are shown as reviewed with no findings rather than as calm — the earlier version of this
+  map rated them green, which is exactly the inference this page says it does not make.
+</p>
+
+<h2>Florence — structured local-source assessment</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Florence (reviewed to 13 September 2026) is mapped on the Comune di Firenze's 74 official aree elementari — a
+  deliberately fine-grained statistical grid, much smaller than a neighbourhood a visitor would name. Sources are
+  Tuscan local press: La Nazione, FirenzeToday, Controradio, 055firenze and Firenze Post/ANSA. That grid is why
+  Florence's coverage table looks the way it does: 43 of the 74 cells have no press profile of their own, and are
+  published as reviewed with no findings. The 31 that carry a rating include the areas a visitor actually walks —
+  the historic centre, Santa Croce, San Frediano, the station district and the Cascine.
+</p>
+
+<h2>Naples — structured local-source assessment</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Naples (reviewed 11 September 2026) is mapped on the city's 10 official Municipalità. Alongside local reporting
+  (Fanpage.it, Napolitan.it, Il Mattino), the review uses a genuinely official document: the Naples Court of
+  Appeal's annual report on organised crime, which describes activity by area. Municipalità are large — each covers
+  several districts — so ratings are coarser here than in cities mapped at neighbourhood level, and each page says
+  which specific district within the Municipalità the evidence refers to.
+</p>
+
+<h2>Budapest — structured local-source assessment</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Budapest (reviewed 11 September 2026) is mapped on its 23 official districts. Hungary publishes no open
+  neighbourhood crime dataset, but the police statistics service (PRE-STAT) and a rolling 30-day crime-hotspot map
+  are public, and both are used here alongside Hungarian press (Index.hu, Metropol.hu, BPhírek). Where a figure
+  comes from the hotspot map rather than from an annual statistic, the district's page says so — a 30-day window is
+  a snapshot, not a trend.
+</p>
+
+<h2>Edinburgh — structured local-source assessment</h2>
+<p style="font-size:13.5px;color:var(--muted);">
+  Edinburgh (reviewed 10 September 2026) is the one city in this class whose evidence is not press at all. Its 17
+  wards are rated from a numeric crimes-per-1,000-population analysis of Scottish Government and Police Scotland
+  figures, independently corroborated by a second published analysis. That is stronger than a source review and
+  weaker than a first-party official feed: it is a secondary analysis of official statistics, published by third
+  parties, not a dataset Police Scotland releases at ward level itself. It is deliberately not labelled
+  🟢 Official crime data for that reason — the conservative label is worth more than another green city.
+</p>
+
 <h2>How this scales beyond London</h2>
 <p style="font-size:13.5px;color:var(--muted);">Wandroz is meant to eventually cover neighbourhoods across Europe, not just London. Getting there honestly means being upfront about which of three tiers a city's data currently sits at:</p>
 <table class="breakdown" style="margin-top:10px;">
@@ -825,8 +959,19 @@
 
 <h2>Updates</h2>
 <p style="font-size:13.5px;color:var(--muted);">
-  London's data refreshes automatically once a month via a scheduled job that re-pulls the latest official data,
-  recomputes every score, and republishes the site — no manual editing involved.
+  London's scores are recomputed from data.police.uk by pipeline, not by hand, and every borough page names the
+  exact months behind its score — currently April–June 2026. That refresh is currently run on review rather
+  than on an unattended schedule: the job rebuilds and republishes the whole site, so it goes through the same
+  build, QA and release gate as any other change. The published window on this page is read from the data itself,
+  so it cannot promise a freshness the site does not have.
+</p>
+<p style="font-size:13.5px;color:var(--muted);">
+  <strong>14 September 2026 — evidence classes named, and an empty search stopped counting as a clean street.</strong>
+  Every city page now carries one compact provenance line instead of a disclaimer panel, naming its evidence class
+  and what sits behind it. 178 areas whose review had reached no source were rated
+  "calm — no particular concern"; they are now shown as reviewed with no findings, which is what the evidence
+  supports. Class B cities' area reviews are unchanged — what changed is that the site no longer converts silence
+  into reassurance.
 </p>
 
 <h2>Feedback</h2>

@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Is my Athens neighbourhood safe? — Wandroz</title>
-<meta name="description" content="Interactive map of Athens&#39; 7 official Δημοτικές Κοινότητες (Municipal Districts, real official City of Athens boundaries) with day/night safety levels based on current local press research.">
+<meta name="description" content="Interactive map of Athens&#39; 7 official Δημοτικές Κοινότητες (Municipal Districts, real official City of Athens boundaries) with day/night safety levels from a structured local-source assessment.">
 <link rel="canonical" href="https://www.wandroz.com/athens/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Is my Athens neighbourhood safe? — Wandroz">
-<meta property="og:description" content="Interactive map of Athens&#39; 7 official Δημοτικές Κοινότητες (Municipal Districts, real official City of Athens boundaries) with day/night safety levels based on current local press research.">
+<meta property="og:description" content="Interactive map of Athens&#39; 7 official Δημοτικές Κοινότητες (Municipal Districts, real official City of Athens boundaries) with day/night safety levels from a structured local-source assessment.">
 <meta property="og:url" content="https://www.wandroz.com/athens/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,13 @@
   .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
   .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
   .switch.burglary-on { background: #c98a02; }
-  .notice { font-size:13px; color:#6b5a10; background:#fff9e8; border:1px solid #f1dfa3; border-radius: var(--radius-sm); padding:12px 16px; margin: 12px 24px 16px; max-width:1080px; }
+  /* Era un pannello giallo di cinque righe che spiegava la metodologia di
+     Londra a chi stava leggendo di Zurigo. Una riga: su cosa si basa la
+     mappa, e il link a chi vuole il resto. */
+  .evidence { font-size:12.5px; color:var(--muted); margin:10px 24px 14px; display:flex;
+              flex-wrap:wrap; align-items:center; gap:8px; }
+  .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
   .map-wrap { position:relative; padding: 0 24px 28px; }
   #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
   .map-legend { position:absolute; top:16px; right:16px; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(6px); border-radius: var(--radius-sm); padding:10px 14px; box-shadow: var(--shadow-md); display:flex; flex-direction:column; gap:6px; font-size:12px; max-width:230px; }
@@ -226,7 +232,7 @@
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Athens, Greece</nav>
 <h1 class="page-title">Athens neighbourhoods</h1>
 <p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
-<div class="notice">Official neighbourhood boundaries; safety levels from current local press research, not an official crime dataset. <a href="/methodology.html">How we rate &rarr;</a></div>
+<p class="evidence">🟡 Local-source safety assessment · 7 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
 
 <div class="poi-bar" id="poiBar"></div>
 
@@ -236,7 +242,7 @@
     <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
     <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — fine by day, be more careful in the evening/night</span></div>
     <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
-    <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Not rated — data not comparable for this zone</span></div>
+    <div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">Reviewed — no traveller-relevant findings documented; not a safety rating</span></div>
     <div class="legend-poi-sep" id="legendPoiSep"></div>
     <div id="legendPoi"></div>
   </div>
@@ -293,7 +299,7 @@
   var L_NOTCOVERED = "";
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 37.971667, "lon": 23.726111, "name": "Acropolis of Athens", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 37.968333, "lon": 23.741111, "name": "Panathenaic Stadium", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 37.989167, "lon": 23.732222, "name": "National Archaeological Museum, Athens", "rank": 3}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 37.983056, "lon": 23.746944, "name": "Mount Lycabettus", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 37.969372, "lon": 23.733078, "name": "Temple of Olympian Zeus, Athens", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 37.968417, "lon": 23.728472, "name": "Acropolis Museum", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 37.975, "lon": 23.7225, "name": "Ancient Agora of Athens", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 37.975556, "lon": 23.734722, "name": "Syntagma Square", "rank": 8}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 37.97639, "lon": 23.72361, "name": "Monastiraki", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 37.972222, "lon": 23.730556, "name": "Plaka", "rank": 10}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 37.970167, "lon": 23.732, "name": "Arch of Hadrian, Athens", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 37.97778, "lon": 23.725, "name": "Psyri", "rank": 12}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 37.974167, "lon": 23.738333, "name": "National Garden of Athens", "rank": 13}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 37.9804075, "lon": 23.727604, "name": "Varvakeios Market", "rank": 14}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 37.97805556, "lon": 23.71444444, "name": "Gazi", "rank": 15}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 37.99373, "lon": 23.74044, "name": "Pedion tou Areos", "rank": 16}];
   var POI_ALL = "All";
-  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not rated \u2014 data not comparable for this zone" };
+  var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Reviewed \u2014 no traveller-relevant findings documented; not a safety rating" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
     yellow: "Burglary rate close to the 12-district average",
@@ -365,7 +371,11 @@
     if (burglaryMode) { renderBurglaryDetail(z); return; }
     var tone = toneOf(z);
     var html = '<div class="zn">' + z.name + '</div>';
-    if (SHOW_TOGGLE) {
+    if (z.day === 'grey' && z.night === 'grey') {
+      // Nothing was found, so there is nothing to split into day and night:
+      // two identical badges would dress an absence up as a measurement.
+      html += badge('grey', z.day_label || 'Reviewed — no findings');
+    } else if (SHOW_TOGGLE) {
       html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
     } else if (z.covered) {
       html += badge(tone, z.tone_label || tone);
