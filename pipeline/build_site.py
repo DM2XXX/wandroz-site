@@ -47,6 +47,7 @@ CORRECTION_EMAIL = "hellowandroz@gmail.com"
 # jump straight from one city's map to another's without going back home.
 CITY_LINKS = [
     {"label": "London", "url": f"{SITE_URL}/london/"},
+    {"label": "Birmingham", "url": f"{SITE_URL}/birmingham/"},
     {"label": "Berlin", "url": f"{SITE_URL}/berlin/"},
     {"label": "Amsterdam", "url": f"{SITE_URL}/amsterdam/"},
     {"label": "Turin", "url": f"{SITE_URL}/torino/"},
@@ -95,6 +96,7 @@ CITY_COUNTRY = {
     "Paris": "France", "Brussels": "Belgium", "Athens": "Greece", "Venice": "Italy",
     "Dublin": "Ireland", "Florence": "Italy", "Edinburgh": "United Kingdom",
     "Naples": "Italy", "Budapest": "Hungary", "Kraków": "Poland",
+    "Birmingham": "United Kingdom",
 }
 
 # Curated "Popular destinations" shortcut shown near the homepage search box
@@ -194,6 +196,11 @@ CITY_METHODOLOGY = {
     "munich": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizeipräsidium München's official recorded-offence statistics"},
     "stockholm": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Brå (Brottsförebyggande rådet)'s official crime statistics"},
     "brussels": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "BISA / Federale Politie's official crime statistics"},
+    # The first city added on London's own pipeline rather than beside it:
+    # West Midlands Police publishes street-level crime to data.police.uk, the
+    # same feed and the same scoring, applied to Birmingham's 69 official wards.
+    "birmingham": {"tier": OFFICIAL_SNAPSHOT,
+                   "crime_source": "West Midlands Police street-level crime records published at data.police.uk"},
     # Edinburgh is deliberately NOT OFFICIAL_SNAPSHOT. Its figures are a secondary
     # analysis of Scottish Government/Police Scotland data (Churchill Support
     # Services, corroborated by datamap-scotland), not a first-party official
@@ -383,6 +390,7 @@ EVIDENCE_SOURCE = {
     "stockholm": "Brå",
     "brussels": "BISA / Federale Politie",
     "edinburgh": "analysis of Police Scotland figures",
+    "birmingham": "West Midlands Police, data.police.uk",
     "zurigo": "district burglary data shown alongside",
 }
 
@@ -1554,6 +1562,19 @@ ZURIGO_UI.update({
     "neigh_title": "Is {name} in Zurich safe? | Wandroz",
 })
 
+BIRMINGHAM_UI = dict(TORINO_UI)
+BIRMINGHAM_UI.update({
+    "page_title": "Is my Birmingham neighbourhood safe? — Wandroz",
+    "page_description": ("Interactive map of Birmingham's 69 official wards with real "
+                         "West Midlands Police street-level crime data, day and night."),
+    "page_h1": "Birmingham wards",
+    "page_lead": "Click a ward on the map to see its level, the recorded figures behind it, and a Booking.com link for that area.",
+    "label_all_zones": "All wards",
+    "neigh_title": "Is {name} in Birmingham safe? | Wandroz",
+    "label_zone_detail": "Ward detail",
+    "label_click_hint": "Click a ward on the map to see its level, the reasoning, and a Booking.com link for that area.",
+})
+
 MILANO_UI = dict(TORINO_UI)
 MILANO_UI.update({
     "page_title": "Is my Milan neighbourhood safe? — Wandroz",
@@ -1937,6 +1958,10 @@ def main():
          "blurb": "All 74 official quartieri/zone mapped, real Comune di Firenze boundaries, safety ratings from a structured local-source assessment, area by area.",
          "lat": 43.7696, "lon": 11.2558, "color": "#9c6b3e",
          "zone_count": 74, "data_tag": "Official boundaries"},
+        {"name": "Birmingham", "url": "birmingham/index.html", "flag": "🇬🇧",
+         "blurb": "All 69 official wards mapped, day and night levels computed from real West Midlands Police street-level crime records.",
+         "lat": 52.4862, "lon": -1.8904, "color": "#7a4fbf",
+         "zone_count": _zone_count("birmingham"), "data_tag": "Official police data"},
         {"name": "Edinburgh", "url": "edinburgh/index.html", "flag": "🇬🇧",
          "blurb": "All 17 official City of Edinburgh Council wards mapped, safety ratings anchored to real crimes-per-1,000-population figures per ward.",
          "lat": 55.9533, "lon": -3.1883, "color": "#0f4c81",
@@ -1970,6 +1995,7 @@ def main():
         "Lisbon": "lisbon", "Paris": "paris", "Brussels": "brussels", "Athens": "athens",
         "Venice": "venezia", "Dublin": "dublin", "Edinburgh": "edinburgh", "Naples": "napoli",
         "Budapest": "budapest", "Kraków": "krakow", "Florence": "firenze",
+        "Birmingham": "birmingham",
         # London already has its own correct "Official police data" tag above (a real
         # automated data.police.uk pipeline, not this dict's illustrative-city tiers).
         # Florence IS in CITY_METHODOLOGY now (RESEARCH_BASED, recovered from
@@ -2141,6 +2167,8 @@ def main():
     sitemap_urls.extend(budapest_urls)
     krakow_urls = render_illustrative_city("krakow", "krakow", KRAKOW_UI, EN_TONE_BADGE, flat=True)
     sitemap_urls.extend(krakow_urls)
+    birmingham_urls = render_illustrative_city("birmingham", "birmingham", BIRMINGHAM_UI, EN_TONE_BADGE, flat=True)
+    sitemap_urls.extend(birmingham_urls)
     firenze_urls = render_illustrative_city(
         "firenze", "firenze", FIRENZE_UI, EN_TONE_BADGE,
         flat=True,

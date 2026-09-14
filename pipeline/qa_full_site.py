@@ -75,6 +75,7 @@ FALLBACK_REGISTRY = {
     "athens":               ("athens",           "flat"),
     "barcelona":            ("barcelona",        "flat"),
     "berlin":               ("berlin",           "flat"),
+    "birmingham":           ("birmingham",       "flat"),
     "brussels":             ("brussels",         "flat"),
     "budapest":             ("budapest",         "flat"),
     "dublin":               ("dublin",           "flat"),
