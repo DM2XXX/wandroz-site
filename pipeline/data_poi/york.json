@@ -1,0 +1,126 @@
+{
+ "city": "york",
+ "pois": [
+  {
+   "name": "York Minster",
+   "category": "art",
+   "qid": "Q252575",
+   "lat": 53.96194,
+   "lon": -1.08194,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "National Railway Museum",
+   "category": "art",
+   "qid": "Q579958",
+   "lat": 53.9598,
+   "lon": -1.09771,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "York city walls",
+   "category": "view",
+   "qid": "Q4205980",
+   "lat": 53.9553,
+   "lon": -1.081,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "The Shambles",
+   "category": "square",
+   "qid": "Q7763628",
+   "lat": 53.9594,
+   "lon": -1.08011,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "York Art Gallery",
+   "category": "art",
+   "qid": "Q8055361",
+   "lat": 53.96306,
+   "lon": -1.08639,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Jorvik Viking Centre",
+   "category": "art",
+   "qid": "Q1704043",
+   "lat": 53.9578,
+   "lon": -1.08056,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "York Castle Museum",
+   "category": "art",
+   "qid": "Q2024016",
+   "lat": 53.9556,
+   "lon": -1.07827,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "York Museum Gardens",
+   "category": "green",
+   "qid": "Q2883914",
+   "lat": 53.9614,
+   "lon": -1.08806,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Rowntree Park",
+   "category": "green",
+   "qid": "Q7372266",
+   "lat": 53.9472,
+   "lon": -1.0825,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Clifford's Tower",
+   "category": "art",
+   "qid": "Q113551546",
+   "lat": 53.95589,
+   "lon": -1.08001,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Micklegate",
+   "category": "night",
+   "qid": "Q6838858",
+   "lat": 53.9572,
+   "lon": -1.0884,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  }
+ ]
+}

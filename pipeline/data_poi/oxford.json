@@ -1,0 +1,137 @@
+{
+ "city": "oxford",
+ "pois": [
+  {
+   "name": "Bodleian Library",
+   "category": "art",
+   "qid": "Q82133",
+   "lat": 51.75397,
+   "lon": -1.25514,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Ashmolean Museum",
+   "category": "art",
+   "qid": "Q636400",
+   "lat": 51.75556,
+   "lon": -1.26056,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Christ Church",
+   "category": "art",
+   "qid": "Q745967",
+   "lat": 51.7502,
+   "lon": -1.25585,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Oxford University Museum of Natural History",
+   "category": "art",
+   "qid": "Q1760005",
+   "lat": 51.75903,
+   "lon": -1.25642,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Radcliffe Camera",
+   "category": "art",
+   "qid": "Q1602700",
+   "lat": 51.7534,
+   "lon": -1.2539,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Pitt Rivers Museum",
+   "category": "art",
+   "qid": "Q1456119",
+   "lat": 51.75861,
+   "lon": -1.255,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Oxford University Parks",
+   "category": "green",
+   "qid": "Q7894869",
+   "lat": 51.7621,
+   "lon": -1.25457,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Covered Market",
+   "category": "food",
+   "qid": "Q5179234",
+   "lat": 51.75277,
+   "lon": -1.25674,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Jericho",
+   "category": "night",
+   "qid": "Q1507872",
+   "lat": 51.76,
+   "lon": -1.268,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Christ Church Meadow",
+   "category": "green",
+   "qid": "Q5108817",
+   "lat": 51.7475,
+   "lon": -1.2525,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Cowley Road",
+   "category": "night",
+   "qid": "Q5179763",
+   "lat": 51.746,
+   "lon": -1.232,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Carfax Tower  Tower Of The Church Of St Martin Carfax",
+   "category": "view",
+   "qid": "Q26299460",
+   "lat": 51.75196,
+   "lon": -1.25817,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  }
+ ]
+}

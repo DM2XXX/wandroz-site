@@ -75,6 +75,14 @@ UK_CITIES = [
      "lat": 53.4084, "lon": -2.9916, "color": "#e07a3f"},
     {"key": "brighton", "city": "Brighton and Hove", "force": "Sussex Police",
      "lat": 50.8225, "lon": -0.1372, "color": "#5aa9d6"},
+    {"key": "york", "city": "York", "force": "North Yorkshire Police",
+     "lat": 53.9600, "lon": -1.0873, "color": "#b08a3f"},
+    {"key": "oxford", "city": "Oxford", "force": "Thames Valley Police",
+     "lat": 51.7520, "lon": -1.2577, "color": "#6b6fd1"},
+    {"key": "cambridge", "city": "Cambridge", "force": "Cambridgeshire Constabulary",
+     "lat": 52.2053, "lon": 0.1218, "color": "#4fa36b"},
+    {"key": "bath", "city": "Bath", "force": "Avon and Somerset Constabulary",
+     "lat": 51.3811, "lon": -2.3590, "color": "#c2704f"},
 ]
 
 
@@ -505,10 +513,12 @@ BOOKING_CITY_SCOPE_NOTE = (
 # but does index the district it sits in. Paris is the clean example — every
 # quartier name carries its arrondissement, "Halles, Paris, France" resolved to
 # a single hotel while "1st arr., Paris, France" returns the arrondissement's
-# 474 properties. Better than the whole city, and the note says which it is.
+# 474 properties. The same held for Berlin's Bezirke, Madrid's distritos and
+# Barcelona's districtes: better than the whole city, and the note says which
+# of the three scopes a link is using.
 BOOKING_PARENT_SCOPE_NOTE = (
-    "Booking.com has no search area for this quartier, so this link searches the "
-    "surrounding district — narrower than the whole city, wider than this "
+    "Booking.com has no search area for this neighbourhood, so this link searches "
+    "the district it sits in — narrower than the whole city, wider than this "
     "neighbourhood alone."
 )
 

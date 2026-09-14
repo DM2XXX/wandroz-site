@@ -1,0 +1,126 @@
+{
+ "city": "bath",
+ "pois": [
+  {
+   "name": "Bath Abbey",
+   "category": "art",
+   "qid": "Q334399",
+   "lat": 51.38139,
+   "lon": -2.35889,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Pulteney Bridge",
+   "category": "view",
+   "qid": "Q2450190",
+   "lat": 51.38306,
+   "lon": -2.35778,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Roman Baths",
+   "category": "art",
+   "qid": "Q2540426",
+   "lat": 51.3809,
+   "lon": -2.3595,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Royal Crescent",
+   "category": "art",
+   "qid": "Q2289728",
+   "lat": 51.38694,
+   "lon": -2.36833,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "The Circus",
+   "category": "square",
+   "qid": "Q893229",
+   "lat": 51.386,
+   "lon": -2.364,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Prior Park Landscape Garden",
+   "category": "green",
+   "qid": "Q2743722",
+   "lat": 51.3672,
+   "lon": -2.34374,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Thermae Bath Spa",
+   "category": "art",
+   "qid": "Q17085795",
+   "lat": 51.3804,
+   "lon": -2.36157,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Bath Assembly Rooms",
+   "category": "art",
+   "qid": "Q2867020",
+   "lat": 51.3861,
+   "lon": -2.36222,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Royal Victoria Park",
+   "category": "green",
+   "qid": "Q7374979",
+   "lat": 51.3858,
+   "lon": -2.3704,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Milsom Street",
+   "category": "square",
+   "qid": "Q6860748",
+   "lat": 51.3839,
+   "lon": -2.36139,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Guildhall Market",
+   "category": "food",
+   "qid": "Q26674837",
+   "lat": 51.38244,
+   "lon": -2.35851,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  }
+ ]
+}
