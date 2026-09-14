@@ -1011,7 +1011,12 @@
   // to Berlin to central/northern Italy to Rome) instead of padding out
   // to show the Atlantic, North Africa or Eastern Europe.
   var isNarrow = window.innerWidth < 1024;
-  var map = L.map('homeMap', { scrollWheelZoom:true, zoomControl:false, minZoom:3 }).setView([48.5, 8], 4);
+  // zoomSnap:0 per lo stesso motivo delle mappe citta': il fitBounds qui sotto
+  // c'era gia', ma Leaflet arrotondava per difetto lo zoom che calcolava, e un
+  // livello intero perso vuol dire il doppio di mappa vuota. E' da li' che
+  // venivano l'Islanda, il Nordafrica e l'oceano intorno a quarantacinque
+  // citta' tutte in mezzo.
+  var map = L.map('homeMap', { scrollWheelZoom:true, zoomControl:false, minZoom:3, zoomSnap:0, zoomDelta:0.5 }).setView([48.5, 8], 4);
   L.control.zoom({ position: 'topright' }).addTo(map);
   // Light, low-clutter basemap (CartoDB Positron) for the homepage overview —
   // this map is just showing which cities are covered, so a muted grey
@@ -1061,10 +1066,23 @@
 
   map.addLayer(clusters);
 
-  if (CITIES.length > 0) {
+  // L'inquadratura si rifa' anche al resize: l'altezza della mappa cambia a
+  // ogni gradino (560, 590, 620, 720, 800px) e una vista calcolata su
+  // un'altezza e mostrata su un'altra e' di nuovo cornice vuota.
+  function fitCities() {
+    if (!CITIES.length) return;
+    isNarrow = window.innerWidth < 1024;
     var bounds = L.latLngBounds(CITIES.map(function(c){ return [c.lat, c.lon]; }));
-    map.fitBounds(bounds, { padding: isNarrow ? [22, 22] : [38, 38], maxZoom: isNarrow ? 6.3 : 7.4 });
+    map.invalidateSize(false);
+    // I pin portano un'etichetta col nome della citta' che si estende a destra
+    // del punto, quindi il margine non e' simmetrico: senza, "Athens" e
+    // "Stockholm" finiscono mezze fuori dal bordo.
+    map.fitBounds(bounds, { paddingTopLeft: isNarrow ? [20, 26] : [30, 38],
+                            paddingBottomRight: isNarrow ? [56, 26] : [92, 38],
+                            maxZoom: isNarrow ? 6.3 : 7.4 });
   }
+  fitCities();
+  window.addEventListener('resize', fitCities);
 
   // Search — name matches are instant and local (from /search-index.json,
   // built at deploy time from the site's real pages, see
