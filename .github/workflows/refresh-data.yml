@@ -1,34 +1,50 @@
 name: Refresh Wandroz safety data
 
-# Runs monthly, plus can be triggered manually. This runs on GitHub's own
-# runners, which have normal outbound internet access (unlike the Claude
-# Cowork sandbox this pipeline was originally prototyped in) — so this is
-# where the FULL, unrestricted data pull to data.police.uk should happen,
-# not in a Claude session.
+# WHAT THIS IS
+#   The monthly pull of new official crime data. It runs on GitHub's runners,
+#   which have normal outbound internet access, so this — not a Claude session
+#   — is where the full, unrestricted fetch to data.police.uk happens.
 #
-# SCHEDULE DISABLED 11 September 2026 — deliberate, not an accident.
-# The "Rebuild static site" step below runs pipeline/build_site.py and the
-# final step commits dist/ to main, which Vercel auto-deploys. Production is
-# not yet reproducible from source: dist/firenze/ (75 pages) has no generator
-# source at all, and the correction address hellowandroz@gmail.com exists only
-# in committed HTML, never in the generator. An unattended run would therefore
-# publish unreviewed changes across ~1,200 live pages with no QA gate.
-# Manual runs via workflow_dispatch remain available and are the intended way
-# to refresh data until the reproducibility milestone is met; re-enable the
-# cron by uncommenting the two lines below once it is.
+# WHAT IT DELIBERATELY DOES NOT DO: publish.
+#   It used to end with `git add data dist` and a push to main, which Vercel
+#   auto-deployed. That was a second way into production, running past the QA
+#   gate, the reproducibility gate and the one-commit-one-deployment rule that
+#   release.yml exists to enforce — and it was the reason the schedule was
+#   switched off on 11 September 2026 rather than fixed. Re-enabling the cron
+#   with that step still in it would have restored an unattended, ungated path
+#   to ~1,800 live pages.
+#
+#   So it now stops one step short. It fetches, it scores, it builds a
+#   candidate and puts that candidate through BOTH gates, and if they pass it
+#   parks the refreshed data/ on a branch. Nothing reaches main until someone
+#   dispatches release.yml with that branch — the single gated path, unchanged.
+#   The gates running here are the point: a month where the upstream feed has
+#   changed shape fails on the runner, in a branch, with the report attached,
+#   instead of on the live site.
+#
+#   If you later want the release to follow automatically, that is one extra
+#   step calling the release workflow with source_ref=${REFRESH_BRANCH} — a
+#   deliberate decision to make, not a default to drift into.
+
 on:
-  # schedule:
-  #   - cron: "0 6 2 * *"   # 06:00 UTC on the 2nd of each month
+  schedule:
+    - cron: "0 6 2 * *"   # 06:00 UTC on the 2nd of each month
   workflow_dispatch: {}
 
 permissions:
   contents: write
+
+env:
+  REFRESH_BRANCH: auto/data-refresh
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -37,48 +53,101 @@ jobs:
       - name: Install dependencies
         run: pip install -r pipeline/requirements.txt
 
-      - name: Fetch latest official crime data
-        run: python pipeline/fetch_london.py
-        # Pulls the full monthly response (not a truncated sample) from
-        # data.police.uk for each borough centroid, via a real HTTP client.
-        # This is the FIRST real run of this script on unrestricted
-        # network — watch this step's log the first time it runs to
-        # confirm record counts look sane (see pipeline/fetch_london.py's
-        # docstring for the known point/radius-vs-polygon limitation).
+      - name: Record the window before the refresh
+        run: |
+          # Printed so the diff in the summary is readable at a glance: a run
+          # that fetched nothing new should show the same window afterwards,
+          # and that is a normal outcome, not a failure.
+          python3 - <<'PY' >> "$GITHUB_ENV"
+          import json
+          b = json.load(open("data/scores/london.json"))["boroughs"][0]
+          print("WINDOW_BEFORE=%s" % ",".join(b.get("months_included") or []))
+          PY
 
-      - name: Recompute safety scores
+      - name: Fetch latest official crime data (London)
+        run: python pipeline/fetch_london.py
+
+      - name: Recompute London scores
         run: python pipeline/score_london.py
 
       - name: Fetch Zurich burglary data (Kantonspolizei Zürich, Kreis-level)
         run: python pipeline/fetch_zurich.py
-        # Narrow, real, genuinely-updated dataset (burglaries only, 12
-        # Stadtkreise, not the 34-Quartier map) — see pipeline/fetch_zurich.py's
-        # docstring for why this dataset and not Zurich's stale general PKS one.
         continue-on-error: true
-        # This is an optional bonus data layer, not core to the site (see
-        # fetch_zurich.py's own docstring). The upstream host has moved/
-        # renamed this specific file before (confirmed 2 September 2026,
-        # KTZH_00002042_00004083.csv 404ing at both its old and its
-        # current CKAN-registered URL) — a failure here should never
-        # block London's core monthly refresh or the site rebuild/commit
-        # below. fetch_zurich.py itself also now exits 0 (not 1) on a
-        # download/schema failure for the same reason; continue-on-error
-        # here is defense in depth in case that ever regresses.
+        # An optional extra layer, not core to the site. The upstream host has
+        # moved this file before (confirmed 2 September 2026, 404 at both its
+        # old and its CKAN-registered URL), and that must never block London's
+        # refresh. fetch_zurich.py also exits 0 on a download/schema failure;
+        # this is defence in depth in case that regresses.
 
       - name: Recompute Zurich burglary scores
         run: python pipeline/score_zurich.py
         continue-on-error: true
-        # Same reasoning as the fetch step above — if there was nothing
-        # new to fetch this run, this step should be a no-op, but this
-        # stays non-blocking regardless.
 
-      - name: Rebuild static site
-        run: python pipeline/build_site.py
-
-      - name: Commit updated data + site if changed
+      - name: Build a candidate from the refreshed data
         run: |
+          mkdir -p candidate
+          cp -R pipeline candidate/pipeline
+          cp -R data candidate/data
+          python3 candidate/pipeline/build_site.py
+          echo "candidate pages: $(find candidate/dist -name '*.html' | wc -l)"
+
+      - name: QA gate
+        run: python3 candidate/pipeline/qa_full_site.py --dist candidate/dist --report-dir qa_output
+
+      - name: Reproducibility gate
+        run: |
+          python3 candidate/pipeline/verify_reproducible.py \
+            --dist candidate/dist --compare-against dist --report-dir qa_output
+
+      - name: Upload the gate reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: refresh-reports
+          path: qa_output/
+
+      - name: Record the window after the refresh
+        run: |
+          python3 - <<'PY' >> "$GITHUB_ENV"
+          import json
+          b = json.load(open("data/scores/london.json"))["boroughs"][0]
+          print("WINDOW_AFTER=%s" % ",".join(b.get("months_included") or []))
+          PY
+
+      - name: Park the refreshed data on a branch
+        run: |
+          rm -rf candidate
           git config user.name "wandroz-bot"
           git config user.email "bot@wandroz.com"
-          git add data dist
-          git diff --cached --quiet || git commit -m "Automated monthly data refresh"
-          git push
+          # data/ only. dist/ is not committed here on purpose: release.yml
+          # rebuilds it from source so that what ships can never be an artefact
+          # someone (or some cron) committed by hand.
+          git add -A data
+          if git diff --cached --quiet; then
+            echo "REFRESHED=no" >> "$GITHUB_ENV"
+            echo "Nothing new upstream this month — data is unchanged."
+            exit 0
+          fi
+          echo "REFRESHED=yes" >> "$GITHUB_ENV"
+          git commit -m "Automated data refresh ($(date -u +%Y-%m-%d))"
+          git push --force origin HEAD:"$REFRESH_BRANCH"
+          echo "Parked on $REFRESH_BRANCH"
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### Wandroz data refresh"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| window before | \`${WINDOW_BEFORE:-?}\` |"
+            echo "| window after | \`${WINDOW_AFTER:-?}\` |"
+            echo "| new data | ${REFRESHED:-gate failed} |"
+            echo "| branch | \`${REFRESH_BRANCH}\` |"
+            echo ""
+            if [ "${REFRESHED:-}" = "yes" ]; then
+              echo "Both gates passed. To publish, run **Production release** with"
+              echo "\`source_ref=${REFRESH_BRANCH}\` and \`confirm=RELEASE\`."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

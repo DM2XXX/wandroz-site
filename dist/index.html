@@ -193,26 +193,68 @@
     .benefits-grid { grid-template-columns: repeat(3,1fr); gap:20px; }
     .benefit-card { padding:26px 26px; }
     .benefit-icon { font-size:30px; margin-bottom:12px; }
-    .benefit-title { font-size:16px; }
-    .benefit-desc { font-size:14px; }
+    .benefit-title { font-size:17.5px; }
+    .benefit-desc { font-size:15.5px; }
 
     .preview-section { padding: 46px 0 10px; }
-    .section-title { font-size:23px; }
-    .section-lede { font-size:14.5px; margin-bottom:22px; }
-    .preview-card { padding:30px 34px; max-width:720px; }
-    .preview-card-name { font-size:20px; }
-    .preview-text { font-size:14.5px; }
+    .section-title { font-size:25px; }
+    .section-lede { font-size:16px; margin-bottom:22px; }
+    .preview-card { padding:30px 34px; max-width:760px; }
+    .preview-card-name { font-size:21px; }
+    .preview-card-city { font-size:14.5px; }
+    .preview-badges .badge-label { font-size:13.5px; }
+    .preview-text { font-size:16px; }
+    .preview-cta { font-size:15.5px; }
 
     .explore-section { padding: 46px 0 12px; }
     .country-groups { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap:20px; }
     .country-group { padding:20px 22px; }
-    .country-flag { font-size:22px; }
-    .country-name { font-size:16px; }
-    .city-card-link { padding:14px 15px; }
-    .city-card-name { font-size:14.5px; }
-    .city-card-meta { font-size:12px; }
+    .country-flag { font-size:23px; }
+    .country-name { font-size:17.5px; }
+    .country-count { font-size:13px; }
+    .city-card-link { padding:15px 16px; }
+    .city-card-name { font-size:16px; }
+    .city-card-meta { font-size:13px; }
 
-    .beta-footnote { padding:26px 40px 12px; }
+    .beta-footnote { padding:26px 40px 12px; font-size:13.5px; }
+    .search-label { font-size:14px; }
+    .search-result-item { font-size:15.5px; }
+    .search-result-city { font-size:13.5px; }
+    .search-status { font-size:14.5px; }
+    .popup-name { font-size:17.5px; }
+    .popup-meta { font-size:14px; }
+    .popup-cta { font-size:14px; padding:9px 16px; }
+    .wz-pin-chip { font-size:13.5px; padding:5px 12px; }
+  }
+  /* Secondo gradino, come sulle pagine citta': una viewport CSS molto larga e'
+     un monitor grande o un browser rimpicciolito, e in entrambi i casi il testo
+     va alzato, non lasciato dov'e'. */
+  @media (min-width: 1800px){
+    .wz-header .wz-logo { width:50px; height:50px; }
+    .wz-header .wz-name { font-size:21px; }
+    .wz-nav a { font-size:16.5px; }
+    .hero-subtitle { font-size:20px; }
+    .hero-quicklinks { font-size:15.5px; }
+    .benefit-icon { font-size:34px; }
+    .benefit-title { font-size:19.5px; }
+    .benefit-desc { font-size:17px; }
+    .section-title { font-size:28px; }
+    .section-lede { font-size:17.5px; }
+    .preview-card-name { font-size:23px; }
+    .preview-card-city { font-size:16px; }
+    .preview-text { font-size:17.5px; }
+    .preview-cta { font-size:17px; }
+    .country-flag { font-size:26px; }
+    .country-name { font-size:19.5px; }
+    .country-count { font-size:14.5px; }
+    .city-card-name { font-size:17.5px; }
+    .city-card-meta { font-size:14.5px; }
+    .search-label { font-size:15.5px; }
+    .search-result-item { font-size:17px; }
+    .beta-footnote { font-size:15px; }
+    .popup-name { font-size:19px; }
+    .popup-meta { font-size:15.5px; }
+    .wz-pin-chip { font-size:15px; }
   }
   @media (min-width: 1200px){
     #homeMap { height: 590px; }

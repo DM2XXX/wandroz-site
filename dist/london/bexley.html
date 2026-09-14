@@ -25,6 +25,33 @@
 <link rel="stylesheet" href="/style.css">
 <style>
   .wrap { max-width: 840px; margin: 0 auto; padding: 0 24px 60px; }
+  /* Stessa scala a gradini della mappa e della home: la misura di base riempie
+     un telefono, su uno schermo grande si legge minuta. La colonna si allarga
+     insieme al testo, altrimenti crescendo i caratteri le righe si accorciano
+     e la pagina diventa piu' lunga a parita' di contenuto. */
+  @media (min-width: 721px){
+    .wrap { max-width: 960px; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 22px; margin: 36px 0 14px; }
+    h3 { font-size: 18px; }
+    .subtitle { font-size: 18px; max-width: 660px; line-height:1.5; }
+    .hero .eyebrow { font-size: 14px; padding:6px 14px; }
+    table.breakdown { font-size: 15.5px; }
+    .faq-item summary { font-size: 16.5px; }
+    .faq-item p { font-size: 15.5px; }
+    .card strong, .card b { font-size: 17px; }
+  }
+  @media (min-width: 1800px){
+    .wrap { max-width: 1080px; }
+    h1 { font-size: 42px; }
+    h2 { font-size: 25px; }
+    h3 { font-size: 20px; }
+    .subtitle { font-size: 20px; max-width: 740px; }
+    table.breakdown { font-size: 17px; }
+    .faq-item summary { font-size: 18px; }
+    .faq-item p { font-size: 17px; }
+    .card strong, .card b { font-size: 18.5px; }
+  }
   h1 { font-size: 30px; margin: 0 0 8px; font-weight:800; }
   h2 { font-size: 19px; margin: 32px 0 12px; font-weight:700; }
   .subtitle { color: var(--muted); margin-bottom: 8px; font-size:15.5px; max-width:560px; }
