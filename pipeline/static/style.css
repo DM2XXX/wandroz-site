@@ -150,6 +150,13 @@ footer.wz-footer a { color: var(--muted); }
   .note { font-size:16.5px; }
   footer.wz-footer { font-size:15px; }
 }
+@media (min-width: 2400px){
+  .wz-logo { width:58px !important; height:58px !important; border-radius:16px; }
+  .wz-brand .wz-name { font-size:24px; }
+  .wz-brand .wz-tagline { font-size:17px; }
+  .wz-nav a { font-size:18.5px; }
+  footer.wz-footer { font-size:16.5px; }
+}
 
 /* Corpo dei testi lunghi (metodologia, about, privacy). Era scritto inline sui
    singoli paragrafi, dove nessuna media query poteva arrivarci: lo stile inline
@@ -160,5 +167,8 @@ footer.wz-footer a { color: var(--muted); }
   .mbody { font-size:16px; line-height:1.65; }
 }
 @media (min-width: 1800px){
-  .mbody { font-size:17.5px; }
+  .mbody { font-size:19px; }
+}
+@media (min-width: 2400px){
+  .mbody { font-size:21px; }
 }
