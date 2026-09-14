@@ -161,9 +161,15 @@ jobs:
           curl -s --max-time 30 https://www.wandroz.com/berlin/adlershof.html -o /tmp/p.html
           check "legacy email on a sample page" "0" "$(grep -c 'dadenuoto@gmail.com' /tmp/p.html || true)"
           check "stale day/night copy"          "0" "$(grep -c 'both figures shown are the same' /tmp/p.html || true)"
-          check "evidence tag present"          "1" "$(grep -c 'Official crime data' /tmp/p.html || true)"
+          # The labels themselves are the generator's business, so read them
+          # from it rather than retyping them here: this assertion failed a
+          # release once for spelling a label the site had already renamed,
+          # after production had already been updated correctly.
+          OFFICIAL_LABEL=$(python3 -c "import sys; sys.path.insert(0,'pipeline'); import build_site as b; print(b.EVIDENCE_TAG[b.OFFICIAL_SNAPSHOT])")
+          RESEARCH_LABEL=$(python3 -c "import sys; sys.path.insert(0,'pipeline'); import build_site as b; print(b.EVIDENCE_TAG[b.RESEARCH_BASED])")
+          check "evidence label, official city" "1" "$(grep -cF "$OFFICIAL_LABEL" /tmp/p.html || true)"
           curl -s --max-time 30 https://www.wandroz.com/edinburgh/leith.html -o /tmp/e.html
-          check "Edinburgh is research-tier"    "1" "$(grep -c 'Local source research' /tmp/e.html || true)"
+          check "evidence label, assessed city" "1" "$(grep -cF "$RESEARCH_LABEL" /tmp/e.html || true)"
           [ "$fail" = "0" ] || { echo "::error::production does not match the build — see rollback"; exit 1; }
           echo "production verified against the release build"
 
