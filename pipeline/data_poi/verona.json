@@ -1,0 +1,192 @@
+{
+ "city": "verona",
+ "pois": [
+  {
+   "name": "Verona Arena",
+   "category": "art",
+   "qid": "Q641556",
+   "lat": 45.43889,
+   "lon": 10.99444,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Ponte Pietra",
+   "category": "view",
+   "qid": "Q540546",
+   "lat": 45.44777,
+   "lon": 11,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Verona Cathedral",
+   "category": "art",
+   "qid": "Q2713844",
+   "lat": 45.44722,
+   "lon": 10.99694,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Basilica of San Zeno",
+   "category": "art",
+   "qid": "Q1763642",
+   "lat": 45.4425,
+   "lon": 10.97917,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "piazza delle Erbe",
+   "category": "square",
+   "qid": "Q2717102",
+   "lat": 45.44306,
+   "lon": 10.99722,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Castelvecchio",
+   "category": "art",
+   "qid": "Q1049016",
+   "lat": 45.43957,
+   "lon": 10.9881,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "piazza Bra",
+   "category": "square",
+   "qid": "Q1056360",
+   "lat": 45.43889,
+   "lon": 10.99278,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Castelvecchio Bridge",
+   "category": "view",
+   "qid": "Q1809027",
+   "lat": 45.44028,
+   "lon": 10.98722,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Roman theatre of Verona",
+   "category": "art",
+   "qid": "Q1477572",
+   "lat": 45.44742,
+   "lon": 11.00164,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Porta Borsari",
+   "category": "art",
+   "qid": "Q1063320",
+   "lat": 45.44194,
+   "lon": 10.9933,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Scaliger Tombs",
+   "category": "art",
+   "qid": "Q2253540",
+   "lat": 45.44364,
+   "lon": 10.99893,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Casa di Giulietta",
+   "category": "art",
+   "qid": "Q3661293",
+   "lat": 45.442,
+   "lon": 10.99869,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Santa Maria in Organo",
+   "category": "art",
+   "qid": "Q1052661",
+   "lat": 45.44694,
+   "lon": 11.00278,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Veronetta",
+   "category": "night",
+   "qid": "Q4010177",
+   "lat": 45.4423,
+   "lon": 11.0054,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Castel San Pietro",
+   "category": "view",
+   "qid": "Q3662139",
+   "lat": 45.44816,
+   "lon": 11.00336,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Giardino Giusti (Verona)",
+   "category": "green",
+   "qid": "Q21167315",
+   "lat": 45.44303,
+   "lon": 11.0064,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Parco delle Colombare",
+   "category": "green",
+   "qid": "Q49538193",
+   "lat": 45.45309,
+   "lon": 11.00467,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  }
+ ]
+}
