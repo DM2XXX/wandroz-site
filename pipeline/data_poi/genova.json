@@ -1,0 +1,181 @@
+{
+ "city": "genova",
+ "pois": [
+  {
+   "name": "Palazzo Rosso",
+   "category": "art",
+   "qid": "Q2034331",
+   "lat": 44.41125,
+   "lon": 8.93212,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Lighthouse of Genoa",
+   "category": "view",
+   "qid": "Q776666",
+   "lat": 44.40454,
+   "lon": 8.90464,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Doge's Palace",
+   "category": "art",
+   "qid": "Q2047566",
+   "lat": 44.40752,
+   "lon": 8.93326,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Opera Carlo Felice Genova",
+   "category": "art",
+   "qid": "Q2299021",
+   "lat": 44.40791,
+   "lon": 8.93513,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Aquarium of Genoa",
+   "category": "art",
+   "qid": "Q623163",
+   "lat": 44.41019,
+   "lon": 8.92651,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "piazza De Ferrari",
+   "category": "square",
+   "qid": "Q1411612",
+   "lat": 44.40726,
+   "lon": 8.93405,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Monumental Cemetery of Staglieno",
+   "category": "art",
+   "qid": "Q93544",
+   "lat": 44.43001,
+   "lon": 8.95029,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Basilica della Santissima Annunziata del Vastato",
+   "category": "art",
+   "qid": "Q2887140",
+   "lat": 44.41417,
+   "lon": 8.92833,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Boccadasse",
+   "category": "view",
+   "qid": "Q3641485",
+   "lat": 44.38972,
+   "lon": 8.97453,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Galata - Museo del mare",
+   "category": "art",
+   "qid": "Q1916826",
+   "lat": 44.41422,
+   "lon": 8.92342,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Parchi di Nervi",
+   "category": "green",
+   "qid": "Q1576596",
+   "lat": 44.3808,
+   "lon": 9.04611,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Via del Campo",
+   "category": "night",
+   "qid": "Q4010809",
+   "lat": 44.4125,
+   "lon": 8.92799,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Villa Durazzo Pallavicini",
+   "category": "green",
+   "qid": "Q4011961",
+   "lat": 44.42949,
+   "lon": 8.81732,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "porto antico",
+   "category": "square",
+   "qid": "Q2105217",
+   "lat": 44.4104,
+   "lon": 8.9242,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Mercato Orientale",
+   "category": "food",
+   "qid": "Q3854842",
+   "lat": 44.40566,
+   "lon": 8.94188,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Spianata di Castelletto",
+   "category": "view",
+   "qid": "Q125522161",
+   "lat": 44.41335,
+   "lon": 8.93304,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  }
+ ]
+}
