@@ -1,0 +1,170 @@
+{
+ "city": "trieste",
+ "pois": [
+  {
+   "name": "Miramare Castle",
+   "category": "art",
+   "qid": "Q165069",
+   "lat": 45.70245,
+   "lon": 13.71232,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Trieste Cathedral",
+   "category": "art",
+   "qid": "Q1736225",
+   "lat": 45.64639,
+   "lon": 13.7725,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Risiera di San Sabba",
+   "category": "art",
+   "qid": "Q426164",
+   "lat": 45.62083,
+   "lon": 13.78917,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "piazza Unità d'Italia",
+   "category": "square",
+   "qid": "Q1645600",
+   "lat": 45.65,
+   "lon": 13.76786,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Grotta Gigante",
+   "category": "view",
+   "qid": "Q1547628",
+   "lat": 45.70922,
+   "lon": 13.76383,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Opicina Tramway",
+   "category": "art",
+   "qid": "Q19002",
+   "lat": 45.6705,
+   "lon": 13.7891,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Civico museo del Castello di San Giusto",
+   "category": "view",
+   "qid": "Q1048860",
+   "lat": 45.64764,
+   "lon": 13.77289,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Roman Theatre of Trieste",
+   "category": "art",
+   "qid": "Q752696",
+   "lat": 45.64917,
+   "lon": 13.77167,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Vittoria Light",
+   "category": "view",
+   "qid": "Q752327",
+   "lat": 45.67557,
+   "lon": 13.75705,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Caffè San Marco",
+   "category": "food",
+   "qid": "Q1025550",
+   "lat": 45.65269,
+   "lon": 13.78066,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Revoltella Museum",
+   "category": "art",
+   "qid": "Q1954273",
+   "lat": 45.64694,
+   "lon": 13.76306,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Barcola",
+   "category": "green",
+   "qid": "Q807970",
+   "lat": 45.67944,
+   "lon": 13.75444,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Borgo Teresiano",
+   "category": "night",
+   "qid": "Q875395",
+   "lat": 45.65293,
+   "lon": 13.77261,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Molo Audace",
+   "category": "view",
+   "qid": "Q1535578",
+   "lat": 45.65207,
+   "lon": 13.76649,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Scala dei Giganti",
+   "category": "view",
+   "qid": "Q116185245",
+   "lat": 45.64906,
+   "lon": 13.77634,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  }
+ ]
+}
