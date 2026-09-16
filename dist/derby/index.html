@@ -112,6 +112,21 @@
               padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
               -webkit-tap-highlight-color:transparent; }
   .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
+  /* Non e' un settimo filtro, e' un interruttore: spegne del tutto lo strato
+     dei sights per chi e' venuto a guardare solo i colori della sicurezza.
+     Quindi vive staccato dalle categorie, in fondo alla barra. */
+  .poi-hide { margin-left:auto; border:1px solid var(--line); background:#fff; color:#4a5a63;
+              border-radius:999px; padding:6px 13px; font-size:12.5px; font-weight:600;
+              cursor:pointer; display:inline-flex; align-items:center; gap:7px;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-hide:hover { border-color:#16232b; color:#16232b; }
+  .poi-hide[aria-pressed=true] { background:#eef1f4; border-color:#9aa6b1; color:#16232b; }
+  .poi-hide .box { width:13px; height:13px; border-radius:3px; border:1.5px solid currentColor;
+                   flex:none; position:relative; }
+  .poi-hide[aria-pressed=true] .box { background:currentColor; }
+  .poi-hide[aria-pressed=true] .box::after { content:"✓"; position:absolute; inset:0; color:#fff;
+                   font-size:10px; line-height:11px; text-align:center; }
+  .poi-list-wrap[hidden] { display:none; }
   /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
      una griglia auto-fill produceva una singola fascia orizzontale di dodici
      voci, illeggibile e slegata dal resto della pagina. */
@@ -907,6 +922,7 @@
   function poiLegend(active) {
     var box = document.getElementById('legendPoi');
     if (!box) return;
+    if (active === undefined) { box.innerHTML = ''; return; }
     var seen = {};
     POIS.forEach(function (p) { seen[p.cat] = p.cat_icon + ' ' + p.cat_label; });
     box.innerHTML = '';
@@ -918,6 +934,36 @@
     });
   }
 
+  // Cosa si vede dei sights dipende da due cose — la categoria scelta e
+  // l'interruttore generale — quindi sono un unico stato applicato da un unico
+  // punto. Tenerle separate significherebbe che l'ultima delle due a essere
+  // toccata riaccende quello che l'altra aveva spento.
+  var poiCat = null, poiHidden = false;
+
+  function poiApply() {
+    poiMarkers.forEach(function (m) {
+      var show = !poiHidden && (poiCat === null || m.poiCat === poiCat);
+      if (show) { m.addTo(map); } else { map.removeLayer(m); }
+    });
+    var wrap = document.querySelector('.poi-list-wrap');
+    if (wrap) wrap.hidden = poiHidden;
+    var bar = document.getElementById('poiBar');
+    if (bar) {
+      Array.prototype.forEach.call(bar.querySelectorAll('.poi-chip'), function (x) {
+        x.setAttribute('aria-pressed', (!poiHidden && x.poiCat === poiCat) ? 'true' : 'false');
+        x.style.opacity = poiHidden ? '.45' : '';
+      });
+      var hb = bar.querySelector('.poi-hide');
+      if (hb) {
+        hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
+        hb.lastChild.nodeValue = poiHidden ? ' Sights hidden' : ' Hide sights';
+      }
+    }
+    poiLegend(poiHidden ? undefined : poiCat);
+    poiListFilter(poiCat);
+    poiRefresh();
+  }
+
   function poiChips() {
     var bar = document.getElementById('poiBar');
     if (!bar) return;
@@ -925,24 +971,28 @@
     POIS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); });
     var labelOf = {};
     POIS.forEach(function (p) { labelOf[p.cat] = p.cat_icon + ' ' + p.cat_label; });
-    cats.forEach(function (c, i) {
+    cats.forEach(function (c) {
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'poi-chip';
+      b.poiCat = c;
       b.textContent = c === null ? POI_ALL : labelOf[c];
-      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      b.setAttribute('aria-pressed', c === null ? 'true' : 'false');
       b.addEventListener('click', function () {
-        Array.prototype.forEach.call(bar.children, function (x, k) {
-          x.setAttribute('aria-pressed', cats[k] === c ? 'true' : 'false');
-        });
-        poiMarkers.forEach(function (m) {
-          if (c === null || m.poiCat === c) { m.addTo(map); } else { map.removeLayer(m); }
-        });
-        poiLegend(c);
-        poiListFilter(c);
-        poiRefresh();
+        // Scegliere una categoria riaccende i sights da sola: cliccare un
+        // filtro e non veder comparire niente, perche' un interruttore altrove
+        // e' spento, e' il tipo di vicolo cieco che fa ricaricare la pagina.
+        poiCat = c; poiHidden = false; poiApply();
       });
       bar.appendChild(b);
     });
+    var hide = document.createElement('button');
+    hide.type = 'button'; hide.className = 'poi-hide';
+    hide.setAttribute('aria-pressed', 'false');
+    hide.title = 'Turn the sights layer off and leave only the safety colours';
+    hide.appendChild(document.createElement('span')).className = 'box';
+    hide.appendChild(document.createTextNode(' Hide sights'));
+    hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
+    bar.appendChild(hide);
   }
 
   // On a narrow screen a twenty-character label has nowhere to go, so the
