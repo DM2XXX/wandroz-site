@@ -160,15 +160,24 @@ jobs:
           # build is serving, then assert on it. A timeout here means the
           # deployment did not land — main is already updated, so use the
           # rollback in the release notes rather than re-running.
+          # This used to check that firenze/centro.html was being served and that
+          # the sitemap mentioned it — both of which were already true of the
+          # PREVIOUS build, so the loop could not tell a finished deployment
+          # from an unfinished one. It exited immediately, the assertions below
+          # ran against the old site, and a good release of Warsaw went red for
+          # a sitemap that was 19 URLs short because Vercel was still building.
+          # The wait now compares the live sitemap against the one just built,
+          # which is a property only the new deployment has.
+          WANT=$(grep -c '<loc>' dist/sitemap.xml)
+          echo "waiting for production to serve $WANT sitemap URLs"
           ok=0
           for i in $(seq 1 40); do
             sleep 15
-            if curl -sf --max-time 20 https://www.wandroz.com/firenze/centro.html >/dev/null 2>&1 \
-               && curl -sf --max-time 20 https://www.wandroz.com/sitemap.xml 2>/dev/null \
-                  | grep -q 'firenze/centro.html'; then
-              ok=1; echo "production is serving the new build (attempt $i)"; break
+            GOT=$(curl -sf --max-time 20 https://www.wandroz.com/sitemap.xml 2>/dev/null | grep -c '<loc>' || echo 0)
+            if [ "$GOT" = "$WANT" ]; then
+              ok=1; echo "production is serving the new build (attempt $i, $GOT URLs)"; break
             fi
-            echo "  waiting for the deployment… ($i/40)"
+            echo "  waiting for the deployment… ($i/40, live has $GOT)"
           done
           [ "$ok" = "1" ] || { echo "::error::production did not pick up the release within 10 minutes"; exit 1; }
 
