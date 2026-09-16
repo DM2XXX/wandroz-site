@@ -1,0 +1,104 @@
+{
+ "city": "parma",
+ "pois": [
+  {
+   "name": "Parma Cathedral",
+   "category": "art",
+   "qid": "Q1287889",
+   "lat": 44.80334,
+   "lon": 10.33092,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Teatro Regio (Parma)",
+   "category": "art",
+   "qid": "Q2096472",
+   "lat": 44.80313,
+   "lon": 10.32726,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Palazzo della Pilotta",
+   "category": "art",
+   "qid": "Q822085",
+   "lat": 44.805,
+   "lon": 10.32611,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "San Giovanni Evangelista",
+   "category": "art",
+   "qid": "Q3603222",
+   "lat": 44.80293,
+   "lon": 10.33219,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Cittadella di Parma",
+   "category": "green",
+   "qid": "Q3678371",
+   "lat": 44.79253,
+   "lon": 10.33155,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Museo Glauco Lombardi",
+   "category": "art",
+   "qid": "Q3867609",
+   "lat": 44.80371,
+   "lon": 10.32797,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Oltretorrente",
+   "category": "night",
+   "qid": "Q3881992",
+   "lat": 44.80361,
+   "lon": 10.31861,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Parco Ducale",
+   "category": "green",
+   "qid": "Q21192701",
+   "lat": 44.80615,
+   "lon": 10.31959,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Camera di San Paolo",
+   "category": "art",
+   "qid": "Q3651276",
+   "lat": 44.8044,
+   "lon": 10.3292,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  }
+ ]
+}

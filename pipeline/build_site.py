@@ -149,6 +149,12 @@ RESEARCH_CITIES = [
     {"key": "trieste", "label": "Trieste", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
      "lat": 45.6495, "lon": 13.7681, "color": "#2e7d6b",
      "areas": "7 official rioni", "reviewed": "16 September 2026"},
+    {"key": "catania", "label": "Catania", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
+     "lat": 37.5022, "lon": 15.0873, "color": "#b5453a",
+     "areas": "6 official municipalità", "reviewed": "16 September 2026"},
+    {"key": "parma", "label": "Parma", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
+     "lat": 44.8015, "lon": 10.3279, "color": "#4f8f5a",
+     "areas": "13 official quartieri", "reviewed": "16 September 2026"},
 ]
 
 

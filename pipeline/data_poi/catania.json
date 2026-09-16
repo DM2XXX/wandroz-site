@@ -1,0 +1,159 @@
+{
+ "city": "catania",
+ "pois": [
+  {
+   "name": "Catania Cathedral",
+   "category": "art",
+   "qid": "Q1499188",
+   "lat": 37.50246,
+   "lon": 15.08821,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Castello Ursino",
+   "category": "art",
+   "qid": "Q1048850",
+   "lat": 37.49897,
+   "lon": 15.08439,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Teatro Massimo Bellini",
+   "category": "art",
+   "qid": "Q1429352",
+   "lat": 37.50417,
+   "lon": 15.09,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Monastery of San Nicolò l'Arena",
+   "category": "art",
+   "qid": "Q488863",
+   "lat": 37.50361,
+   "lon": 15.07944,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Piazza del Duomo",
+   "category": "square",
+   "qid": "Q3382260",
+   "lat": 37.5025,
+   "lon": 15.0872,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Roman amphitheatre of Catania",
+   "category": "art",
+   "qid": "Q2844406",
+   "lat": 37.50736,
+   "lon": 15.08542,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Roman Theatre of Catania",
+   "category": "art",
+   "qid": "Q600690",
+   "lat": 37.50278,
+   "lon": 15.08361,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Badia di Sant'Agata",
+   "category": "view",
+   "qid": "Q1067599",
+   "lat": 37.5031,
+   "lon": 15.08807,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Via Etnea",
+   "category": "square",
+   "qid": "Q2521663",
+   "lat": 37.50556,
+   "lon": 15.08667,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Piazza dell'Università (Catania)",
+   "category": "square",
+   "qid": "Q3902428",
+   "lat": 37.5036,
+   "lon": 15.0872,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Giardino Bellini",
+   "category": "green",
+   "qid": "Q3763848",
+   "lat": 37.51103,
+   "lon": 15.08339,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Orto Botanico dell'Università di Catania",
+   "category": "green",
+   "qid": "Q3886275",
+   "lat": 37.51574,
+   "lon": 15.08358,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Port of Catania",
+   "category": "view",
+   "qid": "Q3909225",
+   "lat": 37.49451,
+   "lon": 15.09715,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "fish market of Catania",
+   "category": "food",
+   "qid": "Q3900711",
+   "lat": 37.5018,
+   "lon": 15.08694,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  }
+ ]
+}
