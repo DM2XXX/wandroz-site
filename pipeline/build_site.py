@@ -2173,6 +2173,14 @@ def main():
     }
     for _c in UK_CITIES:
         _CITY_CARD_TO_METHOD_KEY[_c["city"]] = _c["key"]
+    # E anche le citta' della tabella, altrimenti la loro scheda resta con
+    # l'etichetta segnaposto che research_city_card scrive: "Official
+    # boundaries" descrive la provenienza del confine, non l'evidenza dietro il
+    # voto, ed e' esattamente la stringa che il gate di produzione conta per
+    # assicurarsi che non ricompaia in homepage. Toglierla da questa mappa nel
+    # refactor l'ha rimessa su cinque schede, e il gate l'ha fermata.
+    for _c in RESEARCH_CITIES:
+        _CITY_CARD_TO_METHOD_KEY[_c["label"]] = _c["key"]
     _EVIDENCE_TAG_BY_TIER = {
         OFFICIAL_SNAPSHOT: "Official crime data",
         RESEARCH_BASED: "Local-source assessment",
