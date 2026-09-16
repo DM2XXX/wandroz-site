@@ -100,6 +100,82 @@ UK_CITIES = [
 
 
 
+ILLUSTRATIVE_CITIES = [
+
+    ("torino", "torino", "Turin", False),
+    ("zurigo", "zurigo", "Zurich", False),
+    ("milano", "milano", "Milan", False),
+    ("roma", "roma", "Rome", True),
+    ("berlin", "berlin", "Berlin", True),
+    ("amsterdam", "amsterdam", "Amsterdam", True),
+    ("praha", "praha", "Prague", True),
+    ("oslo", "oslo", "Oslo", True),
+    ("munich", "monaco-di-baviera", "Munich", True),
+    ("stockholm", "stockholm", "Stockholm", True),
+    ("barcelona", "barcelona", "Barcelona", True),
+    ("madrid", "madrid", "Madrid", True),
+    ("vienna", "vienna", "Vienna", True),
+    ("lisbon", "lisbon", "Lisbon", True),
+    ("paris", "paris", "Paris", True),
+    ("brussels", "brussels", "Brussels", True),
+    ("athens", "athens", "Athens", True),
+    ("venezia", "venezia", "Venice", True),
+    ("dublin", "dublin", "Dublin", True),
+    ("edinburgh", "edinburgh", "Edinburgh", True),
+    ("napoli", "napoli", "Naples", True),
+    ("budapest", "budapest", "Budapest", True),
+    ("krakow", "krakow", "Kraków", True),
+    ("firenze", "firenze", "Florence", True),
+]
+
+# ---------------------------------------------------------------------------
+# Citta' di classe B aggiunte dopo il primo blocco. Prima ognuna voleva undici
+# modifiche sparse in questo file — tier, data di revisione, etichetta, paese,
+# link di navigazione, due liste "illustrative", la mappa dei data tag, la
+# scheda in homepage, la chiamata di render e la riga di log — piu' una nel
+# QA. Undici punti moltiplicati per le citta' che mancano sono trecento
+# occasioni di dimenticarne uno, e dimenticarne uno non rompe la build: fa
+# sparire la citta' da un menu e basta. Qui la riga e' una.
+RESEARCH_CITIES = [
+    {"key": "bologna", "label": "Bologna", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
+     "lat": 44.4938, "lon": 11.3426, "color": "#a33b20",
+     "areas": "6 official quartieri", "reviewed": "14 September 2026"},
+    {"key": "verona", "label": "Verona", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
+     "lat": 45.4384, "lon": 10.9916, "color": "#6b4f9e",
+     "areas": "8 official circoscrizioni", "reviewed": "15 September 2026"},
+    {"key": "genova", "label": "Genoa", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
+     "lat": 44.4072, "lon": 8.9340, "color": "#1f6f8b",
+     "areas": "9 official municipi", "reviewed": "15 September 2026"},
+    {"key": "trieste", "label": "Trieste", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
+     "lat": 45.6495, "lon": 13.7681, "color": "#2e7d6b",
+     "areas": "7 official rioni", "reviewed": "16 September 2026"},
+]
+
+
+def research_city_ui(label, areas):
+    ui = dict(TORINO_UI)
+    ui.update({
+        "page_title": "Is my %s neighbourhood safe? — Wandroz" % label,
+        "page_description": ("Interactive map of %s's %s (real official administrative "
+                             "boundaries) with day/night safety levels from a structured "
+                             "local-source assessment." % (label, areas)),
+        "page_h1": "%s neighbourhoods" % label,
+        "neigh_title": "Is {name} in %s safe? | Wandroz" % label,
+    })
+    return ui
+
+
+def research_city_card(c, zone_count):
+    return {
+        "name": c["label"], "url": "%s/index.html" % c["key"], "flag": c["flag"],
+        "blurb": ("All %s mapped, real administrative boundaries, safety ratings from a "
+                  "structured local-source assessment, area by area." % c["areas"]),
+        "lat": c["lat"], "lon": c["lon"], "color": c["color"],
+        "zone_count": zone_count, "data_tag": "Official boundaries",
+    }
+
+
+
 def uk_city_ui(city):
     ui = dict(TORINO_UI)
     ui.update({
@@ -142,10 +218,6 @@ CITY_LINKS = [
     {"label": "Florence", "url": f"{SITE_URL}/firenze/"},
     {"label": "Edinburgh", "url": f"{SITE_URL}/edinburgh/"},
     {"label": "Naples", "url": f"{SITE_URL}/napoli/"},
-    {"label": "Bologna", "url": f"{SITE_URL}/bologna/"},
-    {"label": "Verona", "url": f"{SITE_URL}/verona/"},
-    {"label": "Genoa", "url": f"{SITE_URL}/genova/"},
-    {"label": "Trieste", "url": f"{SITE_URL}/trieste/"},
     {"label": "Budapest", "url": f"{SITE_URL}/budapest/"},
     {"label": "Kraków", "url": f"{SITE_URL}/krakow/"},
 ]
@@ -172,7 +244,6 @@ CITY_COUNTRY = {
     "Paris": "France", "Brussels": "Belgium", "Athens": "Greece", "Venice": "Italy",
     "Dublin": "Ireland", "Florence": "Italy", "Edinburgh": "United Kingdom",
     "Naples": "Italy", "Budapest": "Hungary", "Kraków": "Poland",
-    "Bologna": "Italy", "Verona": "Italy", "Genoa": "Italy", "Trieste": "Italy",
 }
 
 # Curated "Popular destinations" shortcut shown near the homepage search box
@@ -298,10 +369,6 @@ CITY_METHODOLOGY = {
     "venezia": {"tier": RESEARCH_BASED},
     "dublin": {"tier": RESEARCH_BASED},
     "napoli": {"tier": RESEARCH_BASED},
-    "bologna": {"tier": RESEARCH_BASED},
-    "verona": {"tier": RESEARCH_BASED},
-    "genova": {"tier": RESEARCH_BASED},
-    "trieste": {"tier": RESEARCH_BASED},
     "budapest": {"tier": RESEARCH_BASED},
     "krakow": {"tier": RESEARCH_BASED},
     "firenze": {"tier": RESEARCH_BASED},
@@ -341,14 +408,14 @@ REVIEW_DATE = {
     "milano": "17 August 2026", "roma": "20 August 2026", "barcelona": "27 August 2026",
     "madrid": "30 August 2026", "vienna": "30 August 2026", "lisbon": "30 August 2026",
     "paris": "31 August 2026", "athens": "5 September 2026", "venezia": "5 September 2026",
-    "dublin": "5 September 2026", "edinburgh": "10 September 2026", "napoli": "11 September 2026", "bologna": "14 September 2026", "verona": "15 September 2026", "genova": "15 September 2026", "trieste": "16 September 2026",
+    "dublin": "5 September 2026", "edinburgh": "10 September 2026", "napoli": "11 September 2026",
     "budapest": "11 September 2026", "krakow": "11 September 2026", "firenze": "13 September 2026",
 }
 
 CITY_LABEL_FOR_KEY = {
     "milano": "Milan", "roma": "Rome", "barcelona": "Barcelona", "madrid": "Madrid",
     "vienna": "Vienna", "lisbon": "Lisbon", "paris": "Paris", "athens": "Athens",
-    "venezia": "Venice", "dublin": "Dublin", "napoli": "Naples", "bologna": "Bologna", "verona": "Verona", "genova": "Genoa", "trieste": "Trieste", "budapest": "Budapest",
+    "venezia": "Venice", "dublin": "Dublin", "napoli": "Naples", "budapest": "Budapest",
     "krakow": "Kraków", "firenze": "Florence", "edinburgh": "Edinburgh",
 }
 
@@ -491,6 +558,25 @@ for _c in UK_CITIES:
 # directly on data.police.uk, which is the strongest source on the site, so it
 # carries the official-data label on its own terms rather than by inheritance.
 LONDON_EVIDENCE_TAG = "🟢 Official crime data"
+
+# Stesso posto e stesso motivo del ciclo qui sopra: i dizionari che riempie
+# esistono solo da qui in giu'.
+for _c in RESEARCH_CITIES:
+    CITY_METHODOLOGY.setdefault(_c["key"], {"tier": RESEARCH_BASED})
+    REVIEW_DATE.setdefault(_c["key"], _c["reviewed"])
+    CITY_LABEL_FOR_KEY.setdefault(_c["key"], _c["label"])
+    CITY_COUNTRY.setdefault(_c["label"], _c["country"])
+    if all(l["label"] != _c["label"] for l in CITY_LINKS):
+        CITY_LINKS.append({"label": _c["label"], "url": f"{SITE_URL}/{_c['key']}/"})
+    if all(e[0] != _c["key"] for e in ILLUSTRATIVE_CITIES):
+        ILLUSTRATIVE_CITIES.append((_c["key"], _c["key"], _c["label"], True))
+
+# CITY_LINKS_BY_COUNTRY viene derivato piu' in alto, prima che questo ciclo
+# esista, quindi va rifatto: senza, le citta' aggiunte dalla tabella finiscono
+# in CITY_LINKS ma non nel selettore raggruppato per paese — cioe' spariscono
+# dal menu di ogni pagina senza rompere niente e senza dirlo.
+CITY_LINKS_BY_COUNTRY = group_cities_by_country(CITY_LINKS, name_key="label")
+
 
 
 def london_window():
@@ -1520,36 +1606,7 @@ def build_search_index(cities, city_cards):
                 "url": f"/{city_slug}/{b['slug']}.html",
             })
 
-    illustrative = [
-        ("torino", "torino", "Turin", False),
-        ("zurigo", "zurigo", "Zurich", False),
-        ("milano", "milano", "Milan", False),
-        ("roma", "roma", "Rome", True),
-        ("berlin", "berlin", "Berlin", True),
-        ("amsterdam", "amsterdam", "Amsterdam", True),
-        ("praha", "praha", "Prague", True),
-        ("oslo", "oslo", "Oslo", True),
-        ("munich", "monaco-di-baviera", "Munich", True),
-        ("stockholm", "stockholm", "Stockholm", True),
-        ("barcelona", "barcelona", "Barcelona", True),
-        ("madrid", "madrid", "Madrid", True),
-        ("vienna", "vienna", "Vienna", True),
-        ("lisbon", "lisbon", "Lisbon", True),
-        ("paris", "paris", "Paris", True),
-        ("brussels", "brussels", "Brussels", True),
-        ("athens", "athens", "Athens", True),
-        ("venezia", "venezia", "Venice", True),
-        ("dublin", "dublin", "Dublin", True),
-        ("edinburgh", "edinburgh", "Edinburgh", True),
-        ("napoli", "napoli", "Naples", True),
-        ("bologna", "bologna", "Bologna", True),
-        ("verona", "verona", "Verona", True),
-        ("genova", "genova", "Genoa", True),
-        ("trieste", "trieste", "Trieste", True),
-        ("budapest", "budapest", "Budapest", True),
-        ("krakow", "krakow", "Kraków", True),
-        ("firenze", "firenze", "Florence", True),
-    ]
+    illustrative = ILLUSTRATIVE_CITIES
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
         if not os.path.isfile(path):
@@ -1599,36 +1656,7 @@ def build_zone_boundaries(cities, city_cards):
                 })
                 _extend_bbox(city["city"], b["coords"])
 
-    illustrative = [
-        ("torino", "torino", "Turin", False),
-        ("zurigo", "zurigo", "Zurich", False),
-        ("milano", "milano", "Milan", False),
-        ("roma", "roma", "Rome", True),
-        ("berlin", "berlin", "Berlin", True),
-        ("amsterdam", "amsterdam", "Amsterdam", True),
-        ("praha", "praha", "Prague", True),
-        ("oslo", "oslo", "Oslo", True),
-        ("munich", "monaco-di-baviera", "Munich", True),
-        ("stockholm", "stockholm", "Stockholm", True),
-        ("barcelona", "barcelona", "Barcelona", True),
-        ("madrid", "madrid", "Madrid", True),
-        ("vienna", "vienna", "Vienna", True),
-        ("lisbon", "lisbon", "Lisbon", True),
-        ("paris", "paris", "Paris", True),
-        ("brussels", "brussels", "Brussels", True),
-        ("athens", "athens", "Athens", True),
-        ("venezia", "venezia", "Venice", True),
-        ("dublin", "dublin", "Dublin", True),
-        ("edinburgh", "edinburgh", "Edinburgh", True),
-        ("napoli", "napoli", "Naples", True),
-        ("bologna", "bologna", "Bologna", True),
-        ("verona", "verona", "Verona", True),
-        ("genova", "genova", "Genoa", True),
-        ("trieste", "trieste", "Trieste", True),
-        ("budapest", "budapest", "Budapest", True),
-        ("krakow", "krakow", "Kraków", True),
-        ("firenze", "firenze", "Florence", True),
-    ]
+    illustrative = ILLUSTRATIVE_CITIES
     for city_key, url_slug, label, flat in illustrative:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
         if not os.path.isfile(path):
@@ -1903,42 +1931,6 @@ NAPOLI_UI.update({
 })
 
 
-TRIESTE_UI = dict(TORINO_UI)
-TRIESTE_UI.update({
-    "page_title": "Is my Trieste neighbourhood safe? — Wandroz",
-    "page_description": "Interactive map of Trieste's 7 official rioni (real official administrative boundaries) with day/night safety levels from a structured local-source assessment.",
-    "page_h1": "Trieste neighbourhoods",
-    "neigh_title": "Is {name} in Trieste safe? | Wandroz",
-})
-
-
-GENOVA_UI = dict(TORINO_UI)
-GENOVA_UI.update({
-    "page_title": "Is my Genoa neighbourhood safe? — Wandroz",
-    "page_description": "Interactive map of Genoa's 9 official municipi (real official administrative boundaries) with day/night safety levels from a structured local-source assessment.",
-    "page_h1": "Genoa neighbourhoods",
-    "neigh_title": "Is {name} in Genoa safe? | Wandroz",
-})
-
-
-VERONA_UI = dict(TORINO_UI)
-VERONA_UI.update({
-    "page_title": "Is my Verona neighbourhood safe? — Wandroz",
-    "page_description": "Interactive map of Verona's 8 official circoscrizioni (real official administrative boundaries) with day/night safety levels from a structured local-source assessment.",
-    "page_h1": "Verona neighbourhoods",
-    "neigh_title": "Is {name} in Verona safe? | Wandroz",
-})
-
-
-BOLOGNA_UI = dict(TORINO_UI)
-BOLOGNA_UI.update({
-    "page_title": "Is my Bologna neighbourhood safe? — Wandroz",
-    "page_description": "Interactive map of Bologna's 6 official quartieri (real official administrative boundaries) with day/night safety levels from a structured local-source assessment.",
-    "page_h1": "Bologna neighbourhoods",
-    "neigh_title": "Is {name} in Bologna safe? | Wandroz",
-})
-
-
 BUDAPEST_UI = dict(TORINO_UI)
 BUDAPEST_UI.update({
     "page_title": "Is my Budapest neighbourhood safe? — Wandroz",
@@ -2133,22 +2125,7 @@ def main():
          "blurb": "All 11 official Local Electoral Areas mapped, real council electoral boundaries, safety ratings from a structured local-source assessment, area by area.",
          "lat": 53.3498, "lon": -6.2603, "color": "#4b0082",
          "zone_count": _zone_count("dublin"), "data_tag": "Official boundaries"},
-        {"name": "Trieste", "url": "trieste/index.html", "flag": "🇮🇹",
-         "blurb": "All 7 official rioni mapped, real administrative boundaries, safety ratings from a structured local-source assessment, area by area.",
-         "lat": 45.6495, "lon": 13.7681, "color": "#2e7d6b",
-         "zone_count": _zone_count("trieste"), "data_tag": "Official boundaries"},
-        {"name": "Genoa", "url": "genova/index.html", "flag": "🇮🇹",
-         "blurb": "All 9 official municipi mapped, real administrative boundaries, safety ratings from a structured local-source assessment, area by area.",
-         "lat": 44.4072, "lon": 8.9340, "color": "#1f6f8b",
-         "zone_count": _zone_count("genova"), "data_tag": "Official boundaries"},
-        {"name": "Verona", "url": "verona/index.html", "flag": "🇮🇹",
-         "blurb": "All 8 official circoscrizioni mapped, real administrative boundaries, safety ratings from a structured local-source assessment, area by area.",
-         "lat": 45.4384, "lon": 10.9916, "color": "#6b4f9e",
-         "zone_count": _zone_count("verona"), "data_tag": "Official boundaries"},
-        {"name": "Bologna", "url": "bologna/index.html", "flag": "🇮🇹",
-         "blurb": "All 6 official quartieri mapped, real administrative boundaries, safety ratings from a structured local-source assessment, area by area.",
-         "lat": 44.4938, "lon": 11.3426, "color": "#a33b20",
-         "zone_count": _zone_count("bologna"), "data_tag": "Official boundaries"},
+    ] + [research_city_card(c, _zone_count(c["key"])) for c in RESEARCH_CITIES] + [
         {"name": "Florence", "url": "firenze/index.html", "flag": "🇮🇹",
          "blurb": "All 74 official quartieri/zone mapped, real Comune di Firenze boundaries, safety ratings from a structured local-source assessment, area by area.",
          "lat": 43.7696, "lon": 11.2558, "color": "#9c6b3e",
@@ -2184,7 +2161,7 @@ def main():
         "Milan": "milano", "Rome": "roma", "Prague": "praha", "Oslo": "oslo", "Munich": "munich",
         "Stockholm": "stockholm", "Barcelona": "barcelona", "Madrid": "madrid", "Vienna": "vienna",
         "Lisbon": "lisbon", "Paris": "paris", "Brussels": "brussels", "Athens": "athens",
-        "Venice": "venezia", "Dublin": "dublin", "Edinburgh": "edinburgh", "Naples": "napoli", "Bologna": "bologna", "Verona": "verona", "Genoa": "genova", "Trieste": "trieste",
+        "Venice": "venezia", "Dublin": "dublin", "Edinburgh": "edinburgh", "Naples": "napoli",
         "Budapest": "budapest", "Kraków": "krakow", "Florence": "firenze",
         # London already has its own correct "Official police data" tag above (a real
         # automated data.police.uk pipeline, not this dict's illustrative-city tiers).
@@ -2366,14 +2343,12 @@ def main():
     sitemap_urls.extend(edinburgh_urls)
     napoli_urls = render_illustrative_city("napoli", "napoli", NAPOLI_UI, EN_TONE_BADGE, flat=True)
     sitemap_urls.extend(napoli_urls)
-    bologna_urls = render_illustrative_city("bologna", "bologna", BOLOGNA_UI, EN_TONE_BADGE, flat=True)
-    sitemap_urls.extend(bologna_urls)
-    verona_urls = render_illustrative_city("verona", "verona", VERONA_UI, EN_TONE_BADGE, flat=True)
-    sitemap_urls.extend(verona_urls)
-    genova_urls = render_illustrative_city("genova", "genova", GENOVA_UI, EN_TONE_BADGE, flat=True)
-    sitemap_urls.extend(genova_urls)
-    trieste_urls = render_illustrative_city("trieste", "trieste", TRIESTE_UI, EN_TONE_BADGE, flat=True)
-    sitemap_urls.extend(trieste_urls)
+    research_counts = {}
+    for c in RESEARCH_CITIES:
+        urls = render_illustrative_city(c["key"], c["key"], research_city_ui(c["label"], c["areas"]),
+                                        EN_TONE_BADGE, flat=True)
+        sitemap_urls.extend(urls)
+        research_counts[c["label"]] = len(urls)
     budapest_urls = render_illustrative_city("budapest", "budapest", BUDAPEST_UI, EN_TONE_BADGE, flat=True)
     sitemap_urls.extend(budapest_urls)
     krakow_urls = render_illustrative_city("krakow", "krakow", KRAKOW_UI, EN_TONE_BADGE, flat=True)
@@ -2386,7 +2361,8 @@ def main():
         flat=True,
     )
     sitemap_urls.extend(firenze_urls)
-    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), Bologna ({len(bologna_urls)}), Verona ({len(verona_urls)}), Genoa ({len(genova_urls)}), Trieste ({len(trieste_urls)}), Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)}), Firenze ({len(firenze_urls)})")
+    research_summary = ", ".join("%s (%d)" % kv for kv in research_counts.items())
+    print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), {research_summary}, Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)}), Firenze ({len(firenze_urls)})")
 
     assert_every_poi_file_is_used()
     write_robots_and_sitemap(sitemap_urls)
