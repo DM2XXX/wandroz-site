@@ -99,6 +99,7 @@ FALLBACK_REGISTRY = {
     "trieste":              ("trieste",          "flat"),
     "catania":              ("catania",          "flat"),
     "parma":                ("parma",            "flat"),
+    "warsaw":               ("warsaw",           "flat"),
     "cardiff":               ("cardiff",             "flat"),
     "leicester":             ("leicester",           "flat"),
     "newcastle":             ("newcastle",           "flat"),

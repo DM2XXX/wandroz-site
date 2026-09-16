@@ -155,6 +155,9 @@ RESEARCH_CITIES = [
     {"key": "parma", "label": "Parma", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
      "lat": 44.8015, "lon": 10.3279, "color": "#4f8f5a",
      "areas": "13 official quartieri", "reviewed": "16 September 2026"},
+    {"key": "warsaw", "label": "Warsaw", "country": "Poland", "flag": "\U0001F1F5\U0001F1F1",
+     "lat": 52.2297, "lon": 21.0122, "color": "#a8323c",
+     "areas": "18 official dzielnice", "reviewed": "16 September 2026"},
 ]
 
 

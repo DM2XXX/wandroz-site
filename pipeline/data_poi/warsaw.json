@@ -1,0 +1,225 @@
+{
+ "city": "warsaw",
+ "pois": [
+  {
+   "name": "Palace of Culture and Science",
+   "category": "view",
+   "qid": "Q167566",
+   "lat": 52.23167,
+   "lon": 21.00639,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Royal Castle in Warsaw",
+   "category": "art",
+   "qid": "Q756098",
+   "lat": 52.24778,
+   "lon": 21.01417,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Warsaw Old Town",
+   "category": "square",
+   "qid": "Q1139084",
+   "lat": 52.24972,
+   "lon": 21.01222,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Wilanów Palace",
+   "category": "art",
+   "qid": "Q47473",
+   "lat": 52.16528,
+   "lon": 21.09028,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "National Museum in Warsaw",
+   "category": "art",
+   "qid": "Q153306",
+   "lat": 52.23167,
+   "lon": 21.02472,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "St. John's Archcathedral",
+   "category": "art",
+   "qid": "Q648754",
+   "lat": 52.24889,
+   "lon": 21.01361,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Museum of the History of Polish Jews",
+   "category": "art",
+   "qid": "Q429069",
+   "lat": 52.24944,
+   "lon": 20.99306,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Sigismund's Column",
+   "category": "art",
+   "qid": "Q958585",
+   "lat": 52.24725,
+   "lon": 21.01339,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Łazienki Park",
+   "category": "green",
+   "qid": "Q345279",
+   "lat": 52.21278,
+   "lon": 21.03278,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Warsaw Uprising Museum",
+   "category": "art",
+   "qid": "Q574328",
+   "lat": 52.23222,
+   "lon": 20.98083,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Saxon Garden",
+   "category": "green",
+   "qid": "Q2304363",
+   "lat": 52.24056,
+   "lon": 21.00861,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Krakowskie Przedmieście Street",
+   "category": "square",
+   "qid": "Q1786375",
+   "lat": 52.24167,
+   "lon": 21.01556,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Nowy Świat Street",
+   "category": "night",
+   "qid": "Q1109610",
+   "lat": 52.23333,
+   "lon": 21.01944,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Copernicus Science Centre",
+   "category": "art",
+   "qid": "Q1138064",
+   "lat": 52.24194,
+   "lon": 21.02833,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Skaryszewski Park",
+   "category": "green",
+   "qid": "Q2291658",
+   "lat": 52.24278,
+   "lon": 21.05667,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Praga Koneser Center",
+   "category": "night",
+   "qid": "Q9186392",
+   "lat": 52.25444,
+   "lon": 21.04389,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Vistulan Boulevards in Warsaw",
+   "category": "view",
+   "qid": "Q18423608",
+   "lat": 52.25125,
+   "lon": 21.01622,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Warsaw University Botanical Garden",
+   "category": "green",
+   "qid": "Q18432909",
+   "lat": 52.21782,
+   "lon": 21.0274,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Hala Na Koszykach",
+   "category": "food",
+   "qid": "Q9285175",
+   "lat": 52.2222,
+   "lon": 21.0108,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Hala Mirowska bus and tram stop",
+   "category": "food",
+   "qid": "Q106774863",
+   "lat": 52.23864,
+   "lon": 20.99605,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
+  }
+ ]
+}
