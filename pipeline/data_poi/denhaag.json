@@ -1,0 +1,192 @@
+{
+ "city": "denhaag",
+ "pois": [
+  {
+   "name": "Mauritshuis",
+   "category": "art",
+   "qid": "Q221092",
+   "lat": 52.08039,
+   "lon": 4.31431,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Scheveningen",
+   "category": "view",
+   "qid": "Q837211",
+   "lat": 52.10806,
+   "lon": 4.27306,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Peace Palace",
+   "category": "art",
+   "qid": "Q834448",
+   "lat": 52.0866,
+   "lon": 4.2955,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Madurodam",
+   "category": "art",
+   "qid": "Q747322",
+   "lat": 52.0994,
+   "lon": 4.29756,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Binnenhof",
+   "category": "art",
+   "qid": "Q863935",
+   "lat": 52.07964,
+   "lon": 4.31337,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Kunstmuseum Den Haag",
+   "category": "art",
+   "qid": "Q1499958",
+   "lat": 52.08972,
+   "lon": 4.28056,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Noordeinde Palace",
+   "category": "art",
+   "qid": "Q1889721",
+   "lat": 52.08092,
+   "lon": 4.30614,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Grote of Sint-Jacobskerk",
+   "category": "art",
+   "qid": "Q456130",
+   "lat": 52.07744,
+   "lon": 4.30696,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Panorama Mesdag",
+   "category": "art",
+   "qid": "Q110996824",
+   "lat": 52.085,
+   "lon": 4.30444,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Haagse Bos",
+   "category": "green",
+   "qid": "Q2663130",
+   "lat": 52.0878,
+   "lon": 4.3277,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Lange Voorhout",
+   "category": "square",
+   "qid": "Q2037509",
+   "lat": 52.08231,
+   "lon": 4.31131,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Plein",
+   "category": "night",
+   "qid": "Q2491557",
+   "lat": 52.08,
+   "lon": 4.31583,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Westbroekpark",
+   "category": "green",
+   "qid": "Q1933592",
+   "lat": 52.1042,
+   "lon": 4.2908,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Passage",
+   "category": "square",
+   "qid": "Q2376537",
+   "lat": 52.07798,
+   "lon": 4.31091,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Grote Markt",
+   "category": "night",
+   "qid": "Q2358928",
+   "lat": 52.07578,
+   "lon": 4.30842,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Clingendael",
+   "category": "green",
+   "qid": "Q34928777",
+   "lat": 52.1,
+   "lon": 4.33222,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Haagse Markt",
+   "category": "food",
+   "qid": "Q66426320",
+   "lat": 52.06702,
+   "lon": 4.29792,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  }
+ ]
+}

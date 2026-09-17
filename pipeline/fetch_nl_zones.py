@@ -31,6 +31,17 @@ WFS = "https://service.pdok.nl/cbs/wijkenbuurten/2023/wfs/v1_0"
 PAGE = 1000
 
 
+# CBS prefixes each district with its own numbering in some municipalities —
+# "Wijk 38 Laakkwartier en Spoorwijk". The number is an internal key, not part
+# of the name anyone uses, and it would be carried into the map label and the
+# Booking query alike.
+WIJK_NUMBER_RE = re.compile(r"^Wijk\s+\d+\s+", re.I)
+
+
+def clean_name(name):
+    return WIJK_NUMBER_RE.sub("", (name or "").strip()).strip()
+
+
 def slugify(name):
     s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
     return re.sub(r"[^a-zA-Z0-9]+", "-", s).strip("-").lower() or "wijk"
@@ -71,7 +82,7 @@ def main(key, gemeente, label):
 
     zones, lats, lons = [], [], []
     for f in found:
-        name = (f["properties"].get("wijknaam") or "").strip()
+        name = clean_name(f["properties"].get("wijknaam"))
         # CBS carries two non-places in every municipality's list: "Groot
         # water" for the open water inside its boundary, and a "Buitenland"
         # catch-all. Neither is somewhere anyone sleeps.

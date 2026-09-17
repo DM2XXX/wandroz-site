@@ -106,6 +106,8 @@ FALLBACK_REGISTRY = {
     "bratislava":           ("bratislava",       "flat"),
     "vilnius":              ("vilnius",          "flat"),
     "rotterdam":            ("rotterdam",        "flat"),
+    "utrecht":              ("utrecht",          "flat"),
+    "denhaag":              ("denhaag",          "flat"),
     "cardiff":               ("cardiff",             "flat"),
     "leicester":             ("leicester",           "flat"),
     "newcastle":             ("newcastle",           "flat"),

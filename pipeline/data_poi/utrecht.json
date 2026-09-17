@@ -1,0 +1,159 @@
+{
+ "city": "utrecht",
+ "pois": [
+  {
+   "name": "Rietveld Schröder House",
+   "category": "art",
+   "qid": "Q914231",
+   "lat": 52.08533,
+   "lon": 5.1476,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "St. Martin's Cathedral, Utrecht",
+   "category": "art",
+   "qid": "Q936545",
+   "lat": 52.09092,
+   "lon": 5.12223,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Castle de Haar",
+   "category": "art",
+   "qid": "Q1735318",
+   "lat": 52.12143,
+   "lon": 4.98635,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Centraal Museum",
+   "category": "art",
+   "qid": "Q260913",
+   "lat": 52.08333,
+   "lon": 5.12583,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Dom Tower of Utrecht",
+   "category": "view",
+   "qid": "Q3368242",
+   "lat": 52.09065,
+   "lon": 5.1214,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Museum Speelklok",
+   "category": "art",
+   "qid": "Q1624224",
+   "lat": 52.09029,
+   "lon": 5.1189,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Spoorwegmuseum",
+   "category": "art",
+   "qid": "Q847166",
+   "lat": 52.08778,
+   "lon": 5.13167,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Oudegracht",
+   "category": "square",
+   "qid": "Q3191462",
+   "lat": 52.09167,
+   "lon": 5.11778,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Griftpark",
+   "category": "green",
+   "qid": "Q2078523",
+   "lat": 52.10056,
+   "lon": 5.12694,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Máximapark",
+   "category": "green",
+   "qid": "Q2696874",
+   "lat": 52.10014,
+   "lon": 5.02469,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Neude",
+   "category": "square",
+   "qid": "Q2755285",
+   "lat": 52.09306,
+   "lon": 5.11861,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Janskerkhof",
+   "category": "square",
+   "qid": "Q2784741",
+   "lat": 52.09361,
+   "lon": 5.12111,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Vismarkt",
+   "category": "food",
+   "qid": "Q2657934",
+   "lat": 52.09083,
+   "lon": 5.12028,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "nijntje museum",
+   "category": "art",
+   "qid": "Q1986962",
+   "lat": 52.08387,
+   "lon": 5.12563,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  }
+ ]
+}
