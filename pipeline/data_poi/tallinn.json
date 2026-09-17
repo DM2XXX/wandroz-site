@@ -1,0 +1,203 @@
+{
+ "city": "tallinn",
+ "pois": [
+  {
+   "name": "Alexander Nevsky Cathedral",
+   "category": "art",
+   "qid": "Q568214",
+   "lat": 59.43583,
+   "lon": 24.73944,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "St. Olaf's Church",
+   "category": "view",
+   "qid": "Q834511",
+   "lat": 59.44139,
+   "lon": 24.74778,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Tallinn Old Town",
+   "category": "square",
+   "qid": "Q726803",
+   "lat": 59.43722,
+   "lon": 24.74528,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Toompea",
+   "category": "view",
+   "qid": "Q171196",
+   "lat": 59.43694,
+   "lon": 24.74,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Kadriorg Palace",
+   "category": "art",
+   "qid": "Q7722735",
+   "lat": 59.43852,
+   "lon": 24.791,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Kumu",
+   "category": "art",
+   "qid": "Q919611",
+   "lat": 59.43639,
+   "lon": 24.79639,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Tallinn TV Tower",
+   "category": "view",
+   "qid": "Q1365010",
+   "lat": 59.47111,
+   "lon": 24.8875,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Fat Margaret",
+   "category": "art",
+   "qid": "Q282994",
+   "lat": 59.44258,
+   "lon": 24.74954,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Seaplane Harbour",
+   "category": "art",
+   "qid": "Q646974",
+   "lat": 59.45517,
+   "lon": 24.737,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Kalamaja",
+   "category": "night",
+   "qid": "Q337759",
+   "lat": 59.447,
+   "lon": 24.731,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Pirita",
+   "category": "green",
+   "qid": "Q1023600",
+   "lat": 59.4659,
+   "lon": 24.8229,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Rotermann Quarter",
+   "category": "square",
+   "qid": "Q18523881",
+   "lat": 59.43872,
+   "lon": 24.75614,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Kadriorg Park",
+   "category": "green",
+   "qid": "Q12365996",
+   "lat": 59.43874,
+   "lon": 24.78749,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "St. Catherine's Passage",
+   "category": "square",
+   "qid": "Q3897209",
+   "lat": 59.43759,
+   "lon": 24.74852,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Patarei Sea Fortress",
+   "category": "art",
+   "qid": "Q14954945",
+   "lat": 59.44991,
+   "lon": 24.74104,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Balti Jaama Turg",
+   "category": "food",
+   "qid": "Q30116063",
+   "lat": 59.44121,
+   "lon": 24.73496,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Telliskivi TLN",
+   "category": "night",
+   "qid": "Q134547877",
+   "lat": 59.44111,
+   "lon": 24.73111,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Rocca al Mare museum area",
+   "category": "green",
+   "qid": "Q132851543",
+   "lat": 59.43338,
+   "lon": 24.63766,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  }
+ ]
+}

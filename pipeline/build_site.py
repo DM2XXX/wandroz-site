@@ -158,6 +158,9 @@ RESEARCH_CITIES = [
     {"key": "warsaw", "label": "Warsaw", "country": "Poland", "flag": "\U0001F1F5\U0001F1F1",
      "lat": 52.2297, "lon": 21.0122, "color": "#a8323c",
      "areas": "18 official dzielnice", "reviewed": "16 September 2026"},
+    {"key": "tallinn", "label": "Tallinn", "country": "Estonia", "flag": "\U0001F1EA\U0001F1EA",
+     "lat": 59.4370, "lon": 24.7536, "color": "#3f6fa8",
+     "areas": "8 official linnaosad", "reviewed": "17 September 2026"},
 ]
 
 
@@ -247,7 +250,10 @@ COUNTRY_FLAGS = {
     "Netherlands": "🇳🇱", "Switzerland": "🇨🇭", "Czechia": "🇨🇿", "Norway": "🇳🇴",
     "Sweden": "🇸🇪", "Austria": "🇦🇹", "Portugal": "🇵🇹", "France": "🇫🇷",
     "Belgium": "🇧🇪", "Greece": "🇬🇷", "Ireland": "🇮🇪", "Hungary": "🇭🇺",
-    "Poland": "🇵🇱",
+    "Poland": "🇵🇱", "Estonia": "🇪🇪", "Finland": "🇫🇮",
+    "Denmark": "🇩🇰", "Romania": "🇷🇴", "Bulgaria": "🇧🇬",
+    "Croatia": "🇭🇷", "Slovenia": "🇸🇮", "Slovakia": "🇸🇰",
+    "Latvia": "🇱🇻", "Lithuania": "🇱🇹", "Serbia": "🇷🇸",
 }
 CITY_COUNTRY = {
     "London": "United Kingdom", "Berlin": "Germany", "Amsterdam": "Netherlands",

@@ -50,6 +50,36 @@ NUMBERED = re.compile(
     r"municipalità|zona|distretto))?\s*$", re.I)
 
 
+# OSM wraps the place name in the administrative word for the kind of unit:
+# "Gradska četvrt Maksimir", "Senamiesčio seniūnija", "Bratislava – mestská
+# časť Staré Mesto". The wrapper is the same on every row, so it carries no
+# information and costs width on a map label and precision in a Booking query.
+# What a reader recognises is Maksimir, Senamiestis, Staré Mesto.
+BOILERPLATE_PREFIX = ("gradska četvrt ", "gradska cetvrt ", "mestská časť ", "mestska cast ",
+                      "stadtteil ", "distrito de ", "quartiere ", "circoscrizione ",
+                      "municipio ", "dzielnica ", "rajon ", "kerület ")
+BOILERPLATE_SUFFIX = (" seniūnija", " seniunija", " apkaime", " kerület", " kaupunginosa")
+
+
+def clean_name(name):
+    n = (name or "").strip()
+    # "Bratislava – mestská časť Staré Mesto": drop the city prefix too.
+    for sep in (" – ", " - ", " — "):
+        low = n.lower()
+        for pre in BOILERPLATE_PREFIX:
+            i = low.find(sep + pre)
+            if i != -1:
+                return n[i + len(sep) + len(pre):].strip()
+    low = n.lower()
+    for pre in BOILERPLATE_PREFIX:
+        if low.startswith(pre):
+            return n[len(pre):].strip()
+    for suf in BOILERPLATE_SUFFIX:
+        if low.endswith(suf):
+            return n[: -len(suf)].strip()
+    return n
+
+
 def best_name(tags):
     for key in ("alt_name", "official_name", "name"):
         v = (tags.get(key) or "").strip()
@@ -64,11 +94,19 @@ def slugify(name):
     return s or "zona"
 
 
-def discover(city_osm_name, tries=4):
-    """Relation ids of the city's administrative subdivisions."""
-    q = ('[out:json][timeout:120];'
-         'area["name"="%s"]["admin_level"="8"]["boundary"="administrative"]->.a;'
-         'relation(area.a)["boundary"="administrative"]["admin_level"~"^(9|10)$"];'
+def discover(city_osm_name, tries=4, want_level=None):
+    """Relation ids of the city's administrative subdivisions.
+
+    The parent is matched by name at ANY admin level, not at 8. A comune is 8
+    in Italy, a kommune is 7 in Denmark and Bucharest is 4, so pinning the
+    level made this answer "no subdivisions" for cities that plainly have
+    districts. What identifies the parent is its name, not the number a
+    national convention gives it.
+    """
+    q = ('[out:json][timeout:180];'
+         'rel["name"="%s"]["boundary"="administrative"];'
+         'map_to_area->.a;'
+         'relation(area.a)["boundary"="administrative"]["admin_level"~"^(9|10|11)$"];'
          'out tags;' % city_osm_name)
     for attempt in range(tries):
         body = curl(["--data-urlencode", "data@-", OVERPASS], stdin=q)
@@ -79,14 +117,16 @@ def discover(city_osm_name, tries=4):
             continue
         if not els:
             return []
-        # Prefer whichever level actually partitions the city. Where both exist
-        # the coarser one (9) is the real subdivision and 10 is finer detail;
-        # a handful of level-10 areas next to a full level-9 set is a partial
-        # mapping, not a better one.
         by_level = {}
         for e in els:
             by_level.setdefault(e["tags"].get("admin_level"), []).append(e)
-        level = "9" if len(by_level.get("9", [])) >= 4 else max(by_level, key=lambda k: len(by_level[k]))
+        if want_level:
+            return by_level.get(want_level, [])
+        # Otherwise prefer the coarser level when it is a real subdivision.
+        # Helsinki is why the caller can override: it has 8 areas at level 9,
+        # 59 at 10 and 118 at 11, and the 8 are so broad that one of them is
+        # "the southern district" covering the entire centre.
+        level = "9" if len(by_level.get("9", [])) >= 6 else max(by_level, key=lambda k: len(by_level[k]))
         return by_level[level]
     raise SystemExit("Overpass kept returning an error page for %s" % city_osm_name)
 
@@ -134,8 +174,8 @@ def rings_from_relation(doc, rel_id):
     return out, rel["tags"]
 
 
-def main(key, city_osm_name, label):
-    found = discover(city_osm_name)
+def main(key, city_osm_name, label, want_level=None):
+    found = discover(city_osm_name, want_level=want_level)
     if not found:
         raise SystemExit("%s: no administrative subdivisions in OSM — needs another source" % key)
     print("%s: %d areas at admin_level %s" % (key, len(found), found[0]["tags"].get("admin_level")))
@@ -147,7 +187,7 @@ def main(key, city_osm_name, label):
         if not rings:
             print("   SKIP %s (relation %d did not close)" % (tags.get("name"), e["id"]))
             continue
-        name = best_name(tags)
+        name = clean_name(best_name(tags))
         if NUMBERED.match(name):
             print("   NOTE %s has only a numbered label in OSM" % name)
         for r in rings:
@@ -182,4 +222,5 @@ def main(key, city_osm_name, label):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
+    main(sys.argv[1], sys.argv[2], sys.argv[3],
+         sys.argv[4] if len(sys.argv) > 4 else None)

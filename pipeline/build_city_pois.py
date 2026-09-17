@@ -23,6 +23,32 @@ CAT_TYPE = {"art": "LANDMARK", "view": "VIEWPOINT", "green": "PARK",
             "square": "AREA", "food": "MARKET", "night": "AREA"}
 
 CITIES = {
+    "tallinn": {
+        "centre": (24.7536, 59.4370), "lang": "et",
+        "min_sitelinks": 6,
+        "curated": [
+            ("Tallinna vanalinn", "square", "AREA"),
+            ("Raekoja plats", "square", "AREA"),
+            ("Toompea", "view", "VIEWPOINT"),
+            ("Aleksander Nevski katedraal", "art", "LANDMARK"),
+            ("Kadrioru loss", "art", "MUSEUM"),
+            ("Kadrioru park", "green", "PARK"),
+            ("Kumu", "art", "MUSEUM"),
+            ("Tallinna raekoda", "art", "LANDMARK"),
+            ("Oleviste kirik", "view", "VIEWPOINT"),
+            ("Paks Margareeta", "art", "MUSEUM"),
+            ("Telliskivi loomelinnak", "night", "AREA"),
+            ("Balti jaama turg", "food", "MARKET"),
+            ("Lennusadam", "art", "MUSEUM"),
+            ("Pirita", "green", "PARK"),
+            ("Kalamaja", "night", "AREA"),
+            ("Patarei", "art", "LANDMARK"),
+            ("Tallinna teletorn", "view", "VIEWPOINT"),
+            ("Katariina käik", "square", "AREA"),
+            ("Eesti Vabaõhumuuseum", "green", "PARK"),
+            ("Rotermanni kvartal", "square", "AREA"),
+        ],
+    },
     "warsaw": {
         "centre": (21.0122, 52.2297), "lang": "pl",
         "min_sitelinks": 10,
