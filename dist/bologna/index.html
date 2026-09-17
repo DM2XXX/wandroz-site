@@ -493,6 +493,18 @@
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
+  // Vuoto dove nessun programma di affiliazione copre questa citta', e in quel
+  // caso il link resta quello di sempre. Il modello di permessi vive in
+  // build_site.py: qui arriva gia' deciso.
+  var BOOKING_PREFIX = "";
+
+  function bookingHref(query) {
+    var plain = 'https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(query);
+    // encodeURIComponent due volte, perche' la destinazione viaggia dentro un
+    // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
+    return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
+  }
+
   var POIS = [{"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 44.49373, "lon": 11.34306, "name": "Piazza Maggiore", "rank": 1}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfdb", "lat": 44.47915, "lon": 11.29789, "name": "Sanctuary of the Madonna di San Luca", "rank": 2}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 44.4943, "lon": 11.3465, "name": "Towers of Bologna", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 44.4895, "lon": 11.3445, "name": "Basilica of San Domenico", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 44.49777, "lon": 11.35355, "name": "Pinacoteca Nazionale di Bologna", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 44.49295, "lon": 11.34357, "name": "Archeological Civic Museum of Bologna", "rank": 6}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 44.49227, "lon": 11.34814, "name": "Piazza Santo Stefano", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 44.49198, "lon": 11.34342, "name": "Palazzo dell\u2019Archiginnasio", "rank": 8}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 44.5025, "lon": 11.3369, "name": "Bologna Museum of Modern Art", "rank": 9}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 44.50261, "lon": 11.34642, "name": "Park of Montagnola", "rank": 10}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 44.48238, "lon": 11.35255, "name": "giardini Margherita", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 44.4956, "lon": 11.3489, "name": "Via Zamboni", "rank": 12}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 44.49629, "lon": 11.35064, "name": "Piazza Giuseppe Verdi", "rank": 13}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 44.47637, "lon": 11.32843, "name": "Villa Ghigi", "rank": 14}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 44.4854, "lon": 11.3019, "name": "Portico di San Luca", "rank": 15}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 44.49586, "lon": 11.33822, "name": "Mercato delle Erbe", "rank": 16}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 44.49422, "lon": 11.34522, "name": "Mercato di Mezzo", "rank": 17}];
   var POI_ALL = "All";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
@@ -601,7 +613,7 @@
       html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
     }
     if (z.query) {
-      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+      html += '<a class="cta" target="_blank" rel="noopener" href="' + bookingHref(z.query) + '">' + L_BOOKING + '</a>';
     }
     if (z.url) {
       html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';

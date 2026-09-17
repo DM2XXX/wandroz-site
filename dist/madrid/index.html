@@ -954,6 +954,18 @@
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
+  // Vuoto dove nessun programma di affiliazione copre questa citta', e in quel
+  // caso il link resta quello di sempre. Il modello di permessi vive in
+  // build_site.py: qui arriva gia' deciso.
+  var BOOKING_PREFIX = "";
+
+  function bookingHref(query) {
+    var plain = 'https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(query);
+    // encodeURIComponent due volte, perche' la destinazione viaggia dentro un
+    // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
+    return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
+  }
+
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 40.413889, "lon": -3.692222, "name": "Museo del Prado", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 40.408571, "lon": -3.693996, "name": "Museo Reina Sof\u00eda", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 40.417955, "lon": -3.714312, "name": "Royal Palace of Madrid", "rank": 3}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.415456, "lon": -3.707381, "name": "Plaza Mayor, Madrid", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 40.416041, "lon": -3.694925, "name": "Museo Thyssen-Bornemisza", "rank": 5}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.41694, "lon": -3.70361, "name": "Puerta del Sol", "rank": 6}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.415, "lon": -3.683889, "name": "Buen Retiro Park", "rank": 7}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfdb", "lat": 40.424053, "lon": -3.717778, "name": "Temple of Debod", "rank": 8}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.42, "lon": -3.70361, "name": "Gran V\u00eda", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.41917, "lon": -3.69306, "name": "Plaza de Cibeles", "rank": 10}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 40.415438, "lon": -3.708869, "name": "Mercado de San Miguel", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 40.425130555556, "lon": -3.7039222222222, "name": "Malasa\u00f1a", "rank": 12}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 40.421666666667, "lon": -3.6980555555556, "name": "Chueca", "rank": 13}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.41117, "lon": -3.69075, "name": "Royal Botanic Garden", "rank": 14}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.42957, "lon": -3.72443, "name": "Parque del Oeste", "rank": 15}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.40061, "lon": -3.70984, "name": "Madrid R\u00edo", "rank": 16}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 40.45306, "lon": -3.68835, "name": "Santiago Bernab\u00e9u Stadium", "rank": 17}];
   var POI_ALL = "All";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
@@ -1062,7 +1074,7 @@
       html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
     }
     if (z.query) {
-      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+      html += '<a class="cta" target="_blank" rel="noopener" href="' + bookingHref(z.query) + '">' + L_BOOKING + '</a>';
     }
     if (z.url) {
       html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';

@@ -501,6 +501,18 @@
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
+  // Vuoto dove nessun programma di affiliazione copre questa citta', e in quel
+  // caso il link resta quello di sempre. Il modello di permessi vive in
+  // build_site.py: qui arriva gia' deciso.
+  var BOOKING_PREFIX = "";
+
+  function bookingHref(query) {
+    var plain = 'https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(query);
+    // encodeURIComponent due volte, perche' la destinazione viaggia dentro un
+    // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
+    return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
+  }
+
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 40.837388, "lon": 14.249687, "name": "Teatro di San Carlo", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 40.853611, "lon": 14.250556, "name": "National Archaeological Museum, Naples", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 40.838376, "lon": 14.253807, "name": "Castel Nuovo", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 40.852606, "lon": 14.259528, "name": "Naples Cathedral", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 40.836136, "lon": 14.249283, "name": "Royal Palace of Naples", "rank": 5}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfdb", "lat": 40.828315, "lon": 14.247656, "name": "Castel dell\u0027Ovo", "rank": 6}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfdb", "lat": 40.84341, "lon": 14.241129, "name": "Certosa di San Martino", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 40.84919, "lon": 14.25488, "name": "Cappella Sansevero", "rank": 8}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\uddbc", "lat": 40.838441, "lon": 14.249482, "name": "Galleria Umberto I", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.8359, "lon": 14.2488, "name": "Piazza del Plebiscito", "rank": 10}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.833333, "lon": 14.25, "name": "Spaccanapoli", "rank": 11}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.85018, "lon": 14.25764, "name": "Via San Gregorio Armeno", "rank": 12}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 40.83416667, "lon": 14.22583333, "name": "Chiaia", "rank": 13}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.833, "lon": 14.2322, "name": "Villa Comunale", "rank": 14}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 40.85038361282505, "lon": 14.268215026680638, "name": "Mercato di Porta Nolana", "rank": 15}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 40.84958, "lon": 14.252121, "name": "Piazza Bellini", "rank": 16}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 40.84361111, "lon": 14.22694444, "name": "Vomero", "rank": 17}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.84058, "lon": 14.23065, "name": "Villa Floridiana", "rank": 18}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.86255, "lon": 14.2625, "name": "Orto Botanico di Napoli", "rank": 19}];
   var POI_ALL = "All";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
@@ -609,7 +621,7 @@
       html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
     }
     if (z.query) {
-      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+      html += '<a class="cta" target="_blank" rel="noopener" href="' + bookingHref(z.query) + '">' + L_BOOKING + '</a>';
     }
     if (z.url) {
       html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';

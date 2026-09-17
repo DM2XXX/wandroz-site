@@ -20,6 +20,7 @@ many cities, proven out end-to-end here with one real city.
 
 import json
 import os
+import urllib.parse
 import re
 import shutil
 from jinja2 import Environment, FileSystemLoader
@@ -174,6 +175,47 @@ RESEARCH_CITIES = [
      "lat": 54.6872, "lon": 25.2797, "color": "#c08a2f",
      "areas": "21 official seniūnijos", "reviewed": "17 September 2026"},
 ]
+
+
+# ---------------------------------------------------------------------------
+# Affiliate attribution. One programme is approved — Booking.com BENELUX, CJ
+# advertiser 4347407 — so exactly the cities inside that programme's territory
+# get an attributed link and every other city keeps the plain Booking URL it
+# has always had.
+#
+# This table is the whole permission model. Sending Rome's traffic through a
+# BENELUX link would attribute it to a programme that does not cover Italy:
+# wrong at best and a terms breach at worst, and it would not pay. The link
+# ids are not guessable and are not guessed — the format below was generated
+# by CJ's own link builder for a real Booking search URL, not inferred from
+# the shape of other affiliate networks.
+CJ_PID = "101862727"                      # the Wandroz site's publisher id
+BOOKING_PROGRAMMES = {
+    # programme -> the city keys its territory covers on this site
+    "benelux": {"link_id": "15734897", "cities": ("amsterdam", "brussels")},
+}
+# CJ rotates equivalent tracking hosts; any of them is valid.
+CJ_HOST = "https://www.jdoqocy.com"
+
+
+def booking_affiliate_prefix(city_key):
+    """The click-tracking prefix for this city, or None if no approved programme."""
+    for prog in BOOKING_PROGRAMMES.values():
+        if city_key in prog["cities"]:
+            return "%s/click-%s-%s?url=" % (CJ_HOST, CJ_PID, prog["link_id"])
+    return None
+
+
+def booking_href(query, city_key):
+    """The Booking link for one area: attributed where a programme covers it."""
+    plain = "https://www.booking.com/searchresults.html?ss=%s" % urllib.parse.quote_plus(query)
+    prefix = booking_affiliate_prefix(city_key)
+    # The destination rides inside a query parameter, so its own separators are
+    # encoded again — ss=A%2C+B becomes ss%3DA%252C%2BB. Encoding it once
+    # produces a link CJ accepts and Booking then receives truncated at the
+    # first &, which is the kind of thing that looks fine and silently loses
+    # the search.
+    return (prefix + urllib.parse.quote(plain, safe="")) if prefix else plain
 
 
 def research_city_ui(label, areas):
@@ -1462,6 +1504,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         has_no_findings=any(z.get("evidence") == "no_findings" for z in zones),
         label_zone_detail=ui["label_zone_detail"], label_click_hint=ui["label_click_hint"],
         label_all_zones=ui["label_all_zones"], label_booking=ui["label_booking"],
+        booking_prefix=booking_affiliate_prefix(city_key),
         label_more=ui["label_more"], label_not_covered="",
         pois=load_pois(city_key), poi_filter_all="All",
         footer_note=ui["footer_note"],
@@ -1503,6 +1546,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             zone=zone_ctx, show_toggle=show_toggle,
             label_day=ui["label_day"], label_night=ui["label_night"],
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
+            booking_url=booking_href(z["query"], city_key),
             label_booking_note=booking_note(ui, z.get("booking_scope", "area")),
             data_note=method_note(city_key, data["label"],
                                   no_findings=(z.get("evidence") == "no_findings")),

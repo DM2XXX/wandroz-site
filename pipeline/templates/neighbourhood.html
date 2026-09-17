@@ -102,7 +102,7 @@
   <h2>{{ label_detail }}</h2>
   <div class="body-text"><p>{{ zone.text }}</p></div>
   {% if zone.query %}
-  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss={{ zone.query|urlencode }}" target="_blank" rel="noopener">{{ label_booking }}</a>
+  <a class="btn-primary" href="{{ booking_url }}" target="_blank" rel="noopener">{{ label_booking }}</a>
   <p class="cta-note">{{ label_booking_note }}</p>
   {% endif %}
   <div class="methodnote">{{ data_note }}</div>

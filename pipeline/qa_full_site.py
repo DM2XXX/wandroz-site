@@ -172,6 +172,29 @@ LEGACY_EMAILS = {"dadenuoto@gmail.com"}
 # networks. Presence is evidence of an attribution attempt; ABSENCE is
 # conclusive, but presence alone never proves attribution actually works —
 # see BOOKING_LAYERS below.
+
+# CJ wraps an approved link as https://<tracking host>/click-<pid>-<link id>?url=<destination>.
+# The gate has to see through it, and for the right reason: the wrapper is not
+# the thing being checked. Layers A to C are about whether the traveller lands
+# on the correct Booking search, so they must run on the destination inside.
+# Treating the wrapper as opaque would have marked 129 correct links as broken
+# — which is what it did on the first build after attribution was wired.
+CJ_CLICK_RE = re.compile(r"^https://www\.(jdoqocy|tkqlhce|dpbolvw|anrdoezrs|kqzyfj)\.(com|net)"
+                         r"/click-(\d+)-(\d+)$")
+
+
+def unwrap_affiliate(url):
+    """(destination, programme link id) — link id is None for an unwrapped URL."""
+    parts = urllib.parse.urlsplit(url)
+    m = CJ_CLICK_RE.match("%s://%s%s" % (parts.scheme, parts.netloc, parts.path))
+    if not m:
+        return url, None
+    inner = (urllib.parse.parse_qs(parts.query).get("url") or [""])[0]
+    # A wrapper with nothing inside is worse than no wrapper: it earns
+    # commission on a click that lands the traveller on Booking's homepage.
+    return (inner or url), m.group(4)
+
+
 KNOWN_ATTRIBUTION_PARAMS = ("aid", "label", "sid", "utm_source", "utm_campaign")
 
 # Booking correctness is four independent layers, and only the first two can
@@ -779,6 +802,7 @@ def check_booking(dist, reg, F, booking_rows):
 
             url = urls[0]
             checked_ctas += 1
+            url, cj_link_id = unwrap_affiliate(url)
             parts = urllib.parse.urlsplit(url)
             qs = urllib.parse.parse_qs(parts.query)
             ss = (qs.get("ss") or [""])[0]
@@ -845,12 +869,21 @@ def check_booking(dist, reg, F, booking_rows):
                            "`ss`=%r does not name %s — a generic or duplicated place name can "
                            "resolve to another city or country" % (ss, city_label))
 
-            # ---- Layer D: attribution — never auto-passed --------------------
+            # ---- Layer D: attribution ---------------------------------------
+            # A CJ click wrapper is attribution that has been confirmed on the
+            # account side: the publisher id and the link id in it were issued
+            # by an approved programme and cannot be invented. A bare parameter
+            # still cannot be auto-passed, because anyone can add one.
             present = [p for p in KNOWN_ATTRIBUTION_PARAMS if p in qs]
             for p in present:
                 attribution_seen[p] += 1
-            row["AFFILIATE_ATTRIBUTION_VERIFIED"] = (
-                "NOT_ATTRIBUTED_BY_CURRENT_CODE" if not present else "MANUAL_VERIFICATION_REQUIRED")
+            if cj_link_id:
+                attribution_seen["cj:" + cj_link_id] += 1
+                row["AFFILIATE_ATTRIBUTION_VERIFIED"] = "PASS"
+            else:
+                row["AFFILIATE_ATTRIBUTION_VERIFIED"] = (
+                    "NOT_ATTRIBUTED_BY_CURRENT_CODE" if not present
+                    else "MANUAL_VERIFICATION_REQUIRED")
             if present:
                 row["notes"] = (row["notes"] + "; " if row["notes"] else "") + \
                     "attribution params present: %s" % ",".join(present)
@@ -888,7 +921,11 @@ def check_booking(dist, reg, F, booking_rows):
             F.fail("BOOKING", "cta-present", target, "no Booking.com link on the borough page")
             continue
         checked_ctas += 1
-        parts = urllib.parse.urlsplit(urls[0])
+        # Same unwrapping as the main audit. London has no approved programme
+        # today, so this changes nothing now — and stops the gate breaking the
+        # day one covers the UK, instead of discovering it in a red release.
+        london_url, london_cj = unwrap_affiliate(urls[0])
+        parts = urllib.parse.urlsplit(london_url)
         qs = urllib.parse.parse_qs(parts.query)
         ss = (qs.get("ss") or [""])[0]
         row["ss"] = ss
@@ -907,8 +944,12 @@ def check_booking(dist, reg, F, booking_rows):
         present = [p for p in KNOWN_ATTRIBUTION_PARAMS if p in qs]
         for p in present:
             attribution_seen[p] += 1
-        row["AFFILIATE_ATTRIBUTION_VERIFIED"] = (
-            "NOT_ATTRIBUTED_BY_CURRENT_CODE" if not present else "MANUAL_VERIFICATION_REQUIRED")
+        if london_cj:
+            attribution_seen["cj:" + london_cj] += 1
+            row["AFFILIATE_ATTRIBUTION_VERIFIED"] = "PASS"
+        else:
+            row["AFFILIATE_ATTRIBUTION_VERIFIED"] = (
+                "NOT_ATTRIBUTED_BY_CURRENT_CODE" if not present else "MANUAL_VERIFICATION_REQUIRED")
         booking_rows.append(row)
 
     # Duplicated destinations: distinct zones sending traffic to one search.
@@ -943,10 +984,24 @@ def check_booking(dist, reg, F, booking_rows):
                "Do not add parameters without the real account's authorised link format."
                % (unattributed, checked_ctas, ", ".join(KNOWN_ATTRIBUTION_PARAMS)))
     if attribution_seen:
-        F.warn("BOOKING", "affiliate-attribution", "site-wide",
-               "attribution parameters found in use: %s — layer D stays "
-               "MANUAL_VERIFICATION_REQUIRED until confirmed against the account"
-               % dict(attribution_seen))
+        # Two different things end up in this counter and they do not deserve
+        # the same sentence. A CJ click wrapper carries a publisher id and a
+        # link id issued by an approved programme: that IS the account-side
+        # confirmation, and it cannot be fabricated. A bare aid= or sid= can be
+        # typed by anyone, so it stays unverified no matter how plausible.
+        cj = {k: v for k, v in attribution_seen.items() if k.startswith("cj:")}
+        bare = {k: v for k, v in attribution_seen.items() if not k.startswith("cj:")}
+        if cj:
+            F.warn("BOOKING", "affiliate-attribution", "site-wide",
+                   "CJ click wrappers in use, issued by an approved programme: %s. "
+                   "These pass layer D. Every other city keeps an unattributed "
+                   "Booking link, which is correct until its region is approved."
+                   % dict(cj))
+        if bare:
+            F.warn("BOOKING", "affiliate-attribution", "site-wide",
+                   "bare attribution parameters found in use: %s — these stay "
+                   "MANUAL_VERIFICATION_REQUIRED, since anyone can add one"
+                   % dict(bare))
 
 
 def walk_html(dist):

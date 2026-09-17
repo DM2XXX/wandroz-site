@@ -428,6 +428,18 @@
   var L_BOOKING = {{ label_booking|tojson }};
   var L_MORE = {{ label_more|tojson }};
   var L_NOTCOVERED = {{ label_not_covered|tojson }};
+  // Vuoto dove nessun programma di affiliazione copre questa citta', e in quel
+  // caso il link resta quello di sempre. Il modello di permessi vive in
+  // build_site.py: qui arriva gia' deciso.
+  var BOOKING_PREFIX = {{ (booking_prefix or "")|tojson }};
+
+  function bookingHref(query) {
+    var plain = 'https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(query);
+    // encodeURIComponent due volte, perche' la destinazione viaggia dentro un
+    // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
+    return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
+  }
+
   var POIS = {{ pois|tojson }};
   var POI_ALL = {{ poi_filter_all|tojson }};
   var L_LEGEND_DAYNIGHT = { green: {{ legend_green|tojson }}, yellow: {{ legend_yellow|tojson }}, red: {{ legend_red|tojson }}, grey: {{ legend_grey|tojson }} };
@@ -536,7 +548,7 @@
       html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
     }
     if (z.query) {
-      html += '<a class="cta" target="_blank" rel="noopener" href="https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(z.query) + '">' + L_BOOKING + '</a>';
+      html += '<a class="cta" target="_blank" rel="noopener" href="' + bookingHref(z.query) + '">' + L_BOOKING + '</a>';
     }
     if (z.url) {
       html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
