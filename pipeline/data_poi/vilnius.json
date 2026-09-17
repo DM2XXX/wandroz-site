@@ -1,0 +1,159 @@
+{
+ "city": "vilnius",
+ "pois": [
+  {
+   "name": "Vilnius University",
+   "category": "art",
+   "qid": "Q658192",
+   "lat": 54.6825,
+   "lon": 25.28722,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Užupis",
+   "category": "night",
+   "qid": "Q945499",
+   "lat": 54.68056,
+   "lon": 25.29694,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Vilnius Old Town",
+   "category": "square",
+   "qid": "Q445649",
+   "lat": 54.68333,
+   "lon": 25.28333,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Gediminas' Tower",
+   "category": "view",
+   "qid": "Q1497616",
+   "lat": 54.68676,
+   "lon": 25.29068,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Gate of Dawn",
+   "category": "art",
+   "qid": "Q937212",
+   "lat": 54.67444,
+   "lon": 25.28944,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Vilnius TV Tower",
+   "category": "view",
+   "qid": "Q1407353",
+   "lat": 54.68711,
+   "lon": 25.21461,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Three Crosses",
+   "category": "view",
+   "qid": "Q83238",
+   "lat": 54.68674,
+   "lon": 25.29755,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Palace of the Grand Dukes of Lithuania",
+   "category": "art",
+   "qid": "Q1284847",
+   "lat": 54.68585,
+   "lon": 25.28896,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Pilies Street",
+   "category": "square",
+   "qid": "Q1988894",
+   "lat": 54.68472,
+   "lon": 25.28944,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Šnipiškės",
+   "category": "night",
+   "qid": "Q2573951",
+   "lat": 54.7,
+   "lon": 25.28333,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Vingis Park",
+   "category": "green",
+   "qid": "Q2509362",
+   "lat": 54.6833,
+   "lon": 25.2397,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Bernardinai Garden",
+   "category": "green",
+   "qid": "Q7453082",
+   "lat": 54.68333,
+   "lon": 25.29694,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "MO Museum",
+   "category": "art",
+   "qid": "Q16464897",
+   "lat": 54.67944,
+   "lon": 25.27778,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Halė Market",
+   "category": "food",
+   "qid": "Q11264737",
+   "lat": 54.6739,
+   "lon": 25.2858,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  }
+ ]
+}

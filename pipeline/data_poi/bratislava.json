@@ -1,0 +1,170 @@
+{
+ "city": "bratislava",
+ "pois": [
+  {
+   "name": "Bratislava Castle",
+   "category": "view",
+   "qid": "Q593311",
+   "lat": 48.14222,
+   "lon": 17.1,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Bridge of the Slovak National Uprising",
+   "category": "view",
+   "qid": "Q837291",
+   "lat": 48.13833,
+   "lon": 17.10444,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "St. Martin's Cathedral, Bratislava",
+   "category": "art",
+   "qid": "Q239560",
+   "lat": 48.14194,
+   "lon": 17.10472,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Devín",
+   "category": "art",
+   "qid": "Q661046",
+   "lat": 48.17389,
+   "lon": 16.98333,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Church of St. Elisabeth",
+   "category": "art",
+   "qid": "Q579043",
+   "lat": 48.14339,
+   "lon": 17.11683,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Slovak National Theatre",
+   "category": "art",
+   "qid": "Q281805",
+   "lat": 48.14241,
+   "lon": 17.11024,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Slovak National Gallery",
+   "category": "art",
+   "qid": "Q1744024",
+   "lat": 48.14,
+   "lon": 17.10861,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Slavín",
+   "category": "view",
+   "qid": "Q1553111",
+   "lat": 48.15389,
+   "lon": 17.09972,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Michael's Gate",
+   "category": "art",
+   "qid": "Q1717975",
+   "lat": 48.1451,
+   "lon": 17.1068,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Primate's Palace",
+   "category": "art",
+   "qid": "Q938516",
+   "lat": 48.14396,
+   "lon": 17.10867,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Kamzík",
+   "category": "view",
+   "qid": "Q848283",
+   "lat": 48.18167,
+   "lon": 17.09361,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Sad Janka Kráľa",
+   "category": "green",
+   "qid": "Q1509153",
+   "lat": 48.13472,
+   "lon": 17.11111,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Old Market Hall",
+   "category": "food",
+   "qid": "Q12776690",
+   "lat": 48.14473,
+   "lon": 17.11152,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Horský park",
+   "category": "green",
+   "qid": "Q12767041",
+   "lat": 48.15778,
+   "lon": 17.09056,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Obchodná",
+   "category": "night",
+   "qid": "Q11794595",
+   "lat": 48.14774,
+   "lon": 17.11084,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  }
+ ]
+}

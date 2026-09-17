@@ -103,6 +103,8 @@ FALLBACK_REGISTRY = {
     "tallinn":              ("tallinn",          "flat"),
     "zagreb":               ("zagreb",           "flat"),
     "bucharest":            ("bucharest",        "flat"),
+    "bratislava":           ("bratislava",       "flat"),
+    "vilnius":              ("vilnius",          "flat"),
     "cardiff":               ("cardiff",             "flat"),
     "leicester":             ("leicester",           "flat"),
     "newcastle":             ("newcastle",           "flat"),
@@ -526,9 +528,18 @@ NO_FINDINGS_RE = re.compile(
 SOURCES_TAIL_RE = re.compile(r"Sources? (?:checked|consulted)[:,]?\s*(.+)$", re.I | re.S)
 EMPTY_TAIL_RE = re.compile(r"^\W*(no\b|none\b|not\b)", re.I)
 SOURCE_REACHED_RE = re.compile(
-    r"\b[a-z0-9][a-z0-9-]{2,}\.(com|it|es|cat|pt|fr|de|at|nl|be|cz|hu|pl|gr|ie|uk|eu|se|no|ch|info|net|org)\b"
+    # The country list started western and the site did not stay there. Adding
+    # Baltic, Balkan and Nordic cities without adding their adjectives made this
+    # fire on texts that plainly name a source — Vilnius's Old Town cites LRT,
+    # the national broadcaster, and was reported as having reached no source at
+    # all. A check that cannot recognise a Lithuanian source is not stricter,
+    # it is wrong in one direction.
+    r"\b[a-z0-9][a-z0-9-]{2,}\.(com|it|es|cat|pt|fr|de|at|nl|be|cz|hu|pl|gr|ie|uk|eu|se|no|ch|dk|fi|"
+    r"ee|lv|lt|hr|si|sk|ro|bg|rs|info|net|org)\b"
     r"|\b(local|national|italian|spanish|french|german|greek|dutch|portuguese|hungarian|polish|czech|scottish|"
-    r"irish|austrian|catalan)\s+(press|news|media|outlets?|reporting|coverage|journalism)"
+    r"irish|austrian|catalan|lithuanian|latvian|estonian|croatian|slovenian|slovak|romanian|bulgarian|"
+    r"serbian|finnish|danish|swedish|norwegian|belgian|swiss)\s+"
+    r"(press|news|media|outlets?|reporting|coverage|journalism|broadcaster|newspapers?|daily)"
     r"|\b(press|news|media)\s+(coverage|reports?|reporting)\s+(found|located|describes|shows|documents)"
     r"|\b(reported|reports|coverage found|described|documented|recorded)\b.{0,40}\b(19|20)\d\d\b"
     r"|\b(19|20)\d\d\b.{0,60}\b(report|reported|data|figures|survey|statistics|cases|incidents|arrests|"

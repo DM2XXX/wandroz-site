@@ -167,6 +167,12 @@ RESEARCH_CITIES = [
     {"key": "bucharest", "label": "Bucharest", "country": "Romania", "flag": "\U0001F1F7\U0001F1F4",
      "lat": 44.4268, "lon": 26.1025, "color": "#9c4f2f",
      "areas": "6 official sectoare", "reviewed": "17 September 2026"},
+    {"key": "bratislava", "label": "Bratislava", "country": "Slovakia", "flag": "\U0001F1F8\U0001F1F0",
+     "lat": 48.1486, "lon": 17.1077, "color": "#7a5fa8",
+     "areas": "17 official mestské časti", "reviewed": "17 September 2026"},
+    {"key": "vilnius", "label": "Vilnius", "country": "Lithuania", "flag": "\U0001F1F1\U0001F1F9",
+     "lat": 54.6872, "lon": 25.2797, "color": "#c08a2f",
+     "areas": "21 official seniūnijos", "reviewed": "17 September 2026"},
 ]
 
 
