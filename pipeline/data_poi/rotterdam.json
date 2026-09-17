@@ -1,0 +1,214 @@
+{
+ "city": "rotterdam",
+ "pois": [
+  {
+   "name": "Museum Boijmans Van Beuningen",
+   "category": "art",
+   "qid": "Q679527",
+   "lat": 51.91421,
+   "lon": 4.47334,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Erasmusbrug",
+   "category": "view",
+   "qid": "Q1348188",
+   "lat": 51.90864,
+   "lon": 4.48654,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Euromast",
+   "category": "view",
+   "qid": "Q969215",
+   "lat": 51.90539,
+   "lon": 4.46658,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Cube House",
+   "category": "art",
+   "qid": "Q1790954",
+   "lat": 51.92028,
+   "lon": 4.49056,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Market Hall",
+   "category": "food",
+   "qid": "Q3327230",
+   "lat": 51.92011,
+   "lon": 4.48695,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Diergaarde Blijdorp",
+   "category": "green",
+   "qid": "Q18775796",
+   "lat": 51.92694,
+   "lon": 4.45333,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Kunsthal",
+   "category": "art",
+   "qid": "Q1668856",
+   "lat": 51.91078,
+   "lon": 4.47344,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Delfshaven",
+   "category": "square",
+   "qid": "Q1184149",
+   "lat": 51.90722,
+   "lon": 4.44833,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Grote of Sint-Laurenskerk",
+   "category": "art",
+   "qid": "Q922407",
+   "lat": 51.92139,
+   "lon": 4.485,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Kop van Zuid",
+   "category": "square",
+   "qid": "Q1748087",
+   "lat": 51.9078,
+   "lon": 4.4925,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Hotel New York",
+   "category": "art",
+   "qid": "Q1630988",
+   "lat": 51.90408,
+   "lon": 4.48428,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Depot Boijmans van Beuningen",
+   "category": "art",
+   "qid": "Q41061028",
+   "lat": 51.91379,
+   "lon": 4.47125,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Rotterdam City Hall",
+   "category": "art",
+   "qid": "Q1481214",
+   "lat": 51.92278,
+   "lon": 4.47972,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Maritime Museum Rotterdam",
+   "category": "art",
+   "qid": "Q2755458",
+   "lat": 51.9175,
+   "lon": 4.48189,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Coolsingel",
+   "category": "square",
+   "qid": "Q2266259",
+   "lat": 51.92272,
+   "lon": 4.47864,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Witte de Withstraat",
+   "category": "night",
+   "qid": "Q2161536",
+   "lat": 51.91556,
+   "lon": 4.47722,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Kralingse Bos",
+   "category": "green",
+   "qid": "Q2303690",
+   "lat": 51.94043,
+   "lon": 4.52062,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Oude Haven",
+   "category": "night",
+   "qid": "Q2398977",
+   "lat": 51.91917,
+   "lon": 4.49167,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Fenix Food Factory",
+   "category": "food",
+   "qid": "Q123299155",
+   "lat": 51.90207,
+   "lon": 4.48684,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  }
+ ]
+}

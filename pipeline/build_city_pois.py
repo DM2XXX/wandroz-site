@@ -23,6 +23,32 @@ CAT_TYPE = {"art": "LANDMARK", "view": "VIEWPOINT", "green": "PARK",
             "square": "AREA", "food": "MARKET", "night": "AREA"}
 
 CITIES = {
+    "rotterdam": {
+        "centre": (4.4777, 51.9225), "lang": "nl",
+        "min_sitelinks": 7,
+        "curated": [
+            ("Markthal", "food", "MARKET"),
+            ("Erasmusbrug", "view", "VIEWPOINT"),
+            ("Euromast", "view", "VIEWPOINT"),
+            ("Kubuswoningen", "art", "LANDMARK"),
+            ("Museum Boijmans Van Beuningen", "art", "MUSEUM"),
+            ("Depot Boijmans Van Beuningen", "art", "MUSEUM"),
+            ("Kunsthal", "art", "MUSEUM"),
+            ("Delfshaven", "square", "AREA"),
+            ("Kop van Zuid", "square", "AREA"),
+            ("Het Park (Rotterdam)", "green", "PARK"),
+            ("Kralingse Bos", "green", "PARK"),
+            ("Witte de Withstraat", "night", "AREA"),
+            ("Oude Haven", "night", "AREA"),
+            ("Maritiem Museum Rotterdam", "art", "MUSEUM"),
+            ("Diergaarde Blijdorp", "green", "PARK"),
+            ("Hotel New York (Rotterdam)", "art", "LANDMARK"),
+            ("Laurenskerk", "art", "LANDMARK"),
+            ("Fenix Food Factory", "food", "MARKET"),
+            ("Stadhuis van Rotterdam", "art", "LANDMARK"),
+            ("Coolsingel", "square", "AREA"),
+        ],
+    },
     "bratislava": {
         "centre": (17.1077, 48.1486), "lang": "sk",
         "min_sitelinks": 6,
