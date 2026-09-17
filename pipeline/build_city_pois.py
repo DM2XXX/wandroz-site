@@ -23,6 +23,32 @@ CAT_TYPE = {"art": "LANDMARK", "view": "VIEWPOINT", "green": "PARK",
             "square": "AREA", "food": "MARKET", "night": "AREA"}
 
 CITIES = {
+    "zagreb": {
+        "centre": (15.9819, 45.8150), "lang": "hr",
+        "min_sitelinks": 6,
+        "curated": [
+            ("Trg bana Josipa Jelačića", "square", "AREA"),
+            ("Zagrebačka katedrala", "art", "LANDMARK"),
+            ("Crkva svetog Marka", "art", "LANDMARK"),
+            ("Tkalčićeva ulica", "night", "AREA"),
+            ("Dolac", "food", "MARKET"),
+            ("Gornji grad", "square", "AREA"),
+            ("Muzej prekinutih veza", "art", "MUSEUM"),
+            ("Maksimir", "green", "PARK"),
+            ("Mirogoj", "art", "LANDMARK"),
+            ("Zrinjevac", "green", "PARK"),
+            ("Muzej suvremene umjetnosti (Zagreb)", "art", "MUSEUM"),
+            ("Jarun", "green", "PARK"),
+            ("Kula Lotrščak", "view", "VIEWPOINT"),
+            ("Hrvatsko narodno kazalište u Zagrebu", "art", "LANDMARK"),
+            ("Bundek", "green", "PARK"),
+            ("Medvednica", "view", "VIEWPOINT"),
+            ("Britanski trg", "food", "MARKET"),
+            ("Kamenita vrata", "art", "LANDMARK"),
+            ("Cvjetni trg", "square", "AREA"),
+            ("Mimara", "art", "MUSEUM"),
+        ],
+    },
     "tallinn": {
         "centre": (24.7536, 59.4370), "lang": "et",
         "min_sitelinks": 6,

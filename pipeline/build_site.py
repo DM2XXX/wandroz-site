@@ -161,6 +161,9 @@ RESEARCH_CITIES = [
     {"key": "tallinn", "label": "Tallinn", "country": "Estonia", "flag": "\U0001F1EA\U0001F1EA",
      "lat": 59.4370, "lon": 24.7536, "color": "#3f6fa8",
      "areas": "8 official linnaosad", "reviewed": "17 September 2026"},
+    {"key": "zagreb", "label": "Zagreb", "country": "Croatia", "flag": "\U0001F1ED\U0001F1F7",
+     "lat": 45.8150, "lon": 15.9819, "color": "#2f7f8f",
+     "areas": "16 of the 17 official gradske četvrti", "reviewed": "17 September 2026"},
 ]
 
 

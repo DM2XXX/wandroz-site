@@ -1,0 +1,203 @@
+{
+ "city": "zagreb",
+ "pois": [
+  {
+   "name": "Zagreb Cathedral",
+   "category": "art",
+   "qid": "Q312220",
+   "lat": 45.81444,
+   "lon": 15.97972,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Croatian National Theatre in Zagreb",
+   "category": "art",
+   "qid": "Q268151",
+   "lat": 45.8095,
+   "lon": 15.97,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "St. Mark's Church in Zagreb",
+   "category": "art",
+   "qid": "Q1637186",
+   "lat": 45.81611,
+   "lon": 15.97389,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Museum of Broken Relationships",
+   "category": "art",
+   "qid": "Q1954595",
+   "lat": 45.81517,
+   "lon": 15.97358,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Ban Jelačić Square",
+   "category": "square",
+   "qid": "Q377002",
+   "lat": 45.81306,
+   "lon": 15.97722,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Mirogoj Cemetery",
+   "category": "art",
+   "qid": "Q1262136",
+   "lat": 45.83569,
+   "lon": 15.98444,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Maksimir",
+   "category": "green",
+   "qid": "Q373744",
+   "lat": 45.83214,
+   "lon": 16.01983,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Lotrščak Tower",
+   "category": "view",
+   "qid": "Q2986837",
+   "lat": 45.81463,
+   "lon": 15.97325,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Nikola Šubić Zrinski Square",
+   "category": "green",
+   "qid": "Q612619",
+   "lat": 45.81028,
+   "lon": 15.97806,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "British Square",
+   "category": "food",
+   "qid": "Q2925682",
+   "lat": 45.81306,
+   "lon": 15.96472,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Stone Gate",
+   "category": "art",
+   "qid": "Q603560",
+   "lat": 45.8158,
+   "lon": 15.9753,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Tkalčićeva Street",
+   "category": "night",
+   "qid": "Q7810662",
+   "lat": 45.81732,
+   "lon": 15.97631,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Bundek",
+   "category": "green",
+   "qid": "Q4997513",
+   "lat": 45.78528,
+   "lon": 15.98722,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Medvednica Nature Park",
+   "category": "view",
+   "qid": "Q1970544",
+   "lat": 45.91444,
+   "lon": 15.97722,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Dolac Market",
+   "category": "food",
+   "qid": "Q3509156",
+   "lat": 45.81417,
+   "lon": 15.9775,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Jarun",
+   "category": "green",
+   "qid": "Q2764105",
+   "lat": 45.78194,
+   "lon": 15.9225,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Petar Preradović Square",
+   "category": "square",
+   "qid": "Q1563303",
+   "lat": 45.81231,
+   "lon": 15.97391,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Mimara local board",
+   "category": "art",
+   "qid": "Q108106505",
+   "lat": 45.80525,
+   "lon": 15.96697,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  }
+ ]
+}
