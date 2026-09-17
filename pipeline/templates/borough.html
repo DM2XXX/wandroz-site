@@ -6,7 +6,7 @@
 {% block twitter_title %}Is {{ b.borough }} ({{ city.city }}) safe? — Wandroz{% endblock %}
 {% block twitter_description %}Safety data for {{ b.borough }}, {{ city.city }}: {{ b.sample_record_count }} recorded incidents, based on official UK Police data.{% endblock %}
 {% block content %}
-<p><a href="../index.html">← {{ city.city }}</a></p>
+<p><a href="../">← {{ city.city }}</a></p>
 <h1>{{ b.borough }}, {{ city.city }}</h1>
 {% if evidence_tag %}<p style="font-size:12px;color:var(--muted);margin:0 0 10px;">{{ evidence_tag }} <a href="/methodology.html" style="color:inherit;">Methodology &rarr;</a></p>{% endif %}
 <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
