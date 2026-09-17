@@ -164,6 +164,9 @@ RESEARCH_CITIES = [
     {"key": "zagreb", "label": "Zagreb", "country": "Croatia", "flag": "\U0001F1ED\U0001F1F7",
      "lat": 45.8150, "lon": 15.9819, "color": "#2f7f8f",
      "areas": "16 of the 17 official gradske četvrti", "reviewed": "17 September 2026"},
+    {"key": "bucharest", "label": "Bucharest", "country": "Romania", "flag": "\U0001F1F7\U0001F1F4",
+     "lat": 44.4268, "lon": 26.1025, "color": "#9c4f2f",
+     "areas": "6 official sectoare", "reviewed": "17 September 2026"},
 ]
 
 

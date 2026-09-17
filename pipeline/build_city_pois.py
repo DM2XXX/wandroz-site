@@ -23,6 +23,32 @@ CAT_TYPE = {"art": "LANDMARK", "view": "VIEWPOINT", "green": "PARK",
             "square": "AREA", "food": "MARKET", "night": "AREA"}
 
 CITIES = {
+    "bucharest": {
+        "centre": (26.1025, 44.4268), "lang": "ro",
+        "min_sitelinks": 7,
+        "curated": [
+            ("Palatul Parlamentului", "art", "LANDMARK"),
+            ("Centrul Vechi (București)", "night", "AREA"),
+            ("Ateneul Român", "art", "LANDMARK"),
+            ("Muzeul Național al Satului", "art", "MUSEUM"),
+            ("Parcul Herăstrău", "green", "PARK"),
+            ("Parcul Cișmigiu", "green", "PARK"),
+            ("Arcul de Triumf (București)", "art", "LANDMARK"),
+            ("Muzeul Național de Artă al României", "art", "MUSEUM"),
+            ("Hanul lui Manuc", "art", "LANDMARK"),
+            ("Pasajul Villacrosse", "square", "AREA"),
+            ("Piața Revoluției", "square", "AREA"),
+            ("Piața Unirii (București)", "square", "AREA"),
+            ("Biserica Stavropoleos", "art", "LANDMARK"),
+            ("Parcul Tineretului", "green", "PARK"),
+            ("Piața Obor", "food", "MARKET"),
+            ("Calea Victoriei", "square", "AREA"),
+            ("Mănăstirea Văcărești", "green", "PARK"),
+            ("Strada Lipscani", "night", "AREA"),
+            ("Muzeul Țăranului Român", "art", "MUSEUM"),
+            ("Cartierul Cotroceni", "view", "VIEWPOINT"),
+        ],
+    },
     "zagreb": {
         "centre": (15.9819, 45.8150), "lang": "hr",
         "min_sitelinks": 6,

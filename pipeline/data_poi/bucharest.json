@@ -1,0 +1,181 @@
+{
+ "city": "bucharest",
+ "pois": [
+  {
+   "name": "Palace of the Parliament",
+   "category": "art",
+   "qid": "Q164150",
+   "lat": 44.4275,
+   "lon": 26.0875,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Romanian Athenaeum",
+   "category": "art",
+   "qid": "Q755457",
+   "lat": 44.4413,
+   "lon": 26.0973,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Herăstrău Park",
+   "category": "green",
+   "qid": "Q2074133",
+   "lat": 44.47921,
+   "lon": 26.08169,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "National Museum of Art of Romania",
+   "category": "art",
+   "qid": "Q1319192",
+   "lat": 44.43978,
+   "lon": 26.09598,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Lipscani",
+   "category": "night",
+   "qid": "Q1827587",
+   "lat": 44.43183,
+   "lon": 26.10165,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Romanian Peasant Museum",
+   "category": "art",
+   "qid": "Q623662",
+   "lat": 44.45438,
+   "lon": 26.08368,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Stavropoleos Monastery",
+   "category": "art",
+   "qid": "Q3119683",
+   "lat": 44.43174,
+   "lon": 26.09879,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Dimitrie Gusti National Village Museum in Bucharest",
+   "category": "art",
+   "qid": "Q1956214",
+   "lat": 44.47336,
+   "lon": 26.07656,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Calea Victoriei",
+   "category": "square",
+   "qid": "Q2933758",
+   "lat": 44.44286,
+   "lon": 26.09347,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Revolution Square, Bucharest",
+   "category": "square",
+   "qid": "Q3390456",
+   "lat": 44.43856,
+   "lon": 26.0975,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Cișmigiu Gardens",
+   "category": "green",
+   "qid": "Q959632",
+   "lat": 44.437,
+   "lon": 26.09073,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Manuc's Inn",
+   "category": "art",
+   "qid": "Q1159652",
+   "lat": 44.42956,
+   "lon": 26.10205,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Tineretului Park",
+   "category": "green",
+   "qid": "Q2340319",
+   "lat": 44.4075,
+   "lon": 26.1056,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Pasajul Macca-Vilacrosse",
+   "category": "square",
+   "qid": "Q7141582",
+   "lat": 44.43313,
+   "lon": 26.0986,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "monastery of Văcărești",
+   "category": "green",
+   "qid": "Q18542351",
+   "lat": 44.39587,
+   "lon": 26.12327,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Obor Square",
+   "category": "food",
+   "qid": "Q136933405",
+   "lat": 44.44943,
+   "lon": 26.12462,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  }
+ ]
+}
