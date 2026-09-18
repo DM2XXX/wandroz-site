@@ -10,15 +10,11 @@
  *   programme today).
  *
  * WHY A DELEGATED LISTENER
- *   The CTA is rendered in several places — a neighbourhood page, a London
- *   borough page, the recommendation cards on a city hub, the row of the
- *   comparison table. Binding at click time on the document catches all of
- *   them with one listener and cannot miss one that is added later.
- *
- *   It used to also catch a CTA built in JavaScript inside the map's detail
- *   card. That card is gone: clicking a zone now darkens it and opens the
- *   area's own page. So the old "map-card" surface no longer exists, and a
- *   report that still expects it is reading a value nothing emits.
+ *   The CTA is rendered three different ways: server-side on a neighbourhood
+ *   page, server-side on a London borough page, and built in JavaScript inside
+ *   the map's detail card, which does not exist until a polygon is clicked.
+ *   Binding at click time on the document catches all three and cannot miss a
+ *   card that is created later.
  *
  * It never blocks or delays the navigation: the event is sent and the browser
  * follows the link as it normally would. A click that GA4 misses is a lost
@@ -55,10 +51,16 @@
       city: where.city,
       area: where.area,
       attributed: hit.attributed ? "yes" : "no",
-      // Present so a report can separate the three intents: someone acting on
-      // a recommendation card, someone picking a row out of the comparison
-      // table, and someone who already read a whole area page.
-      surface: (hit.a.classList && hit.a.classList.contains("bk")) ? "hub-card"
+      // Four different intents, and they were collapsing into two: anything
+      // without the map card's "cta" class was reported as "area-page",
+      // including the hub's recommendation buttons and its comparison table,
+      // which are on the hub and not on an area page at all. Someone acting on
+      // a recommendation, someone picking a row out of a table, someone who
+      // clicked a polygon and someone who read a whole area page are not the
+      // same reader, and a conversion report that cannot tell them apart
+      // cannot say which part of the page earns.
+      surface: hit.a.className.indexOf("cta") !== -1 ? "map-card"
+               : hit.a.className.indexOf("bk") !== -1 ? "hub-card"
                : (where.area === "(city hub)" ? "hub-table" : "area-page"),
       transport_type: "beacon"
     });
