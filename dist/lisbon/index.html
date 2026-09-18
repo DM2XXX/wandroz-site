@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -490,283 +502,17 @@
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Lisbon, Portugal</nav>
 <h1 class="page-title">Where to stay in Lisbon</h1>
-<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating.</p>
 <p class="evidence">🟡 Local-source safety assessment · 24 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
 
 
-<p class="hub-answer">For a short stay in Lisbon, the areas this map rates best are
+
+<p class="hub-answer">
+  For a short stay in Lisbon:
   <strong>Santa Maria Maior</strong>, <strong>Avenidas Novas</strong> and <strong>Belém</strong>.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  
-  <div class="hub-card">
-    <span class="lab">For a first visit</span>
-    <span class="nm"><a href="/lisbon/santa-maria-maior.html">Santa Maria Maior</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">6 of the sights on this map are inside it.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Santa+Maria+Maior%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Find a place in Santa Maria Maior →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">With family</span>
-    <span class="nm"><a href="/lisbon/avenidas-novas.html">Avenidas Novas</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 green space on the map and no nightlife pin.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Avenidas+Novas%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Find a place in Avenidas Novas →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">Best rated overall</span>
-    <span class="nm"><a href="/lisbon/belem.html">Belém</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">The best day and night pair in the city.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Bel%C3%A9m%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Find a place in Belém →</a>
-  </div>
-  
-</div>
-
-
-
-<div class="hub-table-wrap">
-  <h2>All 24 neighbourhoods compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      
-        <tr>
-          <td><a href="/lisbon/belem.html">Belém</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">3</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bel%C3%A9m%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/avenidas-novas.html">Avenidas Novas</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Avenidas+Novas%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/estrela.html">Estrela</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Estrela%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/parque-das-nacoes.html">Parque das Nações</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parque+das+Na%C3%A7%C3%B5es%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/sao-vicente.html">São Vicente</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=S%C3%A3o+Vicente%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/santo-antonio.html">Santo António</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santo+Ant%C3%B3nio%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/ajuda.html">Ajuda</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ajuda%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/alvalade.html">Alvalade</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Alvalade%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/beato.html">Beato</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Beato%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/campo-de-ourique.html">Campo de Ourique</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Campo+de+Ourique%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/olivais.html">Olivais</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Olivais%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/sao-domingos-de-benfica.html">São Domingos de Benfica</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=S%C3%A3o+Domingos+de+Benfica%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/misericordia.html">Misericórdia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">4</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Miseric%C3%B3rdia%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/santa-maria-maior.html">Santa Maria Maior</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">6</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Maria+Maior%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/areeiro.html">Areeiro</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Areeiro%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/arroios.html">Arroios</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Arroios%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/benfica.html">Benfica</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Benfica%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/campolide.html">Campolide</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Campolide%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/lumiar.html">Lumiar</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Lumiar%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/penha-de-franca.html">Penha de França</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Penha+de+Fran%C3%A7a%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/santa-clara.html">Santa Clara</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Clara%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/alcantara.html">Alcântara</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Alc%C3%A2ntara%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/carnide.html">Carnide</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Carnide%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/lisbon/marvila.html">Marvila</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Marvila%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-</div>
 
 
 <div class="poi-bar" id="poiBar"></div>
@@ -854,6 +600,286 @@
   </aside>
 </div>
 
+
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/lisbon/santa-maria-maior.html">Santa Maria Maior</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">6 of the city&#39;s main sights are close enough to walk between.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Santa+Maria+Maior%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Find a place in Santa Maria Maior →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family</span>
+    <span class="nm"><a href="/lisbon/avenidas-novas.html">Avenidas Novas</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Avenidas+Novas%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Find a place in Avenidas Novas →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">Best rated overall</span>
+    <span class="nm"><a href="/lisbon/belem.html">Belém</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">Nowhere in the city is rated better, by day or after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Bel%C3%A9m%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Find a place in Belém →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Compare all 24 neighbourhoods</summary>
+  
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        
+        <th aria-sort="none" class="num">Sights</th>
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/lisbon/alcantara.html">Alcântara</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Alc%C3%A2ntara%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/carnide.html">Carnide</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Carnide%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/marvila.html">Marvila</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Marvila%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/misericordia.html">Misericórdia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">4</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Miseric%C3%B3rdia%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/santo-antonio.html">Santo António</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santo+Ant%C3%B3nio%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/ajuda.html">Ajuda</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ajuda%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/alvalade.html">Alvalade</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Alvalade%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/beato.html">Beato</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Beato%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/campo-de-ourique.html">Campo de Ourique</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Campo+de+Ourique%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/olivais.html">Olivais</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Olivais%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/sao-domingos-de-benfica.html">São Domingos de Benfica</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=S%C3%A3o+Domingos+de+Benfica%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/belem.html">Belém</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bel%C3%A9m%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/avenidas-novas.html">Avenidas Novas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Avenidas+Novas%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/estrela.html">Estrela</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Estrela%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/parque-das-nacoes.html">Parque das Nações</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parque+das+Na%C3%A7%C3%B5es%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/sao-vicente.html">São Vicente</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=S%C3%A3o+Vicente%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/santa-maria-maior.html">Santa Maria Maior</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">6</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Maria+Maior%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/areeiro.html">Areeiro</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Areeiro%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/arroios.html">Arroios</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arroios%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/benfica.html">Benfica</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Benfica%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/campolide.html">Campolide</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Campolide%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/lumiar.html">Lumiar</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Lumiar%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/penha-de-franca.html">Penha de França</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Penha+de+Fran%C3%A7a%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/lisbon/santa-clara.html">Santa Clara</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Clara%2C+Lisbon%2C+Portugal" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -899,8 +925,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -911,7 +942,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });

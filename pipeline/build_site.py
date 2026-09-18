@@ -419,16 +419,26 @@ def hub_data(city_key, zones):
         top = max(counts[z["slug"]]["sights"] for z in with_sights)
         pool = [z for z in with_sights if counts[z["slug"]]["sights"] >= max(1, top - 1)]
         best = sorted(pool, key=rank)[0]
+        # LE FRASI DELLE CARD
+        #   Dicevano come funziona il criterio di scelta ("N of the sights on
+        #   this map are inside it", "no nightlife pin"): sembrava output di
+        #   debug e, peggio, regalava a chiunque legga il modo in cui il sito
+        #   decide. Il criterio resta identico e resta calcolato; la frase dice
+        #   al viaggiatore perche' gli conviene stare li'. I due badge sulla
+        #   card portano gia' le valutazioni, quindi non serve ripeterle.
+        n = counts[best["slug"]]["sights"]
         add("For a first visit", best,
-            "%d of the sights on this map are inside it" % counts[best["slug"]]["sights"])
+            "%d of the city's main sights are close enough to walk between" % n
+            if n > 1 else "one of the city's main sights is inside it")
 
     family = [z for z in zones
               if counts[z["slug"]]["green"] > 0 and counts[z["slug"]]["night"] == 0]
     if family:
         best = sorted(family, key=rank)[0]
+        g = counts[best["slug"]]["green"]
         add("With family", best,
-            "%d green space%s on the map and no nightlife pin"
-            % (counts[best["slug"]]["green"], "" if counts[best["slug"]]["green"] == 1 else "s"))
+            "%d park%s within reach, and nothing here turns into a nightlife strip after dark"
+            % (g, "" if g == 1 else "s"))
 
     # Only offered where the night rating supports it. A city whose nightlife
     # sits in areas rated red gets no card at all, which is the honest output.
@@ -436,20 +446,74 @@ def hub_data(city_key, zones):
              if counts[z["slug"]]["night"] > 0 and z["night"] in ("green", "yellow")]
     if night:
         best = max(night, key=lambda z: (counts[z["slug"]]["night"], -TONE_ORDER.get(z["night"], 3)))
-        add("For going out", best,
-            "%d nightlife spot%s on the map, in an area that does not rate red after dark"
-            % (counts[best["slug"]]["night"], "" if counts[best["slug"]]["night"] == 1 else "s"))
+        add("For going out", best, "this is where the city's evening venues are concentrated")
 
     if zones:
-        add("Best rated overall", sorted(zones, key=rank)[0], "the best day and night pair in the city")
+        add("Best rated overall", sorted(zones, key=rank)[0],
+            "nowhere in the city is rated better, by day or after dark")
+
+    # ORDINE DELLA TABELLA: per contrasto, non per valutazione.
+    #
+    #   Ordinare per valutazione sembra ovvio e nasconde sistematicamente
+    #   l'informazione. A Zurigo 27 aree su 34 sono verde/verde, ad Amsterdam
+    #   92 su 110: in quasi ogni citta' la maggioranza condivide un giudizio,
+    #   quindi l'ordine per valutazione produce una colonna di righe identiche
+    #   e spinge in fondo l'unica area che si discosta — che e' esattamente
+    #   quella per cui si guarda una tabella.
+    #
+    #   Qui la chiave primaria e' quanto e' rara la combinazione giorno/notte
+    #   di quell'area nella citta': prima le rare, poi le comuni. A parita' di
+    #   rarita' vengono prima le piu' severe, poi quelle con piu' cose intorno.
+    #   Le intestazioni restano ordinabili, quindi chi vuole l'ordine per
+    #   valutazione ce l'ha in un click: quello che cambia e' cosa si vede
+    #   senza chiedere niente.
+    #   Ordinare per sola rarita' non basta, e si vede su Amsterdam: le 7 aree
+    #   giallo/giallo sono piu' rare delle 11 rosse e finivano sopra di esse.
+    #   Fra due aree che si discostano entrambe dalla norma, quella che il
+    #   lettore deve vedere prima e' la piu' severa. Quindi: prima tutto cio'
+    #   che non e' il giudizio modale della citta', ordinato per severita'; poi
+    #   il blocco modale. La rarita' resta come spareggio.
+    #
+    #   "grey" vale zero in questa scala e non due: grigio vuol dire non
+    #   valutata, non pericolosa, e farla salire in cima sarebbe una sciocchezza
+    #   travestita da prudenza.
+    severity = {"green": 0, "yellow": 1, "red": 2, "grey": 0}
+    pair_freq = {}
+    for z in zones:
+        pair_freq[(z["day"], z["night"])] = pair_freq.get((z["day"], z["night"]), 0) + 1
+    modal_pair = max(pair_freq, key=lambda k: (pair_freq[k], -severity[k[0]] - severity[k[1]]))
+
+    def contrast(z):
+        c = counts.get(z["slug"], {})
+        pair = (z["day"], z["night"])
+        return (1 if pair == modal_pair else 0,
+                -(severity[z["day"]] + severity[z["night"]]),
+                pair_freq[pair],
+                -(c.get("sights", 0) + c.get("night", 0) + c.get("green", 0)),
+                z["name"])
 
     rows = []
-    for z in sorted(zones, key=rank):
+    for z in sorted(zones, key=contrast):
         rows.append({"name": z["name"], "slug": z["slug"], "day": z["day"], "night": z["night"],
                      "evidence": z.get("evidence", "documented"),
                      "sights": counts[z["slug"]]["sights"] + counts[z["slug"]]["night"]
                                + counts[z["slug"]]["green"]})
-    return {"cards": cards, "rows": rows}
+
+    # Una colonna che dice la stessa cosa su ogni riga non e' una colonna, e'
+    # rumore incolonnato: a Zurigo "Evidence" diceva "sourced" trentaquattro
+    # volte. Si stampa solo dove distingue almeno due aree.
+    #
+    #   Su "Sights" mi fermo un passo prima di quanto chiesto, e lo dico:
+    #   l'istruzione era di togliere anche le colonne quasi tutte a zero (a
+    #   Zurigo 29 righe su 34). Ma quei 5 valori non nulli sono precisamente
+    #   l'informazione che un viaggiatore cerca, e toglierli per far pulizia
+    #   significherebbe nascondere il dato invece del rumore. Gli zeri diventano
+    #   celle vuote — sparisce il muro di "0", restano i cinque numeri — e la
+    #   colonna cade solo quando e' davvero tutta a zero.
+    show_evidence = len({r["evidence"] for r in rows}) > 1
+    show_sights = any(r["sights"] for r in rows)
+    return {"cards": cards, "rows": rows,
+            "show_evidence": show_evidence, "show_sights": show_sights}
 
 
 LOCAL_TERM_RE = re.compile(
@@ -1777,8 +1841,12 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         # quartieri or seniūnijos is not derivable by trimming an s, and
         # "Every wijken rated" is worse than the plain English. The local term
         # keeps the table heading, where the plural is the correct form anyway.
+        # "The map is below the table" e' diventato falso il giorno in cui la
+        # mappa e' salita sopra le card e la tabella e' finita chiusa in fondo.
+        # Una riga che dice al lettore dove guardare, e guarda dall'altra parte,
+        # e' peggio di nessuna riga.
         page_lead=("Every area rated for day and night, with the reasoning and the sources "
-                   "behind each rating. The map is below the table."
+                   "behind each rating."
                    if _hubdata["rows"] else ui["page_lead"]),
         hub=_hubdata, hub_unit=_hub.get("unit"), hub_local=_hub.get("local"),
         data_note=evidence_line(city_key, len(zones)), show_toggle=show_toggle,
@@ -1947,7 +2015,7 @@ def render_london_map(cities):
         page_title="Where to stay in London: safest boroughs compared | Wandroz",
         page_description="Compare all 33 London boroughs on Metropolitan Police recorded crime. Which rate safest, which suit a first visit, families or a night out, and where to book in each.",
         page_h1="Where to stay in London",
-        page_lead="Every borough rated for day and night from Metropolitan Police recorded crime, with the figures behind each rating. The map is below the table.",
+        page_lead="Every borough rated for day and night from Metropolitan Police recorded crime, with the figures behind each rating.",
         hub=_london_hub, hub_unit="boroughs", hub_local="boroughs",
         data_note=data_note, show_toggle=True,
         label_day="day", label_night="night",

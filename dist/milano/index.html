@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -490,859 +502,17 @@
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Milan, Italy</nav>
 <h1 class="page-title">Where to stay in Milan</h1>
-<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating.</p>
 <p class="evidence">🟡 Local-source safety assessment · 88 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
 
 
-<p class="hub-answer">For a short stay in Milan, the areas this map rates best are
+
+<p class="hub-answer">
+  For a short stay in Milan:
   <strong>Brera</strong>, <strong>Giardini Porta Venezia</strong> and <strong>Isola</strong>.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  
-  <div class="hub-card">
-    <span class="lab">For a first visit · Best rated overall</span>
-    <span class="nm"><a href="/milano/brera/">Brera</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">3 of the sights on this map are inside it.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Brera%2C+Milan%2C+Italy" target="_blank" rel="noopener">Find a place in Brera →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">With family</span>
-    <span class="nm"><a href="/milano/giardini-porta-venezia/">Giardini Porta Venezia</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 green space on the map and no nightlife pin.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Giardini+Pubblici+Indro+Montanelli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Find a place in Giardini Porta Venezia →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">For going out</span>
-    <span class="nm"><a href="/milano/isola/">Isola</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 nightlife spot on the map, in an area that does not rate red after dark.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Isola%2C+Milan%2C+Italy" target="_blank" rel="noopener">Find a place in Isola →</a>
-  </div>
-  
-</div>
-
-
-
-<div class="hub-table-wrap">
-  <h2>All 88 neighbourhoods compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      
-        <tr>
-          <td><a href="/milano/brera/">Brera</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">3</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Brera%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/duomo/">Duomo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">3</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Duomo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/giardini-porta-venezia/">Giardini Porta Venezia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Giardini+Pubblici+Indro+Montanelli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/isola/">Isola</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Isola%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/magenta-sant-ambrogio/">Magenta - Sant&#39;Ambrogio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/sarpi-chinatown/">Sarpi (Chinatown)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Via+Paolo+Sarpi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/affori/">Affori</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Affori%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/bovisasca/">Bovisasca</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bovisasca%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/cantalupa/">Cantalupa</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Cantalupa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/chiaravalle/">Chiaravalle</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Chiaravalle%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/citta-studi/">Città Studi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Citt%C3%A0+Studi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/corsica/">Corsica</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Corsica%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/de-angeli-monte-rosa/">De Angeli - Monte Rosa</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=De+Angeli+-+Monte+Rosa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/figino/">Figino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Figino%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/ghisolfa/">Ghisolfa</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ghisolfa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/guastalla/">Guastalla</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Guastalla%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/moncucco-san-cristoforo/">Moncucco - San Cristoforo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Moncucco+-+San+Cristoforo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/pagano/">Pagano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Pagano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/porta-magenta/">Porta Magenta</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Magenta%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/porta-romana/">Porta Romana</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Romana%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/porta-vigentina-porta-lodovica/">Porta Vigentina - Porta Lodovica</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Vigentina+-+Porta+Lodovica%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/portello/">Portello</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Portello%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/quarto-cagnino/">Quarto Cagnino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Quarto+Cagnino%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/quinto-romano/">Quinto Romano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Quinto+Romano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/quintosole/">Quintosole</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Quintosole%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/ronchetto-delle-rane/">Ronchetto delle Rane</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ronchetto+delle+Rane%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/ronchetto-sul-naviglio-q-re-lodovico-il-moro/">Ronchetto sul Naviglio - Q.re Lodovico il Moro</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ronchetto+sul+Naviglio+-+Q.re+Lodovico+il+Moro%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/roserio/">Roserio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Roserio%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/stephenson/">Stephenson</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Stephenson%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/tibaldi/">Tibaldi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tibaldi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/tre-torri/">Tre Torri</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tre+Torri%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/triulzo-superiore/">Triulzo Superiore</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Triulzo+Superiore%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/xxii-marzo/">XXII Marzo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=XXII+Marzo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/porta-garibaldi-porta-nuova/">Porta Garibaldi - Porta Nuova</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">3</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Nuova%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/parco-sempione/">Parco Sempione</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+Sempione%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/corso-buenos-aires-porta-venezia/">Corso Buenos Aires - Porta Venezia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Corso+Buenos+Aires%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/navigli-sud-conchetta/">Navigli Sud (Conchetta)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Naviglio+Pavese%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/adriano/">Adriano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Adriano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/assiano/">Assiano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Assiano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/baggio-q-re-degli-olmi-q-re-valsesia/">Baggio - Q.re degli Olmi - Q.re Valsesia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Baggio+-+Q.re+degli+Olmi+-+Q.re+Valsesia%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/bande-nere/">Bande Nere</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bande+Nere%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/cascina-merlata/">Cascina Merlata</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Cascina+Merlata%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/dergano/">Dergano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Dergano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/forze-armate/">Forze Armate</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Forze+Armate%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/gorla-precotto/">Gorla - Precotto</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Gorla+-+Precotto%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/greco-segnano/">Greco - Segnano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Greco+-+Segnano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/lambrate-ortica/">Lambrate - Ortica</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Lambrate%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/morivione/">Morivione</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Morivione%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/muggiano/">Muggiano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Muggiano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/navigli-porta-ticinese/">Navigli (Porta Ticinese)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Navigli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/niguarda-ca-granda-prato-centenaro-q-re-fulvio-testi/">Niguarda - Ca&#39; Granda - Prato Centenaro - Q.re Fulvio Testi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Niguarda+-+Ca%27+Granda+-+Prato+Centenaro+-+Q.re+Fulvio+Testi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/parco-bosco-in-citta/">Parco Bosco in Città</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+Bosco+in+Citt%C3%A0%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/parco-forlanini-cavriano/">Parco Forlanini - Cavriano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+Forlanini+-+Cavriano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/parco-nord/">Parco Nord</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+Nord%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/parco-dei-navigli/">Parco dei Navigli</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+dei+Navigli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/parco-delle-abbazie/">Parco delle Abbazie</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+delle+Abbazie%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/porta-genova/">Porta Genova</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Genova%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/qt-8/">QT 8</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=QT+8%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/san-siro/">San Siro</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Siro%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/scalo-romana/">Scalo Romana</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Scalo+Romana%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/stadera-chiesa-rossa-q-re-torretta-conca-fallata/">Stadera - Chiesa Rossa - Q.re Torretta - Conca Fallata</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Stadera+-+Chiesa+Rossa+-+Q.re+Torretta+-+Conca+Fallata%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/stadio-ippodromi/">Stadio - Ippodromi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Stadio+-+Ippodromi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/taliedo-morsenchio-q-re-forlanini/">Taliedo - Morsenchio - Q.re Forlanini</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Taliedo+-+Morsenchio+-+Q.re+Forlanini%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/trenno/">Trenno</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Trenno%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/vigentino-q-re-fatima/">Vigentino - Q.re Fatima</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Vigentino+-+Q.re+Fatima%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/villapizzone-cagnola-boldinasco/">Villapizzone - Cagnola - Boldinasco</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Villapizzone+-+Cagnola+-+Boldinasco%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/bovisa/">Bovisa</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bovisa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/maciachini-maggiolina/">Maciachini - Maggiolina</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Maciachini+-+Maggiolina%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/monlue-ponte-lambro/">Monluè - Ponte Lambro</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Monlu%C3%A8+-+Ponte+Lambro%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/ortomercato/">Ortomercato</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ortomercato%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/umbria-molise-calvairate/">Umbria - Molise - Calvairate</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Umbria+-+Molise+-+Calvairate%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/bicocca/">Bicocca</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bicocca%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/stazione-centrale/">Stazione Centrale</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Stazione+Centrale%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/barona/">Barona</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Barona%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/bruzzano/">Bruzzano</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bruzzano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/cimiano-rottole-q-re-feltre/">Cimiano - Rottole - Q.re Feltre</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Cimiano+-+Rottole+-+Q.re+Feltre%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/comasina/">Comasina</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Comasina%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/corvetto/">Corvetto</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Corvetto%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/farini/">Farini</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Farini%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/giambellino/">Giambellino</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Giambellino%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/gratosoglio-q-re-missaglia-q-re-terrazze/">Gratosoglio - Q.re Missaglia - Q.re Terrazze</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Gratosoglio+-+Q.re+Missaglia+-+Q.re+Terrazze%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/lorenteggio/">Lorenteggio</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Lorenteggio%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/loreto-casoretto-nolo/">Loreto - Casoretto - Nolo</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Loreto+-+Casoretto+-+Nolo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/maggiore-musocco-certosa/">Maggiore - Musocco - Certosa</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Maggiore+-+Musocco+-+Certosa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/q-re-gallaratese-q-re-san-leonardo-lampugnano/">Q.re Gallaratese - Q.re San Leonardo - Lampugnano</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Q.re+Gallaratese+-+Q.re+San+Leonardo+-+Lampugnano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/quarto-oggiaro-vialba-musocco/">Quarto Oggiaro - Vialba - Musocco</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Quarto+Oggiaro+-+Vialba+-+Musocco%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/rogoredo-santa-giulia/">Rogoredo - Santa Giulia</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Rogoredo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/milano/via-padova/">Via Padova (Padova - Turro - Crescenzago)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Via+Padova%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-</div>
 
 
 <div class="poi-bar" id="poiBar"></div>
@@ -1659,6 +829,862 @@
   </aside>
 </div>
 
+
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit · Best rated overall</span>
+    <span class="nm"><a href="/milano/brera/">Brera</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">3 of the city&#39;s main sights are close enough to walk between.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Brera%2C+Milan%2C+Italy" target="_blank" rel="noopener">Find a place in Brera →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family</span>
+    <span class="nm"><a href="/milano/giardini-porta-venezia/">Giardini Porta Venezia</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Giardini+Pubblici+Indro+Montanelli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Find a place in Giardini Porta Venezia →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">For going out</span>
+    <span class="nm"><a href="/milano/isola/">Isola</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">This is where the city&#39;s evening venues are concentrated.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Isola%2C+Milan%2C+Italy" target="_blank" rel="noopener">Find a place in Isola →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Compare all 88 neighbourhoods</summary>
+  
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        <th aria-sort="none">Evidence</th>
+        <th aria-sort="none" class="num">Sights</th>
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/milano/stazione-centrale/">Stazione Centrale</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Stazione+Centrale%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/barona/">Barona</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Barona%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/bruzzano/">Bruzzano</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bruzzano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/cimiano-rottole-q-re-feltre/">Cimiano - Rottole - Q.re Feltre</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cimiano+-+Rottole+-+Q.re+Feltre%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/comasina/">Comasina</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Comasina%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/corvetto/">Corvetto</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Corvetto%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/farini/">Farini</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Farini%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/giambellino/">Giambellino</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Giambellino%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/gratosoglio-q-re-missaglia-q-re-terrazze/">Gratosoglio - Q.re Missaglia - Q.re Terrazze</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Gratosoglio+-+Q.re+Missaglia+-+Q.re+Terrazze%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/lorenteggio/">Lorenteggio</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Lorenteggio%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/loreto-casoretto-nolo/">Loreto - Casoretto - Nolo</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Loreto+-+Casoretto+-+Nolo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/maggiore-musocco-certosa/">Maggiore - Musocco - Certosa</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Maggiore+-+Musocco+-+Certosa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/q-re-gallaratese-q-re-san-leonardo-lampugnano/">Q.re Gallaratese - Q.re San Leonardo - Lampugnano</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Q.re+Gallaratese+-+Q.re+San+Leonardo+-+Lampugnano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/quarto-oggiaro-vialba-musocco/">Quarto Oggiaro - Vialba - Musocco</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Quarto+Oggiaro+-+Vialba+-+Musocco%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/rogoredo-santa-giulia/">Rogoredo - Santa Giulia</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rogoredo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/via-padova/">Via Padova (Padova - Turro - Crescenzago)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Via+Padova%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/bicocca/">Bicocca</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bicocca%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/bovisa/">Bovisa</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bovisa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/maciachini-maggiolina/">Maciachini - Maggiolina</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Maciachini+-+Maggiolina%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/monlue-ponte-lambro/">Monluè - Ponte Lambro</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Monlu%C3%A8+-+Ponte+Lambro%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/ortomercato/">Ortomercato</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ortomercato%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/umbria-molise-calvairate/">Umbria - Molise - Calvairate</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Umbria+-+Molise+-+Calvairate%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/porta-garibaldi-porta-nuova/">Porta Garibaldi - Porta Nuova</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Nuova%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/parco-sempione/">Parco Sempione</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+Sempione%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/corso-buenos-aires-porta-venezia/">Corso Buenos Aires - Porta Venezia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Corso+Buenos+Aires%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/navigli-sud-conchetta/">Navigli Sud (Conchetta)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Naviglio+Pavese%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/adriano/">Adriano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Adriano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/assiano/">Assiano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Assiano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/baggio-q-re-degli-olmi-q-re-valsesia/">Baggio - Q.re degli Olmi - Q.re Valsesia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Baggio+-+Q.re+degli+Olmi+-+Q.re+Valsesia%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/bande-nere/">Bande Nere</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bande+Nere%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/cascina-merlata/">Cascina Merlata</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cascina+Merlata%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/dergano/">Dergano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Dergano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/forze-armate/">Forze Armate</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Forze+Armate%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/gorla-precotto/">Gorla - Precotto</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Gorla+-+Precotto%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/greco-segnano/">Greco - Segnano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Greco+-+Segnano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/lambrate-ortica/">Lambrate - Ortica</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Lambrate%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/morivione/">Morivione</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Morivione%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/muggiano/">Muggiano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Muggiano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/navigli-porta-ticinese/">Navigli (Porta Ticinese)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Navigli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/niguarda-ca-granda-prato-centenaro-q-re-fulvio-testi/">Niguarda - Ca&#39; Granda - Prato Centenaro - Q.re Fulvio Testi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Niguarda+-+Ca%27+Granda+-+Prato+Centenaro+-+Q.re+Fulvio+Testi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/parco-bosco-in-citta/">Parco Bosco in Città</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+Bosco+in+Citt%C3%A0%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/parco-forlanini-cavriano/">Parco Forlanini - Cavriano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+Forlanini+-+Cavriano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/parco-nord/">Parco Nord</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+Nord%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/parco-dei-navigli/">Parco dei Navigli</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+dei+Navigli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/parco-delle-abbazie/">Parco delle Abbazie</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+delle+Abbazie%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/porta-genova/">Porta Genova</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Genova%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/qt-8/">QT 8</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=QT+8%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/san-siro/">San Siro</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Siro%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/scalo-romana/">Scalo Romana</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Scalo+Romana%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/stadera-chiesa-rossa-q-re-torretta-conca-fallata/">Stadera - Chiesa Rossa - Q.re Torretta - Conca Fallata</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Stadera+-+Chiesa+Rossa+-+Q.re+Torretta+-+Conca+Fallata%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/stadio-ippodromi/">Stadio - Ippodromi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Stadio+-+Ippodromi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/taliedo-morsenchio-q-re-forlanini/">Taliedo - Morsenchio - Q.re Forlanini</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Taliedo+-+Morsenchio+-+Q.re+Forlanini%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/trenno/">Trenno</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Trenno%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/vigentino-q-re-fatima/">Vigentino - Q.re Fatima</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Vigentino+-+Q.re+Fatima%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/villapizzone-cagnola-boldinasco/">Villapizzone - Cagnola - Boldinasco</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villapizzone+-+Cagnola+-+Boldinasco%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/brera/">Brera</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Brera%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/duomo/">Duomo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Duomo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/giardini-porta-venezia/">Giardini Porta Venezia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Giardini+Pubblici+Indro+Montanelli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/isola/">Isola</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Isola%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/magenta-sant-ambrogio/">Magenta - Sant&#39;Ambrogio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/sarpi-chinatown/">Sarpi (Chinatown)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Via+Paolo+Sarpi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/affori/">Affori</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Affori%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/bovisasca/">Bovisasca</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bovisasca%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/cantalupa/">Cantalupa</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cantalupa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/chiaravalle/">Chiaravalle</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chiaravalle%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/citta-studi/">Città Studi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Citt%C3%A0+Studi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/corsica/">Corsica</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Corsica%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/de-angeli-monte-rosa/">De Angeli - Monte Rosa</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=De+Angeli+-+Monte+Rosa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/figino/">Figino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Figino%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/ghisolfa/">Ghisolfa</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ghisolfa%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/guastalla/">Guastalla</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Guastalla%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/moncucco-san-cristoforo/">Moncucco - San Cristoforo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moncucco+-+San+Cristoforo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/pagano/">Pagano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Pagano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/porta-magenta/">Porta Magenta</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Magenta%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/porta-romana/">Porta Romana</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Romana%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/porta-vigentina-porta-lodovica/">Porta Vigentina - Porta Lodovica</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Vigentina+-+Porta+Lodovica%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/portello/">Portello</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Portello%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/quarto-cagnino/">Quarto Cagnino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Quarto+Cagnino%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/quinto-romano/">Quinto Romano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Quinto+Romano%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/quintosole/">Quintosole</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Quintosole%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/ronchetto-delle-rane/">Ronchetto delle Rane</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ronchetto+delle+Rane%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/ronchetto-sul-naviglio-q-re-lodovico-il-moro/">Ronchetto sul Naviglio - Q.re Lodovico il Moro</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ronchetto+sul+Naviglio+-+Q.re+Lodovico+il+Moro%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/roserio/">Roserio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Roserio%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/stephenson/">Stephenson</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Stephenson%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/tibaldi/">Tibaldi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tibaldi%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/tre-torri/">Tre Torri</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tre+Torri%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/triulzo-superiore/">Triulzo Superiore</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Triulzo+Superiore%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/milano/xxii-marzo/">XXII Marzo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=XXII+Marzo%2C+Milan%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -1704,8 +1730,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -1716,7 +1747,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });

@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -490,733 +502,17 @@
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Florence, Italy</nav>
 <h1 class="page-title">Where to stay in Florence</h1>
-<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating.</p>
 <p class="evidence">🟡 Local-source safety assessment · 74 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
 
 
-<p class="hub-answer">For a short stay in Florence, the areas this map rates best are
+
+<p class="hub-answer">
+  For a short stay in Florence:
   <strong>Centro Storico (Duomo, Signoria)</strong>, <strong>Boboli (Giardino di Boboli)</strong> and <strong>Santo Spirito (Oltrarno)</strong>.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  
-  <div class="hub-card">
-    <span class="lab">For a first visit</span>
-    <span class="nm"><a href="/firenze/centro.html">Centro Storico (Duomo, Signoria)</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">6 of the sights on this map are inside it.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Piazza+del+Duomo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Find a place in Centro Storico (Duomo, Signoria) →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">With family · Best rated overall</span>
-    <span class="nm"><a href="/firenze/boboli.html">Boboli (Giardino di Boboli)</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 green space on the map and no nightlife pin.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Giardino+di+Boboli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Find a place in Boboli (Giardino di Boboli) →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">For going out</span>
-    <span class="nm"><a href="/firenze/s-spirito.html">Santo Spirito (Oltrarno)</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 nightlife spot on the map, in an area that does not rate red after dark.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Santo+Spirito%2C+Florence%2C+Italy" target="_blank" rel="noopener">Find a place in Santo Spirito (Oltrarno) →</a>
-  </div>
-  
-</div>
-
-
-
-<div class="hub-table-wrap">
-  <h2>All 74 neighbourhoods compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      
-        <tr>
-          <td><a href="/firenze/boboli.html">Boboli (Giardino di Boboli)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Giardino+di+Boboli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-spirito.html">Santo Spirito (Oltrarno)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santo+Spirito%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-marco.html">San Marco</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Marco%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/aeroporto.html">Aeroporto (Peretola Airport)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Aeroporto+di+Firenze%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/affrico.html">Affrico</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Affrico%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/arcetri.html">Arcetri</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Arcetri%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/bagnese-fiume-greve.html">Bagnese - Fiume Greve</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bagnese%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/bandino.html">Bandino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bandino%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/bellariva.html">Bellariva</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bellariva%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/bellosguardo.html">Bellosguardo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bellosguardo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/calatafimi.html">Calatafimi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Calatafimi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/careggi.html">Careggi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Careggi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/cascine-del-riccio-cinque-vie.html">Cascine del Riccio - Cinque Vie</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Cascine+del+Riccio%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/castello.html">Castello</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Castello%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/donatello.html">Donatello</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Donatello%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/due-strade.html">Due Strade</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Due+Strade%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/europa.html">Europa</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Europa%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/faentina.html">Faentina</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Faentina%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/firenze-nova.html">Firenze Nova</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Firenze+Nova%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/galluzzo.html">Galluzzo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Galluzzo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/gioberti.html">Gioberti</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Gioberti%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/liberta-savonarola.html">Libertà - Savonarola</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Libert%C3%A0+-+Savonarola%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/mantignano-ugnano-sollicciano.html">Mantignano - Ugnano - Sollicciano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ugnano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/massoni.html">Massoni</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Massoni%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/mille.html">Mille</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Mille%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/monteripaldi.html">Monteripaldi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Monteripaldi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/monticelli.html">Monticelli</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Monticelli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/montughi-poggetto.html">Montughi - Poggetto</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Montughi+-+Poggetto%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/novoli-fiat.html">Novoli - Fiat</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/novoli-lippi.html">Novoli - Lippi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/oberdan.html">Oberdan</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Oberdan%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/peretola.html">Peretola</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Peretola%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/petriolo-quaracchi.html">Petriolo - Quaracchi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Quaracchi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/pignone.html">Pignone</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Pignone%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/piombino-etruria.html">Piombino - Etruria</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Piombino+-+Etruria%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/poggio-imperiale.html">Poggio Imperiale</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Poggio+Imperiale%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/ponte-a-ema.html">Ponte a Ema</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ponte+a+Ema%2C+Bagno+a+Ripoli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/ponte-di-mezzo.html">Ponte di Mezzo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ponte+di+Mezzo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-bartolo-a-cintoia.html">San Bartolo a Cintoia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Bartolo+a+Cintoia%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-gervasio.html">San Gervasio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Gervasio%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/senese.html">Senese</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Senese%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/serpiolle.html">Serpiolle</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Serpiolle%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/settignano.html">Settignano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Settignano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/soffiano.html">Soffiano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Soffiano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/torre-del-gallo.html">Torre del Gallo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Torre+del+Gallo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/trespiano.html">Trespiano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Trespiano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/varlungo-rovezzano.html">Varlungo - Rovezzano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Varlungo+-+Rovezzano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/viesseux.html">Viesseux</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Viesseux%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-croce.html">Santa Croce</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Croce%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-frediano.html">San Frediano (Oltrarno)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Frediano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/brozzi-le-piagge.html">Brozzi - Le Piagge</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Brozzi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/coverciano.html">Coverciano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coverciano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/cure.html">Cure</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Cure%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/gavinana.html">Gavinana</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Gavinana%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/isolotto-nord.html">Isolotto Nord</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/isolotto-sud.html">Isolotto Sud</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/legnaia.html">Legnaia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Legnaia%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/novoli-baracca-est.html">Novoli - Baracca Est</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/novoli-baracca-ovest.html">Novoli - Baracca Ovest</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/puccini-ponte-alle-mosse.html">Puccini - Ponte alle Mosse</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Puccini+-+Ponte+alle+Mosse%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/sorgane-cinque-vie.html">Sorgane - Cinque Vie</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Sorgane%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/torregalli.html">Torregalli</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Torregalli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/centro.html">Centro Storico (Duomo, Signoria)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">6</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Piazza+del+Duomo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/michelangelo.html">Michelangelo (Piazzale Michelangelo)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">3</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Piazzale+Michelangelo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/leopoldo.html">Leopoldo</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Leopoldo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/liberta-fortezza.html">Libertà - Fortezza</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Libert%C3%A0+-+Fortezza%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/rifredi.html">Rifredi</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-salvi.html">San Salvi</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Salvi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-ambrogio.html">Sant&#39;Ambrogio</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Croce%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/mercato-centrale.html">Mercato Centrale (San Lorenzo)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Lorenzo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/cascine.html">Cascine (Parco delle Cascine)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+delle+Cascine%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/campo-di-marte.html">Campo di Marte (stadium, station)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Campo+di+Marte%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/s-jacopino.html">San Jacopino</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Jacopino%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/firenze/stazione-il-prato.html">Stazione - Il Prato (Santa Maria Novella)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Maria+Novella%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-</div>
 
 
 <div class="poi-bar" id="poiBar"></div>
@@ -1455,6 +751,736 @@
   </aside>
 </div>
 
+
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/firenze/centro.html">Centro Storico (Duomo, Signoria)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">6 of the city&#39;s main sights are close enough to walk between.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Piazza+del+Duomo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Find a place in Centro Storico (Duomo, Signoria) →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family · Best rated overall</span>
+    <span class="nm"><a href="/firenze/boboli.html">Boboli (Giardino di Boboli)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Giardino+di+Boboli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Find a place in Boboli (Giardino di Boboli) →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">For going out</span>
+    <span class="nm"><a href="/firenze/s-spirito.html">Santo Spirito (Oltrarno)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">This is where the city&#39;s evening venues are concentrated.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Santo+Spirito%2C+Florence%2C+Italy" target="_blank" rel="noopener">Find a place in Santo Spirito (Oltrarno) →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Compare all 74 neighbourhoods</summary>
+  
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        <th aria-sort="none">Evidence</th>
+        <th aria-sort="none" class="num">Sights</th>
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/firenze/mercato-centrale.html">Mercato Centrale (San Lorenzo)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Lorenzo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/cascine.html">Cascine (Parco delle Cascine)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+delle+Cascine%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/campo-di-marte.html">Campo di Marte (stadium, station)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Campo+di+Marte%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-jacopino.html">San Jacopino</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Jacopino%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/stazione-il-prato.html">Stazione - Il Prato (Santa Maria Novella)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Maria+Novella%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/centro.html">Centro Storico (Duomo, Signoria)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">6</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Piazza+del+Duomo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/michelangelo.html">Michelangelo (Piazzale Michelangelo)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Piazzale+Michelangelo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/leopoldo.html">Leopoldo</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Leopoldo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/liberta-fortezza.html">Libertà - Fortezza</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Libert%C3%A0+-+Fortezza%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/rifredi.html">Rifredi</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-salvi.html">San Salvi</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Salvi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-ambrogio.html">Sant&#39;Ambrogio</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Croce%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-croce.html">Santa Croce</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Croce%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-frediano.html">San Frediano (Oltrarno)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Frediano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/brozzi-le-piagge.html">Brozzi - Le Piagge</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Brozzi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/coverciano.html">Coverciano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coverciano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/cure.html">Cure</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cure%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/gavinana.html">Gavinana</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Gavinana%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/isolotto-nord.html">Isolotto Nord</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/isolotto-sud.html">Isolotto Sud</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/legnaia.html">Legnaia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Legnaia%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/novoli-baracca-est.html">Novoli - Baracca Est</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/novoli-baracca-ovest.html">Novoli - Baracca Ovest</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/puccini-ponte-alle-mosse.html">Puccini - Ponte alle Mosse</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Puccini+-+Ponte+alle+Mosse%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/sorgane-cinque-vie.html">Sorgane - Cinque Vie</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Sorgane%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/torregalli.html">Torregalli</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Torregalli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/boboli.html">Boboli (Giardino di Boboli)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Giardino+di+Boboli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-spirito.html">Santo Spirito (Oltrarno)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santo+Spirito%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-marco.html">San Marco</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Marco%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/aeroporto.html">Aeroporto (Peretola Airport)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Aeroporto+di+Firenze%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/affrico.html">Affrico</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Affrico%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/arcetri.html">Arcetri</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arcetri%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/bagnese-fiume-greve.html">Bagnese - Fiume Greve</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bagnese%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/bandino.html">Bandino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bandino%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/bellariva.html">Bellariva</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bellariva%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/bellosguardo.html">Bellosguardo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bellosguardo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/calatafimi.html">Calatafimi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Calatafimi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/careggi.html">Careggi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Careggi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/cascine-del-riccio-cinque-vie.html">Cascine del Riccio - Cinque Vie</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cascine+del+Riccio%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/castello.html">Castello</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Castello%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/donatello.html">Donatello</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Donatello%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/due-strade.html">Due Strade</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Due+Strade%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/europa.html">Europa</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Europa%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/faentina.html">Faentina</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Faentina%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/firenze-nova.html">Firenze Nova</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Firenze+Nova%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/galluzzo.html">Galluzzo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Galluzzo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/gioberti.html">Gioberti</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Gioberti%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/liberta-savonarola.html">Libertà - Savonarola</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Libert%C3%A0+-+Savonarola%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/mantignano-ugnano-sollicciano.html">Mantignano - Ugnano - Sollicciano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ugnano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/massoni.html">Massoni</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Massoni%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/mille.html">Mille</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Mille%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/monteripaldi.html">Monteripaldi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Monteripaldi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/monticelli.html">Monticelli</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Monticelli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/montughi-poggetto.html">Montughi - Poggetto</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Montughi+-+Poggetto%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/novoli-fiat.html">Novoli - Fiat</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/novoli-lippi.html">Novoli - Lippi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rifredi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/oberdan.html">Oberdan</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Oberdan%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/peretola.html">Peretola</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Peretola%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/petriolo-quaracchi.html">Petriolo - Quaracchi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Quaracchi%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/pignone.html">Pignone</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Pignone%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/piombino-etruria.html">Piombino - Etruria</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Piombino+-+Etruria%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/poggio-imperiale.html">Poggio Imperiale</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Poggio+Imperiale%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/ponte-a-ema.html">Ponte a Ema</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ponte+a+Ema%2C+Bagno+a+Ripoli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/ponte-di-mezzo.html">Ponte di Mezzo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ponte+di+Mezzo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-bartolo-a-cintoia.html">San Bartolo a Cintoia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Bartolo+a+Cintoia%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/s-gervasio.html">San Gervasio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Gervasio%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/senese.html">Senese</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Senese%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/serpiolle.html">Serpiolle</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Serpiolle%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/settignano.html">Settignano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Settignano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/soffiano.html">Soffiano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Soffiano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/torre-del-gallo.html">Torre del Gallo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Torre+del+Gallo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/trespiano.html">Trespiano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Trespiano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/varlungo-rovezzano.html">Varlungo - Rovezzano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Varlungo+-+Rovezzano%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/firenze/viesseux.html">Viesseux</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Viesseux%2C+Florence%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -1500,8 +1526,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -1512,7 +1543,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });

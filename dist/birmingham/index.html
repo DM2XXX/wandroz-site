@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -490,699 +502,17 @@
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Birmingham, United Kingdom</nav>
 <h1 class="page-title">Where to stay in Birmingham</h1>
-<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating.</p>
 <p class="evidence">🟢 Official crime data · West Midlands Police, data.police.uk <a href="/methodology.html">Methodology &rarr;</a></p>
 
 
-<p class="hub-answer">For a short stay in Birmingham, the areas this map rates best are
+
+<p class="hub-answer">
+  For a short stay in Birmingham:
   <strong>Ladywood</strong>, <strong>Sutton Vesey</strong>, <strong>Moseley</strong> and <strong>Allens Cross</strong>.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  
-  <div class="hub-card">
-    <span class="lab">For a first visit</span>
-    <span class="nm"><a href="/birmingham/ladywood.html">Ladywood</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">7 of the sights on this map are inside it.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Ladywood →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">With family</span>
-    <span class="nm"><a href="/birmingham/sutton-vesey.html">Sutton Vesey</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 green space on the map and no nightlife pin.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Sutton Vesey →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">For going out</span>
-    <span class="nm"><a href="/birmingham/moseley.html">Moseley</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 nightlife spot on the map, in an area that does not rate red after dark.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Moseley →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">Best rated overall</span>
-    <span class="nm"><a href="/birmingham/allens-cross.html">Allens Cross</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">The best day and night pair in the city.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Allens Cross →</a>
-  </div>
-  
-</div>
-
-
-
-<div class="hub-table-wrap">
-  <h2>All 69 wards compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      
-        <tr>
-          <td><a href="/birmingham/allens-cross.html">Allens Cross</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/alum-rock.html">Alum Rock</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/billesley.html">Billesley</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/druids-heath-monyhull.html">Druids Heath &amp; Monyhull</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/hall-green-south.html">Hall Green South</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/handsworth-wood.html">Handsworth Wood</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/oscott.html">Oscott</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/quinton.html">Quinton</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/small-heath.html">Small Heath</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sutton-four-oaks.html">Sutton Four Oaks</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sutton-mere-green.html">Sutton Mere Green</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sutton-reddicap.html">Sutton Reddicap</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sutton-roughley.html">Sutton Roughley</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sutton-walmley-minworth.html">Sutton Walmley &amp; Minworth</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/bournville-cotteridge.html">Bournville &amp; Cotteridge</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/hall-green-north.html">Hall Green North</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sutton-vesey.html">Sutton Vesey</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/bournbrook-selly-park.html">Bournbrook &amp; Selly Park</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/harborne.html">Harborne</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/northfield.html">Northfield</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/stirchley.html">Stirchley</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sutton-wylde-green.html">Sutton Wylde Green</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/king-s-norton-south.html">King&#39;s Norton South</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/longbridge-west-heath.html">Longbridge &amp; West Heath</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/rubery-rednal.html">Rubery &amp; Rednal</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sparkhill.html">Sparkhill</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/ward-end.html">Ward End</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/yardley-east.html">Yardley East</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/yardley-west-stechford.html">Yardley West &amp; Stechford</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/aston.html">Aston</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/moseley.html">Moseley</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/nechells.html">Nechells</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/acocks-green.html">Acocks Green</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/balsall-heath-west.html">Balsall Heath West</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/bartley-green.html">Bartley Green</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/brandwood-king-s-heath.html">Brandwood &amp; King&#39;s Heath</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/bromford-hodge-hill.html">Bromford &amp; Hodge Hill</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/castle-vale.html">Castle Vale</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/erdington.html">Erdington</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/frankley-great-park.html">Frankley Great Park</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/garretts-green.html">Garretts Green</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/glebe-farm-tile-cross.html">Glebe Farm &amp; Tile Cross</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/highter-s-heath.html">Highter&#39;s Heath</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/holyhead.html">Holyhead</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/king-s-norton-north.html">King&#39;s Norton North</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/kingstanding.html">Kingstanding</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/lozells.html">Lozells</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/north-edgbaston.html">North Edgbaston</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/perry-common.html">Perry Common</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/pype-hayes.html">Pype Hayes</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/shard-end.html">Shard End</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/south-yardley.html">South Yardley</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sparkbrook-balsall-heath-east.html">Sparkbrook &amp; Balsall Heath East</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/stockland-green.html">Stockland Green</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sutton-trinity.html">Sutton Trinity</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/weoley-selly-oak.html">Weoley &amp; Selly Oak</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/heartlands.html">Heartlands</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/edgbaston.html">Edgbaston</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">4</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/bordesley-green.html">Bordesley Green</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/perry-barr.html">Perry Barr</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/sheldon.html">Sheldon</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/tyseley-hay-mills.html">Tyseley &amp; Hay Mills</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/birchfield.html">Birchfield</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/newtown.html">Newtown</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/ladywood.html">Ladywood</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">8</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/bordesley-highgate.html">Bordesley &amp; Highgate</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">4</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/soho-jewellery-quarter.html">Soho &amp; Jewellery Quarter</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/gravelly-hill.html">Gravelly Hill</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/birmingham/handsworth.html">Handsworth</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-</div>
 
 
 <div class="poi-bar" id="poiBar"></div>
@@ -1360,6 +690,702 @@
   </aside>
 </div>
 
+
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/birmingham/ladywood.html">Ladywood</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">7 of the city&#39;s main sights are close enough to walk between.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Ladywood →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family</span>
+    <span class="nm"><a href="/birmingham/sutton-vesey.html">Sutton Vesey</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Sutton Vesey →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">For going out</span>
+    <span class="nm"><a href="/birmingham/moseley.html">Moseley</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">This is where the city&#39;s evening venues are concentrated.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Moseley →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">Best rated overall</span>
+    <span class="nm"><a href="/birmingham/allens-cross.html">Allens Cross</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">Nowhere in the city is rated better, by day or after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Allens Cross →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Compare all 69 wards</summary>
+  
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        
+        <th aria-sort="none" class="num">Sights</th>
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/birmingham/ladywood.html">Ladywood</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">8</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/bordesley-highgate.html">Bordesley &amp; Highgate</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">4</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/soho-jewellery-quarter.html">Soho &amp; Jewellery Quarter</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/gravelly-hill.html">Gravelly Hill</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/handsworth.html">Handsworth</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/birchfield.html">Birchfield</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/newtown.html">Newtown</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/edgbaston.html">Edgbaston</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num">4</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/bordesley-green.html">Bordesley Green</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/perry-barr.html">Perry Barr</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sheldon.html">Sheldon</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/tyseley-hay-mills.html">Tyseley &amp; Hay Mills</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/heartlands.html">Heartlands</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/king-s-norton-south.html">King&#39;s Norton South</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/longbridge-west-heath.html">Longbridge &amp; West Heath</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/rubery-rednal.html">Rubery &amp; Rednal</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sparkhill.html">Sparkhill</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/ward-end.html">Ward End</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/yardley-east.html">Yardley East</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/yardley-west-stechford.html">Yardley West &amp; Stechford</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/bournville-cotteridge.html">Bournville &amp; Cotteridge</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/hall-green-north.html">Hall Green North</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sutton-vesey.html">Sutton Vesey</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/bournbrook-selly-park.html">Bournbrook &amp; Selly Park</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/harborne.html">Harborne</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/northfield.html">Northfield</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/stirchley.html">Stirchley</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sutton-wylde-green.html">Sutton Wylde Green</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/allens-cross.html">Allens Cross</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/alum-rock.html">Alum Rock</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/billesley.html">Billesley</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/druids-heath-monyhull.html">Druids Heath &amp; Monyhull</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/hall-green-south.html">Hall Green South</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/handsworth-wood.html">Handsworth Wood</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/oscott.html">Oscott</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/quinton.html">Quinton</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/small-heath.html">Small Heath</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sutton-four-oaks.html">Sutton Four Oaks</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sutton-mere-green.html">Sutton Mere Green</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sutton-reddicap.html">Sutton Reddicap</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sutton-roughley.html">Sutton Roughley</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sutton-walmley-minworth.html">Sutton Walmley &amp; Minworth</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/aston.html">Aston</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/moseley.html">Moseley</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/nechells.html">Nechells</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/acocks-green.html">Acocks Green</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/balsall-heath-west.html">Balsall Heath West</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/bartley-green.html">Bartley Green</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/brandwood-king-s-heath.html">Brandwood &amp; King&#39;s Heath</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/bromford-hodge-hill.html">Bromford &amp; Hodge Hill</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/castle-vale.html">Castle Vale</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/erdington.html">Erdington</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/frankley-great-park.html">Frankley Great Park</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/garretts-green.html">Garretts Green</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/glebe-farm-tile-cross.html">Glebe Farm &amp; Tile Cross</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/highter-s-heath.html">Highter&#39;s Heath</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/holyhead.html">Holyhead</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/king-s-norton-north.html">King&#39;s Norton North</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/kingstanding.html">Kingstanding</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/lozells.html">Lozells</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/north-edgbaston.html">North Edgbaston</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/perry-common.html">Perry Common</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/pype-hayes.html">Pype Hayes</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/shard-end.html">Shard End</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/south-yardley.html">South Yardley</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sparkbrook-balsall-heath-east.html">Sparkbrook &amp; Balsall Heath East</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/stockland-green.html">Stockland Green</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/sutton-trinity.html">Sutton Trinity</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/birmingham/weoley-selly-oak.html">Weoley &amp; Selly Oak</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -1405,8 +1431,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -1417,7 +1448,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });

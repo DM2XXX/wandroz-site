@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -490,229 +502,17 @@
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Coventry, United Kingdom</nav>
 <h1 class="page-title">Where to stay in Coventry</h1>
-<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating.</p>
 <p class="evidence">🟢 Official crime data · West Midlands Police, data.police.uk <a href="/methodology.html">Methodology &rarr;</a></p>
 
 
-<p class="hub-answer">For a short stay in Coventry, the areas this map rates best are
+
+<p class="hub-answer">
+  For a short stay in Coventry:
   <strong>St Michael&#39;s</strong>, <strong>Earlsdon</strong> and <strong>Wainbody</strong>.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  
-  <div class="hub-card">
-    <span class="lab">For a first visit</span>
-    <span class="nm"><a href="/coventry/st-michael-s.html">St Michael&#39;s</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">5 of the sights on this map are inside it.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in St Michael&#39;s →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">With family</span>
-    <span class="nm"><a href="/coventry/earlsdon.html">Earlsdon</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 green space on the map and no nightlife pin.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Earlsdon →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">Best rated overall</span>
-    <span class="nm"><a href="/coventry/wainbody.html">Wainbody</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">The best day and night pair in the city.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Wainbody →</a>
-  </div>
-  
-</div>
-
-
-
-<div class="hub-table-wrap">
-  <h2>All 18 wards compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      
-        <tr>
-          <td><a href="/coventry/wainbody.html">Wainbody</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/whoberley.html">Whoberley</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/earlsdon.html">Earlsdon</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/bablake.html">Bablake</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/cheylesmore.html">Cheylesmore</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/lower-stoke.html">Lower Stoke</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/wyken.html">Wyken</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/holbrook.html">Holbrook</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/westwood.html">Westwood</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/woodlands.html">Woodlands</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/longford.html">Longford</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/binley-and-willenhall.html">Binley and Willenhall</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/foleshill.html">Foleshill</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/radford.html">Radford</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/sherbourne.html">Sherbourne</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/upper-stoke.html">Upper Stoke</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/henley.html">Henley</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/coventry/st-michael-s.html">St Michael&#39;s</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">6</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-</div>
 
 
 <div class="poi-bar" id="poiBar"></div>
@@ -788,6 +588,232 @@
   </aside>
 </div>
 
+
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/coventry/st-michael-s.html">St Michael&#39;s</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">5 of the city&#39;s main sights are close enough to walk between.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in St Michael&#39;s →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family</span>
+    <span class="nm"><a href="/coventry/earlsdon.html">Earlsdon</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Earlsdon →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">Best rated overall</span>
+    <span class="nm"><a href="/coventry/wainbody.html">Wainbody</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">Nowhere in the city is rated better, by day or after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Wainbody →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Compare all 18 wards</summary>
+  
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        
+        <th aria-sort="none" class="num">Sights</th>
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/coventry/st-michael-s.html">St Michael&#39;s</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">6</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/henley.html">Henley</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/holbrook.html">Holbrook</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/westwood.html">Westwood</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/woodlands.html">Woodlands</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/earlsdon.html">Earlsdon</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/bablake.html">Bablake</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/cheylesmore.html">Cheylesmore</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/lower-stoke.html">Lower Stoke</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/wyken.html">Wyken</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/wainbody.html">Wainbody</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/whoberley.html">Whoberley</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/longford.html">Longford</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/binley-and-willenhall.html">Binley and Willenhall</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/foleshill.html">Foleshill</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/radford.html">Radford</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/sherbourne.html">Sherbourne</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/coventry/upper-stoke.html">Upper Stoke</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Coventry%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -833,8 +859,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -845,7 +876,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });

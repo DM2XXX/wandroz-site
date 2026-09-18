@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -490,290 +502,17 @@
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Newcastle upon Tyne, United Kingdom</nav>
 <h1 class="page-title">Where to stay in Newcastle upon Tyne</h1>
-<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating.</p>
 <p class="evidence">🟢 Official crime data · Northumbria Police, data.police.uk <a href="/methodology.html">Methodology &rarr;</a></p>
 
 
-<p class="hub-answer">For a short stay in Newcastle upon Tyne, the areas this map rates best are
+
+<p class="hub-answer">
+  For a short stay in Newcastle upon Tyne:
   <strong>Monument</strong> and <strong>Dene &amp; South Gosforth</strong>.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  
-  <div class="hub-card">
-    <span class="lab">For a first visit</span>
-    <span class="nm"><a href="/newcastle/monument.html">Monument</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">7 of the sights on this map are inside it.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Monument →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">With family · Best rated overall</span>
-    <span class="nm"><a href="/newcastle/dene-south-gosforth.html">Dene &amp; South Gosforth</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 green space on the map and no nightlife pin.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Dene &amp; South Gosforth →</a>
-  </div>
-  
-</div>
-
-
-
-<div class="hub-table-wrap">
-  <h2>All 26 wards compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      
-        <tr>
-          <td><a href="/newcastle/dene-south-gosforth.html">Dene &amp; South Gosforth</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/castle.html">Castle</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/chapel.html">Chapel</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/gosforth.html">Gosforth</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/manor-park.html">Manor Park</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/parklands.html">Parklands</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/lemington.html">Lemington</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/north-jesmond.html">North Jesmond</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/south-jesmond.html">South Jesmond</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/west-fenham.html">West Fenham</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/arthur-s-hill.html">Arthur&#39;s Hill</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/denton-westerhope.html">Denton &amp; Westerhope</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/fawdon-west-gosforth.html">Fawdon &amp; West Gosforth</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/kenton.html">Kenton</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/walkergate.html">Walkergate</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/wingrove.html">Wingrove</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/heaton.html">Heaton</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/ouseburn.html">Ouseburn</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/benwell-scotswood.html">Benwell &amp; Scotswood</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/blakelaw.html">Blakelaw</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/callerton-throckley.html">Callerton &amp; Throckley</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/kingston-park-south-newbiggin-hall.html">Kingston Park South &amp; Newbiggin Hall</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/walker.html">Walker</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/elswick.html">Elswick</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/monument.html">Monument</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">9</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/newcastle/byker.html">Byker</a></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-</div>
 
 
 <div class="poi-bar" id="poiBar"></div>
@@ -865,6 +604,293 @@
   </aside>
 </div>
 
+
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/newcastle/monument.html">Monument</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">7 of the city&#39;s main sights are close enough to walk between.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Monument →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family · Best rated overall</span>
+    <span class="nm"><a href="/newcastle/dene-south-gosforth.html">Dene &amp; South Gosforth</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Dene &amp; South Gosforth →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Compare all 26 wards</summary>
+  
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        
+        <th aria-sort="none" class="num">Sights</th>
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/newcastle/monument.html">Monument</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">9</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/byker.html">Byker</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/elswick.html">Elswick</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/walker.html">Walker</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/heaton.html">Heaton</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/ouseburn.html">Ouseburn</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/benwell-scotswood.html">Benwell &amp; Scotswood</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/blakelaw.html">Blakelaw</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/callerton-throckley.html">Callerton &amp; Throckley</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/kingston-park-south-newbiggin-hall.html">Kingston Park South &amp; Newbiggin Hall</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/lemington.html">Lemington</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/north-jesmond.html">North Jesmond</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/south-jesmond.html">South Jesmond</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/west-fenham.html">West Fenham</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/arthur-s-hill.html">Arthur&#39;s Hill</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/denton-westerhope.html">Denton &amp; Westerhope</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/fawdon-west-gosforth.html">Fawdon &amp; West Gosforth</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/kenton.html">Kenton</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/walkergate.html">Walkergate</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/wingrove.html">Wingrove</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/dene-south-gosforth.html">Dene &amp; South Gosforth</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/castle.html">Castle</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/chapel.html">Chapel</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/gosforth.html">Gosforth</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/manor-park.html">Manor Park</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/newcastle/parklands.html">Parklands</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -910,8 +936,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -922,7 +953,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });

@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -405,53 +417,25 @@
 <p class="lead">{{ page_lead }}</p>
 {% if data_note %}<p class="evidence">{{ data_note }} <a href="/methodology.html">Methodology &rarr;</a></p>{% endif %}
 
+
 {% if hub and hub.cards %}
 <p class="hub-answer">
   {%- set names = hub.cards | map(attribute='zone') | map(attribute='name') | list -%}
-  For a short stay in {{ city_label.split(',')[0] }}, the areas this map rates best are
+  {# "the areas this map rates best" era falso in 32 citta' su 62, e la tabella
+     che ora si puo' aprire qui sotto lo dimostra riga per riga: la card "For a
+     first visit" sceglie l'area con piu' cose da vedere, e in una citta'
+     europea quella e' il centro storico, che concentra anche i furti — Praga 1,
+     Altstadt a Monaco, Stare Miasto a Cracovia, Kingsmead a Bath sono tutte
+     rosse. La scelta puo' anche restare quella: il centro e' davvero dove
+     conviene stare a una prima visita. Quello che non puo' restare e' la frase
+     che dice il contrario di quello che i badge accanto mostrano.
+     "the sights below" e "the reasoning is on the card" descrivevano invece la
+     pagina com'era prima del riordino. #}
+  For a short stay in {{ city_label.split(',')[0] }}:
   {% for n in names %}<strong>{{ n }}</strong>{% if not loop.last %}{{ ", " if not loop.revindex0 == 1 else " and " }}{% endif %}{% endfor %}.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  {% for c in hub.cards %}
-  <div class="hub-card">
-    <span class="lab">{{ c.labels | join(" · ") }}</span>
-    <span class="nm"><a href="{{ c.url }}">{{ c.zone.name }}</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge {{ c.zone.day }}">{{ c.day_label }}</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge {{ c.zone.night }}">{{ c.night_label }}</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">{{ c.why | capitalize }}.</span>
-    <a class="bk" href="{{ c.book }}" target="_blank" rel="noopener">Find a place in {{ c.zone.name }} →</a>
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
-
-{% if hub and hub.rows %}
-<div class="hub-table-wrap">
-  <h2>All {{ hub.rows | length }} {{ hub_local }} compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      {% for r in hub.rows %}
-        <tr>
-          <td><a href="{{ r.url }}">{{ r.name }}</a></td>
-          <td data-sort="{{ {'green':0,'yellow':1,'red':2,'grey':3}[r.day] }}"><span class="badge {{ r.day }}">{{ r.day_label }}</span></td>
-          <td data-sort="{{ {'green':0,'yellow':1,'red':2,'grey':3}[r.night] }}"><span class="badge {{ r.night }}">{{ r.night_label }}</span></td>
-          <td class="dash">{{ "no area-specific findings" if r.evidence == "no_findings" else "sourced" }}</td>
-          <td class="num">{{ r.sights }}</td>
-          <td><a href="{{ r.book }}" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
-</div>
 {% endif %}
 
 {% if pois %}<div class="poi-bar" id="poiBar"></div>{% endif %}
@@ -521,6 +505,65 @@
   </aside>
 </div>
 
+{% if hub and hub.cards %}
+<div class="hub-cards">
+  {% for c in hub.cards %}
+  <div class="hub-card">
+    <span class="lab">{{ c.labels | join(" · ") }}</span>
+    <span class="nm"><a href="{{ c.url }}">{{ c.zone.name }}</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge {{ c.zone.day }}">{{ c.day_label }}</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge {{ c.zone.night }}">{{ c.night_label }}</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">{{ c.why | capitalize }}.</span>
+    <a class="bk" href="{{ c.book }}" target="_blank" rel="noopener">Find a place in {{ c.zone.name }} →</a>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+
+
+{# La tabella sta in fondo e chiusa. Trentaquattro righe, quasi tutte uguali,
+   erano la prima cosa che si vedeva aprendo la pagina, e la mappa finiva sotto
+   di loro: la tabella serve a chi sta gia' confrontando, non a chi arriva.
+   <details> nativo, senza JavaScript: se non lo apri, non occupa niente. #}
+{% if hub and hub.rows %}
+<details class="hub-table-wrap">
+  <summary>Compare all {{ hub.rows | length }} {{ hub_local }}</summary>
+  {# L'ordine di default non e' per valutazione, ed e' una scelta: a Zurigo 27
+     aree su 34 condividono lo stesso giudizio, quindi ordinare per valutazione
+     produce quattordici righe identiche di fila e seppellisce l'unica che si
+     discosta. Qui vengono prima le combinazioni piu' rare, cioe' le aree su cui
+     la tabella ha davvero qualcosa da dire. Le intestazioni restano cliccabili
+     per chi vuole l'ordine per valutazione. #}
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        {% if hub.show_evidence %}<th aria-sort="none">Evidence</th>{% endif %}
+        {% if hub.show_sights %}<th aria-sort="none" class="num">Sights</th>{% endif %}
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      {% for r in hub.rows %}
+        <tr>
+          <td><a href="{{ r.url }}">{{ r.name }}</a></td>
+          <td data-sort="{{ {'green':0,'yellow':1,'red':2,'grey':3}[r.day] }}"><span class="badge {{ r.day }}">{{ r.day_label }}</span></td>
+          <td data-sort="{{ {'green':0,'yellow':1,'red':2,'grey':3}[r.night] }}"><span class="badge {{ r.night }}">{{ r.night_label }}</span></td>
+          {% if hub.show_evidence %}<td class="dash">{{ "no area-specific findings" if r.evidence == "no_findings" else "sourced" }}</td>{% endif %}
+          {% if hub.show_sights %}<td class="num">{{ r.sights if r.sights else "" }}</td>{% endif %}
+          <td><a href="{{ r.book }}" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</details>
+{% endif %}
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -566,8 +609,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -578,7 +626,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });

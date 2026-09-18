@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -490,1473 +502,17 @@
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Rome, Italy</nav>
 <h1 class="page-title">Where to stay in Rome</h1>
-<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating.</p>
 <p class="evidence">🟡 Local-source safety assessment · 155 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
 
 
-<p class="hub-answer">For a short stay in Rome, the areas this map rates best are
+
+<p class="hub-answer">
+  For a short stay in Rome:
   <strong>Centro Storico</strong>, <strong>Nomentano</strong>, <strong>Trastevere</strong> and <strong>Acilia Nord</strong>.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  
-  <div class="hub-card">
-    <span class="lab">For a first visit</span>
-    <span class="nm"><a href="/roma/centro-storico.html">Centro Storico</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">6 of the sights on this map are inside it.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Centro+Storico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Centro Storico →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">With family</span>
-    <span class="nm"><a href="/roma/nomentano.html">Nomentano</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 green space on the map and no nightlife pin.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Nomentano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Nomentano →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">For going out</span>
-    <span class="nm"><a href="/roma/trastevere.html">Trastevere</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 nightlife spot on the map, in an area that does not rate red after dark.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Trastevere%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Trastevere →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">Best rated overall</span>
-    <span class="nm"><a href="/roma/acilia-nord.html">Acilia Nord</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">The best day and night pair in the city.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Acilia%2C+Italy" target="_blank" rel="noopener">Find a place in Acilia Nord →</a>
-  </div>
-  
-</div>
-
-
-
-<div class="hub-table-wrap">
-  <h2>All 155 neighbourhoods compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      
-        <tr>
-          <td><a href="/roma/acilia-nord.html">Acilia Nord</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Acilia%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/acilia-sud.html">Acilia Sud</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Acilia%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/acqua-vergine.html">Acqua Vergine</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Acqua+Vergine%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/acquatraversa.html">Acquatraversa</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Acquatraversa%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/aeropoprto-dell-urbe.html">Aeropoprto dell&#39; Urbe</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Aeroporto+dell%27Urbe%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/appia-antica-nord.html">Appia Antica Nord</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Appia+Antica+Nord%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/appia-antica-sud.html">Appia Antica Sud</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Appia+Antica+Sud%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/aurelio-nord.html">Aurelio Nord</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Aurelio+Nord%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/aventino.html">Aventino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Aventino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/barcaccia.html">Barcaccia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Barcaccia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/buon-pastore.html">Buon Pastore</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Buon+Pastore%2C+Gianicolense%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/casetta-mistica.html">Casetta Mistica</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Casetta+Mistica%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/castel-porziano.html">Castel Porziano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Castel+Porziano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/castelluccia.html">Castelluccia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Castelluccia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/centro-direzionale-centocelle.html">Centro Direzionale Centocelle</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Centro+Direzionale+Centocelle%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/decima.html">Decima</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Decima%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/della-vittoria.html">Della Vittoria</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Della+Vittoria%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/eroi.html">Eroi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Eroi%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/fogaccia.html">Fogaccia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Fogaccia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/grottaperfetta.html">Grottaperfetta</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Grottaperfetta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/latino.html">Latino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Via+Latina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/lucrezia-romana.html">Lucrezia Romana</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Lucrezia+Romana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/lunghezza.html">Lunghezza</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Lunghezza%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/malafede.html">Malafede</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Malafede%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/martignano.html">Martignano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Martignano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/monte-sacro-alto.html">Monte Sacro Alto</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Monte+Sacro+Alto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/omo.html">Omo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Omo%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/ottavia.html">Ottavia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ottavia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/palocco.html">Palocco</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+Palocco%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/pantano-di-grano.html">Pantano di Grano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Pantano+di+Grano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/pignatelli.html">Pignatelli</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Appio-Pignatelli%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/pineto.html">Pineto</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+di+Pineto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/porta-medaglia.html">Porta Medaglia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Medaglia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/s-alessandro.html">S. Alessandro</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Sant%27Alessandro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/s-maria-della-pieta.html">S. Maria della Pietà</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Maria+della+Piet%C3%A0%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/s-maria-di-galeria.html">S. Maria di Galeria</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Maria+di+Galeria%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/s-vittorino.html">S. Vittorino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Vittorino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/sacco-pastore.html">Sacco Pastore</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Sacco+Pastore%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/salario.html">Salario</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Salario%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tor-fiscale.html">Tor Fiscale</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Fiscale%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tor-s-giovanni.html">Tor S. Giovanni</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+San+Giovanni%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tre-fontane.html">Tre Fontane</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tre+Fontane%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/villaggio-giuliano.html">Villaggio Giuliano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Villaggio+Giuliano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/prati.html">Prati</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Prati%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/universita.html">Università</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Sapienza+University%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/centro-storico.html">Centro Storico</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">6</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Centro+Storico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/trastevere.html">Trastevere</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Trastevere%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/nomentano.html">Nomentano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Nomentano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/villa-ada.html">Villa Ada</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+Ada%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/villa-borghese.html">Villa Borghese</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+Borghese%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/alessandrina.html">Alessandrina</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Alessandrina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/appio.html">Appio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Appio+Latino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/appio-claudio.html">Appio-Claudio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Appio-Claudio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/aurelio-sud.html">Aurelio Sud</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Aurelio+Sud%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/boccea.html">Boccea</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Boccea%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/casal-de-pazzi.html">Casal de&#39; Pazzi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+de%27+Pazzi%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/casalotti-di-boccea.html">Casalotti di Boccea</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Casalotti%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/casilino.html">Casilino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Casilino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/castel-fusano.html">Castel Fusano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Castel+Fusano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/castel-romano.html">Castel Romano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Castel+Romano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/cecchignola.html">Cecchignola</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Cecchignola%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/celio.html">Celio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Celio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/cesano.html">Cesano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Cesano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/ciampino.html">Ciampino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ciampino%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/colli-portuensi.html">Colli Portuensi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Colli+Portuensi%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/eur.html">Eur</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=EUR%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/farnesina.html">Farnesina</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Farnesina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/flaminio.html">Flaminio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Flaminio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/foro-italico.html">Foro Italico</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Foro+Italico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/garbatella.html">Garbatella</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Garbatella%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/giustiniana.html">Giustiniana</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Giustiniana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/gregna.html">Gregna</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Torre+Gaia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/grottarossa-est.html">Grottarossa Est</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Grottarossa+Est%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/infernetto.html">Infernetto</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Infernetto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/la-storta.html">La Storta</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=La+Storta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/labaro.html">Labaro</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Labaro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/marconi.html">Marconi</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Marconi%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/medaglie-d-oro.html">Medaglie d&#39; Oro</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Medaglie+d%27Oro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/mezzocammino.html">Mezzocammino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Mezzocammino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/monte-sacro.html">Monte Sacro</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Monte+Sacro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/morena.html">Morena</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Morena%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/osteria-del-curato.html">Osteria del Curato</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Osteria+del+Curato%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/pisana.html">Pisana</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=La+Pisana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/ponte-galeria.html">Ponte Galeria</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ponte+Galeria%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/portuense.html">Portuense</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Portuense%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/prima-porta.html">Prima Porta</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Prima+Porta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/quadraro.html">Quadraro</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Quadraro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/quarto-miglio.html">Quarto Miglio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Quarto+Miglio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/s-cornelia.html">S. Cornelia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Cornelia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/settebagni.html">Settebagni</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Settebagni%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tiburtino-nord.html">Tiburtino Nord</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tiburtino+Nord%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tomba-di-nerone.html">Tomba di Nerone</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tomba+di+Nerone%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tor-di-quinto.html">Tor di Quinto</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+di+Quinto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tormarancia.html">Tormarancia</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tormarancia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/torrespaccata.html">Torrespaccata</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Torrespaccata%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/torrino.html">Torrino</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Torrino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/trionfale.html">Trionfale</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Trionfale%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/val-cannuta.html">Val Cannuta</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Val+Cannuta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/valco-s-paolo.html">Valco S. Paolo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Valco+San+Paolo%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/vallerano-castel-di-leva.html">Vallerano Castel di Leva</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Vallerano+Castel+di+Leva%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/verano.html">Verano</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Verano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/xx-settembre.html">XX Settembre</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=XX+Settembre%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/borghesiana.html">Borghesiana</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Borghesiana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/casal-bertone.html">Casal Bertone</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+Bertone%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/gianicolense.html">Gianicolense</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Circonvallazione+Gianicolense%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/grottarossa-ovest.html">Grottarossa Ovest</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Grottarossa+Ovest%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/ostia-antica.html">Ostia Antica</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ostia+Antica%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/parioli.html">Parioli</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Parioli%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/pian-due-torri.html">Pian Due Torri</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Pian+Due+Torri%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/pietralata.html">Pietralata</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Pietralata%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/settecamini.html">Settecamini</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Settecamini%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tiburtino-sud.html">Tiburtino Sud</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tiburtino+Sud%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tor-di-valle.html">Tor di Valle</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+di+Valle%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/torre-maura.html">Torre Maura</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Torre+Maura%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/trieste.html">Trieste</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Trieste%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/villaggio-olimpico.html">Villaggio Olimpico</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Villaggio+Olimpico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/s-lorenzo.html">S. Lorenzo</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Lorenzo%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/testaccio.html">Testaccio</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Testaccio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tor-tre-teste.html">Tor Tre Teste</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Tre+Teste%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/zona-archeologica.html">Zona Archeologica</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">3</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Zona+Archeologica%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/esquilino.html">Esquilino</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Esquilino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/bufalotta.html">Bufalotta</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bufalotta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/casal-boccone.html">Casal Boccone</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+Boccone%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/casal-bruciato.html">Casal Bruciato</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+Bruciato%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/centocelle.html">Centocelle</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Centocelle%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/conca-d-oro.html">Conca d&#39;Oro</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Conca+d%27Oro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/corviale.html">Corviale</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Corviale%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/don-bosco.html">Don Bosco</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Don+Bosco%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/fidene.html">Fidene</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Fidene%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/giardinetti-tor-vergata.html">Giardinetti-Tor Vergata</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Vergata%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/gordiani.html">Gordiani</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Gordiani%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/la-rustica.html">La Rustica</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=La+Rustica%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/laurentino.html">Laurentino</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Laurentino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/magliana.html">Magliana</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Magliana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/massimina.html">Massimina</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Massimina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/navigatori.html">Navigatori</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Navigatori%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/ostia-nord.html">Ostia Nord</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Lido+di+Ostia%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/ostia-sud.html">Ostia Sud</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Lido+di+Ostia%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/ostiense.html">Ostiense</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Ostiense%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/primavalle.html">Primavalle</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Primavalle%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/romanina.html">Romanina</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Romanina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/s-basilio.html">S. Basilio</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=San+Basilio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/santa-palomba.html">Santa Palomba</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Palomba%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/serpentara.html">Serpentara</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Serpentara%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/spinaceto.html">Spinaceto</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Spinaceto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tor-cervara.html">Tor Cervara</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Cervara%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tor-sapienza.html">Tor Sapienza</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Sapienza%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/torpignattara.html">Torpignattara</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Torpignattara%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/torre-angela.html">Torre Angela</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Torre+Angela%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/trullo.html">Trullo</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Trullo%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tufello.html">Tufello</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tufello%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tuscolano-nord.html">Tuscolano Nord</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Tuscolano+Nord%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/tuscolano-sud.html">Tuscolano Sud</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Cinecitt%C3%A0%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/val-melaina.html">Val Melaina</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Val+Melaina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/roma/villa-pamphili.html">Villa Pamphili</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+Doria+Pamphilj%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-</div>
 
 
 <div class="poi-bar" id="poiBar"></div>
@@ -2467,6 +1023,1476 @@
   </aside>
 </div>
 
+
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/roma/centro-storico.html">Centro Storico</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">6 of the city&#39;s main sights are close enough to walk between.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Centro+Storico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Centro Storico →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family</span>
+    <span class="nm"><a href="/roma/nomentano.html">Nomentano</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Nomentano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Nomentano →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">For going out</span>
+    <span class="nm"><a href="/roma/trastevere.html">Trastevere</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">This is where the city&#39;s evening venues are concentrated.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Trastevere%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Trastevere →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">Best rated overall</span>
+    <span class="nm"><a href="/roma/acilia-nord.html">Acilia Nord</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">Nowhere in the city is rated better, by day or after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Acilia%2C+Italy" target="_blank" rel="noopener">Find a place in Acilia Nord →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Compare all 155 neighbourhoods</summary>
+  
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        <th aria-sort="none">Evidence</th>
+        <th aria-sort="none" class="num">Sights</th>
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/roma/zona-archeologica.html">Zona Archeologica</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Zona+Archeologica%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/esquilino.html">Esquilino</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Esquilino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/bufalotta.html">Bufalotta</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bufalotta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/casal-boccone.html">Casal Boccone</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+Boccone%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/casal-bruciato.html">Casal Bruciato</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+Bruciato%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/centocelle.html">Centocelle</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centocelle%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/conca-d-oro.html">Conca d&#39;Oro</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Conca+d%27Oro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/corviale.html">Corviale</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Corviale%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/don-bosco.html">Don Bosco</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Don+Bosco%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/fidene.html">Fidene</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fidene%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/giardinetti-tor-vergata.html">Giardinetti-Tor Vergata</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Vergata%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/gordiani.html">Gordiani</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Gordiani%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/la-rustica.html">La Rustica</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=La+Rustica%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/laurentino.html">Laurentino</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Laurentino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/magliana.html">Magliana</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Magliana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/massimina.html">Massimina</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Massimina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/navigatori.html">Navigatori</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Navigatori%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/ostia-nord.html">Ostia Nord</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Lido+di+Ostia%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/ostia-sud.html">Ostia Sud</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Lido+di+Ostia%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/ostiense.html">Ostiense</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ostiense%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/primavalle.html">Primavalle</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Primavalle%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/romanina.html">Romanina</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Romanina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/s-basilio.html">S. Basilio</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Basilio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/santa-palomba.html">Santa Palomba</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Palomba%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/serpentara.html">Serpentara</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Serpentara%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/spinaceto.html">Spinaceto</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Spinaceto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tor-cervara.html">Tor Cervara</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Cervara%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tor-sapienza.html">Tor Sapienza</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Sapienza%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/torpignattara.html">Torpignattara</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Torpignattara%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/torre-angela.html">Torre Angela</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Torre+Angela%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/trullo.html">Trullo</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Trullo%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tufello.html">Tufello</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tufello%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tuscolano-nord.html">Tuscolano Nord</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tuscolano+Nord%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tuscolano-sud.html">Tuscolano Sud</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cinecitt%C3%A0%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/val-melaina.html">Val Melaina</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Val+Melaina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/villa-pamphili.html">Villa Pamphili</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+Doria+Pamphilj%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/s-lorenzo.html">S. Lorenzo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Lorenzo%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/testaccio.html">Testaccio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Testaccio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tor-tre-teste.html">Tor Tre Teste</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Tre+Teste%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/borghesiana.html">Borghesiana</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Borghesiana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/casal-bertone.html">Casal Bertone</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+Bertone%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/gianicolense.html">Gianicolense</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Circonvallazione+Gianicolense%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/grottarossa-ovest.html">Grottarossa Ovest</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Grottarossa+Ovest%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/ostia-antica.html">Ostia Antica</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ostia+Antica%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/parioli.html">Parioli</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parioli%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/pian-due-torri.html">Pian Due Torri</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Pian+Due+Torri%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/pietralata.html">Pietralata</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Pietralata%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/settecamini.html">Settecamini</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Settecamini%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tiburtino-sud.html">Tiburtino Sud</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tiburtino+Sud%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tor-di-valle.html">Tor di Valle</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+di+Valle%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/torre-maura.html">Torre Maura</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Torre+Maura%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/trieste.html">Trieste</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Trieste%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/villaggio-olimpico.html">Villaggio Olimpico</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villaggio+Olimpico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/prati.html">Prati</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Prati%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/universita.html">Università</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Sapienza+University%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/acilia-nord.html">Acilia Nord</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Acilia%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/acilia-sud.html">Acilia Sud</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Acilia%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/acqua-vergine.html">Acqua Vergine</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Acqua+Vergine%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/acquatraversa.html">Acquatraversa</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Acquatraversa%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/aeropoprto-dell-urbe.html">Aeropoprto dell&#39; Urbe</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Aeroporto+dell%27Urbe%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/appia-antica-nord.html">Appia Antica Nord</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Appia+Antica+Nord%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/appia-antica-sud.html">Appia Antica Sud</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Appia+Antica+Sud%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/aurelio-nord.html">Aurelio Nord</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Aurelio+Nord%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/aventino.html">Aventino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Aventino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/barcaccia.html">Barcaccia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Barcaccia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/buon-pastore.html">Buon Pastore</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Buon+Pastore%2C+Gianicolense%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/casetta-mistica.html">Casetta Mistica</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Casetta+Mistica%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/castel-porziano.html">Castel Porziano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Castel+Porziano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/castelluccia.html">Castelluccia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Castelluccia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/centro-direzionale-centocelle.html">Centro Direzionale Centocelle</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centro+Direzionale+Centocelle%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/decima.html">Decima</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Decima%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/della-vittoria.html">Della Vittoria</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Della+Vittoria%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/eroi.html">Eroi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Eroi%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/fogaccia.html">Fogaccia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fogaccia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/grottaperfetta.html">Grottaperfetta</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Grottaperfetta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/latino.html">Latino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Via+Latina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/lucrezia-romana.html">Lucrezia Romana</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Lucrezia+Romana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/lunghezza.html">Lunghezza</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Lunghezza%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/malafede.html">Malafede</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Malafede%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/martignano.html">Martignano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Martignano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/monte-sacro-alto.html">Monte Sacro Alto</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Monte+Sacro+Alto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/omo.html">Omo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Omo%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/ottavia.html">Ottavia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ottavia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/palocco.html">Palocco</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+Palocco%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/pantano-di-grano.html">Pantano di Grano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Pantano+di+Grano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/pignatelli.html">Pignatelli</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Appio-Pignatelli%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/pineto.html">Pineto</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parco+di+Pineto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/porta-medaglia.html">Porta Medaglia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Porta+Medaglia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/s-alessandro.html">S. Alessandro</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Sant%27Alessandro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/s-maria-della-pieta.html">S. Maria della Pietà</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Maria+della+Piet%C3%A0%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/s-maria-di-galeria.html">S. Maria di Galeria</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Maria+di+Galeria%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/s-vittorino.html">S. Vittorino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Vittorino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/sacco-pastore.html">Sacco Pastore</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Sacco+Pastore%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/salario.html">Salario</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Salario%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tor-fiscale.html">Tor Fiscale</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+Fiscale%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tor-s-giovanni.html">Tor S. Giovanni</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+San+Giovanni%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tre-fontane.html">Tre Fontane</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tre+Fontane%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/villaggio-giuliano.html">Villaggio Giuliano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villaggio+Giuliano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/centro-storico.html">Centro Storico</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">6</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centro+Storico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/trastevere.html">Trastevere</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Trastevere%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/nomentano.html">Nomentano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Nomentano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/villa-ada.html">Villa Ada</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+Ada%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/villa-borghese.html">Villa Borghese</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+Borghese%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/alessandrina.html">Alessandrina</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Alessandrina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/appio.html">Appio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Appio+Latino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/appio-claudio.html">Appio-Claudio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Appio-Claudio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/aurelio-sud.html">Aurelio Sud</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Aurelio+Sud%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/boccea.html">Boccea</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Boccea%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/casal-de-pazzi.html">Casal de&#39; Pazzi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Casal+de%27+Pazzi%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/casalotti-di-boccea.html">Casalotti di Boccea</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Casalotti%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/casilino.html">Casilino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Casilino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/castel-fusano.html">Castel Fusano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Castel+Fusano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/castel-romano.html">Castel Romano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Castel+Romano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/cecchignola.html">Cecchignola</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cecchignola%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/celio.html">Celio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Celio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/cesano.html">Cesano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cesano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/ciampino.html">Ciampino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciampino%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/colli-portuensi.html">Colli Portuensi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Colli+Portuensi%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/eur.html">Eur</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=EUR%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/farnesina.html">Farnesina</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Farnesina%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/flaminio.html">Flaminio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Flaminio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/foro-italico.html">Foro Italico</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Foro+Italico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/garbatella.html">Garbatella</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Garbatella%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/giustiniana.html">Giustiniana</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Giustiniana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/gregna.html">Gregna</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Torre+Gaia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/grottarossa-est.html">Grottarossa Est</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Grottarossa+Est%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/infernetto.html">Infernetto</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Infernetto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/la-storta.html">La Storta</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=La+Storta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/labaro.html">Labaro</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Labaro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/marconi.html">Marconi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Marconi%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/medaglie-d-oro.html">Medaglie d&#39; Oro</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Medaglie+d%27Oro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/mezzocammino.html">Mezzocammino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Mezzocammino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/monte-sacro.html">Monte Sacro</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Monte+Sacro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/morena.html">Morena</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Morena%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/osteria-del-curato.html">Osteria del Curato</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Osteria+del+Curato%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/pisana.html">Pisana</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=La+Pisana%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/ponte-galeria.html">Ponte Galeria</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ponte+Galeria%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/portuense.html">Portuense</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Portuense%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/prima-porta.html">Prima Porta</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Prima+Porta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/quadraro.html">Quadraro</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Quadraro%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/quarto-miglio.html">Quarto Miglio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Quarto+Miglio%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/s-cornelia.html">S. Cornelia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Santa+Cornelia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/settebagni.html">Settebagni</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Settebagni%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tiburtino-nord.html">Tiburtino Nord</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tiburtino+Nord%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tomba-di-nerone.html">Tomba di Nerone</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tomba+di+Nerone%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tor-di-quinto.html">Tor di Quinto</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tor+di+Quinto%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/tormarancia.html">Tormarancia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tormarancia%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/torrespaccata.html">Torrespaccata</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Torrespaccata%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/torrino.html">Torrino</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Torrino%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/trionfale.html">Trionfale</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Trionfale%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/val-cannuta.html">Val Cannuta</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Val+Cannuta%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/valco-s-paolo.html">Valco S. Paolo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Valco+San+Paolo%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/vallerano-castel-di-leva.html">Vallerano Castel di Leva</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Vallerano+Castel+di+Leva%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/verano.html">Verano</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Verano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/roma/xx-settembre.html">XX Settembre</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=XX+Settembre%2C+Rome%2C+Italy" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -2512,8 +2538,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -2524,7 +2555,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });

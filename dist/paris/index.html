@@ -63,7 +63,19 @@
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
   .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
-  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
   .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
   table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
   table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
@@ -84,7 +96,7 @@
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     table.hub { font-size:15px; }
-    .hub-table-wrap h2 { font-size:19px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
   }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
@@ -490,776 +502,17 @@
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Paris, France</nav>
 <h1 class="page-title">Where to stay in Paris</h1>
-<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating.</p>
 <p class="evidence">🟡 Local-source safety assessment · 80 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
 
 
-<p class="hub-answer">For a short stay in Paris, the areas this map rates best are
+
+<p class="hub-answer">
+  For a short stay in Paris:
   <strong>Saint-Germain-l&#39;Auxerrois (1e arr.)</strong> and <strong>Saint-Georges (9e arr.)</strong>.
-  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+  One area for each kind of trip, each shown with its own day and night rating —
+  including where that rating says be careful. None of them is here because someone paid for it.
 </p>
-<div class="hub-cards">
-  
-  <div class="hub-card">
-    <span class="lab">For a first visit · With family · Best rated overall</span>
-    <span class="nm"><a href="/paris/saint-germain-l-auxerrois.html">Saint-Germain-l&#39;Auxerrois (1e arr.)</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">2 of the sights on this map are inside it.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Find a place in Saint-Germain-l&#39;Auxerrois (1e arr.) →</a>
-  </div>
-  
-  <div class="hub-card">
-    <span class="lab">For going out</span>
-    <span class="nm"><a href="/paris/saint-georges.html">Saint-Georges (9e arr.)</a></span>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
-      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
-    </div>
-    <span class="why">1 nightlife spot on the map, in an area that does not rate red after dark.</span>
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Find a place in Saint-Georges (9e arr.) →</a>
-  </div>
-  
-</div>
-
-
-
-<div class="hub-table-wrap">
-  <h2>All 80 neighbourhoods compared</h2>
-  <div class="hub-scroll">
-    <table class="hub" id="hubTable">
-      <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
-      </tr></thead>
-      <tbody>
-      
-        <tr>
-          <td><a href="/paris/saint-germain-l-auxerrois.html">Saint-Germain-l&#39;Auxerrois (1e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">3</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/sorbonne.html">Sorbonne (5e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=5th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/archives.html">Archives (3e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=3rd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/combat.html">Combat (19e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=19th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/enfants-rouges.html">Enfants-Rouges (3e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=3rd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/faubourg-du-roule.html">Faubourg-du-Roule (8e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=8th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/jardin-des-plantes.html">Jardin-des-Plantes (5e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=5th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/notre-dame.html">Notre-Dame (4e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=4th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/odeon.html">Odéon (6e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=6th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/roquette.html">Roquette (11e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=11th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-ambroise.html">Saint-Ambroise (11e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=11th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-georges.html">Saint-Georges (9e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-merri.html">Saint-Merri (4e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=4th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-thomas-d-aquin.html">Saint-Thomas-d&#39;Aquin (7e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=7th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/amerique.html">Amérique (19e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=19th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/arsenal.html">Arsenal (4e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=4th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/arts-et-metiers.html">Arts-et-Métiers (3e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=3rd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/batignolles.html">Batignolles (17e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=17th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/belleville.html">Belleville (20e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=20th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/bercy.html">Bercy (12e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=12th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/bonne-nouvelle.html">Bonne-Nouvelle (2e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=2nd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/chaillot.html">Chaillot (16e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=16th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/charonne.html">Charonne (20e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=20th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/chaussee-d-antin.html">Chaussée-d&#39;Antin (9e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/croulebarbe.html">Croulebarbe (13e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=13th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/ecole-militaire.html">Ecole-Militaire (7e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=7th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/europe.html">Europe (8e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=8th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/faubourg-montmartre.html">Faubourg-Montmartre (9e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/folie-mericourt.html">Folie-Méricourt (11e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=11th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/gaillon.html">Gaillon (2e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=2nd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/gare.html">Gare (13e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=13th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/grandes-carrieres.html">Grandes-Carrières (18e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=18th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/hopital-saint-louis.html">Hôpital-Saint-Louis (10e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=10th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/invalides.html">Invalides (7e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=7th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/javel.html">Javel (15e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=15th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/madeleine.html">Madeleine (8e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=8th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/mail.html">Mail (2e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=2nd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/monnaie.html">Monnaie (6e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=6th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/montparnasse.html">Montparnasse (14e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=14th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/necker.html">Necker (15e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=15th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/notre-dame-des-champs.html">Notre-Dame-des-Champs (6e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=6th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/palais-royal.html">Palais-Royal (1e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/parc-de-montsouris.html">Parc-de-Montsouris (14e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=14th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/petit-montrouge.html">Petit-Montrouge (14e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=14th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/picpus.html">Picpus (12e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=12th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/place-vendome.html">Place-Vendôme (1e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/plaine-de-monceaux.html">Plaine de Monceaux (17e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=17th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/plaisance.html">Plaisance (14e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=14th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/pere-lachaise.html">Père-Lachaise (20e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=20th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-fargeau.html">Saint-Fargeau (20e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=20th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-germain-des-pres.html">Saint-Germain-des-Prés (6e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=6th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-gervais.html">Saint-Gervais (4e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=4th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-lambert.html">Saint-Lambert (15e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=15th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-victor.html">Saint-Victor (5e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=5th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/sainte-avoie.html">Sainte-Avoie (3e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=3rd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/sainte-marguerite.html">Sainte-Marguerite (11e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=11th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/salpetriere.html">Salpêtrière (13e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=13th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/ternes.html">Ternes (17e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=17th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/val-de-grace.html">Val-de-Grace (5e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=5th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/vivienne.html">Vivienne (2e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=2nd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/auteuil.html">Auteuil (16e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=16th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/bel-air.html">Bel-Air (12e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=12th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/epinettes.html">Epinettes (17e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=17th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/grenelle.html">Grenelle (15e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=15th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/muette.html">Muette (16e arr.)</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=16th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/clignancourt.html">Clignancourt (18e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=18th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/maison-blanche.html">Maison-Blanche (13e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=13th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/porte-saint-denis.html">Porte-Saint-Denis (10e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=10th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/porte-saint-martin.html">Porte-Saint-Martin (10e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=10th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/rochechouart.html">Rochechouart (9e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/champs-elysees.html">Champs-Elysées (8e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">2</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=8th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/gros-caillou.html">Gros-Caillou (7e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=7th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/quinze-vingts.html">Quinze-Vingts (12e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">1</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=12th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/goutte-d-or.html">Goutte-d&#39;Or (18e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=18th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/halles.html">Halles (1e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/la-chapelle.html">La Chapelle (18e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=18th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/pont-de-flandre.html">Pont-de-Flandre (19e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=19th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/porte-dauphine.html">Porte-Dauphine (16e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=16th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/saint-vincent-de-paul.html">Saint-Vincent-de-Paul (10e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=10th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/paris/villette.html">Villette (19e arr.)</a></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
-          <td class="dash">sourced</td>
-          <td class="num">0</td>
-          <td><a href="https://www.booking.com/searchresults.html?ss=19th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-</div>
 
 
 <div class="poi-bar" id="poiBar"></div>
@@ -1660,6 +913,779 @@
   </aside>
 </div>
 
+
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit · With family · Best rated overall</span>
+    <span class="nm"><a href="/paris/saint-germain-l-auxerrois.html">Saint-Germain-l&#39;Auxerrois (1e arr.)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">2 of the city&#39;s main sights are close enough to walk between.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Find a place in Saint-Germain-l&#39;Auxerrois (1e arr.) →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">For going out</span>
+    <span class="nm"><a href="/paris/saint-georges.html">Saint-Georges (9e arr.)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">This is where the city&#39;s evening venues are concentrated.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Find a place in Saint-Georges (9e arr.) →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Compare all 80 neighbourhoods</summary>
+  
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
+    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        <th aria-sort="none">Evidence</th>
+        <th aria-sort="none" class="num">Sights</th>
+        <th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/paris/champs-elysees.html">Champs-Elysées (8e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=8th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/gros-caillou.html">Gros-Caillou (7e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=7th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/quinze-vingts.html">Quinze-Vingts (12e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=12th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/goutte-d-or.html">Goutte-d&#39;Or (18e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=18th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/halles.html">Halles (1e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/la-chapelle.html">La Chapelle (18e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=18th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/pont-de-flandre.html">Pont-de-Flandre (19e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=19th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/porte-dauphine.html">Porte-Dauphine (16e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=16th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-vincent-de-paul.html">Saint-Vincent-de-Paul (10e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=10th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/villette.html">Villette (19e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=19th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/clignancourt.html">Clignancourt (18e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=18th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/maison-blanche.html">Maison-Blanche (13e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=13th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/porte-saint-denis.html">Porte-Saint-Denis (10e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=10th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/porte-saint-martin.html">Porte-Saint-Martin (10e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=10th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/rochechouart.html">Rochechouart (9e arr.)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/auteuil.html">Auteuil (16e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=16th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/bel-air.html">Bel-Air (12e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=12th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/epinettes.html">Epinettes (17e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=17th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/grenelle.html">Grenelle (15e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=15th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/muette.html">Muette (16e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=16th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-germain-l-auxerrois.html">Saint-Germain-l&#39;Auxerrois (1e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/sorbonne.html">Sorbonne (5e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=5th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/archives.html">Archives (3e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=3rd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/combat.html">Combat (19e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=19th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/enfants-rouges.html">Enfants-Rouges (3e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=3rd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/faubourg-du-roule.html">Faubourg-du-Roule (8e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=8th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/jardin-des-plantes.html">Jardin-des-Plantes (5e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=5th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/notre-dame.html">Notre-Dame (4e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=4th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/odeon.html">Odéon (6e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=6th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/roquette.html">Roquette (11e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=11th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-ambroise.html">Saint-Ambroise (11e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=11th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-georges.html">Saint-Georges (9e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-merri.html">Saint-Merri (4e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=4th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-thomas-d-aquin.html">Saint-Thomas-d&#39;Aquin (7e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=7th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/amerique.html">Amérique (19e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=19th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/arsenal.html">Arsenal (4e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=4th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/arts-et-metiers.html">Arts-et-Métiers (3e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=3rd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/batignolles.html">Batignolles (17e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=17th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/belleville.html">Belleville (20e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=20th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/bercy.html">Bercy (12e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=12th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/bonne-nouvelle.html">Bonne-Nouvelle (2e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=2nd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/chaillot.html">Chaillot (16e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=16th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/charonne.html">Charonne (20e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=20th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/chaussee-d-antin.html">Chaussée-d&#39;Antin (9e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/croulebarbe.html">Croulebarbe (13e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=13th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/ecole-militaire.html">Ecole-Militaire (7e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=7th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/europe.html">Europe (8e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=8th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/faubourg-montmartre.html">Faubourg-Montmartre (9e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=9th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/folie-mericourt.html">Folie-Méricourt (11e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=11th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/gaillon.html">Gaillon (2e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=2nd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/gare.html">Gare (13e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=13th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/grandes-carrieres.html">Grandes-Carrières (18e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=18th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/hopital-saint-louis.html">Hôpital-Saint-Louis (10e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=10th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/invalides.html">Invalides (7e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=7th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/javel.html">Javel (15e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=15th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/madeleine.html">Madeleine (8e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=8th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/mail.html">Mail (2e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=2nd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/monnaie.html">Monnaie (6e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=6th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/montparnasse.html">Montparnasse (14e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=14th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/necker.html">Necker (15e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=15th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/notre-dame-des-champs.html">Notre-Dame-des-Champs (6e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=6th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/palais-royal.html">Palais-Royal (1e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/parc-de-montsouris.html">Parc-de-Montsouris (14e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=14th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/petit-montrouge.html">Petit-Montrouge (14e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=14th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/picpus.html">Picpus (12e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=12th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/place-vendome.html">Place-Vendôme (1e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/plaine-de-monceaux.html">Plaine de Monceaux (17e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=17th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/plaisance.html">Plaisance (14e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=14th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/pere-lachaise.html">Père-Lachaise (20e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=20th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-fargeau.html">Saint-Fargeau (20e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=20th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-germain-des-pres.html">Saint-Germain-des-Prés (6e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=6th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-gervais.html">Saint-Gervais (4e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=4th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-lambert.html">Saint-Lambert (15e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=15th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/saint-victor.html">Saint-Victor (5e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=5th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/sainte-avoie.html">Sainte-Avoie (3e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=3rd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/sainte-marguerite.html">Sainte-Marguerite (11e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=11th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/salpetriere.html">Salpêtrière (13e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=13th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/ternes.html">Ternes (17e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=17th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/val-de-grace.html">Val-de-Grace (5e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=5th+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/paris/vivienne.html">Vivienne (2e arr.)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=2nd+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
 </div><!-- /page-shell -->
 
 <footer class="wz-footer">
@@ -1705,8 +1731,13 @@
     var body = t.tBodies[0];
     t.tHead.addEventListener('click', function (ev) {
       var th = ev.target.closest('th');
-      if (!th || th.cellIndex === 5) return;
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
       var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
       var asc = th.getAttribute('aria-sort') !== 'ascending';
       [].forEach.call(t.tHead.rows[0].cells, function (c) {
         if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
@@ -1717,7 +1748,7 @@
         var ca = a.cells[i], cb = b.cells[i];
         var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
         var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
-        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
         var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
         return asc ? r : -r;
       });
