@@ -19,6 +19,7 @@ many cities, proven out end-to-end here with one real city.
 """
 
 import json
+import math
 import os
 import urllib.parse
 import re
@@ -37,6 +38,110 @@ OUT_DIR = os.path.join(BASE_DIR, "..", "dist")
 # Canonical public URL — apex wandroz.com 308-redirects to this host on
 # Vercel, so this is what canonical/OG tags and the sitemap should use.
 SITE_URL = "https://www.wandroz.com"
+
+# ---------------------------------------------------------------------------
+# GEOMETRY DELIVERED TO THE BROWSER
+#
+# WHY THIS EXISTS
+#   A map needs its polygons in the browser, so the boundaries are public by
+#   construction. That is not the problem. The problem was the FORM they were
+#   published in: 14 decimal places — sub-millimetre — and every vertex the
+#   source gave us, for 62 cities, in one 6 MB file at the site root. That is
+#   not a map, it is a geodetic dataset, and the work that went into it (the
+#   twenty fetchers, the boundary/name matching, the cleaning) was being handed
+#   over complete with one curl.
+#
+# WHAT THIS DOES AND DOES NOT ACHIEVE
+#   It does not make the data unobtainable and nothing here pretends to. It
+#   removes the part of the value that was never needed to draw a map:
+#   authoritative precision. After this, what we publish is a rendering-grade
+#   outline — correct to a couple of metres, which is invisible at any zoom a
+#   visitor uses and useless to anyone wanting to reuse our boundaries as
+#   administrative geometry.
+#
+# THE TWO NUMBERS
+#   GEOM_DECIMALS = 5 is about 1.1 m of quantisation. At zoom 13, where a city
+#   map opens, one pixel is roughly 13 m.
+#   GEOM_TOLERANCE_DEG = 2e-5 is about 2.2 m of Douglas-Peucker tolerance. It
+#   halves the vertex count (539,380 -> 265,095 across the site) and stays
+#   under two pixels even at zoom 16. Worst case the two together move a
+#   boundary by ~3 m.
+#   Both are deliberately conservative: the cheap win is the precision, and a
+#   tolerance aggressive enough to be visible would be trading the product's
+#   own quality for a protection that a determined copier defeats anyway.
+GEOM_DECIMALS = 5
+GEOM_TOLERANCE_DEG = 2e-5
+
+
+def _simplify_ring(ring, tol):
+    """Douglas-Peucker, iterative (a recursive one blows the stack on the
+    longer coastal rings). Distances are measured with longitude scaled by
+    cos(latitude), so the tolerance means the same number of metres on both
+    axes instead of shrinking towards the poles."""
+    if len(ring) < 5:
+        return [list(p) for p in ring]
+    klon = math.cos(math.radians(ring[0][0])) or 1.0
+    keep = [False] * len(ring)
+    keep[0] = keep[-1] = True
+    stack = [(0, len(ring) - 1)]
+    while stack:
+        a, b = stack.pop()
+        if b <= a + 1:
+            continue
+        ay, ax = ring[a][0], ring[a][1] * klon
+        by, bx = ring[b][0], ring[b][1] * klon
+        dx, dy = bx - ax, by - ay
+        den = dx * dx + dy * dy
+        best, bi = -1.0, -1
+        for i in range(a + 1, b):
+            py, px = ring[i][0], ring[i][1] * klon
+            if den == 0.0:
+                d = math.hypot(px - ax, py - ay)
+            else:
+                t = ((px - ax) * dx + (py - ay) * dy) / den
+                t = 0.0 if t < 0.0 else (1.0 if t > 1.0 else t)
+                d = math.hypot(px - (ax + t * dx), py - (ay + t * dy))
+            if d > best:
+                best, bi = d, i
+        if best > tol:
+            keep[bi] = True
+            stack.append((a, bi))
+            stack.append((bi, b))
+    out = [list(p) for p, k in zip(ring, keep) if k]
+    # A ring that decimates to a line is not a polygon. It has not happened on
+    # this data, but a silent sliver would be worse than a few extra vertices.
+    return out if len(out) >= 4 else [list(p) for p in ring]
+
+
+def simplify_rings(coords):
+    """Rendering-grade version of one zone's coordinate rings: decimated, then
+    rounded. Rounding last so the output is exactly what ships — rounding
+    first and simplifying after would leave numbers the simplifier reasoned
+    about but the file does not contain."""
+    if not coords:
+        return coords
+    out = []
+    for ring in coords:
+        if not ring or not isinstance(ring[0], (list, tuple)):
+            continue
+        thin = _simplify_ring(ring, GEOM_TOLERANCE_DEG)
+        out.append([[round(p[0], GEOM_DECIMALS), round(p[1], GEOM_DECIMALS)] for p in thin])
+    return out
+
+
+def load_zone_file(path):
+    """The one door every zone file comes through, so no output path can
+    accidentally keep full-precision geometry. Reads the source untouched on
+    disk and hands back the rendering-grade version — the maps, the area
+    pages and the published boundary files therefore all draw the same
+    shapes, which the homepage's point-in-polygon search depends on."""
+    with open(path) as f:
+        data = json.load(f)
+    for z in data.get("zones", []):
+        if z.get("coords"):
+            z["coords"] = simplify_rings(z["coords"])
+    return data
+
 
 # "Report a correction" mailto target, shown on every neighbourhood/borough
 # detail page. Update this if the project ever gets a dedicated address
@@ -663,8 +768,7 @@ def evidence_stats():
         path = os.path.join(ZONES_DIR, f"{key}.json")
         if not os.path.isfile(path):
             continue
-        with open(path) as f:
-            zones = json.load(f)["zones"]
+        zones = load_zone_file(path)["zones"]
         areas += len(zones)
         no_findings += sum(1 for z in zones if z.get("evidence") == "no_findings")
     rows = []
@@ -672,8 +776,7 @@ def evidence_stats():
         path = os.path.join(ZONES_DIR, f"{key}.json")
         if not os.path.isfile(path):
             continue
-        with open(path) as f:
-            zones = json.load(f)["zones"]
+        zones = load_zone_file(path)["zones"]
         nf = sum(1 for z in zones if z.get("evidence") == "no_findings")
         rows.append({"city": CITY_LABEL_FOR_KEY.get(key, key.title()),
                      "areas": len(zones), "rated": len(zones) - nf, "no_findings": nf,
@@ -959,8 +1062,7 @@ def load_london_boundaries():
     path = os.path.join(ZONES_DIR, "london_boundaries.json")
     if not os.path.isfile(path):
         return {}
-    with open(path) as f:
-        data = json.load(f)
+    data = load_zone_file(path)
     return {_canon(z["name"]): z for z in data["zones"]}
 
 
@@ -1598,8 +1700,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
     path = os.path.join(ZONES_DIR, f"{city_key}.json")
     if not os.path.isfile(path):
         return []
-    with open(path) as f:
-        data = json.load(f)
+    data = load_zone_file(path)
     zones = data["zones"]
     urls = []
 
@@ -1895,8 +1996,7 @@ def build_search_index(cities, city_cards):
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
         if not os.path.isfile(path):
             continue
-        with open(path) as f:
-            data = json.load(f)
+        data = load_zone_file(path)
         for z in data["zones"]:
             z_url = f"/{url_slug}/{z['slug']}.html" if flat else f"/{url_slug}/{z['slug']}/"
             entries.append({"type": "zone", "name": z["name"], "city": label, "url": z_url})
@@ -1904,26 +2004,47 @@ def build_search_index(cities, city_cards):
     return entries
 
 
-def build_zone_boundaries(cities, city_cards):
-    """Real per-zone polygon boundaries, exported for the homepage's
-    address search (see templates/index.html) to do a client-side
-    point-in-polygon match against a geocoded address — the exact same
-    polygons the interactive maps already draw (render_illustrative_city /
-    render_london_map), never an approximated or fabricated shape.
+def build_city_boundaries(cities, city_cards):
+    """Boundary data for the homepage's address search, published as one file
+    per city plus a small index of city bounding boxes.
 
-    Also emits a padded bounding box per city (from the real union of that
-    city's own zone coordinates, not a hand-picked radius) so an address
-    that geocodes just outside the outermost mapped zone but still clearly
-    inside the city can fall back to that city's hub page instead of being
-    reported as uncovered."""
-    zones = []
+    WHY IT IS SPLIT AND NOT ONE FILE
+        It used to be a single /zone-boundaries.json: 6 MB, every zone of
+        every city, at full source precision. The search never needed all of
+        it — a geocoded address is in at most one or two cities — so the
+        visitor paid for 62 cities to be told about one, and anyone who wanted
+        the whole dataset was handed it in a single request. Now the page
+        fetches the index (a few kB of bounding boxes), works out which cities
+        the address could be in, and fetches only those. Wanting everything
+        means enumerating the cities one at a time, which is both slower and
+        visible in the logs.
+
+    The polygons are the rendering-grade ones every map draws (see
+    load_zone_file / simplify_rings), never an approximation invented here:
+    the point-in-polygon test and the map have to agree about where a boundary
+    is, or a visitor lands on a page whose own map contradicts the match.
+
+    Each city's padded bounding box comes from the real union of that city's
+    own zone coordinates, not a hand-picked radius, so an address that
+    geocodes just outside the outermost mapped zone but still clearly inside
+    the city falls back to that city's hub instead of "not covered".
+
+    Returns (per_city, boxes): {slug: [zone, ...]} and the index list.
+    """
+    per_city = {}
+    label_for_slug = {}
     city_bbox = {}
 
-    def _extend_bbox(label, coords):
+    def _add(slug, label, name, url, coords):
         if not coords or not coords[0]:
             return
+        # No "city" field on the zone: the file it is in already says which
+        # city this is. One less piece of the taxonomy travelling with the
+        # geometry, at no cost to the search.
+        per_city.setdefault(slug, []).append({"name": name, "url": url, "coords": coords})
+        label_for_slug[slug] = label
         for lat, lon in coords[0]:
-            b = city_bbox.setdefault(label, [lat, lon, lat, lon])
+            b = city_bbox.setdefault(slug, [lat, lon, lat, lon])
             b[0] = min(b[0], lat)
             b[1] = min(b[1], lon)
             b[2] = max(b[2], lat)
@@ -1933,37 +2054,31 @@ def build_zone_boundaries(cities, city_cards):
         city_slug = city["city"].lower().replace(" ", "-")
         for b in city["boroughs"]:
             if b.get("coords"):
-                zones.append({
-                    "name": b["borough"], "city": city["city"],
-                    "url": f"/{city_slug}/{b['slug']}.html",
-                    "coords": b["coords"],
-                })
-                _extend_bbox(city["city"], b["coords"])
+                _add(city_slug, city["city"], b["borough"],
+                     f"/{city_slug}/{b['slug']}.html", b["coords"])
 
-    illustrative = ILLUSTRATIVE_CITIES
-    for city_key, url_slug, label, flat in illustrative:
+    for city_key, url_slug, label, flat in ILLUSTRATIVE_CITIES:
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
         if not os.path.isfile(path):
             continue
-        with open(path) as f:
-            data = json.load(f)
-        for z in data["zones"]:
+        for z in load_zone_file(path)["zones"]:
             z_url = f"/{url_slug}/{z['slug']}.html" if flat else f"/{url_slug}/{z['slug']}/"
-            zones.append({"name": z["name"], "city": label, "url": z_url, "coords": z["coords"]})
-            _extend_bbox(label, z["coords"])
+            _add(url_slug, label, z["name"], z_url, z["coords"])
 
     city_url_by_label = {c["name"]: "/" + c["url"] for c in city_cards}
-    cities_out = []
-    for label, bbox in city_bbox.items():
+    boxes = []
+    for slug, bbox in sorted(city_bbox.items()):
         pad_lat = (bbox[2] - bbox[0]) * 0.08 + 0.01
         pad_lon = (bbox[3] - bbox[1]) * 0.08 + 0.01
-        cities_out.append({
+        label = label_for_slug[slug]
+        boxes.append({
             "name": label,
-            "url": city_url_by_label.get(label, "/"),
+            "slug": slug,
+            "url": city_url_by_label.get(label, "/%s/" % slug),
             "bbox": [bbox[0] - pad_lat, bbox[1] - pad_lon, bbox[2] + pad_lat, bbox[3] + pad_lon],
         })
 
-    return {"zones": zones, "cities": cities_out}
+    return per_city, boxes
 
 
 def copy_static():
@@ -2251,8 +2366,7 @@ def build_homepage_preview():
     depending on when you're there. No score/stat is invented here — this
     only ever surfaces fields that already exist in roma.json."""
     path = os.path.join(ZONES_DIR, "roma.json")
-    with open(path) as f:
-        data = json.load(f)
+    data = load_zone_file(path)
     zone = next(z for z in data["zones"] if z["slug"] == "trastevere")
 
     # Trim the real body text to a clean sentence boundary for a compact
@@ -2523,12 +2637,27 @@ def main():
 
     # Homepage address search's boundary data — real zone polygons + real
     # per-city bounding boxes, used for a client-side point-in-polygon
-    # match against a geocoded address (see build_zone_boundaries
-    # docstring and templates/index.html).
-    zone_boundaries = build_zone_boundaries(cities, city_cards)
-    with open(os.path.join(OUT_DIR, "zone-boundaries.json"), "w") as f:
-        json.dump(zone_boundaries, f, ensure_ascii=False)
-    print(f"Wrote {os.path.join(OUT_DIR, 'zone-boundaries.json')} ({len(zone_boundaries['zones'])} zones, {len(zone_boundaries['cities'])} city boxes)")
+    # match against a geocoded address (see build_city_boundaries
+    # docstring and templates/index.html). One file per city, next to that
+    # city's own pages, plus a small index at the root.
+    per_city_boundaries, city_boxes = build_city_boundaries(cities, city_cards)
+    written = 0
+    for slug, zones_out in sorted(per_city_boundaries.items()):
+        city_dir = os.path.join(OUT_DIR, slug)
+        os.makedirs(city_dir, exist_ok=True)
+        with open(os.path.join(city_dir, "boundaries.json"), "w") as f:
+            json.dump({"zones": zones_out}, f, ensure_ascii=False)
+        written += 1
+    with open(os.path.join(OUT_DIR, "city-boxes.json"), "w") as f:
+        json.dump({"cities": city_boxes}, f, ensure_ascii=False)
+    # The single global file this replaced is committed in dist/. A build that
+    # merely stops writing it would leave it served forever, so the build
+    # removes it — and keeps removing it, harmlessly, once it is gone.
+    stale = os.path.join(OUT_DIR, "zone-boundaries.json")
+    if os.path.isfile(stale):
+        os.remove(stale)
+        print(f"Removed {stale} (superseded by per-city boundaries.json)")
+    print(f"Wrote {written} per-city boundaries.json + city-boxes.json ({len(city_boxes)} city boxes)")
 
     # Methodology page
     with open(os.path.join(OUT_DIR, "methodology.html"), "w") as f:

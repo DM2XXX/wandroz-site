@@ -51,9 +51,17 @@
       city: where.city,
       area: where.area,
       attributed: hit.attributed ? "yes" : "no",
-      // Present so a report can separate a click from the map's detail card
-      // from one on a neighbourhood page, which are different intents.
-      surface: hit.a.className.indexOf("cta") !== -1 ? "map-card" : "area-page",
+      // Four different intents, and they were collapsing into two: anything
+      // without the map card's "cta" class was reported as "area-page",
+      // including the hub's recommendation buttons and its comparison table,
+      // which are on the hub and not on an area page at all. Someone acting on
+      // a recommendation, someone picking a row out of a table, someone who
+      // clicked a polygon and someone who read a whole area page are not the
+      // same reader, and a conversion report that cannot tell them apart
+      // cannot say which part of the page earns.
+      surface: hit.a.className.indexOf("cta") !== -1 ? "map-card"
+               : hit.a.className.indexOf("bk") !== -1 ? "hub-card"
+               : (where.area === "(city hub)" ? "hub-table" : "area-page"),
       transport_type: "beacon"
     });
   }, true);
