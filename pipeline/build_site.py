@@ -789,6 +789,37 @@ CITY_COUNTRY = {
 POPULAR_CITY_NAMES = ["London", "Paris", "Rome", "Barcelona", "Amsterdam", "Berlin"]
 
 
+def country_codes_covered():
+    """The ISO 3166-1 alpha-2 codes of every country Wandroz covers, for the
+    homepage's address geocoder.
+
+    Derived from the flag emoji, which ARE those codes: a flag is two regional
+    indicator symbols, and 🇳🇱 is literally 'n' + 'l'. So this needs no new
+    table to maintain — the list widens by itself the moment a city in a new
+    country is added, which is the whole point.
+
+    It used to be the literal string "gb,ch,it,de", written when those were the
+    only four countries on the site. It stayed there while the site grew to
+    22, so an address in Amsterdam, Prague, Barcelona, Lisbon, Warsaw or Oslo
+    was never even geocoded: the search answered "we don't cover that" for two
+    thirds of the cities it does cover.
+    """
+    codes = set()
+    for country in set(CITY_COUNTRY.values()):
+        flag = COUNTRY_FLAGS.get(country)
+        if not flag:
+            raise ValueError(
+                "%r has cities but no COUNTRY_FLAGS entry — the address search "
+                "derives its country list from the flags, so a missing one "
+                "silently makes that country unsearchable." % country
+            )
+        pts = [ord(c) for c in flag if 0x1F1E6 <= ord(c) <= 0x1F1FF]
+        if len(pts) != 2:
+            raise ValueError("COUNTRY_FLAGS[%r] is not a two-letter flag" % country)
+        codes.add("".join(chr(c - 0x1F1E6 + ord("a")) for c in pts))
+    return ",".join(sorted(codes))
+
+
 def countries_covered():
     """Counted from the same CITY_COUNTRY map the homepage groups by, so the
     methodology page cannot claim a country count the switcher disagrees with.
@@ -1229,11 +1260,30 @@ BOOKING_PARENT_SCOPE_NOTE = (
 )
 
 
+# A fourth case, found by the QA gate rather than by reading the data: several
+# zones can be marked scope "area" and still resolve to the SAME Booking search.
+# Five Florence zones all point at "Rifredi, Florence, Italy"; Acilia nord and
+# sud share one destination, as do Ostia nord and sud, and S. Ambrogio with
+# S. Croce. Four of those five Florence pages were promising a link "already
+# scoped to this area", which for them was not true.
+#
+# The destination itself is left alone: changing which string Booking resolves
+# needs a live check against Booking, not a guess from here. What is corrected
+# is the claim, which costs nothing to get right.
+BOOKING_SHARED_SCOPE_NOTE = (
+    "Booking.com indexes this neighbourhood together with its neighbours under a "
+    "single search area, so this link covers that whole area rather than this "
+    "neighbourhood alone."
+)
+
+
 def booking_note(ui, scope):
     if scope == "city":
         return BOOKING_CITY_SCOPE_NOTE
     if scope == "parent":
         return BOOKING_PARENT_SCOPE_NOTE
+    if scope == "shared":
+        return BOOKING_SHARED_SCOPE_NOTE
     return ui["label_booking_note"]
 
 # Categories a visitor filters by (why you would go) and the icon each pin
@@ -1489,10 +1539,24 @@ def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIME
         return faqs
 
     if has_time_of_day:
-        rating_sentence = (
-            f"Wandroz currently rates {name} in {city_label} as {day_desc} during the day and "
-            f"{night_desc} at night. {basis_sentence}"
-        )
+        # Su 2.330 aree su 2.902 — l'ottanta per cento — giorno e notte hanno lo
+        # stesso giudizio, e la frase ripeteva per intero la stessa perifrasi di
+        # quattordici parole due volte: "as an area where the data suggests
+        # extra caution relative to other neighbourhoods in Bath during the day
+        # and an area where the data suggests extra caution relative to other
+        # neighbourhoods in Bath at night". Quarantuno parole per dire una cosa
+        # sola, ed e' la frase che Google mostra come risposta alla domanda
+        # "is X safe?". Quando i due giudizi coincidono lo si dice una volta.
+        if day_desc == night_desc:
+            rating_sentence = (
+                f"Wandroz currently rates {name} in {city_label} as {day_desc}, both by day and "
+                f"after dark. {basis_sentence}"
+            )
+        else:
+            rating_sentence = (
+                f"Wandroz currently rates {name} in {city_label} as {day_desc} during the day and "
+                f"{night_desc} at night. {basis_sentence}"
+            )
         night_faq = {
             "q": f"Is {name} safe at night?",
             "a": (
@@ -1964,6 +2028,22 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         return []
     data = load_zone_file(path)
     zones = data["zones"]
+
+    # Quante zone puntano alla stessa ricerca Booking. Contato qui, dai dati
+    # della citta', invece che dichiarato per zona: cosi' non puo' divergere da
+    # cio' che i link fanno davvero, ed e' la stessa cosa che il gate QA misura
+    # quando segnala "shared-destination".
+    _dest_count = {}
+    for _z in zones:
+        q = _z.get("query")
+        if q:
+            _dest_count[q] = _dest_count.get(q, 0) + 1
+
+    def _scope_of(z):
+        scope = z.get("booking_scope", "area")
+        if scope == "area" and _dest_count.get(z.get("query"), 0) > 1:
+            return "shared"
+        return scope
     urls = []
 
     # Some cities' underlying data has no time-of-day split at all (Berlin's
@@ -2106,7 +2186,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             label_day=ui["label_day"], label_night=ui["label_night"],
             label_detail=ui["label_detail"], label_booking=ui["label_booking"],
             booking_url=booking_href(z["query"], city_key),
-            label_booking_note=booking_note(ui, z.get("booking_scope", "area")),
+            label_booking_note=booking_note(ui, _scope_of(z)),
             data_note=method_note(city_key, data["label"],
                                   no_findings=(z.get("evidence") == "no_findings")),
             footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
@@ -2264,6 +2344,29 @@ def render_london_map(cities):
     return [canonical]
 
 
+def mapped_cities():
+    """Every city rendered by render_illustrative_city, as
+    (data key, url slug, label, flat) — ILLUSTRATIVE_CITIES plus the 20 English
+    and Welsh cities on the data.police.uk pipeline.
+
+    WHY THIS FUNCTION EXISTS
+        Those 20 were rendered from UK_CITIES in main() but were absent from
+        ILLUSTRATIVE_CITIES, and ILLUSTRATIVE_CITIES is what the homepage's
+        search index and the published boundary files were built from. So the
+        pages existed and nothing else knew about them: 438 neighbourhoods —
+        Kingsmead, Compton, every ward of Bath, Plymouth, Leeds, Liverpool —
+        could not be found by typing their name, and none of those 20 cities
+        could be found by address either, because they had no boundaries.json
+        for the point-in-polygon test to load.
+
+        Two lists describing the same set, one of them incomplete, is the bug
+        this project keeps rediscovering. There is one list now, and everything
+        downstream reads it.
+    """
+    uk = [(c["key"], c["key"], c["city"], True) for c in UK_CITIES]
+    return list(ILLUSTRATIVE_CITIES) + uk
+
+
 def build_search_index(cities, city_cards):
     """Build the homepage search bar's data source, purely from real content
     that already exists elsewhere in the pipeline — no invented names, no
@@ -2286,8 +2389,7 @@ def build_search_index(cities, city_cards):
                 "url": f"/{city_slug}/{b['slug']}.html",
             })
 
-    illustrative = ILLUSTRATIVE_CITIES
-    for city_key, url_slug, label, flat in illustrative:
+    for city_key, url_slug, label, flat in mapped_cities():
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
         if not os.path.isfile(path):
             continue
@@ -2352,7 +2454,7 @@ def build_city_boundaries(cities, city_cards):
                 _add(city_slug, city["city"], b["borough"],
                      f"/{city_slug}/{b['slug']}.html", b["coords"])
 
-    for city_key, url_slug, label, flat in ILLUSTRATIVE_CITIES:
+    for city_key, url_slug, label, flat in mapped_cities():
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
         if not os.path.isfile(path):
             continue
@@ -2921,6 +3023,7 @@ def main():
         f.write(index_tpl.render(
             city_cards=city_cards, countries=countries, popular_cities=popular_cities,
             preview_zone=preview_zone, canonical_url=SITE_URL + "/",
+            geocode_countries=country_codes_covered(),
         ))
 
     # Homepage search bar's data — built fresh from real content on every

@@ -654,7 +654,7 @@
     // of auto-navigating, so the visitor picks the right city themselves.
     function tryAddressSearch(query) {
       showStatus('Looking up that address…');
-      var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=gb,ch,it,de&q=' + encodeURIComponent(query);
+      var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes={{ geocode_countries }}&q=' + encodeURIComponent(query);
       Promise.all([
         fetch(url, { headers: { 'Accept-Language': 'en' } }).then(function(r) { return r.ok ? r.json() : []; }),
         loadBoxes(),
