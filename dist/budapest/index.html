@@ -118,8 +118,6 @@
   .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
   .legend-dash { display:flex; align-items:center; gap:8px; }
   .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
-  .ev-flag { display:flex; gap:7px; align-items:flex-start; font-size:12px; color:#5b6670; margin:6px 0 2px; line-height:1.45; }
-  .ev-dot { flex:none; width:9px; height:9px; margin-top:3px; border-radius:50%; border:1.5px dashed #7a8190; }
   .legend-poi-item { display:flex; align-items:center; gap:8px; }
   .legend-poi-item.off { display:none; }
   /* Sights sit on top of the safety colours, so they carry none of their own:
@@ -200,16 +198,6 @@
      una zona la mappa si colori di un quadrato nero. Il fondo era comunque al
      98% opaco, quindi la sfocatura non si vedeva: toglierla non cambia niente
      di visibile e toglie il difetto.  */
-  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:#fff; border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
-  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
-  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
-  .map-detail .close-btn:hover { color:var(--ink); }
-  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
-  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
-  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
-  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
-  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
-  .map-detail .cta.secondary { background: var(--accent); }
   .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
   .leaflet-tooltip.zone-tooltip::before { display:none; }
   .zone-list { margin-top:22px; padding:0 24px; }
@@ -247,7 +235,6 @@
        appiccicata in alto: rimpicciolite stanno in due righe. */
     .poi-bar { gap:5px; padding:7px 12px; }
     .poi-chip { font-size:12px; padding:6px 10px; }
-    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
     .zone-list ul { columns:2; }
   }
   /* Da tablet in su i caratteri crescono. Sta tutto qui dentro, e il limite e'
@@ -274,10 +261,6 @@
     .zone-group ul { font-size:16px; }
     .zg-count { font-size:12.5px; }
     .zg-dot { font-size:11.5px; padding:3px 7px; }
-    .map-detail { font-size:15.5px; max-width:440px; }
-    .map-detail .zn { font-size:20px; }
-    .map-detail .body-text { font-size:16px; }
-    .map-detail .cta { font-size:15.5px; padding:13px 16px; }
     .poi-reset { font-size:14.5px; padding:9px 16px; }
     .leaflet-tooltip.zone-tooltip { font-size:14px; }
     .poi-lab-tt { font-size:13.5px; }
@@ -302,10 +285,6 @@
     .zone-list ul { font-size:17.5px; }
     .zone-group h3 { font-size:17px; }
     .zone-group ul { font-size:17.5px; }
-    .map-detail { font-size:17px; max-width:500px; }
-    .map-detail .zn { font-size:22px; }
-    .map-detail .body-text { font-size:17.5px; }
-    .map-detail .cta { font-size:17px; }
     .poi-reset { font-size:16px; padding:10px 18px; }
     .leaflet-tooltip.zone-tooltip { font-size:15.5px; }
     .poi-lab-tt { font-size:15px; }
@@ -320,9 +299,6 @@
     ol.poi-list .n { width:28px; height:28px; font-size:14.5px; }
     .zone-list ul, .zone-group ul { font-size:19px; }
     .zone-group h3 { font-size:18.5px; }
-    .map-detail { font-size:18.5px; max-width:560px; }
-    .map-detail .zn { font-size:24px; }
-    .map-detail .body-text { font-size:19px; }
     .poi-reset { font-size:17.5px; }
     .leaflet-tooltip.zone-tooltip { font-size:17px; }
     .poi-lab-tt { font-size:16.5px; }
@@ -739,10 +715,6 @@
   <div class="map-wrap" id="mapWrap">
     <div id="map"></div>
     <button type="button" class="poi-reset" id="poiReset">Reset view</button>
-    <div class="map-detail" id="detailBox">
-      <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
-      <div id="detail"></div>
-    </div>
   </div>
   <aside class="map-rail" id="mapRail">
     <div class="map-legend" id="legendBox">
@@ -835,21 +807,12 @@
   var SHOW_TOGGLE = true;
   var SHOW_BURGLARY_TOGGLE = false;
   var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
-  var L_CLICK = "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.";
-  var L_BOOKING = "Search accommodation here on Booking.com \u2192";
-  var L_MORE = "See the full page \u2192";
-  var L_NOTCOVERED = "";
-  // Vuoto dove nessun programma di affiliazione copre questa citta', e in quel
-  // caso il link resta quello di sempre. Il modello di permessi vive in
-  // build_site.py: qui arriva gia' deciso.
-  var BOOKING_PREFIX = "";
-
-  function bookingHref(query) {
-    var plain = 'https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(query);
-    // encodeURIComponent due volte, perche' la destinazione viaggia dentro un
-    // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
-    return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
-  }
+  // Le quattro etichette del pannello di dettaglio (testo del click, bottone
+  // Booking, "vedi la pagina", "zona non coperta") e la funzione che costruiva
+  // il link Booking erano usate solo da quel pannello, che non esiste piu'.
+  // I link Booking della tabella qui sotto sono renderizzati dal server con lo
+  // stesso prefisso di affiliazione, quindi la logica dei permessi resta dove
+  // stava, in build_site.py — non ne e' rimasta una copia qui.
 
   // Ordinamento della tabella: i toni ordinano per gravita' (data-sort), non
   // alfabeticamente — "green" prima di "red" e' l'ordine che serve, "green"
@@ -927,7 +890,24 @@
   var isNight = false;
   var burglaryMode = false;
   var layers = [];
-  var lastZone = null;
+  var selected = null;
+
+  // Su un dispositivo a puntatore il click porta direttamente alla pagina
+  // dell'area. Su un touchscreen no: non c'e' hover, quindi il nome della zona
+  // non si e' mai visto prima del tocco, e un tap di troppo mentre si trascina
+  // la mappa porterebbe via dalla pagina. Li' il primo tocco scurisce la zona e
+  // ne mostra il nome, il secondo sulla stessa zona apre la pagina.
+  var TAP_TO_CONFIRM = !!(window.matchMedia && window.matchMedia('(hover: none)').matches);
+
+  // Stessa tinta, piu' scura: la zona selezionata non cambia colore, cambia
+  // profondita', perche' il colore e' il dato e non deve mai mentire.
+  function darken(hex, f) {
+    var n = parseInt(hex.slice(1), 16);
+    return '#' + [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(function (c) {
+      var v = Math.max(0, Math.min(255, Math.round(c * f)));
+      return (v < 16 ? '0' : '') + v.toString(16);
+    }).join('');
+  }
 
   function toneOf(z) {
     if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
@@ -935,66 +915,51 @@
     return isNight ? (z.night || 'grey') : (z.day || 'grey');
   }
 
-  function badge(tone, text) {
-    return '<span class="badge ' + tone + '">' + text + '</span>';
+  // COSA FACEVA QUESTO PUNTO PRIMA, E PERCHE' NON LO FA PIU'
+  //   Cliccando una zona si apriva un riquadro bianco sopra la mappa con
+  //   valutazione, motivazione e link Booking. Il proprietario lo ha tolto:
+  //   "preferirei che la zona si inscurisce (mantenendo stesso colore) quando
+  //   selezionata, senza riquadro".
+  //
+  //   La mappa diventa quindi navigazione, non lettura. Non si perde niente:
+  //   la comparazione sta nella tabella e nelle card qui sotto, e tutto quello
+  //   che il riquadro diceva — motivazione, fonti, cifre dei furti a Zurigo,
+  //   link Booking — sta per esteso sulla pagina dell'area, che e' esattamente
+  //   dove il click ora porta.
+  function zoneStyle(z, state) {
+    var base = COLORS[toneOf(z)] || COLORS.grey;
+    var thin = z.evidence === 'no_findings';
+    var dash = thin ? '5,4' : null;
+    if (state === 'selected') {
+      return { color: darken(base, 0.55), weight: thin ? 2.5 : 3, dashArray: dash, fillOpacity: 0.62 };
+    }
+    return { color: base, weight: state === 'hover' ? 3.5 : (thin ? 1.5 : 2),
+             dashArray: dash, fillOpacity: 0.32 };
   }
 
-  var detailPanel = document.getElementById('detailBox');
-
-  function showPanel() { detailPanel.classList.add('visible'); }
-  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; }
-  document.getElementById('detailClose').addEventListener('click', hidePanel);
-
-  function renderBurglaryDetail(z) {
-    var html = '<div class="zn">' + z.name + '</div>';
-    var b = z.burglary;
-    if (!b) {
-      html += badge('grey', 'No real data for this district') +
-        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
-    } else {
-      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
-        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
-        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
-        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
-        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
-    }
-    if (z.url) {
-      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
-    }
-    document.getElementById('detail').innerHTML = html;
-    showPanel();
+  function clearSelection() {
+    if (!selected) { return; }
+    selected.setStyle(zoneStyle(selected.wzZone, 'base'));
+    selected = null;
   }
 
-  function renderDetail(z) {
-    lastZone = z;
-    if (burglaryMode) { renderBurglaryDetail(z); return; }
-    var tone = toneOf(z);
-    var html = '<div class="zn">' + z.name + '</div>';
-    if (SHOW_TOGGLE) {
-      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
-    } else if (z.covered) {
-      html += badge(tone, z.tone_label || tone);
-    } else {
-      html += badge('grey', z.tone_label || '');
-    }
-    if (z.evidence === 'no_findings') {
-      html += '<div class="ev-flag"><span class="ev-dot"></span>' + z.evidence_label +
-              ' — the review reached no reporting specific to this area, so the rating rests on that ' +
-              'absence rather than on named sources.</div>';
-    }
-    if (z.text) {
-      html += '<div class="body-text">' + z.text + '</div>';
-    } else if (!z.covered) {
-      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
-    }
-    if (z.query) {
-      html += '<a class="cta" target="_blank" rel="noopener" href="' + bookingHref(z.query) + '">' + L_BOOKING + '</a>';
-    }
-    if (z.url) {
-      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
-    }
-    document.getElementById('detail').innerHTML = html;
-    showPanel();
+  function selectZone(poly, z) {
+    var again = (selected === poly);
+    clearSelection();
+    selected = poly;
+    poly.wzZone = z;
+    poly.setStyle(zoneStyle(z, 'selected'));
+    poly.bringToFront();
+    // Una sola zona su 1.945 non ha pagina propria (la City of London, che non
+    // e' mai stata valutata). Li' il click si ferma all'evidenziazione invece
+    // di portare a un 404.
+    if (!z.url) { poly.openTooltip(); return; }
+    if (TAP_TO_CONFIRM && !again) { poly.openTooltip(); return; }
+    // Navigare nello stesso istante in cui si scurisce vorrebbe dire che la
+    // zona non si scurisce mai: il colore cambierebbe in un fotogramma che
+    // nessuno vede. Un'attesa di 150 ms sta sotto la soglia in cui si percepisce
+    // un ritardo e trasforma lo scurimento in una risposta vera al click.
+    setTimeout(function () { window.location.href = z.url; }, 150);
   }
 
   function updateLegend() {
@@ -1009,23 +974,27 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    // Il giorno/notte e i furti ridisegnano tutto, e con colori nuovi una
+    // selezione vecchia non vorrebbe piu' dire niente.
+    selected = null;
     ZONES.forEach(function(z){
-      var tone = toneOf(z);
       // Dashed where the rating rests on an absence of reporting rather than
       // on sources: the colour still carries the judgement, the outline says
       // how much evidence is behind it.
-      var thin = z.evidence === 'no_findings';
-      var poly = L.polygon(z.coords, { color: COLORS[tone] || COLORS.grey, weight: thin ? 1.5 : 2,
-                                       dashArray: thin ? '5,4' : null,
-                                       fillOpacity: 0.32 }).addTo(map);
-      // Name is visible on hover (not just after a click) via a sticky
-      // tooltip, plus a highlight so it's obvious which zone you're over —
-      // click still opens the full detail card.
+      var poly = L.polygon(z.coords, zoneStyle(z, 'base')).addTo(map);
+      poly.wzZone = z;
+      // Il nome si vede passandoci sopra, non solo dopo il click. Su touch non
+      // esiste il passaggio, ed e' per questo che li' il primo tocco apre il
+      // tooltip invece di navigare (vedi selectZone).
       poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
-      var baseWeight = thin ? 1.5 : 2;
-      poly.on('mouseover', function(){ poly.setStyle({ weight:3.5 }); poly.bringToFront(); });
-      poly.on('mouseout', function(){ poly.setStyle({ weight:baseWeight }); });
-      poly.on('click', function(){ renderDetail(z); });
+      poly.on('mouseover', function(){
+        if (selected !== poly) { poly.setStyle(zoneStyle(z, 'hover')); }
+        poly.bringToFront();
+      });
+      poly.on('mouseout', function(){
+        if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
+      });
+      poly.on('click', function(){ selectZone(poly, z); });
       layers.push(poly);
     });
   }
@@ -1038,7 +1007,6 @@
       isNight = !isNight;
       sw.classList.toggle('on', isNight);
       draw();
-      if (lastZone && !burglaryMode) renderDetail(lastZone);
     });
   }
 
@@ -1055,7 +1023,6 @@
       }
       updateLegend();
       draw();
-      if (lastZone) renderDetail(lastZone);
     });
   }
 
@@ -1411,7 +1378,7 @@
   if (poiResetBtn) {
     poiResetBtn.addEventListener('click', function () {
       if (POI_HOME) { poiHome(true); } else { map.setView(CENTER, ZOOM); }
-      hidePanel();
+      clearSelection();
     });
   }
 
