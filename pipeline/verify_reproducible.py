@@ -63,7 +63,14 @@ except Exception as exc:  # pragma: no cover
 # Files the build legitimately emits that are not zone or hub pages.
 EXPECTED_ROOT_FILES = {
     "index.html", "methodology.html", "robots.txt", "sitemap.xml",
-    "search-index.json", "zone-boundaries.json", "style.css",
+    "search-index.json", "style.css",
+    # Index of per-city bounding boxes for the homepage address search. It
+    # replaced zone-boundaries.json, the single 6 MB file that carried every
+    # boundary of every city at source precision; the geometry now lives in
+    # one boundaries.json per city directory. Note that this gate only
+    # inspects the root of dist/, so those per-city files are outside its
+    # reach — the count parity check below is what covers them.
+    "city-boxes.json",
     # Reports outbound Booking clicks to GA4. Listed because the gate correctly
     # refused a build the moment it appeared: an unexplained file at the root of
     # a published site is exactly what this check is for.

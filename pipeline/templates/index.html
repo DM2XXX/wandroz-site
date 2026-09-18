@@ -545,7 +545,8 @@
     var input = document.getElementById('wzSearch');
     var resultsBox = document.getElementById('wzSearchResults');
     var searchData = [];
-    var boundaryData = null;
+    var cityBoxes = null;
+    var cityZones = {};       // slug -> [zone, ...], fetched once per city
     var currentMatches = [];
 
     fetch('/search-index.json')
@@ -553,12 +554,33 @@
       .then(function(data) { searchData = data || []; })
       .catch(function() { searchData = []; });
 
-    function loadBoundaries() {
-      if (boundaryData) { return Promise.resolve(boundaryData); }
-      return fetch('/zone-boundaries.json')
-        .then(function(r) { return r.ok ? r.json() : { zones: [], cities: [] }; })
-        .then(function(data) { boundaryData = data; return boundaryData; })
-        .catch(function() { boundaryData = { zones: [], cities: [] }; return boundaryData; });
+    // Le geometrie non arrivano piu' tutte insieme. Prima c'era un unico
+    // /zone-boundaries.json da 6 MB: chi cercava un indirizzo a Bologna
+    // scaricava i confini di sessantadue citta' per usarne una. Ora si
+    // scarica l'indice dei riquadri (pochi kB), si guarda in quali citta'
+    // puo' cadere il punto geocodificato, e si scaricano solo quelle.
+    function loadBoxes() {
+      if (cityBoxes) { return Promise.resolve(cityBoxes); }
+      return fetch('/city-boxes.json')
+        .then(function(r) { return r.ok ? r.json() : { cities: [] }; })
+        .then(function(data) { cityBoxes = (data && data.cities) || []; return cityBoxes; })
+        .catch(function() { cityBoxes = []; return cityBoxes; });
+    }
+
+    function loadCityZones(box) {
+      if (cityZones[box.slug]) { return Promise.resolve(cityZones[box.slug]); }
+      return fetch('/' + box.slug + '/boundaries.json')
+        .then(function(r) { return r.ok ? r.json() : { zones: [] }; })
+        .then(function(data) {
+          var zones = (data && data.zones) || [];
+          // Il nome della citta' non viaggia piu' dentro ogni zona: sta
+          // nell'indice, e serve solo quando si mostra una lista di piu'
+          // corrispondenze.
+          zones.forEach(function(z) { z.city = box.name; });
+          cityZones[box.slug] = zones;
+          return zones;
+        })
+        .catch(function() { cityZones[box.slug] = []; return []; });
     }
 
     function escapeHtml(s) {
@@ -605,9 +627,9 @@
       return inside;
     }
 
-    function findZone(lat, lon, boundaries) {
-      for (var i = 0; i < boundaries.zones.length; i++) {
-        var z = boundaries.zones[i];
+    function findZone(lat, lon, zones) {
+      for (var i = 0; i < zones.length; i++) {
+        var z = zones[i];
         if (z.coords && z.coords[0] && pointInRing(lat, lon, z.coords[0])) {
           return z;
         }
@@ -615,15 +637,11 @@
       return null;
     }
 
-    function findCityFallback(lat, lon, boundaries) {
-      for (var i = 0; i < boundaries.cities.length; i++) {
-        var c = boundaries.cities[i];
+    function boxesContaining(lat, lon) {
+      return (cityBoxes || []).filter(function(c) {
         var b = c.bbox;
-        if (lat >= b[0] && lat <= b[2] && lon >= b[1] && lon <= b[3]) {
-          return c;
-        }
-      }
-      return null;
+        return lat >= b[0] && lat <= b[2] && lon >= b[1] && lon <= b[3];
+      });
     }
 
     // Many street names exist in more than one of the mapped cities (e.g.
@@ -639,27 +657,47 @@
       var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=gb,ch,it,de&q=' + encodeURIComponent(query);
       Promise.all([
         fetch(url, { headers: { 'Accept-Language': 'en' } }).then(function(r) { return r.ok ? r.json() : []; }),
-        loadBoundaries(),
+        loadBoxes(),
       ]).then(function(results) {
         var geo = results[0];
-        var boundaries = results[1];
         if (!geo || !geo.length) {
-          showStatus('Couldn’t find that address. Try a supported city or neighbourhood name instead — London, Berlin, Turin, Zurich, Milan or Rome.');
+          // Le due frasi qui sotto elencavano sei citta'. Ne erano sei quando
+          // sono state scritte; oggi sono sessantadue, e una lista scritta a
+          // mano in un template invecchia in silenzio. Meglio nessun elenco
+          // che un elenco sbagliato: la mappa qui sopra le mostra tutte.
+          showStatus('Couldn’t find that address. Try a city or neighbourhood name instead — every city Wandroz covers is on the map above.');
           return;
         }
+        // Solo le citta' il cui riquadro contiene almeno uno dei candidati
+        // restituiti dal geocoder: di solito una, a volte due.
+        var needed = {};
+        geo.forEach(function(g) {
+          boxesContaining(parseFloat(g.lat), parseFloat(g.lon))
+            .forEach(function(c) { needed[c.slug] = c; });
+        });
+        var wanted = Object.keys(needed).map(function(k) { return needed[k]; });
+        return Promise.all(wanted.map(loadCityZones)).then(function() {
+          return { geo: geo };
+        });
+      }).then(function(state) {
+        if (!state) { return; }
+        var geo = state.geo;
 
         var zoneMatches = [];
         var seenUrls = {};
         var cityFallback = null;
         geo.forEach(function(g) {
           var lat = parseFloat(g.lat), lon = parseFloat(g.lon);
-          var zone = findZone(lat, lon, boundaries);
+          var boxes = boxesContaining(lat, lon);
+          var zone = null;
+          for (var i = 0; i < boxes.length && !zone; i++) {
+            zone = findZone(lat, lon, cityZones[boxes[i].slug] || []);
+          }
           if (zone && !seenUrls[zone.url]) {
             seenUrls[zone.url] = true;
             zoneMatches.push(zone);
-          } else if (!zone && !cityFallback) {
-            var city = findCityFallback(lat, lon, boundaries);
-            if (city) { cityFallback = city; }
+          } else if (!zone && !cityFallback && boxes.length) {
+            cityFallback = boxes[0];
           }
         });
 
@@ -676,7 +714,7 @@
           return;
         }
         if (cityFallback) { window.location.href = cityFallback.url; return; }
-        showStatus('That address isn’t in a city Wandroz covers yet — currently London, Berlin, Turin, Zurich, Milan and Rome.');
+        showStatus('That address isn’t in a city Wandroz covers yet — the map above shows the ones it does.');
       }).catch(function() {
         showStatus('Couldn’t look up that address right now. Try again, or search by city/neighbourhood name.');
       });
