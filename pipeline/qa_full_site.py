@@ -629,6 +629,45 @@ def check_no_coverage_rule(F):
                        "set evidence=no_findings so the rating discloses what it rests on")
 
 
+SMALL_POP_RE = re.compile(r"population of ([\d,]+) residents|\(([\d,]+) residents\)")
+SMALL_POP_FLOOR = 2000
+
+
+def check_denominator_artefacts(F):
+    """A rate computed on almost nobody is not a safety finding.
+
+    Amsterdam's Havens-West is a container port with 30 registered residents
+    and 208 recorded crimes, which divides out to 40x the citywide average and
+    is rated red day and night. Oslo Sentrum is rated red on 1,528 residents
+    against the footfall of an entire city centre. The area text explains the
+    denominator problem in words, and that was enough while the rating was one
+    colour on a map — it is not enough now that the city hubs put every area in
+    a sorted comparison table, where "red / red" reads as a verdict.
+
+    This is a warning rather than a failure on purpose: the fix is a decision
+    about how to present those areas, not a defect in a single page, and
+    failing the build would block every release until that decision is made.
+    What it must not do is be forgotten, which is what a comment in a text
+    field amounts to.
+    """
+    for key, meta in BS.CITY_METHODOLOGY.items():
+        src = load_zone_source(key)
+        if not src:
+            continue
+        for z in src.get("zones", []):
+            m = SMALL_POP_RE.search(z.get("text") or "")
+            if not m:
+                continue
+            pop = int((m.group(1) or m.group(2)).replace(",", ""))
+            if pop >= SMALL_POP_FLOOR:
+                continue
+            if z["day"] in ("red", "yellow") or z["night"] in ("red", "yellow"):
+                F.warn("METHODOLOGY", "denominator-artefact", "%s/%s" % (key, z["slug"]),
+                       "rated %s/%s on %d registered residents — the rate rests on a "
+                       "denominator too small to carry a verdict, and the hub table now "
+                       "shows it ranked" % (z["day"], z["night"], pop))
+
+
 def check_forbidden_copy(dist, F):
     for path, rel in walk_html(dist):
         text = TAG_RE.sub(" ", read(path))
@@ -1163,6 +1202,7 @@ def main():
     check_methodology(dist, reg, F)
     check_forbidden_copy(dist, F)
     check_no_coverage_rule(F)
+    check_denominator_artefacts(F)
     check_contact(dist, F)
     check_seo(dist, reg, F)
     check_links(dist, F)
