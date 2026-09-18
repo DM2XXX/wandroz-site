@@ -64,6 +64,10 @@ except Exception as exc:  # pragma: no cover
 EXPECTED_ROOT_FILES = {
     "index.html", "methodology.html", "robots.txt", "sitemap.xml",
     "search-index.json", "zone-boundaries.json", "style.css",
+    # Reports outbound Booking clicks to GA4. Listed because the gate correctly
+    # refused a build the moment it appeared: an unexplained file at the root of
+    # a published site is exactly what this check is for.
+    "booking-events.js",
     "site.webmanifest", "favicon.svg", "favicon-32.png",
     "apple-touch-icon.png", "icon-512.png", "logo-mark.png",
 }

@@ -2381,6 +2381,7 @@ def main():
                 evidence_tag="%s · Metropolitan Police recorded crime · %s"
                               % (LONDON_EVIDENCE_TAG, london_window()),
                 booking_query=london_queries.get(_canon(b["borough"])),
+                booking_url=booking_href(london_queries.get(_canon(b["borough"])) or "", "london"),
                 faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
             )
             out_path = os.path.join(city_dir, f"{b['slug']}.html")

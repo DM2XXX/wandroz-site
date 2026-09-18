@@ -64,7 +64,7 @@
 </div>
 
 {% if booking_query %}
-<a class="btn-primary" href="https://www.booking.com/searchresults.html?ss={{ booking_query|urlencode }}" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+<a class="btn-primary" href="{{ booking_url }}" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
 <p class="cta-note">This link is already scoped to {{ b.borough }}, not the whole of London.</p>
 {% endif %}
 
