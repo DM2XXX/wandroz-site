@@ -364,6 +364,136 @@ def _in_rings(lat, lon, rings):
 
 
 TONE_ORDER = {"green": 0, "yellow": 1, "red": 2, "grey": 3}
+
+# ---------------------------------------------------------------------------
+# WHY A RECOMMENDED AREA CAN BE RATED RED
+#
+#   "For a first visit" picks the area holding the most of the city's sights.
+#   In a European city that is the historic centre, and the historic centre is
+#   also where recorded crime concentrates — so this site recommends, in 32 of
+#   its 62 cities, an area it rates red. The owner's decision was to keep the
+#   recommendation and explain the rating rather than hide either: "tenere il
+#   centro e dire perche' e' rosso".
+#
+#   The line below the card is therefore computed, never written by hand, and
+#   it explains what the rating is MADE OF. It must not argue that the area is
+#   safe — the reader is given the composition and draws their own conclusion —
+#   and it must not claim the denominator artefact where the data does not
+#   support it.
+#
+# WHAT THE DATA ACTUALLY ALLOWS, checked city by city before writing a word
+#   20 UK cities  data/counts_<key>.json holds per-ward, per-month counts by
+#                 crime category, and <key>_boundaries.json holds the resident
+#                 population the rate was divided by. Full sentence.
+#   5 cities      Berlin, Brussels, Munich, Prague, Stockholm: no structured
+#                 breakdown survives the build, but all five are official
+#                 snapshots whose published rate is per registered resident
+#                 (verified in each city's own text). Short sentence.
+#   7 cities      Athens, Catania, Dublin, Edinburgh, Genoa, Kraków, Lisbon:
+#                 research-based, no rate at all behind the rating. Nothing is
+#                 printed. Silence is the honest output; a generic reassurance
+#                 would be invented.
+#   London        no borough carrying a card is rated red today, so no London
+#                 case exists. If one appears, its rate is already corrected
+#                 towards a workday population for 22 of 32 boroughs, and for
+#                 those the resident-denominator half MUST NOT print — hence
+#                 the workday_population_ratio check in uk_caution_note().
+CRIME_CATEGORY_PLAIN = {
+    "shoplifting": "shoplifting",
+    "burglary": "burglary",
+    "vehicle-crime": "vehicle crime",
+    "bicycle-theft": "bicycle theft",
+    "drugs": "drug offences",
+    "violent-crime": "violence",
+    "robbery": "robbery",
+    "theft-from-the-person": "pickpocketing",
+    "public-order": "public-order offences",
+    "anti-social-behaviour": "anti-social behaviour",
+}
+
+# Imported rather than restated: if the scorer's idea of a daytime crime and
+# this file's ever diverged, the sentence would name categories that did not
+# drive the score it is explaining.
+try:
+    from score_london import DAY_CATEGORIES as _DAY_CATS, NIGHT_CATEGORIES as _NIGHT_CATS
+except Exception:                                    # pragma: no cover
+    _DAY_CATS, _NIGHT_CATS = set(), set()
+
+# Official-snapshot cities whose published rate is per registered resident.
+# Each one was read in its own zone text before being listed here.
+RESIDENT_RATE_CITIES = {"berlin", "brussels", "munich", "praha", "stockholm"}
+
+_uk_counts_cache = {}
+
+
+def uk_ward_evidence(city_key):
+    """{slug: {'day': [(category, n)...], 'night': [...], 'population': int}}
+    for a data.police.uk city, or {} if this city is not one.
+
+    Read from the counts file the fetcher already committed, so this needs no
+    network and cannot drift from the numbers the pages were scored on."""
+    if city_key in _uk_counts_cache:
+        return _uk_counts_cache[city_key]
+    out = {}
+    counts_path = os.path.join(BASE_DIR, "..", "data", "counts_%s.json" % city_key)
+    bounds_path = os.path.join(ZONES_DIR, "%s_boundaries.json" % city_key)
+    if os.path.isfile(counts_path) and os.path.isfile(bounds_path):
+        with open(counts_path) as f:
+            counts = json.load(f).get("counts", {})
+        with open(bounds_path) as f:
+            pops = {z["slug"]: z.get("population") for z in json.load(f)["zones"]}
+        for slug, months in counts.items():
+            total = {}
+            for per_month in months.values():
+                for cat, n in per_month.items():
+                    total[cat] = total.get(cat, 0) + n
+            rank = sorted(total.items(), key=lambda kv: -kv[1])
+            out[slug] = {
+                "day": [(c, n) for c, n in rank if c in _DAY_CATS],
+                "night": [(c, n) for c, n in rank if c in _NIGHT_CATS],
+                "population": pops.get(slug),
+            }
+    _uk_counts_cache[city_key] = out
+    return out
+
+
+def caution_note(city_key, zone, resident_rate_ok=True):
+    """One sentence saying what a red rating is made of, or "" when the data
+    cannot support one. Only for areas rated red: on a green card it would be
+    noise, and on an amber one the composition rarely says anything the badge
+    has not."""
+    day_red = zone.get("day") == "red"
+    night_red = zone.get("night") == "red"
+    if not (day_red or night_red):
+        return ""
+
+    ev = uk_ward_evidence(city_key).get(zone.get("slug"))
+    if ev:
+        def top(kind):
+            items = ev[kind]
+            return CRIME_CATEGORY_PLAIN.get(items[0][0], items[0][0]) if items else None
+        d, n = top("day") if day_red else None, top("night") if night_red else None
+        if d and n:
+            core = "Its rating is mostly %s during the day and %s after dark" % (d, n)
+        elif d:
+            core = "Its daytime rating is mostly %s" % d
+        elif n:
+            core = "Its night rating is mostly %s" % n
+        else:
+            return ""
+        pop = ev.get("population")
+        # Stated as a fact about the denominator, never as a claim that the
+        # area is therefore fine — the reader can see the sight count on the
+        # same card and draw the conclusion themselves.
+        if pop and resident_rate_ok:
+            return ("%s, counted as a rate against the %s people registered as living "
+                    "there rather than the number who pass through." % (core, f"{pop:,}"))
+        return core + "."
+
+    if city_key in RESIDENT_RATE_CITIES:
+        return ("Its rating comes from the city's own published figures, counted per "
+                "registered resident and compared only with other districts of this city.")
+    return ""
 SIGHT_CATS = ("art", "square", "view", "food")
 
 
@@ -1823,12 +1953,20 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         _r["night_label"] = tone_badge.get(_r["night"], _r["night"])
         _r["book"] = booking_href(next((z["query"] for z in zones if z["slug"] == _r["slug"]), ""),
                                   city_key)
+    # Due card rosse sulla stessa pagina possono ricevere la stessa frase — la
+    # forma breve, che non nomina l'area, e' identica per costruzione. Stamparla
+    # due volte non aggiunge niente e sembra un modello incollato.
+    _notes_seen = set()
     for _c in _hubdata["cards"]:
         _z = _c["zone"]
         _c["url"] = f"/{url_slug}/{_z['slug']}.html" if flat else f"/{url_slug}/{_z['slug']}/"
         _c["day_label"] = tone_badge.get(_z["day"], _z["day"])
         _c["night_label"] = tone_badge.get(_z["night"], _z["night"])
         _c["book"] = booking_href(_z["query"], city_key)
+        _note = caution_note(city_key, _z)
+        _c["caution"] = "" if _note in _notes_seen else _note
+        if _note:
+            _notes_seen.add(_note)
     _hub = hub_headline(data["label"], ui.get("page_description", ""), len(zones))
     html = map_tpl.render(
         lang="en", city_label=data["label"], tagline=ui["tagline"],
@@ -2008,6 +2146,13 @@ def render_london_map(cities):
         _c["day_label"] = EN_TONE_BADGE.get(_z["day"], _z["day"])
         _c["night_label"] = EN_TONE_BADGE.get(_z["night"], _z["night"])
         _c["book"] = booking_href(_z["query"], "london")
+        # 22 of London's 32 boroughs have their rate corrected towards a workday
+        # population, so for those the resident-denominator half of the sentence
+        # would be false. It is suppressed per borough, not per city.
+        _b = next((b for b in (london["boroughs"] if london else []) if b["slug"] == _z["slug"]), None)
+        _c["caution"] = caution_note("london", _z,
+                                     resident_rate_ok=bool(_b) and
+                                     (_b.get("workday_population_ratio") in (None, 1.0)))
 
     html = map_tpl.render(
         lang="en", city_label="London", tagline="Neighbourhood safety for travellers",

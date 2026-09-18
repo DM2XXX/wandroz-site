@@ -59,6 +59,11 @@
   .hub-card .nm a { color:inherit; text-decoration:none; }
   .hub-card .nm a:hover { color:var(--accent); }
   .hub-card .why { font-size:13.5px; color:var(--muted); line-height:1.5; flex:1; }
+  /* Deve leggersi come una nota a margine della raccomandazione, non come una
+     smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
+     la lega al badge di cautela senza ripeterlo. */
+  .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
+                       border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
                   padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
                   text-align:center; }
@@ -95,6 +100,7 @@
     .hub-answer { font-size:18px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
+    .hub-card .caution { font-size:13.5px; }
     table.hub { font-size:15px; }
     .hub-table-wrap > summary { font-size:15.5px; }
   }
@@ -615,6 +621,8 @@
       <span class="badge red">Higher caution advised</span><span style="font-size:12px;color:var(--muted);">night</span>
     </div>
     <span class="why">7 of the city&#39;s main sights are close enough to walk between.</span>
+    
+    <span class="caution">Its rating is mostly shoplifting during the day and violence after dark, counted as a rate against the 13,620 people registered as living there rather than the number who pass through.</span>
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Monument →</a>
   </div>
   
@@ -626,6 +634,8 @@
       <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
     </div>
     <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
+    
+    
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Newcastle+upon+Tyne%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Dene &amp; South Gosforth →</a>
   </div>
   
