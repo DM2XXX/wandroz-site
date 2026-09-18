@@ -195,6 +195,12 @@ def classify(dist, reg, findings):
             continue
         for name in files:
             if not name.endswith(".html") and name not in EXPECTED_ROOT_FILES:
+                # The IndexNow key file is named after the key itself, so it
+                # cannot be listed by name — it is accepted by shape. Exactly
+                # one is expected; two would mean an old key was left behind,
+                # and the submitter refuses to run in that case.
+                if re.fullmatch(r"[0-9a-f]{32}\.txt", name):
+                    continue
                 findings.append(("UNEXPECTED_OUTPUT", name, "root-level asset no rule accounts for"))
 
     # Count parity across the three places a zone count is expressed.
