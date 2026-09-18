@@ -58,7 +58,14 @@
   {% if b.workday_population_source == "no_data" %}
   Both are normalised by <strong>plain 2021 resident population</strong> ({{ "{:,}".format(b.population) }}) — no separate workday/footfall figure exists for {{ b.borough }} in the ONS's 2011 workday-population release (the most recent one published), so no correction is applied here (ratio 1.0) rather than guessing one. This means {{ b.borough }}'s score may be slightly overstated relative to boroughs where a real commuter/footfall correction could be applied — see methodology.
   {% else %}
-  Both are normalised by an estimated <strong>workday/footfall population</strong> of {{ "{:,}".format(b.workday_population) }} (2021 resident population of {{ "{:,}".format(b.population) }}, scaled by a {{ "measured" if b.workday_population_source == "measured_headcount" else "density-based proxy" }} resident-vs-workday ratio from the ONS's 2011 Census release for {{ b.borough }} — see methodology) rather than plain resident population, so central boroughs with heavy commuter/visitor footfall aren't overstated as riskier just for having fewer official residents.
+  {# Prima questa riga nominava il grado di correzione ("measured headcount" /
+     "density-based proxy"): sono i nomi interni dei livelli del meccanismo di
+     correzione, cioe' implementazione, e insieme al resto bastavano a
+     ricostruire come si passa dal dato grezzo al punteggio. Quello che serve
+     al lettore resta, e resta per intero: che la normalizzazione non e' sulla
+     popolazione residente, quale numero e' stato usato, da dove viene e di
+     che anno e'. Il dettaglio sta in docs/internal-methodology.md. #}
+  Both are normalised by an estimated <strong>workday/footfall population</strong> of {{ "{:,}".format(b.workday_population) }} rather than the 2021 resident population of {{ "{:,}".format(b.population) }}, so central boroughs with heavy commuter and visitor footfall aren't overstated as riskier simply for having fewer official residents. The footfall estimate is derived from the ONS's 2011 Census workday-population release — the most recent one published — applied to {{ b.borough }}'s current resident population, and it is therefore an approximation of today's footfall, not a measurement of it.
   {% endif %}
   Rated against the average of the {{ b.covered_count }} boroughs currently on the automated pipeline{% if b.covered_count and b.total_boroughs and b.covered_count < b.total_boroughs %}, not yet a full London average{% endif %}.
 </div>

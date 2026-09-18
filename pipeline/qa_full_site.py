@@ -668,6 +668,62 @@ def check_denominator_artefacts(F):
                        "shows it ranked" % (z["day"], z["night"], pop))
 
 
+# The recipe, in the exact forms it took when it was public. Each entry is
+# (marker, what it gives away). Matched case-insensitively against the text of
+# every published page.
+#
+#   Deliberately phrase-based and narrow. A marker like "1.3" on its own would
+#   fire on a crime rate; "1.3×" and "1.3x" only ever appeared here as a
+#   classification threshold. A guard that cries wolf gets switched off.
+# The recipe, in the exact forms it took when it was public. Each entry is
+# (compiled pattern, what it gives away). Matched against the text of every
+# published page.
+#
+#   These are patterns and not bare strings for a reason I got wrong on the
+#   first attempt: "1.3×" alone fired on eleven Prague and Munich area pages
+#   where it is the measured ratio of that district to its city average — a
+#   fact about the place, and exactly the kind of evidence this page is
+#   supposed to publish. What must not be public is the same number named as a
+#   THRESHOLD. A guard that cries wolf gets switched off, so it matches the
+#   giveaway context, not the digits.
+RECIPE_MARKERS = [
+    (re.compile(r"1\.3\s*[×x]\s*/\s*0\.8\s*[×x]", re.I),
+     "the paired classification thresholds"),
+    (re.compile(r"(?:1\.3|0\.8)\s*[×x][^.]{0,60}\bthreshold", re.I),
+     "a classification threshold, named as one"),
+    (re.compile(r"measured headcount", re.I), "workday-correction tier name"),
+    (re.compile(r"density-based proxy", re.I), "workday-correction tier name"),
+    (re.compile(r"internal-methodology", re.I), "the internal document's own name"),
+    (re.compile(r"category is also weighted by", re.I),
+     "the existence and shape of the category weighting"),
+]
+
+
+def check_recipe_not_published(dist, F):
+    """The public site must not carry the scoring recipe.
+
+    WHY THIS IS A GATE AND NOT A REVIEW HABIT
+        The methodology page published the classification thresholds, the
+        day/night category allocation and the workday-correction tiers — enough
+        for anyone with the same open CSV to reproduce a Wandroz rating. Moving
+        that into docs/internal-methodology.md fixes it once. This stops it
+        coming back, in this page or any other, by anyone.
+
+        It is also the only real answer to "make sure the internal file cannot
+        accidentally become part of dist/". The build has no path from docs/ to
+        dist/ today, but that is an argument about the current code; this is a
+        check on the artefact that actually ships.
+    """
+    for path, rel in walk_html(dist):
+        text = TAG_RE.sub(" ", read(path)).lower()
+        for pattern, why in RECIPE_MARKERS:
+            m = pattern.search(text)
+            if m:
+                F.fail("METHODOLOGY", "recipe-published", rel,
+                       "contains %r — %s. This belongs in docs/internal-methodology.md, "
+                       "not on a public page." % (m.group(0), why))
+
+
 def check_forbidden_copy(dist, F):
     for path, rel in walk_html(dist):
         text = TAG_RE.sub(" ", read(path))
@@ -1201,6 +1257,7 @@ def main():
     check_navigation(dist, reg, F)
     check_methodology(dist, reg, F)
     check_forbidden_copy(dist, F)
+    check_recipe_not_published(dist, F)
     check_no_coverage_rule(F)
     check_denominator_artefacts(F)
     check_contact(dist, F)

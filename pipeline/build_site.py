@@ -789,6 +789,18 @@ CITY_COUNTRY = {
 POPULAR_CITY_NAMES = ["London", "Paris", "Rome", "Barcelona", "Amsterdam", "Berlin"]
 
 
+def countries_covered():
+    """Counted from the same CITY_COUNTRY map the homepage groups by, so the
+    methodology page cannot claim a country count the switcher disagrees with.
+
+    A function and not a constant, and the difference is not cosmetic: the UK
+    and research-city loops add to CITY_COUNTRY further down this file, so a
+    module-level constant here captured 17 countries instead of 22. The same
+    ordering bug once dropped four cities from the country switcher without a
+    word."""
+    return sorted(set(CITY_COUNTRY.values()))
+
+
 def group_cities_by_country(items, name_key="name"):
     """Group a list of city dicts (city_cards or CITY_LINKS) into country
     buckets, using CITY_COUNTRY/COUNTRY_FLAGS as the single source of truth.
@@ -874,14 +886,18 @@ OFFICIAL_SNAPSHOT = "OFFICIAL_SNAPSHOT"
 RESEARCH_BASED = "RESEARCH_BASED"
 MANUAL_EXPERIMENTAL = "MANUAL_EXPERIMENTAL"
 
+# Ordering for the public source table: strongest evidence first, so a reader
+# scanning it meets the official-data cities before the limited-data ones.
+TIER_ORDER = {OFFICIAL_SNAPSHOT: 0, RESEARCH_BASED: 1, MANUAL_EXPERIMENTAL: 2}
+
 CITY_METHODOLOGY = {
-    "berlin": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizei Berlin's official Häufigkeitszahl crime statistic (Kriminalitätsatlas Berlin)"},
-    "amsterdam": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "CBS (Statistics Netherlands)'s official registered-crime statistics"},
-    "praha": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Policie ČR's official crime statistics (kriminalita.policie.gov.cz)"},
-    "oslo": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Oslo kommune's official Statistikkbanken crime statistics"},
-    "munich": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizeipräsidium München's official recorded-offence statistics"},
-    "stockholm": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Brå (Brottsförebyggande rådet)'s official crime statistics"},
-    "brussels": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "BISA / Federale Politie's official crime statistics"},
+    "berlin": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizei Berlin's official Häufigkeitszahl crime statistic (Kriminalitätsatlas Berlin)", "source_url": "https://www.kriminalitaetsatlas.berlin.de/"},
+    "amsterdam": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "CBS (Statistics Netherlands)'s official registered-crime statistics", "source_url": "https://dataderden.cbs.nl/ODataApi/odata/47018NED"},
+    "praha": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Policie ČR's official crime statistics (kriminalita.policie.gov.cz)", "source_url": "https://kriminalita.policie.gov.cz/"},
+    "oslo": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Oslo kommune's official Statistikkbanken crime statistics", "source_url": "https://statistikkbanken.oslo.kommune.no/"},
+    "munich": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Polizeipräsidium München's official recorded-offence statistics", "source_url": "https://stadt.muenchen.de/dam/jcr:6291ac42-463d-4267-b436-c4b1a3313454/jt160904.pdf"},
+    "stockholm": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "Brå (Brottsförebyggande rådet)'s official crime statistics", "source_url": "https://statistik.bra.se/solwebb/action/index"},
+    "brussels": {"tier": OFFICIAL_SNAPSHOT, "crime_source": "BISA / Federale Politie's official crime statistics", "source_url": "https://bisa.brussels/"},
     # The English cities added on London's own pipeline rather than beside it
     # are filled in from UK_CITIES below, so a new one needs a single entry.
     # Edinburgh is deliberately NOT OFFICIAL_SNAPSHOT. Its figures are a secondary
@@ -987,6 +1003,57 @@ def evidence_stats():
     }
 
 
+# The geography unit and the reference period a city's own pages state. Read
+# back out of the zone text the builders generate, with a fixed shape:
+#   "X is one of Berlin's 143 official Bezirksregionen, part of ..."
+#   "CBS ... recorded ... in 2025 ..."
+# Reading our own generated sentence is not elegant, but the alternative is a
+# second hand-maintained table of 62 rows, which is precisely the thing that
+# drifts — and drift is what put three different city counts on three
+# different pages. Where the shape does not match, the cell says so instead of
+# guessing.
+_GEO_RE = re.compile(r"one of (?:the )?[^.]{0,40}?(\d+)\s+official\s+([A-Za-zÀ-ž' ]+?)(?:\s*\(|,|\.)")
+_YEAR_RE = re.compile(r"\b(20[12]\d)\b")
+
+
+def city_source_facts(city_key, zones):
+    """(geography, period) as the city's own area pages state them, or "—"."""
+    blob = " ".join((z.get("text") or "") for z in zones[:4])
+    geo = _GEO_RE.search(blob)
+    years = sorted(set(_YEAR_RE.findall(blob)))
+    return (geo.group(2).strip() if geo else "—",
+            years[-1] if years else "—")
+
+
+# Filled in as each city is rendered, then read by the methodology page, which
+# is written afterwards. The point is that the methodology table cannot claim a
+# coverage, a source or a count that the city pages do not actually have: it is
+# a record of what was built, not a parallel description of it.
+CITY_FACTS = []
+
+
+def record_city_facts(url_slug, label, city_key, zones, source=None, period=None,
+                      tier=None, geography=None, source_url=None):
+    tier = tier or (CITY_METHODOLOGY.get(city_key) or {}).get("tier", RESEARCH_BASED)
+    geo, derived_period = city_source_facts(city_key, zones)
+    geo = geography or geo
+    CITY_FACTS.append({
+        "slug": url_slug,
+        "label": city_only(label),
+        "tier": tier,
+        "areas": len(zones),
+        "geography": geo,
+        "period": period or derived_period,
+        "source": source or EVIDENCE_SOURCE.get(city_key) or "",
+        # Pubblicato solo se l'URL e' stato verificato: una fonte nominata e non
+        # cliccabile e' un limite, una fonte cliccabile che porta a un 404 e'
+        # una bugia sulla verificabilita', che e' il contrario del punto.
+        "source_url": source_url or (CITY_METHODOLOGY.get(city_key) or {}).get("source_url", ""),
+        "reviewed": REVIEW_DATE.get(city_key, ""),
+        "no_findings": sum(1 for z in zones if z.get("evidence") == "no_findings"),
+    })
+
+
 def city_only(label):
     """"Paris, France" is the page's breadcrumb label; inside a sentence the
     country is noise ("Paris, France publishes no dataset")."""
@@ -1082,6 +1149,7 @@ for _c in UK_CITIES:
     CITY_METHODOLOGY[_c["key"]] = {
         "tier": OFFICIAL_SNAPSHOT,
         "crime_source": "%s street-level crime records published at data.police.uk" % _c["force"],
+        "source_url": "https://data.police.uk/",
     }
     EVIDENCE_SOURCE[_c["key"]] = "%s, data.police.uk" % _c["force"]
 
@@ -2050,6 +2118,11 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         urls.append(z_canonical)
 
     print(f"Wrote {len(zones)} neighbourhood pages under {city_dir}/")
+    # La geografia la dice gia' la pagina della citta' ("All 34 neighbourhoods
+    # compared"): la prendo da li' invece di dedurla dal testo delle zone, che
+    # la nomina solo in 7 citta' su 62.
+    record_city_facts(url_slug, data["label"], city_key, zones,
+                      geography=_hub.get("local"))
     return urls
 
 
@@ -2179,6 +2252,15 @@ def render_london_map(cities):
     with open(os.path.join(london_dir, "index.html"), "w") as f:
         f.write(html)
     print(f"Wrote {os.path.join(london_dir, 'index.html')} ({len(js_zones)} boroughs, {live_count} auto-refreshed)")
+    # London is not in CITY_METHODOLOGY (see the comment where LONDON_EVIDENCE_TAG
+    # is defined), so its row is recorded explicitly. Leaving it out is how the
+    # site came to publish "27 official-data cities" on the methodology page and
+    # 28 green badges on the homepage.
+    record_city_facts("london", "London, United Kingdom", "london",
+                      london_zones_for_hub,
+                      source="Metropolitan Police street-level crime records, data.police.uk",
+                      period=london_window(), tier=OFFICIAL_SNAPSHOT, geography="boroughs",
+                      source_url="https://data.police.uk/")
     return [canonical]
 
 
@@ -2872,19 +2954,6 @@ def main():
         print(f"Removed {stale} (superseded by per-city boundaries.json)")
     print(f"Wrote {written} per-city boundaries.json + city-boxes.json ({len(city_boxes)} city boxes)")
 
-    # Methodology page
-    with open(os.path.join(OUT_DIR, "methodology.html"), "w") as f:
-        f.write(methodology_tpl.render(
-            canonical_url=SITE_URL + "/methodology.html",
-            london_covered_count=london_live_count,
-            london_total_boroughs=33,
-            london_window=london_window(),
-            uk_cities=[c["city"] for c in UK_CITIES],
-            uk_forces=sorted({c["force"] for c in UK_CITIES}),
-            ev=evidence_stats(),
-        ))
-    print(f"Wrote {os.path.join(OUT_DIR, 'methodology.html')}")
-
     # London's borough pages were the only zone pages on the site with no
     # accommodation link at all: 32 pages that answer "is this area safe?" and
     # then leave the reader with nowhere to go. The destination string is the
@@ -2998,6 +3067,38 @@ def main():
     sitemap_urls.extend(firenze_urls)
     research_summary = ", ".join("%s (%d)" % kv for kv in research_counts.items())
     print(f"Rendered interactive map hubs: Torino ({len(torino_urls)}), Zurigo ({len(zurigo_urls)}), London ({len(london_map_urls)}), Milano ({len(milano_urls)}), Roma ({len(roma_urls)}), Berlin ({len(berlin_urls)}), Amsterdam ({len(amsterdam_urls)}), Prague ({len(praha_urls)}), Oslo ({len(oslo_urls)}), Munich ({len(munich_urls)}), Stockholm ({len(stockholm_urls)}), Barcelona ({len(barcelona_urls)}), Madrid ({len(madrid_urls)}), Vienna ({len(vienna_urls)}), Lisbon ({len(lisbon_urls)}), Paris ({len(paris_urls)}), Brussels ({len(brussels_urls)}), Athens ({len(athens_urls)}), Venice ({len(venezia_urls)}), Dublin ({len(dublin_urls)}), Edinburgh ({len(edinburgh_urls)}), Naples ({len(napoli_urls)}), {research_summary}, Budapest ({len(budapest_urls)}), Kraków ({len(krakow_urls)}), Firenze ({len(firenze_urls)})")
+
+    # Methodology page. Written LAST, on purpose: its source table is built
+    # from CITY_FACTS, which every city fills in as it is rendered. Written
+    # before them, as it used to be, it could only describe the site from a
+    # separate set of constants — which is how it came to say 27 official-data
+    # cities while the homepage showed 28 badges.
+    ev = evidence_stats()
+    facts = sorted(CITY_FACTS, key=lambda c: (TIER_ORDER[c["tier"]], c["label"]))
+    with open(os.path.join(OUT_DIR, "methodology.html"), "w") as f:
+        f.write(methodology_tpl.render(
+            canonical_url=SITE_URL + "/methodology.html",
+            london_covered_count=london_live_count,
+            london_total_boroughs=33,
+            london_window=london_window(),
+            uk_cities=[c["city"] for c in UK_CITIES],
+            uk_forces=sorted({c["force"] for c in UK_CITIES}),
+            ev=ev,
+            facts=facts,
+            tier_official=OFFICIAL_SNAPSHOT,
+            tier_research=RESEARCH_BASED,
+            tier_limited=MANUAL_EXPERIMENTAL,
+            tag_for=EVIDENCE_TAG,
+            n_cities=len(facts),
+            n_countries=len(countries_covered()),
+            n_areas=sum(c["areas"] for c in facts),
+            n_official=sum(1 for c in facts if c["tier"] == OFFICIAL_SNAPSHOT),
+            n_research=sum(1 for c in facts if c["tier"] == RESEARCH_BASED),
+            n_limited=sum(1 for c in facts if c["tier"] == MANUAL_EXPERIMENTAL),
+            correction_email=CORRECTION_EMAIL,
+        ))
+    print(f"Wrote {os.path.join(OUT_DIR, 'methodology.html')} "
+          f"({len(facts)} cities in the source table)")
 
     assert_every_poi_file_is_used()
     write_robots_and_sitemap(sitemap_urls)
