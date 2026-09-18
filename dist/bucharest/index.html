@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is my Bucharest neighbourhood safe? — Wandroz</title>
+<title>Where to stay in Bucharest: safest neighbourhoods compared | Wandroz</title>
 <meta name="description" content="Interactive map of Bucharest&#39;s 6 official sectoare (real official administrative boundaries) with day/night safety levels from a structured local-source assessment.">
 <link rel="canonical" href="https://www.wandroz.com/bucharest/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Is my Bucharest neighbourhood safe? — Wandroz">
+<meta property="og:title" content="Where to stay in Bucharest: safest neighbourhoods compared | Wandroz">
 <meta property="og:description" content="Interactive map of Bucharest&#39;s 6 official sectoare (real official administrative boundaries) with day/night safety levels from a structured local-source assessment.">
 <meta property="og:url" content="https://www.wandroz.com/bucharest/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -44,6 +44,48 @@
      monitor largo il titolo finiva a sinistra, l'elenco dei quartieri si
      spalmava su tre colonne lunghissime e in mezzo restava grigio. */
   .page-shell { max-width: 2400px; margin: 0 auto; }
+  /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
+     Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
+     solo dopo lo strumento per verificarli. */
+  .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
+  .hub-answer strong { color:var(--navy); }
+  .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+               gap:14px; padding:0 24px; margin:0 0 22px; }
+  .hub-card { border:1px solid var(--line); border-radius:var(--radius-md); background:var(--panel);
+              padding:15px 17px; display:flex; flex-direction:column; gap:9px; }
+  .hub-card .lab { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
+                   font-weight:700; color:var(--accent); }
+  .hub-card .nm { font-size:18px; font-weight:800; color:var(--navy); line-height:1.2; }
+  .hub-card .nm a { color:inherit; text-decoration:none; }
+  .hub-card .nm a:hover { color:var(--accent); }
+  .hub-card .why { font-size:13.5px; color:var(--muted); line-height:1.5; flex:1; }
+  .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
+                  padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
+                  text-align:center; }
+  .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
+  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
+  table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
+  table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
+                               white-space:nowrap; }
+  table.hub th { font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+                 font-weight:700; cursor:pointer; user-select:none; background:var(--panel);
+                 position:sticky; top:0; }
+  table.hub th[aria-sort]::after { content:" \2195"; opacity:.45; }
+  table.hub th[aria-sort=ascending]::after { content:" \2191"; opacity:1; }
+  table.hub th[aria-sort=descending]::after { content:" \2193"; opacity:1; }
+  table.hub tr:last-child td { border-bottom:none; }
+  table.hub td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  table.hub a { color:var(--ink); text-decoration:none; font-weight:600; }
+  table.hub a:hover { color:var(--accent); text-decoration:underline; }
+  table.hub .dash { font-size:11.5px; color:var(--muted); }
+  @media (min-width: 721px){
+    .hub-answer { font-size:18px; }
+    .hub-card .nm { font-size:20px; }
+    .hub-card .why { font-size:15px; }
+    table.hub { font-size:15px; }
+    .hub-table-wrap h2 { font-size:19px; }
+  }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
      strette, ed e' anche il ripiego se la mappa si prende tutta la larghezza
@@ -422,9 +464,123 @@
 </header>
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Bucharest, Romania</nav>
-<h1 class="page-title">Bucharest neighbourhoods</h1>
-<p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
+<h1 class="page-title">Where to stay in Bucharest</h1>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
 <p class="evidence">🟡 Local-source safety assessment · 6 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+
+
+<p class="hub-answer">For a short stay in Bucharest, the areas this map rates best are
+  <strong>Gara de Nord, Herăstrău, Primăverii (Sector 1)</strong>, <strong>Berceni, Tineretului (Sector 4)</strong> and <strong>Centrul Vechi, Unirii, Titan (Sector 3)</strong>.
+  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+</p>
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/bucharest/sector-1.html">Gara de Nord, Herăstrău, Primăverii (Sector 1)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">6 of the sights on this map are inside it.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Find a place in Gara de Nord, Herăstrău, Primăverii (Sector 1) →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family · Best rated overall</span>
+    <span class="nm"><a href="/bucharest/sector-4.html">Berceni, Tineretului (Sector 4)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">2 green spaces on the map and no nightlife pin.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Find a place in Berceni, Tineretului (Sector 4) →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">For going out</span>
+    <span class="nm"><a href="/bucharest/sector-3.html">Centrul Vechi, Unirii, Titan (Sector 3)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 nightlife spot on the map, in an area that does not rate red after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Find a place in Centrul Vechi, Unirii, Titan (Sector 3) →</a>
+  </div>
+  
+</div>
+
+
+
+<div class="hub-table-wrap">
+  <h2>All 6 sectoare compared</h2>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/bucharest/sector-4.html">Berceni, Tineretului (Sector 4)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/bucharest/sector-5.html">Ferentari, Rahova, Cotroceni (Sector 5)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/bucharest/sector-1.html">Gara de Nord, Herăstrău, Primăverii (Sector 1)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">8</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/bucharest/sector-3.html">Centrul Vechi, Unirii, Titan (Sector 3)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">4</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/bucharest/sector-2.html">Pantelimon, Colentina, Obor (Sector 2)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/bucharest/sector-6.html">Militari, Drumul Taberei (Sector 6)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bucharest%2C+Romania" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <div class="poi-bar" id="poiBar"></div>
 
@@ -510,6 +666,35 @@
     // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
     return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
   }
+
+  // Ordinamento della tabella: i toni ordinano per gravita' (data-sort), non
+  // alfabeticamente — "green" prima di "red" e' l'ordine che serve, "green"
+  // prima di "yellow" per alfabeto sarebbe un caso fortunato.
+  (function () {
+    var t = document.getElementById('hubTable');
+    if (!t) return;
+    var body = t.tBodies[0];
+    t.tHead.addEventListener('click', function (ev) {
+      var th = ev.target.closest('th');
+      if (!th || th.cellIndex === 5) return;
+      var i = th.cellIndex;
+      var asc = th.getAttribute('aria-sort') !== 'ascending';
+      [].forEach.call(t.tHead.rows[0].cells, function (c) {
+        if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
+      });
+      th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+      var rows = [].slice.call(body.rows);
+      rows.sort(function (a, b) {
+        var ca = a.cells[i], cb = b.cells[i];
+        var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
+        var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
+        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
+        return asc ? r : -r;
+      });
+      rows.forEach(function (r) { body.appendChild(r); });
+    });
+  })();
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 44.4275, "lon": 26.0875, "name": "Palace of the Parliament", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 44.4413, "lon": 26.0973, "name": "Romanian Athenaeum", "rank": 2}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 44.47921, "lon": 26.08169, "name": "Her\u0103str\u0103u Park", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 44.43978, "lon": 26.09598, "name": "National Museum of Art of Romania", "rank": 4}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 44.43183, "lon": 26.10165, "name": "Lipscani", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 44.45438, "lon": 26.08368, "name": "Romanian Peasant Museum", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 44.43174, "lon": 26.09879, "name": "Stavropoleos Monastery", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 44.47336, "lon": 26.07656, "name": "Dimitrie Gusti National Village Museum in Bucharest", "rank": 8}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 44.44286, "lon": 26.09347, "name": "Calea Victoriei", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 44.43856, "lon": 26.0975, "name": "Revolution Square, Bucharest", "rank": 10}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 44.437, "lon": 26.09073, "name": "Ci\u0219migiu Gardens", "rank": 11}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 44.42956, "lon": 26.10205, "name": "Manuc\u0027s Inn", "rank": 12}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 44.4075, "lon": 26.1056, "name": "Tineretului Park", "rank": 13}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 44.43313, "lon": 26.0986, "name": "Pasajul Macca-Vilacrosse", "rank": 14}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 44.39587, "lon": 26.12327, "name": "monastery of V\u0103c\u0103re\u0219ti", "rank": 15}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 44.44943, "lon": 26.12462, "name": "Obor Square", "rank": 16}];
   var POI_ALL = "All";

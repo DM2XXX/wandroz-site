@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is my Madrid neighbourhood safe? — Wandroz</title>
+<title>Where to stay in Madrid: safest neighbourhoods compared | Wandroz</title>
 <meta name="description" content="Interactive map of Madrid&#39;s 131 official barrios (real official Ayuntamiento boundaries) with day/night safety levels from a structured local-source assessment.">
 <link rel="canonical" href="https://www.wandroz.com/madrid/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Is my Madrid neighbourhood safe? — Wandroz">
+<meta property="og:title" content="Where to stay in Madrid: safest neighbourhoods compared | Wandroz">
 <meta property="og:description" content="Interactive map of Madrid&#39;s 131 official barrios (real official Ayuntamiento boundaries) with day/night safety levels from a structured local-source assessment.">
 <meta property="og:url" content="https://www.wandroz.com/madrid/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -44,6 +44,48 @@
      monitor largo il titolo finiva a sinistra, l'elenco dei quartieri si
      spalmava su tre colonne lunghissime e in mezzo restava grigio. */
   .page-shell { max-width: 2400px; margin: 0 auto; }
+  /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
+     Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
+     solo dopo lo strumento per verificarli. */
+  .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
+  .hub-answer strong { color:var(--navy); }
+  .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+               gap:14px; padding:0 24px; margin:0 0 22px; }
+  .hub-card { border:1px solid var(--line); border-radius:var(--radius-md); background:var(--panel);
+              padding:15px 17px; display:flex; flex-direction:column; gap:9px; }
+  .hub-card .lab { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
+                   font-weight:700; color:var(--accent); }
+  .hub-card .nm { font-size:18px; font-weight:800; color:var(--navy); line-height:1.2; }
+  .hub-card .nm a { color:inherit; text-decoration:none; }
+  .hub-card .nm a:hover { color:var(--accent); }
+  .hub-card .why { font-size:13.5px; color:var(--muted); line-height:1.5; flex:1; }
+  .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
+                  padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
+                  text-align:center; }
+  .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
+  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
+  table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
+  table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
+                               white-space:nowrap; }
+  table.hub th { font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+                 font-weight:700; cursor:pointer; user-select:none; background:var(--panel);
+                 position:sticky; top:0; }
+  table.hub th[aria-sort]::after { content:" \2195"; opacity:.45; }
+  table.hub th[aria-sort=ascending]::after { content:" \2191"; opacity:1; }
+  table.hub th[aria-sort=descending]::after { content:" \2193"; opacity:1; }
+  table.hub tr:last-child td { border-bottom:none; }
+  table.hub td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  table.hub a { color:var(--ink); text-decoration:none; font-weight:600; }
+  table.hub a:hover { color:var(--accent); text-decoration:underline; }
+  table.hub .dash { font-size:11.5px; color:var(--muted); }
+  @media (min-width: 721px){
+    .hub-answer { font-size:18px; }
+    .hub-card .nm { font-size:20px; }
+    .hub-card .why { font-size:15px; }
+    table.hub { font-size:15px; }
+    .hub-table-wrap h2 { font-size:19px; }
+  }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
      strette, ed e' anche il ripiego se la mappa si prende tutta la larghezza
@@ -422,9 +464,1248 @@
 </header>
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Madrid, Spain</nav>
-<h1 class="page-title">Madrid neighbourhoods</h1>
-<p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
+<h1 class="page-title">Where to stay in Madrid</h1>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
 <p class="evidence">🟡 Local-source safety assessment · 131 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+
+
+<p class="hub-answer">For a short stay in Madrid, the areas this map rates best are
+  <strong>Cortes</strong>, <strong>Los Jerónimos</strong> and <strong>Justicia</strong>.
+  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+</p>
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/madrid/cortes.html">Cortes</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">2 of the sights on this map are inside it.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Find a place in Cortes →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family · Best rated overall</span>
+    <span class="nm"><a href="/madrid/los-jeronimos.html">Los Jerónimos</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">2 green spaces on the map and no nightlife pin.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Retiro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Find a place in Los Jerónimos →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">For going out</span>
+    <span class="nm"><a href="/madrid/justicia.html">Justicia</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 nightlife spot on the map, in an area that does not rate red after dark.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Find a place in Justicia →</a>
+  </div>
+  
+</div>
+
+
+
+<div class="hub-table-wrap">
+  <h2>All 131 neighbourhoods compared</h2>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/madrid/los-jeronimos.html">Los Jerónimos</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Retiro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/cortes.html">Cortes</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/palacio.html">Palacio</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/acacias.html">Acacias</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arganzuela%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/hispanoamerica.html">Hispanoamérica</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamart%C3%ADn%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/abrantes.html">Abrantes</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Carabanchel%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/adelfas.html">Adelfas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Retiro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/almenara.html">Almenara</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tetu%C3%A1n%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/almendrales.html">Almendrales</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Usera%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/apostol-santiago.html">Apóstol Santiago</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hortaleza%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/arapiles.html">Arapiles</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamber%C3%AD%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/aravaca.html">Aravaca</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moncloa+-+Aravaca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/arcos.html">Arcos</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arcos%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/arguelles.html">Argüelles</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moncloa+-+Aravaca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/atalaya.html">Atalaya</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/butarque.html">Butarque</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Butarque%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/campamento.html">Campamento</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Campamento%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/canillas.html">Canillas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hortaleza%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/canillejas.html">Canillejas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Canillejas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/casco-historico-de-barajas.html">Casco Histórico de Barajas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Barajas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/casco-historico-de-vallecas.html">Casco Histórico de Vallecas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/casco-historico-de-vicalvaro.html">Casco Histórico de Vicálvaro</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Vic%C3%A1lvaro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/castellana.html">Castellana</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Salamanca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/castillejos.html">Castillejos</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tetu%C3%A1n%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/chopera.html">Chopera</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arganzuela%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/ciudad-jardin.html">Ciudad Jardín</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamart%C3%ADn%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/colina.html">Colina</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/comillas.html">Comillas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Carabanchel%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/corralejos.html">Corralejos</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Corralejos%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/costillares.html">Costillares</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/cuatro-vientos.html">Cuatro Vientos</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Cuatro+Vientos%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/el-goloso.html">El Goloso</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fuencarral+-+El+Pardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/el-pardo.html">El Pardo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fuencarral+-+El+Pardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/el-plantio.html">El Plantío</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moncloa+-+Aravaca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/el-viso.html">El Viso</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamart%C3%ADn%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/fontarron.html">Fontarrón</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moratalaz%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/fuentelarreina.html">Fuentelarreina</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fuencarral+-+El+Pardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/gaztambide.html">Gaztambide</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamber%C3%AD%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/goya.html">Goya</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Salamanca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/horcajo.html">Horcajo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moratalaz%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/ibiza.html">Ibiza</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Retiro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/imperial.html">Imperial</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arganzuela%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/la-paz.html">La Paz</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fuencarral+-+El+Pardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/lista.html">Lista</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Salamanca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/marroquina.html">Marroquina</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moratalaz%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/mirasierra.html">Mirasierra</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fuencarral+-+El+Pardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/nino-jesus.html">Niño Jesús</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Retiro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/nueva-espana.html">Nueva España</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamart%C3%ADn%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/numancia.html">Numancia</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Puente+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/orcasur.html">Orcasur</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Usera%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/pacifico.html">Pacífico</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Retiro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/palomas.html">Palomas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hortaleza%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/palomeras-bajas.html">Palomeras Bajas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Puente+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/palomeras-sureste.html">Palomeras Sureste</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Puente+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/pinar-del-rey.html">Pinar del Rey</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hortaleza%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/portazgo.html">Portazgo</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Puente+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/san-pascual.html">San Pascual</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/timon.html">Timón</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tim%C3%B3n%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/trafalgar.html">Trafalgar</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamber%C3%AD%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/valdeacederas.html">Valdeacederas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tetu%C3%A1n%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/valdefuentes.html">Valdefuentes</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hortaleza%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/valdemarin.html">Valdemarín</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moncloa+-+Aravaca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/valdezarza.html">Valdezarza</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moncloa+-+Aravaca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/vallehermoso.html">Vallehermoso</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamber%C3%AD%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/valverde.html">Valverde</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fuencarral+-+El+Pardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/ventas.html">Ventas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/vinateros.html">Vinateros</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moratalaz%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/vista-alegre.html">Vista Alegre</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Carabanchel%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/zofio.html">Zofío</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Usera%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/aguilas.html">Águilas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=%C3%81guilas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/angeles.html">Ángeles</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=%C3%81ngeles%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/almagro.html">Almagro</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamber%C3%AD%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/castilla.html">Castilla</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamart%C3%ADn%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/sol.html">Sol</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/ciudad-universitaria.html">Ciudad Universitaria</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moncloa+-+Aravaca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/guindalera.html">Guindalera</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Salamanca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/legazpi.html">Legazpi</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arganzuela%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/moscardo.html">Moscardó</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Usera%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/piovera.html">Piovera</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hortaleza%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/prosperidad.html">Prosperidad</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamart%C3%ADn%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/puerta-bonita.html">Puerta Bonita</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Carabanchel%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/quintana.html">Quintana</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/rios-rosas.html">Ríos Rosas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Chamber%C3%AD%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/san-juan-bautista.html">San Juan Bautista</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/valderrivas.html">Valderrivas</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Valderrivas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/justicia.html">Justicia</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/universidad.html">Universidad</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/aluche.html">Aluche</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Aluche%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/atocha.html">Atocha</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arganzuela%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/bellas-vistas.html">Bellas Vistas</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tetu%C3%A1n%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/berruguete.html">Berruguete</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tetu%C3%A1n%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/buenavista.html">Buenavista</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Carabanchel%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/cuatro-caminos.html">Cuatro Caminos</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Tetu%C3%A1n%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/el-salvador.html">El Salvador</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=El+Salvador%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/estrella.html">Estrella</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Retiro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/fuente-del-berro.html">Fuente del Berro</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Salamanca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/hellin.html">Hellín</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hell%C3%ADn%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/la-concepcion.html">La Concepción</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/media-legua.html">Media Legua</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moratalaz%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/opanel.html">Opañel</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Carabanchel%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/palos-de-la-frontera.html">Palos de la Frontera</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arganzuela%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/pavones.html">Pavones</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moratalaz%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/penagrande.html">Peñagrande</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fuencarral+-+El+Pardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/pilar.html">Pilar</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Fuencarral+-+El+Pardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/recoletos.html">Recoletos</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Salamanca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/san-fermin.html">San Fermín</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Usera%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/casa-de-campo.html">Casa de Campo</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Moncloa+-+Aravaca%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/embajadores.html">Embajadores</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/aeropuerto.html">Aeropuerto</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Aeropuerto%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/alameda-de-osuna.html">Alameda de Osuna</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Alameda+de+Osuna%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/delicias.html">Delicias</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Arganzuela%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/ensanche-de-vallecas.html">Ensanche de Vallecas</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/los-carmenes.html">Los Cármenes</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Los+C%C3%A1rmenes%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/los-rosales.html">Los Rosales</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Los+Rosales%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/pueblo-nuevo.html">Pueblo Nuevo</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ciudad+Lineal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/puerta-del-angel.html">Puerta del Ángel</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Puerta+del+%C3%81ngel%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/san-isidro.html">San Isidro</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Carabanchel%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/amposta.html">Amposta</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Amposta%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/el-canaveral.html">El Cañaveral</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=El+Ca%C3%B1averal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/entrevias.html">Entrevías</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Puente+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/lucero.html">Lucero</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Lucero%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/orcasitas.html">Orcasitas</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Usera%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/pradolongo.html">Pradolongo</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Usera%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/rejas.html">Rejas</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rejas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/rosas.html">Rosas</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rosas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/san-cristobal.html">San Cristóbal</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=San+Crist%C3%B3bal%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/san-diego.html">San Diego</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Puente+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/santa-eugenia.html">Santa Eugenia</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villa+de+Vallecas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/simancas.html">Simancas</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Simancas%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/valdebernardo.html">Valdebernardo</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Valdebernardo%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/madrid/villaverde-alto-casco-historico-de-villaverde.html">Villaverde Alto - Casco Histórico de Villaverde</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Villaverde+Alto%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <div class="poi-bar" id="poiBar"></div>
 
@@ -971,6 +2252,35 @@
     // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
     return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
   }
+
+  // Ordinamento della tabella: i toni ordinano per gravita' (data-sort), non
+  // alfabeticamente — "green" prima di "red" e' l'ordine che serve, "green"
+  // prima di "yellow" per alfabeto sarebbe un caso fortunato.
+  (function () {
+    var t = document.getElementById('hubTable');
+    if (!t) return;
+    var body = t.tBodies[0];
+    t.tHead.addEventListener('click', function (ev) {
+      var th = ev.target.closest('th');
+      if (!th || th.cellIndex === 5) return;
+      var i = th.cellIndex;
+      var asc = th.getAttribute('aria-sort') !== 'ascending';
+      [].forEach.call(t.tHead.rows[0].cells, function (c) {
+        if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
+      });
+      th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+      var rows = [].slice.call(body.rows);
+      rows.sort(function (a, b) {
+        var ca = a.cells[i], cb = b.cells[i];
+        var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
+        var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
+        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
+        return asc ? r : -r;
+      });
+      rows.forEach(function (r) { body.appendChild(r); });
+    });
+  })();
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 40.413889, "lon": -3.692222, "name": "Museo del Prado", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 40.408571, "lon": -3.693996, "name": "Museo Reina Sof\u00eda", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 40.417955, "lon": -3.714312, "name": "Royal Palace of Madrid", "rank": 3}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.415456, "lon": -3.707381, "name": "Plaza Mayor, Madrid", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 40.416041, "lon": -3.694925, "name": "Museo Thyssen-Bornemisza", "rank": 5}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.41694, "lon": -3.70361, "name": "Puerta del Sol", "rank": 6}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.415, "lon": -3.683889, "name": "Buen Retiro Park", "rank": 7}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfdb", "lat": 40.424053, "lon": -3.717778, "name": "Temple of Debod", "rank": 8}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.42, "lon": -3.70361, "name": "Gran V\u00eda", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 40.41917, "lon": -3.69306, "name": "Plaza de Cibeles", "rank": 10}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 40.415438, "lon": -3.708869, "name": "Mercado de San Miguel", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 40.425130555556, "lon": -3.7039222222222, "name": "Malasa\u00f1a", "rank": 12}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 40.421666666667, "lon": -3.6980555555556, "name": "Chueca", "rank": 13}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.41117, "lon": -3.69075, "name": "Royal Botanic Garden", "rank": 14}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.42957, "lon": -3.72443, "name": "Parque del Oeste", "rank": 15}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 40.40061, "lon": -3.70984, "name": "Madrid R\u00edo", "rank": 16}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 40.45306, "lon": -3.68835, "name": "Santiago Bernab\u00e9u Stadium", "rank": 17}];
   var POI_ALL = "All";

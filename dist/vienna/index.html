@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is my Vienna neighbourhood safe? — Wandroz</title>
+<title>Where to stay in Vienna: safest neighbourhoods compared | Wandroz</title>
 <meta name="description" content="Interactive map of Vienna&#39;s 23 official Bezirke (real official Statistik Austria boundaries) with day/night safety levels from a structured local-source assessment.">
 <link rel="canonical" href="https://www.wandroz.com/vienna/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Is my Vienna neighbourhood safe? — Wandroz">
+<meta property="og:title" content="Where to stay in Vienna: safest neighbourhoods compared | Wandroz">
 <meta property="og:description" content="Interactive map of Vienna&#39;s 23 official Bezirke (real official Statistik Austria boundaries) with day/night safety levels from a structured local-source assessment.">
 <meta property="og:url" content="https://www.wandroz.com/vienna/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -44,6 +44,48 @@
      monitor largo il titolo finiva a sinistra, l'elenco dei quartieri si
      spalmava su tre colonne lunghissime e in mezzo restava grigio. */
   .page-shell { max-width: 2400px; margin: 0 auto; }
+  /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
+     Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
+     solo dopo lo strumento per verificarli. */
+  .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
+  .hub-answer strong { color:var(--navy); }
+  .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+               gap:14px; padding:0 24px; margin:0 0 22px; }
+  .hub-card { border:1px solid var(--line); border-radius:var(--radius-md); background:var(--panel);
+              padding:15px 17px; display:flex; flex-direction:column; gap:9px; }
+  .hub-card .lab { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
+                   font-weight:700; color:var(--accent); }
+  .hub-card .nm { font-size:18px; font-weight:800; color:var(--navy); line-height:1.2; }
+  .hub-card .nm a { color:inherit; text-decoration:none; }
+  .hub-card .nm a:hover { color:var(--accent); }
+  .hub-card .why { font-size:13.5px; color:var(--muted); line-height:1.5; flex:1; }
+  .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
+                  padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
+                  text-align:center; }
+  .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
+  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
+  table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
+  table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
+                               white-space:nowrap; }
+  table.hub th { font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+                 font-weight:700; cursor:pointer; user-select:none; background:var(--panel);
+                 position:sticky; top:0; }
+  table.hub th[aria-sort]::after { content:" \2195"; opacity:.45; }
+  table.hub th[aria-sort=ascending]::after { content:" \2191"; opacity:1; }
+  table.hub th[aria-sort=descending]::after { content:" \2193"; opacity:1; }
+  table.hub tr:last-child td { border-bottom:none; }
+  table.hub td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  table.hub a { color:var(--ink); text-decoration:none; font-weight:600; }
+  table.hub a:hover { color:var(--accent); text-decoration:underline; }
+  table.hub .dash { font-size:11.5px; color:var(--muted); }
+  @media (min-width: 721px){
+    .hub-answer { font-size:18px; }
+    .hub-card .nm { font-size:20px; }
+    .hub-card .why { font-size:15px; }
+    table.hub { font-size:15px; }
+    .hub-table-wrap h2 { font-size:19px; }
+  }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
      strette, ed e' anche il ripiego se la mappa si prende tutta la larghezza
@@ -422,9 +464,276 @@
 </header>
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Vienna, Austria</nav>
-<h1 class="page-title">Vienna neighbourhoods</h1>
-<p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
+<h1 class="page-title">Where to stay in Vienna</h1>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
 <p class="evidence">🟡 Local-source safety assessment · 23 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+
+
+<p class="hub-answer">For a short stay in Vienna, the areas this map rates best are
+  <strong>Innere Stadt (01. Bezirk)</strong>, <strong>Landstraße (03. Bezirk)</strong> and <strong>Wieden (04. Bezirk)</strong>.
+  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+</p>
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit · For going out</span>
+    <span class="nm"><a href="/vienna/innere-stadt.html">Innere Stadt (01. Bezirk)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">8 of the sights on this map are inside it.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Innere+Stadt%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Find a place in Innere Stadt (01. Bezirk) →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family</span>
+    <span class="nm"><a href="/vienna/landstrasse.html">Landstraße (03. Bezirk)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 green space on the map and no nightlife pin.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Landstra%C3%9Fe%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Find a place in Landstraße (03. Bezirk) →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">Best rated overall</span>
+    <span class="nm"><a href="/vienna/wieden.html">Wieden (04. Bezirk)</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">The best day and night pair in the city.</span>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Wieden%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Find a place in Wieden (04. Bezirk) →</a>
+  </div>
+  
+</div>
+
+
+
+<div class="hub-table-wrap">
+  <h2>All 23 bezirke compared</h2>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/vienna/wieden.html">Wieden (04. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Wieden%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/hietzing.html">Hietzing (13. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hietzing%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/neubau.html">Neubau (07. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Neubau%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/hernals.html">Hernals (17. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Hernals%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/josefstadt.html">Josefstadt (08. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Josefstadt%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/liesing.html">Liesing (23. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Liesing%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/penzing.html">Penzing (14. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Penzing%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/waehring.html">Währing (18. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=W%C3%A4hring%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/landstrasse.html">Landstraße (03. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Landstra%C3%9Fe%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/alsergrund.html">Alsergrund (09. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Alsergrund%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/donaustadt.html">Donaustadt (22. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Donaustadt%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/doebling.html">Döbling (19. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=D%C3%B6bling%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/margareten.html">Margareten (05. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Margareten%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/simmering.html">Simmering (11. Bezirk)</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Simmering%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/innere-stadt.html">Innere Stadt (01. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">11</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Innere+Stadt%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/leopoldstadt.html">Leopoldstadt (02. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Leopoldstadt%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/brigittenau.html">Brigittenau (20. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Brigittenau%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/favoriten.html">Favoriten (10. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Favoriten%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/floridsdorf.html">Floridsdorf (21. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Floridsdorf%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/mariahilf.html">Mariahilf (06. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Mariahilf%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/meidling.html">Meidling (12. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Meidling%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/ottakring.html">Ottakring (16. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Ottakring%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/vienna/rudolfsheim-fuenfhaus.html">Rudolfsheim-Fünfhaus (15. Bezirk)</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Rudolfsheim-F%C3%BCnfhaus%2C+Vienna%2C+Austria" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <div class="poi-bar" id="poiBar"></div>
 
@@ -544,6 +853,35 @@
     // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
     return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
   }
+
+  // Ordinamento della tabella: i toni ordinano per gravita' (data-sort), non
+  // alfabeticamente — "green" prima di "red" e' l'ordine che serve, "green"
+  // prima di "yellow" per alfabeto sarebbe un caso fortunato.
+  (function () {
+    var t = document.getElementById('hubTable');
+    if (!t) return;
+    var body = t.tBodies[0];
+    t.tHead.addEventListener('click', function (ev) {
+      var th = ev.target.closest('th');
+      if (!th || th.cellIndex === 5) return;
+      var i = th.cellIndex;
+      var asc = th.getAttribute('aria-sort') !== 'ascending';
+      [].forEach.call(t.tHead.rows[0].cells, function (c) {
+        if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
+      });
+      th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+      var rows = [].slice.call(body.rows);
+      rows.sort(function (a, b) {
+        var ca = a.cells[i], cb = b.cells[i];
+        var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
+        var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
+        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
+        return asc ? r : -r;
+      });
+      rows.forEach(function (r) { body.appendChild(r); });
+    });
+  })();
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 48.18479, "lon": 16.31227, "name": "Sch\u00f6nbrunn Palace", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 48.1934, "lon": 16.380519, "name": "Belvedere, Vienna", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 48.208427, "lon": 16.373256, "name": "St. Stephen\u0027s Cathedral, Vienna", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 48.206389, "lon": 16.365278, "name": "Hofburg", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 48.203333, "lon": 16.369167, "name": "Vienna State Opera", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 48.203881, "lon": 16.3616, "name": "Kunsthistorisches Museum", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 48.204722, "lon": 16.368333, "name": "Albertina", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 48.198281, "lon": 16.371881, "name": "Karlskirche", "rank": 8}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 48.2108, "lon": 16.3574, "name": "Vienna City Hall", "rank": 9}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 48.2075, "lon": 16.3939, "name": "Hundertwasserhaus", "rank": 10}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 48.20333, "lon": 16.35889, "name": "MuseumsQuartier", "rank": 11}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 48.216831, "lon": 16.395919, "name": "Wiener Riesenrad", "rank": 12}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 48.1989, "lon": 16.3636, "name": "Naschmarkt", "rank": 13}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 48.208613, "lon": 16.369913, "name": "Graben", "rank": 14}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 48.2114, "lon": 16.3789, "name": "Schwedenplatz", "rank": 15}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 48.204722222222, "lon": 16.380555555556, "name": "Stadtpark", "rank": 16}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 48.2117, "lon": 16.3753, "name": "Bermuda Triangle", "rank": 17}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 48.1991666667, "lon": 16.3386944444, "name": "G\u00fcrtel", "rank": 18}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 48.20805, "lon": 16.36173, "name": "Volksgarten", "rank": 19}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 48.2245, "lon": 16.3766, "name": "Augarten", "rank": 20}];
   var POI_ALL = "All";

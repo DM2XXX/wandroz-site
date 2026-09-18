@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is my Amsterdam neighbourhood safe? — Wandroz</title>
+<title>Where to stay in Amsterdam: safest neighbourhoods compared | Wandroz</title>
 <meta name="description" content="Interactive map of Amsterdam&#39;s 110 official wijken with real official CBS crime-rate data per zone.">
 <link rel="canonical" href="https://www.wandroz.com/amsterdam/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Is my Amsterdam neighbourhood safe? — Wandroz">
+<meta property="og:title" content="Where to stay in Amsterdam: safest neighbourhoods compared | Wandroz">
 <meta property="og:description" content="Interactive map of Amsterdam&#39;s 110 official wijken with real official CBS crime-rate data per zone.">
 <meta property="og:url" content="https://www.wandroz.com/amsterdam/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -44,6 +44,48 @@
      monitor largo il titolo finiva a sinistra, l'elenco dei quartieri si
      spalmava su tre colonne lunghissime e in mezzo restava grigio. */
   .page-shell { max-width: 2400px; margin: 0 auto; }
+  /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
+     Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
+     solo dopo lo strumento per verificarli. */
+  .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
+  .hub-answer strong { color:var(--navy); }
+  .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+               gap:14px; padding:0 24px; margin:0 0 22px; }
+  .hub-card { border:1px solid var(--line); border-radius:var(--radius-md); background:var(--panel);
+              padding:15px 17px; display:flex; flex-direction:column; gap:9px; }
+  .hub-card .lab { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
+                   font-weight:700; color:var(--accent); }
+  .hub-card .nm { font-size:18px; font-weight:800; color:var(--navy); line-height:1.2; }
+  .hub-card .nm a { color:inherit; text-decoration:none; }
+  .hub-card .nm a:hover { color:var(--accent); }
+  .hub-card .why { font-size:13.5px; color:var(--muted); line-height:1.5; flex:1; }
+  .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
+                  padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
+                  text-align:center; }
+  .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
+  .hub-table-wrap h2 { font-size:17px; margin:0 0 10px; font-weight:700; }
+  .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
+  table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
+  table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
+                               white-space:nowrap; }
+  table.hub th { font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+                 font-weight:700; cursor:pointer; user-select:none; background:var(--panel);
+                 position:sticky; top:0; }
+  table.hub th[aria-sort]::after { content:" \2195"; opacity:.45; }
+  table.hub th[aria-sort=ascending]::after { content:" \2191"; opacity:1; }
+  table.hub th[aria-sort=descending]::after { content:" \2193"; opacity:1; }
+  table.hub tr:last-child td { border-bottom:none; }
+  table.hub td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  table.hub a { color:var(--ink); text-decoration:none; font-weight:600; }
+  table.hub a:hover { color:var(--accent); text-decoration:underline; }
+  table.hub .dash { font-size:11.5px; color:var(--muted); }
+  @media (min-width: 721px){
+    .hub-answer { font-size:18px; }
+    .hub-card .nm { font-size:20px; }
+    .hub-card .why { font-size:15px; }
+    table.hub { font-size:15px; }
+    .hub-table-wrap h2 { font-size:19px; }
+  }
   .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
   /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
      strette, ed e' anche il ripiego se la mappa si prende tutta la larghezza
@@ -416,9 +458,1048 @@
 </header>
 <div class="page-shell">
 <nav class="crumbs"><a href="/">Home</a> &rsaquo; Amsterdam, Netherlands</nav>
-<h1 class="page-title">Amsterdam neighbourhoods</h1>
-<p class="lead">Click a neighbourhood on the map to see its level, the reasoning, and a Booking.com link for that area.</p>
+<h1 class="page-title">Where to stay in Amsterdam</h1>
+<p class="lead">Every area rated for day and night, with the reasoning and the sources behind each rating. The map is below the table.</p>
 <p class="evidence">🟢 Official crime data · CBS registered crime <a href="/methodology.html">Methodology &rarr;</a></p>
+
+
+<p class="hub-answer">For a short stay in Amsterdam, the areas this map rates best are
+  <strong>Oude Pijp</strong> and <strong>Spaarndammerbuurt/Zeeheldenbuurt</strong>.
+  Each is picked from the ratings and the sights below, not chosen by hand — the reasoning is on the card.
+</p>
+<div class="hub-cards">
+  
+  <div class="hub-card">
+    <span class="lab">For a first visit · Best rated overall</span>
+    <span class="nm"><a href="/amsterdam/oude-pijp.html">Oude Pijp</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">2 of the sights on this map are inside it.</span>
+    <a class="bk" href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOude%2BPijp%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Find a place in Oude Pijp →</a>
+  </div>
+  
+  <div class="hub-card">
+    <span class="lab">With family</span>
+    <span class="nm"><a href="/amsterdam/spaarndammerbuurt-zeeheldenbuurt.html">Spaarndammerbuurt/Zeeheldenbuurt</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">1 green space on the map and no nightlife pin.</span>
+    <a class="bk" href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSpaarndammerbuurt%252FZeeheldenbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Find a place in Spaarndammerbuurt/Zeeheldenbuurt →</a>
+  </div>
+  
+</div>
+
+
+
+<div class="hub-table-wrap">
+  <h2>All 110 wijken compared</h2>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
+        <th aria-sort="none">Evidence</th><th aria-sort="none" class="num">Sights</th><th>Book</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/amsterdam/oude-pijp.html">Oude Pijp</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOude%2BPijp%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/jordaan.html">Jordaan</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DJordaan%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/spaarndammerbuurt-zeeheldenbuurt.html">Spaarndammerbuurt/Zeeheldenbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSpaarndammerbuurt%252FZeeheldenbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/weesperbuurt-plantage.html">Weesperbuurt/Plantage</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWeesperbuurt%252FPlantage%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/willemspark.html">Willemspark</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWillemspark%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/aetsveld-oostelijke-vechtoever.html">Aetsveld/Oostelijke Vechtoever</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DAetsveld%252FOostelijke%2BVechtoever%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/apollobuurt.html">Apollobuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DApollobuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/banne-buiksloot.html">Banne Buiksloot</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBanne%2BBuiksloot%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/bellamybuurt.html">Bellamybuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBellamybuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/betondorp.html">Betondorp</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBetondorp%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/bijlmermuseum.html">Bijlmermuseum</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBijlmermuseum%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/bloemendalerpolder.html">Bloemendalerpolder</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBloemendalerpolder%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/buikslotermeer.html">Buikslotermeer</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBuikslotermeer%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/buitenveldert-oost.html">Buitenveldert-Oost</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBuitenveldert-Oost%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/buitenveldert-west.html">Buitenveldert-West</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBuitenveldert-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/centrale-markt.html">Centrale Markt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DCentrale%2BMarkt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/chassebuurt.html">Chassébuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DChass%25C3%25A9buurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/da-costabuurt.html">Da Costabuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DDa%2BCostabuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/dapperbuurt.html">Dapperbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DDapperbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/de-aker.html">De Aker</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DDe%2BAker%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/de-kolenkit.html">De Kolenkit</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DDe%2BKolenkit%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/de-punt.html">De Punt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DDe%2BPunt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/driemond.html">Driemond</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DDriemond%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/elzenhagen.html">Elzenhagen</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DElzenhagen%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/erasmuspark.html">Erasmuspark</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DErasmuspark%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/frankendael.html">Frankendael</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DFrankendael%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/frederik-hendrikbuurt.html">Frederik Hendrikbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DFrederik%2BHendrikbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/ganzenhoef-e-o.html">Ganzenhoef e.o.</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DGanzenhoef%2Be.o.%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/geerdinkhof-kantershof.html">Geerdinkhof/Kantershof</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DGeerdinkhof%252FKantershof%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/gein.html">Gein</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DGein%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/geuzenbuurt.html">Geuzenbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DGeuzenbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/geuzenveld.html">Geuzenveld</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DGeuzenveld%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/h-buurt.html">H-buurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DH-buurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/haarlemmerbuurt.html">Haarlemmerbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DHaarlemmerbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/helmersbuurt.html">Helmersbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DHelmersbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/holendrecht.html">Holendrecht</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DHolendrecht%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/hoofddorppleinbuurt.html">Hoofddorppleinbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DHoofddorppleinbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/hoofdweg-e-o.html">Hoofdweg e.o.</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DHoofdweg%2Be.o.%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/houthavens.html">Houthavens</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DHouthavens%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/ijburg-oost.html">IJburg-Oost</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DIJburg-Oost%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/ijburg-west.html">IJburg-West</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DIJburg-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/ijburg-zuid.html">IJburg-Zuid</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DIJburg-Zuid%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/ijplein-vogelbuurt.html">IJplein/Vogelbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DIJplein%252FVogelbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/ijselbuurt.html">IJselbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DIJselbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/indische-buurt-oost.html">Indische Buurt-Oost</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DIndische%2BBuurt-Oost%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/indische-buurt-west.html">Indische Buurt-West</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DIndische%2BBuurt-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/k-buurt.html">K-buurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DK-buurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/kadoelen.html">Kadoelen</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DKadoelen%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/landlust.html">Landlust</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DLandlust%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/middenmeer.html">Middenmeer</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DMiddenmeer%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/nellestein.html">Nellestein</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DNellestein%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/nieuwe-pijp.html">Nieuwe Pijp</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DNieuwe%2BPijp%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/nieuwendammerdijk-buiksloterdijk.html">Nieuwendammerdijk/Buiksloterdijk</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DNieuwendammerdijk%252FBuiksloterdijk%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/noordelijke-ij-oevers-west.html">Noordelijke IJ-oevers-West</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DNoordelijke%2BIJ-oevers-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/omval-overamstel.html">Omval/Overamstel</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOmval%252FOveramstel%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/oostelijk-havengebied.html">Oostelijk Havengebied</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOostelijk%2BHavengebied%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/oostelijke-eilanden-kadijken.html">Oostelijke Eilanden/Kadijken</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOostelijke%2BEilanden%252FKadijken%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/oostzanerwerf.html">Oostzanerwerf</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOostzanerwerf%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/osdorp-midden.html">Osdorp-Midden</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOsdorp-Midden%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/osdorp-oost.html">Osdorp-Oost</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOsdorp-Oost%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/overtoomse-sluis.html">Overtoomse Sluis</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOvertoomse%2BSluis%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/overtoomse-veld.html">Overtoomse Veld</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOvertoomse%2BVeld%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/prinses-irenebuurt-e-o.html">Prinses Irenebuurt e.o.</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DPrinses%2BIrenebuurt%2Be.o.%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/reigersbos.html">Reigersbos</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DReigersbos%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/rijnbuurt.html">Rijnbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DRijnbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/scheldebuurt.html">Scheldebuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DScheldebuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/schinkelbuurt.html">Schinkelbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSchinkelbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/sloten-nieuw-sloten.html">Sloten/Nieuw-Sloten</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSloten%252FNieuw-Sloten%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/slotermeer-noordoost.html">Slotermeer-Noordoost</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSlotermeer-Noordoost%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/slotermeer-west.html">Slotermeer-West</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSlotermeer-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/slotermeer-zuidoost.html">Slotermeer-Zuidoost</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSlotermeer-Zuidoost%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/slotervaart-noord.html">Slotervaart-Noord</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSlotervaart-Noord%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/slotervaart-zuid.html">Slotervaart-Zuid</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSlotervaart-Zuid%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/staatsliedenbuurt.html">Staatsliedenbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DStaatsliedenbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/stadionbuurt.html">Stadionbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DStadionbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/transvaalbuurt.html">Transvaalbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DTransvaalbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/tuindorp-buiksloot.html">Tuindorp Buiksloot</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DTuindorp%2BBuiksloot%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/tuindorp-nieuwendam.html">Tuindorp Nieuwendam</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DTuindorp%2BNieuwendam%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/tuindorp-oostzaan.html">Tuindorp Oostzaan</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DTuindorp%2BOostzaan%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/van-galenbuurt.html">Van Galenbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVan%2BGalenbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/van-lennepbuurt.html">Van Lennepbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVan%2BLennepbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/venserpolder.html">Venserpolder</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVenserpolder%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/volewijck.html">Volewijck</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVolewijck%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/waterland.html">Waterland</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWaterland%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/waterlandpleinbuurt.html">Waterlandpleinbuurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWaterlandpleinbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/weesp-binnenstad-zuid.html">Weesp Binnenstad/Zuid</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWeesp%2BBinnenstad%252FZuid%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/weesp-noordwest.html">Weesp-Noordwest</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWeesp-Noordwest%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/weesperzijde.html">Weesperzijde</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWeesperzijde%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/westindische-buurt.html">Westindische Buurt</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWestindische%2BBuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/westlandgracht.html">Westlandgracht</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DWestlandgracht%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/zeeburgereiland-bovendiep.html">Zeeburgereiland/Bovendiep</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DZeeburgereiland%252FBovendiep%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/zuid-pijp.html">Zuid Pijp</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DZuid%2BPijp%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/museumkwartier.html">Museumkwartier</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DMuseumkwartier%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/grachtengordel-west.html">Grachtengordel-West</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DGrachtengordel-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/nieuwmarkt-lastage.html">Nieuwmarkt/Lastage</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DNieuwmarkt%252FLastage%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/oosterparkbuurt.html">Oosterparkbuurt</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOosterparkbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/amsterdamse-poort-e-o.html">Amsterdamse Poort e.o.</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DAmsterdamse%2BPoort%2Be.o.%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/lutkemeer-ookmeer.html">Lutkemeer/Ookmeer</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DLutkemeer%252FOokmeer%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/vondelparkbuurt.html">Vondelparkbuurt</a></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVondelparkbuurt%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/burgwallen-nieuwe-zijde.html">Burgwallen-Nieuwe Zijde</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">3</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBurgwallen-Nieuwe%2BZijde%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/grachtengordel-zuid.html">Grachtengordel-Zuid</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">2</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DGrachtengordel-Zuid%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/burgwallen-oude-zijde.html">Burgwallen-Oude Zijde</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBurgwallen-Oude%2BZijde%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/de-weteringschans.html">De Weteringschans</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DDe%2BWeteringschans%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/amstel-iii-bullewijk.html">Amstel III/Bullewijk</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DAmstel%2BIII%252FBullewijk%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/coenhaven-minervahaven.html">Coenhaven/Minervahaven</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DCoenhaven%252FMinervahaven%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/havens-west.html">Havens-West</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DHavens-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/noordelijke-ij-oevers-oost.html">Noordelijke IJ-oevers-Oost</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DNoordelijke%2BIJ-oevers-Oost%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/sloterdijk-nieuw-west.html">Sloterdijk Nieuw-West</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSloterdijk%2BNieuw-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/sloterdijk-west.html">Sloterdijk-West</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSloterdijk-West%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/amsterdam/zuidas.html">Zuidas</a></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">0</td>
+          <td><a href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DZuidas%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <div class="poi-bar" id="poiBar"></div>
 
@@ -813,6 +1894,35 @@
     // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
     return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
   }
+
+  // Ordinamento della tabella: i toni ordinano per gravita' (data-sort), non
+  // alfabeticamente — "green" prima di "red" e' l'ordine che serve, "green"
+  // prima di "yellow" per alfabeto sarebbe un caso fortunato.
+  (function () {
+    var t = document.getElementById('hubTable');
+    if (!t) return;
+    var body = t.tBodies[0];
+    t.tHead.addEventListener('click', function (ev) {
+      var th = ev.target.closest('th');
+      if (!th || th.cellIndex === 5) return;
+      var i = th.cellIndex;
+      var asc = th.getAttribute('aria-sort') !== 'ascending';
+      [].forEach.call(t.tHead.rows[0].cells, function (c) {
+        if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
+      });
+      th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+      var rows = [].slice.call(body.rows);
+      rows.sort(function (a, b) {
+        var ca = a.cells[i], cb = b.cells[i];
+        var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
+        var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
+        if (i === 4) { va = +ca.textContent; vb = +cb.textContent; }
+        var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
+        return asc ? r : -r;
+      });
+      rows.forEach(function (r) { body.appendChild(r); });
+    });
+  })();
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.36, "lon": 4.885278, "name": "Rijksmuseum", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.358333, "lon": 4.881111, "name": "Van Gogh Museum", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.375344, "lon": 4.884259, "name": "Anne Frank House", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.373167, "lon": 4.891361, "name": "Royal Palace of Amsterdam", "rank": 4}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 52.373056, "lon": 4.892778, "name": "Dam Square", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.369444, "lon": 4.901389, "name": "Rembrandt House Museum", "rank": 6}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.356944, "lon": 4.866389, "name": "Vondelpark", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 52.37917, "lon": 4.88028, "name": "Jordaan", "rank": 8}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83d\udeb6", "lat": 52.366389, "lon": 4.885833, "name": "Grachtengordel", "rank": 9}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.35778, "lon": 4.89111, "name": "Heineken Experience", "rank": 10}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 52.369444, "lon": 4.89, "name": "Begijnhof, Amsterdam", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 52.373416666667, "lon": 4.8980555555556, "name": "De Wallen", "rank": 12}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 52.356111, "lon": 4.896944, "name": "Albert Cuyp Market", "rank": 13}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 52.364133, "lon": 4.882969, "name": "Leidseplein", "rank": 14}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 52.366019, "lon": 4.896642, "name": "Rembrandtplein", "rank": 15}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.36022, "lon": 4.92042, "name": "Oosterpark", "rank": 16}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.38727, "lon": 4.87231, "name": "Westerpark", "rank": 17}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.36664, "lon": 4.90778, "name": "Hortus Botanicus", "rank": 18}];
   var POI_ALL = "All";

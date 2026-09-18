@@ -234,6 +234,151 @@ def booking_href(query, city_key):
     return (prefix + urllib.parse.quote(plain, safe="")) if prefix else plain
 
 
+# ---------------------------------------------------------------------------
+# City hub: recommendations and a comparison table.
+#
+# The hub pages were titled "Is my <city> neighbourhood safe?", which is not a
+# phrase anyone types. A SERP check found the area pages losing "is X safe" to
+# Reddit and Tripadvisor — Google answers that question with people, not
+# statistics — while "where to stay in <city>" is won by content sites. So the
+# hub stops being a map with a list underneath and becomes an answer.
+#
+# Everything below is computed from data already in the repo. A sight is placed
+# in an area by testing its coordinates against that area's polygon, which is
+# the same ray-crossing test the boundary checker uses; nothing is hand-written
+# per city, and no adjective appears that is not derived from a count.
+
+def _in_rings(lat, lon, rings):
+    n = 0
+    for r in rings:
+        for (y1, x1), (y2, x2) in zip(r, r[1:] + r[:1]):
+            if (y1 > lat) != (y2 > lat):
+                if x1 + (lat - y1) * (x2 - x1) / (y2 - y1) > lon:
+                    n += 1
+    return n % 2 == 1
+
+
+TONE_ORDER = {"green": 0, "yellow": 1, "red": 2, "grey": 3}
+SIGHT_CATS = ("art", "square", "view", "food")
+
+
+def hub_data(city_key, zones):
+    """Per-area sight counts, plus the recommendation cards."""
+    pois = load_pois(city_key) or []
+    counts = {z["slug"]: {"sights": 0, "night": 0, "green": 0} for z in zones}
+    for p in pois:
+        # load_pois() normalises the raw file's "category" to "cat"; reading
+        # the raw name here silently matched nothing and produced a hub with a
+        # single card picked by alphabet.
+        lat, lon, cat = p.get("lat"), p.get("lon"), p.get("cat")
+        if lat is None or lon is None:
+            continue
+        for z in zones:
+            if _in_rings(lat, lon, z["coords"]):
+                c = counts[z["slug"]]
+                if cat in SIGHT_CATS:
+                    c["sights"] += 1
+                elif cat == "night":
+                    c["night"] += 1
+                elif cat == "green":
+                    c["green"] += 1
+                break
+
+    def rank(z):
+        # Ties on tone are the normal case — most areas of a calm city are
+        # green/green — so the tie-break is how much of the city's sightseeing
+        # is inside. Without it "best rated overall" returns whichever green
+        # area sorts first alphabetically, which in Amsterdam was a polder on
+        # the eastern boundary.
+        c = counts.get(z["slug"], {})
+        return (TONE_ORDER.get(z["day"], 3) + TONE_ORDER.get(z["night"], 3),
+                TONE_ORDER.get(z["night"], 3),
+                -(c.get("sights", 0) + c.get("night", 0) + c.get("green", 0)),
+                z["name"])
+
+    cards, used = [], {}
+
+    def add(label, zone, why):
+        if zone is None:
+            return
+        if zone["slug"] in used:          # one area, both labels, not two cards
+            used[zone["slug"]]["labels"].append(label)
+            return
+        c = {"labels": [label], "zone": zone, "why": why,
+             "counts": counts[zone["slug"]]}
+        used[zone["slug"]] = c
+        cards.append(c)
+
+    with_sights = [z for z in zones if counts[z["slug"]]["sights"] > 0]
+    if with_sights:
+        top = max(counts[z["slug"]]["sights"] for z in with_sights)
+        pool = [z for z in with_sights if counts[z["slug"]]["sights"] >= max(1, top - 1)]
+        best = sorted(pool, key=rank)[0]
+        add("For a first visit", best,
+            "%d of the sights on this map are inside it" % counts[best["slug"]]["sights"])
+
+    family = [z for z in zones
+              if counts[z["slug"]]["green"] > 0 and counts[z["slug"]]["night"] == 0]
+    if family:
+        best = sorted(family, key=rank)[0]
+        add("With family", best,
+            "%d green space%s on the map and no nightlife pin"
+            % (counts[best["slug"]]["green"], "" if counts[best["slug"]]["green"] == 1 else "s"))
+
+    # Only offered where the night rating supports it. A city whose nightlife
+    # sits in areas rated red gets no card at all, which is the honest output.
+    night = [z for z in zones
+             if counts[z["slug"]]["night"] > 0 and z["night"] in ("green", "yellow")]
+    if night:
+        best = max(night, key=lambda z: (counts[z["slug"]]["night"], -TONE_ORDER.get(z["night"], 3)))
+        add("For going out", best,
+            "%d nightlife spot%s on the map, in an area that does not rate red after dark"
+            % (counts[best["slug"]]["night"], "" if counts[best["slug"]]["night"] == 1 else "s"))
+
+    if zones:
+        add("Best rated overall", sorted(zones, key=rank)[0], "the best day and night pair in the city")
+
+    rows = []
+    for z in sorted(zones, key=rank):
+        rows.append({"name": z["name"], "slug": z["slug"], "day": z["day"], "night": z["night"],
+                     "evidence": z.get("evidence", "documented"),
+                     "sights": counts[z["slug"]]["sights"] + counts[z["slug"]]["night"]
+                               + counts[z["slug"]]["green"]})
+    return {"cards": cards, "rows": rows}
+
+
+LOCAL_TERM_RE = re.compile(
+    r"\b(\d+\s+(?:of the \d+\s+)?official\s+)?"
+    r"(boroughs?|wards?|quartieri|circoscrizioni|municipi|rioni|municipalit\u00e0|"
+    r"gradske\s+\u010detvrti|dzielnice|linnaosad|seniu\u016bnijos|seni\u016bnijos|sectoare|"
+    r"mestsk\u00e9\s+\u010dasti|wijken|districten|deelgemeenten|kerletek|ker\u00fcletek|"
+    r"distritos|barris|arrondissements|bezirke|stadsdelen|quarters?|districts?|"
+    r"neighbourhoods?)\b", re.I)
+
+
+def hub_headline(label, areas_phrase, n):
+    # "Bologna, Italy" is the dataset label; the query is "where to stay in
+    # Bologna". The country belongs in the breadcrumb, not in a title someone
+    # is meant to recognise as their search.
+    label = label.split(",")[0].strip()
+    """Title, H1 and one-line answer for a city hub.
+
+    The old title was "Is my <city> neighbourhood safe?", which nobody types.
+    The title has to carry the words people search — "where to stay", and
+    "neighbourhoods" or "boroughs" rather than the local term — while the
+    subtitle keeps the local word, because that is what the map is labelled in.
+    """
+    m = LOCAL_TERM_RE.search(areas_phrase or "")
+    local = (m.group(2) if m else "neighbourhoods").lower()
+    unit = "boroughs" if local in ("boroughs", "borough") else "neighbourhoods"
+    return {
+        "title": "Where to stay in %s: safest %s compared | Wandroz" % (label, unit),
+        "h1": "Where to stay in %s" % label,
+        "local": local,
+        "unit": unit,
+    }
+
+
 def research_city_ui(label, areas):
     ui = dict(TORINO_UI)
     ui.update({
@@ -1506,12 +1651,35 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
 
     map_tpl = env.get_template("city_map.html")
     canonical = f"{SITE_URL}/{url_slug}/"
+    _hubdata = hub_data(city_key, zones)
+    for _r in _hubdata["rows"]:
+        _r["url"] = f"/{url_slug}/{_r['slug']}.html" if flat else f"/{url_slug}/{_r['slug']}/"
+        _r["day_label"] = tone_badge.get(_r["day"], _r["day"])
+        _r["night_label"] = tone_badge.get(_r["night"], _r["night"])
+        _r["book"] = booking_href(next((z["query"] for z in zones if z["slug"] == _r["slug"]), ""),
+                                  city_key)
+    for _c in _hubdata["cards"]:
+        _z = _c["zone"]
+        _c["url"] = f"/{url_slug}/{_z['slug']}.html" if flat else f"/{url_slug}/{_z['slug']}/"
+        _c["day_label"] = tone_badge.get(_z["day"], _z["day"])
+        _c["night_label"] = tone_badge.get(_z["night"], _z["night"])
+        _c["book"] = booking_href(_z["query"], city_key)
+    _hub = hub_headline(data["label"], ui.get("page_description", ""), len(zones))
     html = map_tpl.render(
         lang="en", city_label=data["label"], tagline=ui["tagline"],
         nav_home=ui["nav_home"], nav_methodology=ui["nav_methodology"],
-        page_title=ui["page_title"], page_description=ui["page_description"],
+        page_title=_hub.get("title") or ui["page_title"],
+        page_description=ui["page_description"],
         canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
-        page_h1=ui["page_h1"], page_lead=ui["page_lead"],
+        page_h1=_hub.get("h1") or ui["page_h1"],
+        # Deliberately "area" and not the local word: the singular of wijken,
+        # quartieri or seniūnijos is not derivable by trimming an s, and
+        # "Every wijken rated" is worse than the plain English. The local term
+        # keeps the table heading, where the plural is the correct form anyway.
+        page_lead=("Every area rated for day and night, with the reasoning and the sources "
+                   "behind each rating. The map is below the table."
+                   if _hubdata["rows"] else ui["page_lead"]),
+        hub=_hubdata, hub_unit=_hub.get("unit"), hub_local=_hub.get("local"),
         data_note=evidence_line(city_key, len(zones)), show_toggle=show_toggle,
         label_day=ui["label_day"], label_night=ui["label_night"],
         legend_green=ui["legend_green"], legend_yellow=legend_yellow,
@@ -1649,12 +1817,37 @@ def render_london_map(cities):
         f"{LONDON_EVIDENCE_TAG} · Metropolitan Police recorded crime (data.police.uk) · "
         f"{live_count} of {total_zones} boroughs scored, {london_window()}"
     )
+    # hub_data works on zone dicts with a slug; London's map entries carry a
+    # url instead, and the boroughs without one have no page to link to — the
+    # City of London is policed separately and is not in the dataset. Only the
+    # ones with a page go in the table.
+    london_zones_for_hub = [
+        dict(z, slug=z["url"].rsplit("/", 1)[-1].replace(".html", ""),
+             evidence="documented")
+        for z in js_zones if z.get("url")
+    ]
+    _london_hub = hub_data("london", london_zones_for_hub)
+    for _r in _london_hub["rows"]:
+        _r["url"] = "/london/%s.html" % _r["slug"]
+        _r["day_label"] = EN_TONE_BADGE.get(_r["day"], _r["day"])
+        _r["night_label"] = EN_TONE_BADGE.get(_r["night"], _r["night"])
+        _r["book"] = booking_href(next((z["query"] for z in london_zones_for_hub
+                                        if z["slug"] == _r["slug"]), ""), "london")
+    for _c in _london_hub["cards"]:
+        _z = _c["zone"]
+        _c["url"] = "/london/%s.html" % _z["slug"]
+        _c["day_label"] = EN_TONE_BADGE.get(_z["day"], _z["day"])
+        _c["night_label"] = EN_TONE_BADGE.get(_z["night"], _z["night"])
+        _c["book"] = booking_href(_z["query"], "london")
+
     html = map_tpl.render(
         lang="en", city_label="London", tagline="Neighbourhood safety for travellers",
         nav_home="Home", nav_methodology="Methodology", canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
-        page_title="Is my London borough safe? — Wandroz",
-        page_description="Interactive map of all 33 London boroughs, day/night ratings computed from real Metropolitan Police open crime data.",
-        page_h1="London boroughs", page_lead="Click a borough on the map to see its level, the reasoning, and a Booking.com link for that area.",
+        page_title="Where to stay in London: safest boroughs compared | Wandroz",
+        page_description="Compare all 33 London boroughs on Metropolitan Police recorded crime. Which rate safest, which suit a first visit, families or a night out, and where to book in each.",
+        page_h1="Where to stay in London",
+        page_lead="Every borough rated for day and night from Metropolitan Police recorded crime, with the figures behind each rating. The map is below the table.",
+        hub=_london_hub, hub_unit="boroughs", hub_local="boroughs",
         data_note=data_note, show_toggle=True,
         label_day="day", label_night="night",
         legend_green=EN_TONE_BADGE["green"], legend_yellow=EN_TONE_BADGE["yellow"],
