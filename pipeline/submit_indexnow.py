@@ -27,6 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 HOST = "www.wandroz.com"
 STATIC = os.path.join(HERE, "static")
 ENDPOINT = "https://api.indexnow.org/IndexNow"
+UA = "Mozilla/5.0 (compatible; wandroz-indexnow/1.0; +https://www.wandroz.com)"
 BATCH = 10000          # IndexNow accepts up to 10,000 URLs per request
 
 
@@ -67,8 +68,12 @@ def main(send):
         if not send:
             print("would POST %d URLs (%s ... %s)" % (len(chunk), chunk[0], chunk[-1]))
             continue
+        # The User-Agent is not optional: without one the endpoint answers 403,
+        # which reads like a rejected key and is not. With it, the same request
+        # and the same key file are accepted.
         r = subprocess.run(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
-                            "-X", "POST", "-H", "Content-Type: application/json",
+                            "-X", "POST", "-A", UA,
+                            "-H", "Content-Type: application/json; charset=utf-8",
                             "--data-binary", "@-", ENDPOINT],
                            input=body, capture_output=True, text=True)
         # 200 accepted, 202 accepted-pending-key-validation. Anything else is
