@@ -1,0 +1,137 @@
+{
+ "city": "antwerp",
+ "pois": [
+  {
+   "name": "Museum Plantin-Moretus",
+   "category": "art",
+   "qid": "Q595802",
+   "lat": 51.21829,
+   "lon": 4.39816,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Antwerp-Central railway station",
+   "category": "art",
+   "qid": "Q800398",
+   "lat": 51.21694,
+   "lon": 4.42111,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Royal Museum of Fine Arts Antwerp",
+   "category": "art",
+   "qid": "Q1471477",
+   "lat": 51.20882,
+   "lon": 4.39435,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Rubenshuis",
+   "category": "art",
+   "qid": "Q775644",
+   "lat": 51.21722,
+   "lon": 4.40944,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Museum aan de Stroom",
+   "category": "view",
+   "qid": "Q1646305",
+   "lat": 51.22892,
+   "lon": 4.40467,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Antwerp Zoo",
+   "category": "green",
+   "qid": "Q220003",
+   "lat": 51.21639,
+   "lon": 4.42333,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Het Steen",
+   "category": "art",
+   "qid": "Q1014126",
+   "lat": 51.22278,
+   "lon": 4.3975,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Grote Markt",
+   "category": "square",
+   "qid": "Q947295",
+   "lat": 51.22111,
+   "lon": 4.39972,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Middelheim Museum",
+   "category": "green",
+   "qid": "Q2098074",
+   "lat": 51.18139,
+   "lon": 4.41347,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Sint-Annatunnel",
+   "category": "view",
+   "qid": "Q691988",
+   "lat": 51.21972,
+   "lon": 4.39167,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Meir",
+   "category": "square",
+   "qid": "Q12852",
+   "lat": 51.21806,
+   "lon": 4.40861,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Vlaaikensgang",
+   "category": "square",
+   "qid": "Q66022778",
+   "lat": 51.22042,
+   "lon": 4.39954,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  }
+ ]
+}

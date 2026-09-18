@@ -1,0 +1,148 @@
+{
+ "city": "ghent",
+ "pois": [
+  {
+   "name": "St Bavo's Cathedral",
+   "category": "art",
+   "qid": "Q938154",
+   "lat": 51.05297,
+   "lon": 3.72706,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Gravensteen",
+   "category": "art",
+   "qid": "Q1543972",
+   "lat": 51.05722,
+   "lon": 3.72056,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Saint Nicholas' Church",
+   "category": "art",
+   "qid": "Q1841314",
+   "lat": 51.05389,
+   "lon": 3.72278,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Belfry of Ghent",
+   "category": "view",
+   "qid": "Q815443",
+   "lat": 51.05361,
+   "lon": 3.725,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Stedelijk Museum voor Actuele Kunst",
+   "category": "art",
+   "qid": "Q1540707",
+   "lat": 51.03817,
+   "lon": 3.72202,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Graslei",
+   "category": "square",
+   "qid": "Q2088410",
+   "lat": 51.055,
+   "lon": 3.72083,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Vrijdagmarkt",
+   "category": "square",
+   "qid": "Q2762897",
+   "lat": 51.05708,
+   "lon": 3.72569,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Design Museum Gent",
+   "category": "art",
+   "qid": "Q1809071",
+   "lat": 51.05584,
+   "lon": 3.72014,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Patershol",
+   "category": "night",
+   "qid": "Q2198374",
+   "lat": 51.05778,
+   "lon": 3.7225,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Blaarmeersen",
+   "category": "green",
+   "qid": "Q2905240",
+   "lat": 51.04417,
+   "lon": 3.68806,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Citadelpark",
+   "category": "green",
+   "qid": "Q4464341",
+   "lat": 51.03687,
+   "lon": 3.7194,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Veldstraat",
+   "category": "square",
+   "qid": "Q2447369",
+   "lat": 51.05139,
+   "lon": 3.72139,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Werregarenstraat",
+   "category": "art",
+   "qid": "Q115807867",
+   "lat": 51.05551,
+   "lon": 3.7246,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  }
+ ]
+}

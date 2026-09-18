@@ -183,6 +183,12 @@ RESEARCH_CITIES = [
     {"key": "denhaag", "label": "The Hague", "country": "Netherlands", "flag": "\U0001F1F3\U0001F1F1",
      "lat": 52.0705, "lon": 4.3007, "color": "#3f7f5c",
      "areas": "44 official CBS wijken", "reviewed": "17 September 2026"},
+    {"key": "antwerp", "label": "Antwerp", "country": "Belgium", "flag": "\U0001F1E7\U0001F1EA",
+     "lat": 51.2194, "lon": 4.4025, "color": "#8f3f5c",
+     "areas": "10 official districten", "reviewed": "18 September 2026"},
+    {"key": "ghent", "label": "Ghent", "country": "Belgium", "flag": "\U0001F1E7\U0001F1EA",
+     "lat": 51.0543, "lon": 3.7250, "color": "#4f7f3f",
+     "areas": "14 official deelgemeenten", "reviewed": "18 September 2026"},
 ]
 
 
@@ -201,7 +207,8 @@ RESEARCH_CITIES = [
 CJ_PID = "101862727"                      # the Wandroz site's publisher id
 BOOKING_PROGRAMMES = {
     # programme -> the city keys its territory covers on this site
-    "benelux": {"link_id": "15734897", "cities": ("amsterdam", "brussels", "rotterdam", "utrecht", "denhaag")},
+    "benelux": {"link_id": "15734897", "cities": ("amsterdam", "brussels", "rotterdam", "utrecht", "denhaag",
+                                                "antwerp", "ghent")},
 }
 # CJ rotates equivalent tracking hosts; any of them is valid.
 CJ_HOST = "https://www.jdoqocy.com"

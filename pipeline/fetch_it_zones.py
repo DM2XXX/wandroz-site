@@ -55,7 +55,7 @@ NUMBERED = re.compile(
 # časť Staré Mesto". The wrapper is the same on every row, so it carries no
 # information and costs width on a map label and precision in a Booking query.
 # What a reader recognises is Maksimir, Senamiestis, Staré Mesto.
-BOILERPLATE_PREFIX = ("gradska četvrt ", "gradska cetvrt ", "mestská časť ", "mestska cast ",
+BOILERPLATE_PREFIX = ("district ", "gradska četvrt ", "gradska cetvrt ", "mestská časť ", "mestska cast ",
                       "stadtteil ", "distrito de ", "quartiere ", "circoscrizione ",
                       "municipio ", "dzielnica ", "rajon ", "kerület ")
 BOILERPLATE_SUFFIX = (" seniūnija", " seniunija", " apkaime", " kerület", " kaupunginosa")
@@ -94,6 +94,37 @@ def slugify(name):
     return s or "zona"
 
 
+def _most_specific_parent(city_osm_name, tries=4):
+    """Relation id of the administrative area named `city_osm_name`, most specific first."""
+    q = ('[out:json][timeout:120];'
+         'rel["name"="%s"]["boundary"="administrative"]["admin_level"];'
+         'out tags;' % city_osm_name)
+    for _ in range(tries):
+        try:
+            els = json.loads(curl(["--data-urlencode", "data@-", OVERPASS], stdin=q)).get("elements", [])
+        except ValueError:
+            time.sleep(20)
+            continue
+        if not els:
+            return None
+        # The window is 4 to 8, and both ends were learned the hard way.
+        # Above 8 is a province or a region, and asking it for districts
+        # returns other towns — that is how Antwerpen first came back as the
+        # 148 municipalities of its province. Below 4 there is nothing but
+        # countries. And the cap has to be 8, not 9: Antwerp also has a level-9
+        # DISTRICT called Antwerpen, and picking that gives 31 areas of the
+        # city centre instead of the 9 districts of the city. Bucharest at 4
+        # and a Danish kommune at 7 are the legitimate coarse cases.
+        cands = [e for e in els if (e["tags"].get("admin_level") or "").isdigit()
+                 and 4 <= int(e["tags"]["admin_level"]) <= 8]
+        if not cands:
+            return None
+        best = max(cands, key=lambda e: int(e["tags"]["admin_level"]))
+        print("   parent: relation %d at admin_level %s" % (best["id"], best["tags"]["admin_level"]))
+        return best["id"]
+    raise SystemExit("Overpass kept returning an error page for %s" % city_osm_name)
+
+
 def discover(city_osm_name, tries=4, want_level=None):
     """Relation ids of the city's administrative subdivisions.
 
@@ -103,11 +134,20 @@ def discover(city_osm_name, tries=4, want_level=None):
     districts. What identifies the parent is its name, not the number a
     national convention gives it.
     """
+    # Two steps, because one was wrong. Matching the parent by name alone also
+    # matches anything else with that name — and a province is very often named
+    # after its capital. Asked for Antwerpen in one query, this returned the
+    # 148 municipalities of the PROVINCE of Antwerp as if they were districts
+    # of the city. So: find the candidates, keep the most specific one (the
+    # highest admin_level, which is the city rather than the province or the
+    # arrondissement above it), and only then look inside that.
+    parent = _most_specific_parent(city_osm_name, tries)
+    if parent is None:
+        return []
     q = ('[out:json][timeout:180];'
-         'rel["name"="%s"]["boundary"="administrative"];'
-         'map_to_area->.a;'
+         'rel(id:%d);map_to_area->.a;'
          'relation(area.a)["boundary"="administrative"]["admin_level"~"^(9|10|11)$"];'
-         'out tags;' % city_osm_name)
+         'out tags;' % parent)
     for attempt in range(tries):
         body = curl(["--data-urlencode", "data@-", OVERPASS], stdin=q)
         try:
