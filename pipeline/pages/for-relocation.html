@@ -281,6 +281,14 @@
   .lcol .foot{font-size:12px;color:var(--muted);margin-top:12px;padding-top:11px;border-top:1px solid var(--line-2)}
 
   /* --- workflow labels on the two widget formats --- */
+  .cityswitch{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px;align-items:center}
+  .cityswitch .cl{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--on-deep-2);margin-right:4px}
+  .cbtn{font:inherit;font-size:12.5px;font-weight:500;cursor:pointer;border-radius:999px;padding:6px 13px;
+    border:1px solid #2f4f46;background:transparent;color:var(--on-deep-2);transition:.15s}
+  .cbtn:hover{color:var(--on-deep);border-color:#4a7266}
+  .cbtn[aria-pressed="true"]{background:#8fd3b6;border-color:#8fd3b6;color:#0f1f1c;font-weight:600}
+  .cbtn:focus-visible{outline:2px solid #8fd3b6;outline-offset:2px}
   .usecase{display:inline-flex;align-items:center;gap:7px;font-family:'DM Mono',monospace;font-size:10.5px;
     letter-spacing:.07em;text-transform:uppercase;color:var(--host);background:var(--host-soft);
     border-radius:999px;padding:4px 11px;margin-bottom:11px}
@@ -297,11 +305,16 @@
         <h1>Your listing already says the rent. It should say <em>whether the family will be happy there.</em></h1>
         <p class="sub">One embeddable panel, inside your portal, under your brand.
           <b>Safety is live across 65 cities</b> — official data where the city publishes it,
-          transparent local research where it does not.</p>
+          transparent local research where it does not. Switch the demo to Z&uuml;rich below.</p>
         <a class="btn btn-primary" href="mailto:hellowandroz@gmail.com?subject=Wandroz%20pilot%20%E2%80%94%20relocation">Discuss a pilot &rarr;</a>
         <p class="hero-note">We're opening a small number of pilot partnerships. No pricing page, no signup.</p>
       </div>
       <div>
+        <div class="cityswitch" role="group" aria-label="Demo city">
+          <span class="cl">City</span>
+          <button class="cbtn" type="button" data-city="amsterdam" aria-pressed="true">Amsterdam</button>
+          <button class="cbtn" type="button" data-city="zurich" aria-pressed="false">Z&uuml;rich</button>
+        </div>
         <p class="switch-label">See it in your brand</p>
         <div class="brands" role="group" aria-label="Host brand">
           <button class="bbtn" type="button" data-brand="wandroz" aria-pressed="true">Wandroz</button>
@@ -350,10 +363,10 @@
             <span class="url" id="purl">your-portal.com / amsterdam / listing / 4821</span></div>
           <div class="pbody">
             <div class="listing-hd">
-              <div class="txt"><span class="kicker">Assignment housing &middot; 24 months</span>
-                <h4>Three-bed apartment, Jordaan</h4>
-                <div class="addr">Westerstraat, 1015 Amsterdam</div>
-                <div class="price">&euro;3,450 <span style="font-size:12px;color:var(--muted)">/ month</span></div></div>
+              <div class="txt"><span class="kicker" id="lTerm">Assignment housing &middot; 24 months</span>
+                <h4 id="lTitle">Three-bed apartment, Jordaan</h4>
+                <div class="addr" id="lAddr">Westerstraat, 1015 Amsterdam</div>
+                <div class="price" id="lPrice">&euro;3,450 <span style="font-size:12px;color:var(--muted)">/ month</span></div></div>
               <div class="fakeimg">LISTING PHOTO</div>
             </div>
             <div class="slot" id="slot">
@@ -409,19 +422,15 @@
         </div>
       </div>
       <div class="panel">
-        <div class="panel-hd"><h3>Safety, live today — Jordaan, Amsterdam</h3></div>
+        <div class="panel-hd"><h3 id="safetyHd">Safety, live today — Jordaan, Amsterdam</h3></div>
         <div class="panel-pad">
           <div class="figs">
-            <div class="fig"><div class="n">0.5&times;</div><div class="k">the Amsterdam average — central, busy, and below the city norm</div></div>
-            <div class="fig"><div class="n">9,048</div><div class="k">recorded crimes per 100,000 residents, 2025</div></div>
-            <div class="fig"><div class="n">110</div><div class="k">official Amsterdam neighbourhoods rated</div></div>
+            <div class="fig"><div class="n" id="f1n">0.5&times;</div><div class="k" id="f1k">the Amsterdam average</div></div>
+            <div class="fig"><div class="n" id="f2n">9,048</div><div class="k" id="f2k">recorded crimes per 100,000 residents, 2025</div></div>
+            <div class="fig"><div class="n" id="f3n">110</div><div class="k" id="f3k">official Amsterdam neighbourhoods rated</div></div>
           </div>
-          <div class="ctxbox">
-            <p><b>Context, not alarm.</b> Jordaan is full of bars and visitors and still sits at half
-              the city average. Next door, the Red Light District reads 6.3&times;. Both are on the
-              same scale, and both pages explain what the figure does and does not measure — so a
-              consultant can answer a client rather than hedge.</p>
-          </div>
+          <div class="ctxbox"><p id="cityContext"></p></div>
+          <p class="sec-note" id="cityNote" style="margin:11px 0 0;font-size:11.5px"></p>
           <div class="bars" id="bars"></div>
         </div>
       </div>
@@ -507,8 +516,9 @@
 <script>
 (function(){
   "use strict";
-  var MAP = [{"n":"Jordaan","tone":"green","d":"M273.0,154.5 L265.3,267.1 L269.2,274.9 L231.3,292.6 L226.9,279.8 L213.1,266.6 L208.5,247.8 L193.6,226.3 L180.4,190.3 L190.5,177.0 L192.2,162.1 L195.5,162.5 L238.1,63.5 L235.2,54.5 L246.3,44.7 L257.2,21.9 L267.2,26.0 L329.1,73.4 L273.0,154.5 Z","focus":true,"crimes":"1,763","pop":"19,485","rate":"9,048","ratio":"0.5"},{"n":"Grachtengordel-West","tone":"yellow","d":"M333.2,177.0 L322.6,238.1 L325.1,242.3 L310.7,248.8 L310.3,255.8 L269.2,274.9 L265.3,267.1 L273.0,154.5 L329.1,73.4 L347.2,85.9 L388.3,98.1 L338.3,158.5 L333.2,177.0 Z","focus":false,"crimes":"1,081","pop":"6,505","rate":"16,618","ratio":"1.0"},{"n":"Frederik Hendrikbuurt","tone":"green","d":"M219.3,103.2 L221.4,103.9 L218.4,112.2 L195.5,162.5 L192.2,162.1 L191.5,173.3 L94.5,198.9 L170.2,86.4 L175.7,72.7 L235.6,53.6 L238.1,63.5 L219.3,103.2 Z","focus":false,"crimes":"530","pop":"8,195","rate":"6,467","ratio":"0.4"},{"n":"Da Costabuurt","tone":"green","d":"M186.9,211.7 L194.9,228.8 L205.6,242.3 L141.8,265.5 L105.7,196.1 L191.5,173.3 L180.4,190.3 L186.9,211.7 Z","focus":false,"crimes":"475","pop":"4,710","rate":"10,085","ratio":"0.6"},{"n":"Burgwallen-Nieuwe Zijde","tone":"red","d":"M497.5,109.8 L486.5,128.6 L472.7,119.5 L448.7,118.6 L420.9,143.9 L414.5,140.3 L383.6,172.2 L376.8,185.3 L372.7,214.9 L367.1,234.6 L371.2,234.2 L376.5,244.7 L389.8,259.3 L379.2,264.7 L346.7,261.4 L322.9,239.2 L329.8,188.6 L338.3,158.5 L438.9,38.9 L476.0,64.8 L520.0,80.1 L497.5,109.8 Z","focus":false,"crimes":"4,718","pop":"4,345","rate":"108,585","ratio":"6.3"},{"n":"Van Lennepbuurt","tone":"green","d":"M148.9,291.6 L0.0,340.0 L27.8,297.1 L39.1,299.5 L205.6,242.3 L208.5,247.8 L213.1,266.6 L148.9,291.6 Z","focus":false,"crimes":"544","pop":"6,910","rate":"7,873","ratio":"0.5"},{"n":"Centrale Markt","tone":"green","d":"M113.8,78.0 L130.7,137.0 L135.0,138.7 L103.9,185.5 L76.8,154.3 L47.5,49.5 L35.7,22.8 L34.2,4.9 L127.1,2.8 L140.4,45.1 L110.1,52.4 L114.9,69.9 L113.8,78.0 Z","focus":false,"crimes":"179","pop":"2,330","rate":"7,682","ratio":"0.4"},{"n":"Staatsliedenbuurt","tone":"green","d":"M235.3,53.7 L175.7,72.7 L170.2,86.4 L135.0,138.7 L130.7,137.0 L113.8,78.0 L114.9,69.9 L110.1,52.4 L140.4,45.1 L127.1,2.8 L245.3,0.0 L267.1,3.9 L246.3,44.7 L235.3,53.7 Z","focus":false,"crimes":"503","pop":"12,945","rate":"3,886","ratio":"0.2"}];
-  var CITY_AVG = 17328; // CBS 2025, Amsterdam wijk average, per 100,000 residents
+  var CITIES = {"amsterdam":{"label":"Amsterdam","focus":"Jordaan","sub":"Amsterdam · official wijk","headline":"0.5×","headlineKey":"the Amsterdam average — central, busy, below the city norm","f2":"9,048","f2k":"recorded crimes per 100,000 residents, 2025","f3":"110","f3k":"official Amsterdam neighbourhoods rated","verdict":"Relatively safer","vtone":"calm","vline":"Recorded crime <b>0.5×</b> the city average · CBS 2025","read":"Central, busy and full of bars — and still <b>half</b> the Amsterdam average. The Red Light District next door is 6.3×. Both are on the same scale.","src":"Safety from CBS registered crime per wijk, 2025. Other modules shown as pilot roadmap.","barTitle":"Recorded crime per 100,000 residents — Jordaan and its neighbours, CBS 2025","avg":17328,"avgLabel":"Amsterdam wijk average, 17,328","unit":"","context":"<b>Context, not alarm.</b> Jordaan is full of bars and visitors and still sits at half the city average. Next door, the Red Light District reads 6.3×. Both are on the same scale, and both pages explain what the figure does and does not measure — so a consultant can answer a client rather than hedge.","note":"Amsterdam's source carries no time-of-day split, so day and night read the same here. Zurich's does differ — switch the city above.","listing":{"title":"Three-bed apartment, Jordaan","addr":"Westerstraat, 1015 Amsterdam","price":"€3,450","url":"amsterdam / listing / 4821","term":"Assignment housing · 24 months"},"map":[{"n":"Jordaan","tone":"green","d":"M273.0,154.5 L265.3,267.1 L269.2,274.9 L231.3,292.6 L226.9,279.8 L213.1,266.6 L208.5,247.8 L193.6,226.3 L180.4,190.3 L190.5,177.0 L192.2,162.1 L195.5,162.5 L238.1,63.5 L235.2,54.5 L246.3,44.7 L257.2,21.9 L267.2,26.0 L329.1,73.4 L273.0,154.5 Z","focus":true,"crimes":"1,763","pop":"19,485","rate":"9,048","ratio":"0.5"},{"n":"Grachtengordel-West","tone":"yellow","d":"M333.2,177.0 L322.6,238.1 L325.1,242.3 L310.7,248.8 L310.3,255.8 L269.2,274.9 L265.3,267.1 L273.0,154.5 L329.1,73.4 L347.2,85.9 L388.3,98.1 L338.3,158.5 L333.2,177.0 Z","focus":false,"crimes":"1,081","pop":"6,505","rate":"16,618","ratio":"1.0"},{"n":"Frederik Hendrikbuurt","tone":"green","d":"M219.3,103.2 L221.4,103.9 L218.4,112.2 L195.5,162.5 L192.2,162.1 L191.5,173.3 L94.5,198.9 L170.2,86.4 L175.7,72.7 L235.6,53.6 L238.1,63.5 L219.3,103.2 Z","focus":false,"crimes":"530","pop":"8,195","rate":"6,467","ratio":"0.4"},{"n":"Da Costabuurt","tone":"green","d":"M186.9,211.7 L194.9,228.8 L205.6,242.3 L141.8,265.5 L105.7,196.1 L191.5,173.3 L180.4,190.3 L186.9,211.7 Z","focus":false,"crimes":"475","pop":"4,710","rate":"10,085","ratio":"0.6"},{"n":"Burgwallen-Nieuwe Zijde","tone":"red","d":"M497.5,109.8 L486.5,128.6 L472.7,119.5 L448.7,118.6 L420.9,143.9 L414.5,140.3 L383.6,172.2 L376.8,185.3 L372.7,214.9 L367.1,234.6 L371.2,234.2 L376.5,244.7 L389.8,259.3 L379.2,264.7 L346.7,261.4 L322.9,239.2 L329.8,188.6 L338.3,158.5 L438.9,38.9 L476.0,64.8 L520.0,80.1 L497.5,109.8 Z","focus":false,"crimes":"4,718","pop":"4,345","rate":"108,585","ratio":"6.3"},{"n":"Van Lennepbuurt","tone":"green","d":"M148.9,291.6 L0.0,340.0 L27.8,297.1 L39.1,299.5 L205.6,242.3 L208.5,247.8 L213.1,266.6 L148.9,291.6 Z","focus":false,"crimes":"544","pop":"6,910","rate":"7,873","ratio":"0.5"},{"n":"Centrale Markt","tone":"green","d":"M113.8,78.0 L130.7,137.0 L135.0,138.7 L103.9,185.5 L76.8,154.3 L47.5,49.5 L35.7,22.8 L34.2,4.9 L127.1,2.8 L140.4,45.1 L110.1,52.4 L114.9,69.9 L113.8,78.0 Z","focus":false,"crimes":"179","pop":"2,330","rate":"7,682","ratio":"0.4"},{"n":"Staatsliedenbuurt","tone":"green","d":"M235.3,53.7 L175.7,72.7 L170.2,86.4 L135.0,138.7 L130.7,137.0 L113.8,78.0 L114.9,69.9 L110.1,52.4 L140.4,45.1 L127.1,2.8 L245.3,0.0 L267.1,3.9 L246.3,44.7 L235.3,53.7 Z","focus":false,"crimes":"503","pop":"12,945","rate":"3,886","ratio":"0.2"}]},"zurich":{"label":"Zurich","focus":"Hard","sub":"Kreis 4 · official Quartier","headline":"1.86×","headlineKey":"the Zurich average for break-ins — the highest of the 12 districts","f2":"green / amber","f2k":"calm by day, worth attention after dark","f3":"34","f3k":"official Zurich Quartiere rated","verdict":"Calm by day","vtone":"calm","vline":"Amber after dark · break-ins <b>1.86×</b> the city average","read":"Residential and quiet in daylight. The district's harder reputation belongs to the Langstrasse strip one street east, not to these blocks — but district 4 does carry Zurich's highest break-in rate.","src":"Break-ins: Kantonspolizei Zürich 2023–25, per 1,000 homes and workplaces. Day/night: Wandroz area review, not a timed statistic.","barTitle":"Break-ins per 1,000 homes and workplaces — Hard and its neighbours, Kantonspolizei Zürich 2023–25","avg":3.26,"avgLabel":"Zurich district average, 3.26","unit":"","context":"<b>Two layers, and here they disagree.</b> Hard is calm to walk through by day and busier after dark — and it sits in the one district where Zurich's break-in figures stand out: 6.1 a year per 1,000 homes and workplaces against a city average of 3.3. For a family being placed here that is a precise, useful answer — the street is fine, the flat needs a proper lock — and it is not an answer anyone gets from a forum.","note":"Zurich's day/night ratings come from an area-by-area source review, not a timed dataset, and the city page says so. The break-in figures are official: Kantonspolizei Zürich, divided by homes plus workplaces rather than residents alone, because a district full of offices has far more to break into than it has residents.","listing":{"title":"Two-bed apartment, Hard","addr":"Hardstrasse, 8005 Zürich","price":"CHF 3,200","url":"zurich / listing / 2207","term":"Assignment housing · 12 months"},"map":[{"n":"Hard","tone":"green","night":"yellow","d":"M283.5,129.9 L326.3,146.3 L316.2,155.3 L316.4,156.4 L315.2,155.8 L314.2,156.7 L330.5,165.8 L319.3,176.5 L314.7,178.3 L315.4,180.8 L321.5,181.8 L350.1,197.3 L355.0,202.0 L358.3,201.6 L391.4,219.2 L405.5,222.6 L402.6,215.3 L403.2,207.0 L406.1,201.1 L417.0,187.4 L417.6,180.8 L415.4,176.8 L397.0,162.7 L389.6,160.3 L387.0,163.5 L387.8,164.2 L385.7,165.2 L396.9,150.5 L367.8,140.2 L365.1,137.7 L362.6,132.2 L358.6,127.3 L357.7,126.9 L358.2,129.1 L354.6,130.3 L334.1,123.8 L333.3,124.7 L329.0,123.3 L314.8,113.7 L301.3,108.9 L290.9,115.9 L283.5,129.9 Z","focus":true,"kreis":"Kreis 4","btone":"red","rate":"6.07","ratio":"1.86"},{"n":"Altstetten","tone":"green","night":"green","d":"M0.0,186.0 L6.2,193.0 L14.1,199.1 L18.0,200.4 L41.3,200.9 L68.3,205.0 L85.0,215.2 L99.6,226.3 L112.0,232.3 L127.6,229.6 L136.4,221.5 L135.9,220.7 L148.7,214.2 L152.5,207.8 L153.9,208.0 L153.9,209.3 L156.5,209.4 L156.7,206.6 L166.0,202.9 L178.2,194.4 L179.5,192.3 L188.7,187.1 L192.9,191.0 L198.1,189.6 L200.0,185.9 L206.2,186.2 L208.7,184.0 L212.8,186.6 L217.8,176.1 L219.3,176.1 L220.6,174.3 L218.8,173.3 L221.3,171.8 L222.5,169.3 L248.6,178.6 L259.5,167.9 L270.1,173.1 L273.8,168.4 L288.0,175.8 L285.1,178.5 L297.9,188.2 L302.3,184.4 L307.3,188.0 L315.4,180.8 L314.7,178.3 L319.3,176.5 L330.4,165.9 L314.2,156.7 L315.2,155.8 L316.4,156.4 L316.2,155.3 L326.3,146.3 L283.5,129.9 L290.9,115.9 L301.3,108.9 L287.8,104.2 L308.4,104.1 L313.9,99.9 L309.2,95.8 L309.2,93.7 L323.9,91.8 L326.9,90.4 L328.2,84.1 L315.0,79.3 L298.3,64.2 L285.5,58.2 L265.8,54.9 L236.9,58.3 L223.2,56.0 L213.8,49.9 L198.2,31.5 L191.8,27.2 L183.0,23.8 L161.9,22.3 L125.8,28.4 L112.6,28.3 L103.7,48.7 L114.6,52.1 L111.9,58.0 L101.0,54.5 L98.0,61.0 L145.6,76.9 L142.9,83.4 L137.8,82.6 L134.4,84.5 L134.4,88.6 L137.5,90.1 L136.6,91.5 L129.5,88.0 L126.7,90.7 L117.4,86.5 L96.5,83.2 L96.2,85.1 L97.7,87.0 L103.2,92.2 L109.1,95.3 L110.8,98.3 L108.4,109.3 L110.1,113.9 L103.9,110.6 L98.1,109.3 L90.3,114.7 L74.5,132.1 L75.5,132.6 L73.6,138.9 L68.8,146.5 L57.5,160.8 L54.6,162.0 L55.2,164.1 L54.0,165.2 L59.4,169.5 L59.6,171.7 L54.1,172.3 L49.8,170.8 L49.6,181.2 L46.3,182.7 L32.6,185.8 L21.4,183.4 L0.0,186.0 Z","focus":false,"kreis":"Kreis 9","btone":"green","rate":"2.36","ratio":"0.72"},{"n":"Escher Wyss","tone":"green","night":"yellow","d":"M287.8,104.2 L314.8,113.7 L329.0,123.3 L333.3,124.7 L334.1,123.8 L354.6,130.3 L358.2,129.1 L357.7,126.9 L358.6,127.3 L362.6,132.2 L365.1,137.7 L367.8,140.2 L373.2,143.0 L414.7,156.5 L416.9,150.3 L422.4,145.2 L441.7,135.9 L419.8,122.9 L420.8,121.7 L443.7,135.3 L448.4,131.9 L446.5,130.5 L448.5,130.2 L450.8,125.2 L452.9,124.9 L452.7,124.0 L455.5,122.2 L481.4,144.9 L482.8,145.6 L485.1,143.4 L459.1,122.6 L439.1,110.6 L394.4,96.9 L371.2,87.3 L328.2,84.1 L326.9,90.4 L323.9,91.8 L309.2,93.7 L309.2,95.8 L313.9,99.9 L308.4,104.1 L287.8,104.2 Z","focus":false,"kreis":"Kreis 5","btone":"green","rate":"2.41","ratio":"0.74"},{"n":"Langstrasse","tone":"red","night":"red","d":"M385.6,164.6 L386.6,165.6 L389.6,160.3 L396.7,162.5 L416.7,178.3 L417.6,181.3 L417.0,187.4 L404.6,203.7 L402.6,210.2 L402.9,216.9 L405.4,222.6 L422.6,227.3 L439.1,228.1 L433.6,238.1 L431.1,239.7 L434.0,239.7 L440.6,228.2 L458.1,235.3 L469.9,232.6 L479.4,234.7 L483.8,226.1 L486.3,228.9 L495.6,218.0 L511.4,203.6 L516.7,193.1 L512.6,190.6 L511.9,192.0 L475.5,179.2 L461.4,177.2 L462.2,175.6 L459.2,172.2 L396.9,150.5 L385.6,164.6 Z","focus":false,"kreis":"Kreis 4","btone":"red","rate":"6.07","ratio":"1.86"},{"n":"Sihlfeld","tone":"green","night":"green","d":"M264.4,273.4 L265.1,274.3 L269.4,273.5 L268.4,277.1 L277.3,272.2 L276.8,270.8 L279.2,269.9 L359.7,258.1 L365.3,257.1 L363.5,255.6 L373.7,254.7 L377.7,252.3 L379.4,255.5 L395.1,253.0 L413.6,260.1 L429.3,275.1 L427.5,278.0 L429.4,278.6 L425.6,287.5 L425.6,304.0 L427.9,292.9 L433.1,284.3 L434.1,283.0 L435.6,283.9 L458.3,265.0 L457.0,263.8 L457.0,261.9 L449.0,260.3 L447.2,258.4 L445.6,259.5 L432.1,245.8 L412.5,229.9 L407.5,223.1 L391.4,219.2 L358.3,201.6 L355.0,202.0 L350.1,197.3 L321.5,181.8 L315.7,180.7 L296.5,197.1 L288.9,205.9 L291.2,207.0 L307.8,224.9 L312.5,232.0 L295.3,253.3 L288.9,258.0 L272.5,265.7 L266.7,269.7 L266.3,271.9 L264.4,273.4 Z","focus":false,"kreis":"Kreis 3","btone":"green","rate":"3.52","ratio":"1.08"},{"n":"Albisrieden","tone":"green","night":"green","d":"M92.4,268.2 L92.9,275.9 L96.3,279.1 L99.7,280.3 L101.9,284.0 L105.1,286.5 L122.9,295.9 L128.8,314.8 L141.5,320.8 L146.6,320.7 L165.6,324.3 L175.9,320.9 L194.6,329.5 L198.4,332.7 L202.4,340.0 L226.8,311.5 L263.6,297.7 L264.4,293.1 L261.8,290.2 L263.1,290.3 L265.8,281.6 L269.7,273.9 L265.1,274.3 L264.4,273.4 L266.3,271.9 L266.7,269.7 L294.8,253.7 L312.5,232.0 L307.8,224.9 L291.2,207.0 L288.9,205.9 L295.7,197.9 L307.3,188.0 L302.3,184.4 L297.9,188.2 L285.1,178.5 L288.0,175.8 L273.8,168.4 L270.1,173.1 L259.5,167.9 L248.6,178.6 L222.5,169.3 L221.3,171.8 L218.8,173.3 L220.6,174.3 L219.3,176.1 L217.8,176.1 L212.8,186.6 L208.7,184.0 L206.2,186.2 L200.0,185.9 L198.1,189.6 L192.9,191.0 L188.7,187.1 L179.5,192.3 L178.2,194.4 L166.0,202.9 L156.7,206.6 L156.5,209.4 L153.9,209.3 L153.9,208.0 L152.5,207.8 L148.7,214.2 L135.9,220.7 L136.4,221.5 L127.0,229.6 L128.4,235.7 L128.1,239.0 L122.2,247.6 L96.1,263.2 L96.5,264.1 L92.4,268.2 Z","focus":false,"kreis":"Kreis 9","btone":"green","rate":"2.36","ratio":"0.72"},{"n":"Gewerbeschule","tone":"green","night":"yellow","d":"M414.7,155.1 L414.7,156.5 L459.2,172.2 L462.2,175.6 L461.4,177.2 L475.5,179.2 L511.9,192.0 L512.6,190.6 L516.7,193.1 L519.8,186.0 L520.0,178.2 L517.1,169.3 L519.3,167.1 L485.1,143.4 L482.8,145.6 L481.4,144.9 L454.8,122.0 L452.9,124.9 L450.8,125.3 L448.5,130.2 L446.5,130.5 L448.4,131.9 L443.7,135.3 L420.8,121.7 L419.8,122.9 L441.7,135.9 L423.7,144.3 L416.9,150.3 L414.7,155.1 Z","focus":false,"kreis":"Kreis 5","btone":"green","rate":"2.41","ratio":"0.74"},{"n":"Wipkingen","tone":"green","night":"green","d":"M377.3,55.1 L380.4,57.1 L382.9,63.3 L379.6,64.0 L382.9,71.9 L384.2,72.9 L382.6,76.1 L384.4,76.8 L381.8,91.3 L394.4,96.9 L435.7,109.1 L443.3,112.6 L459.1,122.6 L485.1,143.4 L487.9,140.2 L491.5,140.1 L492.4,138.8 L494.5,140.1 L502.0,133.7 L502.9,129.9 L504.3,129.1 L503.1,109.6 L504.2,108.5 L491.2,94.8 L481.6,79.7 L484.3,66.3 L481.8,67.1 L481.8,60.7 L478.7,54.4 L479.7,48.5 L480.6,48.5 L480.2,45.3 L477.8,38.8 L472.3,31.2 L472.3,24.2 L468.1,16.7 L456.9,9.8 L450.8,0.0 L442.2,3.0 L442.8,8.2 L437.6,11.0 L428.8,1.7 L397.7,38.7 L392.1,47.5 L385.8,52.0 L377.3,55.1 Z","focus":false,"kreis":"Kreis 10","btone":"yellow","rate":"3.75","ratio":"1.15"}]}};
+  var CITY = "amsterdam";
+  function D(){ return CITIES[CITY]; }
 
   var MODULES = {
     safety:    {icon:"\uD83D\uDEE1", t:"Safety", short:"Safety", live:true, val:"Below city average",
@@ -550,10 +560,10 @@
     svg.setAttribute("preserveAspectRatio","xMidYMid meet");
     svg.setAttribute("role","img");
     svg.setAttribute("aria-label","Jordaan and its neighbouring Amsterdam wijken, coloured by recorded crime rate");
-    MAP.forEach(function(z){
+    D().map.forEach(function(z){
       var p=document.createElementNS(ns,"path");
       p.setAttribute("d",z.d);
-      p.setAttribute("class","zone "+z.tone+(z.focus?" focus":""));
+      p.setAttribute("class","zone "+(CITY==="zurich"?(z.btone||z.tone):z.tone)+(z.focus?" focus":""));
       var ti=document.createElementNS(ns,"title");
       ti.textContent=z.n+" — "+z.rate+" per 100,000 ("+z.ratio+"\u00d7 city average), "+z.crimes+" crimes, "+z.pop+" residents";
       p.appendChild(ti);
@@ -585,16 +595,14 @@
       top.appendChild(eye);
     }
     var nm=el("div","w-name");
-    var h=el("span","h","Jordaan"); nm.appendChild(h);
-    if(opts.showCity) nm.appendChild(el("span","c","Amsterdam \u00b7 official wijk"));
+    var h=el("span","h",D().focus); nm.appendChild(h);
+    if(opts.showCity) nm.appendChild(el("span","c",D().sub));
     top.appendChild(nm);
     var v=el("div","w-verdict");
-    var pill=el("span","pill calm"); pill.appendChild(el("span","dot")); pill.appendChild(document.createTextNode("Relatively safer"));
+    var pill=el("span","pill "+D().vtone); pill.appendChild(el("span","dot"));
+    pill.appendChild(document.createTextNode(D().verdict));
     v.appendChild(pill);
-    var vs=el("span","vs");
-    vs.appendChild(document.createTextNode("Recorded crime "));
-    var bb=el("b","", "0.5\u00d7"); vs.appendChild(bb);
-    vs.appendChild(document.createTextNode(" the city average \u00b7 CBS 2025"));
+    var vs=el("span","vs"); vs.innerHTML=D().vline;
     v.appendChild(vs);
     top.appendChild(v);
     w.appendChild(top);
@@ -627,7 +635,7 @@
     }
 
     var f=el("div","w-foot");
-    f.appendChild(el("span","src",opts.src||"Safety from CBS registered crime per wijk, 2025. Other modules shown as configurable."));
+    f.appendChild(el("span","src",opts.src||D().src));
     f.appendChild(el("span","wm","wandroz.com"));
     w.appendChild(f);
     return w;
@@ -636,27 +644,44 @@
   function bars(){
     var box=document.getElementById("bars");
     box.textContent="";
-    box.appendChild(el("div","bh","Recorded crime per 100,000 residents \u2014 Jordaan and its neighbours, CBS 2025"));
-    var rows=MAP.slice().sort(function(a,b){ return parseInt(a.rate.replace(/,/g,""))-parseInt(b.rate.replace(/,/g,"")); });
-    var max=Math.max.apply(null,rows.map(function(r){return parseInt(r.rate.replace(/,/g,""));}));
+    box.appendChild(el("div","bh",D().barTitle));
+    var rows=D().map.slice().sort(function(a,b){ return parseFloat(a.rate.replace(/,/g,""))-parseFloat(b.rate.replace(/,/g,"")); });
+    var max=Math.max.apply(null,rows.map(function(r){return parseFloat(r.rate.replace(/,/g,""));}));
     rows.forEach(function(r){
-      var val=parseInt(r.rate.replace(/,/g,""));
+      var val=parseFloat(r.rate.replace(/,/g,""));
       var cls = r.tone==="green"?"g":(r.tone==="yellow"?"y":"r");
       var row=el("div","bar "+cls+(r.focus?" me":""));
       row.appendChild(el("div","nm2",r.n));
       var tr=el("div","tr");
       var fl=el("div","fl"); fl.style.width=Math.max(2,(val/max)*100)+"%";
       tr.appendChild(fl);
-      var av=el("div","avgline"); av.style.left=((CITY_AVG/max)*100)+"%";
-      av.title="Amsterdam wijk average, 17,328";
+      var av=el("div","avgline"); av.style.left=((D().avg/max)*100)+"%";
+      av.title=D().avgLabel;
       tr.appendChild(av);
       row.appendChild(tr);
       row.appendChild(el("div","vv",r.rate));
       box.appendChild(row);
     });
     var note=el("div"); note.style.cssText="font-size:10.5px;color:var(--muted);margin-top:7px;font-family:'DM Mono',monospace";
-    note.textContent="vertical line = Amsterdam wijk average, 17,328";
+    note.textContent="vertical line = "+D().avgLabel;
     box.appendChild(note);
+  }
+
+  function paintCity(){
+    var d=D(), L=d.listing;
+    var set=function(sel,txt){ var e=document.querySelector(sel); if(e) e.textContent=txt; };
+    set("#lTitle",L.title); set("#lAddr",L.addr); set("#lTerm",L.term);
+    var pr=document.querySelector("#lPrice");
+    if(pr) pr.innerHTML=L.price+' <span style="font-size:12px;color:var(--muted)">/ month</span>';
+    var u=document.getElementById("purl");
+    if(u) u.textContent=(BRANDS[state.brand].url)+" / "+L.url;
+    set("#f1n",d.headline); set("#f1k",d.headlineKey);
+    set("#f2n",d.f2); set("#f2k",d.f2k);
+    set("#f3n",d.f3); set("#f3k",d.f3k);
+    var c=document.getElementById("cityContext"); if(c) c.innerHTML=d.context;
+    var nt=document.getElementById("cityNote"); if(nt) nt.textContent=d.note;
+    var hd=document.getElementById("safetyHd");
+    if(hd) hd.textContent="Safety, live today \u2014 "+d.focus+", "+d.label;
   }
 
   function renderAll(){
@@ -667,7 +692,7 @@
       byline:"Neighbourhood brief \u00b7 Amsterdam"}));
     var portal=document.getElementById("portalW");
     portal.textContent=""; portal.appendChild(buildWidget({showHost:false,showCity:false,withMap:true,
-      src:"CBS 2025 \u00b7 official wijk boundary"}));
+      src:CITY==="zurich"?"Kantonspolizei Z\u00fcrich 2023\u201325 \u00b7 official Quartier":"CBS 2025 \u00b7 official wijk boundary"}));
 
     var list=document.getElementById("modlist");
     list.textContent="";
@@ -688,7 +713,7 @@
     var b=BRANDS[key], r=document.documentElement.style;
     r.setProperty("--host",b.host); r.setProperty("--host-soft",b.soft); r.setProperty("--host-radius",b.radius);
     document.getElementById("purl").textContent=b.url+" / amsterdam / listing / 4821";
-    renderAll();
+    renderAll(); paintCity();
     document.querySelectorAll(".widget").forEach(function(w){ w.style.borderRadius=b.radius; });
   }
 
@@ -714,7 +739,16 @@
     document.getElementById("slot").classList.toggle("is-off",on);
   });
 
-  renderAll(); bars(); applyBrand("wandroz");
+  Array.prototype.slice.call(document.querySelectorAll(".cbtn")).forEach(function(btn){
+    btn.addEventListener("click",function(){
+      document.querySelectorAll(".cbtn").forEach(function(x){ x.setAttribute("aria-pressed", x===btn?"true":"false"); });
+      CITY=btn.getAttribute("data-city");
+      renderAll(); bars(); paintCity();
+      document.querySelectorAll(".widget").forEach(function(w){ w.style.borderRadius=BRANDS[state.brand].radius; });
+    });
+  });
+
+  renderAll(); bars(); applyBrand("wandroz"); paintCity();
 })();
 </script>
 
