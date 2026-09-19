@@ -1529,6 +1529,29 @@ EVIDENCE_NOTE = (
 # cross-city ranking overstated what the data actually supports. See the
 # methodology page's comparability note for the same caveat spelled out in
 # full.
+def booking_scope_answer(zone, name, day_desc, t):
+    """Say where the Booking link actually goes.
+
+    One sentence used to be printed on every area page: "You can search
+    accommodation already filtered to this specific area using the Booking.com
+    link on this page." On 1,282 of the site's 2,046 areas — 62% — that link
+    carries the city as its destination, because Booking has no entry for the
+    neighbourhood. The sentence was false on all of them, on a page whose
+    Booking link earns commission.
+
+    The test is the destination string itself: if it names the area, the link
+    is scoped to the area; if it does not, the answer says what it does search
+    and why, and tells the reader to check each property against the map."""
+    dest = (zone.get("query") or "").strip()
+    area = name.split("(")[0].strip().lower()
+    if area and area in dest.lower():
+        return t["faq_a_tourist"] % {"name": name, "day": day_desc}
+    # Trim the country off the destination: "Antwerp, Belgium" reads better as
+    # "Antwerp" in a sentence about where the search lands.
+    shown = dest.split(",")[0].strip() or dest
+    return t["faq_a_tourist_wide"] % {"name": name, "day": day_desc, "dest": shown}
+
+
 def tone_descriptor(tone, city_label, t=None, tier=None):
     """The sentence behind a colour.
 
@@ -1644,7 +1667,7 @@ def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIME
         {"q": q("faq_q_safe"), "a": rating_sentence},
         night_faq,
         {"q": q("faq_q_tourist"),
-         "a": t["faq_a_tourist"] % {"name": name, "day": day_desc}},
+         "a": booking_scope_answer(zone, name, day_desc, t)},
     ]
     if burglary:
         # Zurigo soltanto, e Zurigo oggi esiste solo in inglese: questa

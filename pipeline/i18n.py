@@ -215,10 +215,20 @@ STRINGS = {
         "faq_a_daynight": ("No — %(name)s's source data has no time-of-day breakdown, so the same "
                            "rating (%(day)s) is shown for both day and night rather than Wandroz "
                            "inventing a separate night figure it doesn't actually have."),
+        # Two versions, because the single version claimed the Booking link was
+        # "already filtered to this specific area" on every page, and on 1,282
+        # of 2,046 areas — 62% — the link searches the whole city, because
+        # Booking has no destination for that neighbourhood. Saying otherwise
+        # on an affiliate link is a commercial claim, not just loose wording.
         "faq_a_tourist": ("%(name)s's day rating (%(day)s) is the more relevant one for typical "
                           "daytime tourist activity; check the night rating too if you'll be out "
-                          "late. You can search accommodation already filtered to this specific "
-                          "area using the Booking.com link on this page."),
+                          "late. The Booking.com link on this page searches %(name)s itself."),
+        "faq_a_tourist_wide": ("%(name)s's day rating (%(day)s) is the more relevant one for "
+                               "typical daytime tourist activity; check the night rating too if "
+                               "you'll be out late. Note that the Booking.com link on this page "
+                               "searches %(dest)s, not %(name)s specifically: Booking does not "
+                               "list this neighbourhood as a destination of its own, so check "
+                               "each property's address against the map above."),
 
         "faq_a_nofind_safe": ("Wandroz rates %(name)s in %(city)s as %(day)s. That rating rests on "
                               "an area-level review that reached no traveller-relevant reporting "
@@ -460,10 +470,17 @@ STRINGS = {
         "faq_a_daynight": ("No — i dati di partenza di %(name)s non distinguono le ore del giorno, "
                            "quindi la stessa valutazione (%(day)s) vale sia di giorno sia di notte, "
                            "invece che Wandroz si inventi un dato notturno che non ha."),
+        "faq_a_tourist_wide": ("La valutazione diurna di %(name)s (%(day)s) è quella più "
+                               "rilevante per una giornata da turista; controlla anche quella "
+                               "notturna se esci la sera. Attenzione: il link Booking.com di "
+                               "questa pagina cerca %(dest)s, non %(name)s nello specifico — "
+                               "Booking non espone questo quartiere come destinazione a sé, "
+                               "quindi verifica l'indirizzo di ogni struttura sulla mappa qui "
+                               "sopra."),
         "faq_a_tourist": ("La valutazione diurna di %(name)s (%(day)s) è quella più utile per una "
                           "giornata da turista; se pensi di stare fuori fino a tardi guarda anche "
-                          "quella notturna. Puoi cercare un alloggio già circoscritto a questa zona "
-                          "con il link Booking.com su questa pagina."),
+                          "quella notturna. Il link Booking.com su questa pagina cerca "
+                          "%(name)s stessa."),
 
         "faq_a_nofind_safe": ("Wandroz valuta %(name)s a %(city)s come %(day)s. Quella valutazione "
                               "poggia su una revisione area per area che non ha trovato alcuna "
