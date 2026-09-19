@@ -1636,8 +1636,14 @@ def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIME
                 f"Partially. {name} sits in {burglary['kreis_label']}, one of Zurich's 12 police districts. "
                 f"Kantonspolizei Zürich publishes a real, current burglary rate for that district — "
                 f"{burglary['rate_avg_per_1000']} per 1,000 residents"
+                # A district flagged as not comparable keeps its figure and
+                # loses the comparison, here as on the map. Printing "379% of
+                # the average" for the old town would be arithmetically true
+                # and would tell the reader something false.
                 + (
-                    f", {round(burglary['vs_city_average'] * 100)}% of the 12-district average"
+                    f". {burglary['not_comparable_reason']}"
+                    if burglary.get("rate_not_comparable")
+                    else f", {round(burglary['vs_city_average'] * 100)}% of the 12-district average"
                     if burglary.get("city_average_rate_per_1000") else ""
                 )
                 + f". This covers burglaries only, not all crime types, and is reported at district level, "

@@ -4,8 +4,11 @@
     "kreis_1": {
       "kreis_label": "Kreis 1",
       "kreis_number": 1,
+      "not_comparable_reason": "Kreis 1 has about 5,583 residents, under a third of the median Zurich district. Burglary counts include break-ins at shops, offices and hotels, so dividing them by a resident population this small measures how commercial the district is, not how risky it is for a person. The figure is shown; it is not ranked against the other districts.",
       "rate_avg_per_1000": 38.8,
-      "tone": "red",
+      "rate_not_comparable": true,
+      "residents": 5583,
+      "tone": "grey",
       "vs_city_average": 3.792,
       "years_included": [
         "2025",
@@ -18,6 +21,7 @@
       "kreis_label": "Kreis 10",
       "kreis_number": 10,
       "rate_avg_per_1000": 5.4,
+      "residents": 40256,
       "tone": "green",
       "vs_city_average": 0.528,
       "years_included": [
@@ -31,6 +35,7 @@
       "kreis_label": "Kreis 11",
       "kreis_number": 11,
       "rate_avg_per_1000": 5.47,
+      "residents": 75190,
       "tone": "green",
       "vs_city_average": 0.535,
       "years_included": [
@@ -44,6 +49,7 @@
       "kreis_label": "Kreis 12",
       "kreis_number": 12,
       "rate_avg_per_1000": 2.9,
+      "residents": 31738,
       "tone": "green",
       "vs_city_average": 0.283,
       "years_included": [
@@ -57,6 +63,7 @@
       "kreis_label": "Kreis 2",
       "kreis_number": 2,
       "rate_avg_per_1000": 6.53,
+      "residents": 37033,
       "tone": "green",
       "vs_city_average": 0.638,
       "years_included": [
@@ -70,6 +77,7 @@
       "kreis_label": "Kreis 3",
       "kreis_number": 3,
       "rate_avg_per_1000": 6.77,
+      "residents": 49570,
       "tone": "green",
       "vs_city_average": 0.662,
       "years_included": [
@@ -83,6 +91,7 @@
       "kreis_label": "Kreis 4",
       "kreis_number": 4,
       "rate_avg_per_1000": 16.57,
+      "residents": 28488,
       "tone": "red",
       "vs_city_average": 1.619,
       "years_included": [
@@ -96,6 +105,7 @@
       "kreis_label": "Kreis 5",
       "kreis_number": 5,
       "rate_avg_per_1000": 12.57,
+      "residents": 15347,
       "tone": "yellow",
       "vs_city_average": 1.229,
       "years_included": [
@@ -109,6 +119,7 @@
       "kreis_label": "Kreis 6",
       "kreis_number": 6,
       "rate_avg_per_1000": 7.4,
+      "residents": 34314,
       "tone": "green",
       "vs_city_average": 0.723,
       "years_included": [
@@ -122,6 +133,7 @@
       "kreis_label": "Kreis 7",
       "kreis_number": 7,
       "rate_avg_per_1000": 6.13,
+      "residents": 38398,
       "tone": "green",
       "vs_city_average": 0.599,
       "years_included": [
@@ -135,6 +147,7 @@
       "kreis_label": "Kreis 8",
       "kreis_number": 8,
       "rate_avg_per_1000": 8.97,
+      "residents": 17234,
       "tone": "yellow",
       "vs_city_average": 0.877,
       "years_included": [
@@ -148,6 +161,7 @@
       "kreis_label": "Kreis 9",
       "kreis_number": 9,
       "rate_avg_per_1000": 5.27,
+      "residents": 58090,
       "tone": "green",
       "vs_city_average": 0.515,
       "years_included": [

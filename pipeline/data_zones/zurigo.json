@@ -2744,8 +2744,8 @@
   {
    "name": "Schwamendingen-Mitte",
    "slug": "schwamendingen-mitte",
-   "day": "yellow",
-   "night": "red",
+   "day": "green",
+   "night": "yellow",
    "coords": [
     [
      [
@@ -3082,7 +3082,7 @@
      ]
     ]
    ],
-   "text": "Repeatedly described by Swiss media as one of Zurich's more troubled areas, with reports of youth violence in recent years. Of little touristic relevance, but included for full city coverage.",
+   "text": "The centre of Schwamendingen, district 12, around the tram interchange. The area carries an older reputation as one of Zurich's rougher corners, and that reputation is what it used to be rated on here. The figures that exist do not support it: district 12 records 2.9 burglaries per 1,000 residents, the lowest of Zurich's twelve districts and 28% of the city average, and Kanton Zürich reports youth crime falling across the canton in both 2024 and 2025. Rated with the night-time caution normal for a transport interchange in an outlying district, not for anything measured as elevated.",
    "query": "Schwamendingen-Mitte, Zurich, Switzerland",
    "booking_scope": "area",
    "evidence": "documented"
@@ -5850,7 +5850,7 @@
   {
    "name": "Hirzenbach",
    "slug": "hirzenbach",
-   "day": "yellow",
+   "day": "green",
    "night": "yellow",
    "coords": [
     [
@@ -6116,7 +6116,7 @@
      ]
     ]
    ],
-   "text": "Part of the Schwamendingen district; generally calm but shares some of the area's reputation.",
+   "text": "Part of Schwamendingen, in district 12. Residential, with the same picture as the rest of the district: at 2.9 burglaries per 1,000 residents, district 12 records the lowest rate of Zurich's twelve, 28% of the city average. Rated with the usual night-time caution for an outlying residential area, not for anything measured.",
    "query": "Hirzenbach, Zurich, Switzerland",
    "booking_scope": "area",
    "evidence": "documented"
@@ -7094,7 +7094,7 @@
   {
    "name": "Gewerbeschule",
    "slug": "gewerbeschule",
-   "day": "yellow",
+   "day": "green",
    "night": "yellow",
    "coords": [
     [
@@ -7216,7 +7216,7 @@
      ]
     ]
    ],
-   "text": "Borders Langstrasse; generally fine by day, worth the same caution as the wider district at night.",
+   "text": "Borders Langstrasse on the district 5 side. Generally fine by day; the same after-dark caution as the wider district applies. Its neighbour Escher Wyss, in the same district and with the same figures, is rated the same way.",
    "query": "Gewerbeschule, Zurich, Switzerland",
    "booking_scope": "area",
    "evidence": "documented"
@@ -7224,7 +7224,7 @@
   {
    "name": "Werd",
    "slug": "werd",
-   "day": "yellow",
+   "day": "green",
    "night": "yellow",
    "coords": [
     [
@@ -7326,7 +7326,7 @@
      ]
     ]
    ],
-   "text": "Part of district 4, close to Langstrasse; calm by day, worth more caution at night given the wider district's reputation.",
+   "text": "Part of district 4, close to Langstrasse. Calm by day; worth more attention at night, when the Langstrasse crowd spills into the surrounding blocks. District 4 carries the city's highest residential burglary rate, 16.6 per 1,000 residents against a 12-district average of 10.2.",
    "query": "Werd, Zurich, Switzerland",
    "booking_scope": "area",
    "evidence": "documented"
@@ -7824,7 +7824,7 @@
   {
    "name": "Hard",
    "slug": "hard",
-   "day": "yellow",
+   "day": "green",
    "night": "yellow",
    "coords": [
     [
@@ -7998,7 +7998,7 @@
      ]
     ]
    ],
-   "text": "Part of district 4 near Langstrasse; shares some of the area's edgier reputation without being as extreme.",
+   "text": "Part of district 4, west of Langstrasse. Residential and quiet through the day; the district's harder reputation belongs to the Langstrasse strip after dark, not to these streets in daylight. District 4 does carry Zurich's highest residential burglary rate — 16.6 per 1,000 residents against a 12-district average of 10.2 — which is a household concern rather than a street one.",
    "query": "Hard, Zurich, Switzerland",
    "booking_scope": "area",
    "evidence": "documented"
@@ -8820,7 +8820,7 @@
   {
    "name": "Saatlen",
    "slug": "saatlen",
-   "day": "yellow",
+   "day": "green",
    "night": "yellow",
    "coords": [
     [
@@ -8982,7 +8982,7 @@
      ]
     ]
    ],
-   "text": "Part of the wider Schwamendingen area; generally calm but shares some of the district's reputation for occasional issues.",
+   "text": "Part of Schwamendingen, in district 12. Residential and calm; the only hard figure that reaches this area is Kantonspolizei Zürich's burglary rate, and at 2.9 per 1,000 residents district 12 is the lowest of Zurich's twelve — 28% of the city average. The usual night-time caution for an outlying residential district applies, but nothing here is measured as elevated.",
    "query": "Saatlen, Zurich, Switzerland",
    "booking_scope": "area",
    "evidence": "documented"

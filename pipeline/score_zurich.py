@@ -89,39 +89,102 @@ def _parse_rate(raw):
 
 
 def load_kreis_year_rate(kreis_n, year):
-    """Reads the saved raw rows for one Kreis/year and returns the official
-    Häufigkeitszahl for the 'Einbrüche insgesamt' row, or None if that row
-    isn't present (schema drift, missing data for that year, etc.)."""
+    """Reads the saved raw rows for one Kreis/year and returns
+    (Häufigkeitszahl, Einwohner) for the 'Einbrüche insgesamt' row, or
+    (None, None) if that row isn't present (schema drift, missing data for
+    that year, etc.).
+
+    The resident count was previously read and discarded. It matters: the
+    Häufigkeitszahl is offences per 1,000 *residents*, and burglary counts
+    include break-ins at shops, offices and hotels. Where residents are a
+    small minority of the premises at risk, the ratio stops describing a
+    person's risk and starts describing the district's commercial density."""
     path = os.path.join(RAW_DIR, f"kreis_{kreis_n}_{year}.json")
     if not os.path.isfile(path):
-        return None
+        return None, None
     with open(path) as f:
         rows = json.load(f)
     for row in rows:
         if row.get("Tatbestand", "").strip() == TOTAL_TATBESTAND:
-            return _parse_rate(row.get("Häufigkeitszahl"))
-    return None
+            pop = row.get("Einwohner")
+            try:
+                pop = int(str(pop).replace("'", "").replace(" ", ""))
+            except (TypeError, ValueError):
+                pop = None
+            return _parse_rate(row.get("Häufigkeitszahl")), pop
+    return None, None
 
 
 def score_kreis(kreis_n, years_available):
     years_used = years_available[:YEARS_TO_AVERAGE]
     rates = []
+    pops = []
     years_with_data = []
     for year in years_used:
-        rate = load_kreis_year_rate(kreis_n, year)
+        rate, pop = load_kreis_year_rate(kreis_n, year)
         if rate is not None:
             rates.append(rate)
             years_with_data.append(year)
+            if pop:
+                pops.append(pop)
     if not rates:
         return None
     avg_rate = sum(rates) / len(rates)
     return {
         "kreis_number": kreis_n,
         "kreis_label": KREIS_LABEL[kreis_n],
+        "residents": round(sum(pops) / len(pops)) if pops else None,
         "years_included": years_with_data,
         "years_with_data": len(rates),
         "rate_avg_per_1000": round(avg_rate, 2),
     }
+
+
+def mark_incomparable(scored):
+    """Flags districts where burglaries-per-1,000-residents is not a rate a
+    reader can compare with other districts.
+
+    Zurich's Kreis 1 is the old town and the central business district. It has
+    about 5,500 residents and several thousand shops, offices and hotels, and
+    the burglary count includes break-ins at all of them. Divided by a resident
+    population that small, it produces 38.8 per 1,000 — 3.8 times the city
+    average and by far the worst figure in Zurich — for the four quarters
+    (Lindenhof, Rathaus, City, Hochschulen) that this site otherwise rates as
+    the safest places in the city to stay. Both statements came from real data
+    and they cannot both be read as risk to a person.
+
+    The rule: a district whose resident population is under a third of the
+    median district's is flagged. That threshold is not delicate. Zurich's
+    districts run from 15,300 residents upward apart from Kreis 1 at 5,600, so
+    anything between roughly 6,000 and 15,000 selects the same single district;
+    a third of the median (about 11,900) sits in the middle of that gap. If a
+    future boundary change puts another district in the same position, it gets
+    the same treatment, which is why this is written as a rule.
+
+    Flagged districts keep their published figure and lose only their colour.
+    They stay in the city average: they are part of the city, the average is
+    described to the reader as the average of the twelve districts, and
+    quietly removing one to make the arithmetic prettier would be the same
+    class of error in the other direction."""
+    pops = [v["residents"] for v in scored.values() if v.get("residents")]
+    if len(pops) < 3:
+        return
+    pops.sort()
+    n = len(pops)
+    median = pops[n // 2] if n % 2 else (pops[n // 2 - 1] + pops[n // 2]) / 2
+    floor = median / 3.0
+    for v in scored.values():
+        pop = v.get("residents")
+        if pop and pop < floor:
+            v["rate_not_comparable"] = True
+            v["not_comparable_reason"] = (
+                "%s has about %s residents, under a third of the median Zurich "
+                "district. Burglary counts include break-ins at shops, offices "
+                "and hotels, so dividing them by a resident population this "
+                "small measures how commercial the district is, not how risky "
+                "it is for a person. The figure is shown; it is not ranked "
+                "against the other districts." % (v["kreis_label"], f"{pop:,}")
+            )
 
 
 def write_empty(reason):
@@ -154,11 +217,17 @@ def main():
         write_empty("Found raw Zurich files, but none had a usable 'Einbrüche insgesamt' rate — wrote an empty result.")
         return
 
+    mark_incomparable(scored)
+
     city_avg = sum(v["rate_avg_per_1000"] for v in scored.values()) / len(scored)
     for v in scored.values():
         ratio = (v["rate_avg_per_1000"] / city_avg) if city_avg else 1.0
         v["vs_city_average"] = round(ratio, 3)
-        if ratio >= RED_THRESHOLD:
+        if v.get("rate_not_comparable"):
+            # The figure is published and shown; only the colour is withheld,
+            # because a colour is a comparison and this one cannot be made.
+            v["tone"] = "grey"
+        elif ratio >= RED_THRESHOLD:
             v["tone"] = "red"
         elif ratio <= GREEN_THRESHOLD:
             v["tone"] = "green"
