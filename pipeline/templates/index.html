@@ -602,12 +602,22 @@
     function renderMatches(query) {
       var q = query.trim().toLowerCase();
       if (!q) { currentMatches = []; resultsBox.classList.remove('open'); resultsBox.innerHTML = ''; return; }
+      // Gli alias esistono per far trovare la pagina, non per moltiplicarla:
+      // "de angeli" combacia sia con il nome ufficiale sia con l'alias, e
+      // l'elenco mostrava due volte lo stesso quartiere. Si tiene la prima
+      // occorrenza per URL, e si mostra sempre il nome ufficiale — l'alias ha
+      // gia' fatto il suo lavoro nel momento in cui ha fatto combaciare.
+      var byUrl = {};
       currentMatches = searchData.filter(function(item) {
-        return item.name.toLowerCase().indexOf(q) !== -1;
+        if (item.name.toLowerCase().indexOf(q) === -1) { return false; }
+        if (byUrl[item.url]) { return false; }
+        byUrl[item.url] = true;
+        return true;
       }).slice(0, 8);
       if (currentMatches.length) {
         resultsBox.innerHTML = currentMatches.map(function(item) {
-          var label = item.type === 'city' ? (item.flag + ' ' + escapeHtml(item.name)) : escapeHtml(item.name);
+          var shown = item.alias_of || item.name;
+          var label = item.type === 'city' ? (item.flag + ' ' + escapeHtml(item.name)) : escapeHtml(shown);
           var sub = item.city ? '<span class="search-result-city">' + escapeHtml(item.city) + '</span>' : '';
           return '<a class="search-result-item" href="' + item.url + '">' + label + sub + '</a>';
         }).join('');

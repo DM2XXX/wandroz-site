@@ -2463,6 +2463,56 @@ def mapped_cities():
     return list(ILLUSTRATIVE_CITIES) + uk
 
 
+# Separatori con cui un nome amministrativo elenca piu' luoghi in uno.
+_ALIAS_SPLIT = re.compile(r"\s*[-/]\s+|\s+[-/]\s*|\s*·\s*")
+# Pezzi che da soli non sono il nome di un posto: "Q.re" e' l'abbreviazione di
+# quartiere, e cercare "Ovest" non deve portare da nessuna parte.
+_ALIAS_STOP = {"q.re", "q", "e.o.", "eo", "nord", "sud", "est", "ovest", "centro",
+               "north", "south", "east", "west", "zona", "quartiere"}
+
+
+def search_aliases(name):
+    """I nomi con cui si cerca un'area, quando il suo nome ufficiale ne contiene
+    piu' di uno.
+
+    Milano divide la citta' in NIL, e 29 dei suoi 88 si chiamano elencando i
+    posti che contengono: "De Angeli - Monte Rosa", "Loreto - Casoretto - Nolo",
+    "Gratosoglio - Q.re Missaglia - Q.re Terrazze". Il nome e' quello ufficiale
+    e resta tale sulla pagina, perche' il nome deve corrispondere al confine che
+    la pagina disegna. Ma nessuno digita "De Angeli - Monte Rosa": digita
+    "De Angeli". Questi alias esistono solo nell'indice di ricerca, non sono
+    mostrati da nessuna parte, e portano alla stessa pagina.
+
+    Vale anche fuori Milano — Lambrate - Ortica, Gorla - Precotto — e in
+    qualunque citta' usi la stessa convenzione.
+    """
+    out = []
+    base = re.sub(r"\s*\([^)]*\)", "", name).strip()
+    for part in _ALIAS_SPLIT.split(base):
+        part = part.strip(" ,")
+        if not part or part == name:
+            continue
+        if part.lower() in _ALIAS_STOP or len(part) < 3:
+            continue
+        # "Q.re Feltre" -> "Feltre": il prefisso non e' parte del nome parlato.
+        part = re.sub(r"^(?:Q\.re|Quartiere)\s+", "", part).strip()
+        if part and part.lower() not in _ALIAS_STOP and part != name:
+            out.append(part)
+    # Anche il contenuto delle parentesi: "Via Padova (Padova - Turro -
+    # Crescenzago)" si cerca per Turro o per Crescenzago.
+    for inner in re.findall(r"\(([^)]*)\)", name):
+        for part in _ALIAS_SPLIT.split(inner):
+            part = re.sub(r"^(?:Q\.re|Quartiere)\s+", "", part.strip(" ,")).strip()
+            if part and part.lower() not in _ALIAS_STOP and len(part) >= 3:
+                out.append(part)
+    seen, uniq = set(), []
+    for a in out:
+        if a.lower() not in seen:
+            seen.add(a.lower())
+            uniq.append(a)
+    return uniq
+
+
 def build_search_index(cities, city_cards):
     """Build the homepage search bar's data source, purely from real content
     that already exists elsewhere in the pipeline — no invented names, no
@@ -2480,6 +2530,9 @@ def build_search_index(cities, city_cards):
     for city in cities:
         city_slug = city["city"].lower().replace(" ", "-")
         for b in city["boroughs"]:
+            for _alias in search_aliases(b["borough"]):
+                entries.append({"type": "zone", "name": _alias, "city": city["city"],
+                                "url": f"/{city_slug}/{b['slug']}.html", "alias_of": b["borough"]})
             entries.append({
                 "type": "zone", "name": b["borough"], "city": city["city"],
                 "url": f"/{city_slug}/{b['slug']}.html",
@@ -2493,6 +2546,9 @@ def build_search_index(cities, city_cards):
         for z in data["zones"]:
             z_url = f"/{url_slug}/{z['slug']}.html" if flat else f"/{url_slug}/{z['slug']}/"
             entries.append({"type": "zone", "name": z["name"], "city": label, "url": z_url})
+            for _alias in search_aliases(z["name"]):
+                entries.append({"type": "zone", "name": _alias, "city": label,
+                                "url": z_url, "alias_of": z["name"]})
 
     return entries
 
