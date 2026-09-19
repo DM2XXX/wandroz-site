@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -546,119 +560,119 @@
     
     <ul>
       
-      <li><a href="/praha/praha-1.html">Praha 1</a></li>
+      <li data-zone="praha-1"><a href="/praha/praha-1.html">Praha 1</a></li>
       
-      <li><a href="/praha/praha-10.html">Praha 10</a></li>
+      <li data-zone="praha-10"><a href="/praha/praha-10.html">Praha 10</a></li>
       
-      <li><a href="/praha/praha-11.html">Praha 11</a></li>
+      <li data-zone="praha-11"><a href="/praha/praha-11.html">Praha 11</a></li>
       
-      <li><a href="/praha/praha-12.html">Praha 12</a></li>
+      <li data-zone="praha-12"><a href="/praha/praha-12.html">Praha 12</a></li>
       
-      <li><a href="/praha/praha-13.html">Praha 13</a></li>
+      <li data-zone="praha-13"><a href="/praha/praha-13.html">Praha 13</a></li>
       
-      <li><a href="/praha/praha-14.html">Praha 14</a></li>
+      <li data-zone="praha-14"><a href="/praha/praha-14.html">Praha 14</a></li>
       
-      <li><a href="/praha/praha-15.html">Praha 15</a></li>
+      <li data-zone="praha-15"><a href="/praha/praha-15.html">Praha 15</a></li>
       
-      <li><a href="/praha/praha-16.html">Praha 16</a></li>
+      <li data-zone="praha-16"><a href="/praha/praha-16.html">Praha 16</a></li>
       
-      <li><a href="/praha/praha-17.html">Praha 17</a></li>
+      <li data-zone="praha-17"><a href="/praha/praha-17.html">Praha 17</a></li>
       
-      <li><a href="/praha/praha-18.html">Praha 18</a></li>
+      <li data-zone="praha-18"><a href="/praha/praha-18.html">Praha 18</a></li>
       
-      <li><a href="/praha/praha-19.html">Praha 19</a></li>
+      <li data-zone="praha-19"><a href="/praha/praha-19.html">Praha 19</a></li>
       
-      <li><a href="/praha/praha-2.html">Praha 2</a></li>
+      <li data-zone="praha-2"><a href="/praha/praha-2.html">Praha 2</a></li>
       
-      <li><a href="/praha/praha-20.html">Praha 20</a></li>
+      <li data-zone="praha-20"><a href="/praha/praha-20.html">Praha 20</a></li>
       
-      <li><a href="/praha/praha-21.html">Praha 21</a></li>
+      <li data-zone="praha-21"><a href="/praha/praha-21.html">Praha 21</a></li>
       
-      <li><a href="/praha/praha-22.html">Praha 22</a></li>
+      <li data-zone="praha-22"><a href="/praha/praha-22.html">Praha 22</a></li>
       
-      <li><a href="/praha/praha-3.html">Praha 3</a></li>
+      <li data-zone="praha-3"><a href="/praha/praha-3.html">Praha 3</a></li>
       
-      <li><a href="/praha/praha-4.html">Praha 4</a></li>
+      <li data-zone="praha-4"><a href="/praha/praha-4.html">Praha 4</a></li>
       
-      <li><a href="/praha/praha-5.html">Praha 5</a></li>
+      <li data-zone="praha-5"><a href="/praha/praha-5.html">Praha 5</a></li>
       
-      <li><a href="/praha/praha-6.html">Praha 6</a></li>
+      <li data-zone="praha-6"><a href="/praha/praha-6.html">Praha 6</a></li>
       
-      <li><a href="/praha/praha-7.html">Praha 7</a></li>
+      <li data-zone="praha-7"><a href="/praha/praha-7.html">Praha 7</a></li>
       
-      <li><a href="/praha/praha-8.html">Praha 8</a></li>
+      <li data-zone="praha-8"><a href="/praha/praha-8.html">Praha 8</a></li>
       
-      <li><a href="/praha/praha-9.html">Praha 9</a></li>
+      <li data-zone="praha-9"><a href="/praha/praha-9.html">Praha 9</a></li>
       
-      <li><a href="/praha/praha-benice.html">Praha-Benice</a></li>
+      <li data-zone="praha-benice"><a href="/praha/praha-benice.html">Praha-Benice</a></li>
       
-      <li><a href="/praha/praha-bechovice.html">Praha-Běchovice</a></li>
+      <li data-zone="praha-bechovice"><a href="/praha/praha-bechovice.html">Praha-Běchovice</a></li>
       
-      <li><a href="/praha/praha-brezineves.html">Praha-Březiněves</a></li>
+      <li data-zone="praha-brezineves"><a href="/praha/praha-brezineves.html">Praha-Březiněves</a></li>
       
-      <li><a href="/praha/praha-dolni-chabry.html">Praha-Dolní Chabry</a></li>
+      <li data-zone="praha-dolni-chabry"><a href="/praha/praha-dolni-chabry.html">Praha-Dolní Chabry</a></li>
       
-      <li><a href="/praha/praha-dolni-mecholupy.html">Praha-Dolní Měcholupy</a></li>
+      <li data-zone="praha-dolni-mecholupy"><a href="/praha/praha-dolni-mecholupy.html">Praha-Dolní Měcholupy</a></li>
       
-      <li><a href="/praha/praha-dolni-pocernice.html">Praha-Dolní Počernice</a></li>
+      <li data-zone="praha-dolni-pocernice"><a href="/praha/praha-dolni-pocernice.html">Praha-Dolní Počernice</a></li>
       
-      <li><a href="/praha/praha-dubec.html">Praha-Dubeč</a></li>
+      <li data-zone="praha-dubec"><a href="/praha/praha-dubec.html">Praha-Dubeč</a></li>
       
-      <li><a href="/praha/praha-klanovice.html">Praha-Klánovice</a></li>
+      <li data-zone="praha-klanovice"><a href="/praha/praha-klanovice.html">Praha-Klánovice</a></li>
       
-      <li><a href="/praha/praha-kolodeje.html">Praha-Koloděje</a></li>
+      <li data-zone="praha-kolodeje"><a href="/praha/praha-kolodeje.html">Praha-Koloděje</a></li>
       
-      <li><a href="/praha/praha-kolovraty.html">Praha-Kolovraty</a></li>
+      <li data-zone="praha-kolovraty"><a href="/praha/praha-kolovraty.html">Praha-Kolovraty</a></li>
       
-      <li><a href="/praha/praha-kralovice.html">Praha-Královice</a></li>
+      <li data-zone="praha-kralovice"><a href="/praha/praha-kralovice.html">Praha-Královice</a></li>
       
-      <li><a href="/praha/praha-kunratice.html">Praha-Kunratice</a></li>
+      <li data-zone="praha-kunratice"><a href="/praha/praha-kunratice.html">Praha-Kunratice</a></li>
       
-      <li><a href="/praha/praha-kreslice.html">Praha-Křeslice</a></li>
+      <li data-zone="praha-kreslice"><a href="/praha/praha-kreslice.html">Praha-Křeslice</a></li>
       
-      <li><a href="/praha/praha-libus.html">Praha-Libuš</a></li>
+      <li data-zone="praha-libus"><a href="/praha/praha-libus.html">Praha-Libuš</a></li>
       
-      <li><a href="/praha/praha-lipence.html">Praha-Lipence</a></li>
+      <li data-zone="praha-lipence"><a href="/praha/praha-lipence.html">Praha-Lipence</a></li>
       
-      <li><a href="/praha/praha-lochkov.html">Praha-Lochkov</a></li>
+      <li data-zone="praha-lochkov"><a href="/praha/praha-lochkov.html">Praha-Lochkov</a></li>
       
-      <li><a href="/praha/praha-lysolaje.html">Praha-Lysolaje</a></li>
+      <li data-zone="praha-lysolaje"><a href="/praha/praha-lysolaje.html">Praha-Lysolaje</a></li>
       
-      <li><a href="/praha/praha-nebusice.html">Praha-Nebušice</a></li>
+      <li data-zone="praha-nebusice"><a href="/praha/praha-nebusice.html">Praha-Nebušice</a></li>
       
-      <li><a href="/praha/praha-nedvezi.html">Praha-Nedvězí</a></li>
+      <li data-zone="praha-nedvezi"><a href="/praha/praha-nedvezi.html">Praha-Nedvězí</a></li>
       
-      <li><a href="/praha/praha-petrovice.html">Praha-Petrovice</a></li>
+      <li data-zone="praha-petrovice"><a href="/praha/praha-petrovice.html">Praha-Petrovice</a></li>
       
-      <li><a href="/praha/praha-predni-kopanina.html">Praha-Přední Kopanina</a></li>
+      <li data-zone="praha-predni-kopanina"><a href="/praha/praha-predni-kopanina.html">Praha-Přední Kopanina</a></li>
       
-      <li><a href="/praha/praha-satalice.html">Praha-Satalice</a></li>
+      <li data-zone="praha-satalice"><a href="/praha/praha-satalice.html">Praha-Satalice</a></li>
       
-      <li><a href="/praha/praha-slivenec.html">Praha-Slivenec</a></li>
+      <li data-zone="praha-slivenec"><a href="/praha/praha-slivenec.html">Praha-Slivenec</a></li>
       
-      <li><a href="/praha/praha-suchdol.html">Praha-Suchdol</a></li>
+      <li data-zone="praha-suchdol"><a href="/praha/praha-suchdol.html">Praha-Suchdol</a></li>
       
-      <li><a href="/praha/praha-troja.html">Praha-Troja</a></li>
+      <li data-zone="praha-troja"><a href="/praha/praha-troja.html">Praha-Troja</a></li>
       
-      <li><a href="/praha/praha-velka-chuchle.html">Praha-Velká Chuchle</a></li>
+      <li data-zone="praha-velka-chuchle"><a href="/praha/praha-velka-chuchle.html">Praha-Velká Chuchle</a></li>
       
-      <li><a href="/praha/praha-vinor.html">Praha-Vinoř</a></li>
+      <li data-zone="praha-vinor"><a href="/praha/praha-vinor.html">Praha-Vinoř</a></li>
       
-      <li><a href="/praha/praha-zbraslav.html">Praha-Zbraslav</a></li>
+      <li data-zone="praha-zbraslav"><a href="/praha/praha-zbraslav.html">Praha-Zbraslav</a></li>
       
-      <li><a href="/praha/praha-zlicin.html">Praha-Zličín</a></li>
+      <li data-zone="praha-zlicin"><a href="/praha/praha-zlicin.html">Praha-Zličín</a></li>
       
-      <li><a href="/praha/praha-ujezd.html">Praha-Újezd</a></li>
+      <li data-zone="praha-ujezd"><a href="/praha/praha-ujezd.html">Praha-Újezd</a></li>
       
-      <li><a href="/praha/praha-cakovice.html">Praha-Čakovice</a></li>
+      <li data-zone="praha-cakovice"><a href="/praha/praha-cakovice.html">Praha-Čakovice</a></li>
       
-      <li><a href="/praha/praha-dablice.html">Praha-Ďáblice</a></li>
+      <li data-zone="praha-dablice"><a href="/praha/praha-dablice.html">Praha-Ďáblice</a></li>
       
-      <li><a href="/praha/praha-reporyje.html">Praha-Řeporyje</a></li>
+      <li data-zone="praha-reporyje"><a href="/praha/praha-reporyje.html">Praha-Řeporyje</a></li>
       
-      <li><a href="/praha/praha-seberov.html">Praha-Šeberov</a></li>
+      <li data-zone="praha-seberov"><a href="/praha/praha-seberov.html">Praha-Šeberov</a></li>
       
-      <li><a href="/praha/praha-sterboholy.html">Praha-Štěrboholy</a></li>
+      <li data-zone="praha-sterboholy"><a href="/praha/praha-sterboholy.html">Praha-Štěrboholy</a></li>
       
     </ul>
     
@@ -669,7 +683,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="praha-1">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/praha/praha-1.html">Praha 1</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -678,11 +692,11 @@
     </div>
     <span class="why">10 of the city&#39;s main sights are close enough to walk between.</span>
     
-    <span class="caution">Its rating comes from the city&#39;s own published figures, counted per registered resident and compared only with other districts of this city.</span>
+    <span class="caution">Still a practical base for a first visit. 10 of the city&#39;s main sights are inside it. The city&#39;s published rate is counted per registered resident, so a district that hosts many more people than it houses reads higher. Take extra care, particularly after dark — that is what the rating is for, not a reason to stay out of the area.</span>
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Praha+1%2C+Prague%2C+Czechia" target="_blank" rel="noopener">Find a place in Praha 1 →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="praha-2">
     <span class="lab">With family</span>
     <span class="nm"><a href="/praha/praha-2.html">Praha 2</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -691,11 +705,11 @@
     </div>
     <span class="why">1 park within reach, and nothing here turns into a nightlife strip after dark.</span>
     
-    
+    <span class="caution">Still a workable choice with family. The city&#39;s published rate is counted per registered resident, so a district that hosts many more people than it houses reads higher. Take extra care, particularly after dark — that is what the rating is for, not a reason to stay out of the area.</span>
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Praha+2%2C+Prague%2C+Czechia" target="_blank" rel="noopener">Find a place in Praha 2 →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="praha-3">
     <span class="lab">For going out · Best rated overall</span>
     <span class="nm"><a href="/praha/praha-3.html">Praha 3</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1368,6 +1382,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1497,6 +1513,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1515,6 +1532,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -1905,6 +1923,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

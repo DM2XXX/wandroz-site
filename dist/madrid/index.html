@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -560,19 +574,19 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/acacias.html">Acacias</a></li>
+          <li data-zone=""><a href="/madrid/acacias.html">Acacias</a></li>
           
-          <li><a href="/madrid/atocha.html">Atocha</a></li>
+          <li data-zone=""><a href="/madrid/atocha.html">Atocha</a></li>
           
-          <li><a href="/madrid/chopera.html">Chopera</a></li>
+          <li data-zone=""><a href="/madrid/chopera.html">Chopera</a></li>
           
-          <li><a href="/madrid/delicias.html">Delicias</a></li>
+          <li data-zone=""><a href="/madrid/delicias.html">Delicias</a></li>
           
-          <li><a href="/madrid/imperial.html">Imperial</a></li>
+          <li data-zone=""><a href="/madrid/imperial.html">Imperial</a></li>
           
-          <li><a href="/madrid/legazpi.html">Legazpi</a></li>
+          <li data-zone=""><a href="/madrid/legazpi.html">Legazpi</a></li>
           
-          <li><a href="/madrid/palos-de-la-frontera.html">Palos de la Frontera</a></li>
+          <li data-zone=""><a href="/madrid/palos-de-la-frontera.html">Palos de la Frontera</a></li>
           
         </ul>
       </section>
@@ -584,15 +598,15 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/aeropuerto.html">Aeropuerto</a></li>
+          <li data-zone=""><a href="/madrid/aeropuerto.html">Aeropuerto</a></li>
           
-          <li><a href="/madrid/alameda-de-osuna.html">Alameda de Osuna</a></li>
+          <li data-zone=""><a href="/madrid/alameda-de-osuna.html">Alameda de Osuna</a></li>
           
-          <li><a href="/madrid/casco-historico-de-barajas.html">Casco Histórico de Barajas</a></li>
+          <li data-zone=""><a href="/madrid/casco-historico-de-barajas.html">Casco Histórico de Barajas</a></li>
           
-          <li><a href="/madrid/corralejos.html">Corralejos</a></li>
+          <li data-zone=""><a href="/madrid/corralejos.html">Corralejos</a></li>
           
-          <li><a href="/madrid/timon.html">Timón</a></li>
+          <li data-zone=""><a href="/madrid/timon.html">Timón</a></li>
           
         </ul>
       </section>
@@ -604,19 +618,19 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/abrantes.html">Abrantes</a></li>
+          <li data-zone=""><a href="/madrid/abrantes.html">Abrantes</a></li>
           
-          <li><a href="/madrid/buenavista.html">Buenavista</a></li>
+          <li data-zone=""><a href="/madrid/buenavista.html">Buenavista</a></li>
           
-          <li><a href="/madrid/comillas.html">Comillas</a></li>
+          <li data-zone=""><a href="/madrid/comillas.html">Comillas</a></li>
           
-          <li><a href="/madrid/opanel.html">Opañel</a></li>
+          <li data-zone=""><a href="/madrid/opanel.html">Opañel</a></li>
           
-          <li><a href="/madrid/puerta-bonita.html">Puerta Bonita</a></li>
+          <li data-zone=""><a href="/madrid/puerta-bonita.html">Puerta Bonita</a></li>
           
-          <li><a href="/madrid/san-isidro.html">San Isidro</a></li>
+          <li data-zone=""><a href="/madrid/san-isidro.html">San Isidro</a></li>
           
-          <li><a href="/madrid/vista-alegre.html">Vista Alegre</a></li>
+          <li data-zone=""><a href="/madrid/vista-alegre.html">Vista Alegre</a></li>
           
         </ul>
       </section>
@@ -628,17 +642,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/cortes.html">Cortes</a></li>
+          <li data-zone=""><a href="/madrid/cortes.html">Cortes</a></li>
           
-          <li><a href="/madrid/embajadores.html">Embajadores</a></li>
+          <li data-zone=""><a href="/madrid/embajadores.html">Embajadores</a></li>
           
-          <li><a href="/madrid/justicia.html">Justicia</a></li>
+          <li data-zone=""><a href="/madrid/justicia.html">Justicia</a></li>
           
-          <li><a href="/madrid/palacio.html">Palacio</a></li>
+          <li data-zone=""><a href="/madrid/palacio.html">Palacio</a></li>
           
-          <li><a href="/madrid/sol.html">Sol</a></li>
+          <li data-zone=""><a href="/madrid/sol.html">Sol</a></li>
           
-          <li><a href="/madrid/universidad.html">Universidad</a></li>
+          <li data-zone=""><a href="/madrid/universidad.html">Universidad</a></li>
           
         </ul>
       </section>
@@ -650,17 +664,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/castilla.html">Castilla</a></li>
+          <li data-zone=""><a href="/madrid/castilla.html">Castilla</a></li>
           
-          <li><a href="/madrid/ciudad-jardin.html">Ciudad Jardín</a></li>
+          <li data-zone=""><a href="/madrid/ciudad-jardin.html">Ciudad Jardín</a></li>
           
-          <li><a href="/madrid/el-viso.html">El Viso</a></li>
+          <li data-zone=""><a href="/madrid/el-viso.html">El Viso</a></li>
           
-          <li><a href="/madrid/hispanoamerica.html">Hispanoamérica</a></li>
+          <li data-zone=""><a href="/madrid/hispanoamerica.html">Hispanoamérica</a></li>
           
-          <li><a href="/madrid/nueva-espana.html">Nueva España</a></li>
+          <li data-zone=""><a href="/madrid/nueva-espana.html">Nueva España</a></li>
           
-          <li><a href="/madrid/prosperidad.html">Prosperidad</a></li>
+          <li data-zone=""><a href="/madrid/prosperidad.html">Prosperidad</a></li>
           
         </ul>
       </section>
@@ -672,17 +686,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/almagro.html">Almagro</a></li>
+          <li data-zone=""><a href="/madrid/almagro.html">Almagro</a></li>
           
-          <li><a href="/madrid/arapiles.html">Arapiles</a></li>
+          <li data-zone=""><a href="/madrid/arapiles.html">Arapiles</a></li>
           
-          <li><a href="/madrid/gaztambide.html">Gaztambide</a></li>
+          <li data-zone=""><a href="/madrid/gaztambide.html">Gaztambide</a></li>
           
-          <li><a href="/madrid/rios-rosas.html">Ríos Rosas</a></li>
+          <li data-zone=""><a href="/madrid/rios-rosas.html">Ríos Rosas</a></li>
           
-          <li><a href="/madrid/trafalgar.html">Trafalgar</a></li>
+          <li data-zone=""><a href="/madrid/trafalgar.html">Trafalgar</a></li>
           
-          <li><a href="/madrid/vallehermoso.html">Vallehermoso</a></li>
+          <li data-zone=""><a href="/madrid/vallehermoso.html">Vallehermoso</a></li>
           
         </ul>
       </section>
@@ -694,23 +708,23 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/atalaya.html">Atalaya</a></li>
+          <li data-zone=""><a href="/madrid/atalaya.html">Atalaya</a></li>
           
-          <li><a href="/madrid/colina.html">Colina</a></li>
+          <li data-zone=""><a href="/madrid/colina.html">Colina</a></li>
           
-          <li><a href="/madrid/costillares.html">Costillares</a></li>
+          <li data-zone=""><a href="/madrid/costillares.html">Costillares</a></li>
           
-          <li><a href="/madrid/la-concepcion.html">La Concepción</a></li>
+          <li data-zone=""><a href="/madrid/la-concepcion.html">La Concepción</a></li>
           
-          <li><a href="/madrid/pueblo-nuevo.html">Pueblo Nuevo</a></li>
+          <li data-zone=""><a href="/madrid/pueblo-nuevo.html">Pueblo Nuevo</a></li>
           
-          <li><a href="/madrid/quintana.html">Quintana</a></li>
+          <li data-zone=""><a href="/madrid/quintana.html">Quintana</a></li>
           
-          <li><a href="/madrid/san-juan-bautista.html">San Juan Bautista</a></li>
+          <li data-zone=""><a href="/madrid/san-juan-bautista.html">San Juan Bautista</a></li>
           
-          <li><a href="/madrid/san-pascual.html">San Pascual</a></li>
+          <li data-zone=""><a href="/madrid/san-pascual.html">San Pascual</a></li>
           
-          <li><a href="/madrid/ventas.html">Ventas</a></li>
+          <li data-zone=""><a href="/madrid/ventas.html">Ventas</a></li>
           
         </ul>
       </section>
@@ -722,21 +736,21 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/el-goloso.html">El Goloso</a></li>
+          <li data-zone=""><a href="/madrid/el-goloso.html">El Goloso</a></li>
           
-          <li><a href="/madrid/el-pardo.html">El Pardo</a></li>
+          <li data-zone=""><a href="/madrid/el-pardo.html">El Pardo</a></li>
           
-          <li><a href="/madrid/fuentelarreina.html">Fuentelarreina</a></li>
+          <li data-zone=""><a href="/madrid/fuentelarreina.html">Fuentelarreina</a></li>
           
-          <li><a href="/madrid/la-paz.html">La Paz</a></li>
+          <li data-zone=""><a href="/madrid/la-paz.html">La Paz</a></li>
           
-          <li><a href="/madrid/mirasierra.html">Mirasierra</a></li>
+          <li data-zone=""><a href="/madrid/mirasierra.html">Mirasierra</a></li>
           
-          <li><a href="/madrid/penagrande.html">Peñagrande</a></li>
+          <li data-zone=""><a href="/madrid/penagrande.html">Peñagrande</a></li>
           
-          <li><a href="/madrid/pilar.html">Pilar</a></li>
+          <li data-zone=""><a href="/madrid/pilar.html">Pilar</a></li>
           
-          <li><a href="/madrid/valverde.html">Valverde</a></li>
+          <li data-zone=""><a href="/madrid/valverde.html">Valverde</a></li>
           
         </ul>
       </section>
@@ -748,17 +762,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/apostol-santiago.html">Apóstol Santiago</a></li>
+          <li data-zone=""><a href="/madrid/apostol-santiago.html">Apóstol Santiago</a></li>
           
-          <li><a href="/madrid/canillas.html">Canillas</a></li>
+          <li data-zone=""><a href="/madrid/canillas.html">Canillas</a></li>
           
-          <li><a href="/madrid/palomas.html">Palomas</a></li>
+          <li data-zone=""><a href="/madrid/palomas.html">Palomas</a></li>
           
-          <li><a href="/madrid/pinar-del-rey.html">Pinar del Rey</a></li>
+          <li data-zone=""><a href="/madrid/pinar-del-rey.html">Pinar del Rey</a></li>
           
-          <li><a href="/madrid/piovera.html">Piovera</a></li>
+          <li data-zone=""><a href="/madrid/piovera.html">Piovera</a></li>
           
-          <li><a href="/madrid/valdefuentes.html">Valdefuentes</a></li>
+          <li data-zone=""><a href="/madrid/valdefuentes.html">Valdefuentes</a></li>
           
         </ul>
       </section>
@@ -770,19 +784,19 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/aluche.html">Aluche</a></li>
+          <li data-zone=""><a href="/madrid/aluche.html">Aluche</a></li>
           
-          <li><a href="/madrid/campamento.html">Campamento</a></li>
+          <li data-zone=""><a href="/madrid/campamento.html">Campamento</a></li>
           
-          <li><a href="/madrid/cuatro-vientos.html">Cuatro Vientos</a></li>
+          <li data-zone=""><a href="/madrid/cuatro-vientos.html">Cuatro Vientos</a></li>
           
-          <li><a href="/madrid/los-carmenes.html">Los Cármenes</a></li>
+          <li data-zone=""><a href="/madrid/los-carmenes.html">Los Cármenes</a></li>
           
-          <li><a href="/madrid/lucero.html">Lucero</a></li>
+          <li data-zone=""><a href="/madrid/lucero.html">Lucero</a></li>
           
-          <li><a href="/madrid/puerta-del-angel.html">Puerta del Ángel</a></li>
+          <li data-zone=""><a href="/madrid/puerta-del-angel.html">Puerta del Ángel</a></li>
           
-          <li><a href="/madrid/aguilas.html">Águilas</a></li>
+          <li data-zone=""><a href="/madrid/aguilas.html">Águilas</a></li>
           
         </ul>
       </section>
@@ -794,19 +808,19 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/aravaca.html">Aravaca</a></li>
+          <li data-zone=""><a href="/madrid/aravaca.html">Aravaca</a></li>
           
-          <li><a href="/madrid/arguelles.html">Argüelles</a></li>
+          <li data-zone=""><a href="/madrid/arguelles.html">Argüelles</a></li>
           
-          <li><a href="/madrid/casa-de-campo.html">Casa de Campo</a></li>
+          <li data-zone=""><a href="/madrid/casa-de-campo.html">Casa de Campo</a></li>
           
-          <li><a href="/madrid/ciudad-universitaria.html">Ciudad Universitaria</a></li>
+          <li data-zone=""><a href="/madrid/ciudad-universitaria.html">Ciudad Universitaria</a></li>
           
-          <li><a href="/madrid/el-plantio.html">El Plantío</a></li>
+          <li data-zone=""><a href="/madrid/el-plantio.html">El Plantío</a></li>
           
-          <li><a href="/madrid/valdemarin.html">Valdemarín</a></li>
+          <li data-zone=""><a href="/madrid/valdemarin.html">Valdemarín</a></li>
           
-          <li><a href="/madrid/valdezarza.html">Valdezarza</a></li>
+          <li data-zone=""><a href="/madrid/valdezarza.html">Valdezarza</a></li>
           
         </ul>
       </section>
@@ -818,17 +832,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/fontarron.html">Fontarrón</a></li>
+          <li data-zone=""><a href="/madrid/fontarron.html">Fontarrón</a></li>
           
-          <li><a href="/madrid/horcajo.html">Horcajo</a></li>
+          <li data-zone=""><a href="/madrid/horcajo.html">Horcajo</a></li>
           
-          <li><a href="/madrid/marroquina.html">Marroquina</a></li>
+          <li data-zone=""><a href="/madrid/marroquina.html">Marroquina</a></li>
           
-          <li><a href="/madrid/media-legua.html">Media Legua</a></li>
+          <li data-zone=""><a href="/madrid/media-legua.html">Media Legua</a></li>
           
-          <li><a href="/madrid/pavones.html">Pavones</a></li>
+          <li data-zone=""><a href="/madrid/pavones.html">Pavones</a></li>
           
-          <li><a href="/madrid/vinateros.html">Vinateros</a></li>
+          <li data-zone=""><a href="/madrid/vinateros.html">Vinateros</a></li>
           
         </ul>
       </section>
@@ -840,17 +854,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/entrevias.html">Entrevías</a></li>
+          <li data-zone=""><a href="/madrid/entrevias.html">Entrevías</a></li>
           
-          <li><a href="/madrid/numancia.html">Numancia</a></li>
+          <li data-zone=""><a href="/madrid/numancia.html">Numancia</a></li>
           
-          <li><a href="/madrid/palomeras-bajas.html">Palomeras Bajas</a></li>
+          <li data-zone=""><a href="/madrid/palomeras-bajas.html">Palomeras Bajas</a></li>
           
-          <li><a href="/madrid/palomeras-sureste.html">Palomeras Sureste</a></li>
+          <li data-zone=""><a href="/madrid/palomeras-sureste.html">Palomeras Sureste</a></li>
           
-          <li><a href="/madrid/portazgo.html">Portazgo</a></li>
+          <li data-zone=""><a href="/madrid/portazgo.html">Portazgo</a></li>
           
-          <li><a href="/madrid/san-diego.html">San Diego</a></li>
+          <li data-zone=""><a href="/madrid/san-diego.html">San Diego</a></li>
           
         </ul>
       </section>
@@ -862,17 +876,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/adelfas.html">Adelfas</a></li>
+          <li data-zone=""><a href="/madrid/adelfas.html">Adelfas</a></li>
           
-          <li><a href="/madrid/estrella.html">Estrella</a></li>
+          <li data-zone=""><a href="/madrid/estrella.html">Estrella</a></li>
           
-          <li><a href="/madrid/ibiza.html">Ibiza</a></li>
+          <li data-zone=""><a href="/madrid/ibiza.html">Ibiza</a></li>
           
-          <li><a href="/madrid/los-jeronimos.html">Los Jerónimos</a></li>
+          <li data-zone=""><a href="/madrid/los-jeronimos.html">Los Jerónimos</a></li>
           
-          <li><a href="/madrid/nino-jesus.html">Niño Jesús</a></li>
+          <li data-zone=""><a href="/madrid/nino-jesus.html">Niño Jesús</a></li>
           
-          <li><a href="/madrid/pacifico.html">Pacífico</a></li>
+          <li data-zone=""><a href="/madrid/pacifico.html">Pacífico</a></li>
           
         </ul>
       </section>
@@ -884,17 +898,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/castellana.html">Castellana</a></li>
+          <li data-zone=""><a href="/madrid/castellana.html">Castellana</a></li>
           
-          <li><a href="/madrid/fuente-del-berro.html">Fuente del Berro</a></li>
+          <li data-zone=""><a href="/madrid/fuente-del-berro.html">Fuente del Berro</a></li>
           
-          <li><a href="/madrid/goya.html">Goya</a></li>
+          <li data-zone=""><a href="/madrid/goya.html">Goya</a></li>
           
-          <li><a href="/madrid/guindalera.html">Guindalera</a></li>
+          <li data-zone=""><a href="/madrid/guindalera.html">Guindalera</a></li>
           
-          <li><a href="/madrid/lista.html">Lista</a></li>
+          <li data-zone=""><a href="/madrid/lista.html">Lista</a></li>
           
-          <li><a href="/madrid/recoletos.html">Recoletos</a></li>
+          <li data-zone=""><a href="/madrid/recoletos.html">Recoletos</a></li>
           
         </ul>
       </section>
@@ -906,21 +920,21 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/amposta.html">Amposta</a></li>
+          <li data-zone=""><a href="/madrid/amposta.html">Amposta</a></li>
           
-          <li><a href="/madrid/arcos.html">Arcos</a></li>
+          <li data-zone=""><a href="/madrid/arcos.html">Arcos</a></li>
           
-          <li><a href="/madrid/canillejas.html">Canillejas</a></li>
+          <li data-zone=""><a href="/madrid/canillejas.html">Canillejas</a></li>
           
-          <li><a href="/madrid/el-salvador.html">El Salvador</a></li>
+          <li data-zone=""><a href="/madrid/el-salvador.html">El Salvador</a></li>
           
-          <li><a href="/madrid/hellin.html">Hellín</a></li>
+          <li data-zone=""><a href="/madrid/hellin.html">Hellín</a></li>
           
-          <li><a href="/madrid/rejas.html">Rejas</a></li>
+          <li data-zone=""><a href="/madrid/rejas.html">Rejas</a></li>
           
-          <li><a href="/madrid/rosas.html">Rosas</a></li>
+          <li data-zone=""><a href="/madrid/rosas.html">Rosas</a></li>
           
-          <li><a href="/madrid/simancas.html">Simancas</a></li>
+          <li data-zone=""><a href="/madrid/simancas.html">Simancas</a></li>
           
         </ul>
       </section>
@@ -932,17 +946,17 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/almenara.html">Almenara</a></li>
+          <li data-zone=""><a href="/madrid/almenara.html">Almenara</a></li>
           
-          <li><a href="/madrid/bellas-vistas.html">Bellas Vistas</a></li>
+          <li data-zone=""><a href="/madrid/bellas-vistas.html">Bellas Vistas</a></li>
           
-          <li><a href="/madrid/berruguete.html">Berruguete</a></li>
+          <li data-zone=""><a href="/madrid/berruguete.html">Berruguete</a></li>
           
-          <li><a href="/madrid/castillejos.html">Castillejos</a></li>
+          <li data-zone=""><a href="/madrid/castillejos.html">Castillejos</a></li>
           
-          <li><a href="/madrid/cuatro-caminos.html">Cuatro Caminos</a></li>
+          <li data-zone=""><a href="/madrid/cuatro-caminos.html">Cuatro Caminos</a></li>
           
-          <li><a href="/madrid/valdeacederas.html">Valdeacederas</a></li>
+          <li data-zone=""><a href="/madrid/valdeacederas.html">Valdeacederas</a></li>
           
         </ul>
       </section>
@@ -954,19 +968,19 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/almendrales.html">Almendrales</a></li>
+          <li data-zone=""><a href="/madrid/almendrales.html">Almendrales</a></li>
           
-          <li><a href="/madrid/moscardo.html">Moscardó</a></li>
+          <li data-zone=""><a href="/madrid/moscardo.html">Moscardó</a></li>
           
-          <li><a href="/madrid/orcasitas.html">Orcasitas</a></li>
+          <li data-zone=""><a href="/madrid/orcasitas.html">Orcasitas</a></li>
           
-          <li><a href="/madrid/orcasur.html">Orcasur</a></li>
+          <li data-zone=""><a href="/madrid/orcasur.html">Orcasur</a></li>
           
-          <li><a href="/madrid/pradolongo.html">Pradolongo</a></li>
+          <li data-zone=""><a href="/madrid/pradolongo.html">Pradolongo</a></li>
           
-          <li><a href="/madrid/san-fermin.html">San Fermín</a></li>
+          <li data-zone=""><a href="/madrid/san-fermin.html">San Fermín</a></li>
           
-          <li><a href="/madrid/zofio.html">Zofío</a></li>
+          <li data-zone=""><a href="/madrid/zofio.html">Zofío</a></li>
           
         </ul>
       </section>
@@ -978,13 +992,13 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/casco-historico-de-vicalvaro.html">Casco Histórico de Vicálvaro</a></li>
+          <li data-zone=""><a href="/madrid/casco-historico-de-vicalvaro.html">Casco Histórico de Vicálvaro</a></li>
           
-          <li><a href="/madrid/el-canaveral.html">El Cañaveral</a></li>
+          <li data-zone=""><a href="/madrid/el-canaveral.html">El Cañaveral</a></li>
           
-          <li><a href="/madrid/valdebernardo.html">Valdebernardo</a></li>
+          <li data-zone=""><a href="/madrid/valdebernardo.html">Valdebernardo</a></li>
           
-          <li><a href="/madrid/valderrivas.html">Valderrivas</a></li>
+          <li data-zone=""><a href="/madrid/valderrivas.html">Valderrivas</a></li>
           
         </ul>
       </section>
@@ -996,11 +1010,11 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/casco-historico-de-vallecas.html">Casco Histórico de Vallecas</a></li>
+          <li data-zone=""><a href="/madrid/casco-historico-de-vallecas.html">Casco Histórico de Vallecas</a></li>
           
-          <li><a href="/madrid/ensanche-de-vallecas.html">Ensanche de Vallecas</a></li>
+          <li data-zone=""><a href="/madrid/ensanche-de-vallecas.html">Ensanche de Vallecas</a></li>
           
-          <li><a href="/madrid/santa-eugenia.html">Santa Eugenia</a></li>
+          <li data-zone=""><a href="/madrid/santa-eugenia.html">Santa Eugenia</a></li>
           
         </ul>
       </section>
@@ -1012,15 +1026,15 @@
         </h3>
         <ul>
           
-          <li><a href="/madrid/butarque.html">Butarque</a></li>
+          <li data-zone=""><a href="/madrid/butarque.html">Butarque</a></li>
           
-          <li><a href="/madrid/los-rosales.html">Los Rosales</a></li>
+          <li data-zone=""><a href="/madrid/los-rosales.html">Los Rosales</a></li>
           
-          <li><a href="/madrid/san-cristobal.html">San Cristóbal</a></li>
+          <li data-zone=""><a href="/madrid/san-cristobal.html">San Cristóbal</a></li>
           
-          <li><a href="/madrid/villaverde-alto-casco-historico-de-villaverde.html">Villaverde Alto - Casco Histórico de Villaverde</a></li>
+          <li data-zone=""><a href="/madrid/villaverde-alto-casco-historico-de-villaverde.html">Villaverde Alto - Casco Histórico de Villaverde</a></li>
           
-          <li><a href="/madrid/angeles.html">Ángeles</a></li>
+          <li data-zone=""><a href="/madrid/angeles.html">Ángeles</a></li>
           
         </ul>
       </section>
@@ -1034,7 +1048,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="cortes">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/madrid/cortes.html">Cortes</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1047,7 +1061,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Centro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Find a place in Cortes →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="los-jeronimos">
     <span class="lab">With family · Best rated overall</span>
     <span class="nm"><a href="/madrid/los-jeronimos.html">Los Jerónimos</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1060,7 +1074,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Retiro%2C+Madrid%2C+Spain" target="_blank" rel="noopener">Find a place in Los Jerónimos →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="justicia">
     <span class="lab">For going out</span>
     <span class="nm"><a href="/madrid/justicia.html">Justicia</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -2399,6 +2413,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -2528,6 +2544,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -2546,6 +2563,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -2936,6 +2954,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

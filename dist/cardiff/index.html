@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -552,61 +566,61 @@
     
     <ul>
       
-      <li><a href="/cardiff/adamsdown.html">Adamsdown</a></li>
+      <li data-zone="adamsdown"><a href="/cardiff/adamsdown.html">Adamsdown</a></li>
       
-      <li><a href="/cardiff/butetown.html">Butetown</a></li>
+      <li data-zone="butetown"><a href="/cardiff/butetown.html">Butetown</a></li>
       
-      <li><a href="/cardiff/caerau.html">Caerau</a></li>
+      <li data-zone="caerau"><a href="/cardiff/caerau.html">Caerau</a></li>
       
-      <li><a href="/cardiff/canton.html">Canton</a></li>
+      <li data-zone="canton"><a href="/cardiff/canton.html">Canton</a></li>
       
-      <li><a href="/cardiff/cathays.html">Cathays</a></li>
+      <li data-zone="cathays"><a href="/cardiff/cathays.html">Cathays</a></li>
       
-      <li><a href="/cardiff/cyncoed.html">Cyncoed</a></li>
+      <li data-zone="cyncoed"><a href="/cardiff/cyncoed.html">Cyncoed</a></li>
       
-      <li><a href="/cardiff/ely.html">Ely</a></li>
+      <li data-zone="ely"><a href="/cardiff/ely.html">Ely</a></li>
       
-      <li><a href="/cardiff/fairwater.html">Fairwater</a></li>
+      <li data-zone="fairwater"><a href="/cardiff/fairwater.html">Fairwater</a></li>
       
-      <li><a href="/cardiff/gabalfa.html">Gabalfa</a></li>
+      <li data-zone="gabalfa"><a href="/cardiff/gabalfa.html">Gabalfa</a></li>
       
-      <li><a href="/cardiff/grangetown.html">Grangetown</a></li>
+      <li data-zone="grangetown"><a href="/cardiff/grangetown.html">Grangetown</a></li>
       
-      <li><a href="/cardiff/heath.html">Heath</a></li>
+      <li data-zone="heath"><a href="/cardiff/heath.html">Heath</a></li>
       
-      <li><a href="/cardiff/lisvane-and-thornhill.html">Lisvane and Thornhill</a></li>
+      <li data-zone="lisvane-and-thornhill"><a href="/cardiff/lisvane-and-thornhill.html">Lisvane and Thornhill</a></li>
       
-      <li><a href="/cardiff/llandaff.html">Llandaff</a></li>
+      <li data-zone="llandaff"><a href="/cardiff/llandaff.html">Llandaff</a></li>
       
-      <li><a href="/cardiff/llandaff-north.html">Llandaff North</a></li>
+      <li data-zone="llandaff-north"><a href="/cardiff/llandaff-north.html">Llandaff North</a></li>
       
-      <li><a href="/cardiff/llanishen.html">Llanishen</a></li>
+      <li data-zone="llanishen"><a href="/cardiff/llanishen.html">Llanishen</a></li>
       
-      <li><a href="/cardiff/llanrumney.html">Llanrumney</a></li>
+      <li data-zone="llanrumney"><a href="/cardiff/llanrumney.html">Llanrumney</a></li>
       
-      <li><a href="/cardiff/pentwyn.html">Pentwyn</a></li>
+      <li data-zone="pentwyn"><a href="/cardiff/pentwyn.html">Pentwyn</a></li>
       
-      <li><a href="/cardiff/pentyrch-and-st-fagans.html">Pentyrch and St Fagans</a></li>
+      <li data-zone="pentyrch-and-st-fagans"><a href="/cardiff/pentyrch-and-st-fagans.html">Pentyrch and St Fagans</a></li>
       
-      <li><a href="/cardiff/penylan.html">Penylan</a></li>
+      <li data-zone="penylan"><a href="/cardiff/penylan.html">Penylan</a></li>
       
-      <li><a href="/cardiff/plasnewydd.html">Plasnewydd</a></li>
+      <li data-zone="plasnewydd"><a href="/cardiff/plasnewydd.html">Plasnewydd</a></li>
       
-      <li><a href="/cardiff/pontprennau-and-old-st-mellons.html">Pontprennau and Old St Mellons</a></li>
+      <li data-zone="pontprennau-and-old-st-mellons"><a href="/cardiff/pontprennau-and-old-st-mellons.html">Pontprennau and Old St Mellons</a></li>
       
-      <li><a href="/cardiff/radyr.html">Radyr</a></li>
+      <li data-zone="radyr"><a href="/cardiff/radyr.html">Radyr</a></li>
       
-      <li><a href="/cardiff/rhiwbina.html">Rhiwbina</a></li>
+      <li data-zone="rhiwbina"><a href="/cardiff/rhiwbina.html">Rhiwbina</a></li>
       
-      <li><a href="/cardiff/riverside.html">Riverside</a></li>
+      <li data-zone="riverside"><a href="/cardiff/riverside.html">Riverside</a></li>
       
-      <li><a href="/cardiff/rumney.html">Rumney</a></li>
+      <li data-zone="rumney"><a href="/cardiff/rumney.html">Rumney</a></li>
       
-      <li><a href="/cardiff/splott.html">Splott</a></li>
+      <li data-zone="splott"><a href="/cardiff/splott.html">Splott</a></li>
       
-      <li><a href="/cardiff/trowbridge.html">Trowbridge</a></li>
+      <li data-zone="trowbridge"><a href="/cardiff/trowbridge.html">Trowbridge</a></li>
       
-      <li><a href="/cardiff/whitchurch-and-tongwynlais.html">Whitchurch and Tongwynlais</a></li>
+      <li data-zone="whitchurch-and-tongwynlais"><a href="/cardiff/whitchurch-and-tongwynlais.html">Whitchurch and Tongwynlais</a></li>
       
     </ul>
     
@@ -617,7 +631,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="cathays">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/cardiff/cathays.html">Cathays</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -626,11 +640,11 @@
     </div>
     <span class="why">4 of the city&#39;s main sights are close enough to walk between.</span>
     
-    <span class="caution">Its rating is mostly shoplifting during the day and violence after dark, counted as a rate against the 21,821 people registered as living there rather than the number who pass through.</span>
+    <span class="caution">Still a practical base for a first visit: the rating is driven by shoplifting during the day and violence after dark, counted as a rate against the 21,821 people registered as living here rather than the far larger number who pass through. Take extra care, particularly after dark — that is what the rating is for, not a reason to stay out of the area.</span>
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Cardiff%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Cathays →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="cyncoed">
     <span class="lab">With family · Best rated overall</span>
     <span class="nm"><a href="/cardiff/cyncoed.html">Cyncoed</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1042,6 +1056,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1171,6 +1187,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1189,6 +1206,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -1579,6 +1597,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

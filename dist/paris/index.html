@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -560,13 +574,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/halles.html">Halles (1e arr.)</a></li>
+          <li data-zone=""><a href="/paris/halles.html">Halles (1e arr.)</a></li>
           
-          <li><a href="/paris/palais-royal.html">Palais-Royal (1e arr.)</a></li>
+          <li data-zone=""><a href="/paris/palais-royal.html">Palais-Royal (1e arr.)</a></li>
           
-          <li><a href="/paris/place-vendome.html">Place-Vendôme (1e arr.)</a></li>
+          <li data-zone=""><a href="/paris/place-vendome.html">Place-Vendôme (1e arr.)</a></li>
           
-          <li><a href="/paris/saint-germain-l-auxerrois.html">Saint-Germain-l&#39;Auxerrois (1e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-germain-l-auxerrois.html">Saint-Germain-l&#39;Auxerrois (1e arr.)</a></li>
           
         </ul>
       </section>
@@ -578,13 +592,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/bonne-nouvelle.html">Bonne-Nouvelle (2e arr.)</a></li>
+          <li data-zone=""><a href="/paris/bonne-nouvelle.html">Bonne-Nouvelle (2e arr.)</a></li>
           
-          <li><a href="/paris/gaillon.html">Gaillon (2e arr.)</a></li>
+          <li data-zone=""><a href="/paris/gaillon.html">Gaillon (2e arr.)</a></li>
           
-          <li><a href="/paris/mail.html">Mail (2e arr.)</a></li>
+          <li data-zone=""><a href="/paris/mail.html">Mail (2e arr.)</a></li>
           
-          <li><a href="/paris/vivienne.html">Vivienne (2e arr.)</a></li>
+          <li data-zone=""><a href="/paris/vivienne.html">Vivienne (2e arr.)</a></li>
           
         </ul>
       </section>
@@ -596,13 +610,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/archives.html">Archives (3e arr.)</a></li>
+          <li data-zone=""><a href="/paris/archives.html">Archives (3e arr.)</a></li>
           
-          <li><a href="/paris/arts-et-metiers.html">Arts-et-Métiers (3e arr.)</a></li>
+          <li data-zone=""><a href="/paris/arts-et-metiers.html">Arts-et-Métiers (3e arr.)</a></li>
           
-          <li><a href="/paris/enfants-rouges.html">Enfants-Rouges (3e arr.)</a></li>
+          <li data-zone=""><a href="/paris/enfants-rouges.html">Enfants-Rouges (3e arr.)</a></li>
           
-          <li><a href="/paris/sainte-avoie.html">Sainte-Avoie (3e arr.)</a></li>
+          <li data-zone=""><a href="/paris/sainte-avoie.html">Sainte-Avoie (3e arr.)</a></li>
           
         </ul>
       </section>
@@ -614,13 +628,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/arsenal.html">Arsenal (4e arr.)</a></li>
+          <li data-zone=""><a href="/paris/arsenal.html">Arsenal (4e arr.)</a></li>
           
-          <li><a href="/paris/notre-dame.html">Notre-Dame (4e arr.)</a></li>
+          <li data-zone=""><a href="/paris/notre-dame.html">Notre-Dame (4e arr.)</a></li>
           
-          <li><a href="/paris/saint-gervais.html">Saint-Gervais (4e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-gervais.html">Saint-Gervais (4e arr.)</a></li>
           
-          <li><a href="/paris/saint-merri.html">Saint-Merri (4e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-merri.html">Saint-Merri (4e arr.)</a></li>
           
         </ul>
       </section>
@@ -632,13 +646,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/jardin-des-plantes.html">Jardin-des-Plantes (5e arr.)</a></li>
+          <li data-zone=""><a href="/paris/jardin-des-plantes.html">Jardin-des-Plantes (5e arr.)</a></li>
           
-          <li><a href="/paris/saint-victor.html">Saint-Victor (5e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-victor.html">Saint-Victor (5e arr.)</a></li>
           
-          <li><a href="/paris/sorbonne.html">Sorbonne (5e arr.)</a></li>
+          <li data-zone=""><a href="/paris/sorbonne.html">Sorbonne (5e arr.)</a></li>
           
-          <li><a href="/paris/val-de-grace.html">Val-de-Grace (5e arr.)</a></li>
+          <li data-zone=""><a href="/paris/val-de-grace.html">Val-de-Grace (5e arr.)</a></li>
           
         </ul>
       </section>
@@ -650,13 +664,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/monnaie.html">Monnaie (6e arr.)</a></li>
+          <li data-zone=""><a href="/paris/monnaie.html">Monnaie (6e arr.)</a></li>
           
-          <li><a href="/paris/notre-dame-des-champs.html">Notre-Dame-des-Champs (6e arr.)</a></li>
+          <li data-zone=""><a href="/paris/notre-dame-des-champs.html">Notre-Dame-des-Champs (6e arr.)</a></li>
           
-          <li><a href="/paris/odeon.html">Odéon (6e arr.)</a></li>
+          <li data-zone=""><a href="/paris/odeon.html">Odéon (6e arr.)</a></li>
           
-          <li><a href="/paris/saint-germain-des-pres.html">Saint-Germain-des-Prés (6e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-germain-des-pres.html">Saint-Germain-des-Prés (6e arr.)</a></li>
           
         </ul>
       </section>
@@ -668,13 +682,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/ecole-militaire.html">Ecole-Militaire (7e arr.)</a></li>
+          <li data-zone=""><a href="/paris/ecole-militaire.html">Ecole-Militaire (7e arr.)</a></li>
           
-          <li><a href="/paris/gros-caillou.html">Gros-Caillou (7e arr.)</a></li>
+          <li data-zone=""><a href="/paris/gros-caillou.html">Gros-Caillou (7e arr.)</a></li>
           
-          <li><a href="/paris/invalides.html">Invalides (7e arr.)</a></li>
+          <li data-zone=""><a href="/paris/invalides.html">Invalides (7e arr.)</a></li>
           
-          <li><a href="/paris/saint-thomas-d-aquin.html">Saint-Thomas-d&#39;Aquin (7e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-thomas-d-aquin.html">Saint-Thomas-d&#39;Aquin (7e arr.)</a></li>
           
         </ul>
       </section>
@@ -686,13 +700,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/champs-elysees.html">Champs-Elysées (8e arr.)</a></li>
+          <li data-zone=""><a href="/paris/champs-elysees.html">Champs-Elysées (8e arr.)</a></li>
           
-          <li><a href="/paris/europe.html">Europe (8e arr.)</a></li>
+          <li data-zone=""><a href="/paris/europe.html">Europe (8e arr.)</a></li>
           
-          <li><a href="/paris/faubourg-du-roule.html">Faubourg-du-Roule (8e arr.)</a></li>
+          <li data-zone=""><a href="/paris/faubourg-du-roule.html">Faubourg-du-Roule (8e arr.)</a></li>
           
-          <li><a href="/paris/madeleine.html">Madeleine (8e arr.)</a></li>
+          <li data-zone=""><a href="/paris/madeleine.html">Madeleine (8e arr.)</a></li>
           
         </ul>
       </section>
@@ -704,13 +718,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/chaussee-d-antin.html">Chaussée-d&#39;Antin (9e arr.)</a></li>
+          <li data-zone=""><a href="/paris/chaussee-d-antin.html">Chaussée-d&#39;Antin (9e arr.)</a></li>
           
-          <li><a href="/paris/faubourg-montmartre.html">Faubourg-Montmartre (9e arr.)</a></li>
+          <li data-zone=""><a href="/paris/faubourg-montmartre.html">Faubourg-Montmartre (9e arr.)</a></li>
           
-          <li><a href="/paris/rochechouart.html">Rochechouart (9e arr.)</a></li>
+          <li data-zone=""><a href="/paris/rochechouart.html">Rochechouart (9e arr.)</a></li>
           
-          <li><a href="/paris/saint-georges.html">Saint-Georges (9e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-georges.html">Saint-Georges (9e arr.)</a></li>
           
         </ul>
       </section>
@@ -722,13 +736,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/hopital-saint-louis.html">Hôpital-Saint-Louis (10e arr.)</a></li>
+          <li data-zone=""><a href="/paris/hopital-saint-louis.html">Hôpital-Saint-Louis (10e arr.)</a></li>
           
-          <li><a href="/paris/porte-saint-denis.html">Porte-Saint-Denis (10e arr.)</a></li>
+          <li data-zone=""><a href="/paris/porte-saint-denis.html">Porte-Saint-Denis (10e arr.)</a></li>
           
-          <li><a href="/paris/porte-saint-martin.html">Porte-Saint-Martin (10e arr.)</a></li>
+          <li data-zone=""><a href="/paris/porte-saint-martin.html">Porte-Saint-Martin (10e arr.)</a></li>
           
-          <li><a href="/paris/saint-vincent-de-paul.html">Saint-Vincent-de-Paul (10e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-vincent-de-paul.html">Saint-Vincent-de-Paul (10e arr.)</a></li>
           
         </ul>
       </section>
@@ -740,13 +754,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/folie-mericourt.html">Folie-Méricourt (11e arr.)</a></li>
+          <li data-zone=""><a href="/paris/folie-mericourt.html">Folie-Méricourt (11e arr.)</a></li>
           
-          <li><a href="/paris/roquette.html">Roquette (11e arr.)</a></li>
+          <li data-zone=""><a href="/paris/roquette.html">Roquette (11e arr.)</a></li>
           
-          <li><a href="/paris/saint-ambroise.html">Saint-Ambroise (11e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-ambroise.html">Saint-Ambroise (11e arr.)</a></li>
           
-          <li><a href="/paris/sainte-marguerite.html">Sainte-Marguerite (11e arr.)</a></li>
+          <li data-zone=""><a href="/paris/sainte-marguerite.html">Sainte-Marguerite (11e arr.)</a></li>
           
         </ul>
       </section>
@@ -758,13 +772,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/bel-air.html">Bel-Air (12e arr.)</a></li>
+          <li data-zone=""><a href="/paris/bel-air.html">Bel-Air (12e arr.)</a></li>
           
-          <li><a href="/paris/bercy.html">Bercy (12e arr.)</a></li>
+          <li data-zone=""><a href="/paris/bercy.html">Bercy (12e arr.)</a></li>
           
-          <li><a href="/paris/picpus.html">Picpus (12e arr.)</a></li>
+          <li data-zone=""><a href="/paris/picpus.html">Picpus (12e arr.)</a></li>
           
-          <li><a href="/paris/quinze-vingts.html">Quinze-Vingts (12e arr.)</a></li>
+          <li data-zone=""><a href="/paris/quinze-vingts.html">Quinze-Vingts (12e arr.)</a></li>
           
         </ul>
       </section>
@@ -776,13 +790,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/croulebarbe.html">Croulebarbe (13e arr.)</a></li>
+          <li data-zone=""><a href="/paris/croulebarbe.html">Croulebarbe (13e arr.)</a></li>
           
-          <li><a href="/paris/gare.html">Gare (13e arr.)</a></li>
+          <li data-zone=""><a href="/paris/gare.html">Gare (13e arr.)</a></li>
           
-          <li><a href="/paris/maison-blanche.html">Maison-Blanche (13e arr.)</a></li>
+          <li data-zone=""><a href="/paris/maison-blanche.html">Maison-Blanche (13e arr.)</a></li>
           
-          <li><a href="/paris/salpetriere.html">Salpêtrière (13e arr.)</a></li>
+          <li data-zone=""><a href="/paris/salpetriere.html">Salpêtrière (13e arr.)</a></li>
           
         </ul>
       </section>
@@ -794,13 +808,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/montparnasse.html">Montparnasse (14e arr.)</a></li>
+          <li data-zone=""><a href="/paris/montparnasse.html">Montparnasse (14e arr.)</a></li>
           
-          <li><a href="/paris/parc-de-montsouris.html">Parc-de-Montsouris (14e arr.)</a></li>
+          <li data-zone=""><a href="/paris/parc-de-montsouris.html">Parc-de-Montsouris (14e arr.)</a></li>
           
-          <li><a href="/paris/petit-montrouge.html">Petit-Montrouge (14e arr.)</a></li>
+          <li data-zone=""><a href="/paris/petit-montrouge.html">Petit-Montrouge (14e arr.)</a></li>
           
-          <li><a href="/paris/plaisance.html">Plaisance (14e arr.)</a></li>
+          <li data-zone=""><a href="/paris/plaisance.html">Plaisance (14e arr.)</a></li>
           
         </ul>
       </section>
@@ -812,13 +826,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/grenelle.html">Grenelle (15e arr.)</a></li>
+          <li data-zone=""><a href="/paris/grenelle.html">Grenelle (15e arr.)</a></li>
           
-          <li><a href="/paris/javel.html">Javel (15e arr.)</a></li>
+          <li data-zone=""><a href="/paris/javel.html">Javel (15e arr.)</a></li>
           
-          <li><a href="/paris/necker.html">Necker (15e arr.)</a></li>
+          <li data-zone=""><a href="/paris/necker.html">Necker (15e arr.)</a></li>
           
-          <li><a href="/paris/saint-lambert.html">Saint-Lambert (15e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-lambert.html">Saint-Lambert (15e arr.)</a></li>
           
         </ul>
       </section>
@@ -830,13 +844,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/auteuil.html">Auteuil (16e arr.)</a></li>
+          <li data-zone=""><a href="/paris/auteuil.html">Auteuil (16e arr.)</a></li>
           
-          <li><a href="/paris/chaillot.html">Chaillot (16e arr.)</a></li>
+          <li data-zone=""><a href="/paris/chaillot.html">Chaillot (16e arr.)</a></li>
           
-          <li><a href="/paris/muette.html">Muette (16e arr.)</a></li>
+          <li data-zone=""><a href="/paris/muette.html">Muette (16e arr.)</a></li>
           
-          <li><a href="/paris/porte-dauphine.html">Porte-Dauphine (16e arr.)</a></li>
+          <li data-zone=""><a href="/paris/porte-dauphine.html">Porte-Dauphine (16e arr.)</a></li>
           
         </ul>
       </section>
@@ -848,13 +862,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/batignolles.html">Batignolles (17e arr.)</a></li>
+          <li data-zone=""><a href="/paris/batignolles.html">Batignolles (17e arr.)</a></li>
           
-          <li><a href="/paris/epinettes.html">Epinettes (17e arr.)</a></li>
+          <li data-zone=""><a href="/paris/epinettes.html">Epinettes (17e arr.)</a></li>
           
-          <li><a href="/paris/plaine-de-monceaux.html">Plaine de Monceaux (17e arr.)</a></li>
+          <li data-zone=""><a href="/paris/plaine-de-monceaux.html">Plaine de Monceaux (17e arr.)</a></li>
           
-          <li><a href="/paris/ternes.html">Ternes (17e arr.)</a></li>
+          <li data-zone=""><a href="/paris/ternes.html">Ternes (17e arr.)</a></li>
           
         </ul>
       </section>
@@ -866,13 +880,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/clignancourt.html">Clignancourt (18e arr.)</a></li>
+          <li data-zone=""><a href="/paris/clignancourt.html">Clignancourt (18e arr.)</a></li>
           
-          <li><a href="/paris/goutte-d-or.html">Goutte-d&#39;Or (18e arr.)</a></li>
+          <li data-zone=""><a href="/paris/goutte-d-or.html">Goutte-d&#39;Or (18e arr.)</a></li>
           
-          <li><a href="/paris/grandes-carrieres.html">Grandes-Carrières (18e arr.)</a></li>
+          <li data-zone=""><a href="/paris/grandes-carrieres.html">Grandes-Carrières (18e arr.)</a></li>
           
-          <li><a href="/paris/la-chapelle.html">La Chapelle (18e arr.)</a></li>
+          <li data-zone=""><a href="/paris/la-chapelle.html">La Chapelle (18e arr.)</a></li>
           
         </ul>
       </section>
@@ -884,13 +898,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/amerique.html">Amérique (19e arr.)</a></li>
+          <li data-zone=""><a href="/paris/amerique.html">Amérique (19e arr.)</a></li>
           
-          <li><a href="/paris/combat.html">Combat (19e arr.)</a></li>
+          <li data-zone=""><a href="/paris/combat.html">Combat (19e arr.)</a></li>
           
-          <li><a href="/paris/pont-de-flandre.html">Pont-de-Flandre (19e arr.)</a></li>
+          <li data-zone=""><a href="/paris/pont-de-flandre.html">Pont-de-Flandre (19e arr.)</a></li>
           
-          <li><a href="/paris/villette.html">Villette (19e arr.)</a></li>
+          <li data-zone=""><a href="/paris/villette.html">Villette (19e arr.)</a></li>
           
         </ul>
       </section>
@@ -902,13 +916,13 @@
         </h3>
         <ul>
           
-          <li><a href="/paris/belleville.html">Belleville (20e arr.)</a></li>
+          <li data-zone=""><a href="/paris/belleville.html">Belleville (20e arr.)</a></li>
           
-          <li><a href="/paris/charonne.html">Charonne (20e arr.)</a></li>
+          <li data-zone=""><a href="/paris/charonne.html">Charonne (20e arr.)</a></li>
           
-          <li><a href="/paris/pere-lachaise.html">Père-Lachaise (20e arr.)</a></li>
+          <li data-zone=""><a href="/paris/pere-lachaise.html">Père-Lachaise (20e arr.)</a></li>
           
-          <li><a href="/paris/saint-fargeau.html">Saint-Fargeau (20e arr.)</a></li>
+          <li data-zone=""><a href="/paris/saint-fargeau.html">Saint-Fargeau (20e arr.)</a></li>
           
         </ul>
       </section>
@@ -922,7 +936,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="saint-germain-l-auxerrois">
     <span class="lab">For a first visit · With family · Best rated overall</span>
     <span class="nm"><a href="/paris/saint-germain-l-auxerrois.html">Saint-Germain-l&#39;Auxerrois (1e arr.)</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -935,7 +949,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=1st+arr.%2C+Paris%2C+France" target="_blank" rel="noopener">Find a place in Saint-Germain-l&#39;Auxerrois (1e arr.) →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="saint-georges">
     <span class="lab">For going out</span>
     <span class="nm"><a href="/paris/saint-georges.html">Saint-Georges (9e arr.)</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1815,6 +1829,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1944,6 +1960,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1962,6 +1979,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -2352,6 +2370,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -560,17 +574,17 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/brera/">Brera</a></li>
+          <li data-zone=""><a href="/milano/brera/">Brera</a></li>
           
-          <li><a href="/milano/duomo/">Duomo</a></li>
+          <li data-zone=""><a href="/milano/duomo/">Duomo</a></li>
           
-          <li><a href="/milano/giardini-porta-venezia/">Giardini Porta Venezia</a></li>
+          <li data-zone=""><a href="/milano/giardini-porta-venezia/">Giardini Porta Venezia</a></li>
           
-          <li><a href="/milano/guastalla/">Guastalla</a></li>
+          <li data-zone=""><a href="/milano/guastalla/">Guastalla</a></li>
           
-          <li><a href="/milano/magenta-sant-ambrogio/">Magenta - Sant&#39;Ambrogio</a></li>
+          <li data-zone=""><a href="/milano/magenta-sant-ambrogio/">Magenta - Sant&#39;Ambrogio</a></li>
           
-          <li><a href="/milano/parco-sempione/">Parco Sempione</a></li>
+          <li data-zone=""><a href="/milano/parco-sempione/">Parco Sempione</a></li>
           
         </ul>
       </section>
@@ -582,17 +596,17 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/adriano/">Adriano</a></li>
+          <li data-zone=""><a href="/milano/adriano/">Adriano</a></li>
           
-          <li><a href="/milano/gorla-precotto/">Gorla - Precotto</a></li>
+          <li data-zone=""><a href="/milano/gorla-precotto/">Gorla - Precotto</a></li>
           
-          <li><a href="/milano/greco-segnano/">Greco - Segnano</a></li>
+          <li data-zone=""><a href="/milano/greco-segnano/">Greco - Segnano</a></li>
           
-          <li><a href="/milano/loreto-casoretto-nolo/">Loreto - Casoretto - Nolo</a></li>
+          <li data-zone=""><a href="/milano/loreto-casoretto-nolo/">Loreto - Casoretto - Nolo</a></li>
           
-          <li><a href="/milano/stazione-centrale/">Stazione Centrale</a></li>
+          <li data-zone=""><a href="/milano/stazione-centrale/">Stazione Centrale</a></li>
           
-          <li><a href="/milano/via-padova/">Via Padova (Padova - Turro - Crescenzago)</a></li>
+          <li data-zone=""><a href="/milano/via-padova/">Via Padova (Padova - Turro - Crescenzago)</a></li>
           
         </ul>
       </section>
@@ -604,13 +618,13 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/cimiano-rottole-q-re-feltre/">Cimiano - Rottole - Q.re Feltre</a></li>
+          <li data-zone=""><a href="/milano/cimiano-rottole-q-re-feltre/">Cimiano - Rottole - Q.re Feltre</a></li>
           
-          <li><a href="/milano/citta-studi/">Città Studi</a></li>
+          <li data-zone=""><a href="/milano/citta-studi/">Città Studi</a></li>
           
-          <li><a href="/milano/corso-buenos-aires-porta-venezia/">Corso Buenos Aires - Porta Venezia</a></li>
+          <li data-zone=""><a href="/milano/corso-buenos-aires-porta-venezia/">Corso Buenos Aires - Porta Venezia</a></li>
           
-          <li><a href="/milano/lambrate-ortica/">Lambrate - Ortica</a></li>
+          <li data-zone=""><a href="/milano/lambrate-ortica/">Lambrate - Ortica</a></li>
           
         </ul>
       </section>
@@ -622,27 +636,27 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/corsica/">Corsica</a></li>
+          <li data-zone=""><a href="/milano/corsica/">Corsica</a></li>
           
-          <li><a href="/milano/corvetto/">Corvetto</a></li>
+          <li data-zone=""><a href="/milano/corvetto/">Corvetto</a></li>
           
-          <li><a href="/milano/monlue-ponte-lambro/">Monluè - Ponte Lambro</a></li>
+          <li data-zone=""><a href="/milano/monlue-ponte-lambro/">Monluè - Ponte Lambro</a></li>
           
-          <li><a href="/milano/ortomercato/">Ortomercato</a></li>
+          <li data-zone=""><a href="/milano/ortomercato/">Ortomercato</a></li>
           
-          <li><a href="/milano/parco-forlanini-cavriano/">Parco Forlanini - Cavriano</a></li>
+          <li data-zone=""><a href="/milano/parco-forlanini-cavriano/">Parco Forlanini - Cavriano</a></li>
           
-          <li><a href="/milano/porta-romana/">Porta Romana</a></li>
+          <li data-zone=""><a href="/milano/porta-romana/">Porta Romana</a></li>
           
-          <li><a href="/milano/rogoredo-santa-giulia/">Rogoredo - Santa Giulia</a></li>
+          <li data-zone=""><a href="/milano/rogoredo-santa-giulia/">Rogoredo - Santa Giulia</a></li>
           
-          <li><a href="/milano/taliedo-morsenchio-q-re-forlanini/">Taliedo - Morsenchio - Q.re Forlanini</a></li>
+          <li data-zone=""><a href="/milano/taliedo-morsenchio-q-re-forlanini/">Taliedo - Morsenchio - Q.re Forlanini</a></li>
           
-          <li><a href="/milano/triulzo-superiore/">Triulzo Superiore</a></li>
+          <li data-zone=""><a href="/milano/triulzo-superiore/">Triulzo Superiore</a></li>
           
-          <li><a href="/milano/umbria-molise-calvairate/">Umbria - Molise - Calvairate</a></li>
+          <li data-zone=""><a href="/milano/umbria-molise-calvairate/">Umbria - Molise - Calvairate</a></li>
           
-          <li><a href="/milano/xxii-marzo/">XXII Marzo</a></li>
+          <li data-zone=""><a href="/milano/xxii-marzo/">XXII Marzo</a></li>
           
         </ul>
       </section>
@@ -654,29 +668,29 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/chiaravalle/">Chiaravalle</a></li>
+          <li data-zone=""><a href="/milano/chiaravalle/">Chiaravalle</a></li>
           
-          <li><a href="/milano/gratosoglio-q-re-missaglia-q-re-terrazze/">Gratosoglio - Q.re Missaglia - Q.re Terrazze</a></li>
+          <li data-zone=""><a href="/milano/gratosoglio-q-re-missaglia-q-re-terrazze/">Gratosoglio - Q.re Missaglia - Q.re Terrazze</a></li>
           
-          <li><a href="/milano/morivione/">Morivione</a></li>
+          <li data-zone=""><a href="/milano/morivione/">Morivione</a></li>
           
-          <li><a href="/milano/navigli-porta-ticinese/">Navigli (Porta Ticinese)</a></li>
+          <li data-zone=""><a href="/milano/navigli-porta-ticinese/">Navigli (Porta Ticinese)</a></li>
           
-          <li><a href="/milano/parco-delle-abbazie/">Parco delle Abbazie</a></li>
+          <li data-zone=""><a href="/milano/parco-delle-abbazie/">Parco delle Abbazie</a></li>
           
-          <li><a href="/milano/porta-vigentina-porta-lodovica/">Porta Vigentina - Porta Lodovica</a></li>
+          <li data-zone=""><a href="/milano/porta-vigentina-porta-lodovica/">Porta Vigentina - Porta Lodovica</a></li>
           
-          <li><a href="/milano/quintosole/">Quintosole</a></li>
+          <li data-zone=""><a href="/milano/quintosole/">Quintosole</a></li>
           
-          <li><a href="/milano/ronchetto-delle-rane/">Ronchetto delle Rane</a></li>
+          <li data-zone=""><a href="/milano/ronchetto-delle-rane/">Ronchetto delle Rane</a></li>
           
-          <li><a href="/milano/scalo-romana/">Scalo Romana</a></li>
+          <li data-zone=""><a href="/milano/scalo-romana/">Scalo Romana</a></li>
           
-          <li><a href="/milano/stadera-chiesa-rossa-q-re-torretta-conca-fallata/">Stadera - Chiesa Rossa - Q.re Torretta - Conca Fallata</a></li>
+          <li data-zone=""><a href="/milano/stadera-chiesa-rossa-q-re-torretta-conca-fallata/">Stadera - Chiesa Rossa - Q.re Torretta - Conca Fallata</a></li>
           
-          <li><a href="/milano/tibaldi/">Tibaldi</a></li>
+          <li data-zone=""><a href="/milano/tibaldi/">Tibaldi</a></li>
           
-          <li><a href="/milano/vigentino-q-re-fatima/">Vigentino - Q.re Fatima</a></li>
+          <li data-zone=""><a href="/milano/vigentino-q-re-fatima/">Vigentino - Q.re Fatima</a></li>
           
         </ul>
       </section>
@@ -688,25 +702,25 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/bande-nere/">Bande Nere</a></li>
+          <li data-zone=""><a href="/milano/bande-nere/">Bande Nere</a></li>
           
-          <li><a href="/milano/barona/">Barona</a></li>
+          <li data-zone=""><a href="/milano/barona/">Barona</a></li>
           
-          <li><a href="/milano/cantalupa/">Cantalupa</a></li>
+          <li data-zone=""><a href="/milano/cantalupa/">Cantalupa</a></li>
           
-          <li><a href="/milano/giambellino/">Giambellino</a></li>
+          <li data-zone=""><a href="/milano/giambellino/">Giambellino</a></li>
           
-          <li><a href="/milano/lorenteggio/">Lorenteggio</a></li>
+          <li data-zone=""><a href="/milano/lorenteggio/">Lorenteggio</a></li>
           
-          <li><a href="/milano/moncucco-san-cristoforo/">Moncucco - San Cristoforo</a></li>
+          <li data-zone=""><a href="/milano/moncucco-san-cristoforo/">Moncucco - San Cristoforo</a></li>
           
-          <li><a href="/milano/navigli-sud-conchetta/">Navigli Sud (Conchetta)</a></li>
+          <li data-zone=""><a href="/milano/navigli-sud-conchetta/">Navigli Sud (Conchetta)</a></li>
           
-          <li><a href="/milano/parco-dei-navigli/">Parco dei Navigli</a></li>
+          <li data-zone=""><a href="/milano/parco-dei-navigli/">Parco dei Navigli</a></li>
           
-          <li><a href="/milano/porta-genova/">Porta Genova</a></li>
+          <li data-zone=""><a href="/milano/porta-genova/">Porta Genova</a></li>
           
-          <li><a href="/milano/ronchetto-sul-naviglio-q-re-lodovico-il-moro/">Ronchetto sul Naviglio - Q.re Lodovico il Moro</a></li>
+          <li data-zone=""><a href="/milano/ronchetto-sul-naviglio-q-re-lodovico-il-moro/">Ronchetto sul Naviglio - Q.re Lodovico il Moro</a></li>
           
         </ul>
       </section>
@@ -718,29 +732,29 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/assiano/">Assiano</a></li>
+          <li data-zone=""><a href="/milano/assiano/">Assiano</a></li>
           
-          <li><a href="/milano/baggio-q-re-degli-olmi-q-re-valsesia/">Baggio - Q.re degli Olmi - Q.re Valsesia</a></li>
+          <li data-zone=""><a href="/milano/baggio-q-re-degli-olmi-q-re-valsesia/">Baggio - Q.re degli Olmi - Q.re Valsesia</a></li>
           
-          <li><a href="/milano/de-angeli-monte-rosa/">De Angeli - Monte Rosa</a></li>
+          <li data-zone=""><a href="/milano/de-angeli-monte-rosa/">De Angeli - Monte Rosa</a></li>
           
-          <li><a href="/milano/figino/">Figino</a></li>
+          <li data-zone=""><a href="/milano/figino/">Figino</a></li>
           
-          <li><a href="/milano/forze-armate/">Forze Armate</a></li>
+          <li data-zone=""><a href="/milano/forze-armate/">Forze Armate</a></li>
           
-          <li><a href="/milano/muggiano/">Muggiano</a></li>
+          <li data-zone=""><a href="/milano/muggiano/">Muggiano</a></li>
           
-          <li><a href="/milano/parco-bosco-in-citta/">Parco Bosco in Città</a></li>
+          <li data-zone=""><a href="/milano/parco-bosco-in-citta/">Parco Bosco in Città</a></li>
           
-          <li><a href="/milano/porta-magenta/">Porta Magenta</a></li>
+          <li data-zone=""><a href="/milano/porta-magenta/">Porta Magenta</a></li>
           
-          <li><a href="/milano/quarto-cagnino/">Quarto Cagnino</a></li>
+          <li data-zone=""><a href="/milano/quarto-cagnino/">Quarto Cagnino</a></li>
           
-          <li><a href="/milano/quinto-romano/">Quinto Romano</a></li>
+          <li data-zone=""><a href="/milano/quinto-romano/">Quinto Romano</a></li>
           
-          <li><a href="/milano/san-siro/">San Siro</a></li>
+          <li data-zone=""><a href="/milano/san-siro/">San Siro</a></li>
           
-          <li><a href="/milano/stadio-ippodromi/">Stadio - Ippodromi</a></li>
+          <li data-zone=""><a href="/milano/stadio-ippodromi/">Stadio - Ippodromi</a></li>
           
         </ul>
       </section>
@@ -752,31 +766,31 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/cascina-merlata/">Cascina Merlata</a></li>
+          <li data-zone=""><a href="/milano/cascina-merlata/">Cascina Merlata</a></li>
           
-          <li><a href="/milano/ghisolfa/">Ghisolfa</a></li>
+          <li data-zone=""><a href="/milano/ghisolfa/">Ghisolfa</a></li>
           
-          <li><a href="/milano/maggiore-musocco-certosa/">Maggiore - Musocco - Certosa</a></li>
+          <li data-zone=""><a href="/milano/maggiore-musocco-certosa/">Maggiore - Musocco - Certosa</a></li>
           
-          <li><a href="/milano/pagano/">Pagano</a></li>
+          <li data-zone=""><a href="/milano/pagano/">Pagano</a></li>
           
-          <li><a href="/milano/portello/">Portello</a></li>
+          <li data-zone=""><a href="/milano/portello/">Portello</a></li>
           
-          <li><a href="/milano/q-re-gallaratese-q-re-san-leonardo-lampugnano/">Q.re Gallaratese - Q.re San Leonardo - Lampugnano</a></li>
+          <li data-zone=""><a href="/milano/q-re-gallaratese-q-re-san-leonardo-lampugnano/">Q.re Gallaratese - Q.re San Leonardo - Lampugnano</a></li>
           
-          <li><a href="/milano/qt-8/">QT 8</a></li>
+          <li data-zone=""><a href="/milano/qt-8/">QT 8</a></li>
           
-          <li><a href="/milano/quarto-oggiaro-vialba-musocco/">Quarto Oggiaro - Vialba - Musocco</a></li>
+          <li data-zone=""><a href="/milano/quarto-oggiaro-vialba-musocco/">Quarto Oggiaro - Vialba - Musocco</a></li>
           
-          <li><a href="/milano/sarpi-chinatown/">Sarpi (Chinatown)</a></li>
+          <li data-zone=""><a href="/milano/sarpi-chinatown/">Sarpi (Chinatown)</a></li>
           
-          <li><a href="/milano/stephenson/">Stephenson</a></li>
+          <li data-zone=""><a href="/milano/stephenson/">Stephenson</a></li>
           
-          <li><a href="/milano/tre-torri/">Tre Torri</a></li>
+          <li data-zone=""><a href="/milano/tre-torri/">Tre Torri</a></li>
           
-          <li><a href="/milano/trenno/">Trenno</a></li>
+          <li data-zone=""><a href="/milano/trenno/">Trenno</a></li>
           
-          <li><a href="/milano/villapizzone-cagnola-boldinasco/">Villapizzone - Cagnola - Boldinasco</a></li>
+          <li data-zone=""><a href="/milano/villapizzone-cagnola-boldinasco/">Villapizzone - Cagnola - Boldinasco</a></li>
           
         </ul>
       </section>
@@ -788,31 +802,31 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/affori/">Affori</a></li>
+          <li data-zone=""><a href="/milano/affori/">Affori</a></li>
           
-          <li><a href="/milano/bicocca/">Bicocca</a></li>
+          <li data-zone=""><a href="/milano/bicocca/">Bicocca</a></li>
           
-          <li><a href="/milano/bovisa/">Bovisa</a></li>
+          <li data-zone=""><a href="/milano/bovisa/">Bovisa</a></li>
           
-          <li><a href="/milano/bovisasca/">Bovisasca</a></li>
+          <li data-zone=""><a href="/milano/bovisasca/">Bovisasca</a></li>
           
-          <li><a href="/milano/bruzzano/">Bruzzano</a></li>
+          <li data-zone=""><a href="/milano/bruzzano/">Bruzzano</a></li>
           
-          <li><a href="/milano/comasina/">Comasina</a></li>
+          <li data-zone=""><a href="/milano/comasina/">Comasina</a></li>
           
-          <li><a href="/milano/dergano/">Dergano</a></li>
+          <li data-zone=""><a href="/milano/dergano/">Dergano</a></li>
           
-          <li><a href="/milano/farini/">Farini</a></li>
+          <li data-zone=""><a href="/milano/farini/">Farini</a></li>
           
-          <li><a href="/milano/isola/">Isola</a></li>
+          <li data-zone=""><a href="/milano/isola/">Isola</a></li>
           
-          <li><a href="/milano/maciachini-maggiolina/">Maciachini - Maggiolina</a></li>
+          <li data-zone=""><a href="/milano/maciachini-maggiolina/">Maciachini - Maggiolina</a></li>
           
-          <li><a href="/milano/niguarda-ca-granda-prato-centenaro-q-re-fulvio-testi/">Niguarda - Ca&#39; Granda - Prato Centenaro - Q.re Fulvio Testi</a></li>
+          <li data-zone=""><a href="/milano/niguarda-ca-granda-prato-centenaro-q-re-fulvio-testi/">Niguarda - Ca&#39; Granda - Prato Centenaro - Q.re Fulvio Testi</a></li>
           
-          <li><a href="/milano/parco-nord/">Parco Nord</a></li>
+          <li data-zone=""><a href="/milano/parco-nord/">Parco Nord</a></li>
           
-          <li><a href="/milano/porta-garibaldi-porta-nuova/">Porta Garibaldi - Porta Nuova</a></li>
+          <li data-zone=""><a href="/milano/porta-garibaldi-porta-nuova/">Porta Garibaldi - Porta Nuova</a></li>
           
         </ul>
       </section>
@@ -824,7 +838,7 @@
         </h3>
         <ul>
           
-          <li><a href="/milano/roserio/">Roserio</a></li>
+          <li data-zone=""><a href="/milano/roserio/">Roserio</a></li>
           
         </ul>
       </section>
@@ -838,7 +852,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="brera">
     <span class="lab">For a first visit · Best rated overall</span>
     <span class="nm"><a href="/milano/brera/">Brera</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -851,7 +865,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Brera%2C+Milan%2C+Italy" target="_blank" rel="noopener">Find a place in Brera →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="giardini-porta-venezia">
     <span class="lab">With family</span>
     <span class="nm"><a href="/milano/giardini-porta-venezia/">Giardini Porta Venezia</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -864,7 +878,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Giardini+Pubblici+Indro+Montanelli%2C+Milan%2C+Italy" target="_blank" rel="noopener">Find a place in Giardini Porta Venezia →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="isola">
     <span class="lab">For going out</span>
     <span class="nm"><a href="/milano/isola/">Isola</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1816,6 +1830,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1945,6 +1961,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1963,6 +1980,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -2353,6 +2371,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

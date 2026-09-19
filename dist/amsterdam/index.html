@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -554,25 +568,25 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/burgwallen-nieuwe-zijde.html">Burgwallen-Nieuwe Zijde</a></li>
+          <li data-zone=""><a href="/amsterdam/burgwallen-nieuwe-zijde.html">Burgwallen-Nieuwe Zijde</a></li>
           
-          <li><a href="/amsterdam/burgwallen-oude-zijde.html">Burgwallen-Oude Zijde</a></li>
+          <li data-zone=""><a href="/amsterdam/burgwallen-oude-zijde.html">Burgwallen-Oude Zijde</a></li>
           
-          <li><a href="/amsterdam/de-weteringschans.html">De Weteringschans</a></li>
+          <li data-zone=""><a href="/amsterdam/de-weteringschans.html">De Weteringschans</a></li>
           
-          <li><a href="/amsterdam/grachtengordel-west.html">Grachtengordel-West</a></li>
+          <li data-zone=""><a href="/amsterdam/grachtengordel-west.html">Grachtengordel-West</a></li>
           
-          <li><a href="/amsterdam/grachtengordel-zuid.html">Grachtengordel-Zuid</a></li>
+          <li data-zone=""><a href="/amsterdam/grachtengordel-zuid.html">Grachtengordel-Zuid</a></li>
           
-          <li><a href="/amsterdam/haarlemmerbuurt.html">Haarlemmerbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/haarlemmerbuurt.html">Haarlemmerbuurt</a></li>
           
-          <li><a href="/amsterdam/jordaan.html">Jordaan</a></li>
+          <li data-zone=""><a href="/amsterdam/jordaan.html">Jordaan</a></li>
           
-          <li><a href="/amsterdam/nieuwmarkt-lastage.html">Nieuwmarkt/Lastage</a></li>
+          <li data-zone=""><a href="/amsterdam/nieuwmarkt-lastage.html">Nieuwmarkt/Lastage</a></li>
           
-          <li><a href="/amsterdam/oostelijke-eilanden-kadijken.html">Oostelijke Eilanden/Kadijken</a></li>
+          <li data-zone=""><a href="/amsterdam/oostelijke-eilanden-kadijken.html">Oostelijke Eilanden/Kadijken</a></li>
           
-          <li><a href="/amsterdam/weesperbuurt-plantage.html">Weesperbuurt/Plantage</a></li>
+          <li data-zone=""><a href="/amsterdam/weesperbuurt-plantage.html">Weesperbuurt/Plantage</a></li>
           
         </ul>
       </section>
@@ -584,33 +598,33 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/de-aker.html">De Aker</a></li>
+          <li data-zone=""><a href="/amsterdam/de-aker.html">De Aker</a></li>
           
-          <li><a href="/amsterdam/de-punt.html">De Punt</a></li>
+          <li data-zone=""><a href="/amsterdam/de-punt.html">De Punt</a></li>
           
-          <li><a href="/amsterdam/geuzenveld.html">Geuzenveld</a></li>
+          <li data-zone=""><a href="/amsterdam/geuzenveld.html">Geuzenveld</a></li>
           
-          <li><a href="/amsterdam/lutkemeer-ookmeer.html">Lutkemeer/Ookmeer</a></li>
+          <li data-zone=""><a href="/amsterdam/lutkemeer-ookmeer.html">Lutkemeer/Ookmeer</a></li>
           
-          <li><a href="/amsterdam/osdorp-midden.html">Osdorp-Midden</a></li>
+          <li data-zone=""><a href="/amsterdam/osdorp-midden.html">Osdorp-Midden</a></li>
           
-          <li><a href="/amsterdam/osdorp-oost.html">Osdorp-Oost</a></li>
+          <li data-zone=""><a href="/amsterdam/osdorp-oost.html">Osdorp-Oost</a></li>
           
-          <li><a href="/amsterdam/overtoomse-veld.html">Overtoomse Veld</a></li>
+          <li data-zone=""><a href="/amsterdam/overtoomse-veld.html">Overtoomse Veld</a></li>
           
-          <li><a href="/amsterdam/sloten-nieuw-sloten.html">Sloten/Nieuw-Sloten</a></li>
+          <li data-zone=""><a href="/amsterdam/sloten-nieuw-sloten.html">Sloten/Nieuw-Sloten</a></li>
           
-          <li><a href="/amsterdam/sloterdijk-nieuw-west.html">Sloterdijk Nieuw-West</a></li>
+          <li data-zone=""><a href="/amsterdam/sloterdijk-nieuw-west.html">Sloterdijk Nieuw-West</a></li>
           
-          <li><a href="/amsterdam/slotermeer-noordoost.html">Slotermeer-Noordoost</a></li>
+          <li data-zone=""><a href="/amsterdam/slotermeer-noordoost.html">Slotermeer-Noordoost</a></li>
           
-          <li><a href="/amsterdam/slotermeer-west.html">Slotermeer-West</a></li>
+          <li data-zone=""><a href="/amsterdam/slotermeer-west.html">Slotermeer-West</a></li>
           
-          <li><a href="/amsterdam/slotermeer-zuidoost.html">Slotermeer-Zuidoost</a></li>
+          <li data-zone=""><a href="/amsterdam/slotermeer-zuidoost.html">Slotermeer-Zuidoost</a></li>
           
-          <li><a href="/amsterdam/slotervaart-noord.html">Slotervaart-Noord</a></li>
+          <li data-zone=""><a href="/amsterdam/slotervaart-noord.html">Slotervaart-Noord</a></li>
           
-          <li><a href="/amsterdam/slotervaart-zuid.html">Slotervaart-Zuid</a></li>
+          <li data-zone=""><a href="/amsterdam/slotervaart-zuid.html">Slotervaart-Zuid</a></li>
           
         </ul>
       </section>
@@ -622,35 +636,35 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/banne-buiksloot.html">Banne Buiksloot</a></li>
+          <li data-zone=""><a href="/amsterdam/banne-buiksloot.html">Banne Buiksloot</a></li>
           
-          <li><a href="/amsterdam/buikslotermeer.html">Buikslotermeer</a></li>
+          <li data-zone=""><a href="/amsterdam/buikslotermeer.html">Buikslotermeer</a></li>
           
-          <li><a href="/amsterdam/elzenhagen.html">Elzenhagen</a></li>
+          <li data-zone=""><a href="/amsterdam/elzenhagen.html">Elzenhagen</a></li>
           
-          <li><a href="/amsterdam/ijplein-vogelbuurt.html">IJplein/Vogelbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/ijplein-vogelbuurt.html">IJplein/Vogelbuurt</a></li>
           
-          <li><a href="/amsterdam/kadoelen.html">Kadoelen</a></li>
+          <li data-zone=""><a href="/amsterdam/kadoelen.html">Kadoelen</a></li>
           
-          <li><a href="/amsterdam/nieuwendammerdijk-buiksloterdijk.html">Nieuwendammerdijk/Buiksloterdijk</a></li>
+          <li data-zone=""><a href="/amsterdam/nieuwendammerdijk-buiksloterdijk.html">Nieuwendammerdijk/Buiksloterdijk</a></li>
           
-          <li><a href="/amsterdam/noordelijke-ij-oevers-oost.html">Noordelijke IJ-oevers-Oost</a></li>
+          <li data-zone=""><a href="/amsterdam/noordelijke-ij-oevers-oost.html">Noordelijke IJ-oevers-Oost</a></li>
           
-          <li><a href="/amsterdam/noordelijke-ij-oevers-west.html">Noordelijke IJ-oevers-West</a></li>
+          <li data-zone=""><a href="/amsterdam/noordelijke-ij-oevers-west.html">Noordelijke IJ-oevers-West</a></li>
           
-          <li><a href="/amsterdam/oostzanerwerf.html">Oostzanerwerf</a></li>
+          <li data-zone=""><a href="/amsterdam/oostzanerwerf.html">Oostzanerwerf</a></li>
           
-          <li><a href="/amsterdam/tuindorp-buiksloot.html">Tuindorp Buiksloot</a></li>
+          <li data-zone=""><a href="/amsterdam/tuindorp-buiksloot.html">Tuindorp Buiksloot</a></li>
           
-          <li><a href="/amsterdam/tuindorp-nieuwendam.html">Tuindorp Nieuwendam</a></li>
+          <li data-zone=""><a href="/amsterdam/tuindorp-nieuwendam.html">Tuindorp Nieuwendam</a></li>
           
-          <li><a href="/amsterdam/tuindorp-oostzaan.html">Tuindorp Oostzaan</a></li>
+          <li data-zone=""><a href="/amsterdam/tuindorp-oostzaan.html">Tuindorp Oostzaan</a></li>
           
-          <li><a href="/amsterdam/volewijck.html">Volewijck</a></li>
+          <li data-zone=""><a href="/amsterdam/volewijck.html">Volewijck</a></li>
           
-          <li><a href="/amsterdam/waterland.html">Waterland</a></li>
+          <li data-zone=""><a href="/amsterdam/waterland.html">Waterland</a></li>
           
-          <li><a href="/amsterdam/waterlandpleinbuurt.html">Waterlandpleinbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/waterlandpleinbuurt.html">Waterlandpleinbuurt</a></li>
           
         </ul>
       </section>
@@ -662,35 +676,35 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/betondorp.html">Betondorp</a></li>
+          <li data-zone=""><a href="/amsterdam/betondorp.html">Betondorp</a></li>
           
-          <li><a href="/amsterdam/dapperbuurt.html">Dapperbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/dapperbuurt.html">Dapperbuurt</a></li>
           
-          <li><a href="/amsterdam/frankendael.html">Frankendael</a></li>
+          <li data-zone=""><a href="/amsterdam/frankendael.html">Frankendael</a></li>
           
-          <li><a href="/amsterdam/ijburg-oost.html">IJburg-Oost</a></li>
+          <li data-zone=""><a href="/amsterdam/ijburg-oost.html">IJburg-Oost</a></li>
           
-          <li><a href="/amsterdam/ijburg-west.html">IJburg-West</a></li>
+          <li data-zone=""><a href="/amsterdam/ijburg-west.html">IJburg-West</a></li>
           
-          <li><a href="/amsterdam/ijburg-zuid.html">IJburg-Zuid</a></li>
+          <li data-zone=""><a href="/amsterdam/ijburg-zuid.html">IJburg-Zuid</a></li>
           
-          <li><a href="/amsterdam/indische-buurt-oost.html">Indische Buurt-Oost</a></li>
+          <li data-zone=""><a href="/amsterdam/indische-buurt-oost.html">Indische Buurt-Oost</a></li>
           
-          <li><a href="/amsterdam/indische-buurt-west.html">Indische Buurt-West</a></li>
+          <li data-zone=""><a href="/amsterdam/indische-buurt-west.html">Indische Buurt-West</a></li>
           
-          <li><a href="/amsterdam/middenmeer.html">Middenmeer</a></li>
+          <li data-zone=""><a href="/amsterdam/middenmeer.html">Middenmeer</a></li>
           
-          <li><a href="/amsterdam/omval-overamstel.html">Omval/Overamstel</a></li>
+          <li data-zone=""><a href="/amsterdam/omval-overamstel.html">Omval/Overamstel</a></li>
           
-          <li><a href="/amsterdam/oostelijk-havengebied.html">Oostelijk Havengebied</a></li>
+          <li data-zone=""><a href="/amsterdam/oostelijk-havengebied.html">Oostelijk Havengebied</a></li>
           
-          <li><a href="/amsterdam/oosterparkbuurt.html">Oosterparkbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/oosterparkbuurt.html">Oosterparkbuurt</a></li>
           
-          <li><a href="/amsterdam/transvaalbuurt.html">Transvaalbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/transvaalbuurt.html">Transvaalbuurt</a></li>
           
-          <li><a href="/amsterdam/weesperzijde.html">Weesperzijde</a></li>
+          <li data-zone=""><a href="/amsterdam/weesperzijde.html">Weesperzijde</a></li>
           
-          <li><a href="/amsterdam/zeeburgereiland-bovendiep.html">Zeeburgereiland/Bovendiep</a></li>
+          <li data-zone=""><a href="/amsterdam/zeeburgereiland-bovendiep.html">Zeeburgereiland/Bovendiep</a></li>
           
         </ul>
       </section>
@@ -702,7 +716,7 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/buitenveldert-west.html">Buitenveldert-West</a></li>
+          <li data-zone=""><a href="/amsterdam/buitenveldert-west.html">Buitenveldert-West</a></li>
           
         </ul>
       </section>
@@ -714,15 +728,15 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/aetsveld-oostelijke-vechtoever.html">Aetsveld/Oostelijke Vechtoever</a></li>
+          <li data-zone=""><a href="/amsterdam/aetsveld-oostelijke-vechtoever.html">Aetsveld/Oostelijke Vechtoever</a></li>
           
-          <li><a href="/amsterdam/bloemendalerpolder.html">Bloemendalerpolder</a></li>
+          <li data-zone=""><a href="/amsterdam/bloemendalerpolder.html">Bloemendalerpolder</a></li>
           
-          <li><a href="/amsterdam/driemond.html">Driemond</a></li>
+          <li data-zone=""><a href="/amsterdam/driemond.html">Driemond</a></li>
           
-          <li><a href="/amsterdam/weesp-binnenstad-zuid.html">Weesp Binnenstad/Zuid</a></li>
+          <li data-zone=""><a href="/amsterdam/weesp-binnenstad-zuid.html">Weesp Binnenstad/Zuid</a></li>
           
-          <li><a href="/amsterdam/weesp-noordwest.html">Weesp-Noordwest</a></li>
+          <li data-zone=""><a href="/amsterdam/weesp-noordwest.html">Weesp-Noordwest</a></li>
           
         </ul>
       </section>
@@ -734,45 +748,45 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/bellamybuurt.html">Bellamybuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/bellamybuurt.html">Bellamybuurt</a></li>
           
-          <li><a href="/amsterdam/centrale-markt.html">Centrale Markt</a></li>
+          <li data-zone=""><a href="/amsterdam/centrale-markt.html">Centrale Markt</a></li>
           
-          <li><a href="/amsterdam/chassebuurt.html">Chassébuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/chassebuurt.html">Chassébuurt</a></li>
           
-          <li><a href="/amsterdam/da-costabuurt.html">Da Costabuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/da-costabuurt.html">Da Costabuurt</a></li>
           
-          <li><a href="/amsterdam/de-kolenkit.html">De Kolenkit</a></li>
+          <li data-zone=""><a href="/amsterdam/de-kolenkit.html">De Kolenkit</a></li>
           
-          <li><a href="/amsterdam/erasmuspark.html">Erasmuspark</a></li>
+          <li data-zone=""><a href="/amsterdam/erasmuspark.html">Erasmuspark</a></li>
           
-          <li><a href="/amsterdam/frederik-hendrikbuurt.html">Frederik Hendrikbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/frederik-hendrikbuurt.html">Frederik Hendrikbuurt</a></li>
           
-          <li><a href="/amsterdam/geuzenbuurt.html">Geuzenbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/geuzenbuurt.html">Geuzenbuurt</a></li>
           
-          <li><a href="/amsterdam/helmersbuurt.html">Helmersbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/helmersbuurt.html">Helmersbuurt</a></li>
           
-          <li><a href="/amsterdam/hoofdweg-e-o.html">Hoofdweg e.o.</a></li>
+          <li data-zone=""><a href="/amsterdam/hoofdweg-e-o.html">Hoofdweg e.o.</a></li>
           
-          <li><a href="/amsterdam/houthavens.html">Houthavens</a></li>
+          <li data-zone=""><a href="/amsterdam/houthavens.html">Houthavens</a></li>
           
-          <li><a href="/amsterdam/landlust.html">Landlust</a></li>
+          <li data-zone=""><a href="/amsterdam/landlust.html">Landlust</a></li>
           
-          <li><a href="/amsterdam/overtoomse-sluis.html">Overtoomse Sluis</a></li>
+          <li data-zone=""><a href="/amsterdam/overtoomse-sluis.html">Overtoomse Sluis</a></li>
           
-          <li><a href="/amsterdam/sloterdijk-west.html">Sloterdijk-West</a></li>
+          <li data-zone=""><a href="/amsterdam/sloterdijk-west.html">Sloterdijk-West</a></li>
           
-          <li><a href="/amsterdam/spaarndammerbuurt-zeeheldenbuurt.html">Spaarndammerbuurt/Zeeheldenbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/spaarndammerbuurt-zeeheldenbuurt.html">Spaarndammerbuurt/Zeeheldenbuurt</a></li>
           
-          <li><a href="/amsterdam/staatsliedenbuurt.html">Staatsliedenbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/staatsliedenbuurt.html">Staatsliedenbuurt</a></li>
           
-          <li><a href="/amsterdam/van-galenbuurt.html">Van Galenbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/van-galenbuurt.html">Van Galenbuurt</a></li>
           
-          <li><a href="/amsterdam/van-lennepbuurt.html">Van Lennepbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/van-lennepbuurt.html">Van Lennepbuurt</a></li>
           
-          <li><a href="/amsterdam/vondelparkbuurt.html">Vondelparkbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/vondelparkbuurt.html">Vondelparkbuurt</a></li>
           
-          <li><a href="/amsterdam/westindische-buurt.html">Westindische Buurt</a></li>
+          <li data-zone=""><a href="/amsterdam/westindische-buurt.html">Westindische Buurt</a></li>
           
         </ul>
       </section>
@@ -784,9 +798,9 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/coenhaven-minervahaven.html">Coenhaven/Minervahaven</a></li>
+          <li data-zone=""><a href="/amsterdam/coenhaven-minervahaven.html">Coenhaven/Minervahaven</a></li>
           
-          <li><a href="/amsterdam/havens-west.html">Havens-West</a></li>
+          <li data-zone=""><a href="/amsterdam/havens-west.html">Havens-West</a></li>
           
         </ul>
       </section>
@@ -798,37 +812,37 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/apollobuurt.html">Apollobuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/apollobuurt.html">Apollobuurt</a></li>
           
-          <li><a href="/amsterdam/buitenveldert-oost.html">Buitenveldert-Oost</a></li>
+          <li data-zone=""><a href="/amsterdam/buitenveldert-oost.html">Buitenveldert-Oost</a></li>
           
-          <li><a href="/amsterdam/hoofddorppleinbuurt.html">Hoofddorppleinbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/hoofddorppleinbuurt.html">Hoofddorppleinbuurt</a></li>
           
-          <li><a href="/amsterdam/ijselbuurt.html">IJselbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/ijselbuurt.html">IJselbuurt</a></li>
           
-          <li><a href="/amsterdam/museumkwartier.html">Museumkwartier</a></li>
+          <li data-zone=""><a href="/amsterdam/museumkwartier.html">Museumkwartier</a></li>
           
-          <li><a href="/amsterdam/nieuwe-pijp.html">Nieuwe Pijp</a></li>
+          <li data-zone=""><a href="/amsterdam/nieuwe-pijp.html">Nieuwe Pijp</a></li>
           
-          <li><a href="/amsterdam/oude-pijp.html">Oude Pijp</a></li>
+          <li data-zone=""><a href="/amsterdam/oude-pijp.html">Oude Pijp</a></li>
           
-          <li><a href="/amsterdam/prinses-irenebuurt-e-o.html">Prinses Irenebuurt e.o.</a></li>
+          <li data-zone=""><a href="/amsterdam/prinses-irenebuurt-e-o.html">Prinses Irenebuurt e.o.</a></li>
           
-          <li><a href="/amsterdam/rijnbuurt.html">Rijnbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/rijnbuurt.html">Rijnbuurt</a></li>
           
-          <li><a href="/amsterdam/scheldebuurt.html">Scheldebuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/scheldebuurt.html">Scheldebuurt</a></li>
           
-          <li><a href="/amsterdam/schinkelbuurt.html">Schinkelbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/schinkelbuurt.html">Schinkelbuurt</a></li>
           
-          <li><a href="/amsterdam/stadionbuurt.html">Stadionbuurt</a></li>
+          <li data-zone=""><a href="/amsterdam/stadionbuurt.html">Stadionbuurt</a></li>
           
-          <li><a href="/amsterdam/westlandgracht.html">Westlandgracht</a></li>
+          <li data-zone=""><a href="/amsterdam/westlandgracht.html">Westlandgracht</a></li>
           
-          <li><a href="/amsterdam/willemspark.html">Willemspark</a></li>
+          <li data-zone=""><a href="/amsterdam/willemspark.html">Willemspark</a></li>
           
-          <li><a href="/amsterdam/zuid-pijp.html">Zuid Pijp</a></li>
+          <li data-zone=""><a href="/amsterdam/zuid-pijp.html">Zuid Pijp</a></li>
           
-          <li><a href="/amsterdam/zuidas.html">Zuidas</a></li>
+          <li data-zone=""><a href="/amsterdam/zuidas.html">Zuidas</a></li>
           
         </ul>
       </section>
@@ -840,29 +854,29 @@
         </h3>
         <ul>
           
-          <li><a href="/amsterdam/amstel-iii-bullewijk.html">Amstel III/Bullewijk</a></li>
+          <li data-zone=""><a href="/amsterdam/amstel-iii-bullewijk.html">Amstel III/Bullewijk</a></li>
           
-          <li><a href="/amsterdam/amsterdamse-poort-e-o.html">Amsterdamse Poort e.o.</a></li>
+          <li data-zone=""><a href="/amsterdam/amsterdamse-poort-e-o.html">Amsterdamse Poort e.o.</a></li>
           
-          <li><a href="/amsterdam/bijlmermuseum.html">Bijlmermuseum</a></li>
+          <li data-zone=""><a href="/amsterdam/bijlmermuseum.html">Bijlmermuseum</a></li>
           
-          <li><a href="/amsterdam/ganzenhoef-e-o.html">Ganzenhoef e.o.</a></li>
+          <li data-zone=""><a href="/amsterdam/ganzenhoef-e-o.html">Ganzenhoef e.o.</a></li>
           
-          <li><a href="/amsterdam/geerdinkhof-kantershof.html">Geerdinkhof/Kantershof</a></li>
+          <li data-zone=""><a href="/amsterdam/geerdinkhof-kantershof.html">Geerdinkhof/Kantershof</a></li>
           
-          <li><a href="/amsterdam/gein.html">Gein</a></li>
+          <li data-zone=""><a href="/amsterdam/gein.html">Gein</a></li>
           
-          <li><a href="/amsterdam/h-buurt.html">H-buurt</a></li>
+          <li data-zone=""><a href="/amsterdam/h-buurt.html">H-buurt</a></li>
           
-          <li><a href="/amsterdam/holendrecht.html">Holendrecht</a></li>
+          <li data-zone=""><a href="/amsterdam/holendrecht.html">Holendrecht</a></li>
           
-          <li><a href="/amsterdam/k-buurt.html">K-buurt</a></li>
+          <li data-zone=""><a href="/amsterdam/k-buurt.html">K-buurt</a></li>
           
-          <li><a href="/amsterdam/nellestein.html">Nellestein</a></li>
+          <li data-zone=""><a href="/amsterdam/nellestein.html">Nellestein</a></li>
           
-          <li><a href="/amsterdam/reigersbos.html">Reigersbos</a></li>
+          <li data-zone=""><a href="/amsterdam/reigersbos.html">Reigersbos</a></li>
           
-          <li><a href="/amsterdam/venserpolder.html">Venserpolder</a></li>
+          <li data-zone=""><a href="/amsterdam/venserpolder.html">Venserpolder</a></li>
           
         </ul>
       </section>
@@ -876,7 +890,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="oude-pijp">
     <span class="lab">For a first visit · Best rated overall</span>
     <span class="nm"><a href="/amsterdam/oude-pijp.html">Oude Pijp</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -889,7 +903,7 @@
     <a class="bk" href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DOude%2BPijp%252C%2BAmsterdam%252C%2BNetherlands" target="_blank" rel="noopener">Find a place in Oude Pijp →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="spaarndammerbuurt-zeeheldenbuurt">
     <span class="lab">With family</span>
     <span class="nm"><a href="/amsterdam/spaarndammerbuurt-zeeheldenbuurt.html">Spaarndammerbuurt/Zeeheldenbuurt</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -2039,6 +2053,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -2168,6 +2184,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -2186,6 +2203,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -2576,6 +2594,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

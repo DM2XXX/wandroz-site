@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -560,27 +574,27 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/aventino.html">Aventino</a></li>
+          <li data-zone=""><a href="/roma/aventino.html">Aventino</a></li>
           
-          <li><a href="/roma/celio.html">Celio</a></li>
+          <li data-zone=""><a href="/roma/celio.html">Celio</a></li>
           
-          <li><a href="/roma/centro-storico.html">Centro Storico</a></li>
+          <li data-zone=""><a href="/roma/centro-storico.html">Centro Storico</a></li>
           
-          <li><a href="/roma/della-vittoria.html">Della Vittoria</a></li>
+          <li data-zone=""><a href="/roma/della-vittoria.html">Della Vittoria</a></li>
           
-          <li><a href="/roma/eroi.html">Eroi</a></li>
+          <li data-zone=""><a href="/roma/eroi.html">Eroi</a></li>
           
-          <li><a href="/roma/esquilino.html">Esquilino</a></li>
+          <li data-zone=""><a href="/roma/esquilino.html">Esquilino</a></li>
           
-          <li><a href="/roma/prati.html">Prati</a></li>
+          <li data-zone=""><a href="/roma/prati.html">Prati</a></li>
           
-          <li><a href="/roma/testaccio.html">Testaccio</a></li>
+          <li data-zone=""><a href="/roma/testaccio.html">Testaccio</a></li>
           
-          <li><a href="/roma/trastevere.html">Trastevere</a></li>
+          <li data-zone=""><a href="/roma/trastevere.html">Trastevere</a></li>
           
-          <li><a href="/roma/xx-settembre.html">XX Settembre</a></li>
+          <li data-zone=""><a href="/roma/xx-settembre.html">XX Settembre</a></li>
           
-          <li><a href="/roma/zona-archeologica.html">Zona Archeologica</a></li>
+          <li data-zone=""><a href="/roma/zona-archeologica.html">Zona Archeologica</a></li>
           
         </ul>
       </section>
@@ -592,27 +606,27 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/flaminio.html">Flaminio</a></li>
+          <li data-zone=""><a href="/roma/flaminio.html">Flaminio</a></li>
           
-          <li><a href="/roma/nomentano.html">Nomentano</a></li>
+          <li data-zone=""><a href="/roma/nomentano.html">Nomentano</a></li>
           
-          <li><a href="/roma/parioli.html">Parioli</a></li>
+          <li data-zone=""><a href="/roma/parioli.html">Parioli</a></li>
           
-          <li><a href="/roma/s-lorenzo.html">S. Lorenzo</a></li>
+          <li data-zone=""><a href="/roma/s-lorenzo.html">S. Lorenzo</a></li>
           
-          <li><a href="/roma/salario.html">Salario</a></li>
+          <li data-zone=""><a href="/roma/salario.html">Salario</a></li>
           
-          <li><a href="/roma/trieste.html">Trieste</a></li>
+          <li data-zone=""><a href="/roma/trieste.html">Trieste</a></li>
           
-          <li><a href="/roma/universita.html">Università</a></li>
+          <li data-zone=""><a href="/roma/universita.html">Università</a></li>
           
-          <li><a href="/roma/verano.html">Verano</a></li>
+          <li data-zone=""><a href="/roma/verano.html">Verano</a></li>
           
-          <li><a href="/roma/villa-ada.html">Villa Ada</a></li>
+          <li data-zone=""><a href="/roma/villa-ada.html">Villa Ada</a></li>
           
-          <li><a href="/roma/villa-borghese.html">Villa Borghese</a></li>
+          <li data-zone=""><a href="/roma/villa-borghese.html">Villa Borghese</a></li>
           
-          <li><a href="/roma/villaggio-olimpico.html">Villaggio Olimpico</a></li>
+          <li data-zone=""><a href="/roma/villaggio-olimpico.html">Villaggio Olimpico</a></li>
           
         </ul>
       </section>
@@ -624,29 +638,29 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/bufalotta.html">Bufalotta</a></li>
+          <li data-zone=""><a href="/roma/bufalotta.html">Bufalotta</a></li>
           
-          <li><a href="/roma/casal-boccone.html">Casal Boccone</a></li>
+          <li data-zone=""><a href="/roma/casal-boccone.html">Casal Boccone</a></li>
           
-          <li><a href="/roma/conca-d-oro.html">Conca d&#39;Oro</a></li>
+          <li data-zone=""><a href="/roma/conca-d-oro.html">Conca d&#39;Oro</a></li>
           
-          <li><a href="/roma/fidene.html">Fidene</a></li>
+          <li data-zone=""><a href="/roma/fidene.html">Fidene</a></li>
           
-          <li><a href="/roma/grottarossa-est.html">Grottarossa Est</a></li>
+          <li data-zone=""><a href="/roma/grottarossa-est.html">Grottarossa Est</a></li>
           
-          <li><a href="/roma/monte-sacro.html">Monte Sacro</a></li>
+          <li data-zone=""><a href="/roma/monte-sacro.html">Monte Sacro</a></li>
           
-          <li><a href="/roma/monte-sacro-alto.html">Monte Sacro Alto</a></li>
+          <li data-zone=""><a href="/roma/monte-sacro-alto.html">Monte Sacro Alto</a></li>
           
-          <li><a href="/roma/sacco-pastore.html">Sacco Pastore</a></li>
+          <li data-zone=""><a href="/roma/sacco-pastore.html">Sacco Pastore</a></li>
           
-          <li><a href="/roma/serpentara.html">Serpentara</a></li>
+          <li data-zone=""><a href="/roma/serpentara.html">Serpentara</a></li>
           
-          <li><a href="/roma/tor-s-giovanni.html">Tor S. Giovanni</a></li>
+          <li data-zone=""><a href="/roma/tor-s-giovanni.html">Tor S. Giovanni</a></li>
           
-          <li><a href="/roma/tufello.html">Tufello</a></li>
+          <li data-zone=""><a href="/roma/tufello.html">Tufello</a></li>
           
-          <li><a href="/roma/val-melaina.html">Val Melaina</a></li>
+          <li data-zone=""><a href="/roma/val-melaina.html">Val Melaina</a></li>
           
         </ul>
       </section>
@@ -658,25 +672,25 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/casal-bertone.html">Casal Bertone</a></li>
+          <li data-zone=""><a href="/roma/casal-bertone.html">Casal Bertone</a></li>
           
-          <li><a href="/roma/casal-bruciato.html">Casal Bruciato</a></li>
+          <li data-zone=""><a href="/roma/casal-bruciato.html">Casal Bruciato</a></li>
           
-          <li><a href="/roma/casal-de-pazzi.html">Casal de&#39; Pazzi</a></li>
+          <li data-zone=""><a href="/roma/casal-de-pazzi.html">Casal de&#39; Pazzi</a></li>
           
-          <li><a href="/roma/pietralata.html">Pietralata</a></li>
+          <li data-zone=""><a href="/roma/pietralata.html">Pietralata</a></li>
           
-          <li><a href="/roma/s-alessandro.html">S. Alessandro</a></li>
+          <li data-zone=""><a href="/roma/s-alessandro.html">S. Alessandro</a></li>
           
-          <li><a href="/roma/s-basilio.html">S. Basilio</a></li>
+          <li data-zone=""><a href="/roma/s-basilio.html">S. Basilio</a></li>
           
-          <li><a href="/roma/settecamini.html">Settecamini</a></li>
+          <li data-zone=""><a href="/roma/settecamini.html">Settecamini</a></li>
           
-          <li><a href="/roma/tiburtino-nord.html">Tiburtino Nord</a></li>
+          <li data-zone=""><a href="/roma/tiburtino-nord.html">Tiburtino Nord</a></li>
           
-          <li><a href="/roma/tiburtino-sud.html">Tiburtino Sud</a></li>
+          <li data-zone=""><a href="/roma/tiburtino-sud.html">Tiburtino Sud</a></li>
           
-          <li><a href="/roma/tor-cervara.html">Tor Cervara</a></li>
+          <li data-zone=""><a href="/roma/tor-cervara.html">Tor Cervara</a></li>
           
         </ul>
       </section>
@@ -688,29 +702,29 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/alessandrina.html">Alessandrina</a></li>
+          <li data-zone=""><a href="/roma/alessandrina.html">Alessandrina</a></li>
           
-          <li><a href="/roma/casetta-mistica.html">Casetta Mistica</a></li>
+          <li data-zone=""><a href="/roma/casetta-mistica.html">Casetta Mistica</a></li>
           
-          <li><a href="/roma/casilino.html">Casilino</a></li>
+          <li data-zone=""><a href="/roma/casilino.html">Casilino</a></li>
           
-          <li><a href="/roma/centocelle.html">Centocelle</a></li>
+          <li data-zone=""><a href="/roma/centocelle.html">Centocelle</a></li>
           
-          <li><a href="/roma/centro-direzionale-centocelle.html">Centro Direzionale Centocelle</a></li>
+          <li data-zone=""><a href="/roma/centro-direzionale-centocelle.html">Centro Direzionale Centocelle</a></li>
           
-          <li><a href="/roma/gordiani.html">Gordiani</a></li>
+          <li data-zone=""><a href="/roma/gordiani.html">Gordiani</a></li>
           
-          <li><a href="/roma/la-rustica.html">La Rustica</a></li>
+          <li data-zone=""><a href="/roma/la-rustica.html">La Rustica</a></li>
           
-          <li><a href="/roma/omo.html">Omo</a></li>
+          <li data-zone=""><a href="/roma/omo.html">Omo</a></li>
           
-          <li><a href="/roma/quadraro.html">Quadraro</a></li>
+          <li data-zone=""><a href="/roma/quadraro.html">Quadraro</a></li>
           
-          <li><a href="/roma/tor-sapienza.html">Tor Sapienza</a></li>
+          <li data-zone=""><a href="/roma/tor-sapienza.html">Tor Sapienza</a></li>
           
-          <li><a href="/roma/tor-tre-teste.html">Tor Tre Teste</a></li>
+          <li data-zone=""><a href="/roma/tor-tre-teste.html">Tor Tre Teste</a></li>
           
-          <li><a href="/roma/torpignattara.html">Torpignattara</a></li>
+          <li data-zone=""><a href="/roma/torpignattara.html">Torpignattara</a></li>
           
         </ul>
       </section>
@@ -722,17 +736,17 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/acqua-vergine.html">Acqua Vergine</a></li>
+          <li data-zone=""><a href="/roma/acqua-vergine.html">Acqua Vergine</a></li>
           
-          <li><a href="/roma/borghesiana.html">Borghesiana</a></li>
+          <li data-zone=""><a href="/roma/borghesiana.html">Borghesiana</a></li>
           
-          <li><a href="/roma/giardinetti-tor-vergata.html">Giardinetti-Tor Vergata</a></li>
+          <li data-zone=""><a href="/roma/giardinetti-tor-vergata.html">Giardinetti-Tor Vergata</a></li>
           
-          <li><a href="/roma/lunghezza.html">Lunghezza</a></li>
+          <li data-zone=""><a href="/roma/lunghezza.html">Lunghezza</a></li>
           
-          <li><a href="/roma/torre-angela.html">Torre Angela</a></li>
+          <li data-zone=""><a href="/roma/torre-angela.html">Torre Angela</a></li>
           
-          <li><a href="/roma/torre-maura.html">Torre Maura</a></li>
+          <li data-zone=""><a href="/roma/torre-maura.html">Torre Maura</a></li>
           
         </ul>
       </section>
@@ -744,39 +758,39 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/appio.html">Appio</a></li>
+          <li data-zone=""><a href="/roma/appio.html">Appio</a></li>
           
-          <li><a href="/roma/appio-claudio.html">Appio-Claudio</a></li>
+          <li data-zone=""><a href="/roma/appio-claudio.html">Appio-Claudio</a></li>
           
-          <li><a href="/roma/barcaccia.html">Barcaccia</a></li>
+          <li data-zone=""><a href="/roma/barcaccia.html">Barcaccia</a></li>
           
-          <li><a href="/roma/ciampino.html">Ciampino</a></li>
+          <li data-zone=""><a href="/roma/ciampino.html">Ciampino</a></li>
           
-          <li><a href="/roma/don-bosco.html">Don Bosco</a></li>
+          <li data-zone=""><a href="/roma/don-bosco.html">Don Bosco</a></li>
           
-          <li><a href="/roma/gregna.html">Gregna</a></li>
+          <li data-zone=""><a href="/roma/gregna.html">Gregna</a></li>
           
-          <li><a href="/roma/latino.html">Latino</a></li>
+          <li data-zone=""><a href="/roma/latino.html">Latino</a></li>
           
-          <li><a href="/roma/lucrezia-romana.html">Lucrezia Romana</a></li>
+          <li data-zone=""><a href="/roma/lucrezia-romana.html">Lucrezia Romana</a></li>
           
-          <li><a href="/roma/morena.html">Morena</a></li>
+          <li data-zone=""><a href="/roma/morena.html">Morena</a></li>
           
-          <li><a href="/roma/osteria-del-curato.html">Osteria del Curato</a></li>
+          <li data-zone=""><a href="/roma/osteria-del-curato.html">Osteria del Curato</a></li>
           
-          <li><a href="/roma/pignatelli.html">Pignatelli</a></li>
+          <li data-zone=""><a href="/roma/pignatelli.html">Pignatelli</a></li>
           
-          <li><a href="/roma/quarto-miglio.html">Quarto Miglio</a></li>
+          <li data-zone=""><a href="/roma/quarto-miglio.html">Quarto Miglio</a></li>
           
-          <li><a href="/roma/romanina.html">Romanina</a></li>
+          <li data-zone=""><a href="/roma/romanina.html">Romanina</a></li>
           
-          <li><a href="/roma/tor-fiscale.html">Tor Fiscale</a></li>
+          <li data-zone=""><a href="/roma/tor-fiscale.html">Tor Fiscale</a></li>
           
-          <li><a href="/roma/torrespaccata.html">Torrespaccata</a></li>
+          <li data-zone=""><a href="/roma/torrespaccata.html">Torrespaccata</a></li>
           
-          <li><a href="/roma/tuscolano-nord.html">Tuscolano Nord</a></li>
+          <li data-zone=""><a href="/roma/tuscolano-nord.html">Tuscolano Nord</a></li>
           
-          <li><a href="/roma/tuscolano-sud.html">Tuscolano Sud</a></li>
+          <li data-zone=""><a href="/roma/tuscolano-sud.html">Tuscolano Sud</a></li>
           
         </ul>
       </section>
@@ -788,23 +802,23 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/appia-antica-nord.html">Appia Antica Nord</a></li>
+          <li data-zone=""><a href="/roma/appia-antica-nord.html">Appia Antica Nord</a></li>
           
-          <li><a href="/roma/appia-antica-sud.html">Appia Antica Sud</a></li>
+          <li data-zone=""><a href="/roma/appia-antica-sud.html">Appia Antica Sud</a></li>
           
-          <li><a href="/roma/garbatella.html">Garbatella</a></li>
+          <li data-zone=""><a href="/roma/garbatella.html">Garbatella</a></li>
           
-          <li><a href="/roma/grottaperfetta.html">Grottaperfetta</a></li>
+          <li data-zone=""><a href="/roma/grottaperfetta.html">Grottaperfetta</a></li>
           
-          <li><a href="/roma/navigatori.html">Navigatori</a></li>
+          <li data-zone=""><a href="/roma/navigatori.html">Navigatori</a></li>
           
-          <li><a href="/roma/ostiense.html">Ostiense</a></li>
+          <li data-zone=""><a href="/roma/ostiense.html">Ostiense</a></li>
           
-          <li><a href="/roma/tormarancia.html">Tormarancia</a></li>
+          <li data-zone=""><a href="/roma/tormarancia.html">Tormarancia</a></li>
           
-          <li><a href="/roma/tre-fontane.html">Tre Fontane</a></li>
+          <li data-zone=""><a href="/roma/tre-fontane.html">Tre Fontane</a></li>
           
-          <li><a href="/roma/valco-s-paolo.html">Valco S. Paolo</a></li>
+          <li data-zone=""><a href="/roma/valco-s-paolo.html">Valco S. Paolo</a></li>
           
         </ul>
       </section>
@@ -816,31 +830,31 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/castel-romano.html">Castel Romano</a></li>
+          <li data-zone=""><a href="/roma/castel-romano.html">Castel Romano</a></li>
           
-          <li><a href="/roma/cecchignola.html">Cecchignola</a></li>
+          <li data-zone=""><a href="/roma/cecchignola.html">Cecchignola</a></li>
           
-          <li><a href="/roma/decima.html">Decima</a></li>
+          <li data-zone=""><a href="/roma/decima.html">Decima</a></li>
           
-          <li><a href="/roma/eur.html">Eur</a></li>
+          <li data-zone=""><a href="/roma/eur.html">Eur</a></li>
           
-          <li><a href="/roma/laurentino.html">Laurentino</a></li>
+          <li data-zone=""><a href="/roma/laurentino.html">Laurentino</a></li>
           
-          <li><a href="/roma/mezzocammino.html">Mezzocammino</a></li>
+          <li data-zone=""><a href="/roma/mezzocammino.html">Mezzocammino</a></li>
           
-          <li><a href="/roma/porta-medaglia.html">Porta Medaglia</a></li>
+          <li data-zone=""><a href="/roma/porta-medaglia.html">Porta Medaglia</a></li>
           
-          <li><a href="/roma/santa-palomba.html">Santa Palomba</a></li>
+          <li data-zone=""><a href="/roma/santa-palomba.html">Santa Palomba</a></li>
           
-          <li><a href="/roma/spinaceto.html">Spinaceto</a></li>
+          <li data-zone=""><a href="/roma/spinaceto.html">Spinaceto</a></li>
           
-          <li><a href="/roma/tor-di-valle.html">Tor di Valle</a></li>
+          <li data-zone=""><a href="/roma/tor-di-valle.html">Tor di Valle</a></li>
           
-          <li><a href="/roma/torrino.html">Torrino</a></li>
+          <li data-zone=""><a href="/roma/torrino.html">Torrino</a></li>
           
-          <li><a href="/roma/vallerano-castel-di-leva.html">Vallerano Castel di Leva</a></li>
+          <li data-zone=""><a href="/roma/vallerano-castel-di-leva.html">Vallerano Castel di Leva</a></li>
           
-          <li><a href="/roma/villaggio-giuliano.html">Villaggio Giuliano</a></li>
+          <li data-zone=""><a href="/roma/villaggio-giuliano.html">Villaggio Giuliano</a></li>
           
         </ul>
       </section>
@@ -852,25 +866,25 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/acilia-nord.html">Acilia Nord</a></li>
+          <li data-zone=""><a href="/roma/acilia-nord.html">Acilia Nord</a></li>
           
-          <li><a href="/roma/acilia-sud.html">Acilia Sud</a></li>
+          <li data-zone=""><a href="/roma/acilia-sud.html">Acilia Sud</a></li>
           
-          <li><a href="/roma/castel-fusano.html">Castel Fusano</a></li>
+          <li data-zone=""><a href="/roma/castel-fusano.html">Castel Fusano</a></li>
           
-          <li><a href="/roma/castel-porziano.html">Castel Porziano</a></li>
+          <li data-zone=""><a href="/roma/castel-porziano.html">Castel Porziano</a></li>
           
-          <li><a href="/roma/infernetto.html">Infernetto</a></li>
+          <li data-zone=""><a href="/roma/infernetto.html">Infernetto</a></li>
           
-          <li><a href="/roma/malafede.html">Malafede</a></li>
+          <li data-zone=""><a href="/roma/malafede.html">Malafede</a></li>
           
-          <li><a href="/roma/ostia-antica.html">Ostia Antica</a></li>
+          <li data-zone=""><a href="/roma/ostia-antica.html">Ostia Antica</a></li>
           
-          <li><a href="/roma/ostia-nord.html">Ostia Nord</a></li>
+          <li data-zone=""><a href="/roma/ostia-nord.html">Ostia Nord</a></li>
           
-          <li><a href="/roma/ostia-sud.html">Ostia Sud</a></li>
+          <li data-zone=""><a href="/roma/ostia-sud.html">Ostia Sud</a></li>
           
-          <li><a href="/roma/palocco.html">Palocco</a></li>
+          <li data-zone=""><a href="/roma/palocco.html">Palocco</a></li>
           
         </ul>
       </section>
@@ -882,19 +896,19 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/corviale.html">Corviale</a></li>
+          <li data-zone=""><a href="/roma/corviale.html">Corviale</a></li>
           
-          <li><a href="/roma/magliana.html">Magliana</a></li>
+          <li data-zone=""><a href="/roma/magliana.html">Magliana</a></li>
           
-          <li><a href="/roma/marconi.html">Marconi</a></li>
+          <li data-zone=""><a href="/roma/marconi.html">Marconi</a></li>
           
-          <li><a href="/roma/pian-due-torri.html">Pian Due Torri</a></li>
+          <li data-zone=""><a href="/roma/pian-due-torri.html">Pian Due Torri</a></li>
           
-          <li><a href="/roma/ponte-galeria.html">Ponte Galeria</a></li>
+          <li data-zone=""><a href="/roma/ponte-galeria.html">Ponte Galeria</a></li>
           
-          <li><a href="/roma/portuense.html">Portuense</a></li>
+          <li data-zone=""><a href="/roma/portuense.html">Portuense</a></li>
           
-          <li><a href="/roma/trullo.html">Trullo</a></li>
+          <li data-zone=""><a href="/roma/trullo.html">Trullo</a></li>
           
         </ul>
       </section>
@@ -906,19 +920,19 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/buon-pastore.html">Buon Pastore</a></li>
+          <li data-zone=""><a href="/roma/buon-pastore.html">Buon Pastore</a></li>
           
-          <li><a href="/roma/colli-portuensi.html">Colli Portuensi</a></li>
+          <li data-zone=""><a href="/roma/colli-portuensi.html">Colli Portuensi</a></li>
           
-          <li><a href="/roma/gianicolense.html">Gianicolense</a></li>
+          <li data-zone=""><a href="/roma/gianicolense.html">Gianicolense</a></li>
           
-          <li><a href="/roma/massimina.html">Massimina</a></li>
+          <li data-zone=""><a href="/roma/massimina.html">Massimina</a></li>
           
-          <li><a href="/roma/pantano-di-grano.html">Pantano di Grano</a></li>
+          <li data-zone=""><a href="/roma/pantano-di-grano.html">Pantano di Grano</a></li>
           
-          <li><a href="/roma/pisana.html">Pisana</a></li>
+          <li data-zone=""><a href="/roma/pisana.html">Pisana</a></li>
           
-          <li><a href="/roma/villa-pamphili.html">Villa Pamphili</a></li>
+          <li data-zone=""><a href="/roma/villa-pamphili.html">Villa Pamphili</a></li>
           
         </ul>
       </section>
@@ -930,17 +944,17 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/aurelio-nord.html">Aurelio Nord</a></li>
+          <li data-zone=""><a href="/roma/aurelio-nord.html">Aurelio Nord</a></li>
           
-          <li><a href="/roma/aurelio-sud.html">Aurelio Sud</a></li>
+          <li data-zone=""><a href="/roma/aurelio-sud.html">Aurelio Sud</a></li>
           
-          <li><a href="/roma/boccea.html">Boccea</a></li>
+          <li data-zone=""><a href="/roma/boccea.html">Boccea</a></li>
           
-          <li><a href="/roma/casalotti-di-boccea.html">Casalotti di Boccea</a></li>
+          <li data-zone=""><a href="/roma/casalotti-di-boccea.html">Casalotti di Boccea</a></li>
           
-          <li><a href="/roma/fogaccia.html">Fogaccia</a></li>
+          <li data-zone=""><a href="/roma/fogaccia.html">Fogaccia</a></li>
           
-          <li><a href="/roma/val-cannuta.html">Val Cannuta</a></li>
+          <li data-zone=""><a href="/roma/val-cannuta.html">Val Cannuta</a></li>
           
         </ul>
       </section>
@@ -952,21 +966,21 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/castelluccia.html">Castelluccia</a></li>
+          <li data-zone=""><a href="/roma/castelluccia.html">Castelluccia</a></li>
           
-          <li><a href="/roma/medaglie-d-oro.html">Medaglie d&#39; Oro</a></li>
+          <li data-zone=""><a href="/roma/medaglie-d-oro.html">Medaglie d&#39; Oro</a></li>
           
-          <li><a href="/roma/ottavia.html">Ottavia</a></li>
+          <li data-zone=""><a href="/roma/ottavia.html">Ottavia</a></li>
           
-          <li><a href="/roma/pineto.html">Pineto</a></li>
+          <li data-zone=""><a href="/roma/pineto.html">Pineto</a></li>
           
-          <li><a href="/roma/primavalle.html">Primavalle</a></li>
+          <li data-zone=""><a href="/roma/primavalle.html">Primavalle</a></li>
           
-          <li><a href="/roma/s-maria-della-pieta.html">S. Maria della Pietà</a></li>
+          <li data-zone=""><a href="/roma/s-maria-della-pieta.html">S. Maria della Pietà</a></li>
           
-          <li><a href="/roma/s-maria-di-galeria.html">S. Maria di Galeria</a></li>
+          <li data-zone=""><a href="/roma/s-maria-di-galeria.html">S. Maria di Galeria</a></li>
           
-          <li><a href="/roma/trionfale.html">Trionfale</a></li>
+          <li data-zone=""><a href="/roma/trionfale.html">Trionfale</a></li>
           
         </ul>
       </section>
@@ -978,33 +992,33 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/acquatraversa.html">Acquatraversa</a></li>
+          <li data-zone=""><a href="/roma/acquatraversa.html">Acquatraversa</a></li>
           
-          <li><a href="/roma/aeropoprto-dell-urbe.html">Aeropoprto dell&#39; Urbe</a></li>
+          <li data-zone=""><a href="/roma/aeropoprto-dell-urbe.html">Aeropoprto dell&#39; Urbe</a></li>
           
-          <li><a href="/roma/cesano.html">Cesano</a></li>
+          <li data-zone=""><a href="/roma/cesano.html">Cesano</a></li>
           
-          <li><a href="/roma/farnesina.html">Farnesina</a></li>
+          <li data-zone=""><a href="/roma/farnesina.html">Farnesina</a></li>
           
-          <li><a href="/roma/foro-italico.html">Foro Italico</a></li>
+          <li data-zone=""><a href="/roma/foro-italico.html">Foro Italico</a></li>
           
-          <li><a href="/roma/giustiniana.html">Giustiniana</a></li>
+          <li data-zone=""><a href="/roma/giustiniana.html">Giustiniana</a></li>
           
-          <li><a href="/roma/grottarossa-ovest.html">Grottarossa Ovest</a></li>
+          <li data-zone=""><a href="/roma/grottarossa-ovest.html">Grottarossa Ovest</a></li>
           
-          <li><a href="/roma/la-storta.html">La Storta</a></li>
+          <li data-zone=""><a href="/roma/la-storta.html">La Storta</a></li>
           
-          <li><a href="/roma/labaro.html">Labaro</a></li>
+          <li data-zone=""><a href="/roma/labaro.html">Labaro</a></li>
           
-          <li><a href="/roma/martignano.html">Martignano</a></li>
+          <li data-zone=""><a href="/roma/martignano.html">Martignano</a></li>
           
-          <li><a href="/roma/prima-porta.html">Prima Porta</a></li>
+          <li data-zone=""><a href="/roma/prima-porta.html">Prima Porta</a></li>
           
-          <li><a href="/roma/settebagni.html">Settebagni</a></li>
+          <li data-zone=""><a href="/roma/settebagni.html">Settebagni</a></li>
           
-          <li><a href="/roma/tomba-di-nerone.html">Tomba di Nerone</a></li>
+          <li data-zone=""><a href="/roma/tomba-di-nerone.html">Tomba di Nerone</a></li>
           
-          <li><a href="/roma/tor-di-quinto.html">Tor di Quinto</a></li>
+          <li data-zone=""><a href="/roma/tor-di-quinto.html">Tor di Quinto</a></li>
           
         </ul>
       </section>
@@ -1016,9 +1030,9 @@
         </h3>
         <ul>
           
-          <li><a href="/roma/s-cornelia.html">S. Cornelia</a></li>
+          <li data-zone=""><a href="/roma/s-cornelia.html">S. Cornelia</a></li>
           
-          <li><a href="/roma/s-vittorino.html">S. Vittorino</a></li>
+          <li data-zone=""><a href="/roma/s-vittorino.html">S. Vittorino</a></li>
           
         </ul>
       </section>
@@ -1032,7 +1046,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="centro-storico">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/roma/centro-storico.html">Centro Storico</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1045,7 +1059,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Centro+Storico%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Centro Storico →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="nomentano">
     <span class="lab">With family</span>
     <span class="nm"><a href="/roma/nomentano.html">Nomentano</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1058,7 +1072,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Nomentano%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Nomentano →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="trastevere">
     <span class="lab">For going out</span>
     <span class="nm"><a href="/roma/trastevere.html">Trastevere</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1071,7 +1085,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Trastevere%2C+Rome%2C+Italy" target="_blank" rel="noopener">Find a place in Trastevere →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="acilia-nord">
     <span class="lab">Best rated overall</span>
     <span class="nm"><a href="/roma/acilia-nord.html">Acilia Nord</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -2626,6 +2640,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -2755,6 +2771,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -2773,6 +2790,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -3163,6 +3181,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

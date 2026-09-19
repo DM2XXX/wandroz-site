@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -546,27 +560,27 @@
     
     <ul>
       
-      <li><a href="/stockholm/bromma.html">Bromma</a></li>
+      <li data-zone="bromma"><a href="/stockholm/bromma.html">Bromma</a></li>
       
-      <li><a href="/stockholm/enskede-arsta-vantor.html">Enskede-Årsta-Vantör</a></li>
+      <li data-zone="enskede-arsta-vantor"><a href="/stockholm/enskede-arsta-vantor.html">Enskede-Årsta-Vantör</a></li>
       
-      <li><a href="/stockholm/farsta.html">Farsta</a></li>
+      <li data-zone="farsta"><a href="/stockholm/farsta.html">Farsta</a></li>
       
-      <li><a href="/stockholm/hagersten-alvsjo.html">Hägersten-Älvsjö</a></li>
+      <li data-zone="hagersten-alvsjo"><a href="/stockholm/hagersten-alvsjo.html">Hägersten-Älvsjö</a></li>
       
-      <li><a href="/stockholm/hasselby-vallingby.html">Hässelby-Vällingby</a></li>
+      <li data-zone="hasselby-vallingby"><a href="/stockholm/hasselby-vallingby.html">Hässelby-Vällingby</a></li>
       
-      <li><a href="/stockholm/jarva.html">Järva</a></li>
+      <li data-zone="jarva"><a href="/stockholm/jarva.html">Järva</a></li>
       
-      <li><a href="/stockholm/kungsholmen.html">Kungsholmen</a></li>
+      <li data-zone="kungsholmen"><a href="/stockholm/kungsholmen.html">Kungsholmen</a></li>
       
-      <li><a href="/stockholm/norra-innerstaden.html">Norra innerstaden</a></li>
+      <li data-zone="norra-innerstaden"><a href="/stockholm/norra-innerstaden.html">Norra innerstaden</a></li>
       
-      <li><a href="/stockholm/skarpnack.html">Skarpnäck</a></li>
+      <li data-zone="skarpnack"><a href="/stockholm/skarpnack.html">Skarpnäck</a></li>
       
-      <li><a href="/stockholm/skarholmen.html">Skärholmen</a></li>
+      <li data-zone="skarholmen"><a href="/stockholm/skarholmen.html">Skärholmen</a></li>
       
-      <li><a href="/stockholm/sodermalm.html">Södermalm</a></li>
+      <li data-zone="sodermalm"><a href="/stockholm/sodermalm.html">Södermalm</a></li>
       
     </ul>
     
@@ -577,7 +591,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="norra-innerstaden">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/stockholm/norra-innerstaden.html">Norra innerstaden</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -586,11 +600,11 @@
     </div>
     <span class="why">5 of the city&#39;s main sights are close enough to walk between.</span>
     
-    <span class="caution">Its rating comes from the city&#39;s own published figures, counted per registered resident and compared only with other districts of this city.</span>
+    <span class="caution">Still a practical base for a first visit. 5 of the city&#39;s main sights are inside it. The city&#39;s published rate is counted per registered resident, so a district that hosts many more people than it houses reads higher. Take extra care, particularly after dark — that is what the rating is for, not a reason to stay out of the area.</span>
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Norra+innerstaden%2C+Stockholm%2C+Sweden" target="_blank" rel="noopener">Find a place in Norra innerstaden →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="sodermalm">
     <span class="lab">For going out</span>
     <span class="nm"><a href="/stockholm/sodermalm.html">Södermalm</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -603,7 +617,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=S%C3%B6dermalm%2C+Stockholm%2C+Sweden" target="_blank" rel="noopener">Find a place in Södermalm →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="bromma">
     <span class="lab">Best rated overall</span>
     <span class="nm"><a href="/stockholm/bromma.html">Bromma</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -862,6 +876,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -991,6 +1007,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1009,6 +1026,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -1399,6 +1417,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -560,39 +574,39 @@
         </h3>
         <ul>
           
-          <li><a href="/firenze/affrico.html">Affrico</a></li>
+          <li data-zone=""><a href="/firenze/affrico.html">Affrico</a></li>
           
-          <li><a href="/firenze/bellariva.html">Bellariva</a></li>
+          <li data-zone=""><a href="/firenze/bellariva.html">Bellariva</a></li>
           
-          <li><a href="/firenze/calatafimi.html">Calatafimi</a></li>
+          <li data-zone=""><a href="/firenze/calatafimi.html">Calatafimi</a></li>
           
-          <li><a href="/firenze/campo-di-marte.html">Campo di Marte (stadium, station)</a></li>
+          <li data-zone=""><a href="/firenze/campo-di-marte.html">Campo di Marte (stadium, station)</a></li>
           
-          <li><a href="/firenze/coverciano.html">Coverciano</a></li>
+          <li data-zone=""><a href="/firenze/coverciano.html">Coverciano</a></li>
           
-          <li><a href="/firenze/cure.html">Cure</a></li>
+          <li data-zone=""><a href="/firenze/cure.html">Cure</a></li>
           
-          <li><a href="/firenze/donatello.html">Donatello</a></li>
+          <li data-zone=""><a href="/firenze/donatello.html">Donatello</a></li>
           
-          <li><a href="/firenze/faentina.html">Faentina</a></li>
+          <li data-zone=""><a href="/firenze/faentina.html">Faentina</a></li>
           
-          <li><a href="/firenze/gioberti.html">Gioberti</a></li>
+          <li data-zone=""><a href="/firenze/gioberti.html">Gioberti</a></li>
           
-          <li><a href="/firenze/liberta-savonarola.html">Libertà - Savonarola</a></li>
+          <li data-zone=""><a href="/firenze/liberta-savonarola.html">Libertà - Savonarola</a></li>
           
-          <li><a href="/firenze/mille.html">Mille</a></li>
+          <li data-zone=""><a href="/firenze/mille.html">Mille</a></li>
           
-          <li><a href="/firenze/oberdan.html">Oberdan</a></li>
+          <li data-zone=""><a href="/firenze/oberdan.html">Oberdan</a></li>
           
-          <li><a href="/firenze/s-gervasio.html">San Gervasio</a></li>
+          <li data-zone=""><a href="/firenze/s-gervasio.html">San Gervasio</a></li>
           
-          <li><a href="/firenze/s-salvi.html">San Salvi</a></li>
+          <li data-zone=""><a href="/firenze/s-salvi.html">San Salvi</a></li>
           
-          <li><a href="/firenze/settignano.html">Settignano</a></li>
+          <li data-zone=""><a href="/firenze/settignano.html">Settignano</a></li>
           
-          <li><a href="/firenze/trespiano.html">Trespiano</a></li>
+          <li data-zone=""><a href="/firenze/trespiano.html">Trespiano</a></li>
           
-          <li><a href="/firenze/varlungo-rovezzano.html">Varlungo - Rovezzano</a></li>
+          <li data-zone=""><a href="/firenze/varlungo-rovezzano.html">Varlungo - Rovezzano</a></li>
           
         </ul>
       </section>
@@ -604,35 +618,35 @@
         </h3>
         <ul>
           
-          <li><a href="/firenze/bellosguardo.html">Bellosguardo</a></li>
+          <li data-zone=""><a href="/firenze/bellosguardo.html">Bellosguardo</a></li>
           
-          <li><a href="/firenze/boboli.html">Boboli (Giardino di Boboli)</a></li>
+          <li data-zone=""><a href="/firenze/boboli.html">Boboli (Giardino di Boboli)</a></li>
           
-          <li><a href="/firenze/cascine.html">Cascine (Parco delle Cascine)</a></li>
+          <li data-zone=""><a href="/firenze/cascine.html">Cascine (Parco delle Cascine)</a></li>
           
-          <li><a href="/firenze/centro.html">Centro Storico (Duomo, Signoria)</a></li>
+          <li data-zone=""><a href="/firenze/centro.html">Centro Storico (Duomo, Signoria)</a></li>
           
-          <li><a href="/firenze/mercato-centrale.html">Mercato Centrale (San Lorenzo)</a></li>
+          <li data-zone=""><a href="/firenze/mercato-centrale.html">Mercato Centrale (San Lorenzo)</a></li>
           
-          <li><a href="/firenze/michelangelo.html">Michelangelo (Piazzale Michelangelo)</a></li>
+          <li data-zone=""><a href="/firenze/michelangelo.html">Michelangelo (Piazzale Michelangelo)</a></li>
           
-          <li><a href="/firenze/poggio-imperiale.html">Poggio Imperiale</a></li>
+          <li data-zone=""><a href="/firenze/poggio-imperiale.html">Poggio Imperiale</a></li>
           
-          <li><a href="/firenze/puccini-ponte-alle-mosse.html">Puccini - Ponte alle Mosse</a></li>
+          <li data-zone=""><a href="/firenze/puccini-ponte-alle-mosse.html">Puccini - Ponte alle Mosse</a></li>
           
-          <li><a href="/firenze/s-frediano.html">San Frediano (Oltrarno)</a></li>
+          <li data-zone=""><a href="/firenze/s-frediano.html">San Frediano (Oltrarno)</a></li>
           
-          <li><a href="/firenze/s-jacopino.html">San Jacopino</a></li>
+          <li data-zone=""><a href="/firenze/s-jacopino.html">San Jacopino</a></li>
           
-          <li><a href="/firenze/s-marco.html">San Marco</a></li>
+          <li data-zone=""><a href="/firenze/s-marco.html">San Marco</a></li>
           
-          <li><a href="/firenze/s-ambrogio.html">Sant&#39;Ambrogio</a></li>
+          <li data-zone=""><a href="/firenze/s-ambrogio.html">Sant&#39;Ambrogio</a></li>
           
-          <li><a href="/firenze/s-croce.html">Santa Croce</a></li>
+          <li data-zone=""><a href="/firenze/s-croce.html">Santa Croce</a></li>
           
-          <li><a href="/firenze/s-spirito.html">Santo Spirito (Oltrarno)</a></li>
+          <li data-zone=""><a href="/firenze/s-spirito.html">Santo Spirito (Oltrarno)</a></li>
           
-          <li><a href="/firenze/stazione-il-prato.html">Stazione - Il Prato (Santa Maria Novella)</a></li>
+          <li data-zone=""><a href="/firenze/stazione-il-prato.html">Stazione - Il Prato (Santa Maria Novella)</a></li>
           
         </ul>
       </section>
@@ -644,31 +658,31 @@
         </h3>
         <ul>
           
-          <li><a href="/firenze/arcetri.html">Arcetri</a></li>
+          <li data-zone=""><a href="/firenze/arcetri.html">Arcetri</a></li>
           
-          <li><a href="/firenze/bagnese-fiume-greve.html">Bagnese - Fiume Greve</a></li>
+          <li data-zone=""><a href="/firenze/bagnese-fiume-greve.html">Bagnese - Fiume Greve</a></li>
           
-          <li><a href="/firenze/bandino.html">Bandino</a></li>
+          <li data-zone=""><a href="/firenze/bandino.html">Bandino</a></li>
           
-          <li><a href="/firenze/cascine-del-riccio-cinque-vie.html">Cascine del Riccio - Cinque Vie</a></li>
+          <li data-zone=""><a href="/firenze/cascine-del-riccio-cinque-vie.html">Cascine del Riccio - Cinque Vie</a></li>
           
-          <li><a href="/firenze/due-strade.html">Due Strade</a></li>
+          <li data-zone=""><a href="/firenze/due-strade.html">Due Strade</a></li>
           
-          <li><a href="/firenze/europa.html">Europa</a></li>
+          <li data-zone=""><a href="/firenze/europa.html">Europa</a></li>
           
-          <li><a href="/firenze/galluzzo.html">Galluzzo</a></li>
+          <li data-zone=""><a href="/firenze/galluzzo.html">Galluzzo</a></li>
           
-          <li><a href="/firenze/gavinana.html">Gavinana</a></li>
+          <li data-zone=""><a href="/firenze/gavinana.html">Gavinana</a></li>
           
-          <li><a href="/firenze/monteripaldi.html">Monteripaldi</a></li>
+          <li data-zone=""><a href="/firenze/monteripaldi.html">Monteripaldi</a></li>
           
-          <li><a href="/firenze/ponte-a-ema.html">Ponte a Ema</a></li>
+          <li data-zone=""><a href="/firenze/ponte-a-ema.html">Ponte a Ema</a></li>
           
-          <li><a href="/firenze/senese.html">Senese</a></li>
+          <li data-zone=""><a href="/firenze/senese.html">Senese</a></li>
           
-          <li><a href="/firenze/sorgane-cinque-vie.html">Sorgane - Cinque Vie</a></li>
+          <li data-zone=""><a href="/firenze/sorgane-cinque-vie.html">Sorgane - Cinque Vie</a></li>
           
-          <li><a href="/firenze/torre-del-gallo.html">Torre del Gallo</a></li>
+          <li data-zone=""><a href="/firenze/torre-del-gallo.html">Torre del Gallo</a></li>
           
         </ul>
       </section>
@@ -680,25 +694,25 @@
         </h3>
         <ul>
           
-          <li><a href="/firenze/isolotto-nord.html">Isolotto Nord</a></li>
+          <li data-zone=""><a href="/firenze/isolotto-nord.html">Isolotto Nord</a></li>
           
-          <li><a href="/firenze/isolotto-sud.html">Isolotto Sud</a></li>
+          <li data-zone=""><a href="/firenze/isolotto-sud.html">Isolotto Sud</a></li>
           
-          <li><a href="/firenze/legnaia.html">Legnaia</a></li>
+          <li data-zone=""><a href="/firenze/legnaia.html">Legnaia</a></li>
           
-          <li><a href="/firenze/mantignano-ugnano-sollicciano.html">Mantignano - Ugnano - Sollicciano</a></li>
+          <li data-zone=""><a href="/firenze/mantignano-ugnano-sollicciano.html">Mantignano - Ugnano - Sollicciano</a></li>
           
-          <li><a href="/firenze/monticelli.html">Monticelli</a></li>
+          <li data-zone=""><a href="/firenze/monticelli.html">Monticelli</a></li>
           
-          <li><a href="/firenze/pignone.html">Pignone</a></li>
+          <li data-zone=""><a href="/firenze/pignone.html">Pignone</a></li>
           
-          <li><a href="/firenze/piombino-etruria.html">Piombino - Etruria</a></li>
+          <li data-zone=""><a href="/firenze/piombino-etruria.html">Piombino - Etruria</a></li>
           
-          <li><a href="/firenze/s-bartolo-a-cintoia.html">San Bartolo a Cintoia</a></li>
+          <li data-zone=""><a href="/firenze/s-bartolo-a-cintoia.html">San Bartolo a Cintoia</a></li>
           
-          <li><a href="/firenze/soffiano.html">Soffiano</a></li>
+          <li data-zone=""><a href="/firenze/soffiano.html">Soffiano</a></li>
           
-          <li><a href="/firenze/torregalli.html">Torregalli</a></li>
+          <li data-zone=""><a href="/firenze/torregalli.html">Torregalli</a></li>
           
         </ul>
       </section>
@@ -710,43 +724,43 @@
         </h3>
         <ul>
           
-          <li><a href="/firenze/aeroporto.html">Aeroporto (Peretola Airport)</a></li>
+          <li data-zone=""><a href="/firenze/aeroporto.html">Aeroporto (Peretola Airport)</a></li>
           
-          <li><a href="/firenze/brozzi-le-piagge.html">Brozzi - Le Piagge</a></li>
+          <li data-zone=""><a href="/firenze/brozzi-le-piagge.html">Brozzi - Le Piagge</a></li>
           
-          <li><a href="/firenze/careggi.html">Careggi</a></li>
+          <li data-zone=""><a href="/firenze/careggi.html">Careggi</a></li>
           
-          <li><a href="/firenze/castello.html">Castello</a></li>
+          <li data-zone=""><a href="/firenze/castello.html">Castello</a></li>
           
-          <li><a href="/firenze/firenze-nova.html">Firenze Nova</a></li>
+          <li data-zone=""><a href="/firenze/firenze-nova.html">Firenze Nova</a></li>
           
-          <li><a href="/firenze/leopoldo.html">Leopoldo</a></li>
+          <li data-zone=""><a href="/firenze/leopoldo.html">Leopoldo</a></li>
           
-          <li><a href="/firenze/liberta-fortezza.html">Libertà - Fortezza</a></li>
+          <li data-zone=""><a href="/firenze/liberta-fortezza.html">Libertà - Fortezza</a></li>
           
-          <li><a href="/firenze/massoni.html">Massoni</a></li>
+          <li data-zone=""><a href="/firenze/massoni.html">Massoni</a></li>
           
-          <li><a href="/firenze/montughi-poggetto.html">Montughi - Poggetto</a></li>
+          <li data-zone=""><a href="/firenze/montughi-poggetto.html">Montughi - Poggetto</a></li>
           
-          <li><a href="/firenze/novoli-baracca-est.html">Novoli - Baracca Est</a></li>
+          <li data-zone=""><a href="/firenze/novoli-baracca-est.html">Novoli - Baracca Est</a></li>
           
-          <li><a href="/firenze/novoli-baracca-ovest.html">Novoli - Baracca Ovest</a></li>
+          <li data-zone=""><a href="/firenze/novoli-baracca-ovest.html">Novoli - Baracca Ovest</a></li>
           
-          <li><a href="/firenze/novoli-fiat.html">Novoli - Fiat</a></li>
+          <li data-zone=""><a href="/firenze/novoli-fiat.html">Novoli - Fiat</a></li>
           
-          <li><a href="/firenze/novoli-lippi.html">Novoli - Lippi</a></li>
+          <li data-zone=""><a href="/firenze/novoli-lippi.html">Novoli - Lippi</a></li>
           
-          <li><a href="/firenze/peretola.html">Peretola</a></li>
+          <li data-zone=""><a href="/firenze/peretola.html">Peretola</a></li>
           
-          <li><a href="/firenze/petriolo-quaracchi.html">Petriolo - Quaracchi</a></li>
+          <li data-zone=""><a href="/firenze/petriolo-quaracchi.html">Petriolo - Quaracchi</a></li>
           
-          <li><a href="/firenze/ponte-di-mezzo.html">Ponte di Mezzo</a></li>
+          <li data-zone=""><a href="/firenze/ponte-di-mezzo.html">Ponte di Mezzo</a></li>
           
-          <li><a href="/firenze/rifredi.html">Rifredi</a></li>
+          <li data-zone=""><a href="/firenze/rifredi.html">Rifredi</a></li>
           
-          <li><a href="/firenze/serpiolle.html">Serpiolle</a></li>
+          <li data-zone=""><a href="/firenze/serpiolle.html">Serpiolle</a></li>
           
-          <li><a href="/firenze/viesseux.html">Viesseux</a></li>
+          <li data-zone=""><a href="/firenze/viesseux.html">Viesseux</a></li>
           
         </ul>
       </section>
@@ -760,7 +774,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="centro">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/firenze/centro.html">Centro Storico (Duomo, Signoria)</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -773,7 +787,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Piazza+del+Duomo%2C+Florence%2C+Italy" target="_blank" rel="noopener">Find a place in Centro Storico (Duomo, Signoria) →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="boboli">
     <span class="lab">With family · Best rated overall</span>
     <span class="nm"><a href="/firenze/boboli.html">Boboli (Giardino di Boboli)</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -786,7 +800,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Giardino+di+Boboli%2C+Florence%2C+Italy" target="_blank" rel="noopener">Find a place in Boboli (Giardino di Boboli) →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="s-spirito">
     <span class="lab">For going out</span>
     <span class="nm"><a href="/firenze/s-spirito.html">Santo Spirito (Oltrarno)</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1612,6 +1626,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1741,6 +1757,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1759,6 +1776,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -2149,6 +2167,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

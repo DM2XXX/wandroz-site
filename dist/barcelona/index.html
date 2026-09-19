@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -560,13 +574,13 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/sant-pere-santa-caterina-i-la-ribera.html">Sant Pere, Santa Caterina i la Ribera</a></li>
+          <li data-zone=""><a href="/barcelona/sant-pere-santa-caterina-i-la-ribera.html">Sant Pere, Santa Caterina i la Ribera</a></li>
           
-          <li><a href="/barcelona/el-barri-gotic.html">el Barri Gòtic</a></li>
+          <li data-zone=""><a href="/barcelona/el-barri-gotic.html">el Barri Gòtic</a></li>
           
-          <li><a href="/barcelona/el-raval.html">el Raval</a></li>
+          <li data-zone=""><a href="/barcelona/el-raval.html">el Raval</a></li>
           
-          <li><a href="/barcelona/la-barceloneta.html">la Barceloneta</a></li>
+          <li data-zone=""><a href="/barcelona/la-barceloneta.html">la Barceloneta</a></li>
           
         </ul>
       </section>
@@ -578,15 +592,15 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/vallcarca-i-els-penitents.html">Vallcarca i els Penitents</a></li>
+          <li data-zone=""><a href="/barcelona/vallcarca-i-els-penitents.html">Vallcarca i els Penitents</a></li>
           
-          <li><a href="/barcelona/el-camp-d-en-grassot-i-gracia-nova.html">el Camp d&#39;en Grassot i Gràcia Nova</a></li>
+          <li data-zone=""><a href="/barcelona/el-camp-d-en-grassot-i-gracia-nova.html">el Camp d&#39;en Grassot i Gràcia Nova</a></li>
           
-          <li><a href="/barcelona/el-coll.html">el Coll</a></li>
+          <li data-zone=""><a href="/barcelona/el-coll.html">el Coll</a></li>
           
-          <li><a href="/barcelona/la-salut.html">la Salut</a></li>
+          <li data-zone=""><a href="/barcelona/la-salut.html">la Salut</a></li>
           
-          <li><a href="/barcelona/la-vila-de-gracia.html">la Vila de Gràcia</a></li>
+          <li data-zone=""><a href="/barcelona/la-vila-de-gracia.html">la Vila de Gràcia</a></li>
           
         </ul>
       </section>
@@ -598,27 +612,27 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/can-baro.html">Can Baró</a></li>
+          <li data-zone=""><a href="/barcelona/can-baro.html">Can Baró</a></li>
           
-          <li><a href="/barcelona/horta.html">Horta</a></li>
+          <li data-zone=""><a href="/barcelona/horta.html">Horta</a></li>
           
-          <li><a href="/barcelona/montbau.html">Montbau</a></li>
+          <li data-zone=""><a href="/barcelona/montbau.html">Montbau</a></li>
           
-          <li><a href="/barcelona/sant-genis-dels-agudells.html">Sant Genís dels Agudells</a></li>
+          <li data-zone=""><a href="/barcelona/sant-genis-dels-agudells.html">Sant Genís dels Agudells</a></li>
           
-          <li><a href="/barcelona/el-baix-guinardo.html">el Baix Guinardó</a></li>
+          <li data-zone=""><a href="/barcelona/el-baix-guinardo.html">el Baix Guinardó</a></li>
           
-          <li><a href="/barcelona/el-carmel.html">el Carmel</a></li>
+          <li data-zone=""><a href="/barcelona/el-carmel.html">el Carmel</a></li>
           
-          <li><a href="/barcelona/el-guinardo.html">el Guinardó</a></li>
+          <li data-zone=""><a href="/barcelona/el-guinardo.html">el Guinardó</a></li>
           
-          <li><a href="/barcelona/la-clota.html">la Clota</a></li>
+          <li data-zone=""><a href="/barcelona/la-clota.html">la Clota</a></li>
           
-          <li><a href="/barcelona/la-font-d-en-fargues.html">la Font d&#39;en Fargues</a></li>
+          <li data-zone=""><a href="/barcelona/la-font-d-en-fargues.html">la Font d&#39;en Fargues</a></li>
           
-          <li><a href="/barcelona/la-teixonera.html">la Teixonera</a></li>
+          <li data-zone=""><a href="/barcelona/la-teixonera.html">la Teixonera</a></li>
           
-          <li><a href="/barcelona/la-vall-d-hebron.html">la Vall d&#39;Hebron</a></li>
+          <li data-zone=""><a href="/barcelona/la-vall-d-hebron.html">la Vall d&#39;Hebron</a></li>
           
         </ul>
       </section>
@@ -630,17 +644,17 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/sant-antoni.html">Sant Antoni</a></li>
+          <li data-zone=""><a href="/barcelona/sant-antoni.html">Sant Antoni</a></li>
           
-          <li><a href="/barcelona/el-fort-pienc.html">el Fort Pienc</a></li>
+          <li data-zone=""><a href="/barcelona/el-fort-pienc.html">el Fort Pienc</a></li>
           
-          <li><a href="/barcelona/l-antiga-esquerra-de-l-eixample.html">l&#39;Antiga Esquerra de l&#39;Eixample</a></li>
+          <li data-zone=""><a href="/barcelona/l-antiga-esquerra-de-l-eixample.html">l&#39;Antiga Esquerra de l&#39;Eixample</a></li>
           
-          <li><a href="/barcelona/la-dreta-de-l-eixample.html">la Dreta de l&#39;Eixample</a></li>
+          <li data-zone=""><a href="/barcelona/la-dreta-de-l-eixample.html">la Dreta de l&#39;Eixample</a></li>
           
-          <li><a href="/barcelona/la-nova-esquerra-de-l-eixample.html">la Nova Esquerra de l&#39;Eixample</a></li>
+          <li data-zone=""><a href="/barcelona/la-nova-esquerra-de-l-eixample.html">la Nova Esquerra de l&#39;Eixample</a></li>
           
-          <li><a href="/barcelona/la-sagrada-familia.html">la Sagrada Família</a></li>
+          <li data-zone=""><a href="/barcelona/la-sagrada-familia.html">la Sagrada Família</a></li>
           
         </ul>
       </section>
@@ -652,11 +666,11 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/pedralbes.html">Pedralbes</a></li>
+          <li data-zone=""><a href="/barcelona/pedralbes.html">Pedralbes</a></li>
           
-          <li><a href="/barcelona/la-maternitat-i-sant-ramon.html">la Maternitat i Sant Ramon</a></li>
+          <li data-zone=""><a href="/barcelona/la-maternitat-i-sant-ramon.html">la Maternitat i Sant Ramon</a></li>
           
-          <li><a href="/barcelona/les-corts.html">les Corts</a></li>
+          <li data-zone=""><a href="/barcelona/les-corts.html">les Corts</a></li>
           
         </ul>
       </section>
@@ -668,31 +682,31 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/can-peguera.html">Can Peguera</a></li>
+          <li data-zone=""><a href="/barcelona/can-peguera.html">Can Peguera</a></li>
           
-          <li><a href="/barcelona/canyelles.html">Canyelles</a></li>
+          <li data-zone=""><a href="/barcelona/canyelles.html">Canyelles</a></li>
           
-          <li><a href="/barcelona/ciutat-meridiana.html">Ciutat Meridiana</a></li>
+          <li data-zone=""><a href="/barcelona/ciutat-meridiana.html">Ciutat Meridiana</a></li>
           
-          <li><a href="/barcelona/porta.html">Porta</a></li>
+          <li data-zone=""><a href="/barcelona/porta.html">Porta</a></li>
           
-          <li><a href="/barcelona/torre-baro.html">Torre Baró</a></li>
+          <li data-zone=""><a href="/barcelona/torre-baro.html">Torre Baró</a></li>
           
-          <li><a href="/barcelona/vallbona.html">Vallbona</a></li>
+          <li data-zone=""><a href="/barcelona/vallbona.html">Vallbona</a></li>
           
-          <li><a href="/barcelona/verdun.html">Verdun</a></li>
+          <li data-zone=""><a href="/barcelona/verdun.html">Verdun</a></li>
           
-          <li><a href="/barcelona/vilapicina-i-la-torre-llobeta.html">Vilapicina i la Torre Llobeta</a></li>
+          <li data-zone=""><a href="/barcelona/vilapicina-i-la-torre-llobeta.html">Vilapicina i la Torre Llobeta</a></li>
           
-          <li><a href="/barcelona/el-turo-de-la-peira.html">el Turó de la Peira</a></li>
+          <li data-zone=""><a href="/barcelona/el-turo-de-la-peira.html">el Turó de la Peira</a></li>
           
-          <li><a href="/barcelona/la-guineueta.html">la Guineueta</a></li>
+          <li data-zone=""><a href="/barcelona/la-guineueta.html">la Guineueta</a></li>
           
-          <li><a href="/barcelona/la-prosperitat.html">la Prosperitat</a></li>
+          <li data-zone=""><a href="/barcelona/la-prosperitat.html">la Prosperitat</a></li>
           
-          <li><a href="/barcelona/la-trinitat-nova.html">la Trinitat Nova</a></li>
+          <li data-zone=""><a href="/barcelona/la-trinitat-nova.html">la Trinitat Nova</a></li>
           
-          <li><a href="/barcelona/les-roquetes.html">les Roquetes</a></li>
+          <li data-zone=""><a href="/barcelona/les-roquetes.html">les Roquetes</a></li>
           
         </ul>
       </section>
@@ -704,19 +718,19 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/baro-de-viver.html">Baró de Viver</a></li>
+          <li data-zone=""><a href="/barcelona/baro-de-viver.html">Baró de Viver</a></li>
           
-          <li><a href="/barcelona/navas.html">Navas</a></li>
+          <li data-zone=""><a href="/barcelona/navas.html">Navas</a></li>
           
-          <li><a href="/barcelona/sant-andreu.html">Sant Andreu</a></li>
+          <li data-zone=""><a href="/barcelona/sant-andreu.html">Sant Andreu</a></li>
           
-          <li><a href="/barcelona/el-bon-pastor.html">el Bon Pastor</a></li>
+          <li data-zone=""><a href="/barcelona/el-bon-pastor.html">el Bon Pastor</a></li>
           
-          <li><a href="/barcelona/el-congres-i-els-indians.html">el Congrés i els Indians</a></li>
+          <li data-zone=""><a href="/barcelona/el-congres-i-els-indians.html">el Congrés i els Indians</a></li>
           
-          <li><a href="/barcelona/la-sagrera.html">la Sagrera</a></li>
+          <li data-zone=""><a href="/barcelona/la-sagrera.html">la Sagrera</a></li>
           
-          <li><a href="/barcelona/la-trinitat-vella.html">la Trinitat Vella</a></li>
+          <li data-zone=""><a href="/barcelona/la-trinitat-vella.html">la Trinitat Vella</a></li>
           
         </ul>
       </section>
@@ -728,25 +742,25 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/diagonal-mar-i-el-front-maritim-del-poblenou.html">Diagonal Mar i el Front Marítim del Poblenou</a></li>
+          <li data-zone=""><a href="/barcelona/diagonal-mar-i-el-front-maritim-del-poblenou.html">Diagonal Mar i el Front Marítim del Poblenou</a></li>
           
-          <li><a href="/barcelona/provencals-del-poblenou.html">Provençals del Poblenou</a></li>
+          <li data-zone=""><a href="/barcelona/provencals-del-poblenou.html">Provençals del Poblenou</a></li>
           
-          <li><a href="/barcelona/sant-marti-de-provencals.html">Sant Martí de Provençals</a></li>
+          <li data-zone=""><a href="/barcelona/sant-marti-de-provencals.html">Sant Martí de Provençals</a></li>
           
-          <li><a href="/barcelona/el-besos-i-el-maresme.html">el Besòs i el Maresme</a></li>
+          <li data-zone=""><a href="/barcelona/el-besos-i-el-maresme.html">el Besòs i el Maresme</a></li>
           
-          <li><a href="/barcelona/el-camp-de-l-arpa-del-clot.html">el Camp de l&#39;Arpa del Clot</a></li>
+          <li data-zone=""><a href="/barcelona/el-camp-de-l-arpa-del-clot.html">el Camp de l&#39;Arpa del Clot</a></li>
           
-          <li><a href="/barcelona/el-clot.html">el Clot</a></li>
+          <li data-zone=""><a href="/barcelona/el-clot.html">el Clot</a></li>
           
-          <li><a href="/barcelona/el-parc-i-la-llacuna-del-poblenou.html">el Parc i la Llacuna del Poblenou</a></li>
+          <li data-zone=""><a href="/barcelona/el-parc-i-la-llacuna-del-poblenou.html">el Parc i la Llacuna del Poblenou</a></li>
           
-          <li><a href="/barcelona/el-poblenou.html">el Poblenou</a></li>
+          <li data-zone=""><a href="/barcelona/el-poblenou.html">el Poblenou</a></li>
           
-          <li><a href="/barcelona/la-verneda-i-la-pau.html">la Verneda i la Pau</a></li>
+          <li data-zone=""><a href="/barcelona/la-verneda-i-la-pau.html">la Verneda i la Pau</a></li>
           
-          <li><a href="/barcelona/la-vila-olimpica-del-poblenou.html">la Vila Olímpica del Poblenou</a></li>
+          <li data-zone=""><a href="/barcelona/la-vila-olimpica-del-poblenou.html">la Vila Olímpica del Poblenou</a></li>
           
         </ul>
       </section>
@@ -758,21 +772,21 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/hostafrancs.html">Hostafrancs</a></li>
+          <li data-zone=""><a href="/barcelona/hostafrancs.html">Hostafrancs</a></li>
           
-          <li><a href="/barcelona/sants.html">Sants</a></li>
+          <li data-zone=""><a href="/barcelona/sants.html">Sants</a></li>
           
-          <li><a href="/barcelona/sants-badal.html">Sants - Badal</a></li>
+          <li data-zone=""><a href="/barcelona/sants-badal.html">Sants - Badal</a></li>
           
-          <li><a href="/barcelona/el-poble-sec.html">el Poble-sec</a></li>
+          <li data-zone=""><a href="/barcelona/el-poble-sec.html">el Poble-sec</a></li>
           
-          <li><a href="/barcelona/la-bordeta.html">la Bordeta</a></li>
+          <li data-zone=""><a href="/barcelona/la-bordeta.html">la Bordeta</a></li>
           
-          <li><a href="/barcelona/la-font-de-la-guatlla.html">la Font de la Guatlla</a></li>
+          <li data-zone=""><a href="/barcelona/la-font-de-la-guatlla.html">la Font de la Guatlla</a></li>
           
-          <li><a href="/barcelona/la-marina-de-port.html">la Marina de Port</a></li>
+          <li data-zone=""><a href="/barcelona/la-marina-de-port.html">la Marina de Port</a></li>
           
-          <li><a href="/barcelona/la-marina-del-prat-vermell.html">la Marina del Prat Vermell</a></li>
+          <li data-zone=""><a href="/barcelona/la-marina-del-prat-vermell.html">la Marina del Prat Vermell</a></li>
           
         </ul>
       </section>
@@ -784,17 +798,17 @@
         </h3>
         <ul>
           
-          <li><a href="/barcelona/sant-gervasi-galvany.html">Sant Gervasi - Galvany</a></li>
+          <li data-zone=""><a href="/barcelona/sant-gervasi-galvany.html">Sant Gervasi - Galvany</a></li>
           
-          <li><a href="/barcelona/sant-gervasi-la-bonanova.html">Sant Gervasi - la Bonanova</a></li>
+          <li data-zone=""><a href="/barcelona/sant-gervasi-la-bonanova.html">Sant Gervasi - la Bonanova</a></li>
           
-          <li><a href="/barcelona/sarria.html">Sarrià</a></li>
+          <li data-zone=""><a href="/barcelona/sarria.html">Sarrià</a></li>
           
-          <li><a href="/barcelona/vallvidrera-el-tibidabo-i-les-planes.html">Vallvidrera, el Tibidabo i les Planes</a></li>
+          <li data-zone=""><a href="/barcelona/vallvidrera-el-tibidabo-i-les-planes.html">Vallvidrera, el Tibidabo i les Planes</a></li>
           
-          <li><a href="/barcelona/el-putxet-i-el-farro.html">el Putxet i el Farró</a></li>
+          <li data-zone=""><a href="/barcelona/el-putxet-i-el-farro.html">el Putxet i el Farró</a></li>
           
-          <li><a href="/barcelona/les-tres-torres.html">les Tres Torres</a></li>
+          <li data-zone=""><a href="/barcelona/les-tres-torres.html">les Tres Torres</a></li>
           
         </ul>
       </section>
@@ -808,7 +822,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="la-dreta-de-l-eixample">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/barcelona/la-dreta-de-l-eixample.html">la Dreta de l&#39;Eixample</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -821,7 +835,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Eixample%2C+Barcelona%2C+Spain" target="_blank" rel="noopener">Find a place in la Dreta de l&#39;Eixample →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="la-salut">
     <span class="lab">With family</span>
     <span class="nm"><a href="/barcelona/la-salut.html">la Salut</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -834,7 +848,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Gr%C3%A0cia%2C+Barcelona%2C+Spain" target="_blank" rel="noopener">Find a place in la Salut →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="el-poble-sec">
     <span class="lab">For going out · Best rated overall</span>
     <span class="nm"><a href="/barcelona/el-poble-sec.html">el Poble-sec</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1651,6 +1665,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1780,6 +1796,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1798,6 +1815,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -2188,6 +2206,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

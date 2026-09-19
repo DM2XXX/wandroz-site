@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -546,55 +560,55 @@
     
     <ul>
       
-      <li><a href="/monaco-di-baviera/allach-untermenzing.html">Allach-Untermenzing</a></li>
+      <li data-zone="allach-untermenzing"><a href="/monaco-di-baviera/allach-untermenzing.html">Allach-Untermenzing</a></li>
       
-      <li><a href="/monaco-di-baviera/altstadt-lehel.html">Altstadt-Lehel</a></li>
+      <li data-zone="altstadt-lehel"><a href="/monaco-di-baviera/altstadt-lehel.html">Altstadt-Lehel</a></li>
       
-      <li><a href="/monaco-di-baviera/au-haidhausen.html">Au-Haidhausen</a></li>
+      <li data-zone="au-haidhausen"><a href="/monaco-di-baviera/au-haidhausen.html">Au-Haidhausen</a></li>
       
-      <li><a href="/monaco-di-baviera/aubing-lochhausen-langwied.html">Aubing-Lochhausen-Langwied</a></li>
+      <li data-zone="aubing-lochhausen-langwied"><a href="/monaco-di-baviera/aubing-lochhausen-langwied.html">Aubing-Lochhausen-Langwied</a></li>
       
-      <li><a href="/monaco-di-baviera/berg-am-laim.html">Berg am Laim</a></li>
+      <li data-zone="berg-am-laim"><a href="/monaco-di-baviera/berg-am-laim.html">Berg am Laim</a></li>
       
-      <li><a href="/monaco-di-baviera/bogenhausen.html">Bogenhausen</a></li>
+      <li data-zone="bogenhausen"><a href="/monaco-di-baviera/bogenhausen.html">Bogenhausen</a></li>
       
-      <li><a href="/monaco-di-baviera/feldmoching-hasenbergl.html">Feldmoching-Hasenbergl</a></li>
+      <li data-zone="feldmoching-hasenbergl"><a href="/monaco-di-baviera/feldmoching-hasenbergl.html">Feldmoching-Hasenbergl</a></li>
       
-      <li><a href="/monaco-di-baviera/hadern.html">Hadern</a></li>
+      <li data-zone="hadern"><a href="/monaco-di-baviera/hadern.html">Hadern</a></li>
       
-      <li><a href="/monaco-di-baviera/laim.html">Laim</a></li>
+      <li data-zone="laim"><a href="/monaco-di-baviera/laim.html">Laim</a></li>
       
-      <li><a href="/monaco-di-baviera/ludwigsvorstadt-isarvorstadt.html">Ludwigsvorstadt-Isarvorstadt</a></li>
+      <li data-zone="ludwigsvorstadt-isarvorstadt"><a href="/monaco-di-baviera/ludwigsvorstadt-isarvorstadt.html">Ludwigsvorstadt-Isarvorstadt</a></li>
       
-      <li><a href="/monaco-di-baviera/maxvorstadt.html">Maxvorstadt</a></li>
+      <li data-zone="maxvorstadt"><a href="/monaco-di-baviera/maxvorstadt.html">Maxvorstadt</a></li>
       
-      <li><a href="/monaco-di-baviera/milbertshofen-am-hart.html">Milbertshofen-Am Hart</a></li>
+      <li data-zone="milbertshofen-am-hart"><a href="/monaco-di-baviera/milbertshofen-am-hart.html">Milbertshofen-Am Hart</a></li>
       
-      <li><a href="/monaco-di-baviera/moosach.html">Moosach</a></li>
+      <li data-zone="moosach"><a href="/monaco-di-baviera/moosach.html">Moosach</a></li>
       
-      <li><a href="/monaco-di-baviera/neuhausen-nymphenburg.html">Neuhausen-Nymphenburg</a></li>
+      <li data-zone="neuhausen-nymphenburg"><a href="/monaco-di-baviera/neuhausen-nymphenburg.html">Neuhausen-Nymphenburg</a></li>
       
-      <li><a href="/monaco-di-baviera/obergiesing-fasangarten.html">Obergiesing-Fasangarten</a></li>
+      <li data-zone="obergiesing-fasangarten"><a href="/monaco-di-baviera/obergiesing-fasangarten.html">Obergiesing-Fasangarten</a></li>
       
-      <li><a href="/monaco-di-baviera/pasing-obermenzing.html">Pasing-Obermenzing</a></li>
+      <li data-zone="pasing-obermenzing"><a href="/monaco-di-baviera/pasing-obermenzing.html">Pasing-Obermenzing</a></li>
       
-      <li><a href="/monaco-di-baviera/ramersdorf-perlach.html">Ramersdorf-Perlach</a></li>
+      <li data-zone="ramersdorf-perlach"><a href="/monaco-di-baviera/ramersdorf-perlach.html">Ramersdorf-Perlach</a></li>
       
-      <li><a href="/monaco-di-baviera/schwabing-freimann.html">Schwabing-Freimann</a></li>
+      <li data-zone="schwabing-freimann"><a href="/monaco-di-baviera/schwabing-freimann.html">Schwabing-Freimann</a></li>
       
-      <li><a href="/monaco-di-baviera/schwabing-west.html">Schwabing-West</a></li>
+      <li data-zone="schwabing-west"><a href="/monaco-di-baviera/schwabing-west.html">Schwabing-West</a></li>
       
-      <li><a href="/monaco-di-baviera/schwanthalerhoehe.html">Schwanthalerhoehe</a></li>
+      <li data-zone="schwanthalerhoehe"><a href="/monaco-di-baviera/schwanthalerhoehe.html">Schwanthalerhoehe</a></li>
       
-      <li><a href="/monaco-di-baviera/sendling.html">Sendling</a></li>
+      <li data-zone="sendling"><a href="/monaco-di-baviera/sendling.html">Sendling</a></li>
       
-      <li><a href="/monaco-di-baviera/sendling-westpark.html">Sendling-Westpark</a></li>
+      <li data-zone="sendling-westpark"><a href="/monaco-di-baviera/sendling-westpark.html">Sendling-Westpark</a></li>
       
-      <li><a href="/monaco-di-baviera/thalkirchen-obersendling-forstenried-fuerstenried-solln.html">Thalkirchen-Obersendling-Forstenried-Fuerstenried-Solln</a></li>
+      <li data-zone="thalkirchen-obersendling-forstenried-fuerstenried-solln"><a href="/monaco-di-baviera/thalkirchen-obersendling-forstenried-fuerstenried-solln.html">Thalkirchen-Obersendling-Forstenried-Fuerstenried-Solln</a></li>
       
-      <li><a href="/monaco-di-baviera/trudering-riem.html">Trudering-Riem</a></li>
+      <li data-zone="trudering-riem"><a href="/monaco-di-baviera/trudering-riem.html">Trudering-Riem</a></li>
       
-      <li><a href="/monaco-di-baviera/untergiesing-harlaching.html">Untergiesing-Harlaching</a></li>
+      <li data-zone="untergiesing-harlaching"><a href="/monaco-di-baviera/untergiesing-harlaching.html">Untergiesing-Harlaching</a></li>
       
     </ul>
     
@@ -605,7 +619,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="altstadt-lehel">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/monaco-di-baviera/altstadt-lehel.html">Altstadt-Lehel</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -614,11 +628,11 @@
     </div>
     <span class="why">5 of the city&#39;s main sights are close enough to walk between.</span>
     
-    <span class="caution">Its rating comes from the city&#39;s own published figures, counted per registered resident and compared only with other districts of this city.</span>
+    <span class="caution">Still a practical base for a first visit. 5 of the city&#39;s main sights are inside it. The city&#39;s published rate is counted per registered resident, so a district that hosts many more people than it houses reads higher. Take extra care, particularly after dark — that is what the rating is for, not a reason to stay out of the area.</span>
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Altstadt-Lehel%2C+Munich%2C+Germany" target="_blank" rel="noopener">Find a place in Altstadt-Lehel →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="sendling-westpark">
     <span class="lab">With family</span>
     <span class="nm"><a href="/monaco-di-baviera/sendling-westpark.html">Sendling-Westpark</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -631,7 +645,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Sendling-Westpark%2C+Munich%2C+Germany" target="_blank" rel="noopener">Find a place in Sendling-Westpark →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="neuhausen-nymphenburg">
     <span class="lab">Best rated overall</span>
     <span class="nm"><a href="/monaco-di-baviera/neuhausen-nymphenburg.html">Neuhausen-Nymphenburg</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1016,6 +1030,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1145,6 +1161,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1163,6 +1180,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -1553,6 +1571,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

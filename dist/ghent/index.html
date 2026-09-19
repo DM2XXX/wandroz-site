@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -546,33 +560,33 @@
     
     <ul>
       
-      <li><a href="/ghent/ledeberg.html">Ledeberg</a></li>
+      <li data-zone="ledeberg"><a href="/ghent/ledeberg.html">Ledeberg</a></li>
       
-      <li><a href="/ghent/gentbrugge.html">Gentbrugge</a></li>
+      <li data-zone="gentbrugge"><a href="/ghent/gentbrugge.html">Gentbrugge</a></li>
       
-      <li><a href="/ghent/sint-amandsberg.html">Sint-Amandsberg</a></li>
+      <li data-zone="sint-amandsberg"><a href="/ghent/sint-amandsberg.html">Sint-Amandsberg</a></li>
       
-      <li><a href="/ghent/oostakker.html">Oostakker</a></li>
+      <li data-zone="oostakker"><a href="/ghent/oostakker.html">Oostakker</a></li>
       
-      <li><a href="/ghent/wondelgem.html">Wondelgem</a></li>
+      <li data-zone="wondelgem"><a href="/ghent/wondelgem.html">Wondelgem</a></li>
       
-      <li><a href="/ghent/mariakerke.html">Mariakerke</a></li>
+      <li data-zone="mariakerke"><a href="/ghent/mariakerke.html">Mariakerke</a></li>
       
-      <li><a href="/ghent/drongen.html">Drongen</a></li>
+      <li data-zone="drongen"><a href="/ghent/drongen.html">Drongen</a></li>
       
-      <li><a href="/ghent/sint-denijs-westrem.html">Sint-Denijs-Westrem</a></li>
+      <li data-zone="sint-denijs-westrem"><a href="/ghent/sint-denijs-westrem.html">Sint-Denijs-Westrem</a></li>
       
-      <li><a href="/ghent/zwijnaarde.html">Zwijnaarde</a></li>
+      <li data-zone="zwijnaarde"><a href="/ghent/zwijnaarde.html">Zwijnaarde</a></li>
       
-      <li><a href="/ghent/afsnee.html">Afsnee</a></li>
+      <li data-zone="afsnee"><a href="/ghent/afsnee.html">Afsnee</a></li>
       
-      <li><a href="/ghent/gent.html">Gent</a></li>
+      <li data-zone="gent"><a href="/ghent/gent.html">Gent</a></li>
       
-      <li><a href="/ghent/sint-kruis-winkel.html">Sint-Kruis-Winkel</a></li>
+      <li data-zone="sint-kruis-winkel"><a href="/ghent/sint-kruis-winkel.html">Sint-Kruis-Winkel</a></li>
       
-      <li><a href="/ghent/mendonk.html">Mendonk</a></li>
+      <li data-zone="mendonk"><a href="/ghent/mendonk.html">Mendonk</a></li>
       
-      <li><a href="/ghent/desteldonk.html">Desteldonk</a></li>
+      <li data-zone="desteldonk"><a href="/ghent/desteldonk.html">Desteldonk</a></li>
       
     </ul>
     
@@ -583,7 +597,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="gent">
     <span class="lab">For a first visit · For going out · Best rated overall</span>
     <span class="nm"><a href="/ghent/gent.html">Gent</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -869,6 +883,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -998,6 +1014,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1016,6 +1033,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -1406,6 +1424,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

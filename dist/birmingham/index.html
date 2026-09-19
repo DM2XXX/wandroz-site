@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -552,143 +566,143 @@
     
     <ul>
       
-      <li><a href="/birmingham/acocks-green.html">Acocks Green</a></li>
+      <li data-zone="acocks-green"><a href="/birmingham/acocks-green.html">Acocks Green</a></li>
       
-      <li><a href="/birmingham/allens-cross.html">Allens Cross</a></li>
+      <li data-zone="allens-cross"><a href="/birmingham/allens-cross.html">Allens Cross</a></li>
       
-      <li><a href="/birmingham/alum-rock.html">Alum Rock</a></li>
+      <li data-zone="alum-rock"><a href="/birmingham/alum-rock.html">Alum Rock</a></li>
       
-      <li><a href="/birmingham/aston.html">Aston</a></li>
+      <li data-zone="aston"><a href="/birmingham/aston.html">Aston</a></li>
       
-      <li><a href="/birmingham/balsall-heath-west.html">Balsall Heath West</a></li>
+      <li data-zone="balsall-heath-west"><a href="/birmingham/balsall-heath-west.html">Balsall Heath West</a></li>
       
-      <li><a href="/birmingham/bartley-green.html">Bartley Green</a></li>
+      <li data-zone="bartley-green"><a href="/birmingham/bartley-green.html">Bartley Green</a></li>
       
-      <li><a href="/birmingham/billesley.html">Billesley</a></li>
+      <li data-zone="billesley"><a href="/birmingham/billesley.html">Billesley</a></li>
       
-      <li><a href="/birmingham/birchfield.html">Birchfield</a></li>
+      <li data-zone="birchfield"><a href="/birmingham/birchfield.html">Birchfield</a></li>
       
-      <li><a href="/birmingham/bordesley-highgate.html">Bordesley &amp; Highgate</a></li>
+      <li data-zone="bordesley-highgate"><a href="/birmingham/bordesley-highgate.html">Bordesley &amp; Highgate</a></li>
       
-      <li><a href="/birmingham/bordesley-green.html">Bordesley Green</a></li>
+      <li data-zone="bordesley-green"><a href="/birmingham/bordesley-green.html">Bordesley Green</a></li>
       
-      <li><a href="/birmingham/bournbrook-selly-park.html">Bournbrook &amp; Selly Park</a></li>
+      <li data-zone="bournbrook-selly-park"><a href="/birmingham/bournbrook-selly-park.html">Bournbrook &amp; Selly Park</a></li>
       
-      <li><a href="/birmingham/bournville-cotteridge.html">Bournville &amp; Cotteridge</a></li>
+      <li data-zone="bournville-cotteridge"><a href="/birmingham/bournville-cotteridge.html">Bournville &amp; Cotteridge</a></li>
       
-      <li><a href="/birmingham/brandwood-king-s-heath.html">Brandwood &amp; King&#39;s Heath</a></li>
+      <li data-zone="brandwood-king-s-heath"><a href="/birmingham/brandwood-king-s-heath.html">Brandwood &amp; King&#39;s Heath</a></li>
       
-      <li><a href="/birmingham/bromford-hodge-hill.html">Bromford &amp; Hodge Hill</a></li>
+      <li data-zone="bromford-hodge-hill"><a href="/birmingham/bromford-hodge-hill.html">Bromford &amp; Hodge Hill</a></li>
       
-      <li><a href="/birmingham/castle-vale.html">Castle Vale</a></li>
+      <li data-zone="castle-vale"><a href="/birmingham/castle-vale.html">Castle Vale</a></li>
       
-      <li><a href="/birmingham/druids-heath-monyhull.html">Druids Heath &amp; Monyhull</a></li>
+      <li data-zone="druids-heath-monyhull"><a href="/birmingham/druids-heath-monyhull.html">Druids Heath &amp; Monyhull</a></li>
       
-      <li><a href="/birmingham/edgbaston.html">Edgbaston</a></li>
+      <li data-zone="edgbaston"><a href="/birmingham/edgbaston.html">Edgbaston</a></li>
       
-      <li><a href="/birmingham/erdington.html">Erdington</a></li>
+      <li data-zone="erdington"><a href="/birmingham/erdington.html">Erdington</a></li>
       
-      <li><a href="/birmingham/frankley-great-park.html">Frankley Great Park</a></li>
+      <li data-zone="frankley-great-park"><a href="/birmingham/frankley-great-park.html">Frankley Great Park</a></li>
       
-      <li><a href="/birmingham/garretts-green.html">Garretts Green</a></li>
+      <li data-zone="garretts-green"><a href="/birmingham/garretts-green.html">Garretts Green</a></li>
       
-      <li><a href="/birmingham/glebe-farm-tile-cross.html">Glebe Farm &amp; Tile Cross</a></li>
+      <li data-zone="glebe-farm-tile-cross"><a href="/birmingham/glebe-farm-tile-cross.html">Glebe Farm &amp; Tile Cross</a></li>
       
-      <li><a href="/birmingham/gravelly-hill.html">Gravelly Hill</a></li>
+      <li data-zone="gravelly-hill"><a href="/birmingham/gravelly-hill.html">Gravelly Hill</a></li>
       
-      <li><a href="/birmingham/hall-green-north.html">Hall Green North</a></li>
+      <li data-zone="hall-green-north"><a href="/birmingham/hall-green-north.html">Hall Green North</a></li>
       
-      <li><a href="/birmingham/hall-green-south.html">Hall Green South</a></li>
+      <li data-zone="hall-green-south"><a href="/birmingham/hall-green-south.html">Hall Green South</a></li>
       
-      <li><a href="/birmingham/handsworth.html">Handsworth</a></li>
+      <li data-zone="handsworth"><a href="/birmingham/handsworth.html">Handsworth</a></li>
       
-      <li><a href="/birmingham/handsworth-wood.html">Handsworth Wood</a></li>
+      <li data-zone="handsworth-wood"><a href="/birmingham/handsworth-wood.html">Handsworth Wood</a></li>
       
-      <li><a href="/birmingham/harborne.html">Harborne</a></li>
+      <li data-zone="harborne"><a href="/birmingham/harborne.html">Harborne</a></li>
       
-      <li><a href="/birmingham/heartlands.html">Heartlands</a></li>
+      <li data-zone="heartlands"><a href="/birmingham/heartlands.html">Heartlands</a></li>
       
-      <li><a href="/birmingham/highter-s-heath.html">Highter&#39;s Heath</a></li>
+      <li data-zone="highter-s-heath"><a href="/birmingham/highter-s-heath.html">Highter&#39;s Heath</a></li>
       
-      <li><a href="/birmingham/holyhead.html">Holyhead</a></li>
+      <li data-zone="holyhead"><a href="/birmingham/holyhead.html">Holyhead</a></li>
       
-      <li><a href="/birmingham/king-s-norton-north.html">King&#39;s Norton North</a></li>
+      <li data-zone="king-s-norton-north"><a href="/birmingham/king-s-norton-north.html">King&#39;s Norton North</a></li>
       
-      <li><a href="/birmingham/king-s-norton-south.html">King&#39;s Norton South</a></li>
+      <li data-zone="king-s-norton-south"><a href="/birmingham/king-s-norton-south.html">King&#39;s Norton South</a></li>
       
-      <li><a href="/birmingham/kingstanding.html">Kingstanding</a></li>
+      <li data-zone="kingstanding"><a href="/birmingham/kingstanding.html">Kingstanding</a></li>
       
-      <li><a href="/birmingham/ladywood.html">Ladywood</a></li>
+      <li data-zone="ladywood"><a href="/birmingham/ladywood.html">Ladywood</a></li>
       
-      <li><a href="/birmingham/longbridge-west-heath.html">Longbridge &amp; West Heath</a></li>
+      <li data-zone="longbridge-west-heath"><a href="/birmingham/longbridge-west-heath.html">Longbridge &amp; West Heath</a></li>
       
-      <li><a href="/birmingham/lozells.html">Lozells</a></li>
+      <li data-zone="lozells"><a href="/birmingham/lozells.html">Lozells</a></li>
       
-      <li><a href="/birmingham/moseley.html">Moseley</a></li>
+      <li data-zone="moseley"><a href="/birmingham/moseley.html">Moseley</a></li>
       
-      <li><a href="/birmingham/nechells.html">Nechells</a></li>
+      <li data-zone="nechells"><a href="/birmingham/nechells.html">Nechells</a></li>
       
-      <li><a href="/birmingham/newtown.html">Newtown</a></li>
+      <li data-zone="newtown"><a href="/birmingham/newtown.html">Newtown</a></li>
       
-      <li><a href="/birmingham/north-edgbaston.html">North Edgbaston</a></li>
+      <li data-zone="north-edgbaston"><a href="/birmingham/north-edgbaston.html">North Edgbaston</a></li>
       
-      <li><a href="/birmingham/northfield.html">Northfield</a></li>
+      <li data-zone="northfield"><a href="/birmingham/northfield.html">Northfield</a></li>
       
-      <li><a href="/birmingham/oscott.html">Oscott</a></li>
+      <li data-zone="oscott"><a href="/birmingham/oscott.html">Oscott</a></li>
       
-      <li><a href="/birmingham/perry-barr.html">Perry Barr</a></li>
+      <li data-zone="perry-barr"><a href="/birmingham/perry-barr.html">Perry Barr</a></li>
       
-      <li><a href="/birmingham/perry-common.html">Perry Common</a></li>
+      <li data-zone="perry-common"><a href="/birmingham/perry-common.html">Perry Common</a></li>
       
-      <li><a href="/birmingham/pype-hayes.html">Pype Hayes</a></li>
+      <li data-zone="pype-hayes"><a href="/birmingham/pype-hayes.html">Pype Hayes</a></li>
       
-      <li><a href="/birmingham/quinton.html">Quinton</a></li>
+      <li data-zone="quinton"><a href="/birmingham/quinton.html">Quinton</a></li>
       
-      <li><a href="/birmingham/rubery-rednal.html">Rubery &amp; Rednal</a></li>
+      <li data-zone="rubery-rednal"><a href="/birmingham/rubery-rednal.html">Rubery &amp; Rednal</a></li>
       
-      <li><a href="/birmingham/shard-end.html">Shard End</a></li>
+      <li data-zone="shard-end"><a href="/birmingham/shard-end.html">Shard End</a></li>
       
-      <li><a href="/birmingham/sheldon.html">Sheldon</a></li>
+      <li data-zone="sheldon"><a href="/birmingham/sheldon.html">Sheldon</a></li>
       
-      <li><a href="/birmingham/small-heath.html">Small Heath</a></li>
+      <li data-zone="small-heath"><a href="/birmingham/small-heath.html">Small Heath</a></li>
       
-      <li><a href="/birmingham/soho-jewellery-quarter.html">Soho &amp; Jewellery Quarter</a></li>
+      <li data-zone="soho-jewellery-quarter"><a href="/birmingham/soho-jewellery-quarter.html">Soho &amp; Jewellery Quarter</a></li>
       
-      <li><a href="/birmingham/south-yardley.html">South Yardley</a></li>
+      <li data-zone="south-yardley"><a href="/birmingham/south-yardley.html">South Yardley</a></li>
       
-      <li><a href="/birmingham/sparkbrook-balsall-heath-east.html">Sparkbrook &amp; Balsall Heath East</a></li>
+      <li data-zone="sparkbrook-balsall-heath-east"><a href="/birmingham/sparkbrook-balsall-heath-east.html">Sparkbrook &amp; Balsall Heath East</a></li>
       
-      <li><a href="/birmingham/sparkhill.html">Sparkhill</a></li>
+      <li data-zone="sparkhill"><a href="/birmingham/sparkhill.html">Sparkhill</a></li>
       
-      <li><a href="/birmingham/stirchley.html">Stirchley</a></li>
+      <li data-zone="stirchley"><a href="/birmingham/stirchley.html">Stirchley</a></li>
       
-      <li><a href="/birmingham/stockland-green.html">Stockland Green</a></li>
+      <li data-zone="stockland-green"><a href="/birmingham/stockland-green.html">Stockland Green</a></li>
       
-      <li><a href="/birmingham/sutton-four-oaks.html">Sutton Four Oaks</a></li>
+      <li data-zone="sutton-four-oaks"><a href="/birmingham/sutton-four-oaks.html">Sutton Four Oaks</a></li>
       
-      <li><a href="/birmingham/sutton-mere-green.html">Sutton Mere Green</a></li>
+      <li data-zone="sutton-mere-green"><a href="/birmingham/sutton-mere-green.html">Sutton Mere Green</a></li>
       
-      <li><a href="/birmingham/sutton-reddicap.html">Sutton Reddicap</a></li>
+      <li data-zone="sutton-reddicap"><a href="/birmingham/sutton-reddicap.html">Sutton Reddicap</a></li>
       
-      <li><a href="/birmingham/sutton-roughley.html">Sutton Roughley</a></li>
+      <li data-zone="sutton-roughley"><a href="/birmingham/sutton-roughley.html">Sutton Roughley</a></li>
       
-      <li><a href="/birmingham/sutton-trinity.html">Sutton Trinity</a></li>
+      <li data-zone="sutton-trinity"><a href="/birmingham/sutton-trinity.html">Sutton Trinity</a></li>
       
-      <li><a href="/birmingham/sutton-vesey.html">Sutton Vesey</a></li>
+      <li data-zone="sutton-vesey"><a href="/birmingham/sutton-vesey.html">Sutton Vesey</a></li>
       
-      <li><a href="/birmingham/sutton-walmley-minworth.html">Sutton Walmley &amp; Minworth</a></li>
+      <li data-zone="sutton-walmley-minworth"><a href="/birmingham/sutton-walmley-minworth.html">Sutton Walmley &amp; Minworth</a></li>
       
-      <li><a href="/birmingham/sutton-wylde-green.html">Sutton Wylde Green</a></li>
+      <li data-zone="sutton-wylde-green"><a href="/birmingham/sutton-wylde-green.html">Sutton Wylde Green</a></li>
       
-      <li><a href="/birmingham/tyseley-hay-mills.html">Tyseley &amp; Hay Mills</a></li>
+      <li data-zone="tyseley-hay-mills"><a href="/birmingham/tyseley-hay-mills.html">Tyseley &amp; Hay Mills</a></li>
       
-      <li><a href="/birmingham/ward-end.html">Ward End</a></li>
+      <li data-zone="ward-end"><a href="/birmingham/ward-end.html">Ward End</a></li>
       
-      <li><a href="/birmingham/weoley-selly-oak.html">Weoley &amp; Selly Oak</a></li>
+      <li data-zone="weoley-selly-oak"><a href="/birmingham/weoley-selly-oak.html">Weoley &amp; Selly Oak</a></li>
       
-      <li><a href="/birmingham/yardley-east.html">Yardley East</a></li>
+      <li data-zone="yardley-east"><a href="/birmingham/yardley-east.html">Yardley East</a></li>
       
-      <li><a href="/birmingham/yardley-west-stechford.html">Yardley West &amp; Stechford</a></li>
+      <li data-zone="yardley-west-stechford"><a href="/birmingham/yardley-west-stechford.html">Yardley West &amp; Stechford</a></li>
       
     </ul>
     
@@ -699,7 +713,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="ladywood">
     <span class="lab">For a first visit</span>
     <span class="nm"><a href="/birmingham/ladywood.html">Ladywood</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -708,11 +722,11 @@
     </div>
     <span class="why">7 of the city&#39;s main sights are close enough to walk between.</span>
     
-    <span class="caution">Its rating is mostly shoplifting during the day and violence after dark, counted as a rate against the 25,738 people registered as living there rather than the number who pass through.</span>
+    <span class="caution">Still a practical base for a first visit: the rating is driven by shoplifting during the day and violence after dark, counted as a rate against the 25,738 people registered as living here rather than the far larger number who pass through. Take extra care, particularly after dark — that is what the rating is for, not a reason to stay out of the area.</span>
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Ladywood →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="sutton-vesey">
     <span class="lab">With family</span>
     <span class="nm"><a href="/birmingham/sutton-vesey.html">Sutton Vesey</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -725,7 +739,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Sutton Vesey →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="moseley">
     <span class="lab">For going out</span>
     <span class="nm"><a href="/birmingham/moseley.html">Moseley</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -738,7 +752,7 @@
     <a class="bk" href="https://www.booking.com/searchresults.html?ss=Birmingham%2C+United+Kingdom" target="_blank" rel="noopener">Find a place in Moseley →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="allens-cross">
     <span class="lab">Best rated overall</span>
     <span class="nm"><a href="/birmingham/allens-cross.html">Allens Cross</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1519,6 +1533,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1648,6 +1664,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1666,6 +1683,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -2056,6 +2074,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

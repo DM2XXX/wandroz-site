@@ -47,6 +47,12 @@
   /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
      Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
      solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
@@ -62,6 +68,12 @@
   /* Deve leggersi come una nota a margine della raccomandazione, non come una
      smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
      la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
   .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
                        border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
   .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
@@ -97,7 +109,7 @@
   table.hub a:hover { color:var(--accent); text-decoration:underline; }
   table.hub .dash { font-size:11.5px; color:var(--muted); }
   @media (min-width: 721px){
-    .hub-answer { font-size:18px; }
+    .hub-answer { font-size:19px; max-width:1240px; }
     .hub-card .nm { font-size:20px; }
     .hub-card .why { font-size:15px; }
     .hub-card .caution { font-size:13.5px; }
@@ -292,7 +304,7 @@
   @media (min-width: 721px){
     nav.crumbs { font-size:14px; }
     h1.page-title { font-size:33px; margin:12px 24px 7px; }
-    .lead { font-size:17.5px; line-height:1.5; max-width:880px; margin-bottom:16px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
     .evidence { font-size:15px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
     .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
@@ -322,9 +334,10 @@
      rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
      piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
   @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
     nav.crumbs { font-size:15px; }
     h1.page-title { font-size:38px; }
-    .lead { font-size:19.5px; max-width:1000px; }
+    .lead { font-size:21px; max-width:1560px; }
     .evidence { font-size:16.5px; }
     .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
     .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
@@ -346,8 +359,9 @@
     .poi-lab-tt { font-size:15px; }
   }
   @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
     h1.page-title { font-size:44px; }
-    .lead { font-size:22px; max-width:1100px; }
+    .lead { font-size:24px; max-width:1800px; }
     .evidence { font-size:18px; }
     .map-legend { font-size:19px; padding:20px 22px; }
     .poi-chip { font-size:18px; padding:11px 21px; }
@@ -552,93 +566,93 @@
     
     <ul>
       
-      <li><a href="/denhaag/oostduinen.html">Oostduinen</a></li>
+      <li data-zone="oostduinen"><a href="/denhaag/oostduinen.html">Oostduinen</a></li>
       
-      <li><a href="/denhaag/belgisch-park.html">Belgisch Park</a></li>
+      <li data-zone="belgisch-park"><a href="/denhaag/belgisch-park.html">Belgisch Park</a></li>
       
-      <li><a href="/denhaag/westbroekpark-en-duttendel.html">Westbroekpark en Duttendel</a></li>
+      <li data-zone="westbroekpark-en-duttendel"><a href="/denhaag/westbroekpark-en-duttendel.html">Westbroekpark en Duttendel</a></li>
       
-      <li><a href="/denhaag/benoordenhout.html">Benoordenhout</a></li>
+      <li data-zone="benoordenhout"><a href="/denhaag/benoordenhout.html">Benoordenhout</a></li>
       
-      <li><a href="/denhaag/archipelbuurt.html">Archipelbuurt</a></li>
+      <li data-zone="archipelbuurt"><a href="/denhaag/archipelbuurt.html">Archipelbuurt</a></li>
       
-      <li><a href="/denhaag/van-stolkpark-en-scheveningse-bosjes.html">Van Stolkpark en Scheveningse Bosjes</a></li>
+      <li data-zone="van-stolkpark-en-scheveningse-bosjes"><a href="/denhaag/van-stolkpark-en-scheveningse-bosjes.html">Van Stolkpark en Scheveningse Bosjes</a></li>
       
-      <li><a href="/denhaag/scheveningen.html">Scheveningen</a></li>
+      <li data-zone="scheveningen"><a href="/denhaag/scheveningen.html">Scheveningen</a></li>
       
-      <li><a href="/denhaag/duindorp.html">Duindorp</a></li>
+      <li data-zone="duindorp"><a href="/denhaag/duindorp.html">Duindorp</a></li>
       
-      <li><a href="/denhaag/geuzen-en-statenkwartier.html">Geuzen- en Statenkwartier</a></li>
+      <li data-zone="geuzen-en-statenkwartier"><a href="/denhaag/geuzen-en-statenkwartier.html">Geuzen- en Statenkwartier</a></li>
       
-      <li><a href="/denhaag/zorgvliet.html">Zorgvliet</a></li>
+      <li data-zone="zorgvliet"><a href="/denhaag/zorgvliet.html">Zorgvliet</a></li>
       
-      <li><a href="/denhaag/duinoord.html">Duinoord</a></li>
+      <li data-zone="duinoord"><a href="/denhaag/duinoord.html">Duinoord</a></li>
       
-      <li><a href="/denhaag/bomen-en-bloemenbuurt.html">Bomen- en Bloemenbuurt</a></li>
+      <li data-zone="bomen-en-bloemenbuurt"><a href="/denhaag/bomen-en-bloemenbuurt.html">Bomen- en Bloemenbuurt</a></li>
       
-      <li><a href="/denhaag/vogelwijk.html">Vogelwijk</a></li>
+      <li data-zone="vogelwijk"><a href="/denhaag/vogelwijk.html">Vogelwijk</a></li>
       
-      <li><a href="/denhaag/bohemen-en-meer-en-bos.html">Bohemen en Meer en Bos</a></li>
+      <li data-zone="bohemen-en-meer-en-bos"><a href="/denhaag/bohemen-en-meer-en-bos.html">Bohemen en Meer en Bos</a></li>
       
-      <li><a href="/denhaag/kijkduin-en-ockenburgh.html">Kijkduin en Ockenburgh</a></li>
+      <li data-zone="kijkduin-en-ockenburgh"><a href="/denhaag/kijkduin-en-ockenburgh.html">Kijkduin en Ockenburgh</a></li>
       
-      <li><a href="/denhaag/kraayenstein-en-vroondaal.html">Kraayenstein en Vroondaal</a></li>
+      <li data-zone="kraayenstein-en-vroondaal"><a href="/denhaag/kraayenstein-en-vroondaal.html">Kraayenstein en Vroondaal</a></li>
       
-      <li><a href="/denhaag/loosduinen.html">Loosduinen</a></li>
+      <li data-zone="loosduinen"><a href="/denhaag/loosduinen.html">Loosduinen</a></li>
       
-      <li><a href="/denhaag/waldeck.html">Waldeck</a></li>
+      <li data-zone="waldeck"><a href="/denhaag/waldeck.html">Waldeck</a></li>
       
-      <li><a href="/denhaag/vruchtenbuurt.html">Vruchtenbuurt</a></li>
+      <li data-zone="vruchtenbuurt"><a href="/denhaag/vruchtenbuurt.html">Vruchtenbuurt</a></li>
       
-      <li><a href="/denhaag/valkenboskwartier.html">Valkenboskwartier</a></li>
+      <li data-zone="valkenboskwartier"><a href="/denhaag/valkenboskwartier.html">Valkenboskwartier</a></li>
       
-      <li><a href="/denhaag/regentessekwartier.html">Regentessekwartier</a></li>
+      <li data-zone="regentessekwartier"><a href="/denhaag/regentessekwartier.html">Regentessekwartier</a></li>
       
-      <li><a href="/denhaag/zeeheldenkwartier.html">Zeeheldenkwartier</a></li>
+      <li data-zone="zeeheldenkwartier"><a href="/denhaag/zeeheldenkwartier.html">Zeeheldenkwartier</a></li>
       
-      <li><a href="/denhaag/willemspark.html">Willemspark</a></li>
+      <li data-zone="willemspark"><a href="/denhaag/willemspark.html">Willemspark</a></li>
       
-      <li><a href="/denhaag/haagse-bos.html">Haagse Bos</a></li>
+      <li data-zone="haagse-bos"><a href="/denhaag/haagse-bos.html">Haagse Bos</a></li>
       
-      <li><a href="/denhaag/mariahoeve-en-marlot.html">Mariahoeve en Marlot</a></li>
+      <li data-zone="mariahoeve-en-marlot"><a href="/denhaag/mariahoeve-en-marlot.html">Mariahoeve en Marlot</a></li>
       
-      <li><a href="/denhaag/bezuidenhout.html">Bezuidenhout</a></li>
+      <li data-zone="bezuidenhout"><a href="/denhaag/bezuidenhout.html">Bezuidenhout</a></li>
       
-      <li><a href="/denhaag/stationsbuurt.html">Stationsbuurt</a></li>
+      <li data-zone="stationsbuurt"><a href="/denhaag/stationsbuurt.html">Stationsbuurt</a></li>
       
-      <li><a href="/denhaag/centrum.html">Centrum</a></li>
+      <li data-zone="centrum"><a href="/denhaag/centrum.html">Centrum</a></li>
       
-      <li><a href="/denhaag/schildersbuurt.html">Schildersbuurt</a></li>
+      <li data-zone="schildersbuurt"><a href="/denhaag/schildersbuurt.html">Schildersbuurt</a></li>
       
-      <li><a href="/denhaag/transvaalkwartier.html">Transvaalkwartier</a></li>
+      <li data-zone="transvaalkwartier"><a href="/denhaag/transvaalkwartier.html">Transvaalkwartier</a></li>
       
-      <li><a href="/denhaag/rustenburg-en-oostbroek.html">Rustenburg en Oostbroek</a></li>
+      <li data-zone="rustenburg-en-oostbroek"><a href="/denhaag/rustenburg-en-oostbroek.html">Rustenburg en Oostbroek</a></li>
       
-      <li><a href="/denhaag/leyenburg.html">Leyenburg</a></li>
+      <li data-zone="leyenburg"><a href="/denhaag/leyenburg.html">Leyenburg</a></li>
       
-      <li><a href="/denhaag/bouwlust-en-vrederust.html">Bouwlust en Vrederust</a></li>
+      <li data-zone="bouwlust-en-vrederust"><a href="/denhaag/bouwlust-en-vrederust.html">Bouwlust en Vrederust</a></li>
       
-      <li><a href="/denhaag/morgenstond.html">Morgenstond</a></li>
+      <li data-zone="morgenstond"><a href="/denhaag/morgenstond.html">Morgenstond</a></li>
       
-      <li><a href="/denhaag/zuiderpark.html">Zuiderpark</a></li>
+      <li data-zone="zuiderpark"><a href="/denhaag/zuiderpark.html">Zuiderpark</a></li>
       
-      <li><a href="/denhaag/moerwijk.html">Moerwijk</a></li>
+      <li data-zone="moerwijk"><a href="/denhaag/moerwijk.html">Moerwijk</a></li>
       
-      <li><a href="/denhaag/groente-en-fruitmarkt.html">Groente- en Fruitmarkt</a></li>
+      <li data-zone="groente-en-fruitmarkt"><a href="/denhaag/groente-en-fruitmarkt.html">Groente- en Fruitmarkt</a></li>
       
-      <li><a href="/denhaag/laakkwartier-en-spoorwijk.html">Laakkwartier en Spoorwijk</a></li>
+      <li data-zone="laakkwartier-en-spoorwijk"><a href="/denhaag/laakkwartier-en-spoorwijk.html">Laakkwartier en Spoorwijk</a></li>
       
-      <li><a href="/denhaag/binckhorst.html">Binckhorst</a></li>
+      <li data-zone="binckhorst"><a href="/denhaag/binckhorst.html">Binckhorst</a></li>
       
-      <li><a href="/denhaag/wateringse-veld.html">Wateringse Veld</a></li>
+      <li data-zone="wateringse-veld"><a href="/denhaag/wateringse-veld.html">Wateringse Veld</a></li>
       
-      <li><a href="/denhaag/hoornwijk.html">Hoornwijk</a></li>
+      <li data-zone="hoornwijk"><a href="/denhaag/hoornwijk.html">Hoornwijk</a></li>
       
-      <li><a href="/denhaag/ypenburg.html">Ypenburg</a></li>
+      <li data-zone="ypenburg"><a href="/denhaag/ypenburg.html">Ypenburg</a></li>
       
-      <li><a href="/denhaag/forepark.html">Forepark</a></li>
+      <li data-zone="forepark"><a href="/denhaag/forepark.html">Forepark</a></li>
       
-      <li><a href="/denhaag/leidschenveen.html">Leidschenveen</a></li>
+      <li data-zone="leidschenveen"><a href="/denhaag/leidschenveen.html">Leidschenveen</a></li>
       
     </ul>
     
@@ -649,7 +663,7 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="centrum">
     <span class="lab">For a first visit · For going out · Best rated overall</span>
     <span class="nm"><a href="/denhaag/centrum.html">Centrum</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -662,7 +676,7 @@
     <a class="bk" href="https://www.jdoqocy.com/click-101862727-15734897?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DThe%2BHague%252C%2BNetherlands" target="_blank" rel="noopener">Find a place in Centrum →</a>
   </div>
   
-  <div class="hub-card">
+  <div class="hub-card" data-zone="haagse-bos">
     <span class="lab">With family</span>
     <span class="nm"><a href="/denhaag/haagse-bos.html">Haagse Bos</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -1218,6 +1232,8 @@
   var layers = [];
   var lastZone = null;
   var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
 
   // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
   // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
@@ -1347,6 +1363,7 @@
   function draw() {
     layers.forEach(function(l){ map.removeLayer(l); });
     layers = [];
+    bySlug = {};
     // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
     // selezione vecchia non avrebbe piu' niente da dire.
     selected = null;
@@ -1365,6 +1382,7 @@
         if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
       });
       poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
       layers.push(poly);
     });
   }
@@ -1755,6 +1773,44 @@
       hidePanel();
     });
   }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
 
   poiBuild();
 

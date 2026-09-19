@@ -457,43 +457,88 @@ def uk_ward_evidence(city_key):
     return out
 
 
-def caution_note(city_key, zone, resident_rate_ok=True):
-    """One sentence saying what a red rating is made of, or "" when the data
-    cannot support one. Only for areas rated red: on a green card it would be
-    noise, and on an amber one the composition rarely says anything the badge
-    has not."""
+# Apertura della frase, in base a cosa la card sta consigliando. Il punto e'
+# tenere separate le due dimensioni: l'etichetta dice a cosa serve la zona, il
+# badge dice cosa dicono i dati, e questa riga spiega perche' possono coesistere.
+_CAUTION_OPENER = {
+    "For a first visit": "Still a practical base for a first visit",
+    "With family": "Still a workable choice with family",
+    "For going out": "Still where the evening happens",
+    "Best rated overall": "Still the best-rated area in the city",
+}
+_CAUTION_CLOSER = ("Take extra care, particularly after dark — that is what the rating is "
+                   "for, not a reason to stay out of the area.")
+
+
+def caution_note(city_key, zone, labels=(), sights=0, resident_rate_ok=True):
+    """Why a recommended area can carry a caution rating, for the cards.
+
+    THE CONTRADICTION THIS EXISTS TO RESOLVE
+        The cards pick an area for what it is useful for — most of the city's
+        sights, a park and no nightlife, the evening venues. The rating comes
+        from somewhere else entirely, and in a European city the two collide
+        constantly: the historic centre holds the sights AND the recorded
+        crime. 36 of the site's 156 recommendation cards carry a red rating.
+        A reader saw "For a first visit" above "Higher caution advised" and
+        nothing reconciling them.
+
+    WHAT IT MUST NOT DO
+        It must not argue the area is safe, and it must not blame tourist
+        footfall unless the data we hold supports that reading. Three tiers,
+        by what the evidence actually allows:
+
+          UK cities      the crime-category split and the resident population
+                         are both known, so the sentence can name them.
+          snapshot       Berlin, Brussels, Munich, Prague, Stockholm publish a
+                         rate per registered resident; that much can be said,
+                         plus the sight count from our own map.
+          everything     research-based cities have no rate at all behind the
+          else           rating, so any denominator claim would be invented.
+                         They get the neutral form: the recommendation stands
+                         on location, the rating stands on the evidence, and
+                         the reader is told to take care rather than reassured.
+    """
     day_red = zone.get("day") == "red"
     night_red = zone.get("night") == "red"
     if not (day_red or night_red):
         return ""
+
+    opener = _CAUTION_OPENER.get(labels[0] if labels else "", "Still a practical choice")
 
     ev = uk_ward_evidence(city_key).get(zone.get("slug"))
     if ev:
         def top(kind):
             items = ev[kind]
             return CRIME_CATEGORY_PLAIN.get(items[0][0], items[0][0]) if items else None
-        d, n = top("day") if day_red else None, top("night") if night_red else None
+        d = top("day") if day_red else None
+        n = top("night") if night_red else None
         if d and n:
-            core = "Its rating is mostly %s during the day and %s after dark" % (d, n)
+            core = "the rating is driven by %s during the day and %s after dark" % (d, n)
         elif d:
-            core = "Its daytime rating is mostly %s" % d
+            core = "the daytime rating is driven by %s" % d
         elif n:
-            core = "Its night rating is mostly %s" % n
+            core = "the night rating is driven by %s" % n
         else:
-            return ""
-        pop = ev.get("population")
-        # Stated as a fact about the denominator, never as a claim that the
-        # area is therefore fine — the reader can see the sight count on the
-        # same card and draw the conclusion themselves.
-        if pop and resident_rate_ok:
-            return ("%s, counted as a rate against the %s people registered as living "
-                    "there rather than the number who pass through." % (core, f"{pop:,}"))
-        return core + "."
+            core = None
+        if core:
+            pop = ev.get("population")
+            if pop and resident_rate_ok:
+                core += (", counted as a rate against the %s people registered as living "
+                         "here rather than the far larger number who pass through" % f"{pop:,}")
+            return "%s: %s. %s" % (opener, core, _CAUTION_CLOSER)
 
     if city_key in RESIDENT_RATE_CITIES:
-        return ("Its rating comes from the city's own published figures, counted per "
-                "registered resident and compared only with other districts of this city.")
-    return ""
+        where = ("%d of the city's main sights are inside it. " % sights) if sights >= 3 else ""
+        return ("%s. %sThe city's published rate is counted per registered resident, so a "
+                "district that hosts many more people than it houses reads higher. %s"
+                % (opener, where, _CAUTION_CLOSER))
+
+    # Nessun tasso dietro la valutazione: nessuna affermazione sul denominatore.
+    return ("%s, for its location and what is within walking distance of it. The safety "
+            "evidence points the other way, and the rating is a reason to take extra care "
+            "— particularly after dark — not by itself a reason to avoid the area." % opener)
+
+
 SIGHT_CATS = ("art", "square", "view", "food")
 
 
@@ -2111,7 +2156,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         _c["day_label"] = tone_badge.get(_z["day"], _z["day"])
         _c["night_label"] = tone_badge.get(_z["night"], _z["night"])
         _c["book"] = booking_href(_z["query"], city_key)
-        _note = caution_note(city_key, _z)
+        _note = caution_note(city_key, _z, _c["labels"], _c["counts"]["sights"])
         _c["caution"] = "" if _note in _notes_seen else _note
         if _note:
             _notes_seen.add(_note)
@@ -2303,7 +2348,7 @@ def render_london_map(cities):
         # population, so for those the resident-denominator half of the sentence
         # would be false. It is suppressed per borough, not per city.
         _b = next((b for b in (london["boroughs"] if london else []) if b["slug"] == _z["slug"]), None)
-        _c["caution"] = caution_note("london", _z,
+        _c["caution"] = caution_note("london", _z, _c["labels"], _c["counts"]["sights"],
                                      resident_rate_ok=bool(_b) and
                                      (_b.get("workday_population_ratio") in (None, 1.0)))
 
