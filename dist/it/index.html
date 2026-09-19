@@ -311,6 +311,16 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
 <script>
+  // NON chiamarlo L: L e' il nome globale di Leaflet, e dichiararlo qui lo
+  // oscura per tutto il resto dello script — la mappa della home e' rimasta
+  // senza un solo indicatore perche' L.markerClusterGroup non esisteva piu'.
+  var TXT = {
+    noAddress: "Non abbiamo trovato questo indirizzo. Prova con il nome di una citt\u00e0 o di un quartiere \u2014 tutte le citt\u00e0 coperte sono sulla mappa qui sopra.",
+    notCovered: "Questo indirizzo non \u00e8 in una citt\u00e0 che Wandroz copre ancora \u2014 la mappa qui sopra mostra quelle coperte.",
+    lookingUp: "Sto cercando l\u0027indirizzo\u2026",
+    lookupFailed: "Non riesco a cercare l\u0027indirizzo in questo momento. Riprova, o cerca per nome di citt\u00e0 o quartiere.",
+    explore: "Esplora %s \u2192"
+  };
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -1277,7 +1287,7 @@
     var marker = L.marker([c.lat, c.lon], { icon: icon });
     var popupHtml = '<div class="popup-name">' + c.flag + ' ' + c.name + '</div>' +
       '<div class="popup-meta"><strong>' + c.zone_count + ' neighbourhoods</strong> mapped · ' + c.data_tag + '</div>' +
-      '<a class="popup-cta" href="' + c.url + '">' + L.explore.replace('%s', c.name) + '</a>';
+      '<a class="popup-cta" href="' + c.url + '">' + TXT.explore.replace('%s', c.name) + '</a>';
     marker.bindPopup(popupHtml, { className: 'wz-popup' });
     // A light "fly" into the city under the popup, rather than a hard cut —
     // it's still the same overview map (only the per-city hub page linked
@@ -1317,13 +1327,6 @@
   // point-in-polygon test, entirely client-side. No fabricated matches —
   // an address outside every mapped city is reported as not covered
   // rather than guessed at.
-  var L = {
-    noAddress: "Non abbiamo trovato questo indirizzo. Prova con il nome di una citt\u00e0 o di un quartiere \u2014 tutte le citt\u00e0 coperte sono sulla mappa qui sopra.",
-    notCovered: "Questo indirizzo non \u00e8 in una citt\u00e0 che Wandroz copre ancora \u2014 la mappa qui sopra mostra quelle coperte.",
-    lookingUp: "Sto cercando l\u0027indirizzo\u2026",
-    lookupFailed: "Non riesco a cercare l\u0027indirizzo in questo momento. Riprova, o cerca per nome di citt\u00e0 o quartiere.",
-    explore: "Esplora %s \u2192"
-  };
   (function() {
     var form = document.getElementById('wzSearchForm');
     var input = document.getElementById('wzSearch');
@@ -1447,7 +1450,7 @@
     // more than one real match — shows them as a clickable list instead
     // of auto-navigating, so the visitor picks the right city themselves.
     function tryAddressSearch(query) {
-      showStatus(L.lookingUp);
+      showStatus(TXT.lookingUp);
       var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=at,be,ch,cz,de,ee,es,fr,gb,gr,hr,hu,ie,it,lt,nl,no,pl,pt,ro,se,sk&q=' + encodeURIComponent(query);
       Promise.all([
         fetch(url, { headers: { 'Accept-Language': 'en' } }).then(function(r) { return r.ok ? r.json() : []; }),
@@ -1459,7 +1462,7 @@
           // sono state scritte; oggi sono sessantadue, e una lista scritta a
           // mano in un template invecchia in silenzio. Meglio nessun elenco
           // che un elenco sbagliato: la mappa qui sopra le mostra tutte.
-          showStatus(L.noAddress);
+          showStatus(TXT.noAddress);
           return;
         }
         // Solo le citta' il cui riquadro contiene almeno uno dei candidati
@@ -1508,9 +1511,9 @@
           return;
         }
         if (cityFallback) { window.location.href = cityFallback.url; return; }
-        showStatus(L.notCovered);
+        showStatus(TXT.notCovered);
       }).catch(function() {
-        showStatus(L.lookupFailed);
+        showStatus(TXT.lookupFailed);
       });
     }
 
