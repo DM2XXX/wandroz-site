@@ -1,5 +1,34 @@
 severity,category,check,target,message
 WARN,INVENTORY,canonical-registry,build_site.py,no CITY_REGISTRY in build_site.py; QA is using its own fallback table. Move the registry into the generator so slug/scheme/data-key live in one place.
+FAIL,METHODOLOGY,forbidden-copy,barcelona/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,barcelona/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,paris/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,paris/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,dublin/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,dublin/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,milano/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,milano/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,torino/index.html,contains 'public reputation' — describes reviewed work as casual
+FAIL,METHODOLOGY,forbidden-copy,krakow/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,roma/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,roma/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,lisbon/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,lisbon/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,venezia/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,venezia/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,zurigo/index.html,contains 'public reputation' — describes reviewed work as casual
+FAIL,METHODOLOGY,forbidden-copy,madrid/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,madrid/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,vienna/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,vienna/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,budapest/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,budapest/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,firenze/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,firenze/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,athens/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,athens/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
+FAIL,METHODOLOGY,forbidden-copy,napoli/index.html,contains 'Level 2' — internal tier number; the page says which evidence class a city is on
+FAIL,METHODOLOGY,forbidden-copy,napoli/index.html,contains 'press research' — understates an area-level source review; say 'local-source assessment'
 WARN,METHODOLOGY,denominator-artefact,amsterdam/coenhaven-minervahaven,"rated red/red on 1765 registered residents — the rate rests on a denominator too small to carry a verdict, and the hub table now shows it ranked"
 WARN,METHODOLOGY,denominator-artefact,amsterdam/havens-west,"rated red/red on 30 registered residents — the rate rests on a denominator too small to carry a verdict, and the hub table now shows it ranked"
 WARN,METHODOLOGY,denominator-artefact,amsterdam/lutkemeer-ookmeer,"rated yellow/yellow on 1255 registered residents — the rate rests on a denominator too small to carry a verdict, and the hub table now shows it ranked"

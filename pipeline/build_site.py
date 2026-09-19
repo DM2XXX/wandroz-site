@@ -559,6 +559,27 @@ def caution_note(city_key, zone, labels=(), sights=0, resident_rate_ok=True, t=N
 SIGHT_CATS = ("art", "square", "view", "food")
 
 
+# Areas that are in the dataset's geography but not in the city the page is
+# named after. They stay on the map — the crime data covers them and dropping
+# them would leave blank ground — but they must never be offered as a place to
+# stay in that city.
+#
+# Bath is the case this exists for. The crime data is published for Bath and
+# North East Somerset, a council area that also contains Keynsham, Midsomer
+# Norton, Radstock and the Chew Valley, up to 15 km away. Before this, the
+# hub's "For a short stay in Bath" line recommended Bathavon North, a rural
+# parish outside the city.
+OUTSIDE_CITY = {
+    "bath": {
+        "Bathavon North", "Bathavon South", "Chew Valley", "Clutton & Farmborough",
+        "High Littleton", "Keynsham East", "Keynsham North", "Keynsham South",
+        "Mendip", "Midsomer Norton North", "Midsomer Norton Redfield", "Paulton",
+        "Peasedown", "Publow & Whitchurch", "Radstock", "Saltford", "Timsbury",
+        "Westfield",
+    },
+}
+
+
 def hub_data(city_key, zones, t=None):
     """Per-area sight counts, plus the recommendation cards.
 
@@ -596,6 +617,13 @@ def hub_data(city_key, zones, t=None):
                 TONE_ORDER.get(z["night"], 3),
                 -(c.get("sights", 0) + c.get("night", 0) + c.get("green", 0)),
                 z["name"])
+
+    # The cards are the one place the page tells a visitor where to stay, so
+    # they are chosen only from areas actually in the city. Everything else on
+    # the page — map, table, area pages — still covers the full dataset.
+    outside = OUTSIDE_CITY.get(city_key, set())
+    if outside:
+        zones = [z for z in zones if z["name"] not in outside]
 
     cards, used = [], {}
 
@@ -2250,7 +2278,14 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             # inglese perche' la descrizione da cui viene e' inglese.
             hub_local=(_t["unit_generic"] if _hub.get("local") == "neighbourhoods"
                        else _hub.get("local")),
-            data_note=evidence_line(city_key, len(zones)) if _is_en else "",
+            # A city whose data file carries a dataNote has something to say
+            # beyond its evidence tier — Bath's map covers a council area
+            # larger than the city, and a reader has to be told that before
+            # they read "Keynsham" as a Bath neighbourhood. The note is
+            # appended, not substituted: the evidence line still has to show.
+            data_note=((evidence_line(city_key, len(zones))
+                        + ((" " + data["dataNote"]) if data.get("dataNote") else ""))
+                       if _is_en else ""),
             show_toggle=show_toggle,
             label_day=_t["label_day"], label_night=_t["label_night"],
             legend_green=_t["legend_green"],
