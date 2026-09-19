@@ -177,13 +177,17 @@ def mark_incomparable(scored):
         pop = v.get("residents")
         if pop and pop < floor:
             v["rate_not_comparable"] = True
+            # Written for a traveller, not for us. The first version explained
+            # medians and denominators and told the reader nothing they wanted
+            # to know. Three sentences: what the number is, why it looks bad,
+            # why we are not using it.
             v["not_comparable_reason"] = (
-                "%s has about %s residents, under a third of the median Zurich "
-                "district. Burglary counts include break-ins at shops, offices "
-                "and hotels, so dividing them by a resident population this "
-                "small measures how commercial the district is, not how risky "
-                "it is for a person. The figure is shown; it is not ranked "
-                "against the other districts." % (v["kreis_label"], f"{pop:,}")
+                "This is Zurich's old town: only about %s people live here, but "
+                "there are thousands of shops, offices and hotels. Break-ins at "
+                "all of them are counted and then divided by those few "
+                "residents, which is why the number looks alarming. It tracks "
+                "how many businesses are packed in, not your risk — so we show "
+                "it, but we don't rate the area on it." % f"{pop:,}"
             )
 
 

@@ -799,7 +799,7 @@ var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a81
     yellow: "Burglary rate close to the 12-district average",
     red: "Burglary rate well above the 12-district average",
     grey: "No burglary data for this district",
-    offscale: "Figure published, not ranked — see the district note"
+    offscale: "Number shown, but not a risk score"
   };
 
   // zoomSnap:0 perche' altrimenti Leaflet arrotonda per difetto lo zoom che
@@ -883,11 +883,12 @@ var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a81
       // The figure exists and is official; what cannot be done is rank it.
       // Saying "no data" here would be false, and colouring it red would be
       // the thing that made the old town Zurich's worst-rated area.
-      html += badge('offscale', 'Figure published, not ranked') +
-        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 +
-        ' burglaries per 1,000 residents' +
-        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
-        '. ' + b.not_comparable_reason + '</div>';
+      html += badge('offscale', 'Not a risk score') +
+        '<div class="body-text">' + b.not_comparable_reason +
+        ' <b>' + b.kreis_label + '</b>: ' + b.rate_avg_per_1000 +
+        ' break-ins per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ', ' + b.years_included.slice(-1)[0] + '-' + b.years_included[0]) +
+        '.</div>';
     } else {
       html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
         '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
