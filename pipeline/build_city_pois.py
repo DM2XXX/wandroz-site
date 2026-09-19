@@ -23,6 +23,38 @@ CAT_TYPE = {"art": "LANDMARK", "view": "VIEWPOINT", "green": "PARK",
             "square": "AREA", "food": "MARKET", "night": "AREA"}
 
 CITIES = {
+    "basel": {
+        "centre": (7.5886, 47.5596), "lang": "de",
+        "min_sitelinks": 7,
+        "curated": [
+            ("Basler Münster", "art", "LANDMARK"),
+            # Wikidata labels these plainly, without the city in the name;
+            # the qualified forms return nothing.
+            ("Basel Town Hall", "art", "LANDMARK"),
+            ("Münsterplatz", "square", "AREA"),
+            ("Mittlere Brücke", "art", "LANDMARK"),
+            ("Kunstmuseum Basel", "art", "MUSEUM"),
+            ("Fondation Beyeler", "art", "MUSEUM"),
+            ("Museum Tinguely", "art", "MUSEUM"),
+            ("Spalentor", "art", "LANDMARK"),
+            ("St. Alban-Tor", "art", "LANDMARK"),
+            ("Barfüsserplatz", "square", "AREA"),
+            ("Zoo Basel", "green", "PARK"),
+            ("Naturhistorisches Museum Basel", "art", "MUSEUM"),
+            ("Antikenmuseum Basel und Sammlung Ludwig", "art", "MUSEUM"),
+            ("Basler Papiermühle", "art", "MUSEUM"),
+            ("Botanischer Garten der Universität Basel", "green", "PARK"),
+            ("Schützenmattpark", "green", "PARK"),
+            ("Dreiländereck", "view", "VIEWPOINT"),
+            ("Messe Basel", "art", "LANDMARK"),
+            ("Markthalle Basel", "food", "MARKET"),
+            ("Steinenvorstadt", "night", "AREA"),
+            ("Kaserne Basel", "night", "AREA"),
+            ("Tinguely-Brunnen", "square", "AREA"),
+            ("Kleinbasel", "night", "AREA"),
+            ("Wettsteinbrücke", "view", "VIEWPOINT"),
+        ],
+    },
     "antwerp": {
         "centre": (4.4025, 51.2194), "lang": "nl",
         "min_sitelinks": 7,

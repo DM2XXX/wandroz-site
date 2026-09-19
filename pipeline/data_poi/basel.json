@@ -1,0 +1,258 @@
+{
+ "city": "basel",
+ "pois": [
+  {
+   "name": "Kunstmuseum Basel",
+   "category": "art",
+   "qid": "Q194626",
+   "lat": 47.55417,
+   "lon": 7.59417,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Basel Minster",
+   "category": "art",
+   "qid": "Q666479",
+   "lat": 47.55639,
+   "lon": 7.5925,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Beyeler Foundation",
+   "category": "art",
+   "qid": "Q673833",
+   "lat": 47.58806,
+   "lon": 7.65111,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Basel Zoo",
+   "category": "green",
+   "qid": "Q220009",
+   "lat": 47.54734,
+   "lon": 7.57876,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Basel Town Hall",
+   "category": "art",
+   "qid": "Q688984",
+   "lat": 47.5583,
+   "lon": 7.58833,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Museum Tinguely",
+   "category": "art",
+   "qid": "Q180904",
+   "lat": 47.55917,
+   "lon": 7.61222,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Basel Museum of Ancient Art and Ludwig Collection",
+   "category": "art",
+   "qid": "Q576081",
+   "lat": 47.55438,
+   "lon": 7.59325,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Natural History Museum of Basel",
+   "category": "art",
+   "qid": "Q675823",
+   "lat": 47.5575,
+   "lon": 7.59056,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Basel Paper Mill",
+   "category": "art",
+   "qid": "Q594378",
+   "lat": 47.555,
+   "lon": 7.604,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Mittlere Brücke",
+   "category": "art",
+   "qid": "Q449659",
+   "lat": 47.56,
+   "lon": 7.58972,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Dreiländereck",
+   "category": "view",
+   "qid": "Q3039321",
+   "lat": 47.5885,
+   "lon": 7.58977,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Münsterplatz",
+   "category": "square",
+   "qid": "Q693910",
+   "lat": 47.5564,
+   "lon": 7.59164,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Barfüsserplatz",
+   "category": "square",
+   "qid": "Q261083",
+   "lat": 47.55472,
+   "lon": 7.58917,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Carnival Fountain",
+   "category": "square",
+   "qid": "Q683514",
+   "lat": 47.5537,
+   "lon": 7.5906,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Kleinbasel",
+   "category": "night",
+   "qid": "Q692247",
+   "lat": 47.56709,
+   "lon": 7.60473,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "market hall",
+   "category": "food",
+   "qid": "Q1901023",
+   "lat": 47.54944,
+   "lon": 7.58722,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Kaserne Basel",
+   "category": "night",
+   "qid": "Q1726074",
+   "lat": 47.5629,
+   "lon": 7.5898,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Wettsteinbrücke",
+   "category": "view",
+   "qid": "Q1597642",
+   "lat": 47.55639,
+   "lon": 7.59611,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Schützenmattpark",
+   "category": "green",
+   "qid": "Q2140971",
+   "lat": 47.55272,
+   "lon": 7.57451,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Steinenvorstadt",
+   "category": "night",
+   "qid": "Q20617246",
+   "lat": 47.55257,
+   "lon": 7.58826,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
+  },
+  {
+   "name": "Spalentor",
+   "category": "art",
+   "qid": "Q110586275",
+   "lat": 47.55811,
+   "lon": 7.58144,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 21
+  },
+  {
+   "name": "St. Alban-Tor",
+   "category": "art",
+   "qid": "Q110586282",
+   "lat": 47.55269,
+   "lon": 7.60447,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 22
+  },
+  {
+   "name": "Messe Basel",
+   "category": "art",
+   "qid": "Q122829008",
+   "lat": 47.5653,
+   "lon": 7.5991,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 23
+  }
+ ]
+}

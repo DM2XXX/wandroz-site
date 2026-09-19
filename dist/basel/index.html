@@ -540,18 +540,18 @@
 
 
 
-<p class="hub-answer">For a short stay in Basel: <strong>Am Ring</strong>.
+<p class="hub-answer">For a short stay in Basel: <strong>Altstadt Grossbasel</strong>, <strong>Bachletten</strong> and <strong>Vorstädte</strong>.
   <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and night rating — including where that rating says be careful.</span> None of them is here because someone paid for it.
 </p>
 
 
-
+<div class="poi-bar" id="poiBar"></div>
 
 
 <div class="map-stage" id="mapStage">
   <div class="map-wrap" id="mapWrap">
     <div id="map"></div>
-    
+    <button type="button" class="poi-reset" id="poiReset">Reset view</button>
     <div class="map-detail" id="detailBox">
       <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
       <div id="detail"></div>
@@ -564,6 +564,11 @@
       <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
       
       <div class="legend-dash"><i></i> <span>Dashed outline: no area-specific findings</span></div>
+    </div>
+    
+    <div class="poi-list-wrap">
+      <h2>Sights on this map</h2>
+      <ol class="poi-list" id="poiList"></ol>
     </div>
     
   <div class="zone-list">
@@ -622,17 +627,43 @@
 
 <div class="hub-cards">
   
-  <div class="hub-card" data-zone="am-ring">
-    <span class="lab">Best rated overall</span>
-    <span class="nm"><a href="/basel/am-ring.html">Am Ring</a></span>
+  <div class="hub-card" data-zone="altstadt-grossbasel">
+    <span class="lab">For a first visit</span>
+    <span class="nm"><a href="/basel/altstadt-grossbasel.html">Altstadt Grossbasel</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Average</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">6 of the city&#39;s main sights are close enough to walk between.</span>
+    
+    
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Find a place in Altstadt Grossbasel →</a>
+  </div>
+  
+  <div class="hub-card" data-zone="bachletten">
+    <span class="lab">With family</span>
+    <span class="nm"><a href="/basel/bachletten.html">Bachletten</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
       <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
       <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
     </div>
-    <span class="why">Nowhere in the city is rated better, by day or after dark.</span>
+    <span class="why">2 parks within reach, and nothing here turns into a nightlife strip after dark.</span>
     
     
-    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Find a place in Am Ring →</a>
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Find a place in Bachletten →</a>
+  </div>
+  
+  <div class="hub-card" data-zone="vorstädte">
+    <span class="lab">For going out · Best rated overall</span>
+    <span class="nm"><a href="/basel/vorstädte.html">Vorstädte</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relatively safer</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">This is where the city&#39;s evening venues are concentrated.</span>
+    
+    
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Find a place in Vorstädte →</a>
   </div>
   
 </div>
@@ -651,7 +682,7 @@
       <thead><tr>
         <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
         <th aria-sort="none">Evidence</th>
-        
+        <th aria-sort="none" class="num">Sights</th>
         <th>Book</th>
       </tr></thead>
       <tbody>
@@ -661,7 +692,7 @@
           <td data-sort="1"><span class="badge yellow">Average</span></td>
           <td data-sort="2"><span class="badge red">Higher caution advised</span></td>
           <td class="dash">sourced</td>
-          
+          <td class="num"></td>
           <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
         </tr>
       
@@ -670,7 +701,7 @@
           <td data-sort="1"><span class="badge yellow">Average</span></td>
           <td data-sort="1"><span class="badge yellow">Average</span></td>
           <td class="dash">sourced</td>
-          
+          <td class="num">1</td>
           <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
         </tr>
       
@@ -679,25 +710,7 @@
           <td data-sort="0"><span class="badge green">Relatively safer</span></td>
           <td data-sort="1"><span class="badge yellow">Average</span></td>
           <td class="dash">sourced</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/clara.html">Clara</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/gundeldingen.html">Gundeldingen</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="1"><span class="badge yellow">Average</span></td>
-          <td class="dash">sourced</td>
-          
+          <td class="num">6</td>
           <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
         </tr>
       
@@ -706,7 +719,25 @@
           <td data-sort="0"><span class="badge green">Relatively safer</span></td>
           <td data-sort="1"><span class="badge yellow">Average</span></td>
           <td class="dash">sourced</td>
-          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/clara.html">Clara</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/gundeldingen.html">Gundeldingen</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="1"><span class="badge yellow">Average</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
           <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
         </tr>
       
@@ -715,115 +746,7 @@
           <td data-sort="0"><span class="badge green">Relatively safer</span></td>
           <td data-sort="1"><span class="badge yellow">Average</span></td>
           <td class="dash">sourced</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/am-ring.html">Am Ring</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/bachletten.html">Bachletten</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/bettingen.html">Bettingen</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Bettingen%2C+Basel-Stadt%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/breite.html">Breite</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/bruderholz.html">Bruderholz</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/gotthelf.html">Gotthelf</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/hirzbrunnen.html">Hirzbrunnen</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/iselin.html">Iselin</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/riehen.html">Riehen</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">sourced</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Riehen%2C+Basel-Stadt%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/rosental.html">Rosental</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/st-alban.html">St. Alban</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
-          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
-        </tr>
-      
-        <tr>
-          <td><a href="/basel/st-johann.html">St. Johann</a></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
-          <td class="dash">no area-specific findings</td>
-          
+          <td class="num"></td>
           <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
         </tr>
       
@@ -832,7 +755,52 @@
           <td data-sort="0"><span class="badge green">Relatively safer</span></td>
           <td data-sort="0"><span class="badge green">Relatively safer</span></td>
           <td class="dash">no area-specific findings</td>
-          
+          <td class="num">5</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/bachletten.html">Bachletten</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/rosental.html">Rosental</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/am-ring.html">Am Ring</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/riehen.html">Riehen</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Riehen%2C+Basel-Stadt%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/st-alban.html">St. Alban</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num">1</td>
           <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
         </tr>
       
@@ -841,7 +809,70 @@
           <td data-sort="0"><span class="badge green">Relatively safer</span></td>
           <td data-sort="0"><span class="badge green">Relatively safer</span></td>
           <td class="dash">no area-specific findings</td>
-          
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/bettingen.html">Bettingen</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">sourced</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Bettingen%2C+Basel-Stadt%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/breite.html">Breite</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/bruderholz.html">Bruderholz</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/gotthelf.html">Gotthelf</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/hirzbrunnen.html">Hirzbrunnen</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/iselin.html">Iselin</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/basel/st-johann.html">St. Johann</a></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td data-sort="0"><span class="badge green">Relatively safer</span></td>
+          <td class="dash">no area-specific findings</td>
+          <td class="num"></td>
           <td><a href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Book →</a></td>
         </tr>
       
@@ -921,7 +952,7 @@
     });
   })();
 
-  var POIS = [];
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.55417, "lon": 7.59417, "name": "Kunstmuseum Basel", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.55639, "lon": 7.5925, "name": "Basel Minster", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.58806, "lon": 7.65111, "name": "Beyeler Foundation", "rank": 3}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 47.54734, "lon": 7.57876, "name": "Basel Zoo", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.5583, "lon": 7.58833, "name": "Basel Town Hall", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.55917, "lon": 7.61222, "name": "Museum Tinguely", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.55438, "lon": 7.59325, "name": "Basel Museum of Ancient Art and Ludwig Collection", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.5575, "lon": 7.59056, "name": "Natural History Museum of Basel", "rank": 8}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.555, "lon": 7.604, "name": "Basel Paper Mill", "rank": 9}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.56, "lon": 7.58972, "name": "Mittlere Br\u00fccke", "rank": 10}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.5885, "lon": 7.58977, "name": "Dreil\u00e4ndereck", "rank": 11}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 47.5564, "lon": 7.59164, "name": "M\u00fcnsterplatz", "rank": 12}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 47.55472, "lon": 7.58917, "name": "Barf\u00fcsserplatz", "rank": 13}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 47.5537, "lon": 7.5906, "name": "Carnival Fountain", "rank": 14}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.56709, "lon": 7.60473, "name": "Kleinbasel", "rank": 15}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 47.54944, "lon": 7.58722, "name": "market hall", "rank": 16}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.5629, "lon": 7.5898, "name": "Kaserne Basel", "rank": 17}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.55639, "lon": 7.59611, "name": "Wettsteinbr\u00fccke", "rank": 18}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 47.55272, "lon": 7.57451, "name": "Sch\u00fctzenmattpark", "rank": 19}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.55257, "lon": 7.58826, "name": "Steinenvorstadt", "rank": 20}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.55811, "lon": 7.58144, "name": "Spalentor", "rank": 21}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.55269, "lon": 7.60447, "name": "St. Alban-Tor", "rank": 22}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.5653, "lon": 7.5991, "name": "Messe Basel", "rank": 23}];
   var POI_ALL = "All";
   var L_HIDE_SIGHTS = "Hide sights";
   var L_SIGHTS_HIDDEN = "Sights hidden";
