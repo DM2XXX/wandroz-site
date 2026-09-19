@@ -1,15 +1,17 @@
 {
-  "city_average_rate_per_1000": 10.23,
+  "city_average_rate_per_1000": 3.26,
   "kreise": {
     "kreis_1": {
+      "burglaries_per_year": 217,
+      "employees": 78087,
       "kreis_label": "Kreis 1",
       "kreis_number": 1,
-      "not_comparable_reason": "This is Zurich's old town: only about 5,583 people live here, but there are thousands of shops, offices and hotels. Break-ins at all of them are counted and then divided by those few residents, which is why the number looks alarming. It tracks how many businesses are packed in, not your risk \u2014 so we show it, but we don't rate the area on it.",
-      "rate_avg_per_1000": 38.8,
-      "rate_not_comparable": true,
+      "premises": 83670,
+      "rate_avg_per_1000": 2.59,
+      "rate_per_1000_residents": 38.87,
       "residents": 5583,
-      "tone": "offscale",
-      "vs_city_average": 3.792,
+      "tone": "green",
+      "vs_city_average": 0.795,
       "years_included": [
         "2025",
         "2024",
@@ -18,12 +20,16 @@
       "years_with_data": 3
     },
     "kreis_10": {
+      "burglaries_per_year": 217,
+      "employees": 17551,
       "kreis_label": "Kreis 10",
       "kreis_number": 10,
-      "rate_avg_per_1000": 5.4,
+      "premises": 57807,
+      "rate_avg_per_1000": 3.75,
+      "rate_per_1000_residents": 5.39,
       "residents": 40256,
-      "tone": "green",
-      "vs_city_average": 0.528,
+      "tone": "yellow",
+      "vs_city_average": 1.151,
       "years_included": [
         "2025",
         "2024",
@@ -32,12 +38,16 @@
       "years_with_data": 3
     },
     "kreis_11": {
+      "burglaries_per_year": 412,
+      "employees": 61426,
       "kreis_label": "Kreis 11",
       "kreis_number": 11,
-      "rate_avg_per_1000": 5.47,
+      "premises": 136616,
+      "rate_avg_per_1000": 3.01,
+      "rate_per_1000_residents": 5.48,
       "residents": 75190,
-      "tone": "green",
-      "vs_city_average": 0.535,
+      "tone": "yellow",
+      "vs_city_average": 0.924,
       "years_included": [
         "2025",
         "2024",
@@ -46,12 +56,16 @@
       "years_with_data": 3
     },
     "kreis_12": {
+      "burglaries_per_year": 92,
+      "employees": 8155,
       "kreis_label": "Kreis 12",
       "kreis_number": 12,
-      "rate_avg_per_1000": 2.9,
+      "premises": 39893,
+      "rate_avg_per_1000": 2.31,
+      "rate_per_1000_residents": 2.9,
       "residents": 31738,
       "tone": "green",
-      "vs_city_average": 0.283,
+      "vs_city_average": 0.709,
       "years_included": [
         "2025",
         "2024",
@@ -60,12 +74,16 @@
       "years_with_data": 3
     },
     "kreis_2": {
+      "burglaries_per_year": 241,
+      "employees": 51090,
       "kreis_label": "Kreis 2",
       "kreis_number": 2,
-      "rate_avg_per_1000": 6.53,
+      "premises": 88123,
+      "rate_avg_per_1000": 2.74,
+      "rate_per_1000_residents": 6.52,
       "residents": 37033,
-      "tone": "green",
-      "vs_city_average": 0.638,
+      "tone": "yellow",
+      "vs_city_average": 0.841,
       "years_included": [
         "2025",
         "2024",
@@ -74,12 +92,16 @@
       "years_with_data": 3
     },
     "kreis_3": {
+      "burglaries_per_year": 337,
+      "employees": 46272,
       "kreis_label": "Kreis 3",
       "kreis_number": 3,
-      "rate_avg_per_1000": 6.77,
+      "premises": 95842,
+      "rate_avg_per_1000": 3.52,
+      "rate_per_1000_residents": 6.8,
       "residents": 49570,
-      "tone": "green",
-      "vs_city_average": 0.662,
+      "tone": "yellow",
+      "vs_city_average": 1.081,
       "years_included": [
         "2025",
         "2024",
@@ -88,12 +110,16 @@
       "years_with_data": 3
     },
     "kreis_4": {
+      "burglaries_per_year": 472,
+      "employees": 49333,
       "kreis_label": "Kreis 4",
       "kreis_number": 4,
-      "rate_avg_per_1000": 16.57,
+      "premises": 77821,
+      "rate_avg_per_1000": 6.07,
+      "rate_per_1000_residents": 16.58,
       "residents": 28488,
       "tone": "red",
-      "vs_city_average": 1.619,
+      "vs_city_average": 1.863,
       "years_included": [
         "2025",
         "2024",
@@ -102,12 +128,16 @@
       "years_with_data": 3
     },
     "kreis_5": {
+      "burglaries_per_year": 193,
+      "employees": 64831,
       "kreis_label": "Kreis 5",
       "kreis_number": 5,
-      "rate_avg_per_1000": 12.57,
+      "premises": 80178,
+      "rate_avg_per_1000": 2.41,
+      "rate_per_1000_residents": 12.6,
       "residents": 15347,
-      "tone": "yellow",
-      "vs_city_average": 1.229,
+      "tone": "green",
+      "vs_city_average": 0.74,
       "years_included": [
         "2025",
         "2024",
@@ -116,12 +146,16 @@
       "years_with_data": 3
     },
     "kreis_6": {
+      "burglaries_per_year": 253,
+      "employees": 28813,
       "kreis_label": "Kreis 6",
       "kreis_number": 6,
-      "rate_avg_per_1000": 7.4,
+      "premises": 63127,
+      "rate_avg_per_1000": 4.01,
+      "rate_per_1000_residents": 7.38,
       "residents": 34314,
-      "tone": "green",
-      "vs_city_average": 0.723,
+      "tone": "yellow",
+      "vs_city_average": 1.231,
       "years_included": [
         "2025",
         "2024",
@@ -130,12 +164,16 @@
       "years_with_data": 3
     },
     "kreis_7": {
+      "burglaries_per_year": 237,
+      "employees": 34903,
       "kreis_label": "Kreis 7",
       "kreis_number": 7,
-      "rate_avg_per_1000": 6.13,
+      "premises": 73301,
+      "rate_avg_per_1000": 3.23,
+      "rate_per_1000_residents": 6.16,
       "residents": 38398,
-      "tone": "green",
-      "vs_city_average": 0.599,
+      "tone": "yellow",
+      "vs_city_average": 0.992,
       "years_included": [
         "2025",
         "2024",
@@ -144,12 +182,16 @@
       "years_with_data": 3
     },
     "kreis_8": {
+      "burglaries_per_year": 155,
+      "employees": 32891,
       "kreis_label": "Kreis 8",
       "kreis_number": 8,
-      "rate_avg_per_1000": 8.97,
+      "premises": 50125,
+      "rate_avg_per_1000": 3.09,
+      "rate_per_1000_residents": 8.99,
       "residents": 17234,
       "tone": "yellow",
-      "vs_city_average": 0.877,
+      "vs_city_average": 0.949,
       "years_included": [
         "2025",
         "2024",
@@ -158,12 +200,16 @@
       "years_with_data": 3
     },
     "kreis_9": {
+      "burglaries_per_year": 305,
+      "employees": 71381,
       "kreis_label": "Kreis 9",
       "kreis_number": 9,
-      "rate_avg_per_1000": 5.27,
+      "premises": 129471,
+      "rate_avg_per_1000": 2.36,
+      "rate_per_1000_residents": 5.25,
       "residents": 58090,
       "tone": "green",
-      "vs_city_average": 0.515,
+      "vs_city_average": 0.724,
       "years_included": [
         "2025",
         "2024",

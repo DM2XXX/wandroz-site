@@ -265,8 +265,6 @@
   .map-detail .close-btn:hover { color:var(--ink); }
   .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
   .map-detail .badge { margin-right:4px; margin-bottom:4px; }
-  .badge.offscale, .dot.offscale { background:#3f6fa8; }
-  .badge.offscale { color:#fff; }
   .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
   .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
   .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
@@ -557,7 +555,6 @@
       <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Calm — no particular concern</span></div>
       <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Caution — some risk factors reported, no particular time-of-day pattern in the data</span></div>
       <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Not recommended for a tourist — known, recurring issues</span></div>
-      
       
       
     </div>
@@ -875,13 +872,7 @@
   var ZOOM = 12;
   var SHOW_TOGGLE = false;
   var SHOW_BURGLARY_TOGGLE = false;
-  // "offscale" is not a fourth risk level. It is used where a figure exists and
-// is published but cannot be ranked against the others — Zurich's Kreis 1,
-// whose 5,500 residents carry the break-ins of an entire commercial centre.
-// It is deliberately blue: grey reads as missing data, and green, amber and
-// red all read as a verdict. Blue reads as "this is information, not a score".
-var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190",
-               offscale: "#3f6fa8" };
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
   var L_CLICK = "Click an area on the map to see its level and the reasoning behind it.";
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
@@ -941,8 +932,7 @@ var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a81
     green: "Burglary rate well below the 12-district average",
     yellow: "Burglary rate close to the 12-district average",
     red: "Burglary rate well above the 12-district average",
-    grey: "No burglary data for this district",
-    offscale: "Number shown, but not a risk score"
+    grey: "No burglary data for this district"
   };
 
   // zoomSnap:0 perche' altrimenti Leaflet arrotonda per difetto lo zoom che
@@ -1020,24 +1010,12 @@ var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a81
     if (!b) {
       html += badge('grey', 'No real data for this district') +
         '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
-    } else if (b.rate_not_comparable) {
-      // Shown with the offscale badge, never grey: the reader must not read
-      // "we have nothing" when what we have is a number we refuse to rank.
-      // The figure exists and is official; what cannot be done is rank it.
-      // Saying "no data" here would be false, and colouring it red would be
-      // the thing that made the old town Zurich's worst-rated area.
-      html += badge('offscale', 'Not a risk score') +
-        '<div class="body-text">' + b.not_comparable_reason +
-        ' <b>' + b.kreis_label + '</b>: ' + b.rate_avg_per_1000 +
-        ' break-ins per 1,000 residents' +
-        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ', ' + b.years_included.slice(-1)[0] + '-' + b.years_included[0]) +
-        '.</div>';
     } else {
       html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
-        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' break-ins a year per 1,000 premises (homes and workplaces)' +
         (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
         (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
-        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+        '. Official Kantonspolizei Zürich figures, burglaries only, reported for the whole district rather than this neighbourhood. Swiss sources usually quote this as ' + b.rate_per_1000_residents + ' per 1,000 <i>residents</i>; we divide by homes plus workplaces instead, because a break-in happens to a building and a district full of offices has far more of them than it has residents.</div>';
     }
     if (z.url) {
       html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
@@ -1085,13 +1063,6 @@ var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a81
     document.getElementById('legendRedText').textContent = set.red;
     var greyEl = document.getElementById('legendGreyText');
     if (greyEl) { greyEl.textContent = set.grey; }
-    // Only meaningful on the burglary layer, so it appears with it and goes
-    // away with it rather than sitting unexplained under the day/night map.
-    var offEl = document.getElementById('legendOffscale');
-    if (offEl) {
-      offEl.hidden = !(burglaryMode && set.offscale);
-      if (set.offscale) { document.getElementById('legendOffscaleText').textContent = set.offscale; }
-    }
   }
 
   // Dashed where the rating rests on an absence of reporting rather than on

@@ -6,11 +6,32 @@ WHAT THIS IS
   data/raw_zurich/ into a single scored file, data/scores/zurich_burglary.json,
   keyed by Kreis (city district). For each of Zurich's 12 Stadtkreise, it
   picks out the "Einbrüche insgesamt" (total burglaries) row for the most
-  recent 3 years of data available, averages the official
-  Häufigkeitszahl (burglaries per 1,000 residents — computed by the data
-  provider, used as-is), and rates each Kreis against the 12-Kreise
-  average — the same red/yellow/green logic score_london.py uses, so the
-  two pipelines read consistently even though their inputs differ.
+  recent 3 years of data available, and rates each Kreis against the
+  12-Kreise average — the same red/yellow/green logic score_london.py uses,
+  so the two pipelines read consistently even though their inputs differ.
+
+WHY NOT PER 1,000 RESIDENTS
+  The provider publishes a Häufigkeitszahl: burglaries per 1,000 residents.
+  This script used to take it as-is, and it put Kreis 1 at 39.5 — four times
+  the city average, the worst district in Zurich, covering Lindenhof,
+  Rathaus, City and Hochschulen, the four quarters this site otherwise calls
+  the best places to stay.
+
+  Burglary is a crime against premises. Someone breaks into a building. A
+  district's homes are roughly its residents; its shops, offices and hotels
+  are roughly its workplaces. Kreis 1 has 5,492 residents and 78,087 people
+  working in it: counting the break-ins at all those premises and dividing by
+  the residents alone measures how commercial the district is.
+
+  So the denominator here is residents + employees, from STATENT via
+  fetch_zurich_premises.py. On that basis Kreis 1 falls from 3.84x the city
+  average to 0.80x, and the spread across Zurich narrows from 13x to under
+  3x — which is the real finding: once you count the places there are to
+  break into, Zurich's districts differ far less than the published
+  per-resident figures suggest. Kreis 4 stays the outlier.
+
+  The per-resident figure is still computed and kept in the output, because
+  it is what every other source about Zurich quotes.
 
 WHAT THIS IS NOT
   This is NOT a day/night safety score like London's, and it does NOT
@@ -88,17 +109,15 @@ def _parse_rate(raw):
         return None
 
 
-def load_kreis_year_rate(kreis_n, year):
-    """Reads the saved raw rows for one Kreis/year and returns
-    (Häufigkeitszahl, Einwohner) for the 'Einbrüche insgesamt' row, or
-    (None, None) if that row isn't present (schema drift, missing data for
-    that year, etc.).
+def load_kreis_year(kreis_n, year):
+    """Returns (burglary count, residents) for one Kreis/year, or (None, None).
 
-    The resident count was previously read and discarded. It matters: the
-    Häufigkeitszahl is offences per 1,000 *residents*, and burglary counts
-    include break-ins at shops, offices and hotels. Where residents are a
-    small minority of the premises at risk, the ratio stops describing a
-    person's risk and starts describing the district's commercial density."""
+    Previously this read the published Häufigkeitszahl — burglaries per 1,000
+    residents, computed by the data provider — and used it as-is. The count and
+    the resident figure are both in the same row, and taking them separately is
+    what makes it possible to divide by something better than residents. See
+    the module docstring for why residents alone is the wrong denominator for
+    a crime committed against buildings."""
     path = os.path.join(RAW_DIR, f"kreis_{kreis_n}_{year}.json")
     if not os.path.isfile(path):
         return None, None
@@ -106,89 +125,58 @@ def load_kreis_year_rate(kreis_n, year):
         rows = json.load(f)
     for row in rows:
         if row.get("Tatbestand", "").strip() == TOTAL_TATBESTAND:
-            pop = row.get("Einwohner")
             try:
-                pop = int(str(pop).replace("'", "").replace(" ", ""))
-            except (TypeError, ValueError):
-                pop = None
-            return _parse_rate(row.get("Häufigkeitszahl")), pop
+                count = int(str(row["Straftaten_total"]).replace("'", ""))
+                pop = int(str(row["Einwohner"]).replace("'", ""))
+            except (KeyError, TypeError, ValueError):
+                return None, None
+            return count, pop
     return None, None
 
 
-def score_kreis(kreis_n, years_available):
+def load_employees():
+    """Employees per Kreis, from fetch_zurich_premises.py. Returns ({}, None)
+    if absent, in which case scoring falls back to residents and says so."""
+    path = os.path.join(RAW_DIR, "employees_by_kreis.json")
+    if not os.path.isfile(path):
+        return {}, None
+    with open(path) as f:
+        d = json.load(f)
+    return d.get("employees") or {}, d.get("year")
+
+
+def score_kreis(kreis_n, years_available, employees):
+    """Burglaries per 1,000 premises — homes plus workplaces — averaged over
+    the most recent years on disk."""
     years_used = years_available[:YEARS_TO_AVERAGE]
-    rates = []
-    pops = []
-    years_with_data = []
+    counts, pops, years_with_data = [], [], []
     for year in years_used:
-        rate, pop = load_kreis_year_rate(kreis_n, year)
-        if rate is not None:
-            rates.append(rate)
+        count, pop = load_kreis_year(kreis_n, year)
+        if count is not None:
+            counts.append(count)
+            pops.append(pop)
             years_with_data.append(year)
-            if pop:
-                pops.append(pop)
-    if not rates:
+    if not counts:
         return None
-    avg_rate = sum(rates) / len(rates)
+    avg_count = sum(counts) / len(counts)
+    residents = round(sum(pops) / len(pops))
+    staff = employees.get(f"kreis_{kreis_n}")
+    premises = residents + (staff or 0)
     return {
         "kreis_number": kreis_n,
         "kreis_label": KREIS_LABEL[kreis_n],
-        "residents": round(sum(pops) / len(pops)) if pops else None,
+        "residents": residents,
+        "employees": staff,
+        "premises": premises,
+        "burglaries_per_year": round(avg_count),
         "years_included": years_with_data,
-        "years_with_data": len(rates),
-        "rate_avg_per_1000": round(avg_rate, 2),
+        "years_with_data": len(counts),
+        "rate_avg_per_1000": round(avg_count / premises * 1000, 2),
+        # Kept because the old figure is what every other published source
+        # about Zurich quotes, and a reader comparing us with them should be
+        # able to see both numbers rather than conclude one of us is wrong.
+        "rate_per_1000_residents": round(avg_count / residents * 1000, 2),
     }
-
-
-def mark_incomparable(scored):
-    """Flags districts where burglaries-per-1,000-residents is not a rate a
-    reader can compare with other districts.
-
-    Zurich's Kreis 1 is the old town and the central business district. It has
-    about 5,500 residents and several thousand shops, offices and hotels, and
-    the burglary count includes break-ins at all of them. Divided by a resident
-    population that small, it produces 38.8 per 1,000 — 3.8 times the city
-    average and by far the worst figure in Zurich — for the four quarters
-    (Lindenhof, Rathaus, City, Hochschulen) that this site otherwise rates as
-    the safest places in the city to stay. Both statements came from real data
-    and they cannot both be read as risk to a person.
-
-    The rule: a district whose resident population is under a third of the
-    median district's is flagged. That threshold is not delicate. Zurich's
-    districts run from 15,300 residents upward apart from Kreis 1 at 5,600, so
-    anything between roughly 6,000 and 15,000 selects the same single district;
-    a third of the median (about 11,900) sits in the middle of that gap. If a
-    future boundary change puts another district in the same position, it gets
-    the same treatment, which is why this is written as a rule.
-
-    Flagged districts keep their published figure and lose only their colour.
-    They stay in the city average: they are part of the city, the average is
-    described to the reader as the average of the twelve districts, and
-    quietly removing one to make the arithmetic prettier would be the same
-    class of error in the other direction."""
-    pops = [v["residents"] for v in scored.values() if v.get("residents")]
-    if len(pops) < 3:
-        return
-    pops.sort()
-    n = len(pops)
-    median = pops[n // 2] if n % 2 else (pops[n // 2 - 1] + pops[n // 2]) / 2
-    floor = median / 3.0
-    for v in scored.values():
-        pop = v.get("residents")
-        if pop and pop < floor:
-            v["rate_not_comparable"] = True
-            # Written for a traveller, not for us. The first version explained
-            # medians and denominators and told the reader nothing they wanted
-            # to know. Three sentences: what the number is, why it looks bad,
-            # why we are not using it.
-            v["not_comparable_reason"] = (
-                "This is Zurich's old town: only about %s people live here, but "
-                "there are thousands of shops, offices and hotels. Break-ins at "
-                "all of them are counted and then divided by those few "
-                "residents, which is why the number looks alarming. It tracks "
-                "how many businesses are packed in, not your risk — so we show "
-                "it, but we don't rate the area on it." % f"{pop:,}"
-            )
 
 
 def write_empty(reason):
@@ -208,12 +196,21 @@ def main():
         )
         return
 
+    employees, employees_year = load_employees()
+    if not employees:
+        raise SystemExit(
+            "data/raw_zurich/employees_by_kreis.json is missing. Run "
+            "pipeline/fetch_zurich_premises.py first: without it the only "
+            "denominator available is resident population, which is the fault "
+            "this scorer exists to avoid."
+        )
+
     scored = {}
     for kreis_n in range(1, 13):
         years_available = kreis_years.get(kreis_n, [])
         if not years_available:
             continue
-        result = score_kreis(kreis_n, years_available)
+        result = score_kreis(kreis_n, years_available, employees)
         if result:
             scored[f"kreis_{kreis_n}"] = result
 
@@ -221,18 +218,11 @@ def main():
         write_empty("Found raw Zurich files, but none had a usable 'Einbrüche insgesamt' rate — wrote an empty result.")
         return
 
-    mark_incomparable(scored)
-
     city_avg = sum(v["rate_avg_per_1000"] for v in scored.values()) / len(scored)
     for v in scored.values():
         ratio = (v["rate_avg_per_1000"] / city_avg) if city_avg else 1.0
         v["vs_city_average"] = round(ratio, 3)
-        if v.get("rate_not_comparable"):
-            # The figure is published and shown; only the ranking is withheld,
-            # because a rank is a comparison and this one cannot be made.
-            # Deliberately not "grey": grey means no data, and there is data.
-            v["tone"] = "offscale"
-        elif ratio >= RED_THRESHOLD:
+        if ratio >= RED_THRESHOLD:
             v["tone"] = "red"
         elif ratio <= GREEN_THRESHOLD:
             v["tone"] = "green"
@@ -250,7 +240,8 @@ def main():
         json.dump(out, f, indent=2, sort_keys=True)
     print(
         f"Wrote {OUT_PATH} — {len(scored)}/12 Kreise scored, "
-        f"city average {out['city_average_rate_per_1000']} burglaries/1,000 residents"
+        f"city average {out['city_average_rate_per_1000']} burglaries per 1,000 "
+        f"premises (homes + workplaces)"
     )
 
 
