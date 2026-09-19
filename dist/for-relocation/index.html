@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://www.wandroz.com/for-relocation/">
+<meta name="description" content="Wandroz Neighbourhood Intelligence — embeddable panel for relocation and global mobility.">
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Wandroz for Relocation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Archivo:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap">
+
+</head>
+<body>
+<style>
+  :root{
+    --paper:#f2f5f3; --card:#fff; --card-2:#f9fbfa;
+    --ink:#0f1f1c; --ink-2:#3a4b47; --muted:#697874;
+    --line:#dae2df; --line-2:#edf1ef;
+    --deep:#0f1f1c; --deep-2:#16302a; --on-deep:#e7f0eb; --on-deep-2:#96b3a8;
+    --calm:#2f7a4c; --calm-soft:#e3f0e8; --calm-fill:#7fbf98;
+    --watch:#9c6f16; --watch-soft:#f6eed9; --watch-fill:#e0bb6a;
+    --alert:#9d3a2a; --alert-soft:#f6e3de; --alert-fill:#d78b7b;
+    --concept:#5a6a8a; --concept-soft:#eaeef5;
+    --shadow:0 1px 2px rgba(15,31,28,.05), 0 16px 40px -24px rgba(15,31,28,.4);
+    --lift:0 28px 64px -30px rgba(0,0,0,.65);
+    --host:#1d5c49; --host-soft:#e6efeb; --host-radius:14px;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --paper:#0b1210; --card:#131d1b; --card-2:#101917;
+    --ink:#e8efec; --ink-2:#b4c3be; --muted:#899a95; --line:#233130; --line-2:#1a2523;
+    --deep:#060c0b; --deep-2:#0e1c19;
+    --calm:#6cc292; --calm-soft:#14291d; --calm-fill:#2f6b4a;
+    --watch:#d8a94e; --watch-soft:#2a2314; --watch-fill:#6d5423;
+    --alert:#dd8571; --alert-soft:#2e1c17; --alert-fill:#7a3527;
+    --concept:#9db0d4; --concept-soft:#1a1f2b;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 44px -26px rgba(0,0,0,.9);
+    --host:#6fbfa2; --host-soft:#16271f;
+  }}
+  :root[data-theme="dark"]{
+    --paper:#0b1210; --card:#131d1b; --card-2:#101917;
+    --ink:#e8efec; --ink-2:#b4c3be; --muted:#899a95; --line:#233130; --line-2:#1a2523;
+    --deep:#060c0b; --deep-2:#0e1c19;
+    --calm:#6cc292; --calm-soft:#14291d; --calm-fill:#2f6b4a;
+    --watch:#d8a94e; --watch-soft:#2a2314; --watch-fill:#6d5423;
+    --alert:#dd8571; --alert-soft:#2e1c17; --alert-fill:#7a3527;
+    --concept:#9db0d4; --concept-soft:#1a1f2b;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 44px -26px rgba(0,0,0,.9);
+    --host:#6fbfa2; --host-soft:#16271f;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
+    line-height:1.5; padding:0 0 70px; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px; margin-inline:auto; padding-inline:22px}
+  h1,h2,h3,h4,.serif{font-family:Newsreader,Georgia,serif; margin:0; text-wrap:balance}
+  .mono{font-family:'DM Mono',ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+  a{color:var(--host)}
+
+  .hero{background:radial-gradient(1200px 440px at 16% -12%, var(--deep-2), transparent 62%), var(--deep);
+    color:var(--on-deep); padding:32px 0 132px; margin-bottom:-108px}
+  .hero .brand{display:flex; align-items:center; gap:10px; margin-bottom:30px}
+  .hero .mark{width:28px;height:28px;border-radius:7px;background:var(--on-deep);color:var(--deep);
+    display:grid;place-items:center;font-weight:700;font-size:14px;font-family:Newsreader,serif}
+  .hero .nm{font-weight:700;font-size:14.5px} .hero .sep{color:#3d5b52} .hero .ctx{color:var(--on-deep-2);font-size:13px}
+  .hero h1{font-size:clamp(30px,4.6vw,46px);font-weight:500;letter-spacing:-.02em;max-width:18ch;line-height:1.08}
+  .hero h1 em{font-style:italic;color:#8fd3b6}
+  .hero .sub{color:var(--on-deep-2);font-size:15.5px;margin:15px 0 0;max-width:54ch}
+  .hero .sub b{color:var(--on-deep);font-weight:600}
+  .hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:44px;align-items:center}
+  @media (max-width:940px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero{padding-bottom:112px}}
+  .switch-label{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--on-deep-2);margin:0 0 9px}
+  .brands{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:15px}
+  .bbtn{font:inherit;font-size:12.5px;font-weight:500;cursor:pointer;border-radius:999px;padding:7px 14px;
+    border:1px solid #2f4f46;background:transparent;color:var(--on-deep-2);transition:.15s}
+  .bbtn:hover{color:var(--on-deep);border-color:#4a7266}
+  .bbtn[aria-pressed="true"]{background:var(--on-deep);border-color:var(--on-deep);color:var(--deep);font-weight:600}
+  .bbtn:focus-visible{outline:2px solid #8fd3b6;outline-offset:2px}
+
+  .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--host-radius);
+    box-shadow:var(--shadow);overflow:hidden;width:100%}
+  .widget.lifted{box-shadow:var(--lift)}
+  .w-top{padding:15px 18px 14px;border-bottom:1px solid var(--line-2)}
+  .w-eyebrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+  .w-host{display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--host)}
+  .w-host .hm{width:17px;height:17px;border-radius:5px;background:var(--host);color:#fff;display:grid;place-items:center;font-size:9.5px;font-weight:700}
+  .w-by{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+  .w-name{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .w-name .h{font-family:Newsreader,serif;font-size:25px;font-weight:600;letter-spacing:-.015em}
+  .w-name .c{color:var(--muted);font-size:13px}
+  .w-verdict{margin-top:10px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px 5px 9px;font-size:12.5px;font-weight:600}
+  .pill .dot{width:8px;height:8px;border-radius:50%}
+  .pill.calm{background:var(--calm-soft);color:var(--calm)} .pill.calm .dot{background:var(--calm)}
+  .pill.watch{background:var(--watch-soft);color:var(--watch)} .pill.watch .dot{background:var(--watch)}
+  .pill.alert{background:var(--alert-soft);color:var(--alert)} .pill.alert .dot{background:var(--alert)}
+  .w-verdict .vs{font-size:12.5px;color:var(--ink-2)} .w-verdict .vs b{color:var(--ink);font-weight:700}
+
+  .w-body{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-2)}
+  @media (max-width:520px){.w-body{grid-template-columns:1fr}}
+  .w-map{background:var(--card);padding:0;position:relative;min-height:190px}
+  .w-map svg{display:block;width:100%;height:100%}
+  .w-map .legend{position:absolute;left:11px;bottom:9px;display:flex;gap:10px;font-size:9.5px;
+    color:var(--muted);font-family:'DM Mono',monospace;background:var(--card);padding:3px 7px;border-radius:5px;opacity:.94}
+  .w-map .legend i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:3px}
+  .w-map .hint{position:absolute;right:10px;top:9px;font-size:9.5px;color:var(--muted);
+    font-family:'DM Mono',monospace;background:var(--card);padding:2px 6px;border-radius:4px;opacity:.9}
+  .zone{stroke:var(--card);stroke-width:1.4;cursor:pointer;transition:.12s}
+  .zone.green{fill:var(--calm-fill)} .zone.yellow{fill:var(--watch-fill)} .zone.red{fill:var(--alert-fill)}
+  .zone.focus{stroke:var(--ink);stroke-width:2.2}
+  .zone:hover{filter:brightness(1.08)}
+  .w-mods{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-2)}
+  .mod{background:var(--card);padding:11px 12px;min-height:74px;display:flex;flex-direction:column;gap:4px}
+  .mod .ico{font-size:14px;line-height:1} .mod .lbl{font-size:10.5px;color:var(--muted)}
+  .mod .val{font-size:12.5px;font-weight:700;letter-spacing:-.01em}
+  .mod .val.small{font-size:10.5px;font-weight:500;color:var(--concept)}
+  .mod.is-concept{background:var(--card-2)} .mod.is-concept .ico{opacity:.45}
+  .w-read{background:var(--card);padding:11px 18px;border-top:1px solid var(--line-2);font-size:12px;color:var(--ink-2)}
+  .w-read b{color:var(--ink);font-weight:600}
+  .w-foot{padding:9px 18px 11px;border-top:1px solid var(--line-2);background:var(--card-2);
+    display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .w-foot .src{font-size:10.5px;color:var(--muted);max-width:44ch}
+  .w-foot .wm{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.05em}
+
+  section.band{padding:52px 0 0}
+  .sec-head{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;margin-bottom:5px}
+  .sec-no{font-family:'DM Mono',monospace;font-size:11px;color:var(--host);letter-spacing:.09em}
+  .sec-head h2{font-size:24px;font-weight:600;letter-spacing:-.015em}
+  .sec-note{color:var(--muted);font-size:14px;margin:0 0 20px;max-width:70ch}
+
+  .integ{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}
+  @media (max-width:900px){.integ{grid-template-columns:1fr}}
+  .portal{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+  .pchrome{background:var(--card-2);border-bottom:1px solid var(--line);padding:9px 14px;display:flex;align-items:center;gap:9px}
+  .pchrome .dots{display:flex;gap:5px} .pchrome .dots i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+  .pchrome .url{flex:1;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 10px;
+    font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .pbody{padding:20px 22px}
+  .listing-hd{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+  .listing-hd .txt{flex:1;min-width:200px}
+  .kicker{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .listing-hd h4{font-family:Newsreader,serif;font-size:22px;font-weight:600;margin:6px 0 3px}
+  .listing-hd .addr{font-size:13px;color:var(--muted)}
+  .listing-hd .price{font-family:'DM Mono',monospace;font-size:16px;margin-top:10px;font-weight:500}
+  .fakeimg{width:150px;height:100px;border-radius:9px;border:1px solid var(--line-2);flex:none;
+    background:linear-gradient(155deg,var(--host-soft),var(--card-2));display:grid;place-items:center;
+    color:var(--muted);font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.06em}
+  .slot{margin-top:18px;padding-top:18px;border-top:1px dashed var(--line)}
+  .slot-h{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--host);margin-bottom:11px;display:flex;align-items:center;gap:8px}
+  .slot-h::after{content:"";flex:1;height:1px;background:var(--line-2)}
+  .slot.is-off .widget,.slot.is-off .slot-h{display:none}
+  .slot.is-off::after{content:"Nothing here tells the client whether the address suits their family.";
+    display:block;font-size:13px;color:var(--muted);font-style:italic;padding:10px 0 4px}
+  .toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .tgl{font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;border:1px solid var(--host);
+    background:var(--host);color:#fff;border-radius:999px;padding:8px 16px;transition:.15s}
+  .tgl[aria-pressed="false"]{background:transparent;color:var(--host)}
+  .tgl:focus-visible{outline:2px solid var(--host);outline-offset:2px}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+  .panel-hd{padding:15px 19px;border-bottom:1px solid var(--line-2)}
+  .panel-hd h3{font-size:16px;font-weight:600}
+  .panel-pad{padding:18px 19px}
+  .snippet{background:var(--deep);color:#bfe6d4;border-radius:10px;padding:14px 15px;
+    font-family:'DM Mono',monospace;font-size:11px;line-height:1.7;overflow-x:auto}
+  .snippet .t1{color:#7fb8a2} .snippet .a1{color:#e0c98a} .snippet .s1{color:#fff}
+  .steps{margin:14px 0 0;padding-left:0;list-style:none;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding-left:27px;font-size:12.5px;color:var(--ink-2);margin-bottom:9px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:19px;height:19px;border-radius:50%;
+    background:var(--host-soft);color:var(--host);font-family:'DM Mono',monospace;font-size:10.5px;display:grid;place-items:center}
+  .steps b{color:var(--ink);font-weight:600}
+
+  .shot-zone{border:1px dashed var(--line);border-radius:20px;padding:26px;display:flex;justify-content:center;
+    background:repeating-linear-gradient(45deg,transparent 0 9px,rgba(29,92,73,.03) 9px 18px)}
+  .shot-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.09em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:9px;display:block}
+  .email-w{max-width:520px}
+
+  .cfg{display:grid;grid-template-columns:1fr 1.15fr;gap:22px;align-items:start}
+  @media (max-width:900px){.cfg{grid-template-columns:1fr}}
+  .presets{display:flex;gap:7px;flex-wrap:wrap}
+  .preset{font:inherit;font-size:12.5px;font-weight:500;cursor:pointer;border:1px solid var(--line);
+    background:var(--card);color:var(--ink-2);border-radius:999px;padding:7px 13px;transition:.14s}
+  .preset:hover{border-color:var(--host);color:var(--host)}
+  .preset[aria-pressed="true"]{background:var(--host);border-color:var(--host);color:#fff;font-weight:600}
+  .preset:focus-visible{outline:2px solid var(--host);outline-offset:2px}
+  .modlist{display:flex;flex-direction:column;gap:1px;background:var(--line-2);border-radius:10px;
+    overflow:hidden;border:1px solid var(--line-2);margin-top:14px}
+  .modrow{background:var(--card);padding:11px 13px;display:grid;grid-template-columns:20px 1fr auto;gap:11px;align-items:start}
+  .modrow.off{background:var(--card-2);opacity:.42}
+  .modrow .ico{font-size:14px;line-height:1.3} .modrow .t{font-size:12.5px;font-weight:600}
+  .modrow .d{font-size:11.5px;color:var(--muted);margin-top:2px;max-width:46ch}
+  .tg{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:3px 6px;border-radius:5px;white-space:nowrap}
+  .tg.live{background:var(--calm-soft);color:var(--calm)} .tg.concept{background:var(--concept-soft);color:var(--concept)}
+
+  .figs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:10px;overflow:hidden}
+  .fig{background:var(--card);padding:12px 13px}
+  .fig .n{font-family:'DM Mono',monospace;font-size:19px;font-weight:500;letter-spacing:-.02em}
+  .fig .k{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+  .ctxbox{margin-top:15px;border-left:2px solid var(--host);padding:1px 0 1px 13px}
+  .ctxbox p{margin:0;font-size:12.5px;color:var(--ink-2);max-width:62ch} .ctxbox p+p{margin-top:8px}
+  .ctxbox b{color:var(--ink);font-weight:600}
+
+  .bars{margin-top:16px}
+  .bars .bh{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;margin-bottom:9px}
+  .bar{display:grid;grid-template-columns:128px 1fr 62px;gap:10px;align-items:center;margin-bottom:7px;font-size:12px}
+  .bar .nm2{color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar .tr{background:var(--line-2);border-radius:4px;height:16px;position:relative;overflow:hidden}
+  .bar .fl{height:100%;border-radius:4px}
+  .bar.g .fl{background:var(--calm-fill)} .bar.y .fl{background:var(--watch-fill)} .bar.r .fl{background:var(--alert-fill)}
+  .bar .vv{font-family:'DM Mono',monospace;text-align:right;color:var(--ink)}
+  .bar.me .nm2{font-weight:700;color:var(--ink)}
+  .avgline{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);opacity:.35}
+
+  .srcs{margin-top:15px;padding-top:13px;border-top:1px solid var(--line-2)}
+  .srcs .h{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .srcs ul{margin:0;padding-left:16px;font-size:11.5px;color:var(--ink-2)} .srcs li{margin-bottom:4px}
+
+  .prov{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:760px){.prov{grid-template-columns:1fr}}
+  .prov .col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .prov h4{font-family:Archivo,sans-serif;font-size:12.5px;font-weight:700;margin:0 0 9px;display:flex;align-items:center;gap:8px}
+  .prov ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--ink-2)} .prov li{margin-bottom:5px}
+  .prov li b{color:var(--ink);font-weight:600}
+  footer.end{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="brand"><span class="mark">W</span><span class="nm">Wandroz</span>
+      <span class="sep">/</span><span class="ctx">Neighbourhood Intelligence</span></div>
+    <div class="hero-grid">
+      <div>
+        <h1>Your listing already says the rent. It should say <em>whether the family will be happy there.</em></h1>
+        <p class="sub">One embeddable panel, inside your portal, under your brand.
+          <b>Safety ships today from official data</b> in 65 cities — every other module is switched on per client.</p>
+      </div>
+      <div>
+        <p class="switch-label">See it in your brand</p>
+        <div class="brands" role="group" aria-label="Host brand">
+          <button class="bbtn" type="button" data-brand="wandroz" aria-pressed="true">Wandroz</button>
+          <button class="bbtn" type="button" data-brand="meridian" aria-pressed="false">Meridian Mobility</button>
+          <button class="bbtn" type="button" data-brand="casa" aria-pressed="false">Casa&nbsp;Expat</button>
+        </div>
+        <div class="widget lifted" id="heroW"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="band">
+    <div class="sec-head"><span class="sec-no">01</span><h2>How it drops into your product</h2></div>
+    <p class="sec-note">One element on the listing template. You pass the address you already store;
+      the panel renders in your brand, in the slot you choose.</p>
+    <div class="integ">
+      <div>
+        <div class="toggle-row">
+          <button class="tgl" type="button" id="tgl" aria-pressed="true">Wandroz panel: on</button>
+          <span style="font-size:12.5px;color:var(--muted)">Toggle it off to see the listing without it.</span>
+        </div>
+        <div class="portal">
+          <div class="pchrome"><span class="dots"><i></i><i></i><i></i></span>
+            <span class="url" id="purl">your-portal.com / amsterdam / listing / 4821</span></div>
+          <div class="pbody">
+            <div class="listing-hd">
+              <div class="txt"><span class="kicker">Assignment housing &middot; 24 months</span>
+                <h4>Three-bed apartment, Jordaan</h4>
+                <div class="addr">Westerstraat, 1015 Amsterdam</div>
+                <div class="price">&euro;3,450 <span style="font-size:12px;color:var(--muted)">/ month</span></div></div>
+              <div class="fakeimg">LISTING PHOTO</div>
+            </div>
+            <div class="slot" id="slot">
+              <div class="slot-h">Neighbourhood intelligence</div>
+              <div class="widget" id="portalW"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="panel">
+        <div class="panel-hd"><h3>The whole integration</h3></div>
+        <div class="panel-pad">
+          <div class="snippet"><span class="t1">&lt;div</span> <span class="a1">data-wandroz</span>=<span class="s1">"panel"</span>
+     <span class="a1">data-address</span>=<span class="s1">"Westerstraat, Amsterdam"</span>
+     <span class="a1">data-modules</span>=<span class="s1">"safety,schools,parks"</span>
+     <span class="a1">data-theme</span>=<span class="s1">"meridian"</span><span class="t1">&gt;&lt;/div&gt;</span></div>
+          <ol class="steps">
+            <li>You pass an <b>address you already store</b> — no new data entry.</li>
+            <li>Wandroz resolves it to the <b>official neighbourhood polygon</b> and returns the rating.</li>
+            <li>It renders in <b>your colours, your corner radius, your name</b>. "Powered by Wandroz" stays.</li>
+            <li>Modules are set <b>per account</b>, not per page.</li>
+          </ol>
+          <p class="sec-note" style="margin:14px 0 0;font-size:11.5px">The snippet shows the intended
+            shape of the integration. It is a prototype for the conversation, not a live embed.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="sec-head"><span class="sec-no">02</span><h2>Compact panel — for the email</h2></div>
+    <p class="sec-note">Screenshot the card inside the hatched frame. Readable at 520&nbsp;px, which is what a cold email gets.</p>
+    <span class="shot-label">Screenshot area</span>
+    <div class="shot-zone"><div class="widget email-w" id="emailW"></div></div>
+  </section>
+
+  <section class="band">
+    <div class="sec-head"><span class="sec-no">03</span><h2>What each client sees</h2></div>
+    <p class="sec-note">Same component, different module set. Switch the preset — every panel above changes with it.</p>
+    <div class="cfg">
+      <div class="panel">
+        <div class="panel-hd"><h3>Client preset</h3></div>
+        <div class="panel-pad">
+          <div class="presets" role="group" aria-label="Client preset">
+            <button class="preset" type="button" data-preset="family" aria-pressed="true">Family relocation</button>
+            <button class="preset" type="button" data-preset="corporate" aria-pressed="false">Corporate employee</button>
+            <button class="preset" type="button" data-preset="housing" aria-pressed="false">Expat housing</button>
+          </div>
+          <div class="modlist" id="modlist"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-hd"><h3>Jordaan — the safety module in full</h3></div>
+        <div class="panel-pad">
+          <div class="figs">
+            <div class="fig"><div class="n">9,048</div><div class="k">recorded crimes per 100,000 residents, 2025</div></div>
+            <div class="fig"><div class="n">0.5&times;</div><div class="k">of the Amsterdam wijk average</div></div>
+            <div class="fig"><div class="n">1,763</div><div class="k">registered crimes in 2025</div></div>
+          </div>
+          <div class="ctxbox">
+            <p><b>What it means.</b> Jordaan is central, busy and full of bars, and still records half
+              the city's average rate. Central does not mean elevated here.</p>
+            <p><b>What it does not mean.</b> The rate is against registered residents, not footfall. A
+              nightlife area can read high without being risky to walk through. Read it as a comparison
+              between areas of one city, not a per-visit probability.</p>
+          </div>
+          <div class="bars" id="bars"></div>
+          <p class="sec-note" style="margin:10px 0 0;font-size:11.5px">Every bar is a real neighbouring
+            wijk. Burgwallen-Nieuwe Zijde is the Red Light District — 4,345 residents against the whole
+            city's night out, which is what 6.3&times; measures.</p>
+          <div class="srcs">
+            <div class="h">Sources</div>
+            <ul>
+              <li>CBS (Statistics Netherlands) — registered crimes per wijk, 2025, with CBS 2025 population.</li>
+              <li>Gemeente Amsterdam — official wijk boundaries, 110 zones, api.data.amsterdam.nl.</li>
+              <li>Live page: <a href="https://wandroz.com/amsterdam/jordaan.html">wandroz.com/amsterdam/jordaan</a></li>
+              <li>CBS publishes no time-of-day breakdown, so no day/night split is shown for Amsterdam.
+                Wandroz splits day and night only where the source supports it — London does.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="sec-head"><span class="sec-no">04</span><h2>What is real, and what is not</h2></div>
+    <p class="sec-note">Left on the page deliberately. It is what a mobility buyer checks first.</p>
+    <div class="prov">
+      <div class="col">
+        <h4><span class="tg live">Live</span> Real Wandroz data</h4>
+        <ul>
+          <li><b>The map</b> — the gemeente's own wijk polygons, drawn from the same coordinates the site publishes.</li>
+          <li><b>Every figure and every bar</b> — CBS 2025 registered crimes and CBS 2025 population, per wijk.</li>
+          <li><b>The ratings</b> — all eight areas shown, published now on wandroz.com.</li>
+          <li><b>The caveat</b> — taken from the live page, not written for this deck.</li>
+          <li><b>Coverage</b> — 65 cities, 22 countries, 2,000+ rated areas.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4><span class="tg concept">Concept</span> Not built yet</h4>
+        <ul>
+          <li><b>Schools, commute, transport, essentials, parks, lifestyle, family fit</b> — no data behind them today.</li>
+          <li>Shown as configured but empty slots on purpose. <b>No commute time, school, ranking or
+            count is invented anywhere here</b>, because none exists.</li>
+          <li>The embed snippet, the three brand themes and the portal chrome are illustrative. The rent is set-dressing.</li>
+          <li>Which module ships first is the conversation we want with you.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="end">
+    <span>Wandroz — public official data, not just reviews.</span>
+    <span class="mono">wandroz.com</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var MAP = [{"n":"Jordaan","tone":"green","d":"M273.0,154.5 L265.3,267.1 L269.2,274.9 L231.3,292.6 L226.9,279.8 L213.1,266.6 L208.5,247.8 L193.6,226.3 L180.4,190.3 L190.5,177.0 L192.2,162.1 L195.5,162.5 L238.1,63.5 L235.2,54.5 L246.3,44.7 L257.2,21.9 L267.2,26.0 L329.1,73.4 L273.0,154.5 Z","focus":true,"crimes":"1,763","pop":"19,485","rate":"9,048","ratio":"0.5"},{"n":"Grachtengordel-West","tone":"yellow","d":"M333.2,177.0 L322.6,238.1 L325.1,242.3 L310.7,248.8 L310.3,255.8 L269.2,274.9 L265.3,267.1 L273.0,154.5 L329.1,73.4 L347.2,85.9 L388.3,98.1 L338.3,158.5 L333.2,177.0 Z","focus":false,"crimes":"1,081","pop":"6,505","rate":"16,618","ratio":"1.0"},{"n":"Frederik Hendrikbuurt","tone":"green","d":"M219.3,103.2 L221.4,103.9 L218.4,112.2 L195.5,162.5 L192.2,162.1 L191.5,173.3 L94.5,198.9 L170.2,86.4 L175.7,72.7 L235.6,53.6 L238.1,63.5 L219.3,103.2 Z","focus":false,"crimes":"530","pop":"8,195","rate":"6,467","ratio":"0.4"},{"n":"Da Costabuurt","tone":"green","d":"M186.9,211.7 L194.9,228.8 L205.6,242.3 L141.8,265.5 L105.7,196.1 L191.5,173.3 L180.4,190.3 L186.9,211.7 Z","focus":false,"crimes":"475","pop":"4,710","rate":"10,085","ratio":"0.6"},{"n":"Burgwallen-Nieuwe Zijde","tone":"red","d":"M497.5,109.8 L486.5,128.6 L472.7,119.5 L448.7,118.6 L420.9,143.9 L414.5,140.3 L383.6,172.2 L376.8,185.3 L372.7,214.9 L367.1,234.6 L371.2,234.2 L376.5,244.7 L389.8,259.3 L379.2,264.7 L346.7,261.4 L322.9,239.2 L329.8,188.6 L338.3,158.5 L438.9,38.9 L476.0,64.8 L520.0,80.1 L497.5,109.8 Z","focus":false,"crimes":"4,718","pop":"4,345","rate":"108,585","ratio":"6.3"},{"n":"Van Lennepbuurt","tone":"green","d":"M148.9,291.6 L0.0,340.0 L27.8,297.1 L39.1,299.5 L205.6,242.3 L208.5,247.8 L213.1,266.6 L148.9,291.6 Z","focus":false,"crimes":"544","pop":"6,910","rate":"7,873","ratio":"0.5"},{"n":"Centrale Markt","tone":"green","d":"M113.8,78.0 L130.7,137.0 L135.0,138.7 L103.9,185.5 L76.8,154.3 L47.5,49.5 L35.7,22.8 L34.2,4.9 L127.1,2.8 L140.4,45.1 L110.1,52.4 L114.9,69.9 L113.8,78.0 Z","focus":false,"crimes":"179","pop":"2,330","rate":"7,682","ratio":"0.4"},{"n":"Staatsliedenbuurt","tone":"green","d":"M235.3,53.7 L175.7,72.7 L170.2,86.4 L135.0,138.7 L130.7,137.0 L113.8,78.0 L114.9,69.9 L110.1,52.4 L140.4,45.1 L127.1,2.8 L245.3,0.0 L267.1,3.9 L246.3,44.7 L235.3,53.7 Z","focus":false,"crimes":"503","pop":"12,945","rate":"3,886","ratio":"0.2"}];
+  var CITY_AVG = 17328; // CBS 2025, Amsterdam wijk average, per 100,000 residents
+
+  var MODULES = {
+    safety:    {icon:"\uD83D\uDEE1", t:"Safety", short:"Safety", live:true, val:"Below city average",
+                d:"Official recorded crime per area, with context and caveats. Live in 65 cities."},
+    schools:   {icon:"\uD83C\uDFEB", t:"International schools", short:"Intl. schools", live:false,
+                d:"Proximity and fit for school-age children."},
+    commute:   {icon:"\uD83D\uDE86", t:"Commute to office", short:"Commute", live:false,
+                d:"Door-to-door time to a named employer address."},
+    transport: {icon:"\uD83D\uDE87", t:"Public transport", short:"Transport", live:false,
+                d:"Stops, lines and frequency within walking distance."},
+    essentials:{icon:"\uD83D\uDED2", t:"Daily essentials", short:"Essentials", live:false,
+                d:"Supermarkets, pharmacies, GPs, gyms."},
+    parks:     {icon:"\uD83C\uDF33", t:"Parks and green space", short:"Green space", live:false,
+                d:"Green space within reach of the address."},
+    lifestyle: {icon:"\uD83C\uDF7D", t:"Lifestyle", short:"Lifestyle", live:false,
+                d:"Restaurants, nightlife and local character."},
+    family:    {icon:"\uD83D\uDC6A", t:"Expat and family fit", short:"Family fit", live:false,
+                d:"Established international community, English-speaking services."}
+  };
+  var PRESETS = {
+    family:["safety","schools","parks","commute"],
+    corporate:["safety","commute","transport","essentials"],
+    housing:["safety","transport","lifestyle","essentials"]
+  };
+  var BRANDS = {
+    wandroz:{name:"Wandroz",mark:"W",host:"#1d5c49",soft:"#e6efeb",radius:"14px",url:"your-portal.com"},
+    meridian:{name:"Meridian Mobility",mark:"M",host:"#1f3f73",soft:"#e7ecf5",radius:"4px",url:"meridianmobility.com"},
+    casa:{name:"Casa Expat",mark:"C",host:"#7a3350",soft:"#f4e8ee",radius:"22px",url:"casaexpat.eu"}
+  };
+  var order = Object.keys(MODULES);
+  var state = {preset:"family", brand:"wandroz"};
+
+  function el(tag, cls, txt){ var e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
+
+  function mapSvg(){
+    var ns="http://www.w3.org/2000/svg";
+    var svg=document.createElementNS(ns,"svg");
+    svg.setAttribute("viewBox","0 0 520 340");
+    svg.setAttribute("preserveAspectRatio","xMidYMid meet");
+    svg.setAttribute("role","img");
+    svg.setAttribute("aria-label","Jordaan and its neighbouring Amsterdam wijken, coloured by recorded crime rate");
+    MAP.forEach(function(z){
+      var p=document.createElementNS(ns,"path");
+      p.setAttribute("d",z.d);
+      p.setAttribute("class","zone "+z.tone+(z.focus?" focus":""));
+      var ti=document.createElementNS(ns,"title");
+      ti.textContent=z.n+" — "+z.rate+" per 100,000 ("+z.ratio+"\u00d7 city average), "+z.crimes+" crimes, "+z.pop+" residents";
+      p.appendChild(ti);
+      svg.appendChild(p);
+    });
+    return svg;
+  }
+
+  function tile(key){
+    var m=MODULES[key];
+    var d=el("div","mod"+(m.live?"":" is-concept"));
+    d.appendChild(el("span","ico",m.icon));
+    d.appendChild(el("span","lbl",m.short));
+    d.appendChild(el("span","val"+(m.live?"":" small"), m.live?m.val:"Configurable module"));
+    return d;
+  }
+
+  function buildWidget(opts){
+    var keys=PRESETS[state.preset], b=BRANDS[state.brand];
+    var w=el("div");
+    var top=el("div","w-top");
+    if(opts.showHost){
+      var eye=el("div","w-eyebrow");
+      var host=el("span","w-host");
+      var hm=el("span","hm",b.mark); host.appendChild(hm);
+      host.appendChild(el("span",null,b.name));
+      eye.appendChild(host);
+      eye.appendChild(el("span","w-by",opts.byline||"Powered by Wandroz"));
+      top.appendChild(eye);
+    }
+    var nm=el("div","w-name");
+    var h=el("span","h","Jordaan"); nm.appendChild(h);
+    if(opts.showCity) nm.appendChild(el("span","c","Amsterdam \u00b7 official wijk"));
+    top.appendChild(nm);
+    var v=el("div","w-verdict");
+    var pill=el("span","pill calm"); pill.appendChild(el("span","dot")); pill.appendChild(document.createTextNode("Relatively safer"));
+    v.appendChild(pill);
+    var vs=el("span","vs");
+    vs.appendChild(document.createTextNode("Recorded crime "));
+    var bb=el("b","", "0.5\u00d7"); vs.appendChild(bb);
+    vs.appendChild(document.createTextNode(" the city average \u00b7 CBS 2025"));
+    v.appendChild(vs);
+    top.appendChild(v);
+    w.appendChild(top);
+
+    if(opts.withMap){
+      var body=el("div","w-body");
+      var mp=el("div","w-map");
+      mp.appendChild(mapSvg());
+      var lg=el("div","legend");
+      [["calm-fill","below avg"],["watch-fill","near avg"],["alert-fill","above avg"]].forEach(function(p){
+        var s=el("span"); var i=el("i"); i.style.background="var(--"+p[0]+")"; s.appendChild(i);
+        s.appendChild(document.createTextNode(p[1])); lg.appendChild(s);
+      });
+      mp.appendChild(lg);
+      mp.appendChild(el("div","hint","official wijk boundaries"));
+      body.appendChild(mp);
+      var mods=el("div","w-mods");
+      keys.forEach(function(k){ mods.appendChild(tile(k)); });
+      body.appendChild(mods);
+      w.appendChild(body);
+      var rd=el("div","w-read");
+      rd.appendChild(document.createTextNode("Central, busy and full of bars — and still "));
+      rd.appendChild(el("b","","half"));
+      rd.appendChild(document.createTextNode(" the Amsterdam average. The Red Light District next door is 6.3\u00d7. Both are on the same scale."));
+      w.appendChild(rd);
+    } else {
+      var mods2=el("div","w-mods"); mods2.style.gridTemplateColumns="repeat(4,1fr)";
+      keys.forEach(function(k){ mods2.appendChild(tile(k)); });
+      w.appendChild(mods2);
+    }
+
+    var f=el("div","w-foot");
+    f.appendChild(el("span","src",opts.src||"Safety from CBS registered crime per wijk, 2025. Other modules shown as configurable."));
+    f.appendChild(el("span","wm","wandroz.com"));
+    w.appendChild(f);
+    return w;
+  }
+
+  function bars(){
+    var box=document.getElementById("bars");
+    box.textContent="";
+    box.appendChild(el("div","bh","Recorded crime per 100,000 residents \u2014 Jordaan and its neighbours, CBS 2025"));
+    var rows=MAP.slice().sort(function(a,b){ return parseInt(a.rate.replace(/,/g,""))-parseInt(b.rate.replace(/,/g,"")); });
+    var max=Math.max.apply(null,rows.map(function(r){return parseInt(r.rate.replace(/,/g,""));}));
+    rows.forEach(function(r){
+      var val=parseInt(r.rate.replace(/,/g,""));
+      var cls = r.tone==="green"?"g":(r.tone==="yellow"?"y":"r");
+      var row=el("div","bar "+cls+(r.focus?" me":""));
+      row.appendChild(el("div","nm2",r.n));
+      var tr=el("div","tr");
+      var fl=el("div","fl"); fl.style.width=Math.max(2,(val/max)*100)+"%";
+      tr.appendChild(fl);
+      var av=el("div","avgline"); av.style.left=((CITY_AVG/max)*100)+"%";
+      av.title="Amsterdam wijk average, 17,328";
+      tr.appendChild(av);
+      row.appendChild(tr);
+      row.appendChild(el("div","vv",r.rate));
+      box.appendChild(row);
+    });
+    var note=el("div"); note.style.cssText="font-size:10.5px;color:var(--muted);margin-top:7px;font-family:'DM Mono',monospace";
+    note.textContent="vertical line = Amsterdam wijk average, 17,328";
+    box.appendChild(note);
+  }
+
+  function renderAll(){
+    var hero=document.getElementById("heroW");
+    hero.textContent=""; hero.appendChild(buildWidget({showHost:true,showCity:true,withMap:true}));
+    var email=document.getElementById("emailW");
+    email.textContent=""; email.appendChild(buildWidget({showHost:true,showCity:true,withMap:true,
+      byline:"Neighbourhood brief \u00b7 Amsterdam"}));
+    var portal=document.getElementById("portalW");
+    portal.textContent=""; portal.appendChild(buildWidget({showHost:false,showCity:false,withMap:true,
+      src:"CBS 2025 \u00b7 official wijk boundary"}));
+
+    var list=document.getElementById("modlist");
+    list.textContent="";
+    var on=PRESETS[state.preset];
+    order.forEach(function(k){
+      var m=MODULES[k];
+      var row=el("div","modrow"+(on.indexOf(k)!==-1?"":" off"));
+      row.appendChild(el("span","ico",m.icon));
+      var mid=el("div"); mid.appendChild(el("div","t",m.t)); mid.appendChild(el("div","d",m.d));
+      row.appendChild(mid);
+      row.appendChild(el("span","tg "+(m.live?"live":"concept"), m.live?"Live":"Concept"));
+      list.appendChild(row);
+    });
+  }
+
+  function applyBrand(key){
+    state.brand=key;
+    var b=BRANDS[key], r=document.documentElement.style;
+    r.setProperty("--host",b.host); r.setProperty("--host-soft",b.soft); r.setProperty("--host-radius",b.radius);
+    document.getElementById("purl").textContent=b.url+" / amsterdam / listing / 4821";
+    renderAll();
+    document.querySelectorAll(".widget").forEach(function(w){ w.style.borderRadius=b.radius; });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll(".bbtn")).forEach(function(btn){
+    btn.addEventListener("click",function(){
+      document.querySelectorAll(".bbtn").forEach(function(x){ x.setAttribute("aria-pressed", x===btn?"true":"false"); });
+      applyBrand(btn.getAttribute("data-brand"));
+    });
+  });
+  Array.prototype.slice.call(document.querySelectorAll(".preset")).forEach(function(btn){
+    btn.addEventListener("click",function(){
+      document.querySelectorAll(".preset").forEach(function(x){ x.setAttribute("aria-pressed", x===btn?"true":"false"); });
+      state.preset=btn.getAttribute("data-preset");
+      renderAll();
+      document.querySelectorAll(".widget").forEach(function(w){ w.style.borderRadius=BRANDS[state.brand].radius; });
+    });
+  });
+  var tgl=document.getElementById("tgl");
+  tgl.addEventListener("click",function(){
+    var on=tgl.getAttribute("aria-pressed")==="true";
+    tgl.setAttribute("aria-pressed",on?"false":"true");
+    tgl.textContent=on?"Wandroz panel: off":"Wandroz panel: on";
+    document.getElementById("slot").classList.toggle("is-off",on);
+  });
+
+  renderAll(); bars(); applyBrand("wandroz");
+})();
+</script>
+
+</body>
+</html>

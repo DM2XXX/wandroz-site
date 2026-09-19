@@ -884,11 +884,22 @@ def check_seo(dist, reg, F):
     listed = {u.replace(BS.SITE_URL, "") or "/"
               for u in re.findall(r"<loc>([^<]+)</loc>", read(sitemap))}
     built = set()
-    for _path, rel in walk_html(dist):
+    noindexed = set()
+    for path, rel in walk_html(dist):
         url = "/" + rel.replace(os.sep, "/")
-        built.add(url[:-len("index.html")] if url.endswith("index.html") else url)
-    for url in sorted(built - listed):
+        url = url[:-len("index.html")] if url.endswith("index.html") else url
+        built.add(url)
+        # A page that tells crawlers not to index it must not be in the
+        # sitemap — listing it would be the contradiction, not omitting it.
+        # This check used to demand every built page appear, which made a
+        # correctly-excluded noindex page look like a fault.
+        if re.search(r'name=["\']robots["\'][^>]*noindex', read(path), re.I):
+            noindexed.add(url)
+    for url in sorted(built - listed - noindexed):
         F.fail("SEO", "sitemap-complete", url, "page is built but missing from sitemap.xml")
+    for url in sorted(noindexed & listed):
+        F.fail("SEO", "sitemap-noindex", url,
+               "page is marked noindex but listed in sitemap.xml — pick one")
     for url in sorted(listed - built):
         F.fail("SEO", "sitemap-no-phantoms", url, "sitemap lists a URL with no page behind it")
 

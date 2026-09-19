@@ -2052,6 +2052,43 @@ before it appears anywhere else.</p>
 ]
 
 
+def render_verbatim_pages():
+    """Standalone pages served as-is from pipeline/pages/.
+
+    Not pipeline/static/ — that directory is copied verbatim into the dist
+    root for the favicon and manifest, so an HTML file left there is published
+    twice, once at /name.html and once where it was meant to go.
+
+    One page so far: /for-relocation/, the neighbourhood-intelligence panel
+    used in B2B outreach. It is not generated from the zone data and does not
+    share the site's templates, so it is copied rather than rendered.
+
+    Deliberately kept out of the sitemap and marked noindex in its own head.
+    It is a sales asset for people who are sent the link, not part of a
+    consumer site about where to stay, and mixing the two would put a B2B
+    pitch into the search footprint of every city page.
+
+    Returns nothing, because nothing here belongs in the sitemap.
+    """
+    src_dir = os.path.join(BASE_DIR, "pages")
+    if not os.path.isdir(src_dir):
+        return
+    for name in sorted(os.listdir(src_dir)):
+        if not name.endswith(".html"):
+            continue
+        slug = name[:-5]
+        dest_dir = os.path.join(OUT_DIR, slug)
+        os.makedirs(dest_dir, exist_ok=True)
+        dest = os.path.join(dest_dir, "index.html")
+        with open(os.path.join(src_dir, name), encoding="utf-8") as f:
+            html = f.read()
+        if 'name="robots"' not in html or "noindex" not in html:
+            raise SystemExit("%s must carry a noindex robots meta" % name)
+        with open(dest, "w", encoding="utf-8") as f:
+            f.write(html)
+        print("Wrote %s (verbatim, noindex, not in sitemap)" % dest)
+
+
 def render_static_pages():
     """The about / contact / privacy / disclosure set."""
     tpl = env.get_template("page.html")
@@ -3150,6 +3187,7 @@ def main():
 
     sitemap_urls = [SITE_URL + "/", SITE_URL + "/methodology.html"]
     sitemap_urls.extend(render_static_pages())
+    render_verbatim_pages()
 
     # Home page — a plain city chooser, no ranking here; the map itself
     # (click a zone) is where safety levels and reasoning live.

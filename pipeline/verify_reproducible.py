@@ -219,7 +219,18 @@ def classify(dist, reg, findings):
     for rel in sorted(source_pages - built_pages):
         findings.append(("SOURCE_ONLY", rel, "zone exists in source but the build produced no page"))
 
-    accounted = source_pages | expected_hubs | london_pages | root_pages | lang_pages
+    # Pages copied verbatim from pipeline/pages/ are not built from zone data
+    # and never will be, so they are accounted for by their source file
+    # existing rather than by a zone. Without this they read as orphans.
+    verbatim_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pages")
+    verbatim = set()
+    if os.path.isdir(verbatim_dir):
+        for name in os.listdir(verbatim_dir):
+            if name.endswith(".html"):
+                verbatim.add(os.path.join(name[:-5], "index.html"))
+
+    accounted = (source_pages | expected_hubs | london_pages | root_pages
+                 | lang_pages | verbatim)
     for rel in sorted(built_pages - accounted):
         findings.append(("GENERATED_ONLY", rel, "page exists in the build with no zone in source"))
 
