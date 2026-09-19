@@ -2768,13 +2768,23 @@ def build_city_boundaries(cities, city_cards):
     label_for_slug = {}
     city_bbox = {}
 
-    def _add(slug, label, name, url, coords):
+    def _add(slug, label, name, url, coords, day=None, night=None):
         if not coords or not coords[0]:
             return
         # No "city" field on the zone: the file it is in already says which
         # city this is. One less piece of the taxonomy travelling with the
         # geometry, at no cost to the search.
-        per_city.setdefault(slug, []).append({"name": name, "url": url, "coords": coords})
+        #
+        # day/night are carried so a panel that resolves an address can colour
+        # the result from this one file instead of fetching the area's page to
+        # find out. The ratings are already public on every page; this changes
+        # how many requests it takes to read them, not whether they can be.
+        z = {"name": name, "url": url, "coords": coords}
+        if day:
+            z["day"] = day
+        if night:
+            z["night"] = night
+        per_city.setdefault(slug, []).append(z)
         label_for_slug[slug] = label
         for lat, lon in coords[0]:
             b = city_bbox.setdefault(slug, [lat, lon, lat, lon])
@@ -2788,7 +2798,8 @@ def build_city_boundaries(cities, city_cards):
         for b in city["boroughs"]:
             if b.get("coords"):
                 _add(city_slug, city["city"], b["borough"],
-                     f"/{city_slug}/{b['slug']}.html", b["coords"])
+                     f"/{city_slug}/{b['slug']}.html", b["coords"],
+                     b.get("day_tone"), b.get("night_tone"))
 
     for city_key, url_slug, label, flat in mapped_cities():
         path = os.path.join(ZONES_DIR, f"{city_key}.json")
@@ -2796,7 +2807,8 @@ def build_city_boundaries(cities, city_cards):
             continue
         for z in load_zone_file(path)["zones"]:
             z_url = f"/{url_slug}/{z['slug']}.html" if flat else f"/{url_slug}/{z['slug']}/"
-            _add(url_slug, label, z["name"], z_url, z["coords"])
+            _add(url_slug, label, z["name"], z_url, z["coords"],
+                 z.get("day"), z.get("night"))
 
     city_url_by_label = {c["name"]: "/" + c["url"] for c in city_cards}
     boxes = []
