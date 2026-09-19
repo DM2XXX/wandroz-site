@@ -2459,7 +2459,7 @@ def render_london_map(cities):
     # so "refreshed automatically every month" was a claim the site could not
     # keep. Each borough page still carries the exact months behind its score.
     data_note = (
-        f"{LONDON_EVIDENCE_TAG} · Metropolitan Police recorded crime (data.police.uk) · "
+        f"{LONDON_EVIDENCE_TAG} · Police-recorded crime, data.police.uk · "
         f"{live_count} of {total_zones} boroughs scored, {london_window()}"
     )
     # hub_data works on zone dicts with a slug; London's map entries carry a
@@ -2501,9 +2501,15 @@ def render_london_map(cities):
         city_label="London", tagline="Neighbourhood safety for travellers",
         nav_home="Home", nav_methodology="Methodology", canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
         page_title="Where to stay in London: safest boroughs compared | Wandroz",
-        page_description="Compare all 33 London boroughs on Metropolitan Police recorded crime. Which rate safest, which suit a first visit, families or a night out, and where to book in each.",
+        # 32 boroughs plus the City of London, which is not a borough and is not
+        # policed by the Met. Calling the set "33 boroughs" was wrong before the
+        # City was added and is wrong now for a different reason.
+        page_description="Compare all 32 London boroughs and the City of London on recorded crime. Which rate safest, which suit a first visit, families or a night out, and where to book in each.",
         page_h1="Where to stay in London",
-        page_lead="Every borough rated for day and night from Metropolitan Police recorded crime, with the figures behind each rating.",
+        # Not "Metropolitan Police" any more: the City of London is policed by
+        # the City of London Police, and both forces submit to the same
+        # street-level feed, which is what the ratings are actually built on.
+        page_lead="Every borough rated for day and night from police-recorded crime published on data.police.uk, with the figures behind each rating.",
         hub=_london_hub, hub_unit="boroughs", hub_local="boroughs",
         data_note=data_note, show_toggle=True,
         label_day="day", label_night="night",
@@ -3131,7 +3137,7 @@ def main():
 
     city_cards = [
         {"name": "London", "url": "london/", "flag": "🇬🇧",
-         "blurb": f"33 boroughs on the map, {london_live_count} scored from real Metropolitan Police open crime data ({london_window()}).",
+         "blurb": f"32 boroughs and the City of London on the map, {london_live_count} scored from real open crime data ({london_window()}).",
          "lat": 51.5074, "lon": -0.1278, "color": "#2f6fed",
          "zone_count": 33, "data_tag": "Official police data"},
         {"name": "Berlin", "url": "berlin/", "flag": "🇩🇪",
@@ -3410,7 +3416,7 @@ def main():
             page = borough_tpl.render(
                 city=city, b=b, day_label=day_label, night_label=night_label,
                 canonical_url=page_url, correction_email=CORRECTION_EMAIL,
-                evidence_tag="%s · Metropolitan Police recorded crime · %s"
+                evidence_tag="%s · Police-recorded crime, data.police.uk · %s"
                               % (LONDON_EVIDENCE_TAG, london_window()),
                 booking_query=london_queries.get(_canon(b["borough"])),
                 booking_url=booking_href(london_queries.get(_canon(b["borough"])) or "", "london"),
