@@ -224,9 +224,10 @@ def main():
         ratio = (v["rate_avg_per_1000"] / city_avg) if city_avg else 1.0
         v["vs_city_average"] = round(ratio, 3)
         if v.get("rate_not_comparable"):
-            # The figure is published and shown; only the colour is withheld,
-            # because a colour is a comparison and this one cannot be made.
-            v["tone"] = "grey"
+            # The figure is published and shown; only the ranking is withheld,
+            # because a rank is a comparison and this one cannot be made.
+            # Deliberately not "grey": grey means no data, and there is data.
+            v["tone"] = "offscale"
         elif ratio >= RED_THRESHOLD:
             v["tone"] = "red"
         elif ratio <= GREEN_THRESHOLD:

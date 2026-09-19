@@ -116,10 +116,10 @@
 <h1>Camden, London</h1>
 <p style="font-size:12px;color:var(--muted);margin:0 0 10px;">🟢 Official crime data · Metropolitan Police recorded crime · May–July 2026 <a href="/methodology.html" style="color:inherit;">Methodology &rarr;</a></p>
 <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-  <span class="badge green">Relatively safer</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">day</span>
   <span class="badge yellow">Average</span> <span style="font-size:12px;color:var(--muted);">night</span>
 </div>
-<p class="subtitle" style="margin-top:14px;">Relative rank 11 among boroughs currently covered. Based on official Metropolitan Police data, averaged over 3 months (2026-05 to 2026-07).</p>
+<p class="subtitle" style="margin-top:14px;">Relative rank 12 among boroughs currently covered. Based on official Metropolitan Police data, averaged over 3 months (2026-05 to 2026-07).</p>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
@@ -128,7 +128,7 @@
 <script>
   try {
     var coords = [[[51.54293, -0.12593], [51.53736, -0.12252], [51.53073, -0.12256], [51.53094, -0.1199], [51.52987, -0.11605], [51.52772, -0.11543], [51.52641, -0.11293], [51.52546, -0.11421], [51.52453, -0.11361], [51.52367, -0.11231], [51.52299, -0.10896], [51.52209, -0.10827], [51.52216, -0.10704], [51.51854, -0.10535], [51.51771, -0.10786], [51.51822, -0.11382], [51.51522, -0.11155], [51.51476, -0.11382], [51.51599, -0.11469], [51.51447, -0.1195], [51.51481, -0.12184], [51.51459, -0.12207], [51.51511, -0.12289], [51.51261, -0.12745], [51.51348, -0.12929], [51.5171, -0.13084], [51.51672, -0.13248], [51.51773, -0.13362], [51.51756, -0.13407], [51.51893, -0.13526], [51.51869, -0.13585], [51.51915, -0.13632], [51.51888, -0.13703], [51.52388, -0.1429], [51.52391, -0.14352], [51.52462, -0.1435], [51.52464, -0.14418], [51.524, -0.14416], [51.52399, -0.1452], [51.52527, -0.14581], [51.52504, -0.1472], [51.53752, -0.15273], [51.53636, -0.15944], [51.53728, -0.16049], [51.53578, -0.16496], [51.5386, -0.16954], [51.53779, -0.17089], [51.53838, -0.17198], [51.53763, -0.17351], [51.5382, -0.17414], [51.53948, -0.17392], [51.53978, -0.17876], [51.53807, -0.18447], [51.53452, -0.18877], [51.5361, -0.19128], [51.54983, -0.20681], [51.55515, -0.21346], [51.55677, -0.20997], [51.55573, -0.20888], [51.55644, -0.206], [51.55529, -0.20577], [51.55619, -0.19941], [51.55698, -0.19966], [51.55876, -0.19848], [51.55923, -0.19668], [51.56061, -0.19694], [51.56053, -0.19506], [51.56179, -0.19091], [51.56496, -0.1899], [51.56551, -0.18925], [51.56692, -0.18617], [51.5675, -0.18381], [51.56797, -0.18372], [51.56944, -0.18083], [51.56967, -0.18097], [51.57003, -0.17831], [51.57043, -0.17808], [51.5693, -0.1743], [51.57135, -0.17323], [51.57253, -0.17101], [51.57298, -0.16711], [51.5725, -0.16439], [51.5728, -0.16057], [51.57219, -0.15886], [51.57157, -0.15035], [51.56928, -0.14241], [51.56455, -0.14068], [51.56022, -0.14094], [51.55548, -0.13727], [51.55459, -0.13526], [51.55149, -0.131], [51.54962, -0.13016], [51.54774, -0.12727], [51.54293, -0.12593]]];
-    var color = "#2e7d46";
+    var color = "#c98a02";
     var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
     var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
@@ -182,12 +182,12 @@
   
   Data completeness: <strong>full months, real administrative boundary</strong> — 12023 recorded incidents total across 3 months (2026-05–2026-07), queried against Camden's actual ONS 2021 polygon outline (the same shape shown on the map above), not an approximate circle. This is the complete monthly response from the UK Police API for each month in that window.
   
-  Day score: 2.0515 weighted incidents/1,000 people, averaged over the last 3 months (79% of the 32-borough average). Night score: 10.9048 weighted incidents/1,000 people, same window (84% of the 32-borough average).
+  Day score: 2.0515 weighted incidents/1,000 people, averaged over the last 3 months (81% of the 33-borough average). Night score: 10.9048 weighted incidents/1,000 people, same window (87% of the 33-borough average).
   
   
   Both are normalised by an estimated <strong>workday/footfall population</strong> of 407,111 rather than the 2021 resident population of 210,200, so central boroughs with heavy commuter and visitor footfall aren't overstated as riskier simply for having fewer official residents. The footfall estimate is derived from the ONS's 2011 Census workday-population release — the most recent one published — applied to Camden's current resident population, and it is therefore an approximation of today's footfall, not a measurement of it.
   
-  Rated against the average of the 32 boroughs currently on the automated pipeline.
+  Rated against the average of the 33 boroughs currently on the automated pipeline.
 </div>
 
 
@@ -203,7 +203,7 @@
   
   <details class="faq-item">
     <summary>Is Camden safe?</summary>
-    <p>Based on real, current UK Police data, Wandroz rates Camden as relatively safer than most other neighbourhoods in London during the day and roughly average compared to other neighbourhoods in London at night, relative to the other London boroughs currently on the automated pipeline. The rating comes from 12023 recorded incidents over 3 months (2026-05 to 2026-07), split into a day-weighted score (property crime) and a night-weighted score (violence, robbery, antisocial behaviour).</p>
+    <p>Based on real, current UK Police data, Wandroz rates Camden as roughly average compared to other neighbourhoods in London during the day and roughly average compared to other neighbourhoods in London at night, relative to the other London boroughs currently on the automated pipeline. The rating comes from 12023 recorded incidents over 3 months (2026-05 to 2026-07), split into a day-weighted score (property crime) and a night-weighted score (violence, robbery, antisocial behaviour).</p>
   </details>
   
   <details class="faq-item">
@@ -221,7 +221,7 @@
 
 <p class="cta-note" style="font-size:11.5px;color:var(--muted);margin-top:14px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Camden%2C%20London">Report a correction &rarr;</a></p>
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Based on real, current UK Police data, Wandroz rates Camden as relatively safer than most other neighbourhoods in London during the day and roughly average compared to other neighbourhoods in London at night, relative to the other London boroughs currently on the automated pipeline. The rating comes from 12023 recorded incidents over 3 months (2026-05 to 2026-07), split into a day-weighted score (property crime) and a night-weighted score (violence, robbery, antisocial behaviour)."}, "name": "Is Camden safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Camden\u0027s night score is roughly average compared to other neighbourhoods in London, based on the categories most relevant after dark (violence, robbery, street theft, public order, antisocial behaviour), normalised by an estimated workday/footfall population rather than plain residents where that data exists, so busy central boroughs aren\u0027t overstated as riskier just for having fewer official residents."}, "name": "Is Camden safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "12023 recorded incidents from data.police.uk (the UK Police\u0027s official open crime API), queried against Camden\u0027s real administrative boundary and covering 3 months (2026-05 to 2026-07) \u2014 recomputed from the source data whenever the Met publishes new months, not a one-off snapshot. Full category breakdown is shown further down this page."}, "name": "What official data is Camden\u0027s rating based on?"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Based on real, current UK Police data, Wandroz rates Camden as roughly average compared to other neighbourhoods in London during the day and roughly average compared to other neighbourhoods in London at night, relative to the other London boroughs currently on the automated pipeline. The rating comes from 12023 recorded incidents over 3 months (2026-05 to 2026-07), split into a day-weighted score (property crime) and a night-weighted score (violence, robbery, antisocial behaviour)."}, "name": "Is Camden safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Camden\u0027s night score is roughly average compared to other neighbourhoods in London, based on the categories most relevant after dark (violence, robbery, street theft, public order, antisocial behaviour), normalised by an estimated workday/footfall population rather than plain residents where that data exists, so busy central boroughs aren\u0027t overstated as riskier just for having fewer official residents."}, "name": "Is Camden safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "12023 recorded incidents from data.police.uk (the UK Police\u0027s official open crime API), queried against Camden\u0027s real administrative boundary and covering 3 months (2026-05 to 2026-07) \u2014 recomputed from the source data whenever the Met publishes new months, not a one-off snapshot. Full category breakdown is shown further down this page."}, "name": "What official data is Camden\u0027s rating based on?"}]}</script>
 
 
 </div>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="5DCj9gpYkJtNZmnLGFZkmzduyZr8bO2YDMeZ5vhS8nI" />
+<title>Is City of London (London) safe? — Wandroz</title>
+<meta name="description" content="Safety data for City of London, London: 2164 recorded incidents, based on official UK Police data.">
+<link rel="canonical" href="https://www.wandroz.com/london/city_of_london.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wandroz">
+<meta property="og:title" content="Is City of London (London) safe? — Wandroz">
+<meta property="og:description" content="Safety data for City of London, London: 2164 recorded incidents, based on official UK Police data.">
+<meta property="og:url" content="https://www.wandroz.com/london/city_of_london.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is City of London (London) safe? — Wandroz">
+<meta name="twitter:description" content="Safety data for City of London, London: 2164 recorded incidents, based on official UK Police data.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .wrap { max-width: 840px; margin: 0 auto; padding: 0 24px 60px; }
+  /* Stessa scala a gradini della mappa e della home: la misura di base riempie
+     un telefono, su uno schermo grande si legge minuta. La colonna si allarga
+     insieme al testo, altrimenti crescendo i caratteri le righe si accorciano
+     e la pagina diventa piu' lunga a parita' di contenuto. */
+  @media (min-width: 721px){
+    .wrap { max-width: 960px; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 22px; margin: 36px 0 14px; }
+    h3 { font-size: 18px; }
+    .subtitle { font-size: 18px; max-width: 660px; line-height:1.5; }
+    .hero .eyebrow { font-size: 14px; padding:6px 14px; }
+    table.breakdown { font-size: 15.5px; }
+    .faq-item summary { font-size: 16.5px; }
+    .faq-item p { font-size: 15.5px; }
+    .card strong, .card b { font-size: 17px; }
+  }
+  @media (min-width: 1800px){
+    .wrap { max-width: 1180px; }
+    h1 { font-size: 46px; }
+    h2 { font-size: 28px; }
+    h3 { font-size: 22px; }
+    .subtitle { font-size: 22px; max-width: 820px; }
+    table.breakdown { font-size: 18.5px; }
+    .faq-item summary { font-size: 20px; }
+    .faq-item p { font-size: 18.5px; }
+    .card strong, .card b { font-size: 20.5px; }
+  }
+  /* La colonna di testo non insegue lo schermo oltre un certo punto: una riga
+     di 150 caratteri non si legge, si scansiona. Oltre quella soglia cresce
+     solo il corpo, che e' quello che serviva. */
+  @media (min-width: 2400px){
+    .wrap { max-width: 1320px; }
+    h1 { font-size: 52px; }
+    h2 { font-size: 31px; }
+    .subtitle { font-size: 24px; max-width: 900px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20.5px; }
+    .card strong, .card b { font-size: 22.5px; }
+  }
+  h1 { font-size: 30px; margin: 0 0 8px; font-weight:800; }
+  h2 { font-size: 19px; margin: 32px 0 12px; font-weight:700; }
+  .subtitle { color: var(--muted); margin-bottom: 8px; font-size:15.5px; max-width:560px; }
+  .list-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
+  .list-item:last-child{ border-bottom:none; }
+
+  .hero { padding: 48px 0 8px; }
+  .hero .eyebrow { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color: var(--accent); background: var(--accent-bg); padding:5px 12px; border-radius:20px; margin-bottom:18px; letter-spacing:0.02em; }
+
+  /* La tabella delle fonti ha sei colonne e su un telefono non ci sta: senza
+     un contenitore che scorra per conto suo, a scorrere in orizzontale era
+     tutta la pagina, testo compreso. Scorre la tabella, non il documento. */
+  .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:10px; }
+  table.breakdown { width:100%; border-collapse:collapse; font-size: 13.5px; margin-top:10px; }
+  .table-scroll table.breakdown { margin-top:0; min-width:560px; }
+  table.breakdown th, table.breakdown td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); }
+
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="38" height="38">
+    <div><div class="wz-name">Wandroz</div></div>
+  </a>
+  <nav class="wz-nav">
+    <a href="/">Home</a>
+    <a href="/methodology.html">Methodology</a>
+  </nav>
+</header>
+<div class="wrap">
+  
+<p><a href="../">← London</a></p>
+<h1>City of London, London</h1>
+<p style="font-size:12px;color:var(--muted);margin:0 0 10px;">🟢 Official crime data · Metropolitan Police recorded crime · May–July 2026 <a href="/methodology.html" style="color:inherit;">Methodology &rarr;</a></p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  <span class="badge green">Relatively safer</span> <span style="font-size:12px;color:var(--muted);">day</span>
+  <span class="badge green">Relatively safer</span> <span style="font-size:12px;color:var(--muted);">night</span>
+</div>
+<p class="subtitle" style="margin-top:14px;">Relative rank 1 among boroughs currently covered. Based on official Metropolitan Police data, averaged over 3 months (2026-05 to 2026-07).</p>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<div id="minimap" style="height:280px;border-radius:10px;margin:16px 0;border:1px solid var(--line);"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[51.52295, -0.09653], [51.52306, -0.09506], [51.52145, -0.09433], [51.52143, -0.09251], [51.521, -0.0924], [51.52069, -0.08969], [51.51996, -0.08995], [51.51874, -0.08619], [51.52033, -0.08522], [51.51981, -0.08333], [51.52076, -0.08176], [51.52195, -0.08105], [51.52151, -0.07847], [51.51884, -0.07943], [51.51897, -0.07808], [51.51659, -0.07682], [51.51413, -0.07366], [51.51014, -0.07277], [51.50974, -0.07553], [51.51048, -0.07617], [51.51047, -0.07691], [51.51015, -0.07685], [51.50941, -0.07884], [51.50879, -0.07867], [51.50685, -0.0802], [51.50834, -0.09197], [51.50955, -0.09822], [51.50985, -0.10412], [51.50854, -0.10418], [51.50863, -0.1047], [51.50982, -0.10467], [51.50974, -0.11146], [51.51165, -0.1115], [51.51264, -0.11251], [51.51316, -0.11172], [51.51366, -0.11193], [51.5138, -0.11105], [51.5158, -0.11187], [51.51822, -0.11382], [51.5178, -0.10747], [51.52069, -0.09765], [51.52158, -0.09729], [51.52284, -0.09793], [51.52325, -0.09678], [51.52295, -0.09653]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.08));
+  } catch(e) {}
+</script>
+<p class="cta-note" style="font-size:11.5px;color:var(--muted);">Real administrative boundary — Office for National Statistics 2021 boundaries, not an approximate circle.</p>
+
+
+<div class="card">
+  <strong>Recorded incidents (total across 3 months, 2026-05–2026-07)</strong>
+  <table class="breakdown">
+    <tr><th>Category</th><th>Count</th></tr>
+    
+    <tr><td>Other theft</td><td>435</td></tr>
+    
+    <tr><td>Shoplifting</td><td>406</td></tr>
+    
+    <tr><td>Violent crime</td><td>342</td></tr>
+    
+    <tr><td>Theft from the person</td><td>301</td></tr>
+    
+    <tr><td>Public order</td><td>147</td></tr>
+    
+    <tr><td>Bicycle theft</td><td>114</td></tr>
+    
+    <tr><td>Burglary</td><td>87</td></tr>
+    
+    <tr><td>Criminal damage arson</td><td>74</td></tr>
+    
+    <tr><td>Robbery</td><td>74</td></tr>
+    
+    <tr><td>Drugs</td><td>63</td></tr>
+    
+    <tr><td>Anti social behaviour</td><td>49</td></tr>
+    
+    <tr><td>Vehicle crime</td><td>46</td></tr>
+    
+    <tr><td>Possession of weapons</td><td>15</td></tr>
+    
+    <tr><td>Other crime</td><td>11</td></tr>
+    
+  </table>
+  
+  <p style="margin:8px 0 0;font-size:11.5px;color:var(--muted);">2164 incidents total over 3 months — averages 721.3/month, which is what the day/night scores below are based on.</p>
+  
+</div>
+
+<div class="note">
+  
+  
+  Data completeness: <strong>partial sample (legacy prototype data)</strong>. This page reflects an early, truncated sample (~2164 incidents) rather than the full window for City of London — it predates the automated fetch pipeline.
+  
+  Day score: 0.4011 weighted incidents/1,000 people, averaged over the last 3 months (16% of the 33-borough average). Night score: 1.6281 weighted incidents/1,000 people, same window (13% of the 33-borough average).
+  
+  
+  Both are normalised by an estimated <strong>workday/footfall population</strong> of 419,884 rather than the 2021 resident population of 8,600, so central boroughs with heavy commuter and visitor footfall aren't overstated as riskier simply for having fewer official residents. The footfall estimate is derived from the ONS's 2011 Census workday-population release — the most recent one published — applied to City of London's current resident population, and it is therefore an approximation of today's footfall, not a measurement of it.
+  
+  Rated against the average of the 33 boroughs currently on the automated pipeline.
+</div>
+
+
+<a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=City+of+London%2C+London%2C+United+Kingdom" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+<p class="cta-note">This link is already scoped to City of London, not the whole of London.</p>
+
+
+<p><a href="https://data.police.uk" target="_blank" rel="noopener">Source: UK Police street-level crime data →</a></p>
+
+
+<h2>Frequently asked questions</h2>
+<div class="faq">
+  
+  <details class="faq-item">
+    <summary>Is City of London safe?</summary>
+    <p>Based on real, current UK Police data, Wandroz rates City of London as relatively safer than most other neighbourhoods in London during the day and relatively safer than most other neighbourhoods in London at night, relative to the other London boroughs currently on the automated pipeline. The rating comes from 2164 recorded incidents over 3 months (2026-05 to 2026-07), split into a day-weighted score (property crime) and a night-weighted score (violence, robbery, antisocial behaviour).</p>
+  </details>
+  
+  <details class="faq-item">
+    <summary>Is City of London safe at night?</summary>
+    <p>City of London&#39;s night score is relatively safer than most other neighbourhoods in London, based on the categories most relevant after dark (violence, robbery, street theft, public order, antisocial behaviour), normalised by an estimated workday/footfall population rather than plain residents where that data exists, so busy central boroughs aren&#39;t overstated as riskier just for having fewer official residents.</p>
+  </details>
+  
+  <details class="faq-item">
+    <summary>What official data is City of London&#39;s rating based on?</summary>
+    <p>2164 recorded incidents from data.police.uk (the UK Police&#39;s official open crime API), queried against City of London&#39;s real administrative boundary and covering 3 months (2026-05 to 2026-07) — recomputed from the source data whenever the Met publishes new months, not a one-off snapshot. Full category breakdown is shown further down this page.</p>
+  </details>
+  
+</div>
+
+
+<p class="cta-note" style="font-size:11.5px;color:var(--muted);margin-top:14px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20City%20of%20London%2C%20London">Report a correction &rarr;</a></p>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Based on real, current UK Police data, Wandroz rates City of London as relatively safer than most other neighbourhoods in London during the day and relatively safer than most other neighbourhoods in London at night, relative to the other London boroughs currently on the automated pipeline. The rating comes from 2164 recorded incidents over 3 months (2026-05 to 2026-07), split into a day-weighted score (property crime) and a night-weighted score (violence, robbery, antisocial behaviour)."}, "name": "Is City of London safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "City of London\u0027s night score is relatively safer than most other neighbourhoods in London, based on the categories most relevant after dark (violence, robbery, street theft, public order, antisocial behaviour), normalised by an estimated workday/footfall population rather than plain residents where that data exists, so busy central boroughs aren\u0027t overstated as riskier just for having fewer official residents."}, "name": "Is City of London safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "2164 recorded incidents from data.police.uk (the UK Police\u0027s official open crime API), queried against City of London\u0027s real administrative boundary and covering 3 months (2026-05 to 2026-07) \u2014 recomputed from the source data whenever the Met publishes new months, not a one-off snapshot. Full category breakdown is shown further down this page."}, "name": "What official data is City of London\u0027s rating based on?"}]}</script>
+
+
+</div>
+<footer class="wz-footer">Wandroz — public official data, not just reviews. In beta — coverage is expanding. · <a href="/methodology.html">Methodology</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/affiliate-disclosure.html">Affiliate disclosure</a> · <a href="/contact.html">Contact</a></footer>
+</body>
+</html>

@@ -2,6 +2,48 @@
   "city": "London",
   "boroughs": [
     {
+      "borough": "City of London",
+      "slug": "city_of_london",
+      "population": 8600,
+      "workday_population": 419884,
+      "workday_population_ratio": 48.824,
+      "workday_population_source": "measured_headcount",
+      "sample_record_count": 2164,
+      "sample_record_count_avg_per_month": 721.3,
+      "category_breakdown": {
+        "anti-social-behaviour": 49,
+        "bicycle-theft": 114,
+        "burglary": 87,
+        "criminal-damage-arson": 74,
+        "drugs": 63,
+        "other-theft": 435,
+        "possession-of-weapons": 15,
+        "public-order": 147,
+        "robbery": 74,
+        "shoplifting": 406,
+        "theft-from-the-person": 301,
+        "vehicle-crime": 46,
+        "violent-crime": 342,
+        "other-crime": 11
+      },
+      "day_rate_per_1000": 0.4011,
+      "night_rate_per_1000": 1.6281,
+      "months_included": [
+        "2026-07",
+        "2026-06",
+        "2026-05"
+      ],
+      "data_month": "2026-07",
+      "data_completeness": "partial_sample_legacy",
+      "day_tone": "green",
+      "night_tone": "green",
+      "day_vs_covered_average": 0.16,
+      "night_vs_covered_average": 0.13,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 1
+    },
+    {
       "borough": "Richmond upon Thames",
       "slug": "richmond_upon_thames",
       "population": 195300,
@@ -37,11 +79,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "green",
       "night_tone": "green",
-      "day_vs_covered_average": 0.71,
-      "night_vs_covered_average": 0.59,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 1
+      "day_vs_covered_average": 0.73,
+      "night_vs_covered_average": 0.6,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 2
     },
     {
       "borough": "Kingston upon Thames",
@@ -79,11 +121,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "green",
       "night_tone": "green",
-      "day_vs_covered_average": 0.64,
-      "night_vs_covered_average": 0.7,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 2
+      "day_vs_covered_average": 0.65,
+      "night_vs_covered_average": 0.71,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 3
     },
     {
       "borough": "Sutton",
@@ -121,11 +163,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "green",
       "night_tone": "green",
-      "day_vs_covered_average": 0.62,
-      "night_vs_covered_average": 0.73,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 3
+      "day_vs_covered_average": 0.64,
+      "night_vs_covered_average": 0.75,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 4
     },
     {
       "borough": "Westminster",
@@ -163,11 +205,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "green",
       "night_tone": "green",
-      "day_vs_covered_average": 0.62,
-      "night_vs_covered_average": 0.73,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 4
+      "day_vs_covered_average": 0.63,
+      "night_vs_covered_average": 0.75,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 5
     },
     {
       "borough": "Bromley",
@@ -205,11 +247,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "green",
-      "day_vs_covered_average": 0.89,
-      "night_vs_covered_average": 0.68,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 5
+      "day_vs_covered_average": 0.91,
+      "night_vs_covered_average": 0.7,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 6
     },
     {
       "borough": "Barnet",
@@ -247,11 +289,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "green",
-      "day_vs_covered_average": 0.88,
-      "night_vs_covered_average": 0.72,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 6
+      "day_vs_covered_average": 0.9,
+      "night_vs_covered_average": 0.74,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 7
     },
     {
       "borough": "Merton",
@@ -289,11 +331,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "green",
       "night_tone": "green",
-      "day_vs_covered_average": 0.77,
-      "night_vs_covered_average": 0.78,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 7
+      "day_vs_covered_average": 0.79,
+      "night_vs_covered_average": 0.8,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 8
     },
     {
       "borough": "Havering",
@@ -331,11 +373,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "green",
-      "day_vs_covered_average": 0.82,
-      "night_vs_covered_average": 0.77,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 8
+      "day_vs_covered_average": 0.84,
+      "night_vs_covered_average": 0.79,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 9
     },
     {
       "borough": "Hillingdon",
@@ -373,11 +415,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "green",
       "night_tone": "yellow",
-      "day_vs_covered_average": 0.78,
-      "night_vs_covered_average": 0.81,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 9
+      "day_vs_covered_average": 0.8,
+      "night_vs_covered_average": 0.84,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 10
     },
     {
       "borough": "Tower Hamlets",
@@ -415,11 +457,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 0.83,
-      "night_vs_covered_average": 0.82,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 10
+      "day_vs_covered_average": 0.86,
+      "night_vs_covered_average": 0.84,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 11
     },
     {
       "borough": "Camden",
@@ -455,13 +497,13 @@
       ],
       "data_month": "2026-07",
       "data_completeness": "full_polygon_boundary",
-      "day_tone": "green",
+      "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 0.79,
-      "night_vs_covered_average": 0.84,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 11
+      "day_vs_covered_average": 0.81,
+      "night_vs_covered_average": 0.87,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 12
     },
     {
       "borough": "Harrow",
@@ -499,11 +541,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 0.89,
-      "night_vs_covered_average": 0.88,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 12
+      "day_vs_covered_average": 0.91,
+      "night_vs_covered_average": 0.91,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 13
     },
     {
       "borough": "Kensington & Chelsea",
@@ -541,11 +583,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.17,
-      "night_vs_covered_average": 0.82,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 13
+      "day_vs_covered_average": 1.2,
+      "night_vs_covered_average": 0.85,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 14
     },
     {
       "borough": "Bexley",
@@ -583,11 +625,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "green",
       "night_tone": "yellow",
-      "day_vs_covered_average": 0.76,
-      "night_vs_covered_average": 0.94,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 14
+      "day_vs_covered_average": 0.78,
+      "night_vs_covered_average": 0.97,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 15
     },
     {
       "borough": "Hammersmith and Fulham",
@@ -625,11 +667,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.02,
-      "night_vs_covered_average": 0.89,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 15
+      "day_vs_covered_average": 1.04,
+      "night_vs_covered_average": 0.91,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 16
     },
     {
       "borough": "Enfield",
@@ -667,11 +709,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.04,
-      "night_vs_covered_average": 0.92,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 16
+      "day_vs_covered_average": 1.06,
+      "night_vs_covered_average": 0.95,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 17
     },
     {
       "borough": "Hounslow",
@@ -709,11 +751,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 0.89,
-      "night_vs_covered_average": 1.0,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 17
+      "day_vs_covered_average": 0.92,
+      "night_vs_covered_average": 1.03,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 18
     },
     {
       "borough": "Greenwich",
@@ -751,11 +793,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.0,
-      "night_vs_covered_average": 1.05,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 18
+      "day_vs_covered_average": 1.03,
+      "night_vs_covered_average": 1.08,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 19
     },
     {
       "borough": "Barking and Dagenham",
@@ -793,11 +835,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 0.9,
-      "night_vs_covered_average": 1.1,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 19
+      "day_vs_covered_average": 0.92,
+      "night_vs_covered_average": 1.13,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 20
     },
     {
       "borough": "Waltham Forest",
@@ -835,11 +877,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.17,
-      "night_vs_covered_average": 1.06,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 20
+      "day_vs_covered_average": 1.2,
+      "night_vs_covered_average": 1.08,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 21
     },
     {
       "borough": "Redbridge",
@@ -877,11 +919,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.03,
-      "night_vs_covered_average": 1.11,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 21
+      "day_vs_covered_average": 1.05,
+      "night_vs_covered_average": 1.14,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 22
     },
     {
       "borough": "Wandsworth",
@@ -919,11 +961,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.26,
-      "night_vs_covered_average": 1.07,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 22
+      "day_vs_covered_average": 1.29,
+      "night_vs_covered_average": 1.1,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 23
     },
     {
       "borough": "Ealing",
@@ -961,11 +1003,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.11,
-      "night_vs_covered_average": 1.12,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 23
+      "day_vs_covered_average": 1.14,
+      "night_vs_covered_average": 1.15,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 24
     },
     {
       "borough": "Islington",
@@ -1003,11 +1045,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.01,
-      "night_vs_covered_average": 1.15,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 24
+      "day_vs_covered_average": 1.03,
+      "night_vs_covered_average": 1.18,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 25
     },
     {
       "borough": "Southwark",
@@ -1045,11 +1087,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.1,
-      "night_vs_covered_average": 1.19,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 25
+      "day_vs_covered_average": 1.13,
+      "night_vs_covered_average": 1.22,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 26
     },
     {
       "borough": "Croydon",
@@ -1087,11 +1129,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.24,
-      "night_vs_covered_average": 1.16,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 26
+      "day_vs_covered_average": 1.27,
+      "night_vs_covered_average": 1.19,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 27
     },
     {
       "borough": "Brent",
@@ -1129,11 +1171,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "yellow",
       "night_tone": "yellow",
-      "day_vs_covered_average": 1.09,
-      "night_vs_covered_average": 1.22,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 27
+      "day_vs_covered_average": 1.12,
+      "night_vs_covered_average": 1.25,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 28
     },
     {
       "borough": "Newham",
@@ -1171,11 +1213,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "red",
       "night_tone": "red",
-      "day_vs_covered_average": 1.43,
-      "night_vs_covered_average": 1.3,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 28
+      "day_vs_covered_average": 1.47,
+      "night_vs_covered_average": 1.34,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 29
     },
     {
       "borough": "Hackney",
@@ -1213,11 +1255,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "red",
       "night_tone": "red",
-      "day_vs_covered_average": 1.35,
-      "night_vs_covered_average": 1.35,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 29
+      "day_vs_covered_average": 1.38,
+      "night_vs_covered_average": 1.39,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 30
     },
     {
       "borough": "Haringey",
@@ -1255,11 +1297,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "red",
       "night_tone": "red",
-      "day_vs_covered_average": 1.35,
-      "night_vs_covered_average": 1.44,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 30
+      "day_vs_covered_average": 1.38,
+      "night_vs_covered_average": 1.48,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 31
     },
     {
       "borough": "Lambeth",
@@ -1297,11 +1339,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "red",
       "night_tone": "red",
-      "day_vs_covered_average": 1.33,
-      "night_vs_covered_average": 1.51,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 31
+      "day_vs_covered_average": 1.36,
+      "night_vs_covered_average": 1.55,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 32
     },
     {
       "borough": "Lewisham",
@@ -1339,11 +1381,11 @@
       "data_completeness": "full_polygon_boundary",
       "day_tone": "red",
       "night_tone": "red",
-      "day_vs_covered_average": 1.53,
-      "night_vs_covered_average": 1.54,
-      "covered_count": 32,
-      "total_boroughs": 32,
-      "relative_rank": 32
+      "day_vs_covered_average": 1.57,
+      "night_vs_covered_average": 1.58,
+      "covered_count": 33,
+      "total_boroughs": 33,
+      "relative_rank": 33
     }
   ]
 }

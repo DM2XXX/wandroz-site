@@ -52,7 +52,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import build_site as BS
+import published
 
 # The reassuring word and the time of day have to sit in the SAME clause. The
 # first version allowed 40 characters of anything between them, and it happily
@@ -84,20 +84,18 @@ def context(text, m):
     return " ".join(text[start:end].split())
 
 
-def zones_of(city_key):
-    p = os.path.join(BS.ZONES_DIR, "%s.json" % city_key)
-    if not os.path.isfile(p):
-        return []
-    return json.load(io.open(p, encoding="utf-8")).get("zones", [])
-
-
 def main(only):
     findings = []
     checked = 0
-    for city_key, url_slug, label, flat in BS.mapped_cities():
+    cities = 0
+    # Read the built pages, not the city registry. The registry does not
+    # contain London — it is rendered by its own pipeline — so a check that
+    # iterates it skips 33 boroughs and still reports a clean run.
+    for city_key, zones in published.published_cities():
         if only and city_key != only:
             continue
-        for z in zones_of(city_key):
+        cities += 1
+        for z in zones:
             text = (z.get("text") or "").strip()
             if not text:
                 continue
@@ -112,7 +110,8 @@ def main(only):
                 findings.append((city_key, z["name"], "says calm AT NIGHT, rated %s at night" % night,
                                  context(text, CALM_NIGHT.search(text))))
 
-    print("Read %d area texts against their own ratings.\n" % checked)
+    print("Read %d area texts in %d published cities against their own ratings.\n"
+          % (checked, cities))
     if not findings:
         print("OK: no page contradicts itself.")
         return 0

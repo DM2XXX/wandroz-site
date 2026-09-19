@@ -88,15 +88,26 @@ OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "scores")
 # only use what's actually been fetched.
 MONTHS_TO_AVERAGE = 3
 
-# 2021 UK Census resident population by borough (ONS). Every borough except
-# the City of London (separate police force, out of scope for this
-# dataset). Westminster/Camden/Islington/Kensington & Chelsea/Lambeth are
+# 2021 UK Census resident population by borough (ONS). All 33, including the
+# City of London.
+#
+# The City was excluded here and in fetch_london.py for one stated reason: it
+# is policed by the City of London Police rather than the Met, "not covered by
+# this dataset". That was wrong. data.police.uk's street-level endpoint is
+# geographic, not force-scoped: POSTing the City's own boundary polygon returns
+# its crimes like any other area — 722 in July 2026, 745 in June, 697 in May,
+# from the City of London Police's own submission. The exclusion left the
+# Square Mile, the one square mile of London most visitors cross, as the only
+# unrated shape on the map.
+#
+# Westminster/Camden/Islington/Kensington & Chelsea/Lambeth are
 # from the original disclosure-controlled release used since the project's
 # first London pass; the other 27 are from ONS's "Census 2021 area
 # changes" comparison tool (ons.gov.uk/visualisations/censusareachanges),
 # which rounds to the nearest 100 — differences against other ONS 2021
 # rounding passes are under 0.15% and immaterial for a per-capita score.
 BOROUGH_POPULATION = {
+    "city_of_london": 8600,
     "westminster": 204300,
     "camden": 210200,
     "islington": 215700,
@@ -132,6 +143,7 @@ BOROUGH_POPULATION = {
 }
 
 BOROUGH_LABEL = {
+    "city_of_london": "City of London",
     "westminster": "Westminster",
     "camden": "Camden",
     "islington": "Islington",
@@ -199,6 +211,13 @@ BOROUGH_LABEL = {
 # Thames, Sutton) appear in neither table of the 2011 release — see
 # WORKDAY_RATIO_SOURCE, ratio defaults to 1.0 (no correction) for these.
 WORKDAY_POPULATION_RATIO = {
+    # The extreme case, and the reason this whole correction exists: the 2011
+    # release counted 360,075 people giving a workday location in the City
+    # against 7,375 residents — 49 people present for every one who lives
+    # there. Scored on residents alone the Square Mile would be the most
+    # dangerous place in Britain by a wide margin, which would say nothing
+    # about a person standing in it.
+    "city_of_london": 360.075 / 7.375,
     "westminster": 644 / 176,
     "camden": 337 / 174,
     "islington": 226 / 165,
@@ -225,6 +244,7 @@ WORKDAY_POPULATION_RATIO = {
 DEFAULT_WORKDAY_RATIO = 1.0  # applied when no 2011 release data exists at all
 
 WORKDAY_RATIO_SOURCE = {
+    "city_of_london": "measured_headcount",
     "westminster": "measured_headcount",
     "camden": "measured_headcount",
     "islington": "measured_headcount",

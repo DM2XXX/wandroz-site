@@ -2210,6 +2210,11 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             legend_yellow=legend_yellow if _is_en else _t["legend_yellow"],
             legend_red=_t["legend_red"], legend_grey=_t["legend_grey"],
             has_grey=any(z["day"] == "grey" or z["night"] == "grey" for z in zones),
+            # A district whose figure is published but deliberately not ranked
+            # needs its own legend line, or the reader meets a colour the
+            # legend does not explain.
+            has_offscale=any((z.get("burglary") or {}).get("tone") == "offscale"
+                             for z in zones),
             has_no_findings=any(z.get("evidence") == "no_findings" for z in zones),
             label_zone_detail=ui["label_zone_detail"], label_click_hint=_t["click_hint"],
             label_all_zones=_t["all_zones"], label_booking=_t["booking_cta"],
@@ -2423,6 +2428,7 @@ def render_london_map(cities):
         legend_green=EN_TONE_BADGE["green"], legend_yellow=EN_TONE_BADGE["yellow"],
         legend_red=EN_TONE_BADGE["red"], legend_grey=EN_TONE_BADGE["grey"],
         has_grey=any(z["day"] == "grey" or z["night"] == "grey" for z in js_zones),
+        has_offscale=False,
         has_no_findings=False,
         label_zone_detail="Borough detail", label_click_hint="Click a borough on the map to see its level, the reasoning, and a Booking.com link for that area.",
         label_all_zones="All boroughs", label_booking="Search accommodation here on Booking.com →",

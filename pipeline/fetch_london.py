@@ -106,11 +106,22 @@ MAX_RETRIES = 3
 # scoring off a single month — see its docstring.
 MONTHS_TO_FETCH = 3
 
-# Zones present in the boundary file that are intentionally NOT part of
-# this dataset. City of London is policed by the City of London Police,
-# not the Met — data.police.uk's Met Police force area doesn't cover it,
-# so it's excluded rather than silently scored on the wrong force's data.
-EXCLUDED_ZONES = {"city of london"}
+# Zones present in the boundary file that are intentionally NOT part of this
+# dataset. Empty, and worth saying why it used to hold "city of london".
+#
+# The reasoning was that the City is policed by the City of London Police
+# rather than the Met, so data.police.uk's Met force area does not cover it.
+# The premise about the forces is true; the conclusion about the API is not.
+# /api/crimes-street/all-crime takes a polygon and returns what happened
+# inside it regardless of which force recorded it — every force in England
+# and Wales submits to the same street-level feed, City of London Police
+# included. POSTing the City's boundary returns 700-750 crimes a month.
+#
+# The cost of the mistake was that the Square Mile — the one part of London
+# almost every visitor walks through — was the only shape on the map with no
+# rating at all, shown grey and labelled "not covered", for as long as this
+# pipeline has existed.
+EXCLUDED_ZONES = set()
 
 
 def _slugify(name):

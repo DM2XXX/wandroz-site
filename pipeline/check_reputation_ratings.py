@@ -46,7 +46,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import build_site as BS
+import published
 
 REPUTATION = re.compile(
     # "described as" is written as a gap, not a fixed phrase: the sentence that
@@ -103,20 +103,18 @@ def anchors(text):
     return found
 
 
-def zones_of(city_key):
-    p = os.path.join(BS.ZONES_DIR, "%s.json" % city_key)
-    if not os.path.isfile(p):
-        return []
-    return json.load(io.open(p, encoding="utf-8")).get("zones", [])
-
-
 def main(only, quiet):
     findings = []
     cautious = 0
-    for city_key, _slug, _label, _flat in BS.mapped_cities():
+    cities = 0
+    # Built pages, not the city registry: the registry has no London, and a
+    # check that cannot see 33 boroughs reporting "all clear" is worse than
+    # no check at all.
+    for city_key, zones in published.published_cities():
         if only and city_key != only:
             continue
-        for z in zones_of(city_key):
+        cities += 1
+        for z in zones:
             if z.get("day") not in ("yellow", "red") and z.get("night") not in ("yellow", "red"):
                 continue
             cautious += 1
@@ -129,7 +127,8 @@ def main(only, quiet):
             findings.append((city_key, z["name"], z.get("day"), z.get("night"),
                              " ".join(text.split())))
 
-    print("Read %d areas rated amber or red.\n" % cautious)
+    print("Read %d areas rated amber or red, across %d published cities.\n"
+          % (cautious, cities))
     if not findings:
         print("OK: every cautious rating offers the reader something to check.")
         return 0
