@@ -1,10 +1,10 @@
 {
   "dist": "/Users/dm2/wandroz/repo/dist",
-  "pages_audited": 2482,
-  "cities_expected": 64,
-  "cities_built": 64,
+  "pages_audited": 2535,
+  "cities_expected": 65,
+  "cities_built": 65,
   "cities_missing": [],
-  "cities_audited": 63,
+  "cities_audited": 64,
   "zone_counts": {
     "amsterdam": 110,
     "antwerp": 10,
@@ -31,6 +31,7 @@
     "dublin": 11,
     "edinburgh": 17,
     "firenze": 74,
+    "geneva": 52,
     "genova": 9,
     "ghent": 14,
     "krakow": 18,
@@ -70,37 +71,37 @@
     "zagreb": 16,
     "zurigo": 34
   },
-  "zones_in_source": 1961,
+  "zones_in_source": 2013,
   "florence": {
     "expected": 75,
     "generated": 75
   },
   "navigation": {
-    "expected_cities_per_hub": 64,
+    "expected_cities_per_hub": 65,
     "hubs_with_incomplete_switcher": []
   },
   "booking": {
     "URL_STRUCTURE_PASS": {
-      "PASS": 1994
+      "PASS": 2046
     },
     "WANDROZ_QUERY_MATCH": {
-      "PASS": 1994
+      "PASS": 2046
     },
     "BOOKING_DESTINATION_VERIFIED": {
-      "MANUAL_VERIFICATION_REQUIRED": 1295,
+      "MANUAL_VERIFICATION_REQUIRED": 1347,
       "PASS": 699
     },
     "AFFILIATE_ATTRIBUTION_VERIFIED": {
       "PASS": 228,
-      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1766
+      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1818
     },
     "destination_class": {
-      "UNVERIFIED": 1295,
+      "UNVERIFIED": 1347,
       "TRAVELLER_ALIAS": 382,
       "CITY_FALLBACK": 314,
       "EXACT_AREA": 3
     },
-    "ctas_total": 1994
+    "ctas_total": 2046
   },
   "correction_email": {
     "canonical": "hellowandroz@gmail.com",
@@ -258,7 +259,7 @@
       "category": "BOOKING",
       "check": "affiliate-attribution",
       "target": "site-wide",
-      "message": "1766 of 1994 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
+      "message": "1818 of 2046 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
     },
     {
       "severity": "WARN",

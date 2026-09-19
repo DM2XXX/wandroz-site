@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Veyrier in Geneva safe? | Wandroz</title>
+<meta name="description" content="A residential commune under the Salève, running up to the French border crossing. Nothing area-specific was found in the source review; the dashed outline on th">
+<link rel="canonical" href="https://www.wandroz.com/geneva/veyrier.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/geneva/">Geneva, Switzerland</a> &rsaquo; Veyrier</nav>
+<main>
+  <h1 class="page-title">Veyrier &mdash; Geneva, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 52 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Nothing reported</span> <span class="badge-label">day</span>
+    <span class="badge green">Nothing reported</span> <span class="badge-label">night</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>A residential commune under the Salève, running up to the French border crossing. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Veyrier%2C+Geneva%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Geneva, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Veyrier safe?</summary>
+      <p>Wandroz rates Veyrier in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Veyrier — no incidents, no recurring problems, nothing documented either way — read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>What was checked for Veyrier?</summary>
+      <p>The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Veyrier returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area&#39;s page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Veyrier a good area to stay in as a tourist?</summary>
+      <p>Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Veyrier%2C%20Geneva%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz rates Veyrier in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Veyrier \u2014 no incidents, no recurring problems, nothing documented either way \u2014 read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears."}, "name": "Is Veyrier safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Veyrier returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area\u0027s page."}, "name": "What was checked for Veyrier?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page."}, "name": "Is Veyrier a good area to stay in as a tourist?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.17343, 6.14102], [46.17352, 6.14077], [46.17346, 6.14071], [46.17343, 6.14072], [46.1724, 6.13931], [46.17235, 6.13918], [46.17239, 6.13905], [46.17231, 6.13893], [46.1716, 6.13938], [46.16953, 6.14038], [46.16897, 6.14055], [46.16882, 6.14056], [46.16841, 6.14048], [46.16826, 6.14037], [46.16826, 6.14074], [46.16832, 6.14123], [46.16849, 6.14134], [46.16865, 6.14137], [46.16867, 6.14146], [46.16864, 6.14154], [46.16839, 6.14162], [46.16828, 6.1418], [46.16833, 6.14204], [46.16841, 6.14215], [46.1684, 6.14228], [46.1685, 6.14257], [46.16854, 6.1428], [46.16859, 6.14288], [46.16858, 6.14311], [46.16853, 6.14332], [46.16857, 6.14343], [46.1686, 6.14374], [46.16855, 6.14398], [46.16858, 6.14414], [46.16868, 6.14427], [46.16877, 6.14455], [46.16877, 6.14475], [46.1687, 6.14505], [46.16874, 6.14561], [46.16871, 6.14578], [46.16875, 6.1459], [46.16872, 6.14637], [46.16862, 6.14649], [46.16869, 6.14655], [46.16862, 6.14679], [46.16863, 6.14694], [46.16853, 6.14707], [46.16857, 6.14737], [46.1687, 6.14753], [46.16881, 6.14787], [46.16879, 6.14818], [46.16886, 6.14879], [46.1688, 6.14908], [46.16863, 6.14954], [46.16843, 6.14987], [46.16817, 6.15041], [46.16809, 6.15066], [46.16777, 6.15126], [46.16771, 6.15147], [46.16744, 6.15192], [46.16708, 6.15273], [46.16633, 6.15418], [46.16709, 6.15472], [46.1671, 6.15481], [46.16598, 6.15644], [46.16578, 6.15742], [46.16542, 6.15836], [46.16401, 6.15682], [46.16214, 6.15964], [46.16189, 6.16007], [46.16189, 6.16019], [46.16181, 6.1602], [46.15955, 6.1636], [46.15955, 6.16371], [46.15978, 6.16514], [46.16014, 6.16826], [46.16009, 6.16827], [46.16063, 6.17288], [46.16061, 6.17294], [46.15975, 6.17366], [46.15901, 6.17447], [46.15898, 6.17446], [46.15896, 6.17452], [46.15902, 6.17471], [46.15901, 6.17478], [46.15838, 6.17539], [46.1595, 6.17765], [46.16041, 6.17848], [46.16107, 6.17972], [46.16292, 6.18346], [46.16397, 6.18534], [46.16576, 6.1878], [46.16639, 6.18878], [46.16997, 6.18799], [46.17401, 6.18703], [46.17467, 6.18644], [46.17483, 6.18635], [46.17539, 6.18624], [46.1762, 6.18642], [46.17661, 6.18645], [46.17714, 6.1863], [46.17739, 6.18607], [46.17767, 6.1867], [46.17832, 6.18618], [46.17913, 6.18488], [46.17932, 6.18354], [46.17943, 6.18158], [46.17963, 6.18023], [46.17954, 6.17945], [46.17929, 6.17882], [46.17904, 6.17838], [46.17868, 6.17797], [46.17777, 6.17724], [46.17746, 6.17671], [46.17716, 6.17603], [46.17645, 6.17427], [46.17609, 6.17326], [46.17585, 6.17239], [46.17571, 6.17176], [46.17567, 6.17123], [46.17569, 6.1707], [46.17586, 6.16992], [46.17609, 6.16951], [46.17636, 6.16919], [46.17677, 6.16903], [46.17707, 6.16907], [46.17744, 6.16934], [46.17778, 6.17013], [46.1786, 6.17111], [46.1789, 6.17137], [46.17927, 6.17148], [46.17983, 6.17148], [46.18044, 6.17155], [46.18223, 6.17137], [46.18281, 6.17119], [46.18343, 6.17092], [46.18391, 6.17064], [46.18422, 6.17036], [46.18518, 6.16989], [46.18577, 6.1695], [46.18664, 6.1687], [46.18727, 6.16786], [46.18747, 6.16747], [46.18785, 6.16659], [46.18812, 6.16565], [46.18818, 6.16505], [46.18817, 6.16474], [46.18812, 6.16423], [46.18798, 6.16356], [46.18768, 6.16297], [46.18732, 6.16255], [46.18714, 6.16241], [46.18648, 6.16227], [46.18617, 6.16228], [46.18579, 6.16239], [46.18532, 6.16237], [46.18491, 6.16226], [46.18436, 6.16197], [46.18351, 6.16133], [46.1815, 6.16003], [46.18101, 6.15982], [46.18055, 6.15972], [46.17917, 6.15963], [46.17885, 6.15947], [46.17867, 6.15933], [46.17844, 6.1591], [46.1782, 6.15877], [46.17802, 6.15838], [46.17782, 6.15774], [46.17777, 6.15722], [46.17782, 6.15648], [46.17799, 6.15577], [46.17822, 6.15522], [46.17855, 6.15473], [46.17918, 6.15419], [46.17984, 6.15383], [46.17928, 6.15267], [46.17905, 6.15263], [46.17865, 6.15243], [46.1786, 6.15245], [46.17855, 6.15236], [46.17837, 6.15234], [46.1781, 6.15219], [46.17782, 6.15184], [46.17753, 6.15133], [46.17757, 6.15115], [46.17756, 6.15097], [46.17764, 6.15063], [46.17751, 6.15003], [46.1774, 6.14975], [46.1773, 6.1496], [46.17716, 6.14994], [46.17658, 6.14916], [46.17676, 6.14887], [46.1763, 6.14824], [46.17636, 6.14808], [46.17644, 6.14799], [46.17643, 6.14789], [46.17646, 6.1478], [46.1764, 6.14773], [46.17659, 6.14733], [46.17733, 6.14608], [46.17736, 6.14597], [46.17732, 6.14585], [46.17702, 6.14541], [46.1757, 6.14365], [46.17572, 6.14357], [46.17479, 6.14267], [46.17398, 6.14163], [46.17343, 6.14102]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

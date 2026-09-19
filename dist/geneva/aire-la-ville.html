@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Aire-la-Ville in Geneva safe? | Wandroz</title>
+<meta name="description" content="A village on the Rhône in the rural west of the canton. Nothing area-specific was found in the source review; the dashed outline on the map records that absence">
+<link rel="canonical" href="https://www.wandroz.com/geneva/aire-la-ville.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/geneva/">Geneva, Switzerland</a> &rsaquo; Aire-la-Ville</nav>
+<main>
+  <h1 class="page-title">Aire-la-Ville &mdash; Geneva, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 52 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Nothing reported</span> <span class="badge-label">day</span>
+    <span class="badge green">Nothing reported</span> <span class="badge-label">night</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>A village on the Rhône in the rural west of the canton. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Aire-la-Ville%2C+Geneva%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Geneva, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Aire-la-Ville safe?</summary>
+      <p>Wandroz rates Aire-la-Ville in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Aire-la-Ville — no incidents, no recurring problems, nothing documented either way — read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>What was checked for Aire-la-Ville?</summary>
+      <p>The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Aire-la-Ville returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area&#39;s page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Aire-la-Ville a good area to stay in as a tourist?</summary>
+      <p>Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Aire-la-Ville%2C%20Geneva%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz rates Aire-la-Ville in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Aire-la-Ville \u2014 no incidents, no recurring problems, nothing documented either way \u2014 read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears."}, "name": "Is Aire-la-Ville safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Aire-la-Ville returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area\u0027s page."}, "name": "What was checked for Aire-la-Ville?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page."}, "name": "Is Aire-la-Ville a good area to stay in as a tourist?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.19917, 6.03181], [46.19888, 6.03108], [46.19856, 6.03054], [46.19831, 6.03022], [46.19731, 6.02914], [46.19693, 6.02879], [46.19658, 6.02855], [46.19618, 6.02835], [46.19576, 6.02821], [46.19532, 6.02815], [46.19488, 6.02816], [46.19442, 6.02826], [46.19401, 6.02842], [46.19354, 6.02871], [46.19045, 6.03102], [46.1899, 6.03127], [46.18931, 6.03138], [46.18885, 6.03135], [46.18842, 6.03124], [46.18798, 6.03103], [46.18761, 6.03076], [46.18729, 6.03045], [46.18698, 6.03006], [46.18617, 6.02871], [46.1844, 6.03382], [46.18186, 6.03976], [46.18286, 6.04162], [46.18316, 6.04208], [46.18402, 6.04327], [46.18423, 6.04362], [46.18467, 6.04461], [46.18482, 6.04477], [46.18504, 6.0449], [46.18499, 6.04503], [46.18474, 6.045], [46.18457, 6.04524], [46.18463, 6.04558], [46.18478, 6.04593], [46.18467, 6.04645], [46.18467, 6.04723], [46.18458, 6.04738], [46.18455, 6.04752], [46.1845, 6.04762], [46.18441, 6.0476], [46.18406, 6.04782], [46.1837, 6.04817], [46.18332, 6.04833], [46.18298, 6.0488], [46.18261, 6.04953], [46.18262, 6.04978], [46.18257, 6.04989], [46.18256, 6.05005], [46.18251, 6.05014], [46.18249, 6.05039], [46.18237, 6.05053], [46.18216, 6.05058], [46.18225, 6.05067], [46.18248, 6.05072], [46.18261, 6.05068], [46.18271, 6.05081], [46.18259, 6.05142], [46.18254, 6.05151], [46.18265, 6.05179], [46.18265, 6.05189], [46.1825, 6.05234], [46.18247, 6.05265], [46.18249, 6.05304], [46.18245, 6.05315], [46.18248, 6.05321], [46.18257, 6.05324], [46.18237, 6.05357], [46.18232, 6.05374], [46.18277, 6.05438], [46.18509, 6.05608], [46.1852, 6.05612], [46.18633, 6.053], [46.18638, 6.053], [46.18749, 6.05537], [46.1897, 6.05865], [46.18972, 6.05862], [46.18988, 6.05888], [46.19009, 6.05892], [46.19041, 6.0593], [46.19058, 6.05957], [46.19077, 6.05966], [46.19102, 6.05988], [46.19114, 6.05989], [46.19134, 6.06], [46.19168, 6.06037], [46.19199, 6.0602], [46.1929, 6.05985], [46.19271, 6.05856], [46.19269, 6.05789], [46.19271, 6.0574], [46.19286, 6.0564], [46.19347, 6.05422], [46.19362, 6.05334], [46.19367, 6.05239], [46.19357, 6.05055], [46.19358, 6.04959], [46.19369, 6.04839], [46.19393, 6.04716], [46.19403, 6.04679], [46.19419, 6.04641], [46.19637, 6.04241], [46.19649, 6.04203], [46.19667, 6.0411], [46.19688, 6.04057], [46.19822, 6.0384], [46.19856, 6.0377], [46.19884, 6.03699], [46.19905, 6.03628], [46.19921, 6.03558], [46.19946, 6.03384], [46.19947, 6.03333], [46.19942, 6.03279], [46.19932, 6.03228], [46.19917, 6.03181]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

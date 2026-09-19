@@ -1,0 +1,258 @@
+{
+ "city": "geneva",
+ "pois": [
+  {
+   "name": "Carouge",
+   "category": "night",
+   "qid": "Q69364",
+   "lat": 46.18166,
+   "lon": 6.14037,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Jet d'Eau",
+   "category": "view",
+   "qid": "Q684661",
+   "lat": 46.20739,
+   "lon": 6.1559,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Palace of Nations",
+   "category": "art",
+   "qid": "Q594846",
+   "lat": 46.22656,
+   "lon": 6.14048,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "St. Pierre Cathedral",
+   "category": "art",
+   "qid": "Q666516",
+   "lat": 46.20111,
+   "lon": 6.14861,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Genève-Cornavin railway station",
+   "category": "art",
+   "qid": "Q800819",
+   "lat": 46.21022,
+   "lon": 6.14245,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Museum of Art and History Geneva",
+   "category": "art",
+   "qid": "Q679075",
+   "lat": 46.1993,
+   "lon": 6.15157,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Reformation Wall",
+   "category": "art",
+   "qid": "Q371872",
+   "lat": 46.20028,
+   "lon": 6.14556,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Natural History Museum of Geneva",
+   "category": "art",
+   "qid": "Q663025",
+   "lat": 46.1989,
+   "lon": 6.1583,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Grand Théâtre de Genève",
+   "category": "art",
+   "qid": "Q555398",
+   "lat": 46.2017,
+   "lon": 6.14271,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "International Red Cross and Red Crescent Museum",
+   "category": "art",
+   "qid": "Q683406",
+   "lat": 46.22722,
+   "lon": 6.13694,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Parc de La Grange",
+   "category": "green",
+   "qid": "Q3364136",
+   "lat": 46.206,
+   "lon": 6.167,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Conservatory and Botanical Garden of the City of Geneva",
+   "category": "green",
+   "qid": "Q677516",
+   "lat": 46.22612,
+   "lon": 6.14617,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Jardin Anglais",
+   "category": "green",
+   "qid": "Q1083364",
+   "lat": 46.204,
+   "lon": 6.152,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Parc des Bastions",
+   "category": "green",
+   "qid": "Q3364247",
+   "lat": 46.19968,
+   "lon": 6.14537,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Place du Bourg-de-Four",
+   "category": "square",
+   "qid": "Q7200245",
+   "lat": 46.20024,
+   "lon": 6.14922,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "L'horloge fleurie",
+   "category": "art",
+   "qid": "Q926691",
+   "lat": 46.20419,
+   "lon": 6.15097,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Patek Philippe Museum",
+   "category": "art",
+   "qid": "Q3329302",
+   "lat": 46.1983,
+   "lon": 6.1382,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Bains des Pâquis",
+   "category": "green",
+   "qid": "Q2879960",
+   "lat": 46.2104,
+   "lon": 6.15489,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Plaine de Plainpalais",
+   "category": "square",
+   "qid": "Q3390975",
+   "lat": 46.198,
+   "lon": 6.1404,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Les Pâquis",
+   "category": "night",
+   "qid": "Q15708848",
+   "lat": 46.2138,
+   "lon": 6.1508,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
+  },
+  {
+   "name": "Les Grottes",
+   "category": "square",
+   "qid": "Q3233097",
+   "lat": 46.2109,
+   "lon": 6.1393,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 21
+  },
+  {
+   "name": "Parc Mon Repos",
+   "category": "green",
+   "qid": "Q3363863",
+   "lat": 46.2186,
+   "lon": 6.15073,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 22
+  },
+  {
+   "name": "Halles de l’Île",
+   "category": "food",
+   "qid": "Q29700552",
+   "lat": 46.20469,
+   "lon": 6.14142,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 23
+  }
+ ]
+}

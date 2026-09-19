@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Gy in Geneva safe? | Wandroz</title>
+<meta name="description" content="One of the smallest communes in the canton, farmland on the French border. Nothing area-specific was found in the source review; the dashed outline on the map r">
+<link rel="canonical" href="https://www.wandroz.com/geneva/gy.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/geneva/">Geneva, Switzerland</a> &rsaquo; Gy</nav>
+<main>
+  <h1 class="page-title">Gy &mdash; Geneva, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 52 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Nothing reported</span> <span class="badge-label">day</span>
+    <span class="badge green">Nothing reported</span> <span class="badge-label">night</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>One of the smallest communes in the canton, farmland on the French border. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Gy%2C+Geneva%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Geneva, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Gy safe?</summary>
+      <p>Wandroz rates Gy in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Gy — no incidents, no recurring problems, nothing documented either way — read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>What was checked for Gy?</summary>
+      <p>The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Gy returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area&#39;s page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Gy a good area to stay in as a tourist?</summary>
+      <p>Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Gy%2C%20Geneva%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz rates Gy in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Gy \u2014 no incidents, no recurring problems, nothing documented either way \u2014 read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears."}, "name": "Is Gy safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Gy returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area\u0027s page."}, "name": "What was checked for Gy?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page."}, "name": "Is Gy a good area to stay in as a tourist?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.25588, 6.29561], [46.25597, 6.29559], [46.25601, 6.29545], [46.25613, 6.29549], [46.25614, 6.29543], [46.25606, 6.29527], [46.25615, 6.29517], [46.25607, 6.29504], [46.25607, 6.29499], [46.25617, 6.29502], [46.25623, 6.29492], [46.25628, 6.29493], [46.25638, 6.29484], [46.25643, 6.2949], [46.2565, 6.2949], [46.25649, 6.29474], [46.25656, 6.29474], [46.25655, 6.29492], [46.25658, 6.29498], [46.25664, 6.29502], [46.25667, 6.29513], [46.25673, 6.29511], [46.25676, 6.2949], [46.25686, 6.29504], [46.25687, 6.2949], [46.25694, 6.2949], [46.25695, 6.29482], [46.25704, 6.29491], [46.25708, 6.29483], [46.25715, 6.29488], [46.25718, 6.29483], [46.25709, 6.29474], [46.2571, 6.2947], [46.25716, 6.29467], [46.25727, 6.29475], [46.25737, 6.29462], [46.25747, 6.29465], [46.2577, 6.29427], [46.25777, 6.29439], [46.25779, 6.2943], [46.25777, 6.29415], [46.25792, 6.2942], [46.25795, 6.29404], [46.25805, 6.29407], [46.25811, 6.29396], [46.25814, 6.29395], [46.25813, 6.29407], [46.25846, 6.29411], [46.25848, 6.29402], [46.25866, 6.29418], [46.25863, 6.29408], [46.25874, 6.2941], [46.25878, 6.29406], [46.25881, 6.29422], [46.25888, 6.29417], [46.25901, 6.29424], [46.25891, 6.29431], [46.25892, 6.2944], [46.259, 6.29443], [46.25907, 6.29432], [46.25916, 6.29436], [46.25923, 6.29416], [46.2593, 6.29407], [46.25936, 6.29408], [46.25942, 6.29397], [46.25953, 6.29392], [46.25959, 6.29403], [46.25953, 6.29416], [46.25959, 6.2942], [46.25963, 6.29414], [46.25982, 6.29436], [46.25979, 6.29448], [46.25987, 6.29458], [46.25984, 6.29468], [46.25986, 6.29473], [46.25991, 6.29471], [46.25994, 6.2946], [46.25996, 6.2946], [46.26002, 6.29476], [46.26002, 6.29508], [46.26012, 6.29506], [46.26016, 6.29518], [46.26012, 6.29522], [46.26015, 6.29529], [46.26025, 6.29527], [46.26029, 6.29514], [46.26045, 6.29533], [46.26053, 6.29519], [46.26077, 6.29547], [46.26083, 6.2954], [46.26096, 6.29555], [46.26105, 6.29568], [46.26103, 6.29578], [46.26105, 6.29582], [46.26109, 6.29577], [46.26112, 6.2958], [46.26112, 6.29593], [46.2613, 6.29595], [46.26149, 6.2959], [46.26165, 6.2961], [46.26176, 6.29609], [46.26173, 6.2962], [46.26176, 6.29628], [46.26194, 6.29626], [46.26198, 6.2963], [46.26205, 6.2962], [46.26209, 6.29626], [46.26228, 6.29622], [46.26232, 6.29609], [46.26243, 6.29608], [46.26247, 6.29611], [46.26247, 6.29621], [46.26253, 6.29619], [46.26251, 6.29609], [46.26254, 6.29597], [46.26259, 6.29596], [46.26263, 6.29603], [46.26273, 6.29605], [46.26268, 6.29614], [46.26274, 6.29622], [46.26282, 6.29612], [46.26286, 6.29617], [46.26279, 6.2963], [46.26295, 6.2964], [46.26307, 6.29631], [46.2631, 6.29643], [46.26328, 6.2966], [46.26344, 6.29651], [46.26349, 6.29658], [46.26357, 6.29657], [46.2638, 6.29635], [46.26377, 6.29625], [46.26384, 6.29619], [46.26414, 6.29635], [46.26423, 6.29633], [46.26428, 6.29616], [46.26419, 6.29613], [46.26422, 6.29603], [46.2642, 6.29592], [46.26411, 6.29579], [46.26411, 6.29574], [46.2643, 6.29566], [46.26438, 6.29577], [46.26444, 6.29571], [46.26448, 6.2956], [46.26438, 6.29557], [46.26437, 6.29542], [46.26443, 6.29537], [46.26438, 6.29523], [46.26447, 6.29513], [46.26459, 6.29486], [46.26457, 6.29467], [46.26449, 6.29453], [46.26432, 6.29439], [46.2642, 6.29414], [46.26402, 6.29389], [46.26398, 6.29378], [46.264, 6.29359], [46.26405, 6.29351], [46.26399, 6.29337], [46.26375, 6.29329], [46.26366, 6.29308], [46.26353, 6.29289], [46.26345, 6.29257], [46.26346, 6.29244], [46.26355, 6.29233], [46.26353, 6.29228], [46.26328, 6.29205], [46.26326, 6.29208], [46.26312, 6.2919], [46.26265, 6.29151], [46.26201, 6.2914], [46.26179, 6.29118], [46.25996, 6.2898], [46.25879, 6.2883], [46.25735, 6.28658], [46.25597, 6.28346], [46.25489, 6.28525], [46.25422, 6.28416], [46.25369, 6.28181], [46.25351, 6.28077], [46.25246, 6.27851], [46.25145, 6.27919], [46.25126, 6.2787], [46.25136, 6.27858], [46.25116, 6.27831], [46.25134, 6.27794], [46.25099, 6.27673], [46.25101, 6.27668], [46.25098, 6.27652], [46.25072, 6.27568], [46.25061, 6.27527], [46.25059, 6.27501], [46.25049, 6.27473], [46.25045, 6.27468], [46.25038, 6.27473], [46.25033, 6.27462], [46.25036, 6.27454], [46.25023, 6.27449], [46.25019, 6.27454], [46.25017, 6.2745], [46.25016, 6.2744], [46.25005, 6.27423], [46.25009, 6.27404], [46.24993, 6.27382], [46.2499, 6.27366], [46.24983, 6.27354], [46.2498, 6.27337], [46.24963, 6.27329], [46.24939, 6.2727], [46.24916, 6.27184], [46.24914, 6.27158], [46.24896, 6.27105], [46.24882, 6.27088], [46.2487, 6.27037], [46.24849, 6.2701], [46.24857, 6.26858], [46.24821, 6.26809], [46.24782, 6.26716], [46.24769, 6.26679], [46.24799, 6.26653], [46.24907, 6.2658], [46.24964, 6.26478], [46.25091, 6.26301], [46.25108, 6.26257], [46.25129, 6.26139], [46.25148, 6.26081], [46.25156, 6.26037], [46.25168, 6.26015], [46.25181, 6.26018], [46.25245, 6.26071], [46.25276, 6.26092], [46.25325, 6.26107], [46.25456, 6.26167], [46.26216, 6.24991], [46.26214, 6.24986], [46.2616, 6.24951], [46.26111, 6.24932], [46.26035, 6.24891], [46.26011, 6.24866], [46.25961, 6.24832], [46.25964, 6.24825], [46.25927, 6.24801], [46.2574, 6.24656], [46.25653, 6.24575], [46.25614, 6.24517], [46.25247, 6.25371], [46.25232, 6.25364], [46.25115, 6.25206], [46.25108, 6.25187], [46.25109, 6.25172], [46.25099, 6.2517], [46.25093, 6.25184], [46.25009, 6.25059], [46.24887, 6.24955], [46.24877, 6.24965], [46.2488, 6.25146], [46.24893, 6.25252], [46.24925, 6.25431], [46.24913, 6.25424], [46.24837, 6.25416], [46.24748, 6.25351], [46.24737, 6.2535], [46.24685, 6.25464], [46.24636, 6.25544], [46.24583, 6.25666], [46.24575, 6.2567], [46.24345, 6.2557], [46.24354, 6.25659], [46.24364, 6.2568], [46.24381, 6.25689], [46.24381, 6.25702], [46.24375, 6.25706], [46.2437, 6.25727], [46.24364, 6.25731], [46.24343, 6.25723], [46.24336, 6.25726], [46.2433, 6.25747], [46.24296, 6.25802], [46.2428, 6.25837], [46.24263, 6.25932], [46.24259, 6.25987], [46.24254, 6.26003], [46.24255, 6.26017], [46.24262, 6.2603], [46.2426, 6.26047], [46.24248, 6.26067], [46.24248, 6.26079], [46.24257, 6.26098], [46.24252, 6.26131], [46.2426, 6.26145], [46.24287, 6.2617], [46.24292, 6.26188], [46.24297, 6.26215], [46.24294, 6.2626], [46.24297, 6.26264], [46.24297, 6.26275], [46.24294, 6.26297], [46.24297, 6.26311], [46.24309, 6.26323], [46.24363, 6.26319], [46.24376, 6.2631], [46.24394, 6.26284], [46.24414, 6.26278], [46.24553, 6.26328], [46.24564, 6.26335], [46.24587, 6.26362], [46.24591, 6.26405], [46.24591, 6.26504], [46.24432, 6.26822], [46.24393, 6.26882], [46.24246, 6.27023], [46.24284, 6.27123], [46.243, 6.27178], [46.24323, 6.2731], [46.24392, 6.2753], [46.24414, 6.27609], [46.24477, 6.27919], [46.2449, 6.28022], [46.245, 6.28066], [46.24508, 6.28085], [46.24571, 6.2819], [46.24662, 6.28363], [46.24731, 6.28475], [46.2477, 6.28522], [46.24808, 6.2855], [46.25023, 6.28681], [46.25069, 6.28731], [46.25072, 6.28741], [46.25068, 6.28783], [46.25071, 6.2879], [46.25161, 6.28858], [46.25272, 6.28969], [46.25332, 6.29015], [46.2543, 6.29124], [46.25489, 6.29168], [46.25527, 6.29213], [46.25556, 6.29262], [46.25563, 6.29281], [46.25566, 6.29303], [46.25565, 6.29326], [46.25559, 6.29348], [46.25525, 6.29433], [46.2552, 6.29473], [46.25523, 6.29495], [46.25534, 6.29528], [46.25565, 6.29556], [46.25578, 6.29572], [46.2559, 6.29599], [46.25589, 6.29606], [46.25597, 6.29596], [46.25597, 6.29587], [46.25589, 6.29571], [46.25588, 6.29561]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

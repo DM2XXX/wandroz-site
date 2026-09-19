@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Presinge in Geneva safe? | Wandroz</title>
+<meta name="description" content="A farming village near the French border in the east. Nothing area-specific was found in the source review; the dashed outline on the map records that absence r">
+<link rel="canonical" href="https://www.wandroz.com/geneva/presinge.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/geneva/">Geneva, Switzerland</a> &rsaquo; Presinge</nav>
+<main>
+  <h1 class="page-title">Presinge &mdash; Geneva, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 52 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Nothing reported</span> <span class="badge-label">day</span>
+    <span class="badge green">Nothing reported</span> <span class="badge-label">night</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>A farming village near the French border in the east. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Presinge%2C+Geneva%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Geneva, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Presinge safe?</summary>
+      <p>Wandroz rates Presinge in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Presinge — no incidents, no recurring problems, nothing documented either way — read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>What was checked for Presinge?</summary>
+      <p>The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Presinge returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area&#39;s page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Presinge a good area to stay in as a tourist?</summary>
+      <p>Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Presinge%2C%20Geneva%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz rates Presinge in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Presinge \u2014 no incidents, no recurring problems, nothing documented either way \u2014 read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears."}, "name": "Is Presinge safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Presinge returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area\u0027s page."}, "name": "What was checked for Presinge?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page."}, "name": "Is Presinge a good area to stay in as a tourist?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.21347, 6.24606], [46.21275, 6.24552], [46.21247, 6.24522], [46.20978, 6.24119], [46.20978, 6.24109], [46.20876, 6.24105], [46.20859, 6.24101], [46.20855, 6.24095], [46.20843, 6.24107], [46.2077, 6.24281], [46.20695, 6.24476], [46.20682, 6.24489], [46.20636, 6.24614], [46.20609, 6.24628], [46.20589, 6.24626], [46.20581, 6.24648], [46.20534, 6.24736], [46.20522, 6.24784], [46.20515, 6.24832], [46.2052, 6.24833], [46.20515, 6.24882], [46.20499, 6.24955], [46.20522, 6.24964], [46.20531, 6.24963], [46.20571, 6.24926], [46.20585, 6.24919], [46.20634, 6.2499], [46.20676, 6.25084], [46.20723, 6.25168], [46.20799, 6.25263], [46.20846, 6.25312], [46.20894, 6.25378], [46.20924, 6.2541], [46.20927, 6.25422], [46.20914, 6.25453], [46.20916, 6.25467], [46.20976, 6.25548], [46.21003, 6.25591], [46.20999, 6.25594], [46.21025, 6.25683], [46.21033, 6.25731], [46.21096, 6.25929], [46.21123, 6.25988], [46.21174, 6.26119], [46.21211, 6.26235], [46.21256, 6.26312], [46.21262, 6.26334], [46.21261, 6.26354], [46.21265, 6.26387], [46.21284, 6.26464], [46.21313, 6.26553], [46.21357, 6.2663], [46.21368, 6.26668], [46.21374, 6.26738], [46.21368, 6.26772], [46.21352, 6.26809], [46.21346, 6.26834], [46.21352, 6.26867], [46.2137, 6.26935], [46.21416, 6.27042], [46.21426, 6.27079], [46.21447, 6.27189], [46.21475, 6.27313], [46.21483, 6.27392], [46.21497, 6.27478], [46.21544, 6.27676], [46.21552, 6.27697], [46.21562, 6.27717], [46.21631, 6.27813], [46.21796, 6.28089], [46.21863, 6.28216], [46.21995, 6.28443], [46.22176, 6.28782], [46.22205, 6.28827], [46.22297, 6.28928], [46.22312, 6.28957], [46.22348, 6.29048], [46.22379, 6.29133], [46.22382, 6.29132], [46.22436, 6.2908], [46.22475, 6.29028], [46.22529, 6.28937], [46.22541, 6.28878], [46.2254, 6.2884], [46.22535, 6.28814], [46.2251, 6.28703], [46.225, 6.28675], [46.22521, 6.28587], [46.22479, 6.28562], [46.22484, 6.28542], [46.2249, 6.28358], [46.22559, 6.28037], [46.22588, 6.27941], [46.22535, 6.27906], [46.22484, 6.27857], [46.22447, 6.2781], [46.22436, 6.27788], [46.22465, 6.2775], [46.22489, 6.27711], [46.22554, 6.27636], [46.22535, 6.27615], [46.22512, 6.2757], [46.225, 6.27503], [46.22498, 6.27486], [46.22515, 6.27387], [46.22521, 6.27368], [46.22517, 6.27351], [46.22505, 6.27323], [46.22489, 6.27272], [46.2245, 6.27194], [46.22438, 6.27181], [46.2243, 6.27162], [46.22432, 6.27118], [46.22317, 6.2689], [46.22373, 6.26703], [46.22385, 6.26651], [46.22385, 6.26536], [46.22406, 6.26477], [46.22395, 6.26463], [46.22402, 6.26428], [46.2241, 6.26411], [46.22411, 6.26394], [46.22409, 6.26386], [46.22405, 6.26383], [46.22399, 6.26355], [46.22386, 6.2633], [46.22382, 6.26307], [46.22378, 6.2627], [46.22387, 6.26218], [46.22368, 6.26187], [46.22346, 6.26101], [46.22349, 6.26077], [46.22359, 6.26066], [46.22358, 6.26047], [46.22363, 6.26025], [46.22362, 6.25995], [46.22355, 6.25972], [46.22357, 6.25929], [46.22353, 6.25917], [46.22352, 6.25894], [46.22344, 6.25865], [46.22335, 6.25858], [46.22301, 6.25794], [46.22294, 6.25753], [46.22306, 6.25721], [46.22306, 6.25675], [46.22324, 6.25667], [46.22325, 6.25631], [46.22333, 6.25601], [46.22333, 6.25572], [46.22331, 6.25563], [46.22306, 6.25516], [46.22285, 6.255], [46.22277, 6.25484], [46.2227, 6.25482], [46.22263, 6.25469], [46.22258, 6.25422], [46.22225, 6.25366], [46.22219, 6.25348], [46.22196, 6.253], [46.22193, 6.25286], [46.22183, 6.25275], [46.22183, 6.25264], [46.22172, 6.25255], [46.22143, 6.25214], [46.22125, 6.25197], [46.2257, 6.24899], [46.22599, 6.24872], [46.22624, 6.24837], [46.22644, 6.24797], [46.22686, 6.2469], [46.22684, 6.24674], [46.22672, 6.24654], [46.22604, 6.24613], [46.22658, 6.24346], [46.22618, 6.24328], [46.22619, 6.24322], [46.22575, 6.24302], [46.22346, 6.24239], [46.22345, 6.24235], [46.22375, 6.24166], [46.22374, 6.24158], [46.22406, 6.24085], [46.22157, 6.23866], [46.22069, 6.23724], [46.2209, 6.23689], [46.22079, 6.23673], [46.22077, 6.23676], [46.2201, 6.23578], [46.22027, 6.23553], [46.21988, 6.23496], [46.21957, 6.23481], [46.21953, 6.23444], [46.21944, 6.23435], [46.21932, 6.23429], [46.2184, 6.23398], [46.21836, 6.234], [46.21834, 6.23501], [46.21828, 6.23564], [46.21818, 6.2362], [46.21766, 6.23782], [46.21782, 6.23796], [46.21803, 6.23804], [46.21836, 6.23827], [46.21893, 6.23876], [46.21818, 6.24081], [46.21778, 6.24231], [46.21776, 6.24246], [46.21804, 6.24299], [46.21767, 6.24447], [46.21742, 6.24526], [46.21659, 6.24577], [46.21631, 6.24658], [46.21581, 6.24771], [46.21366, 6.2462], [46.21363, 6.24603], [46.21357, 6.246], [46.21353, 6.24606], [46.21347, 6.24606]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Russin in Geneva safe? | Wandroz</title>
+<meta name="description" content="The smallest commune in the canton, a vineyard village on the Rhône. Nothing area-specific was found in the source review; the dashed outline on the map records">
+<link rel="canonical" href="https://www.wandroz.com/geneva/russin.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/geneva/">Geneva, Switzerland</a> &rsaquo; Russin</nav>
+<main>
+  <h1 class="page-title">Russin &mdash; Geneva, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 52 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Nothing reported</span> <span class="badge-label">day</span>
+    <span class="badge green">Nothing reported</span> <span class="badge-label">night</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>The smallest commune in the canton, a vineyard village on the Rhône. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Russin%2C+Geneva%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Geneva, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Russin safe?</summary>
+      <p>Wandroz rates Russin in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Russin — no incidents, no recurring problems, nothing documented either way — read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>What was checked for Russin?</summary>
+      <p>The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Russin returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area&#39;s page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Russin a good area to stay in as a tourist?</summary>
+      <p>Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Russin%2C%20Geneva%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz rates Russin in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Russin \u2014 no incidents, no recurring problems, nothing documented either way \u2014 read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears."}, "name": "Is Russin safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Russin returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area\u0027s page."}, "name": "What was checked for Russin?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page."}, "name": "Is Russin a good area to stay in as a tourist?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.18169, 6.01906], [46.18271, 6.02246], [46.18299, 6.02319], [46.18329, 6.02383], [46.1869, 6.02993], [46.18735, 6.03051], [46.18788, 6.03097], [46.18838, 6.03123], [46.18894, 6.03137], [46.18948, 6.03137], [46.19, 6.03124], [46.19064, 6.03089], [46.19383, 6.02852], [46.1945, 6.02824], [46.19524, 6.02814], [46.19573, 6.0282], [46.19618, 6.02835], [46.1966, 6.02856], [46.19703, 6.02888], [46.19846, 6.0304], [46.19877, 6.03087], [46.19902, 6.03143], [46.19946, 6.03102], [46.1995, 6.03092], [46.1995, 6.03069], [46.19946, 6.03052], [46.19951, 6.03029], [46.19945, 6.02994], [46.19945, 6.02968], [46.1994, 6.02951], [46.19947, 6.02933], [46.19942, 6.02914], [46.1992, 6.02864], [46.19914, 6.02796], [46.19909, 6.02773], [46.19915, 6.02755], [46.19913, 6.02724], [46.19918, 6.02655], [46.19928, 6.02646], [46.19933, 6.02631], [46.19947, 6.02623], [46.19955, 6.02594], [46.1996, 6.02588], [46.19965, 6.02546], [46.19982, 6.02497], [46.19976, 6.02486], [46.19985, 6.0247], [46.19979, 6.0246], [46.19989, 6.02441], [46.19988, 6.02433], [46.20002, 6.02384], [46.20002, 6.02375], [46.2001, 6.02367], [46.20005, 6.02349], [46.20007, 6.02328], [46.19998, 6.02308], [46.20007, 6.02264], [46.20001, 6.02225], [46.20014, 6.02187], [46.20015, 6.0217], [46.20012, 6.02158], [46.20033, 6.02092], [46.2004, 6.02084], [46.20032, 6.02048], [46.20034, 6.02037], [46.2002, 6.02041], [46.20006, 6.02032], [46.20006, 6.02011], [46.20012, 6.02006], [46.20012, 6.01994], [46.20017, 6.01991], [46.2001, 6.01983], [46.20013, 6.01975], [46.20018, 6.0198], [46.2002, 6.01973], [46.20016, 6.01966], [46.20026, 6.01945], [46.20025, 6.01928], [46.20029, 6.01926], [46.20024, 6.01882], [46.20016, 6.01868], [46.20024, 6.01753], [46.20017, 6.01698], [46.20009, 6.01686], [46.20027, 6.01691], [46.20028, 6.01677], [46.20039, 6.0166], [46.20042, 6.01671], [46.20039, 6.01682], [46.20043, 6.01693], [46.2006, 6.01663], [46.20065, 6.01642], [46.20059, 6.01641], [46.20068, 6.01623], [46.20065, 6.01619], [46.20071, 6.01603], [46.2008, 6.01598], [46.20094, 6.01599], [46.20104, 6.01595], [46.20108, 6.01599], [46.20119, 6.01592], [46.20141, 6.01542], [46.20188, 6.01524], [46.20211, 6.01498], [46.20212, 6.01483], [46.20227, 6.01481], [46.20233, 6.01462], [46.20229, 6.0146], [46.20233, 6.01442], [46.20239, 6.0144], [46.2024, 6.01433], [46.20235, 6.0142], [46.20237, 6.01408], [46.20255, 6.01387], [46.2026, 6.01374], [46.20257, 6.01365], [46.20268, 6.01354], [46.20269, 6.01346], [46.20277, 6.01339], [46.20273, 6.01334], [46.20279, 6.01324], [46.20292, 6.01318], [46.20304, 6.01281], [46.20308, 6.01282], [46.20309, 6.01276], [46.20315, 6.0128], [46.20323, 6.01262], [46.20332, 6.01257], [46.20341, 6.01258], [46.20354, 6.01235], [46.20362, 6.01233], [46.20365, 6.01227], [46.20387, 6.01234], [46.20384, 6.0118], [46.20376, 6.01125], [46.20343, 6.00975], [46.2028, 6.00967], [46.20278, 6.00959], [46.2031, 6.00878], [46.20323, 6.00855], [46.20334, 6.00848], [46.20473, 6.00828], [46.2048, 6.00833], [46.20539, 6.00962], [46.20609, 6.00951], [46.20619, 6.00945], [46.20802, 6.00788], [46.2085, 6.00921], [46.20856, 6.00923], [46.2098, 6.00814], [46.20985, 6.00802], [46.20952, 6.0072], [46.2091, 6.00637], [46.20733, 6.00211], [46.20727, 6.00064], [46.2072, 6.0002], [46.20722, 6.00005], [46.20738, 5.9998], [46.20747, 5.99957], [46.20804, 5.99953], [46.2085, 5.99958], [46.2084, 5.99884], [46.20852, 5.99808], [46.20857, 5.99798], [46.20832, 5.99754], [46.20824, 5.99711], [46.20823, 5.9968], [46.20857, 5.99596], [46.20925, 5.99475], [46.20897, 5.99431], [46.20907, 5.99377], [46.20887, 5.99286], [46.2086, 5.99231], [46.20839, 5.99231], [46.20824, 5.99245], [46.20727, 5.99408], [46.20394, 5.9949], [46.20225, 5.99896], [46.2016, 5.99988], [46.20091, 6.00127], [46.20019, 6.00166], [46.19948, 6.00189], [46.19754, 6.00388], [46.19677, 6.00359], [46.19533, 6.00234], [46.19516, 6.00234], [46.19401, 6.00315], [46.19265, 6.00447], [46.19138, 6.00523], [46.18963, 6.00593], [46.18866, 6.00682], [46.18775, 6.00693], [46.18679, 6.00726], [46.18561, 6.00901], [46.18492, 6.00985], [46.18373, 6.01028], [46.18254, 6.00995], [46.18185, 6.00927], [46.18052, 6.00866], [46.17952, 6.00919], [46.17789, 6.00971], [46.17684, 6.00975], [46.1768, 6.01035], [46.17735, 6.01322], [46.1775, 6.01377], [46.17771, 6.01426], [46.17798, 6.01469], [46.17865, 6.01548], [46.18031, 6.01679], [46.18076, 6.01725], [46.18104, 6.01764], [46.18131, 6.01809], [46.18151, 6.01854], [46.18169, 6.01906]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

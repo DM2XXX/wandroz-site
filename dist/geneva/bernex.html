@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Bernex in Geneva safe? | Wandroz</title>
+<meta name="description" content="A large residential commune west of the city, growing fast around its new tram line. Nothing area-specific was found in the source review; the dashed outline on">
+<link rel="canonical" href="https://www.wandroz.com/geneva/bernex.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/geneva/">Geneva, Switzerland</a> &rsaquo; Bernex</nav>
+<main>
+  <h1 class="page-title">Bernex &mdash; Geneva, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 52 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Nothing reported</span> <span class="badge-label">day</span>
+    <span class="badge green">Nothing reported</span> <span class="badge-label">night</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>A large residential commune west of the city, growing fast around its new tram line. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Bernex%2C+Geneva%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Geneva, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Bernex safe?</summary>
+      <p>Wandroz rates Bernex in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Bernex — no incidents, no recurring problems, nothing documented either way — read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>What was checked for Bernex?</summary>
+      <p>The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Bernex returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area&#39;s page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Bernex a good area to stay in as a tourist?</summary>
+      <p>Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Bernex%2C%20Geneva%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz rates Bernex in Geneva as an area where the review found nothing traveller-relevant to report. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Bernex \u2014 no incidents, no recurring problems, nothing documented either way \u2014 read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears."}, "name": "Is Bernex safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "The same area-level review every other neighbourhood on the Geneva map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Bernex returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area\u0027s page."}, "name": "What was checked for Bernex?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Nothing documented argues against it. For a stay, weigh that against the areas on the Geneva map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page."}, "name": "Is Bernex a good area to stay in as a tourist?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.20241, 6.07385], [46.20226, 6.07293], [46.20211, 6.07243], [46.20195, 6.07203], [46.20164, 6.07139], [46.2014, 6.07099], [46.20072, 6.07022], [46.19994, 6.0695], [46.19907, 6.06888], [46.19845, 6.06853], [46.19654, 6.06764], [46.19604, 6.06735], [46.19546, 6.06688], [46.19485, 6.0662], [46.19447, 6.06565], [46.19416, 6.06509], [46.19384, 6.06438], [46.19363, 6.06377], [46.19339, 6.06279], [46.1929, 6.05985], [46.19199, 6.0602], [46.19168, 6.06037], [46.19134, 6.06], [46.19114, 6.05989], [46.19102, 6.05988], [46.19077, 6.05966], [46.19058, 6.05957], [46.19041, 6.0593], [46.19009, 6.05892], [46.18988, 6.05888], [46.18972, 6.05862], [46.1897, 6.05865], [46.18749, 6.05537], [46.18638, 6.053], [46.18633, 6.053], [46.1852, 6.05612], [46.18509, 6.05608], [46.18277, 6.05438], [46.18232, 6.05374], [46.18237, 6.05357], [46.18257, 6.05324], [46.18248, 6.05321], [46.18245, 6.05315], [46.18249, 6.05304], [46.18247, 6.05265], [46.1825, 6.05234], [46.18265, 6.05195], [46.18265, 6.05179], [46.18254, 6.05151], [46.18259, 6.05142], [46.18271, 6.05081], [46.18263, 6.05069], [46.18248, 6.05072], [46.18225, 6.05067], [46.1822, 6.05058], [46.18212, 6.05057], [46.18196, 6.05069], [46.18193, 6.05085], [46.18186, 6.05096], [46.18176, 6.051], [46.18173, 6.05094], [46.18163, 6.05093], [46.18162, 6.05086], [46.18144, 6.05083], [46.1813, 6.05096], [46.18117, 6.05117], [46.18103, 6.05127], [46.18082, 6.05124], [46.18071, 6.05112], [46.1806, 6.0511], [46.18055, 6.05111], [46.1805, 6.05124], [46.18044, 6.05123], [46.18039, 6.05132], [46.18025, 6.05126], [46.18026, 6.05135], [46.18022, 6.05135], [46.1801, 6.05121], [46.18005, 6.0514], [46.18002, 6.05135], [46.17991, 6.05146], [46.17988, 6.05131], [46.17976, 6.05124], [46.17969, 6.05111], [46.17963, 6.05115], [46.17964, 6.05119], [46.1796, 6.05127], [46.17964, 6.05129], [46.17959, 6.05132], [46.17961, 6.05142], [46.17954, 6.05141], [46.17956, 6.05147], [46.17946, 6.05148], [46.17946, 6.05152], [46.1793, 6.05148], [46.17924, 6.05161], [46.17927, 6.05163], [46.17919, 6.05176], [46.17918, 6.05168], [46.1791, 6.05168], [46.17901, 6.0515], [46.17899, 6.05137], [46.17901, 6.05124], [46.17891, 6.05117], [46.17886, 6.05124], [46.17871, 6.05121], [46.17868, 6.05113], [46.17864, 6.05116], [46.17857, 6.05094], [46.17844, 6.05095], [46.17847, 6.05084], [46.17842, 6.05072], [46.17836, 6.05083], [46.17818, 6.05068], [46.17804, 6.05072], [46.17804, 6.05046], [46.17784, 6.05046], [46.17788, 6.05025], [46.17779, 6.0503], [46.17769, 6.05021], [46.1776, 6.05023], [46.1775, 6.05013], [46.1775, 6.05001], [46.17747, 6.05003], [46.17744, 6.04995], [46.17739, 6.04992], [46.17737, 6.04997], [46.1772, 6.04992], [46.17722, 6.04981], [46.17719, 6.04979], [46.17703, 6.04983], [46.17685, 6.04975], [46.17677, 6.04965], [46.17668, 6.04969], [46.17659, 6.04962], [46.17654, 6.04949], [46.17642, 6.04951], [46.1762, 6.04924], [46.17576, 6.04894], [46.17565, 6.04859], [46.17557, 6.04854], [46.17551, 6.04842], [46.17527, 6.04814], [46.17508, 6.04802], [46.17505, 6.04795], [46.17496, 6.04788], [46.1744, 6.04677], [46.1739, 6.04518], [46.17413, 6.04495], [46.17401, 6.0447], [46.17361, 6.04434], [46.1735, 6.0443], [46.17298, 6.04387], [46.17274, 6.04363], [46.17265, 6.0434], [46.17247, 6.04322], [46.17228, 6.04308], [46.17217, 6.04311], [46.17187, 6.04131], [46.17162, 6.04021], [46.17124, 6.03918], [46.17074, 6.03827], [46.17052, 6.03851], [46.16993, 6.0393], [46.1691, 6.04054], [46.16742, 6.04257], [46.16712, 6.04287], [46.16693, 6.04318], [46.16621, 6.04408], [46.16615, 6.04419], [46.16478, 6.04476], [46.16464, 6.04491], [46.16429, 6.04543], [46.16396, 6.04484], [46.16333, 6.04519], [46.16262, 6.04488], [46.16229, 6.04523], [46.16203, 6.04562], [46.16145, 6.04399], [46.16044, 6.04521], [46.15819, 6.04829], [46.15734, 6.04962], [46.15613, 6.04848], [46.1545, 6.05001], [46.15365, 6.04913], [46.15356, 6.04896], [46.15147, 6.04974], [46.15262, 6.05058], [46.15567, 6.05292], [46.15603, 6.05329], [46.15646, 6.05386], [46.15681, 6.05441], [46.15716, 6.05514], [46.15959, 6.06115], [46.1582, 6.0634], [46.15735, 6.06467], [46.15547, 6.0679], [46.1555, 6.06794], [46.15276, 6.07215], [46.15252, 6.07236], [46.15155, 6.07291], [46.15106, 6.07307], [46.15055, 6.07347], [46.14939, 6.07467], [46.14967, 6.07496], [46.15024, 6.07541], [46.15067, 6.07555], [46.15087, 6.07557], [46.15235, 6.07615], [46.15417, 6.07662], [46.15895, 6.07698], [46.16116, 6.07674], [46.16045, 6.07778], [46.1617, 6.07954], [46.16127, 6.08015], [46.1633, 6.08279], [46.16405, 6.08186], [46.16624, 6.08658], [46.1663, 6.08658], [46.16739, 6.08554], [46.16743, 6.08543], [46.16651, 6.08295], [46.16651, 6.08286], [46.16676, 6.08204], [46.16699, 6.08182], [46.167, 6.08175], [46.16726, 6.08152], [46.16756, 6.08112], [46.16767, 6.0811], [46.16795, 6.08124], [46.16824, 6.08086], [46.16828, 6.08085], [46.16823, 6.0807], [46.16799, 6.08033], [46.168, 6.08027], [46.1686, 6.07946], [46.16871, 6.07941], [46.16871, 6.07935], [46.16968, 6.07806], [46.16932, 6.07746], [46.16919, 6.07709], [46.16923, 6.07707], [46.16929, 6.07711], [46.16937, 6.07697], [46.16989, 6.07542], [46.16996, 6.07535], [46.17018, 6.07528], [46.17038, 6.07576], [46.17084, 6.07653], [46.17098, 6.07646], [46.17163, 6.07686], [46.17171, 6.07686], [46.17254, 6.0764], [46.17259, 6.07648], [46.1726, 6.07642], [46.17324, 6.07606], [46.17366, 6.0759], [46.17389, 6.07562], [46.17396, 6.07563], [46.17485, 6.07731], [46.17486, 6.07742], [46.17597, 6.07926], [46.17638, 6.07916], [46.17653, 6.07907], [46.17686, 6.07874], [46.17726, 6.07812], [46.17731, 6.07828], [46.17748, 6.07847], [46.17762, 6.07871], [46.1777, 6.07919], [46.17794, 6.07997], [46.17809, 6.08073], [46.17822, 6.08186], [46.17843, 6.08633], [46.17843, 6.08741], [46.17839, 6.08745], [46.17837, 6.08772], [46.17837, 6.08777], [46.17842, 6.0877], [46.17841, 6.08866], [46.17855, 6.08871], [46.1795, 6.08873], [46.18083, 6.08855], [46.18129, 6.08844], [46.18205, 6.08857], [46.18224, 6.08857], [46.18258, 6.0885], [46.18387, 6.08807], [46.18388, 6.08814], [46.18411, 6.088], [46.18471, 6.08751], [46.1853, 6.08699], [46.18603, 6.08623], [46.18684, 6.08531], [46.18717, 6.08478], [46.18886, 6.08405], [46.18948, 6.08371], [46.18979, 6.08366], [46.19023, 6.08383], [46.19031, 6.08408], [46.19041, 6.08416], [46.19046, 6.08428], [46.19048, 6.0846], [46.19053, 6.0847], [46.19062, 6.08482], [46.19077, 6.0849], [46.19109, 6.08549], [46.19123, 6.08565], [46.19145, 6.08568], [46.19157, 6.08575], [46.19166, 6.08572], [46.19173, 6.08586], [46.19201, 6.08587], [46.19213, 6.08593], [46.19226, 6.08616], [46.19227, 6.08632], [46.19239, 6.08646], [46.19244, 6.08697], [46.19253, 6.08702], [46.19257, 6.08711], [46.19255, 6.08724], [46.19269, 6.08729], [46.19276, 6.08744], [46.19274, 6.08756], [46.19338, 6.08915], [46.19361, 6.08861], [46.19384, 6.08823], [46.19411, 6.08788], [46.19441, 6.08761], [46.19507, 6.08719], [46.19542, 6.08704], [46.19578, 6.08697], [46.19624, 6.08703], [46.19675, 6.08729], [46.1972, 6.08774], [46.19746, 6.08816], [46.19832, 6.08995], [46.19856, 6.09026], [46.19884, 6.09045], [46.19924, 6.09053], [46.20045, 6.09038], [46.20093, 6.09036], [46.20143, 6.09043], [46.20233, 6.09065], [46.20306, 6.09091], [46.2064, 6.09239], [46.2068, 6.09265], [46.20789, 6.09355], [46.20828, 6.09376], [46.20865, 6.09385], [46.20902, 6.09384], [46.20938, 6.09373], [46.20972, 6.09352], [46.21035, 6.09299], [46.21064, 6.09266], [46.21092, 6.09219], [46.21114, 6.09162], [46.21128, 6.09094], [46.21131, 6.09025], [46.21123, 6.08952], [46.21106, 6.08893], [46.21085, 6.08847], [46.21017, 6.08726], [46.20983, 6.08671], [46.2094, 6.08614], [46.20837, 6.0849], [46.20748, 6.08402], [46.20449, 6.0815], [46.20402, 6.08097], [46.20316, 6.07985], [46.20293, 6.07949], [46.20271, 6.07906], [46.20253, 6.07859], [46.20239, 6.07803], [46.20232, 6.07752], [46.2023, 6.07689], [46.20243, 6.07461], [46.20241, 6.07385]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>
