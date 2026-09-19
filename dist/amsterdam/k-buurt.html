@@ -175,7 +175,7 @@
     var coords = [[[52.31755, 4.98674], [52.31557, 4.98805], [52.31489, 4.98772], [52.31471, 4.98809], [52.31482, 4.98864], [52.31411, 4.98913], [52.308, 4.97142], [52.3166, 4.96356], [52.31897, 4.97034], [52.31388, 4.9749], [52.31379, 4.97572], [52.31547, 4.97988], [52.31755, 4.98674]]];
     var color = "#2e7d46";
     var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
     var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
     map.fitBounds(poly.getBounds().pad(0.1));
   } catch(e) {}

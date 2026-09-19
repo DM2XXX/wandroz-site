@@ -69,6 +69,16 @@ a:hover { text-decoration:underline; }
 /* Quanto e' alta la barra dipende dal gradino tipografico, quindi non si puo'
    scrivere qui: la misura JS e la mette in --hdr, e tutto quello che si
    congela sotto di lei ci si aggancia. Cosi' il blocco fisso e' uno solo. */
+/* Leaflet non dichiara uno z-index su .leaflet-container, quindi il contenitore
+   NON crea un contesto di impilamento e i suoi pannelli interni — z-index 400
+   per le mappe, 1000 per i controlli — competono direttamente con il resto
+   della pagina. L'header sticky sta a 30, quindi su mobile, scorrendo, la
+   mappa gli saliva sopra e si leggeva "day night Home Methodology" attraverso
+   le tile. Dare z-index 0 al contenitore chiude tutto quel mondo dentro il suo
+   contesto: dentro resta l'ordine di Leaflet, fuori la mappa vale 0 e passa
+   sotto a qualunque cosa sia sopra. */
+.leaflet-container { z-index: 0; }
+
 .wz-brand { display:flex; align-items:center; gap:11px; text-decoration:none; color:inherit; }
 .wz-brand:hover { text-decoration:none; }
 .wz-logo { border-radius:10px; display:block; object-fit:cover; flex-shrink:0; box-shadow: var(--shadow-sm); }

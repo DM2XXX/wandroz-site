@@ -480,6 +480,11 @@
   // Back to the same OpenStreetMap tiles every city map already uses: busier,
   // and actually ours to use.
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // Su uno schermo a doppia densita' — cioe' ogni telefono — le tile standard
+    // vengono stirate su quattro pixel fisici ciascuna e si vedono sgranate.
+    // detectRetina chiede a Leaflet le tile del livello di zoom successivo e le
+    // disegna nello stesso spazio: quattro volte i pixel, nitide.
+    detectRetina: true,
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);

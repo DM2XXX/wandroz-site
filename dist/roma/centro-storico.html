@@ -176,7 +176,7 @@
     var coords = [[[41.9128, 12.4809], [41.9104, 12.4816], [41.9078, 12.4852], [41.9095, 12.4884], [41.9067, 12.4859], [41.9028, 12.4853], [41.9021, 12.4865], [41.9024, 12.4895], [41.9016, 12.4903], [41.899, 12.4868], [41.8967, 12.487], [41.8956, 12.4835], [41.8946, 12.4848], [41.8916, 12.4827], [41.892, 12.4838], [41.8913, 12.4849], [41.8872, 12.4822], [41.8895, 12.4795], [41.8918, 12.4714], [41.8967, 12.4653], [41.8997, 12.4635], [41.9015, 12.4649], [41.9026, 12.4713], [41.9042, 12.4739], [41.9067, 12.4744], [41.9107, 12.4719], [41.9128, 12.4809]]];
     var color = "#2e7d46";
     var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
     var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
     map.fitBounds(poly.getBounds().pad(0.1));
   } catch(e) {}

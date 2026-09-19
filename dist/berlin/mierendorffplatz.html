@@ -175,7 +175,7 @@
     var coords = [[[52.52162, 13.30017], [52.52206, 13.30043], [52.52251, 13.29826], [52.52359, 13.29742], [52.52724, 13.29673], [52.52954, 13.29578], [52.52966, 13.29647], [52.53001, 13.29634], [52.52988, 13.29569], [52.5308, 13.29523], [52.5317, 13.29394], [52.53207, 13.294], [52.53233, 13.29451], [52.53272, 13.29425], [52.53383, 13.29922], [52.53565, 13.31141], [52.53187, 13.31303], [52.53237, 13.31752], [52.53205, 13.31705], [52.53155, 13.31731], [52.53117, 13.31661], [52.5309, 13.31676], [52.53026, 13.31335], [52.52097, 13.31664], [52.51961, 13.31935], [52.51942, 13.31899], [52.51998, 13.31771], [52.51993, 13.3153], [52.5205, 13.31234], [52.52036, 13.30687], [52.5214, 13.30304], [52.52162, 13.30017]]];
     var color = "#c98a02";
     var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
     var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
     map.fitBounds(poly.getBounds().pad(0.1));
   } catch(e) {}

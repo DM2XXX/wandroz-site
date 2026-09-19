@@ -55,6 +55,13 @@
      nastro stretto in mezzo al bianco. */
   .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
   .hub-answer strong { color:var(--navy); }
+  /* Su telefono questa frase occupava mezzo schermo prima ancora della mappa.
+     La parte che cade e' quella che spiega la struttura delle card — e le card
+     sono li' sotto, con i loro badge, a dirlo da sole. Restano i nomi delle
+     aree e la riga che conta davvero, quella che nessuno ha pagato per esserci.
+     Da 721px in su torna intera. */
+  .hub-answer-more { display:none; }
+  @media (min-width: 721px){ .hub-answer-more { display:inline; } }
   .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
                gap:14px; padding:0 24px; margin:0 0 22px; }
   .hub-card { border:1px solid var(--line); border-radius:var(--radius-md); background:var(--panel);
@@ -530,8 +537,9 @@
 <p class="hub-answer">
   For a short stay in Vienna:
   <strong>Innere Stadt (01. Bezirk)</strong>, <strong>Landstraße (03. Bezirk)</strong> and <strong>Wieden (04. Bezirk)</strong>.
-  One area for each kind of trip, each shown with its own day and night rating —
-  including where that rating says be careful. None of them is here because someone paid for it.
+  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and
+  night rating — including where that rating says be careful.</span> None of them is here because
+  someone paid for it.
 </p>
 
 
@@ -1007,7 +1015,7 @@
   map.options.maxBoundsViscosity = 0.7;
   // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
   // feedback that the light/muted basemap made city maps feel too bare.
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
 
   var isNight = false;
   var burglaryMode = false;
