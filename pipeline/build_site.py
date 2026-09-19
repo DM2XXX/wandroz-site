@@ -127,7 +127,15 @@ def simplify_rings(coords):
         if not ring or not isinstance(ring[0], (list, tuple)):
             continue
         thin = _simplify_ring(ring, GEOM_TOLERANCE_DEG)
-        out.append([[round(p[0], GEOM_DECIMALS), round(p[1], GEOM_DECIMALS)] for p in thin])
+        rounded = [[round(p[0], GEOM_DECIMALS), round(p[1], GEOM_DECIMALS)] for p in thin]
+        # Simplifying then rounding can collapse a ring to two or three
+        # distinct points — a sliver about thirty metres across that draws as a
+        # speck and carries no information. Turin's Mirafiori Sud shipped with
+        # five of them. Nothing real is lost: a ring needs three distinct
+        # corners to enclose any area at all, and these no longer have them.
+        if len({tuple(p) for p in rounded}) < 4:
+            continue
+        out.append(rounded)
     return out
 
 
@@ -1578,6 +1586,38 @@ def booking_scope_answer(zone, name, day_desc, t):
     # "Antwerp" in a sentence about where the search lands.
     shown = dest.split(",")[0].strip() or dest
     return t["faq_a_tourist_wide"] % {"name": name, "day": day_desc, "dest": shown}
+
+
+def footfall_caveat(borough, rank_by_personal_theft):
+    """A qualifier for a borough rated safer because of how many people are in it.
+
+    Westminster is the case. It records 3,022 thefts from the person in three
+    months, more than half as many again as the next borough, and it is rated
+    green because those are divided by 747,552 people estimated to be present
+    rather than by its 204,300 residents. The arithmetic is right and the
+    conclusion — fewer incidents per person present than 28 of the 33 boroughs
+    — is true. But "Relatively safer" sitting above that can be read as "few
+    crimes happen here" or "low risk of being pickpocketed", and both are
+    false.
+
+    Only applied where the data says so: a green borough in the top three for
+    absolute theft from the person. Nothing is rescored."""
+    if borough.get("day_tone") != "green" or rank_by_personal_theft > 3:
+        return ""
+    cb = borough.get("category_breakdown") or {}
+    n = cb.get("theft-from-the-person", 0)
+    if not n:
+        return ""
+    return (
+        "%s records more thefts from the person than almost anywhere else in "
+        "London — %s in the three months behind this rating. The green above is "
+        "a rate: fewer weighted incidents per person estimated to be present "
+        "than in most boroughs, because so many people are present. It is not a "
+        "statement that little is stolen here, and it does not mean a low "
+        "chance of being pickpocketed on a crowded street. Treat crowds here "
+        "the way you would anywhere with this much footfall."
+        % (borough["borough"], "{:,}".format(n))
+    )
 
 
 def tone_descriptor(tone, city_label, t=None, tier=None):
@@ -3408,7 +3448,17 @@ def main():
         city_dir = os.path.join(OUT_DIR, city_slug)
         os.makedirs(city_dir, exist_ok=True)
         total = len(city["boroughs"])
+        # Rank once per city, so the qualifier can be applied only where the
+        # borough really is among the worst for absolute personal theft.
+        _theft_rank = {
+            b["slug"]: i + 1
+            for i, b in enumerate(sorted(
+                city["boroughs"],
+                key=lambda x: -((x.get("category_breakdown") or {})
+                                .get("theft-from-the-person", 0))))
+        }
         for b in city["boroughs"]:
+            b["footfall_caveat"] = footfall_caveat(b, _theft_rank.get(b["slug"], 99))
             day_label = EN_TONE_BADGE.get(b.get("day_tone"), b.get("day_tone"))
             night_label = EN_TONE_BADGE.get(b.get("night_tone"), b.get("night_tone"))
             page_url = f"{SITE_URL}/{city_slug}/{b['slug']}.html"
