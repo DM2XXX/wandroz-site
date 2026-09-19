@@ -5,7 +5,7 @@
   14.2681
  ],
  "zoom": 12,
- "dataNote": "Naples: zone shapes are the real official administrative boundaries of the city's 10 Municipalità (established 2005), sourced from OpenStreetMap's tagged administrative-boundary relations after the Comune di Napoli's own GIS portal proved unreachable (broken server-side SSL certificate). Naples has no official open geolocated crime dataset at Municipalità level, so safety levels here are Wandroz's Level 2 approach: genuine current local/national press research per Municipalità, honestly disclosed as press-based rather than official crime statistics. Where no specific news coverage was found, that is stated plainly rather than assumed either way. All 10 official Municipalità are mapped, none excluded. See the methodology page for details and sources.",
+ "dataNote": "Naples: zone shapes are the real official administrative boundaries of the city's 10 Municipalità (established 2005), sourced from OpenStreetMap's tagged administrative-boundary relations after the Comune di Napoli's own GIS portal proved unreachable (broken server-side SSL certificate). Naples has no official open geolocated crime dataset at Municipalità level, so safety levels here are Wandroz's local-source assessment: an area-level review of named local sources per Municipalità, honestly disclosed as a sourced local review rather than official crime statistics. Where no specific news coverage was found, that is stated plainly rather than assumed either way. All 10 official Municipalità are mapped, none excluded. See the methodology page for details and sources.",
  "zones": [
   {
    "name": "Chiaia, Posillipo, San Ferdinando (Municipalità 1)",

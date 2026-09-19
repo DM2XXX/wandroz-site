@@ -5,7 +5,7 @@
   9.19
  ],
  "zoom": 12,
- "dataNote": "Milan: neighbourhood shapes are the Comune di Milano's real official boundaries (the \"Nuclei d'Identità Locale\" / NIL dataset, CC BY 4.0), covering all 88 official zones. Unlike London, Milan has no open, geolocated crime dataset at neighbourhood level — confirmed by checking the Comune, Regione Lombardia and local police portals — so safety levels here use Wandroz's Level 2 approach: genuine current local and national press research per area (not blind guessing, not fabricated statistics), honestly disclosed as press-based rather than official crime figures. Where no specific news coverage was found for a zone, that is stated plainly rather than assumed to be either safe or risky. See the methodology page for details and sources.",
+ "dataNote": "Milan: neighbourhood shapes are the Comune di Milano's real official boundaries (the \"Nuclei d'Identità Locale\" / NIL dataset, CC BY 4.0), covering all 88 official zones. Unlike London, Milan has no open, geolocated crime dataset at neighbourhood level — confirmed by checking the Comune, Regione Lombardia and local police portals — so safety levels here use Wandroz's local-source assessment: genuine current local and national local-source review per area (not blind guessing, not fabricated statistics), honestly disclosed as press-based rather than official crime figures. Where no specific news coverage was found for a zone, that is stated plainly rather than assumed to be either safe or risky. See the methodology page for details and sources.",
  "zones": [
   {
    "name": "Duomo",

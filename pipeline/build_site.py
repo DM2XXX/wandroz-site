@@ -2500,7 +2500,8 @@ def render_london_map(cities):
     # keep. Each borough page still carries the exact months behind its score.
     data_note = (
         f"{LONDON_EVIDENCE_TAG} · Police-recorded crime, data.police.uk · "
-        f"{live_count} of {total_zones} boroughs scored, {london_window()}"
+        f"{live_count} of {total_zones} areas scored — 32 boroughs and the City of "
+        f"London — {london_window()}"
     )
     # hub_data works on zone dicts with a slug; London's map entries carry a
     # url instead, and the boroughs without one have no page to link to — the
@@ -2550,7 +2551,7 @@ def render_london_map(cities):
         # the City of London Police, and both forces submit to the same
         # street-level feed, which is what the ratings are actually built on.
         page_lead="Every borough rated for day and night from police-recorded crime published on data.police.uk, with the figures behind each rating.",
-        hub=_london_hub, hub_unit="boroughs", hub_local="boroughs",
+        hub=_london_hub, hub_unit="areas", hub_local="areas",
         data_note=data_note, show_toggle=True,
         label_day="day", label_night="night",
         legend_green=EN_TONE_BADGE["green"], legend_yellow=EN_TONE_BADGE["yellow"],
