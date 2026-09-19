@@ -125,7 +125,7 @@
   </a>
 </header>
 
-<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">{{ nav_home }}</a> &rsaquo; <a href="{{ city_hub_url }}">{{ city_label }}</a> &rsaquo; {{ zone.name }}</nav>
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="{{ '/' if lang == 'en' else '/' ~ lang ~ '/' }}">{{ nav_home }}</a> &rsaquo; <a href="{{ city_hub_url }}">{{ city_label }}</a> &rsaquo; {{ zone.name }}</nav>
 <main>
   <h1 class="page-title">{{ zone.name }} &mdash; {{ city_label }}</h1>
   {# Era uno style inline da 12px. Uno stile inline batte qualunque foglio,

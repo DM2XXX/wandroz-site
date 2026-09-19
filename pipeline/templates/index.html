@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="5DCj9gpYkJtNZmnLGFZkmzduyZr8bO2YDMeZ5vhS8nI" />
-<title>Wandroz — Neighbourhood safety for travellers</title>
+<title>{{ t.home_title }}</title>
 <meta name="description" content="Compare neighbourhood safety across European cities using official data and transparent local research, before you book.">
 <link rel="canonical" href="{{ canonical_url }}">
+{%- for code, href in (alternates if alternates and alternates|length > 1 else []) %}
+<link rel="alternate" hreflang="{{ code }}" href="{{ href }}">
+{%- endfor %}
+{%- if alternates and alternates|length > 1 %}
+<link rel="alternate" hreflang="x-default" href="{{ alternates[0][1] }}">
+{%- endif %}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wandroz">
 <meta property="og:title" content="Wandroz — Neighbourhood safety for travellers">
@@ -41,6 +47,11 @@
   .wz-header .wz-logo, .wz-header .wz-name, .wz-nav a { transition:none; }
 
   /* ---------- Hero ---------- */
+  .lang-switch { display:flex; gap:2px; align-items:center; margin-left:auto; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
   .hero-section { padding: 26px 0 6px; }
   .hero-inner { max-width:1400px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; gap:22px; }
   .hero-copy { max-width:640px; }
@@ -315,24 +326,31 @@
     <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="38" height="38">
     <div><div class="wz-name">Wandroz</div></div>
   </a>
+  {%- if alternates and alternates|length > 1 %}
+  <div class="lang-switch" aria-label="{{ t.other_languages }}">
+    {%- for code, href in alternates %}
+    <a href="{{ href }}"{% if code == lang %} class="on" aria-current="true"{% endif %} hreflang="{{ code }}">{{ code|upper }}</a>
+    {%- endfor %}
+  </div>
+  {%- endif %}
   <nav class="wz-nav">
-    <a href="/">Home</a>
-    <a href="/methodology.html">Methodology</a>
+    <a href="{{ home_url }}">{{ t.nav_home }}</a>
+    <a href="/methodology.html">{{ t.nav_methodology }}</a>
   </nav>
 </header>
 
 <section class="hero-section">
   <div class="hero-inner">
     <div class="hero-copy">
-      <h1>Know the neighbourhood before you book.</h1>
-      <p class="hero-subtitle">Compare neighbourhood safety using official data and transparent local research.</p>
+      <h1>{{ t.home_h1 }}</h1>
+      <p class="hero-subtitle">{{ t.home_sub }}</p>
 
       <form id="wzSearchForm" class="search-wrap" autocomplete="off">
-        <label class="search-label" for="wzSearch">Where are you staying?</label>
+        <label class="search-label" for="wzSearch">{{ t.home_search_label }}</label>
         <div class="search-box">
           <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="wzSearch" class="search-input" placeholder="Search an address, hotel or neighbourhood" autocomplete="off" aria-label="Where are you staying">
-          <button type="submit" class="search-go" aria-label="Search">
+          <input type="text" id="wzSearch" class="search-input" placeholder="{{ t.home_search_placeholder }}" autocomplete="off" aria-label="Where are you staying">
+          <button type="submit" class="search-go" aria-label="{{ t.home_search_button }}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
@@ -340,8 +358,8 @@
       </form>
 
       <div class="hero-quicklinks">
-        <span class="quicklinks-label">Popular:</span>
-        {% for c in popular_cities %}<a class="quicklink" href="{{ c.url }}"><span class="quicklink-dot" style="background:{{ c.color }};"></span>{{ c.name }}</a>{% if not loop.last %}<span class="quicklink-sep">·</span>{% endif %}{% endfor %}
+        <span class="quicklinks-label">{{ t.home_popular }}</span>
+        {% for c in popular_cities %}<a class="quicklink" href="{{ city_href(c.url) }}"><span class="quicklink-dot" style="background:{{ c.color }};"></span>{{ place(c.name) }}</a>{% if not loop.last %}<span class="quicklink-sep">·</span>{% endif %}{% endfor %}
       </div>
     </div>
 
@@ -357,34 +375,34 @@
   <div class="section-inner benefits-grid">
     <div class="benefit-card">
       <div class="benefit-icon">🏛️</div>
-      <div class="benefit-title">Safety context</div>
-      <p class="benefit-desc">Official data and transparent local research.</p>
+      <div class="benefit-title">{{ t.home_card1_h }}</div>
+      <p class="benefit-desc">{{ t.home_card1_b }}</p>
     </div>
     <div class="benefit-card">
       <div class="benefit-icon">📍</div>
-      <div class="benefit-title">Neighbourhood-level</div>
-      <p class="benefit-desc">Understand the actual area around your hotel.</p>
+      <div class="benefit-title">{{ t.home_card2_h }}</div>
+      <p class="benefit-desc">{{ t.home_card2_b }}</p>
     </div>
     <div class="benefit-card">
       <div class="benefit-icon">✈️</div>
-      <div class="benefit-title">Built for travellers</div>
-      <p class="benefit-desc">Decide where to stay before you book.</p>
+      <div class="benefit-title">{{ t.home_card3_h }}</div>
+      <p class="benefit-desc">{{ t.home_card3_b }}</p>
     </div>
   </div>
 </section>
 
 <section class="preview-section">
   <div class="section-inner">
-    <h2 class="section-title">See what Wandroz tells you</h2>
-    <p class="section-lede">A real example, taken straight from the map — this is an actual Wandroz neighbourhood page.</p>
+    <h2 class="section-title">{{ t.home_example_h }}</h2>
+    <p class="section-lede">{{ t.home_example_b }}</p>
     <a class="preview-card" href="{{ preview_zone.url }}">
       <div class="preview-card-head">
         <span class="preview-card-name">{{ preview_zone.flag }} {{ preview_zone.name }}</span>
         <span class="preview-card-city">{{ preview_zone.city }}</span>
       </div>
       <div class="preview-badges">
-        <span class="badge {{ preview_zone.day }}">{{ preview_zone.day_label }}</span><span class="badge-label">By day</span>
-        <span class="badge {{ preview_zone.night }}">{{ preview_zone.night_label }}</span><span class="badge-label">By night</span>
+        <span class="badge {{ preview_zone.day }}">{{ preview_zone.day_label }}</span><span class="badge-label">{{ t.home_by_day }}</span>
+        <span class="badge {{ preview_zone.night }}">{{ preview_zone.night_label }}</span><span class="badge-label">{{ t.home_by_night }}</span>
       </div>
       <p class="preview-text">{{ preview_zone.text }}</p>
       <span class="preview-cta">Explore {{ preview_zone.name }} &rarr;</span>
@@ -394,7 +412,7 @@
 
 <section class="explore-section">
   <div class="section-inner">
-    <h2 class="section-title">Explore destinations</h2>
+    <h2 class="section-title">{{ t.home_explore }}</h2>
     <p class="section-lede">{{ city_cards|length }} cities across {{ countries|length }} countries, grouped by country — click straight through to any city.</p>
     <div class="country-groups">
       {% for country in countries %}
@@ -414,9 +432,9 @@
         </summary>
         <div class="country-city-grid">
           {% for c in country.cities %}
-          <a class="city-card-link" href="{{ c.url }}">
+          <a class="city-card-link" href="{{ city_href(c.url) }}">
             <span class="city-card-top">
-              <span class="city-card-name">{{ c.name }}</span>
+              <span class="city-card-name">{{ place(c.name) }}</span>
               <span class="city-card-arrow">→</span>
             </span>
             <span class="city-card-meta">{{ c.zone_count }} neighbourhoods · {{ c.data_tag }}</span>
@@ -442,9 +460,9 @@
   }
 </script>
 
-<p class="beta-footnote"><em>Wandroz is currently in beta — coverage is expanding.</em> <a href="/methodology.html">Methodology →</a></p>
+<p class="beta-footnote"><em>{{ t.home_beta }}</em> <a href="/methodology.html">{{ t.methodology_arrow|safe }}</a></p>
 
-<footer class="wz-footer">Wandroz — public official data, not just reviews. · <a href="/methodology.html">Methodology</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/affiliate-disclosure.html">Affiliate disclosure</a> · <a href="/contact.html">Contact</a></footer>
+<footer class="wz-footer">{{ t.home_footer_lead }} · <a href="/methodology.html">{{ t.nav_methodology }}</a> · <a href="/about.html">{{ t.footer_about }}</a> · <a href="/privacy.html">{{ t.footer_privacy }}</a> · <a href="/affiliate-disclosure.html">{{ t.footer_disclosure }}</a> · <a href="/contact.html">{{ t.footer_contact }}</a></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
@@ -510,7 +528,7 @@
     var marker = L.marker([c.lat, c.lon], { icon: icon });
     var popupHtml = '<div class="popup-name">' + c.flag + ' ' + c.name + '</div>' +
       '<div class="popup-meta"><strong>' + c.zone_count + ' neighbourhoods</strong> mapped · ' + c.data_tag + '</div>' +
-      '<a class="popup-cta" href="' + c.url + '">Explore ' + c.name + ' &rarr;</a>';
+      '<a class="popup-cta" href="' + c.url + '">' + L.explore.replace('%s', c.name) + '</a>';
     marker.bindPopup(popupHtml, { className: 'wz-popup' });
     // A light "fly" into the city under the popup, rather than a hard cut —
     // it's still the same overview map (only the per-city hub page linked
@@ -550,6 +568,13 @@
   // point-in-polygon test, entirely client-side. No fabricated matches —
   // an address outside every mapped city is reported as not covered
   // rather than guessed at.
+  var L = {
+    noAddress: {{ t.home_no_address|tojson }},
+    notCovered: {{ t.home_not_covered|tojson }},
+    lookingUp: {{ t.home_looking_up|tojson }},
+    lookupFailed: {{ t.home_lookup_failed|tojson }},
+    explore: {{ (t.home_explore_city) |tojson }}
+  };
   (function() {
     var form = document.getElementById('wzSearchForm');
     var input = document.getElementById('wzSearch');
@@ -673,7 +698,7 @@
     // more than one real match — shows them as a clickable list instead
     // of auto-navigating, so the visitor picks the right city themselves.
     function tryAddressSearch(query) {
-      showStatus('Looking up that address…');
+      showStatus(L.lookingUp);
       var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes={{ geocode_countries }}&q=' + encodeURIComponent(query);
       Promise.all([
         fetch(url, { headers: { 'Accept-Language': 'en' } }).then(function(r) { return r.ok ? r.json() : []; }),
@@ -685,7 +710,7 @@
           // sono state scritte; oggi sono sessantadue, e una lista scritta a
           // mano in un template invecchia in silenzio. Meglio nessun elenco
           // che un elenco sbagliato: la mappa qui sopra le mostra tutte.
-          showStatus('Couldn’t find that address. Try a city or neighbourhood name instead — every city Wandroz covers is on the map above.');
+          showStatus(L.noAddress);
           return;
         }
         // Solo le citta' il cui riquadro contiene almeno uno dei candidati
@@ -734,9 +759,9 @@
           return;
         }
         if (cityFallback) { window.location.href = cityFallback.url; return; }
-        showStatus('That address isn’t in a city Wandroz covers yet — the map above shows the ones it does.');
+        showStatus(L.notCovered);
       }).catch(function() {
-        showStatus('Couldn’t look up that address right now. Try again, or search by city/neighbourhood name.');
+        showStatus(L.lookupFailed);
       });
     }
 

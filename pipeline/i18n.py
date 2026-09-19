@@ -251,6 +251,39 @@ STRINGS = {
                                 "checked). If you live in or know %(name)s well, you can suggest a "
                                 "correction to its rating using the link below."),
         "source_generic": "a real official crime statistic",
+
+        # --- homepage -------------------------------------------------------
+        "home_title": "Wandroz — Neighbourhood safety for travellers",
+        "home_description": ("Compare neighbourhood safety in 62 European cities using official "
+                             "crime data and transparent local research, before you book."),
+        "home_h1": "Know the neighbourhood before you book.",
+        "home_sub": "Compare neighbourhood safety using official data and transparent local research.",
+        "home_search_label": "Where are you staying?",
+        "home_search_placeholder": "Search an address, hotel or neighbourhood",
+        "home_search_button": "Search",
+        "home_popular": "Popular:",
+        "home_card1_h": "Safety context",
+        "home_card1_b": "Official data and transparent local research.",
+        "home_card2_h": "Neighbourhood-level",
+        "home_card2_b": "Understand the actual area around your hotel.",
+        "home_card3_h": "Built for travellers",
+        "home_card3_b": "Decide where to stay before you book.",
+        "home_example_h": "See what Wandroz tells you",
+        "home_example_b": ("A real example, taken straight from the map — this is an actual Wandroz "
+                           "neighbourhood page."),
+        "home_by_day": "By day",
+        "home_by_night": "By night",
+        "home_explore": "Explore destinations",
+        "home_explore_city": "Explore %s →",
+        "home_beta": "Wandroz is currently in beta — coverage is expanding.",
+        "home_footer_lead": "Wandroz — public official data, not just reviews.",
+        "home_no_address": ("Couldn\u2019t find that address. Try a city or neighbourhood name instead "
+                            "— every city Wandroz covers is on the map above."),
+        "home_not_covered": ("That address isn\u2019t in a city Wandroz covers yet — the map above "
+                             "shows the ones it does."),
+        "home_looking_up": "Looking up that address\u2026",
+        "home_lookup_failed": ("Couldn\u2019t look up that address right now. Try again, or search by "
+                               "city/neighbourhood name."),
         "untranslated_notice": ("The assessment text for this area has not been translated yet "
                                 "and is shown in English."),
     },
@@ -464,6 +497,41 @@ STRINGS = {
                                 "%(name)s o la conosci bene, puoi segnalare una correzione con il "
                                 "link qui sotto."),
         "source_generic": "una vera statistica ufficiale sulla criminalità",
+
+        # --- homepage -------------------------------------------------------
+        "home_title": "Wandroz — Sicurezza dei quartieri per chi viaggia",
+        "home_description": ("Confronta la sicurezza dei quartieri in 62 città europee con dati "
+                             "ufficiali sulla criminalità e ricerca locale trasparente, prima di "
+                             "prenotare."),
+        "home_h1": "Conosci il quartiere prima di prenotare.",
+        "home_sub": ("Confronta la sicurezza dei quartieri con dati ufficiali e ricerca locale "
+                     "trasparente."),
+        "home_search_label": "Dove alloggerai?",
+        "home_search_placeholder": "Cerca un indirizzo, un hotel o un quartiere",
+        "home_search_button": "Cerca",
+        "home_popular": "Popolari:",
+        "home_card1_h": "Contesto di sicurezza",
+        "home_card1_b": "Dati ufficiali e ricerca locale trasparente.",
+        "home_card2_h": "A livello di quartiere",
+        "home_card2_b": "Capisci com'è davvero la zona intorno al tuo hotel.",
+        "home_card3_h": "Pensato per chi viaggia",
+        "home_card3_b": "Decidi dove alloggiare prima di prenotare.",
+        "home_example_h": "Guarda cosa ti dice Wandroz",
+        "home_example_b": ("Un esempio vero, preso dalla mappa — questa è una pagina di quartiere "
+                           "di Wandroz."),
+        "home_by_day": "Di giorno",
+        "home_by_night": "Di notte",
+        "home_explore": "Esplora le destinazioni",
+        "home_explore_city": "Esplora %s →",
+        "home_beta": "Wandroz è in beta — la copertura è in crescita.",
+        "home_footer_lead": "Wandroz — dati pubblici ufficiali, non solo recensioni.",
+        "home_no_address": ("Non abbiamo trovato questo indirizzo. Prova con il nome di una città o "
+                            "di un quartiere — tutte le città coperte sono sulla mappa qui sopra."),
+        "home_not_covered": ("Questo indirizzo non è in una città che Wandroz copre ancora — la "
+                             "mappa qui sopra mostra quelle coperte."),
+        "home_looking_up": "Sto cercando l'indirizzo…",
+        "home_lookup_failed": ("Non riesco a cercare l'indirizzo in questo momento. Riprova, o cerca "
+                               "per nome di città o quartiere."),
         "untranslated_notice": ("Il testo di valutazione di quest'area non è ancora tradotto ed è "
                                 "mostrato in inglese."),
     },
@@ -476,9 +544,26 @@ STRINGS = {
 # dormire a Milan" si autodenuncia come traduzione automatica al primo sguardo.
 PLACE_NAMES = {
     "it": {
+        # Citta'. Solo dove l'italiano cambia il nome: Madrid, Amsterdam,
+        # Rotterdam, Utrecht, Oslo, Budapest, Bratislava, Tallinn e Vilnius
+        # restano identiche e non hanno bisogno di una riga.
         "Milan": "Milano", "Rome": "Roma", "Turin": "Torino", "Naples": "Napoli",
         "Venice": "Venezia", "Florence": "Firenze", "Genoa": "Genova",
-        "Italy": "Italia",
+        "London": "Londra", "Paris": "Parigi", "Barcelona": "Barcellona",
+        "Berlin": "Berlino", "Munich": "Monaco di Baviera", "Prague": "Praga",
+        "Lisbon": "Lisbona", "Athens": "Atene", "Dublin": "Dublino",
+        "Brussels": "Bruxelles", "Stockholm": "Stoccolma", "Warsaw": "Varsavia",
+        "Bucharest": "Bucarest", "Zagreb": "Zagabria", "Antwerp": "Anversa",
+        "Ghent": "Gand", "The Hague": "L'Aia", "Zurich": "Zurigo",
+        "Edinburgh": "Edimburgo", "Newcastle upon Tyne": "Newcastle upon Tyne",
+        # Paesi.
+        "Italy": "Italia", "United Kingdom": "Regno Unito", "Germany": "Germania",
+        "Netherlands": "Paesi Bassi", "Belgium": "Belgio", "Spain": "Spagna",
+        "Poland": "Polonia", "Switzerland": "Svizzera", "Czechia": "Cechia",
+        "Norway": "Norvegia", "Sweden": "Svezia", "Portugal": "Portogallo",
+        "France": "Francia", "Greece": "Grecia", "Ireland": "Irlanda",
+        "Hungary": "Ungheria", "Croatia": "Croazia", "Slovakia": "Slovacchia",
+        "Lithuania": "Lituania",
     },
 }
 

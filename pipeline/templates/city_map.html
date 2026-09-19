@@ -421,15 +421,15 @@
       <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
         {%- if city_country_links %}
         {%- for country in city_country_links %}
-        <optgroup label="{{ country.flag }} {{ country.name }}">
+        <optgroup label="{{ country.flag }} {{ place(country.name) if place else country.name }}">
           {%- for c in country.cities %}
-          <option value="{{ c.url }}" {% if c.url == (current_city_url or canonical_url) %}selected{% endif %}>{{ c.label }}</option>
+          <option value="{{ c.url }}" {% if c.url == (current_city_url or canonical_url) %}selected{% endif %}>{{ place(c.label) if place else c.label }}</option>
           {%- endfor %}
         </optgroup>
         {%- endfor %}
         {%- else %}
         {%- for c in city_links %}
-        <option value="{{ c.url }}" {% if c.url == (current_city_url or canonical_url) %}selected{% endif %}>{{ c.label }}</option>
+        <option value="{{ c.url }}" {% if c.url == (current_city_url or canonical_url) %}selected{% endif %}>{{ place(c.label) if place else c.label }}</option>
         {%- endfor %}
         {%- endif %}
       </select>
@@ -457,16 +457,13 @@
     </div>
     {%- endif %}
     <nav class="wz-nav">
-      {#- La home tradotta non esiste ancora, quindi "Home" porta a quella
-          inglese invece che a un 404. Quando /it/ esistera', questa riga torna
-          a puntare alla home della lingua. #}
-      <a href="/">{{ nav_home }}</a>
+      <a href="{{ '/' if lang == 'en' else '/' ~ lang ~ '/' }}">{{ nav_home }}</a>
       <a href="/methodology.html">{{ nav_methodology }}</a>
     </nav>
   </div>
 </header>
 <div class="page-shell">
-<nav class="crumbs"><a href="/">{{ nav_home }}</a> &rsaquo; {{ city_label }}</nav>
+<nav class="crumbs"><a href="{{ '/' if lang == 'en' else '/' ~ lang ~ '/' }}">{{ nav_home }}</a> &rsaquo; {{ city_label }}</nav>
 <h1 class="page-title">{{ page_h1 }}</h1>
 <p class="lead">{{ page_lead }}</p>
 {% if data_note %}<p class="evidence">{{ data_note }} <a href="/methodology.html">Methodology &rarr;</a></p>{% endif %}

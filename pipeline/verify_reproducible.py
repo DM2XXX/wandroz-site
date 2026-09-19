@@ -210,7 +210,10 @@ def classify(dist, reg, findings):
         # La stessa pagina senza il prefisso di lingua deve esistere: una
         # traduzione e' una pagina inglese detta in un'altra lingua, e se
         # l'originale non c'e' la traduzione e' un orfano come qualunque altro.
-        if os.sep.join(parts[1:]) in (source_pages | expected_hubs):
+        rest = os.sep.join(parts[1:])
+        # La home di una lingua corrisponde alla home inglese, che sta nella
+        # radice e non fra le hub di citta'.
+        if rest in (source_pages | expected_hubs) or rest in root_pages:
             lang_pages.add(p)
 
     for rel in sorted(source_pages - built_pages):

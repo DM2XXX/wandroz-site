@@ -2174,6 +2174,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             lang=_lang, alternates=_alts, languages=i18n.LANGUAGES,
             t=_t,
             city_label=_label, tagline=_t["tagline"],
+            place=(lambda nm, _l=_lang: i18n.place(_l, nm)),
             current_city_url=SITE_URL + "/%s/" % url_slug,
             nav_home=_t["nav_home"], nav_methodology=_t["nav_methodology"],
             page_title=(_hub.get("title") or ui["page_title"]) if _is_en
@@ -2403,6 +2404,7 @@ def render_london_map(cities):
         # nessun hreflang e nessun selettore, che e' la cosa giusta per una
         # pagina che esiste in una versione sola.
         lang="en", t=i18n.strings("en"), alternates=[], current_city_url=None,
+        place=(lambda nm: nm),
         city_label="London", tagline="Neighbourhood safety for travellers",
         nav_home="Home", nav_methodology="Methodology", canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
         page_title="Where to stay in London: safest boroughs compared | Wandroz",
@@ -3214,12 +3216,47 @@ def main():
     countries = group_cities_by_country(city_cards)
     _popular_by_name = {c["name"]: c for c in city_cards}
     popular_cities = [_popular_by_name[n] for n in POPULAR_CITY_NAMES if n in _popular_by_name]
-    with open(os.path.join(OUT_DIR, "index.html"), "w") as f:
-        f.write(index_tpl.render(
-            city_cards=city_cards, countries=countries, popular_cities=popular_cities,
-            preview_zone=preview_zone, canonical_url=SITE_URL + "/",
-            geocode_countries=country_codes_covered(),
-        ))
+    # La home, una volta per lingua. Senza, un lettore italiano che clicca
+    # "Home" da /it/milano/ esce dalla propria lingua al primo clic — ed e' la
+    # pagina che raccoglie il traffico di marca.
+    def _city_href(lang):
+        """Il link a una citta' dalla home: resta nella lingua del lettore dove
+        quella citta' esiste in quella lingua, altrimenti va all'inglese.
+
+        Erano link relativi ("bristol/"), che dalla radice funzionano e da /it/
+        puntano a /it/bristol/ — una pagina che non esiste, perche' Bristol e'
+        inglese e non ha una versione italiana. Stesso difetto del "../" nelle
+        briciole di pane: un link relativo cambia significato quando cambia la
+        profondita' della pagina che lo contiene."""
+        have = {c["slug"] for c in CITY_FACTS
+                if lang in i18n.languages_for_country_code(
+                    city_country_code(c["label"]))}
+        def href(url):
+            slug = url.strip("/")
+            return i18n.url_for(lang, slug + "/") if slug in have else "/" + slug + "/"
+        return href
+
+    _home_langs = [i18n.DEFAULT_LANG] + i18n.extra_languages()
+    _home_alts = [(lg, SITE_URL + i18n.url_for(lg, "")) for lg in _home_langs]
+    for _lang in _home_langs:
+        _t = i18n.strings(_lang)
+        _out = OUT_DIR if _lang == i18n.DEFAULT_LANG else os.path.join(OUT_DIR, _lang)
+        os.makedirs(_out, exist_ok=True)
+        with open(os.path.join(_out, "index.html"), "w") as f:
+            f.write(index_tpl.render(
+                lang=_lang, t=_t, alternates=_home_alts,
+                home_url=i18n.url_for(_lang, ""),
+                    city_href=_city_href(_lang),
+                # Solo i nomi che la lingua cambia davvero: "Rome" -> "Roma",
+                # "Bologna" resta "Bologna". Vedi i18n.PLACE_NAMES.
+                place=(lambda nm, _l=_lang: i18n.place(_l, nm)),
+                city_cards=city_cards, countries=countries, popular_cities=popular_cities,
+                preview_zone=preview_zone,
+                canonical_url=SITE_URL + i18n.url_for(_lang, ""),
+                geocode_countries=country_codes_covered(),
+            ))
+        if _lang != i18n.DEFAULT_LANG:
+            sitemap_urls.append(SITE_URL + i18n.url_for(_lang, ""))
 
     # Homepage search bar's data — built fresh from real content on every
     # run (see build_search_index docstring), never hand-maintained.

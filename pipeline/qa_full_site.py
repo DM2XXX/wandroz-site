@@ -765,7 +765,12 @@ def check_i18n(dist, F):
             if code == "x-default":
                 continue
             target = href.replace(BS.SITE_URL, "").lstrip("/")
-            target = (target + "index.html") if target.endswith("/") else target
+            # La radice arriva come stringa vuota dopo lo strip, non come "/",
+            # quindi il ramo sotto non scattava e la home risultava senza
+            # riscontro pur dichiarandolo. Era un difetto del controllo, non
+            # delle pagine.
+            if target == "" or target.endswith("/"):
+                target += "index.html"
             if target not in declared:
                 F.fail("I18N", "hreflang-reciprocal", rel,
                        "declares hreflang=%s -> %s, which declares no alternates back"
