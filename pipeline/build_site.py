@@ -245,6 +245,9 @@ ILLUSTRATIVE_CITIES = [
 # occasioni di dimenticarne uno, e dimenticarne uno non rompe la build: fa
 # sparire la citta' da un menu e basta. Qui la riga e' una.
 RESEARCH_CITIES = [
+    {"key": "basel", "label": "Basel", "country": "Switzerland", "flag": "\U0001F1E8\U0001F1ED",
+     "lat": 47.5596, "lon": 7.5886, "color": "#2e6b8f",
+     "areas": "21 official Wohnviertel and Landgemeinden", "reviewed": "19 September 2026"},
     {"key": "bologna", "label": "Bologna", "country": "Italy", "flag": "\U0001F1EE\U0001F1F9",
      "lat": 44.4938, "lon": 11.3426, "color": "#a33b20",
      "areas": "6 official quartieri", "reviewed": "14 September 2026"},

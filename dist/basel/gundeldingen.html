@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Gundeldingen in Basel safe? | Wandroz</title>
+<meta name="description" content="The dense residential quarter behind Basel SBB, 19,511 people, known locally as the Gundeli and one of the city&#39;s most mixed and liveable areas. The station its">
+<link rel="canonical" href="https://www.wandroz.com/basel/gundeldingen.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/basel/">Basel, Switzerland</a> &rsaquo; Gundeldingen</nav>
+<main>
+  <h1 class="page-title">Gundeldingen &mdash; Basel, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 21 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relatively safer</span> <span class="badge-label">day</span>
+    <span class="badge yellow">Average</span> <span class="badge-label">night</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>The dense residential quarter behind Basel SBB, 19,511 people, known locally as the Gundeli and one of the city&#39;s most mixed and liveable areas. The station itself falls inside it, and the canton ran a focused operation there from 13 January to 15 February 2026 against violence in and around the station: 206 people checked, 30 arrested, eight of those for theft. The police reported the situation noticeably calmer by the end and said they would keep watching it. Station-area caution after dark; the residential streets south of the tracks are unremarkable. Source: Kanton Basel-Stadt media release, February 2026.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Basel%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Basel publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Gundeldingen safe?</summary>
+      <p>Wandroz currently rates Gundeldingen in Basel as relatively safer than most other neighbourhoods in Basel during the day and roughly average compared to other neighbourhoods in Basel at night. This comes from a structured local-source assessment: an area-level review of credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — consolidated across sources rather than taken from a single report. Basel publishes no comparable neighbourhood-level crime dataset; where a city does, Wandroz uses it instead.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Gundeldingen safe at night?</summary>
+      <p>At night, Gundeldingen is rated as roughly average compared to other neighbourhoods in Basel. If you&#39;re unsure, it&#39;s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can&#39;t capture block-by-block variation.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Gundeldingen a good area to stay in as a tourist?</summary>
+      <p>Gundeldingen&#39;s day rating (relatively safer than most other neighbourhoods in Basel) is the more relevant one for typical daytime tourist activity; check the night rating too if you&#39;ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is there official crime data for Gundeldingen?</summary>
+      <p>Not an official government crime feed — Gundeldingen&#39;s rating comes from Wandroz&#39;s own current local/national press and survey research for this specific area instead (see the note on this page for what was checked and the sources used). An absence of recent negative coverage is treated as inconclusive, not as proof the area is safe. If you live in or know Gundeldingen well, you can suggest a correction using the link below.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Gundeldingen%2C%20Basel%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz currently rates Gundeldingen in Basel as relatively safer than most other neighbourhoods in Basel during the day and roughly average compared to other neighbourhoods in Basel at night. This comes from a structured local-source assessment: an area-level review of credible local sources \u2014 local and national news, municipal and police-published material, and official surveys where they exist \u2014 consolidated across sources rather than taken from a single report. Basel publishes no comparable neighbourhood-level crime dataset; where a city does, Wandroz uses it instead."}, "name": "Is Gundeldingen safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "At night, Gundeldingen is rated as roughly average compared to other neighbourhoods in Basel. If you\u0027re unsure, it\u0027s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can\u0027t capture block-by-block variation."}, "name": "Is Gundeldingen safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Gundeldingen\u0027s day rating (relatively safer than most other neighbourhoods in Basel) is the more relevant one for typical daytime tourist activity; check the night rating too if you\u0027ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page."}, "name": "Is Gundeldingen a good area to stay in as a tourist?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Not an official government crime feed \u2014 Gundeldingen\u0027s rating comes from Wandroz\u0027s own current local/national press and survey research for this specific area instead (see the note on this page for what was checked and the sources used). An absence of recent negative coverage is treated as inconclusive, not as proof the area is safe. If you live in or know Gundeldingen well, you can suggest a correction using the link below."}, "name": "Is there official crime data for Gundeldingen?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[47.53743, 7.60405], [47.53663, 7.60439], [47.53681, 7.60413], [47.53696, 7.60377], [47.54057, 7.59152], [47.54197, 7.58731], [47.54191, 7.58727], [47.54383, 7.58148], [47.54369, 7.58097], [47.54379, 7.58054], [47.54384, 7.58007], [47.54384, 7.57916], [47.54379, 7.57864], [47.54373, 7.57848], [47.54377, 7.57828], [47.54501, 7.57858], [47.54563, 7.57865], [47.54598, 7.57881], [47.54622, 7.57904], [47.54641, 7.5793], [47.54822, 7.58241], [47.54851, 7.58281], [47.5486, 7.58292], [47.5487, 7.58274], [47.54881, 7.58272], [47.54899, 7.58242], [47.54958, 7.58328], [47.5493, 7.58395], [47.54943, 7.58415], [47.54909, 7.58501], [47.54899, 7.58536], [47.5488, 7.5871], [47.54875, 7.58735], [47.54698, 7.59193], [47.547, 7.5921], [47.54783, 7.59281], [47.54708, 7.59371], [47.54695, 7.59395], [47.54629, 7.59334], [47.54626, 7.59343], [47.54617, 7.59336], [47.54584, 7.59402], [47.54555, 7.59476], [47.54503, 7.5969], [47.5449, 7.59734], [47.54496, 7.59738], [47.54438, 7.59916], [47.54342, 7.59898], [47.54318, 7.59953], [47.54193, 7.602], [47.53743, 7.60405]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>
