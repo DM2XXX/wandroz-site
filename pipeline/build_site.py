@@ -1050,12 +1050,7 @@ CITY_METHODOLOGY = {
     "krakow": {"tier": RESEARCH_BASED},
     "firenze": {"tier": RESEARCH_BASED},
     "torino": {"tier": MANUAL_EXPERIMENTAL},
-    # Zurigo passa da classe C a classe A il 19 settembre 2026: il PKS cantonale
-    # per Stadtkreis, che nell'agosto 2026 era fermo al 2022, ora arriva al 2025.
-    # Vedi build_zurich_zones.py per la fonte e per quali leggi sono contate.
-    "zurigo": {"tier": OFFICIAL_SNAPSHOT,
-               "crime_source": "Kantonspolizei Zürich's official Polizeiliche Kriminalstatistik, by Stadtkreis",
-               "source_url": "https://www.zh.ch/de/sicherheit-justiz/kriminalitaet/polizeiliche-kriminalstatistik.html"},
+    "zurigo": {"tier": MANUAL_EXPERIMENTAL},
 }
 
 
@@ -1273,7 +1268,7 @@ EVIDENCE_SOURCE = {
     "stockholm": "Brå",
     "brussels": "BISA / Federale Politie",
     "edinburgh": "analysis of Police Scotland figures",
-    "zurigo": "Kantonspolizei Zürich PKS, by Stadtkreis",
+    "zurigo": "district burglary data shown alongside",
 }
 
 # Each city on the data.police.uk pipeline is official-data tier by
@@ -2553,10 +2548,7 @@ def build_search_index(cities, city_cards):
         for z in data["zones"]:
             z_url = f"/{url_slug}/{z['slug']}.html" if flat else f"/{url_slug}/{z['slug']}/"
             entries.append({"type": "zone", "name": z["name"], "city": label, "url": z_url})
-            # Gli alias derivati dal nome, piu' quelli dichiarati nel dato: i
-            # 34 Quartiere di Zurigo non compaiono nel nome "Kreis 4", ma
-            # "Langstrasse" e' cio' che la gente digita.
-            for _alias in list(search_aliases(z["name"])) + list(z.get("aliases") or []):
+            for _alias in search_aliases(z["name"]):
                 entries.append({"type": "zone", "name": _alias, "city": label,
                                 "url": z_url, "alias_of": z["name"]})
 
@@ -3062,9 +3054,9 @@ def main():
          "lat": 45.0703, "lon": 7.6869, "color": "#e2a33d",
          "zone_count": _zone_count("torino"), "data_tag": "Official boundaries"},
         {"name": "Zurich", "url": "zurigo/", "flag": "🇨🇭",
-         "blurb": "All 12 official Stadtkreise, rated on Kantonspolizei Zürich's own recorded-crime statistic, with the district burglary rate alongside.",
+         "blurb": "34 neighbourhoods, real official city boundaries, illustrative safety ratings — plus a real official burglary-rate layer by district.",
          "lat": 47.3769, "lon": 8.5417, "color": "#d1483f",
-         "zone_count": _zone_count("zurigo")},
+         "zone_count": _zone_count("zurigo"), "data_tag": "Official boundaries + burglary data"},
         {"name": "Milan", "url": "milano/", "flag": "🇮🇹",
          "blurb": "All 88 official zones mapped, real council boundaries, safety ratings from a structured local-source assessment, area by area.",
          "lat": 45.4642, "lon": 9.1900, "color": "#3fae6b",

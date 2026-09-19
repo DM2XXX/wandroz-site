@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Hirslanden in Zurich safe? | Wandroz</title>
+<meta name="description" content="Affluent residential neighborhood, very calm.">
+<link rel="canonical" href="https://www.wandroz.com/zurigo/hirslanden/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/zurigo/">Zurich, Switzerland</a> &rsaquo; Hirslanden</nav>
+<main>
+  <h1 class="page-title">Hirslanden &mdash; Zurich, Switzerland</h1>
+  
+  <p class="evidence-line">⚪ Limited-data assessment · district burglary data shown alongside <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relatively safer</span> <span class="badge-label">day</span>
+    <span class="badge green">Relatively safer</span> <span class="badge-label">night</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Affluent residential neighborhood, very calm.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Hirslanden%2C+Zurich%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This is a limited-data assessment. Zurich publishes no neighbourhood-level crime dataset, and this area has not yet had a full source review, so the rating is indicative and is labelled as such rather than presented as evidenced.</div>
+  
+  <div class="methodnote">
+    <strong>Real official data point:</strong> Hirslanden sits in Kreis 7, one of
+    Zurich's 12 police districts. Kantonspolizei Zürich recorded an average burglary rate of
+    <strong>6.13 per 1,000 residents</strong> there
+    across
+    3 years (2025, 2024, 2023), 60% of the
+    12-district average of 10.23/1,000. This figure is real,
+    current, and official — but it covers <strong>burglaries only</strong> (not the full range of crime types) and
+    is reported at the district level, not for Hirslanden specifically, so treat it as directional context for
+    the wider area rather than a rating of this exact neighbourhood.
+  </div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Hirslanden safe?</summary>
+      <p>Wandroz currently rates Hirslanden in Zurich as relatively safer than most other neighbourhoods in Zurich, both by day and after dark. This is a limited-data assessment: Zurich publishes no neighbourhood-level crime dataset and this area has not yet had a full source review, so the rating is indicative and labelled as such rather than presented as evidenced.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Hirslanden safe at night?</summary>
+      <p>At night, Hirslanden is rated as relatively safer than most other neighbourhoods in Zurich. If you&#39;re unsure, it&#39;s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can&#39;t capture block-by-block variation.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Hirslanden a good area to stay in as a tourist?</summary>
+      <p>Hirslanden&#39;s day rating (relatively safer than most other neighbourhoods in Zurich) is the more relevant one for typical daytime tourist activity; check the night rating too if you&#39;ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is there any official crime data for Hirslanden?</summary>
+      <p>Partially. Hirslanden sits in Kreis 7, one of Zurich&#39;s 12 police districts. Kantonspolizei Zürich publishes a real, current burglary rate for that district — 6.13 per 1,000 residents, 60% of the 12-district average. This covers burglaries only, not all crime types, and is reported at district level, not specifically for Hirslanden — see the box below for the full figure and caveats. The neighbourhood-wide rating above is still the limited-data assessment described above, not derived from this burglary figure.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Hirslanden%2C%20Zurich%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz currently rates Hirslanden in Zurich as relatively safer than most other neighbourhoods in Zurich, both by day and after dark. This is a limited-data assessment: Zurich publishes no neighbourhood-level crime dataset and this area has not yet had a full source review, so the rating is indicative and labelled as such rather than presented as evidenced."}, "name": "Is Hirslanden safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "At night, Hirslanden is rated as relatively safer than most other neighbourhoods in Zurich. If you\u0027re unsure, it\u0027s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can\u0027t capture block-by-block variation."}, "name": "Is Hirslanden safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Hirslanden\u0027s day rating (relatively safer than most other neighbourhoods in Zurich) is the more relevant one for typical daytime tourist activity; check the night rating too if you\u0027ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page."}, "name": "Is Hirslanden a good area to stay in as a tourist?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Partially. Hirslanden sits in Kreis 7, one of Zurich\u0027s 12 police districts. Kantonspolizei Z\u00fcrich publishes a real, current burglary rate for that district \u2014 6.13 per 1,000 residents, 60% of the 12-district average. This covers burglaries only, not all crime types, and is reported at district level, not specifically for Hirslanden \u2014 see the box below for the full figure and caveats. The neighbourhood-wide rating above is still the limited-data assessment described above, not derived from this burglary figure."}, "name": "Is there any official crime data for Hirslanden?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[47.36398, 8.55666], [47.3625, 8.55896], [47.36201, 8.56039], [47.36177, 8.56014], [47.36162, 8.56049], [47.36057, 8.56106], [47.36005, 8.56164], [47.35949, 8.56293], [47.35962, 8.5658], [47.35874, 8.56713], [47.35899, 8.56813], [47.35871, 8.56942], [47.35846, 8.56972], [47.35795, 8.56968], [47.35784, 8.56992], [47.35804, 8.57272], [47.35764, 8.57314], [47.35699, 8.57444], [47.35664, 8.57456], [47.35625, 8.57512], [47.35555, 8.57518], [47.35541, 8.576], [47.35493, 8.5763], [47.35505, 8.5769], [47.35482, 8.57743], [47.35489, 8.57802], [47.35445, 8.57818], [47.3541, 8.57939], [47.35361, 8.57956], [47.35364, 8.58035], [47.35339, 8.58084], [47.35379, 8.58152], [47.35345, 8.58182], [47.35328, 8.58258], [47.35383, 8.58366], [47.35411, 8.58324], [47.35379, 8.58286], [47.35486, 8.5809], [47.35515, 8.58075], [47.35484, 8.57992], [47.35634, 8.57864], [47.35626, 8.57847], [47.35725, 8.57693], [47.35734, 8.57705], [47.35781, 8.57668], [47.35815, 8.57747], [47.35838, 8.57745], [47.35848, 8.57682], [47.35885, 8.57632], [47.35878, 8.57603], [47.35906, 8.57651], [47.35953, 8.57637], [47.36057, 8.57534], [47.36075, 8.57543], [47.36065, 8.57593], [47.36083, 8.5764], [47.36128, 8.57649], [47.36189, 8.57606], [47.36193, 8.57622], [47.36364, 8.57552], [47.36377, 8.57525], [47.36414, 8.57548], [47.36455, 8.57612], [47.36463, 8.57724], [47.36421, 8.57906], [47.36393, 8.57924], [47.36378, 8.57893], [47.36353, 8.57903], [47.3633, 8.5788], [47.36288, 8.5789], [47.36254, 8.57914], [47.36221, 8.5799], [47.36217, 8.58123], [47.36251, 8.58211], [47.36232, 8.58265], [47.36258, 8.58306], [47.36243, 8.5838], [47.36253, 8.58548], [47.36469, 8.58669], [47.36521, 8.58738], [47.36574, 8.58912], [47.36619, 8.58965], [47.36791, 8.5903], [47.36885, 8.59099], [47.3691, 8.58935], [47.36883, 8.58819], [47.36905, 8.5867], [47.37116, 8.58501], [47.37225, 8.58462], [47.37325, 8.58481], [47.37358, 8.58466], [47.37371, 8.58327], [47.37454, 8.58137], [47.37462, 8.5806], [47.37428, 8.57815], [47.37397, 8.57667], [47.37323, 8.57694], [47.37233, 8.57777], [47.3705, 8.57831], [47.36983, 8.57705], [47.36816, 8.57268], [47.3671, 8.56891], [47.36685, 8.56854], [47.36658, 8.56879], [47.36594, 8.56768], [47.36651, 8.56724], [47.36424, 8.56166], [47.36512, 8.56041], [47.36398, 8.55666]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

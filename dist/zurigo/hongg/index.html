@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Höngg in Zurich safe? | Wandroz</title>
+<meta name="description" content="Residential hillside neighborhood, calm, little touristic relevance.">
+<link rel="canonical" href="https://www.wandroz.com/zurigo/hongg/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/zurigo/">Zurich, Switzerland</a> &rsaquo; Höngg</nav>
+<main>
+  <h1 class="page-title">Höngg &mdash; Zurich, Switzerland</h1>
+  
+  <p class="evidence-line">⚪ Limited-data assessment · district burglary data shown alongside <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relatively safer</span> <span class="badge-label">day</span>
+    <span class="badge green">Relatively safer</span> <span class="badge-label">night</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Residential hillside neighborhood, calm, little touristic relevance.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=H%C3%B6ngg%2C+Zurich%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This is a limited-data assessment. Zurich publishes no neighbourhood-level crime dataset, and this area has not yet had a full source review, so the rating is indicative and is labelled as such rather than presented as evidenced.</div>
+  
+  <div class="methodnote">
+    <strong>Real official data point:</strong> Höngg sits in Kreis 10, one of
+    Zurich's 12 police districts. Kantonspolizei Zürich recorded an average burglary rate of
+    <strong>5.4 per 1,000 residents</strong> there
+    across
+    3 years (2025, 2024, 2023), 53% of the
+    12-district average of 10.23/1,000. This figure is real,
+    current, and official — but it covers <strong>burglaries only</strong> (not the full range of crime types) and
+    is reported at the district level, not for Höngg specifically, so treat it as directional context for
+    the wider area rather than a rating of this exact neighbourhood.
+  </div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Höngg safe?</summary>
+      <p>Wandroz currently rates Höngg in Zurich as relatively safer than most other neighbourhoods in Zurich, both by day and after dark. This is a limited-data assessment: Zurich publishes no neighbourhood-level crime dataset and this area has not yet had a full source review, so the rating is indicative and labelled as such rather than presented as evidenced.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Höngg safe at night?</summary>
+      <p>At night, Höngg is rated as relatively safer than most other neighbourhoods in Zurich. If you&#39;re unsure, it&#39;s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can&#39;t capture block-by-block variation.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Höngg a good area to stay in as a tourist?</summary>
+      <p>Höngg&#39;s day rating (relatively safer than most other neighbourhoods in Zurich) is the more relevant one for typical daytime tourist activity; check the night rating too if you&#39;ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is there any official crime data for Höngg?</summary>
+      <p>Partially. Höngg sits in Kreis 10, one of Zurich&#39;s 12 police districts. Kantonspolizei Zürich publishes a real, current burglary rate for that district — 5.4 per 1,000 residents, 53% of the 12-district average. This covers burglaries only, not all crime types, and is reported at district level, not specifically for Höngg — see the box below for the full figure and caveats. The neighbourhood-wide rating above is still the limited-data assessment described above, not derived from this burglary figure.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20H%C3%B6ngg%2C%20Zurich%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz currently rates H\u00f6ngg in Zurich as relatively safer than most other neighbourhoods in Zurich, both by day and after dark. This is a limited-data assessment: Zurich publishes no neighbourhood-level crime dataset and this area has not yet had a full source review, so the rating is indicative and labelled as such rather than presented as evidenced."}, "name": "Is H\u00f6ngg safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "At night, H\u00f6ngg is rated as relatively safer than most other neighbourhoods in Zurich. If you\u0027re unsure, it\u0027s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can\u0027t capture block-by-block variation."}, "name": "Is H\u00f6ngg safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "H\u00f6ngg\u0027s day rating (relatively safer than most other neighbourhoods in Zurich) is the more relevant one for typical daytime tourist activity; check the night rating too if you\u0027ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page."}, "name": "Is H\u00f6ngg a good area to stay in as a tourist?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Partially. H\u00f6ngg sits in Kreis 10, one of Zurich\u0027s 12 police districts. Kantonspolizei Z\u00fcrich publishes a real, current burglary rate for that district \u2014 5.4 per 1,000 residents, 53% of the 12-district average. This covers burglaries only, not all crime types, and is reported at district level, not specifically for H\u00f6ngg \u2014 see the box below for the full figure and caveats. The neighbourhood-wide rating above is still the limited-data assessment described above, not derived from this burglary figure."}, "name": "Is there any official crime data for H\u00f6ngg?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[47.41334, 8.46802], [47.41225, 8.46877], [47.41253, 8.47032], [47.41159, 8.47045], [47.41167, 8.47086], [47.41137, 8.47114], [47.41094, 8.47102], [47.41058, 8.47269], [47.41146, 8.47304], [47.41222, 8.47395], [47.41241, 8.47489], [47.41194, 8.47726], [47.41097, 8.47666], [47.41102, 8.47629], [47.41072, 8.47606], [47.41077, 8.47584], [47.4097, 8.47544], [47.40935, 8.47704], [47.40914, 8.4773], [47.40817, 8.47727], [47.40763, 8.47706], [47.40619, 8.47707], [47.40573, 8.47734], [47.40516, 8.47739], [47.40508, 8.4782], [47.40387, 8.47816], [47.4036, 8.48027], [47.40288, 8.48215], [47.40206, 8.48332], [47.39995, 8.48536], [47.39932, 8.48633], [47.39888, 8.48752], [47.39868, 8.48884], [47.39917, 8.49419], [47.39869, 8.49796], [47.39782, 8.5002], [47.39565, 8.50312], [47.39494, 8.50552], [47.39457, 8.51233], [47.39396, 8.51482], [47.39601, 8.51526], [47.3961, 8.51496], [47.39657, 8.51524], [47.39672, 8.515], [47.39786, 8.51443], [47.39796, 8.51501], [47.39885, 8.51456], [47.39914, 8.51403], [47.39958, 8.51552], [47.40023, 8.51662], [47.4015, 8.5176], [47.40685, 8.52304], [47.4055, 8.52457], [47.4059, 8.52548], [47.40665, 8.52538], [47.40657, 8.52507], [47.40678, 8.52501], [47.40683, 8.52528], [47.40793, 8.5246], [47.40916, 8.52265], [47.41092, 8.51774], [47.41094, 8.51553], [47.41075, 8.51484], [47.41117, 8.51386], [47.41112, 8.51324], [47.41159, 8.51218], [47.41179, 8.50692], [47.41218, 8.50631], [47.4121, 8.50607], [47.41259, 8.50605], [47.41242, 8.50511], [47.41367, 8.50311], [47.41326, 8.50295], [47.41277, 8.50171], [47.41392, 8.50119], [47.41457, 8.50131], [47.41527, 8.50092], [47.416, 8.4999], [47.41735, 8.49643], [47.41911, 8.49414], [47.41962, 8.49434], [47.42021, 8.49143], [47.42067, 8.49141], [47.42153, 8.48817], [47.42164, 8.48791], [47.42201, 8.48798], [47.42186, 8.48684], [47.42157, 8.48641], [47.42161, 8.48567], [47.42222, 8.48293], [47.42265, 8.48296], [47.423, 8.48178], [47.42134, 8.48132], [47.42141, 8.47973], [47.42113, 8.47938], [47.42172, 8.47896], [47.42211, 8.47784], [47.42016, 8.47689], [47.41974, 8.47721], [47.41763, 8.4716], [47.41752, 8.46964], [47.41693, 8.46914], [47.41649, 8.46915], [47.41557, 8.47008], [47.41484, 8.46956], [47.41408, 8.46858], [47.41363, 8.46864], [47.41334, 8.46802]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>
