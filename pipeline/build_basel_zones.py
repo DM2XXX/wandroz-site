@@ -69,18 +69,21 @@ POPULATION = {
 ZONES = {
     # ---- Lower Kleinbasel: the one part of Basel with current, official,
     # area-specific enforcement reporting.
-    "Matthäus": ("yellow", "yellow", (
+    "Matthäus": ("yellow", "red", (
         "Basel's most mixed quarter and the centre of the city's open drug scene. "
         "Kantonspolizei Basel-Stadt ran a targeted operation here from 27 May 2026, "
         "naming the area between Claraplatz and the Dreirosenanlage — which is these "
-        "streets — and describing organised street dealing. SRF reported in October "
-        "2025 that drugs are prepared and used in the open on Matthäusplatz from the "
-        "afternoon onwards, in front of the playground and the church. What the "
-        "reporting describes is nuisance and visible dealing, not violence against "
-        "people walking past: residents interviewed talk about noise and sleep, not "
-        "about being attacked. Rated amber because a visitor will see it, not because "
-        "it is dangerous to cross. Sources: Kanton Basel-Stadt media release, 29 May "
-        "2026; SRF, 1 Oct 2025; IG Kleinbasel."), "documented"),
+        "streets — and describing organised street dealing; a wider operation in "
+        "November 2025 across lower Kleinbasel and the railway station made 175 "
+        "arrests and was aimed at violent and property crime as well as drugs. SRF "
+        "reported in October 2025 that drugs are prepared and used in the open on "
+        "Matthäusplatz from the afternoon onwards, in front of the playground and the "
+        "church. The night rating is not about the drug scene itself, which is mostly "
+        "a nuisance: it is about what has happened alongside it, including a man "
+        "robbed at knifepoint at around 2am near the Matthäus and Klybeck street "
+        "junction. By day this is an ordinary, busy, lived-in quarter. Sources: Kanton "
+        "Basel-Stadt media release, 29 May 2026; SRF, 1 Oct 2025; BaZ; IG Kleinbasel."),
+        "documented"),
     "Altstadt Kleinbasel": ("yellow", "yellow", (
         "The small old quarter on the right bank around Claraplatz, which the canton "
         "named on 29 May 2026 as one end of the corridor its drug-enforcement "
@@ -119,13 +122,15 @@ ZONES = {
     "Gundeldingen": ("green", "yellow", (
         "The dense residential quarter behind Basel SBB, 19,511 people, known locally "
         "as the Gundeli and one of the city's most mixed and liveable areas. The "
-        "station itself falls inside it, and the canton ran a focused operation there "
-        "from 13 January to 15 February 2026 against violence in and around the "
-        "station: 206 people checked, 30 arrested, eight of those for theft. The "
-        "police reported the situation noticeably calmer by the end and said they "
-        "would keep watching it. Station-area caution after dark; the residential "
-        "streets south of the tracks are unremarkable. Source: Kanton Basel-Stadt "
-        "media release, February 2026."), "documented"),
+        "station itself falls inside it, and the canton has worked on it twice "
+        "recently: a November 2025 operation covering the station and lower Kleinbasel "
+        "that made 175 arrests, and a focused action from 13 January to 15 February "
+        "2026 against violence in and around the station — 206 people checked, 30 "
+        "arrested, eight of those for theft. The police reported the situation "
+        "noticeably calmer by the end and said they would keep watching it. "
+        "Station-area caution after dark; the residential streets south of the tracks "
+        "are unremarkable. Source: Kanton Basel-Stadt media releases, November 2025 "
+        "and February 2026."), "documented"),
 
     # ---- The tourist centre.
     "Altstadt Grossbasel": ("green", "yellow", (
@@ -254,18 +259,25 @@ def main():
         "zoom": 12,
         "dataNote": (
             "Basel-Stadt records more offences per resident than any other Swiss "
-            "canton, and a reader may well have seen that headline. It is a poor "
-            "comparison: Basel-Stadt is the only canton that is nothing but a city, "
-            "with no countryside to average against, on a triple border that brings "
-            "daily foot traffic from two other countries. Criminologist Dirk Baier, "
-            "asked about exactly this ranking in March 2024, said Basel “is still "
-            "a very safe city” and that the risk of serious violent attack is "
-            "essentially zero; the figures are driven by property crime, while "
-            "homicides were zero and violent offences fell 10%. Neither the canton "
+            "canton, and a reader may well have met that headline. Two things are "
+            "worth knowing before it does any work. First, it is a poor comparison: "
+            "Basel-Stadt is the only canton that is nothing but a city, with no "
+            "countryside to average against, on a triple border that brings daily "
+            "foot traffic from two other countries. Second, and more useful, it is "
+            "almost entirely a theft figure. Of the 27,467 criminal-code offences "
+            "recorded in the city of Basel in 2025, 70% were against property and "
+            "just 5% were against the person — and most of that 5% was minor assault. "
+            "Vehicle theft alone was 20% of all recorded crime, of which 2,840 "
+            "bicycles and 2,571 e-bikes. Criminologist Dirk Baier, asked about this "
+            "exact ranking in March 2024, said Basel “is still a very safe city” and "
+            "that the risk of serious violent attack is essentially zero. So the "
+            "practical reading of Basel's rank is: lock the bike, watch the bag, and "
+            "do not read it as a reason to avoid parts of the city. Neither the canton "
             "nor the Kantonspolizei publishes crime below municipality level, so the "
-            "ratings for the 19 city quarters come from sourced reporting, not from "
-            "a per-quarter figure. Riehen and Bettingen are separate municipalities "
-            "and do have official figures of their own."
+            "ratings for the 19 city quarters come from sourced reporting rather than "
+            "a per-quarter figure; Riehen and Bettingen are separate municipalities "
+            "and do have official figures of their own. Source for the breakdown: "
+            "data.bs.ch dataset 100508, 2025."
         ),
         "zones": zones,
     }
