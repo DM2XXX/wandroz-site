@@ -6,6 +6,16 @@
 <title>{{ page_title }}</title>
 <meta name="description" content="{{ page_description }}">
 <link rel="canonical" href="{{ canonical_url }}">
+{#- hreflang reciproco: ogni versione elenca se stessa e tutte le altre,
+    altrimenti Google le tratta come pagine concorrenti invece che come la
+    stessa pagina in lingue diverse. x-default punta all'inglese, che e'
+    la versione per chi arriva da fuori. #}
+{%- for code, href in (alternates if alternates and alternates|length > 1 else []) %}
+<link rel="alternate" hreflang="{{ code }}" href="{{ href }}">
+{%- endfor %}
+{%- if alternates and alternates|length > 1 %}
+<link rel="alternate" hreflang="x-default" href="{{ alternates[0][1] }}">
+{%- endif %}
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{ page_title }}">
 <meta property="og:description" content="{{ page_description }}">
@@ -78,6 +88,11 @@
   /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
      chi non conosce la citta' legge il nome di un quartiere e non ha modo di
      sapere dove sia rispetto al resto. */
+  .lang-switch { display:flex; gap:2px; align-items:center; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
   .hub-card { cursor:pointer; }
   .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
   .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
@@ -402,19 +417,19 @@
   </a>
   <div class="header-controls">
     <div class="city-switch-wrap">
-      <label for="citySwitch">City</label>
+      <label for="citySwitch">{{ t.city_label if t else "City" }}</label>
       <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
         {%- if city_country_links %}
         {%- for country in city_country_links %}
         <optgroup label="{{ country.flag }} {{ country.name }}">
           {%- for c in country.cities %}
-          <option value="{{ c.url }}" {% if c.url == canonical_url %}selected{% endif %}>{{ c.label }}</option>
+          <option value="{{ c.url }}" {% if c.url == (current_city_url or canonical_url) %}selected{% endif %}>{{ c.label }}</option>
           {%- endfor %}
         </optgroup>
         {%- endfor %}
         {%- else %}
         {%- for c in city_links %}
-        <option value="{{ c.url }}" {% if c.url == canonical_url %}selected{% endif %}>{{ c.label }}</option>
+        <option value="{{ c.url }}" {% if c.url == (current_city_url or canonical_url) %}selected{% endif %}>{{ c.label }}</option>
         {%- endfor %}
         {%- endif %}
       </select>
@@ -428,11 +443,23 @@
     {% endif %}
     {% if show_burglary_toggle %}
     <div class="switch-wrap burglary-toggle" id="burglaryToggleWrap">
-      <span>🔎 Real burglary data (by district)</span>
+      <span>{{ t.burglary_toggle if t else "🔎 Real burglary data (by district)" }}</span>
       <div class="switch" id="burglarySwitch"><div class="knob"></div></div>
     </div>
     {% endif %}
+    {%- if alternates and alternates|length > 1 %}
+    {#- Una riga di link, non un menu a tendina: sono due o tre voci, e una
+        tendina costringerebbe a un clic per scoprire che esiste. #}
+    <div class="lang-switch" aria-label="{{ t.other_languages if t else 'Language' }}">
+      {%- for code, href in alternates %}
+      <a href="{{ href }}"{% if code == lang %} class="on" aria-current="true"{% endif %} hreflang="{{ code }}">{{ code|upper }}</a>
+      {%- endfor %}
+    </div>
+    {%- endif %}
     <nav class="wz-nav">
+      {#- La home tradotta non esiste ancora, quindi "Home" porta a quella
+          inglese invece che a un 404. Quando /it/ esistera', questa riga torna
+          a puntare alla home della lingua. #}
       <a href="/">{{ nav_home }}</a>
       <a href="/methodology.html">{{ nav_methodology }}</a>
     </nav>
@@ -458,11 +485,9 @@
      che dice il contrario di quello che i badge accanto mostrano.
      "the sights below" e "the reasoning is on the card" descrivevano invece la
      pagina com'era prima del riordino. #}
-  For a short stay in {{ city_label.split(',')[0] }}:
-  {% for n in names %}<strong>{{ n }}</strong>{% if not loop.last %}{{ ", " if not loop.revindex0 == 1 else " and " }}{% endif %}{% endfor %}.
-  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and
-  night rating — including where that rating says be careful.</span> None of them is here because
-  someone paid for it.
+  {%- set area_list %}{% for n in names %}<strong>{{ n }}</strong>{% if not loop.last %}{{ ", " if not loop.revindex0 == 1 else (" " ~ (t.list_and if t else "and") ~ " ") }}{% endif %}{% endfor %}{% endset -%}
+  {{ (t.hub_answer_head % {"city": city_label.split(',')[0], "areas": area_list}) | safe }}
+  <span class="hub-answer-more">{{ t.hub_answer_more }}</span> {{ t.hub_answer_tail }}
 </p>
 {% endif %}
 
@@ -480,7 +505,7 @@
 <div class="map-stage" id="mapStage">
   <div class="map-wrap" id="mapWrap">
     <div id="map"></div>
-    {% if pois %}<button type="button" class="poi-reset" id="poiReset">Reset view</button>{% endif %}
+    {% if pois %}<button type="button" class="poi-reset" id="poiReset">{{ t.reset_view if t else "Reset view" }}</button>{% endif %}
     <div class="map-detail" id="detailBox">
       <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
       <div id="detail"></div>
@@ -492,11 +517,11 @@
       <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">{{ legend_yellow }}</span></div>
       <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">{{ legend_red }}</span></div>
       {% if has_grey %}<div class="legend-item"><span class="dot grey"></span> <span id="legendGreyText">{{ legend_grey }}</span></div>{% endif %}
-      {% if has_no_findings %}<div class="legend-dash"><i></i> <span>Dashed outline: no area-specific findings</span></div>{% endif %}
+      {% if has_no_findings %}<div class="legend-dash"><i></i> <span>{{ t.legend_dashed if t else "Dashed outline: no area-specific findings" }}</span></div>{% endif %}
     </div>
     {% if pois %}
     <div class="poi-list-wrap">
-      <h2>Sights on this map</h2>
+      <h2>{{ t.sights_heading if t else "Sights on this map" }}</h2>
       <ol class="poi-list" id="poiList"></ol>
     </div>
     {% endif %}
@@ -537,7 +562,7 @@
 <div class="hub-cards">
   {% for c in hub.cards %}
   <div class="hub-card" data-zone="{{ c.zone.slug }}">
-    <span class="lab">{{ c.labels | join(" · ") }}</span>
+    <span class="lab">{{ c.label_text or (c.labels | join(" · ")) }}</span>
     <span class="nm"><a href="{{ c.url }}">{{ c.zone.name }}</a></span>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
       <span class="badge {{ c.zone.day }}">{{ c.day_label }}</span><span style="font-size:12px;color:var(--muted);">day</span>
@@ -548,7 +573,7 @@
        rosso. Non lo smentisce — dice da quali reati arriva e contro quale
        denominatore e' contato, e la conclusione la tira chi legge. #}
     {% if c.caution %}<span class="caution">{{ c.caution }}</span>{% endif %}
-    <a class="bk" href="{{ c.book }}" target="_blank" rel="noopener">Find a place in {{ c.zone.name }} →</a>
+    <a class="bk" href="{{ c.book }}" target="_blank" rel="noopener">{{ (t.find_a_place % {"area": c.zone.name}) if t else ("Find a place in " ~ c.zone.name ~ " →") }}</a>
   </div>
   {% endfor %}
 </div>
@@ -562,22 +587,21 @@
    <details> nativo, senza JavaScript: se non lo apri, non occupa niente. #}
 {% if hub and hub.rows %}
 <details class="hub-table-wrap">
-  <summary>Compare all {{ hub.rows | length }} {{ hub_local }}</summary>
+  <summary>{{ (t.compare_all % {"n": hub.rows|length, "unit": hub_local}) if t else ("Compare all " ~ hub.rows|length ~ " " ~ hub_local) }}</summary>
   {# L'ordine di default non e' per valutazione, ed e' una scelta: a Zurigo 27
      aree su 34 condividono lo stesso giudizio, quindi ordinare per valutazione
      produce quattordici righe identiche di fila e seppellisce l'unica che si
      discosta. Qui vengono prima le combinazioni piu' rare, cioe' le aree su cui
      la tabella ha davvero qualcosa da dire. Le intestazioni restano cliccabili
      per chi vuole l'ordine per valutazione. #}
-  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
-    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <p class="hub-table-note">{{ t.table_note if t else "" }}</p>
   <div class="hub-scroll">
     <table class="hub" id="hubTable">
       <thead><tr>
-        <th aria-sort="none">Area</th><th aria-sort="none">Day</th><th aria-sort="none">Night</th>
-        {% if hub.show_evidence %}<th aria-sort="none">Evidence</th>{% endif %}
-        {% if hub.show_sights %}<th aria-sort="none" class="num">Sights</th>{% endif %}
-        <th>Book</th>
+        <th aria-sort="none">{{ t.col_area if t else "Area" }}</th><th aria-sort="none">{{ t.col_day if t else "Day" }}</th><th aria-sort="none">{{ t.col_night if t else "Night" }}</th>
+        {% if hub.show_evidence %}<th aria-sort="none">{{ t.col_evidence if t else "Evidence" }}</th>{% endif %}
+        {% if hub.show_sights %}<th aria-sort="none" class="num">{{ t.col_sights if t else "Sights" }}</th>{% endif %}
+        <th>{{ t.col_book if t else "Book" }}</th>
       </tr></thead>
       <tbody>
       {% for r in hub.rows %}
@@ -585,9 +609,9 @@
           <td><a href="{{ r.url }}">{{ r.name }}</a></td>
           <td data-sort="{{ {'green':0,'yellow':1,'red':2,'grey':3}[r.day] }}"><span class="badge {{ r.day }}">{{ r.day_label }}</span></td>
           <td data-sort="{{ {'green':0,'yellow':1,'red':2,'grey':3}[r.night] }}"><span class="badge {{ r.night }}">{{ r.night_label }}</span></td>
-          {% if hub.show_evidence %}<td class="dash">{{ "no area-specific findings" if r.evidence == "no_findings" else "sourced" }}</td>{% endif %}
+          {% if hub.show_evidence %}<td class="dash">{{ (t.evidence_none if t else "no area-specific findings") if r.evidence == "no_findings" else (t.evidence_sourced if t else "sourced") }}</td>{% endif %}
           {% if hub.show_sights %}<td class="num">{{ r.sights if r.sights else "" }}</td>{% endif %}
-          <td><a href="{{ r.book }}" target="_blank" rel="noopener">Book →</a></td>
+          <td><a href="{{ r.book }}" target="_blank" rel="noopener">{{ t.book_arrow if t else "Book →" }}</a></td>
         </tr>
       {% endfor %}
       </tbody>
@@ -602,10 +626,10 @@
   Wandroz &middot; {{ footer_note }} &middot; map data: OpenStreetMap contributors<br>
   <a href="/">{{ nav_home }}</a> &middot;
   <a href="/methodology.html">{{ nav_methodology }}</a> &middot;
-  <a href="/about.html">About</a> &middot;
-  <a href="/privacy.html">Privacy</a> &middot;
-  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
-  <a href="/contact.html">Contact</a>
+  <a href="/about.html">{{ t.footer_about if t else "About" }}</a> &middot;
+  <a href="/privacy.html">{{ t.footer_privacy if t else "Privacy" }}</a> &middot;
+  <a href="/affiliate-disclosure.html">{{ t.footer_disclosure if t else "Affiliate disclosure" }}</a> &middot;
+  <a href="/contact.html">{{ t.footer_contact if t else "Contact" }}</a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -668,6 +692,8 @@
 
   var POIS = {{ pois|tojson }};
   var POI_ALL = {{ poi_filter_all|tojson }};
+  var L_HIDE_SIGHTS = {{ label_hide_sights|tojson }};
+  var L_SIGHTS_HIDDEN = {{ label_sights_hidden|tojson }};
   var L_LEGEND_DAYNIGHT = { green: {{ legend_green|tojson }}, yellow: {{ legend_yellow|tojson }}, red: {{ legend_red|tojson }}, grey: {{ legend_grey|tojson }} };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
@@ -1183,7 +1209,7 @@
       var hb = bar.querySelector('.poi-hide');
       if (hb) {
         hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
-        hb.lastChild.nodeValue = poiHidden ? ' Sights hidden' : ' Hide sights';
+        hb.lastChild.nodeValue = poiHidden ? (' ' + L_SIGHTS_HIDDEN) : (' ' + L_HIDE_SIGHTS);
       }
     }
     poiLegend(poiHidden ? undefined : poiCat);
@@ -1217,7 +1243,7 @@
     hide.setAttribute('aria-pressed', 'false');
     hide.title = 'Turn the sights layer off and leave only the safety colours';
     hide.appendChild(document.createElement('span')).className = 'box';
-    hide.appendChild(document.createTextNode(' Hide sights'));
+    hide.appendChild(document.createTextNode(' ' + L_HIDE_SIGHTS));
     hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
     bar.appendChild(hide);
   }

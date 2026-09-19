@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dove dormire a Parma: i quartieri più sicuri a confronto | Wandroz</title>
+<meta name="description" content="Ogni quartiere di Parma valutato per la sicurezza di giorno e di notte sui confini amministrativi reali, con il ragionamento e le fonti dietro a ogni valutazione.">
+<link rel="canonical" href="https://www.wandroz.com/it/parma/">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/parma/">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/parma/">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/parma/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dove dormire a Parma: i quartieri più sicuri a confronto | Wandroz">
+<meta property="og:description" content="Ogni quartiere di Parma valutato per la sicurezza di giorno e di notte sui confini amministrativi reali, con il ragionamento e le fonti dietro a ogni valutazione.">
+<meta property="og:url" content="https://www.wandroz.com/it/parma/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  nav.crumbs { font-size:12.5px; color:var(--muted); padding: 14px 24px 0; }
+  nav.crumbs a { color:var(--muted); text-decoration:none; }
+  nav.crumbs a:hover { text-decoration:underline; }
+  h1.page-title { font-size: 25px; margin: 8px 24px 4px; font-weight:800; letter-spacing:-0.01em; }
+  .lead { font-size:14px; color:var(--muted); margin: 0 24px 14px; max-width:900px; }
+  .header-controls { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .city-switch-wrap { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted); }
+  .city-switch { font-size:13px; font-weight:600; color:var(--ink); border:1px solid var(--line); border-radius: var(--radius-sm); padding:6px 10px; background:var(--panel); }
+  .switch-wrap { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--muted); }
+  .switch { position:relative; width:44px; height:24px; background:#cfd3da; border-radius:20px; cursor:pointer; flex-shrink:0; transition: background .15s; }
+  .switch.on { background: var(--accent); }
+  .switch .knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left .15s; box-shadow: var(--shadow-sm); }
+  .switch.on .knob { left:22px; }
+  .burglary-toggle { padding:5px 10px; border-radius: var(--radius-sm); background: var(--panel); border:1px solid var(--line); }
+  .burglary-toggle.active { background: #fdf3d9; border-color: #f1dfa3; }
+  .switch.burglary-on { background: #c98a02; }
+  /* Era un pannello giallo di cinque righe che spiegava la metodologia di
+     Londra a chi stava leggendo di Zurigo. Una riga: su cosa si basa la
+     mappa, e il link a chi vuole il resto. */
+  .evidence { font-size:12.5px; color:var(--muted); margin:10px 24px 14px; display:flex;
+              flex-wrap:wrap; align-items:center; gap:8px; }
+  .evidence a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .evidence a:hover { color:var(--accent); border-bottom-color:currentColor; }
+  /* Senza un tetto la pagina si stirava fino al bordo dello schermo: su un
+     monitor largo il titolo finiva a sinistra, l'elenco dei quartieri si
+     spalmava su tre colonne lunghissime e in mezzo restava grigio. */
+  .page-shell { max-width: 2400px; margin: 0 auto; }
+  /* La risposta prima della mappa. Una mappa non risponde a "dove dormo a
+     Bologna": chi arriva da quella ricerca vuole tre nomi in tre secondi, e
+     solo dopo lo strumento per verificarli. */
+  /* Larghezza massima, non larghezza piena. Su un monitor da 1900px una riga
+     a tutta pagina sono centottanta caratteri: l'occhio perde il capo della
+     riga successiva e si rilegge la stessa. Il limite qui sale parecchio
+     rispetto ai 900px di prima, e sale insieme al corpo del testo, cosi' la
+     riga resta intorno ai novanta caratteri invece di incolonnarsi in un
+     nastro stretto in mezzo al bianco. */
+  .hub-answer { margin:0 24px 16px; font-size:16px; line-height:1.55; max-width:900px; }
+  .hub-answer strong { color:var(--navy); }
+  /* Su telefono questa frase occupava mezzo schermo prima ancora della mappa.
+     La parte che cade e' quella che spiega la struttura delle card — e le card
+     sono li' sotto, con i loro badge, a dirlo da sole. Restano i nomi delle
+     aree e la riga che conta davvero, quella che nessuno ha pagato per esserci.
+     Da 721px in su torna intera. */
+  .hub-answer-more { display:none; }
+  @media (min-width: 721px){ .hub-answer-more { display:inline; } }
+  .hub-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+               gap:14px; padding:0 24px; margin:0 0 22px; }
+  .hub-card { border:1px solid var(--line); border-radius:var(--radius-md); background:var(--panel);
+              padding:15px 17px; display:flex; flex-direction:column; gap:9px; }
+  .hub-card .lab { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
+                   font-weight:700; color:var(--accent); }
+  .hub-card .nm { font-size:18px; font-weight:800; color:var(--navy); line-height:1.2; }
+  .hub-card .nm a { color:inherit; text-decoration:none; }
+  .hub-card .nm a:hover { color:var(--accent); }
+  .hub-card .why { font-size:13.5px; color:var(--muted); line-height:1.5; flex:1; }
+  /* Deve leggersi come una nota a margine della raccomandazione, non come una
+     smentita urlata: stessa colonna, corpo piu' piccolo, un filetto ambra che
+     la lega al badge di cautela senza ripeterlo. */
+  /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
+     chi non conosce la citta' legge il nome di un quartiere e non ha modo di
+     sapere dove sia rispetto al resto. */
+  .lang-switch { display:flex; gap:2px; align-items:center; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
+  .hub-card { cursor:pointer; }
+  .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
+  .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
+  .hub-card .caution { font-size:12.5px; color:#6b5a2e; line-height:1.5;
+                       border-left:2px solid #e3c477; padding-left:9px; margin-top:-2px; }
+  .hub-card .bk { display:inline-block; background:#003580; color:#fff; text-decoration:none;
+                  padding:9px 13px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
+                  text-align:center; }
+  .hub-table-wrap { padding:0 24px; margin:0 0 26px; }
+  /* Chiusa, la tabella deve somigliare a un bottone, non a un titolo mozzato:
+     chi non la apre vede una riga sola e va avanti. */
+  .hub-table-wrap > summary { display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+                  list-style:none; font-size:14px; font-weight:600; color:var(--navy);
+                  border:1px solid var(--line); background:var(--panel);
+                  border-radius:999px; padding:9px 17px; -webkit-tap-highlight-color:transparent; }
+  .hub-table-wrap > summary::-webkit-details-marker { display:none; }
+  .hub-table-wrap > summary::after { content:"▾"; font-size:11px; color:var(--muted); }
+  .hub-table-wrap[open] > summary::after { content:"▴"; }
+  .hub-table-wrap > summary:hover { border-color:#9aa6b1; }
+  .hub-table-wrap > summary:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .hub-table-note { font-size:12.5px; color:var(--muted); margin:12px 0 10px; max-width:760px;
+                    line-height:1.5; }
+  .hub-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius-md); }
+  table.hub { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--panel); }
+  table.hub th, table.hub td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line);
+                               white-space:nowrap; }
+  table.hub th { font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+                 font-weight:700; cursor:pointer; user-select:none; background:var(--panel);
+                 position:sticky; top:0; }
+  table.hub th[aria-sort]::after { content:" \2195"; opacity:.45; }
+  table.hub th[aria-sort=ascending]::after { content:" \2191"; opacity:1; }
+  table.hub th[aria-sort=descending]::after { content:" \2193"; opacity:1; }
+  table.hub tr:last-child td { border-bottom:none; }
+  table.hub td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  table.hub a { color:var(--ink); text-decoration:none; font-weight:600; }
+  table.hub a:hover { color:var(--accent); text-decoration:underline; }
+  table.hub .dash { font-size:11.5px; color:var(--muted); }
+  @media (min-width: 721px){
+    .hub-answer { font-size:19px; max-width:1240px; }
+    .hub-card .nm { font-size:20px; }
+    .hub-card .why { font-size:15px; }
+    .hub-card .caution { font-size:13.5px; }
+    table.hub { font-size:15px; }
+    .hub-table-wrap > summary { font-size:15.5px; }
+  }
+  .map-stage { display:flex; flex-wrap:wrap; align-items:flex-start; gap:22px; padding: 0 24px 28px; }
+  /* Di base tutto incolonnato: e' lo stato giusto su telefono e su finestre
+     strette, ed e' anche il ripiego se la mappa si prende tutta la larghezza
+     perche' i suoi bounds la chiedono davvero. La classe .split la mette
+     JS, e solo quando resta spazio vero per la colonna. */
+  .map-wrap { position:relative; flex:1 1 100%; min-width:0; padding:0; }
+  .map-rail { flex:1 1 100%; min-width:0; display:flex; flex-direction:column; gap:16px; }
+  .map-stage.split .map-wrap,
+  .map-stage.split .map-rail { flex:0 0 auto; }
+  .map-stage.split .map-rail { overflow-y:auto; }
+  /* L'elenco dei quartieri vive nella colonna insieme a legenda e sights.
+     A tutta pagina erano ventitre nomi corti sparsi su tre colonne larghe
+     1.387px: una fascia grigia alta 300px sotto la mappa, che e' esattamente
+     il "buco" che rendeva la pagina lunga il doppio senza dire niente di piu'.
+     Nella colonna riempiono lo spazio che c'e', e la pagina finisce dove
+     finisce la mappa. */
+  .map-stage.split .zone-list { margin-top:2px; padding:0; }
+  .map-stage.split .zone-list ul { columns:1; }
+  .map-stage.split .zone-groups { grid-template-columns:1fr; gap:14px; }
+  .map-stage.split .zone-list h2 { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
+                                   color:var(--muted); font-weight:700; margin:0 0 9px; }
+  #map { width:100%; height: 760px; border-radius: var(--radius-md); border:1px solid var(--line); box-shadow: var(--shadow-sm); background:#eef1f3; }
+  /* Prima galleggiava sopra l'angolo della mappa: copriva pezzo di citta' e
+     obbligava a tenerla piccola per farsi perdonare. Nella colonna non copre
+     niente, quindi puo' essere leggibile. */
+  .map-legend { background:var(--panel,#fff); border:1px solid var(--line); border-radius: var(--radius-md);
+                padding:11px 13px; display:flex; flex-direction:column; gap:7px; font-size:12px; line-height:1.4; }
+  .legend-item { display:flex; align-items:flex-start; gap:9px; }
+  .legend-item .dot { margin-top:4px; }
+  .legend-poi-sep { border-top:1px solid rgba(0,0,0,.1); margin:2px 0 1px; }
+  .legend-dash { display:flex; align-items:center; gap:8px; }
+  .legend-dash i { flex:none; width:14px; height:9px; border:1.5px dashed #7a8190; border-radius:2px; }
+  .ev-flag { display:flex; gap:7px; align-items:flex-start; font-size:12px; color:#5b6670; margin:6px 0 2px; line-height:1.45; }
+  .ev-dot { flex:none; width:9px; height:9px; margin-top:3px; border-radius:50%; border:1.5px dashed #7a8190; }
+  .legend-poi-item { display:flex; align-items:center; gap:8px; }
+  .legend-poi-item.off { display:none; }
+  /* Sights sit on top of the safety colours, so they carry none of their own:
+     a white disc with a dark edge reads on green, amber and red alike, and the
+     icon does the work of saying what the place is. */
+  .poi-ico { display:flex; align-items:center; justify-content:center; width:26px; height:26px;
+             background:#fff; border:2px solid #16232b; border-radius:50%;
+             box-shadow:0 1px 5px rgba(0,0,0,.38); font-size:13px; position:relative; }
+  .poi-num { position:absolute; right:-6px; top:-6px; width:16px; height:16px; border-radius:50%;
+             background:#16232b; color:#fff; border:1.5px solid #fff; font-size:10px; font-weight:800;
+             display:flex; align-items:center; justify-content:center; }
+  .poi-lab-tt { background:rgba(255,255,255,.96); border:1px solid rgba(22,35,43,.18); border-radius:5px;
+                padding:2px 7px; font-size:11.5px; font-weight:700; color:#16232b;
+                box-shadow:0 1px 4px rgba(0,0,0,.18); }
+  .poi-lab-tt::before { display:none; }
+  /* I filtri restano raggiungibili mentre si guarda la mappa, invece di finire
+     fuori schermo appena si scorre: prima non si poteva cambiare filtro senza
+     prima uscire dalla mappa, che sul telefono e' il gesto piu' difficile. */
+  /* Prima era sticky a top:0 con z-index 1100, cioe' piu' in alto dell'header:
+     appena si scorreva, si parcheggiava sopra il logo e la navigazione. Due
+     cose congelate che si coprivano a vicenda. Ora si ferma sotto l'header e
+     insieme fanno una fascia sola. */
+  .poi-bar { display:flex; gap:7px; flex-wrap:wrap; margin:14px 0 0; padding:8px 24px;
+             position:sticky; top:var(--hdr, 0px); z-index:25; background:#f7f8fa; }
+  .poi-reset { position:absolute; right:14px; top:14px; z-index:1000; border:1px solid var(--line);
+               background:rgba(255,255,255,.96); border-radius:999px; padding:7px 13px;
+               font-size:12.5px; font-weight:600; color:#3a4750; cursor:pointer;
+               box-shadow:0 1px 5px rgba(0,0,0,.18); -webkit-tap-highlight-color:transparent; }
+  .poi-reset:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  /* LA CORNICE ATTORNO ALLA ZONA CLICCATA
+     Un poligono Leaflet e' un <path> SVG, e in Chrome un <path> e' focusabile
+     anche senza tabindex: il click gli da' il fuoco e il browser disegna il
+     proprio anello di fuoco predefinito. Attorno a una forma irregolare non lo
+     sa disegnare, quindi lo disegna attorno al RIQUADRO DI INGOMBRO — un
+     rettangolo che taglia dritto attraverso il paesaggio e non ha nessun
+     rapporto con il confine. E' quello che il proprietario chiamava "la
+     cornice nera", ed e' un default del browser, non qualcosa che la pagina
+     dipinge: per questo non si trovava cercandolo nel CSS.
+     Verificato con un click vero su /plymouth/: activeElement diventa
+     path.leaflet-interactive, outline calcolato "auto 5px", e :focus-visible
+     risulta false. E' proprio quel false a rendere corretta questa coppia di
+     regole: col mouse non si disegna piu' niente, da tastiera l'anello resta —
+     toglierlo e basta lascerebbe chi naviga da tastiera senza sapere dove si
+     trova. Stesso schema di .poi-reset qui sopra. */
+  .leaflet-interactive:focus { outline:none; }
+  .leaflet-interactive:focus-visible { outline:2px solid #2f6f5c; outline-offset:2px; }
+  .poi-chip { border:1px solid var(--line); background:#fff; color:#4a5a63; border-radius:999px;
+              padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-chip[aria-pressed=true] { background:#16232b; color:#fff; border-color:#16232b; }
+  /* Non e' un settimo filtro, e' un interruttore: spegne del tutto lo strato
+     dei sights per chi e' venuto a guardare solo i colori della sicurezza.
+     Quindi vive staccato dalle categorie, in fondo alla barra. */
+  .poi-hide { margin-left:auto; border:1px solid var(--line); background:#fff; color:#4a5a63;
+              border-radius:999px; padding:6px 13px; font-size:12.5px; font-weight:600;
+              cursor:pointer; display:inline-flex; align-items:center; gap:7px;
+              -webkit-tap-highlight-color:transparent; }
+  .poi-hide:hover { border-color:#16232b; color:#16232b; }
+  .poi-hide[aria-pressed=true] { background:#eef1f4; border-color:#9aa6b1; color:#16232b; }
+  .poi-hide .box { width:13px; height:13px; border-radius:3px; border:1.5px solid currentColor;
+                   flex:none; position:relative; }
+  .poi-hide[aria-pressed=true] .box { background:currentColor; }
+  .poi-hide[aria-pressed=true] .box::after { content:"✓"; position:absolute; inset:0; color:#fff;
+                   font-size:10px; line-height:11px; text-align:center; }
+  .poi-list-wrap[hidden] { display:none; }
+  /* Stesse tre colonne della lista dei quartieri qui sotto: su un laptop largo
+     una griglia auto-fill produceva una singola fascia orizzontale di dodici
+     voci, illeggibile e slegata dal resto della pagina. */
+  /* Tre colonne larghe quanto lo schermo lasciavano, su un laptop, righe corte
+     dentro un mare di grigio. Le stesse voci come pastiglie che vanno a capo
+     occupano due righe invece di dieci, e su telefono si impaginano da sole. */
+  .poi-list-wrap { margin:0; padding:0 24px; }
+  .map-stage.split .poi-list-wrap { padding:0; }
+  .poi-list-wrap h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+                      color:var(--muted); margin:0 0 8px; font-weight:700; }
+  /* In colonna le pastiglie che vanno a capo diventano un mosaico storto:
+     larghe uguali e incolonnate si leggono come un indice. */
+  .map-stage.split ol.poi-list { flex-direction:column; flex-wrap:nowrap; gap:4px; }
+  .map-stage.split ol.poi-list li { width:100%; }
+  ol.poi-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  ol.poi-list li { display:inline-flex; align-items:center; gap:7px; padding:4px 11px 4px 4px;
+                   border:1px solid var(--line); border-radius:999px; background:#fff;
+                   font-size:12.5px; line-height:1.2; cursor:pointer; }
+  ol.poi-list li:hover { border-color:#16232b; }
+  ol.poi-list .n { flex:none; width:19px; height:19px; border-radius:50%; background:#16232b; color:#fff;
+                   font-size:10.5px; display:inline-flex; align-items:center; justify-content:center; }
+  .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .dot.green{ background:var(--green); } .dot.yellow{ background:var(--yellow); } .dot.red{ background:var(--red); } .dot.grey{ background:var(--grey); }
+  /* Niente backdrop-filter qui dentro. Questo riquadro e' l'unica cosa che
+     compare quando si clicca una zona, e vive dentro il contenitore Leaflet,
+     che e' pieno di layer compositati su GPU. La combinazione backdrop-filter
+     + opacity animata + transform sullo stesso elemento, dentro un contenitore
+     trasformato, e' il caso in cui WebKit dipinge il pannello come un
+     rettangolo NERO pieno invece che come vetro: da fuori sembra che cliccando
+     una zona la mappa si colori di un quadrato nero. Il fondo era comunque al
+     98% opaco, quindi la sfocatura non si vedeva: toglierla non cambia niente
+     di visibile e toglie il difetto.  */
+  .map-detail { position:absolute; bottom:16px; left:16px; right:16px; max-width:400px; z-index:1000; background:#fff; border-radius: var(--radius-md); padding:18px 20px; box-shadow: var(--shadow-md); font-size:13.5px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .15s, transform .15s; max-height: calc(100% - 32px); overflow-y:auto; }
+  .map-detail.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .map-detail .close-btn { position:absolute; top:10px; right:12px; cursor:pointer; border:none; background:none; font-size:16px; color:var(--muted); line-height:1; padding:4px; }
+  .map-detail .close-btn:hover { color:var(--ink); }
+  .map-detail .zn { font-size:17px; font-weight:700; margin:0 22px 9px 0; color:var(--navy); }
+  .map-detail .badge { margin-right:4px; margin-bottom:4px; }
+  .map-detail .body-text { font-size:13.5px; color:#3a3f4d; margin:12px 0; line-height:1.55; }
+  .map-detail .cta { display:block; text-align:center; background:#003580; color:white; text-decoration:none; padding:11px 14px; border-radius: var(--radius-sm); font-size:13.5px; font-weight:600; margin-top:10px; transition: transform .12s, box-shadow .12s; }
+  .map-detail .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration:none; }
+  .map-detail .cta.secondary { background: var(--accent); }
+  .leaflet-tooltip.zone-tooltip { background: rgba(255,255,255,.97); border:1px solid var(--line); border-radius:6px; padding:3px 9px; font-size:12px; font-weight:700; color:var(--navy); box-shadow: var(--shadow-sm); font-family: 'Inter', sans-serif; }
+  .leaflet-tooltip.zone-tooltip::before { display:none; }
+  .zone-list { margin-top:22px; padding:0 24px; }
+  .zone-list h2 { font-size:15px; margin: 0 0 10px; font-weight:700; }
+  .zone-list ul { list-style:none; margin:0; padding:0; columns:3; column-gap:20px; font-size:13px; }
+  .zone-list li { break-inside: avoid; padding:4px 0; }
+  .zone-list a { color: var(--ink); text-decoration:none; }
+  .zone-list a:hover { color: var(--accent); text-decoration:underline; }
+  .zone-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px 22px; }
+  .zone-group h3 { font-size:12.5px; margin:0 0 6px; font-weight:700; display:flex; align-items:center; gap:6px;
+                   border-bottom:1px solid var(--line); padding-bottom:5px; }
+  .zone-group ul { columns:1; font-size:13px; }
+  .zg-count { font-weight:600; color:var(--muted); font-size:11px; margin-left:auto; }
+  .zg-dot { font-size:10px; line-height:1; padding:2px 5px; border-radius:8px; color:#fff; font-weight:700; }
+  .zg-dot.green { background:#2e7d46; } .zg-dot.yellow { background:#c98a02; }
+  .zg-dot.red { background:#c0392b; } .zg-dot.grey { background:#7a8190; }
+  @media (max-width: 720px){
+    /* 520px su un telefono riempiva quasi tutto lo schermo: qualunque tentativo
+       di scorrere la pagina finiva col dito sulla mappa e diventava un pan.
+       400px lascia pagina sopra e sotto su cui appoggiare il pollice. */
+    #map{ height:400px; }
+    .map-stage { padding: 0 12px 24px; gap:14px; }
+    /* Sovrapposta, la legenda copriva meta' di una mappa larga 351px, e i pin
+       che finivano sotto erano semplicemente invisibili. Su telefono scende
+       quindi sotto la mappa, su una riga sola, e non nasconde piu' niente. */
+    /* Sotto la mappa, su una riga sola, come ieri: niente riquadro, solo un
+       filo di separazione. */
+    .map-legend { border:none; border-radius:0; margin-top:10px; padding:10px 2px 0;
+                  background:none; box-shadow:none; border-top:1px solid var(--line, rgba(0,0,0,.1));
+                  flex-direction:row; flex-wrap:wrap; gap:6px 16px; font-size:11px; }
+    .legend-item { align-items:center; }
+    .legend-item .dot { margin-top:0; }
+    .poi-reset { left:auto; bottom:auto; right:22px; top:22px; }
+    /* Sei filtri su tre righe mangiavano 120px di schermo, e la barra e'
+       appiccicata in alto: rimpicciolite stanno in due righe. */
+    .poi-bar { gap:5px; padding:7px 12px; }
+    .poi-chip { font-size:12px; padding:6px 10px; }
+    .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
+    .zone-list ul { columns:2; }
+  }
+  /* Da tablet in su i caratteri crescono. Sta tutto qui dentro, e il limite e'
+     a 721px, perche' su telefono l'impaginazione e' quella che e' gia' e non
+     va toccata: la stessa scala che su un laptop da 1435px risulta minuta, su
+     375px riempie lo schermo. */
+  @media (min-width: 721px){
+    nav.crumbs { font-size:14px; }
+    h1.page-title { font-size:33px; margin:12px 24px 7px; }
+    .lead { font-size:18.5px; line-height:1.5; max-width:1240px; margin-bottom:16px; }
+    .evidence { font-size:15px; }
+    .city-switch-wrap, .city-switch, .switch-wrap { font-size:15px; }
+    .map-legend { font-size:15.5px; gap:11px; padding:16px 18px; }
+    .poi-chip { font-size:15px; padding:9px 17px; }
+    .poi-bar { gap:8px; }
+    .poi-list-wrap h2 { font-size:12.5px; margin-bottom:10px; }
+    ol.poi-list li { font-size:15.5px; padding:6px 14px 6px 6px; }
+    ol.poi-list .n { width:24px; height:24px; font-size:12.5px; }
+    .zone-list h2 { font-size:19px; margin-bottom:12px; }
+    .map-stage.split .zone-list h2 { font-size:12.5px; }
+    .zone-list ul { font-size:16px; column-gap:24px; }
+    .zone-list li { padding:6px 0; }
+    .zone-group h3 { font-size:15.5px; }
+    .zone-group ul { font-size:16px; }
+    .zg-count { font-size:12.5px; }
+    .zg-dot { font-size:11.5px; padding:3px 7px; }
+    .map-detail { font-size:15.5px; max-width:440px; }
+    .map-detail .zn { font-size:20px; }
+    .map-detail .body-text { font-size:16px; }
+    .map-detail .cta { font-size:15.5px; padding:13px 16px; }
+    .poi-reset { font-size:14.5px; padding:9px 16px; }
+    .leaflet-tooltip.zone-tooltip { font-size:14px; }
+    .poi-lab-tt { font-size:13.5px; }
+  }
+  /* Secondo gradino. Una finestra CSS molto larga vuol dire una di due cose —
+     un monitor grande, guardato da piu' lontano, oppure un browser
+     rimpicciolito, che dimezza i pixel fisici. Tirano nella stessa direzione:
+     piu' spazio disponibile e caratteri da alzare, non da lasciare com'erano. */
+  @media (min-width: 1800px){
+    .hub-answer { font-size:21px; max-width:1560px; }
+    nav.crumbs { font-size:15px; }
+    h1.page-title { font-size:38px; }
+    .lead { font-size:21px; max-width:1560px; }
+    .evidence { font-size:16.5px; }
+    .city-switch-wrap, .city-switch, .switch-wrap { font-size:16.5px; }
+    .map-legend { font-size:17px; gap:13px; padding:18px 20px; }
+    .poi-chip { font-size:16.5px; padding:10px 19px; }
+    .poi-list-wrap h2 { font-size:13.5px; }
+    ol.poi-list li { font-size:17px; padding:7px 15px 7px 7px; }
+    ol.poi-list .n { width:26px; height:26px; font-size:13.5px; }
+    .zone-list h2 { font-size:21px; }
+    .map-stage.split .zone-list h2 { font-size:13.5px; }
+    .zone-list ul { font-size:17.5px; }
+    .zone-group h3 { font-size:17px; }
+    .zone-group ul { font-size:17.5px; }
+    .map-detail { font-size:17px; max-width:500px; }
+    .map-detail .zn { font-size:22px; }
+    .map-detail .body-text { font-size:17.5px; }
+    .map-detail .cta { font-size:17px; }
+    .poi-reset { font-size:16px; padding:10px 18px; }
+    .leaflet-tooltip.zone-tooltip { font-size:15.5px; }
+    .poi-lab-tt { font-size:15px; }
+  }
+  @media (min-width: 2400px){
+    .hub-answer { font-size:24px; max-width:1800px; }
+    h1.page-title { font-size:44px; }
+    .lead { font-size:24px; max-width:1800px; }
+    .evidence { font-size:18px; }
+    .map-legend { font-size:19px; padding:20px 22px; }
+    .poi-chip { font-size:18px; padding:11px 21px; }
+    ol.poi-list li { font-size:18.5px; }
+    ol.poi-list .n { width:28px; height:28px; font-size:14.5px; }
+    .zone-list ul, .zone-group ul { font-size:19px; }
+    .zone-group h3 { font-size:18.5px; }
+    .map-detail { font-size:18.5px; max-width:560px; }
+    .map-detail .zn { font-size:24px; }
+    .map-detail .body-text { font-size:19px; }
+    .poi-reset { font-size:17.5px; }
+    .leaflet-tooltip.zone-tooltip { font-size:17px; }
+    .poi-lab-tt { font-size:16.5px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+  <div class="header-controls">
+    <div class="city-switch-wrap">
+      <label for="citySwitch">Città</label>
+      <select id="citySwitch" class="city-switch" onchange="if(this.value) location.href=this.value;">
+        <optgroup label="🇬🇧 United Kingdom">
+          <option value="https://www.wandroz.com/london/" >London</option>
+          <option value="https://www.wandroz.com/edinburgh/" >Edinburgh</option>
+          <option value="https://www.wandroz.com/birmingham/" >Birmingham</option>
+          <option value="https://www.wandroz.com/leeds/" >Leeds</option>
+          <option value="https://www.wandroz.com/bristol/" >Bristol</option>
+          <option value="https://www.wandroz.com/sheffield/" >Sheffield</option>
+          <option value="https://www.wandroz.com/newcastle/" >Newcastle upon Tyne</option>
+          <option value="https://www.wandroz.com/nottingham/" >Nottingham</option>
+          <option value="https://www.wandroz.com/cardiff/" >Cardiff</option>
+          <option value="https://www.wandroz.com/leicester/" >Leicester</option>
+          <option value="https://www.wandroz.com/liverpool/" >Liverpool</option>
+          <option value="https://www.wandroz.com/brighton/" >Brighton and Hove</option>
+          <option value="https://www.wandroz.com/york/" >York</option>
+          <option value="https://www.wandroz.com/oxford/" >Oxford</option>
+          <option value="https://www.wandroz.com/cambridge/" >Cambridge</option>
+          <option value="https://www.wandroz.com/bath/" >Bath</option>
+          <option value="https://www.wandroz.com/coventry/" >Coventry</option>
+          <option value="https://www.wandroz.com/southampton/" >Southampton</option>
+          <option value="https://www.wandroz.com/portsmouth/" >Portsmouth</option>
+          <option value="https://www.wandroz.com/plymouth/" >Plymouth</option>
+          <option value="https://www.wandroz.com/derby/" >Derby</option>
+          <option value="https://www.wandroz.com/norwich/" >Norwich</option>
+        </optgroup>
+        <optgroup label="🇮🇹 Italy">
+          <option value="https://www.wandroz.com/torino/" >Turin</option>
+          <option value="https://www.wandroz.com/milano/" >Milan</option>
+          <option value="https://www.wandroz.com/roma/" >Rome</option>
+          <option value="https://www.wandroz.com/venezia/" >Venice</option>
+          <option value="https://www.wandroz.com/firenze/" >Florence</option>
+          <option value="https://www.wandroz.com/napoli/" >Naples</option>
+          <option value="https://www.wandroz.com/bologna/" >Bologna</option>
+          <option value="https://www.wandroz.com/verona/" >Verona</option>
+          <option value="https://www.wandroz.com/genova/" >Genoa</option>
+          <option value="https://www.wandroz.com/trieste/" >Trieste</option>
+          <option value="https://www.wandroz.com/catania/" >Catania</option>
+          <option value="https://www.wandroz.com/parma/" selected>Parma</option>
+        </optgroup>
+        <optgroup label="🇳🇱 Netherlands">
+          <option value="https://www.wandroz.com/amsterdam/" >Amsterdam</option>
+          <option value="https://www.wandroz.com/rotterdam/" >Rotterdam</option>
+          <option value="https://www.wandroz.com/utrecht/" >Utrecht</option>
+          <option value="https://www.wandroz.com/denhaag/" >The Hague</option>
+        </optgroup>
+        <optgroup label="🇧🇪 Belgium">
+          <option value="https://www.wandroz.com/brussels/" >Brussels</option>
+          <option value="https://www.wandroz.com/antwerp/" >Antwerp</option>
+          <option value="https://www.wandroz.com/ghent/" >Ghent</option>
+        </optgroup>
+        <optgroup label="🇩🇪 Germany">
+          <option value="https://www.wandroz.com/berlin/" >Berlin</option>
+          <option value="https://www.wandroz.com/monaco-di-baviera/" >Munich</option>
+        </optgroup>
+        <optgroup label="🇪🇸 Spain">
+          <option value="https://www.wandroz.com/barcelona/" >Barcelona</option>
+          <option value="https://www.wandroz.com/madrid/" >Madrid</option>
+        </optgroup>
+        <optgroup label="🇵🇱 Poland">
+          <option value="https://www.wandroz.com/krakow/" >Kraków</option>
+          <option value="https://www.wandroz.com/warsaw/" >Warsaw</option>
+        </optgroup>
+        <optgroup label="🇨🇭 Switzerland">
+          <option value="https://www.wandroz.com/zurigo/" >Zurich</option>
+        </optgroup>
+        <optgroup label="🇨🇿 Czechia">
+          <option value="https://www.wandroz.com/praha/" >Prague</option>
+        </optgroup>
+        <optgroup label="🇳🇴 Norway">
+          <option value="https://www.wandroz.com/oslo/" >Oslo</option>
+        </optgroup>
+        <optgroup label="🇸🇪 Sweden">
+          <option value="https://www.wandroz.com/stockholm/" >Stockholm</option>
+        </optgroup>
+        <optgroup label="🇦🇹 Austria">
+          <option value="https://www.wandroz.com/vienna/" >Vienna</option>
+        </optgroup>
+        <optgroup label="🇵🇹 Portugal">
+          <option value="https://www.wandroz.com/lisbon/" >Lisbon</option>
+        </optgroup>
+        <optgroup label="🇫🇷 France">
+          <option value="https://www.wandroz.com/paris/" >Paris</option>
+        </optgroup>
+        <optgroup label="🇬🇷 Greece">
+          <option value="https://www.wandroz.com/athens/" >Athens</option>
+        </optgroup>
+        <optgroup label="🇮🇪 Ireland">
+          <option value="https://www.wandroz.com/dublin/" >Dublin</option>
+        </optgroup>
+        <optgroup label="🇭🇺 Hungary">
+          <option value="https://www.wandroz.com/budapest/" >Budapest</option>
+        </optgroup>
+        <optgroup label="🇪🇪 Estonia">
+          <option value="https://www.wandroz.com/tallinn/" >Tallinn</option>
+        </optgroup>
+        <optgroup label="🇭🇷 Croatia">
+          <option value="https://www.wandroz.com/zagreb/" >Zagreb</option>
+        </optgroup>
+        <optgroup label="🇷🇴 Romania">
+          <option value="https://www.wandroz.com/bucharest/" >Bucharest</option>
+        </optgroup>
+        <optgroup label="🇸🇰 Slovakia">
+          <option value="https://www.wandroz.com/bratislava/" >Bratislava</option>
+        </optgroup>
+        <optgroup label="🇱🇹 Lithuania">
+          <option value="https://www.wandroz.com/vilnius/" >Vilnius</option>
+        </optgroup>
+      </select>
+    </div>
+    
+    <div class="switch-wrap" id="dnSwitchWrap">
+      <span>giorno</span>
+      <div class="switch" id="dnSwitch"><div class="knob"></div></div>
+      <span>notte</span>
+    </div>
+    
+    
+    <div class="lang-switch" aria-label="Lingua">
+      <a href="https://www.wandroz.com/parma/" hreflang="en">EN</a>
+      <a href="https://www.wandroz.com/it/parma/" class="on" aria-current="true" hreflang="it">IT</a>
+    </div>
+    <nav class="wz-nav">
+      <a href="/">Home</a>
+      <a href="/methodology.html">Metodologia</a>
+    </nav>
+  </div>
+</header>
+<div class="page-shell">
+<nav class="crumbs"><a href="/">Home</a> &rsaquo; Parma, Italia</nav>
+<h1 class="page-title">Dove dormire a Parma: i quartieri più sicuri</h1>
+<p class="lead">Ogni zona valutata di giorno e di notte, con il ragionamento e le fonti dietro a ciascuna valutazione.</p>
+
+
+
+
+<p class="hub-answer">Per un soggiorno breve a Parma: <strong>Centro storico</strong>, <strong>Cittadella</strong> e <strong>Oltretorrente</strong>.
+  <span class="hub-answer-more">Una zona per ogni tipo di viaggio, ciascuna con la sua valutazione di giorno e di notte — compreso dove quella valutazione dice di stare attenti.</span> Nessuna è qui perché qualcuno ha pagato.
+</p>
+
+
+<div class="poi-bar" id="poiBar"></div>
+
+
+<div class="map-stage" id="mapStage">
+  <div class="map-wrap" id="mapWrap">
+    <div id="map"></div>
+    <button type="button" class="poi-reset" id="poiReset">Ripristina vista</button>
+    <div class="map-detail" id="detailBox">
+      <button class="close-btn" id="detailClose" aria-label="Close" type="button">&times;</button>
+      <div id="detail"></div>
+    </div>
+  </div>
+  <aside class="map-rail" id="mapRail">
+    <div class="map-legend" id="legendBox">
+      <div class="legend-item"><span class="dot green"></span> <span id="legendGreenText">Tranquillo — nessun problema segnalato</span></div>
+      <div class="legend-item"><span class="dot yellow"></span> <span id="legendYellowText">Attenzione — di giorno va bene, la sera serve più prudenza</span></div>
+      <div class="legend-item"><span class="dot red"></span> <span id="legendRedText">Sconsigliato a chi visita — problemi noti e ricorrenti</span></div>
+      
+      <div class="legend-dash"><i></i> <span>Contorno tratteggiato: nessun riscontro specifico per l&#39;area</span></div>
+    </div>
+    
+    <div class="poi-list-wrap">
+      <h2>Cosa vedere su questa mappa</h2>
+      <ol class="poi-list" id="poiList"></ol>
+    </div>
+    
+  <div class="zone-list">
+    <h2>Tutti i quartieri</h2>
+    
+    <ul>
+      
+      <li data-zone="oltretorrente"><a href="/parma/oltretorrente.html">Oltretorrente</a></li>
+      
+      <li data-zone="parma-centro"><a href="/parma/parma-centro.html">Centro storico</a></li>
+      
+      <li data-zone="molinetto"><a href="/parma/molinetto.html">Molinetto</a></li>
+      
+      <li data-zone="pablo"><a href="/parma/pablo.html">Pablo</a></li>
+      
+      <li data-zone="golese"><a href="/parma/golese.html">Golese</a></li>
+      
+      <li data-zone="san-pancrazio"><a href="/parma/san-pancrazio.html">San Pancrazio</a></li>
+      
+      <li data-zone="san-leonardo"><a href="/parma/san-leonardo.html">San Leonardo e stazione</a></li>
+      
+      <li data-zone="san-martino"><a href="/parma/san-martino.html">San Martino</a></li>
+      
+      <li data-zone="san-lazzaro"><a href="/parma/san-lazzaro.html">San Lazzaro</a></li>
+      
+      <li data-zone="lubiana"><a href="/parma/lubiana.html">Lubiana</a></li>
+      
+      <li data-zone="cittadella"><a href="/parma/cittadella.html">Cittadella</a></li>
+      
+      <li data-zone="montanara"><a href="/parma/montanara.html">Montanara</a></li>
+      
+      <li data-zone="vigatto"><a href="/parma/vigatto.html">Vigatto</a></li>
+      
+    </ul>
+    
+  </div>
+  </aside>
+</div>
+
+
+<div class="hub-cards">
+  
+  <div class="hub-card" data-zone="parma-centro">
+    <span class="lab">Per una prima visita</span>
+    <span class="nm"><a href="/parma/parma-centro.html">Centro storico</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relativamente più sicura</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Nella media</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">6 dei luoghi principali della città sono abbastanza vicini da farli a piedi.</span>
+    
+    
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio a Centro storico →</a>
+  </div>
+  
+  <div class="hub-card" data-zone="cittadella">
+    <span class="lab">In famiglia · Valutazione migliore</span>
+    <span class="nm"><a href="/parma/cittadella.html">Cittadella</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relativamente più sicura</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge green">Relativamente più sicura</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">Un parco a portata di mano, e qui niente diventa una zona di locali dopo il tramonto.</span>
+    
+    
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio a Cittadella →</a>
+  </div>
+  
+  <div class="hub-card" data-zone="oltretorrente">
+    <span class="lab">Per uscire la sera</span>
+    <span class="nm"><a href="/parma/oltretorrente.html">Oltretorrente</a></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge green">Relativamente più sicura</span><span style="font-size:12px;color:var(--muted);">day</span>
+      <span class="badge yellow">Nella media</span><span style="font-size:12px;color:var(--muted);">night</span>
+    </div>
+    <span class="why">È qui che si concentrano i locali serali della città.</span>
+    
+    
+    <a class="bk" href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio a Oltretorrente →</a>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<details class="hub-table-wrap">
+  <summary>Confronta quartieri (13)</summary>
+  
+  <p class="hub-table-note">Ordinate per quanto ciascuna zona si discosta dal resto della città, non per valutazione: prima quelle fuori dalla norma. Clicca una colonna per ordinarla come preferisci.</p>
+  <div class="hub-scroll">
+    <table class="hub" id="hubTable">
+      <thead><tr>
+        <th aria-sort="none">Zona</th><th aria-sort="none">Giorno</th><th aria-sort="none">Notte</th>
+        <th aria-sort="none">Evidenza</th>
+        <th aria-sort="none" class="num">Luoghi</th>
+        <th>Prenota</th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td><a href="/parma/san-leonardo.html">San Leonardo e stazione</a></td>
+          <td data-sort="1"><span class="badge yellow">Nella media</span></td>
+          <td data-sort="2"><span class="badge red">Consigliata maggiore prudenza</span></td>
+          <td class="dash">con fonti</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/parma-centro.html">Centro storico</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="1"><span class="badge yellow">Nella media</span></td>
+          <td class="dash">con fonti</td>
+          <td class="num">6</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/oltretorrente.html">Oltretorrente</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="1"><span class="badge yellow">Nella media</span></td>
+          <td class="dash">con fonti</td>
+          <td class="num">2</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/lubiana.html">Lubiana</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="1"><span class="badge yellow">Nella media</span></td>
+          <td class="dash">con fonti</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/pablo.html">Pablo</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="1"><span class="badge yellow">Nella media</span></td>
+          <td class="dash">con fonti</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/cittadella.html">Cittadella</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td class="dash">nessun riscontro specifico</td>
+          <td class="num">1</td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/golese.html">Golese</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td class="dash">nessun riscontro specifico</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/molinetto.html">Molinetto</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td class="dash">nessun riscontro specifico</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/montanara.html">Montanara</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td class="dash">con fonti</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/san-lazzaro.html">San Lazzaro</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td class="dash">nessun riscontro specifico</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/san-martino.html">San Martino</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td class="dash">nessun riscontro specifico</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/san-pancrazio.html">San Pancrazio</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td class="dash">nessun riscontro specifico</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+        <tr>
+          <td><a href="/parma/vigatto.html">Vigatto</a></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td data-sort="0"><span class="badge green">Relativamente più sicura</span></td>
+          <td class="dash">nessun riscontro specifico</td>
+          <td class="num"></td>
+          <td><a href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Prenota →</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</details>
+
+
+</div><!-- /page-shell -->
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Metodologia</a> &middot;
+  <a href="/about.html">Chi siamo</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Informativa affiliazione</a> &middot;
+  <a href="/contact.html">Contatti</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var ZONES = [{"coords": [[[44.80824, 10.31472], [44.80823, 10.31454], [44.80814, 10.31436], [44.80756, 10.3147], [44.80712, 10.31482], [44.80479, 10.31403], [44.80466, 10.31408], [44.80455, 10.31421], [44.80445, 10.31448], [44.80429, 10.31458], [44.80416, 10.31451], [44.80409, 10.31434], [44.80423, 10.31356], [44.80414, 10.31376], [44.80404, 10.31378], [44.80127, 10.3129], [44.80101, 10.31297], [44.80084, 10.31308], [44.79606, 10.31727], [44.79597, 10.31728], [44.79583, 10.31664], [44.79558, 10.31666], [44.79543, 10.31694], [44.79525, 10.31709], [44.79532, 10.31758], [44.79506, 10.31824], [44.79486, 10.3198], [44.79463, 10.32034], [44.79461, 10.32073], [44.79492, 10.32071], [44.79469, 10.32146], [44.79462, 10.3218], [44.79457, 10.32189], [44.79453, 10.32217], [44.79465, 10.32328], [44.79574, 10.32316], [44.79644, 10.3232], [44.79686, 10.32312], [44.79752, 10.32331], [44.7978, 10.32331], [44.79869, 10.32348], [44.79896, 10.32349], [44.79974, 10.32334], [44.80011, 10.32336], [44.80177, 10.3236], [44.80308, 10.32373], [44.8046, 10.32413], [44.80577, 10.32477], [44.80674, 10.32511], [44.80811, 10.32536], [44.80909, 10.32536], [44.80918, 10.32469], [44.80918, 10.32438], [44.80912, 10.32427], [44.80921, 10.32413], [44.80926, 10.32383], [44.80926, 10.32302], [44.80851, 10.31722], [44.8085, 10.31668], [44.80831, 10.31519], [44.80823, 10.31483], [44.80824, 10.31472]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Oltretorrente", "night": "yellow", "night_label": "Average", "query": "Parma, Italy", "slug": "oltretorrente", "text": "Across the torrent from the centre, with the Parco Ducale on its northern edge: historically the working-class side, now mixed and lively. Six community officers were assigned to Oltretorrente alone, and residents report open dealing around the WOPA site. It is a short walk from the Duomo and perfectly normal by day.", "url": "/parma/oltretorrente.html"}, {"coords": [[[44.80295, 10.34995], [44.8012, 10.34745], [44.79909, 10.34594], [44.79736, 10.34494], [44.79688, 10.34484], [44.7968, 10.34302], [44.79621, 10.33748], [44.79602, 10.33618], [44.79616, 10.33609], [44.79621, 10.33589], [44.79613, 10.33545], [44.79602, 10.33536], [44.79594, 10.33536], [44.79523, 10.32836], [44.79465, 10.32328], [44.79574, 10.32316], [44.79644, 10.3232], [44.79686, 10.32312], [44.79752, 10.32331], [44.7978, 10.32331], [44.79869, 10.32348], [44.79896, 10.32349], [44.79974, 10.32334], [44.80011, 10.32336], [44.80177, 10.3236], [44.80308, 10.32373], [44.8046, 10.32413], [44.80577, 10.32477], [44.80674, 10.32511], [44.80811, 10.32536], [44.81001, 10.32538], [44.81072, 10.32552], [44.81071, 10.32589], [44.80975, 10.33011], [44.81001, 10.3303], [44.80999, 10.3304], [44.80938, 10.33261], [44.80905, 10.33351], [44.80886, 10.33421], [44.80875, 10.33488], [44.80861, 10.33538], [44.80855, 10.33625], [44.80849, 10.33652], [44.80831, 10.33625], [44.80742, 10.33904], [44.8073, 10.33966], [44.80726, 10.34017], [44.80718, 10.34033], [44.80698, 10.34014], [44.80502, 10.34519], [44.8048, 10.34552], [44.80469, 10.34576], [44.80295, 10.34995]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Centro storico", "night": "yellow", "night_label": "Average", "query": "Parma, Italy", "slug": "parma-centro", "text": "Piazza Garibaldi, the Duomo and Baptistery, the Pilotta \u2014 compact, walkable and busy. The figure in circulation is that around 60% of the city\u0027s recorded incidents fall in the historic centre, from a map of 700 episodes in eight months compiled by the Vignali opposition group on the council; the majority publicly dismissed it as propaganda, and it is worth adding that the centre is also where nearly all of Parma\u0027s footfall is, so a concentration there is partly arithmetic. Ordinary evening care rather than avoidance.", "url": "/parma/parma-centro.html"}, {"coords": [[[44.77581, 10.25888], [44.77477, 10.26427], [44.7741, 10.26742], [44.77402, 10.26758], [44.77402, 10.26777], [44.77365, 10.26945], [44.77361, 10.2697], [44.77371, 10.26993], [44.77363, 10.27003], [44.77297, 10.27334], [44.77291, 10.27339], [44.7702, 10.27353], [44.76968, 10.27341], [44.76958, 10.27334], [44.76896, 10.27257], [44.76667, 10.27995], [44.76699, 10.27992], [44.76691, 10.2805], [44.76747, 10.28069], [44.76742, 10.28086], [44.76726, 10.28083], [44.76715, 10.28129], [44.7676, 10.28147], [44.76666, 10.28693], [44.76626, 10.28597], [44.76561, 10.28415], [44.76538, 10.28366], [44.76493, 10.28294], [44.76429, 10.28233], [44.76358, 10.28173], [44.76294, 10.28129], [44.76153, 10.28067], [44.76142, 10.28057], [44.7609, 10.28101], [44.76132, 10.28177], [44.76164, 10.28347], [44.76182, 10.2851], [44.76171, 10.28623], [44.76238, 10.28752], [44.76303, 10.28836], [44.76346, 10.28863], [44.76441, 10.28995], [44.7658, 10.29086], [44.76677, 10.29116], [44.7675, 10.29148], [44.76795, 10.29116], [44.76863, 10.29101], [44.76968, 10.29156], [44.77047, 10.29231], [44.77082, 10.29372], [44.77111, 10.29471], [44.77164, 10.29562], [44.77162, 10.29669], [44.77177, 10.29745], [44.77189, 10.29851], [44.77209, 10.29913], [44.77256, 10.30033], [44.77282, 10.30134], [44.7738, 10.30216], [44.77424, 10.30269], [44.77453, 10.30297], [44.7751, 10.30369], [44.77589, 10.30438], [44.77651, 10.30528], [44.77663, 10.30535], [44.77722, 10.30551], [44.77794, 10.30614], [44.77833, 10.30671], [44.77814, 10.30759], [44.77803, 10.30831], [44.77774, 10.30914], [44.77762, 10.30995], [44.77905, 10.31083], [44.77986, 10.31102], [44.78062, 10.31111], [44.78153, 10.3117], [44.78241, 10.31261], [44.78346, 10.31415], [44.78446, 10.31533], [44.78505, 10.31586], [44.78633, 10.31676], [44.7867, 10.31692], [44.78831, 10.31822], [44.7889, 10.31854], [44.78975, 10.31878], [44.79024, 10.31906], [44.79075, 10.31929], [44.79113, 10.31971], [44.79164, 10.32066], [44.79349, 10.32331], [44.79465, 10.32328], [44.79453, 10.32217], [44.79457, 10.32189], [44.79462, 10.3218], [44.79469, 10.32146], [44.79492, 10.32071], [44.79461, 10.32073], [44.79463, 10.32034], [44.79486, 10.3198], [44.79506, 10.31824], [44.79532, 10.31758], [44.79525, 10.31709], [44.79543, 10.31694], [44.79558, 10.31666], [44.79583, 10.31664], [44.79597, 10.31728], [44.79606, 10.31727], [44.80051, 10.31338], [44.80051, 10.31331], [44.80007, 10.3123], [44.79989, 10.31164], [44.79987, 10.31168], [44.79806, 10.31156], [44.79815, 10.31092], [44.79799, 10.31042], [44.79761, 10.31042], [44.79793, 10.30849], [44.79862, 10.30868], [44.79925, 10.30868], [44.79826, 10.30557], [44.79826, 10.30442], [44.79691, 10.30442], [44.79696, 10.30318], [44.79745, 10.30313], [44.79761, 10.30353], [44.79794, 10.30359], [44.79811, 10.30274], [44.7978, 10.30237], [44.79717, 10.30225], [44.79714, 10.3026], [44.79666, 10.30254], [44.79677, 10.30193], [44.7967, 10.30052], [44.79692, 10.30013], [44.79699, 10.29986], [44.79701, 10.29944], [44.79692, 10.29864], [44.79676, 10.29841], [44.79633, 10.29809], [44.79595, 10.29663], [44.79599, 10.29629], [44.79118, 10.28956], [44.79033, 10.28817], [44.78968, 10.28689], [44.78917, 10.2857], [44.77802, 10.25723], [44.77614, 10.25711], [44.77581, 10.25888]]], "day": "green", "day_label": "Relatively safer", "evidence": "no_findings", "evidence_label": "No area-specific findings", "name": "Molinetto", "night": "green", "night_label": "Relatively safer", "query": "Parma, Italy", "slug": "molinetto", "text": "Residential Parma, outside the areas local reporting and the Comune\u0027s security deployments name. The review found nothing area-specific for it \u2014 it is not in the designated zona rossa, not among the quartieri assigned community officers, and not singled out in the 2026 crime mapping. The dashed outline marks that as an absence of findings rather than a verified all-clear: the quiet parts of a city are also the ones nobody writes about.", "url": "/parma/molinetto.html"}, {"coords": [[[44.80423, 10.31356], [44.80409, 10.31434], [44.80416, 10.31451], [44.80429, 10.31458], [44.80445, 10.31448], [44.80455, 10.31421], [44.80466, 10.31408], [44.80476, 10.31403], [44.80712, 10.31482], [44.80756, 10.3147], [44.80814, 10.31436], [44.80823, 10.31454], [44.80823, 10.31483], [44.80831, 10.31519], [44.8085, 10.31668], [44.80851, 10.31722], [44.80926, 10.32302], [44.80926, 10.32383], [44.80921, 10.32413], [44.80912, 10.32427], [44.80918, 10.32438], [44.80918, 10.32469], [44.80909, 10.32536], [44.81025, 10.3254], [44.81092, 10.32555], [44.81147, 10.32536], [44.81191, 10.32503], [44.81215, 10.3249], [44.8135, 10.32455], [44.814, 10.32429], [44.81443, 10.32395], [44.81463, 10.32376], [44.8156, 10.32262], [44.81583, 10.3225], [44.81546, 10.31644], [44.81483, 10.31636], [44.81473, 10.3157], [44.81447, 10.31509], [44.8141, 10.315], [44.814, 10.3155], [44.81368, 10.31548], [44.81344, 10.31504], [44.81293, 10.31496], [44.81304, 10.31436], [44.81308, 10.31388], [44.81307, 10.31281], [44.813, 10.31203], [44.81287, 10.31138], [44.8127, 10.31081], [44.81244, 10.3102], [44.81212, 10.30964], [44.80955, 10.30581], [44.80916, 10.30532], [44.80856, 10.30469], [44.80797, 10.30418], [44.80738, 10.30377], [44.80618, 10.30318], [44.80143, 10.3011], [44.80049, 10.3006], [44.79944, 10.29991], [44.79825, 10.29892], [44.79763, 10.2983], [44.79682, 10.29738], [44.79599, 10.29629], [44.79595, 10.29663], [44.79633, 10.29809], [44.79676, 10.29841], [44.79692, 10.29864], [44.79701, 10.29944], [44.79699, 10.29986], [44.79692, 10.30013], [44.7967, 10.30052], [44.79677, 10.30193], [44.79666, 10.30254], [44.79714, 10.3026], [44.79717, 10.30225], [44.7978, 10.30237], [44.79811, 10.30274], [44.79794, 10.30359], [44.79761, 10.30353], [44.79745, 10.30313], [44.79696, 10.30318], [44.79691, 10.30442], [44.79826, 10.30442], [44.79826, 10.30557], [44.79925, 10.30868], [44.79862, 10.30868], [44.79793, 10.30849], [44.79761, 10.31042], [44.79799, 10.31042], [44.79815, 10.31092], [44.79806, 10.31156], [44.79987, 10.31168], [44.79989, 10.31164], [44.80007, 10.3123], [44.80051, 10.31331], [44.80051, 10.31338], [44.80101, 10.31297], [44.80127, 10.3129], [44.80404, 10.31378], [44.80414, 10.31376], [44.80423, 10.31356]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Pablo", "night": "yellow", "night_label": "Average", "query": "Parma, Italy", "slug": "pablo", "text": "North-east of the centre. The Comune\u0027s deployment of community officers named Pablo alongside San Leonardo and Oltretorrente, which is the only area-specific finding for it. Residential and unremarkable.", "url": "/parma/pablo.html"}, {"coords": [[[44.87997, 10.3304], [44.88056, 10.3291], [44.88113, 10.32878], [44.8818, 10.32857], [44.88132, 10.32708], [44.88112, 10.32692], [44.88108, 10.32684], [44.88119, 10.32607], [44.88175, 10.32357], [44.88187, 10.32281], [44.88196, 10.32257], [44.88482, 10.31047], [44.88532, 10.30822], [44.88581, 10.30623], [44.88388, 10.30552], [44.88548, 10.29638], [44.88843, 10.29632], [44.89151, 10.29657], [44.89172, 10.29653], [44.89169, 10.29864], [44.89447, 10.29864], [44.89417, 10.2959], [44.89506, 10.29594], [44.89659, 10.29585], [44.89891, 10.29626], [44.90065, 10.29682], [44.90071, 10.29046], [44.90074, 10.28979], [44.88789, 10.28348], [44.88711, 10.28295], [44.88392, 10.27935], [44.88113, 10.27707], [44.88049, 10.27631], [44.87971, 10.27528], [44.87907, 10.27471], [44.87898, 10.27458], [44.87866, 10.27379], [44.87879, 10.27347], [44.8788, 10.27329], [44.87877, 10.27323], [44.87802, 10.2726], [44.87798, 10.27248], [44.8782, 10.2706], [44.87831, 10.27], [44.87862, 10.26892], [44.8787, 10.26838], [44.87868, 10.26784], [44.87864, 10.26763], [44.87823, 10.26595], [44.8782, 10.26569], [44.87825, 10.26499], [44.87822, 10.26473], [44.87816, 10.26464], [44.8779, 10.2645], [44.87777, 10.2643], [44.87667, 10.26137], [44.87594, 10.25919], [44.87556, 10.25871], [44.8755, 10.25855], [44.87551, 10.25718], [44.87557, 10.25653], [44.87612, 10.2539], [44.87606, 10.25379], [44.87595, 10.2537], [44.87568, 10.25357], [44.87567, 10.2534], [44.87588, 10.25262], [44.8761, 10.25143], [44.87641, 10.24909], [44.8773, 10.24756], [44.87747, 10.24747], [44.87705, 10.24744], [44.87596, 10.24766], [44.87582, 10.2469], [44.87577, 10.24647], [44.87579, 10.24614], [44.87604, 10.24489], [44.87635, 10.24361], [44.87649, 10.24317], [44.87659, 10.24112], [44.87635, 10.24108], [44.87529, 10.23927], [44.87445, 10.2388], [44.87389, 10.23828], [44.87297, 10.23814], [44.87205, 10.23838], [44.87155, 10.23906], [44.87031, 10.2431], [44.86874, 10.24395], [44.86629, 10.24519], [44.86572, 10.24577], [44.86396, 10.24626], [44.86209, 10.24551], [44.86068, 10.24393], [44.85843, 10.24324], [44.85482, 10.24315], [44.85422, 10.24317], [44.85365, 10.24334], [44.85328, 10.24329], [44.85266, 10.24266], [44.85223, 10.24231], [44.84863, 10.24042], [44.84627, 10.24075], [44.84596, 10.241], [44.84567, 10.24098], [44.84453, 10.24144], [44.84432, 10.24129], [44.84357, 10.24121], [44.84307, 10.24106], [44.84267, 10.24076], [44.84255, 10.24078], [44.84243, 10.24071], [44.84223, 10.24045], [44.84183, 10.24041], [44.84072, 10.23967], [44.83964, 10.23913], [44.83893, 10.2384], [44.83848, 10.23801], [44.83841, 10.23765], [44.83783, 10.23703], [44.83755, 10.23661], [44.83646, 10.23581], [44.83621, 10.23574], [44.83528, 10.23514], [44.83447, 10.23419], [44.83327, 10.23357], [44.83276, 10.23242], [44.83204, 10.23208], [44.83062, 10.23051], [44.82961, 10.22982], [44.82913, 10.22925], [44.82872, 10.22908], [44.82831, 10.22874], [44.82808, 10.22863], [44.82797, 10.22851], [44.82785, 10.22849], [44.82689, 10.22801], [44.82641, 10.22733], [44.82398, 10.23957], [44.82221, 10.23889], [44.81752, 10.26126], [44.81723, 10.26269], [44.8171, 10.26354], [44.81698, 10.26467], [44.81341, 10.31163], [44.81323, 10.31317], [44.81293, 10.31496], [44.81344, 10.31504], [44.81368, 10.31548], [44.814, 10.3155], [44.8141, 10.315], [44.81447, 10.31509], [44.81473, 10.3157], [44.81483, 10.31636], [44.81546, 10.31644], [44.81583, 10.3225], [44.81611, 10.32208], [44.81638, 10.3214], [44.817, 10.3204], [44.8172, 10.3202], [44.81752, 10.31997], [44.81816, 10.31971], [44.81839, 10.31966], [44.81856, 10.31969], [44.819, 10.31992], [44.81934, 10.32023], [44.8196, 10.32038], [44.81996, 10.32055], [44.82025, 10.32058], [44.82047, 10.32052], [44.82082, 10.32031], [44.82105, 10.32007], [44.82127, 10.31954], [44.82151, 10.31911], [44.82159, 10.31873], [44.82168, 10.31861], [44.82174, 10.31859], [44.8219, 10.31872], [44.82204, 10.31917], [44.82213, 10.31931], [44.82264, 10.3194], [44.82327, 10.31975], [44.82373, 10.31985], [44.82417, 10.3199], [44.82437, 10.31985], [44.82443, 10.31971], [44.82446, 10.31949], [44.82446, 10.31917], [44.82458, 10.31901], [44.8247, 10.31897], [44.82485, 10.31896], [44.82502, 10.31903], [44.82517, 10.31923], [44.82529, 10.31932], [44.82573, 10.31941], [44.82599, 10.31937], [44.82631, 10.31917], [44.82663, 10.31884], [44.82678, 10.31854], [44.82691, 10.31803], [44.8271, 10.31675], [44.82707, 10.3165], [44.82699, 10.31636], [44.82641, 10.31574], [44.82636, 10.31561], [44.82638, 10.31544], [44.82646, 10.31528], [44.8268, 10.31492], [44.82686, 10.3148], [44.82691, 10.31382], [44.82705, 10.31336], [44.8272, 10.3131], [44.8276, 10.31263], [44.82812, 10.31242], [44.82951, 10.31263], [44.82977, 10.31258], [44.83022, 10.3124], [44.83057, 10.31253], [44.83197, 10.31354], [44.83225, 10.31384], [44.83229, 10.314], [44.83216, 10.31446], [44.83212, 10.31503], [44.83246, 10.31545], [44.83281, 10.31576], [44.83349, 10.31566], [44.83362, 10.31571], [44.83388, 10.316], [44.83413, 10.31639], [44.83433, 10.31685], [44.83454, 10.31711], [44.8348, 10.31725], [44.83514, 10.31725], [44.83525, 10.31712], [44.83569, 10.31629], [44.83593, 10.31571], [44.83623, 10.31553], [44.83654, 10.31553], [44.83706, 10.31583], [44.83721, 10.31586], [44.8376, 10.31571], [44.83813, 10.31511], [44.83823, 10.31481], [44.83829, 10.31439], [44.83831, 10.31387], [44.83819, 10.31346], [44.83785, 10.31257], [44.83779, 10.31196], [44.83787, 10.31162], [44.83813, 10.31111], [44.83843, 10.31067], [44.83862, 10.31047], [44.83885, 10.31033], [44.83961, 10.31046], [44.8399, 10.3104], [44.84062, 10.31008], [44.84089, 10.31012], [44.8411, 10.31032], [44.84129, 10.31089], [44.8414, 10.3117], [44.84126, 10.31242], [44.84128, 10.31286], [44.84138, 10.31313], [44.8416, 10.31334], [44.84177, 10.31368], [44.84187, 10.31413], [44.84184, 10.31469], [44.84141, 10.31563], [44.84143, 10.31628], [44.84151, 10.31647], [44.84177, 10.31657], [44.84211, 10.31653], [44.84243, 10.31635], [44.84311, 10.31587], [44.84323, 10.31563], [44.84333, 10.3151], [44.84334, 10.31474], [44.84327, 10.31445], [44.843, 10.31386], [44.84281, 10.31378], [44.84263, 10.31311], [44.84261, 10.31257], [44.84295, 10.31145], [44.84369, 10.31054], [44.84392, 10.31018], [44.84399, 10.30969], [44.84411, 10.30936], [44.8443, 10.30914], [44.8445, 10.30915], [44.84482, 10.30931], [44.84528, 10.31], [44.84549, 10.31048], [44.84577, 10.311], [44.84661, 10.31201], [44.84689, 10.31203], [44.84717, 10.31192], [44.84731, 10.31172], [44.84804, 10.31124], [44.84874, 10.31126], [44.84892, 10.31109], [44.84922, 10.31001], [44.8494, 10.30973], [44.85017, 10.30936], [44.85031, 10.30938], [44.85066, 10.30966], [44.85089, 10.31013], [44.85111, 10.31043], [44.85161, 10.31073], [44.85182, 10.31069], [44.85243, 10.31017], [44.85258, 10.31022], [44.85418, 10.31148], [44.85439, 10.31154], [44.85533, 10.31112], [44.8555, 10.31113], [44.85563, 10.31126], [44.85595, 10.31245], [44.85613, 10.31356], [44.8565, 10.31468], [44.85677, 10.31494], [44.85712, 10.31502], [44.85723, 10.31519], [44.85722, 10.31605], [44.85682, 10.31797], [44.85661, 10.31918], [44.85619, 10.32034], [44.85571, 10.32142], [44.85504, 10.32227], [44.85438, 10.323], [44.85428, 10.3233], [44.85433, 10.32386], [44.8545, 10.32442], [44.8549, 10.32512], [44.8549, 10.32574], [44.85499, 10.32649], [44.85511, 10.32697], [44.85539, 10.32748], [44.85559, 10.32764], [44.856, 10.32781], [44.85613, 10.32774], [44.85656, 10.32729], [44.85684, 10.32678], [44.85707, 10.32664], [44.85726, 10.32665], [44.85738, 10.32676], [44.85759, 10.32715], [44.85766, 10.32739], [44.85756, 10.3279], [44.8572, 10.32871], [44.85711, 10.32911], [44.85719, 10.3293], [44.85769, 10.32963], [44.85777, 10.32979], [44.85775, 10.33037], [44.85797, 10.33111], [44.85789, 10.33132], [44.85766, 10.33158], [44.85724, 10.33159], [44.85677, 10.33172], [44.8567, 10.33187], [44.85677, 10.33244], [44.85667, 10.3328], [44.85672, 10.33308], [44.85686, 10.33338], [44.85708, 10.33339], [44.8573, 10.33331], [44.85762, 10.33311], [44.85813, 10.33299], [44.85867, 10.33306], [44.85881, 10.33291], [44.85885, 10.33265], [44.85861, 10.33124], [44.85867, 10.33074], [44.8588, 10.33045], [44.85912, 10.33012], [44.85947, 10.32994], [44.85993, 10.32995], [44.86032, 10.3301], [44.86073, 10.33051], [44.86099, 10.33098], [44.86121, 10.33161], [44.86127, 10.33268], [44.86133, 10.33292], [44.86149, 10.33303], [44.86167, 10.33309], [44.8619, 10.33299], [44.86219, 10.33257], [44.86238, 10.33241], [44.86253, 10.33238], [44.86328, 10.33241], [44.86349, 10.33252], [44.86382, 10.33282], [44.86418, 10.33334], [44.86445, 10.33352], [44.86469, 10.33354], [44.8648, 10.33336], [44.86496, 10.33269], [44.86497, 10.33209], [44.86492, 10.33188], [44.86496, 10.33143], [44.86512, 10.33084], [44.86572, 10.32973], [44.86586, 10.32961], [44.86611, 10.32954], [44.86649, 10.32961], [44.86693, 10.32987], [44.86713, 10.33008], [44.86742, 10.3306], [44.86772, 10.3317], [44.86772, 10.33213], [44.86718, 10.3329], [44.86692, 10.33334], [44.86687, 10.33374], [44.86694, 10.33435], [44.86686, 10.33463], [44.86686, 10.33482], [44.86703, 10.33506], [44.86733, 10.33521], [44.86769, 10.33525], [44.8683, 10.33508], [44.86896, 10.33455], [44.86937, 10.33441], [44.86966, 10.33404], [44.87016, 10.33322], [44.87049, 10.33227], [44.87079, 10.33154], [44.87096, 10.33137], [44.87108, 10.33138], [44.87123, 10.33151], [44.87146, 10.33202], [44.87167, 10.33237], [44.87182, 10.33251], [44.87201, 10.33244], [44.87213, 10.33219], [44.87215, 10.3316], [44.87219, 10.33143], [44.87235, 10.33099], [44.87254, 10.3303], [44.87278, 10.33006], [44.87288, 10.33008], [44.87298, 10.33016], [44.87339, 10.33078], [44.87462, 10.33135], [44.87537, 10.33135], [44.8755, 10.33141], [44.87561, 10.33153], [44.87606, 10.33227], [44.87645, 10.33232], [44.87712, 10.3321], [44.8773, 10.3321], [44.87797, 10.33244], [44.8783, 10.33269], [44.87876, 10.33272], [44.87932, 10.33191], [44.87997, 10.3304]]], "day": "green", "day_label": "Relatively safer", "evidence": "no_findings", "evidence_label": "No area-specific findings", "name": "Golese", "night": "green", "night_label": "Relatively safer", "query": "Parma, Italy", "slug": "golese", "text": "Residential Parma, outside the areas local reporting and the Comune\u0027s security deployments name. The review found nothing area-specific for it \u2014 it is not in the designated zona rossa, not among the quartieri assigned community officers, and not singled out in the 2026 crime mapping. The dashed outline marks that as an absence of findings rather than a verified all-clear: the quiet parts of a city are also the ones nobody writes about.", "url": "/parma/golese.html"}, {"coords": [[[44.81335, 10.31229], [44.81304, 10.31436], [44.81308, 10.31388], [44.81307, 10.31281], [44.813, 10.31203], [44.81287, 10.31138], [44.8127, 10.31081], [44.81251, 10.31035], [44.8123, 10.30994], [44.81183, 10.30919], [44.80955, 10.30581], [44.80916, 10.30532], [44.80881, 10.30493], [44.80835, 10.3045], [44.80784, 10.30408], [44.80738, 10.30377], [44.80618, 10.30318], [44.80196, 10.30134], [44.80086, 10.30081], [44.80029, 10.30048], [44.79944, 10.29991], [44.79825, 10.29892], [44.79722, 10.29785], [44.79599, 10.29629], [44.79168, 10.29028], [44.79098, 10.28926], [44.79033, 10.28817], [44.78968, 10.28689], [44.78917, 10.2857], [44.77802, 10.25723], [44.77614, 10.25711], [44.77592, 10.25698], [44.77579, 10.25653], [44.77492, 10.25425], [44.77483, 10.25422], [44.77507, 10.25233], [44.77528, 10.25181], [44.77532, 10.2516], [44.77532, 10.25123], [44.77525, 10.25088], [44.77498, 10.24999], [44.77497, 10.24962], [44.77506, 10.24885], [44.77494, 10.24779], [44.77348, 10.24163], [44.77336, 10.23979], [44.77336, 10.23888], [44.77471, 10.23241], [44.77811, 10.23435], [44.77825, 10.23441], [44.77843, 10.23439], [44.77861, 10.23515], [44.78058, 10.2359], [44.78221, 10.23665], [44.78363, 10.23744], [44.78532, 10.23815], [44.78928, 10.23971], [44.7901, 10.23997], [44.79209, 10.24075], [44.79448, 10.24141], [44.79591, 10.24201], [44.79755, 10.24295], [44.79791, 10.2431], [44.79896, 10.24332], [44.79928, 10.24077], [44.8002, 10.23694], [44.80071, 10.23445], [44.80105, 10.23235], [44.80175, 10.22977], [44.80201, 10.22811], [44.80245, 10.22613], [44.80303, 10.22261], [44.80372, 10.22047], [44.8053, 10.21481], [44.80561, 10.21523], [44.80708, 10.21751], [44.80853, 10.21863], [44.80916, 10.21847], [44.80995, 10.2185], [44.81141, 10.21824], [44.81317, 10.2195], [44.81413, 10.21961], [44.81432, 10.21959], [44.81466, 10.21947], [44.81507, 10.21955], [44.8157, 10.21996], [44.81714, 10.22046], [44.81798, 10.22044], [44.81961, 10.221], [44.81983, 10.22121], [44.82011, 10.22158], [44.8204, 10.22216], [44.821, 10.22378], [44.8227, 10.22465], [44.82339, 10.22506], [44.82371, 10.22536], [44.82443, 10.22567], [44.82486, 10.22555], [44.82556, 10.22614], [44.82641, 10.22733], [44.82398, 10.23957], [44.82221, 10.23889], [44.81752, 10.26126], [44.81716, 10.26314], [44.81698, 10.26467], [44.81335, 10.31229]]], "day": "green", "day_label": "Relatively safer", "evidence": "no_findings", "evidence_label": "No area-specific findings", "name": "San Pancrazio", "night": "green", "night_label": "Relatively safer", "query": "Parma, Italy", "slug": "san-pancrazio", "text": "Residential Parma, outside the areas local reporting and the Comune\u0027s security deployments name. The review found nothing area-specific for it \u2014 it is not in the designated zona rossa, not among the quartieri assigned community officers, and not singled out in the 2026 crime mapping. The dashed outline marks that as an absence of findings rather than a verified all-clear: the quiet parts of a city are also the ones nobody writes about.", "url": "/parma/san-pancrazio.html"}, {"coords": [[[44.82169, 10.33433], [44.82169, 10.32946], [44.82213, 10.31931], [44.82204, 10.31917], [44.8219, 10.31872], [44.82174, 10.31859], [44.82168, 10.31861], [44.82159, 10.31873], [44.82151, 10.31911], [44.82127, 10.31954], [44.82105, 10.32007], [44.82082, 10.32031], [44.82036, 10.32056], [44.8201, 10.32057], [44.81981, 10.32049], [44.81934, 10.32023], [44.819, 10.31992], [44.81881, 10.3198], [44.81848, 10.31967], [44.81816, 10.31971], [44.81752, 10.31997], [44.8171, 10.32029], [44.81669, 10.32086], [44.81638, 10.3214], [44.81611, 10.32208], [44.81583, 10.3225], [44.8156, 10.32262], [44.81463, 10.32376], [44.81422, 10.32413], [44.8138, 10.32441], [44.8135, 10.32455], [44.81215, 10.3249], [44.81191, 10.32503], [44.81167, 10.32524], [44.81123, 10.32546], [44.81092, 10.32555], [44.81072, 10.32552], [44.81071, 10.32589], [44.80975, 10.33011], [44.81001, 10.3303], [44.80999, 10.3304], [44.80938, 10.33261], [44.80905, 10.33351], [44.80886, 10.33421], [44.80875, 10.33488], [44.80861, 10.33538], [44.80855, 10.33625], [44.80849, 10.33652], [44.80831, 10.33625], [44.80742, 10.33904], [44.8073, 10.33966], [44.80726, 10.34017], [44.80718, 10.34033], [44.80698, 10.34014], [44.80502, 10.34519], [44.8048, 10.34552], [44.80469, 10.34576], [44.80267, 10.3506], [44.80258, 10.35091], [44.80321, 10.35128], [44.80373, 10.35172], [44.80393, 10.352], [44.80412, 10.35237], [44.80429, 10.35293], [44.80537, 10.35349], [44.80521, 10.35412], [44.80559, 10.35497], [44.80619, 10.35574], [44.80654, 10.35525], [44.80674, 10.35528], [44.80734, 10.35553], [44.80736, 10.3556], [44.80718, 10.35654], [44.80845, 10.35703], [44.80878, 10.35615], [44.80922, 10.35605], [44.80995, 10.35661], [44.80892, 10.35994], [44.80895, 10.36044], [44.81025, 10.3621], [44.81062, 10.36247], [44.81145, 10.36145], [44.81193, 10.36168], [44.81192, 10.36276], [44.81262, 10.36381], [44.81422, 10.36093], [44.8146, 10.36119], [44.81491, 10.36166], [44.81492, 10.36689], [44.81833, 10.37126], [44.81871, 10.37257], [44.81951, 10.37278], [44.82048, 10.37452], [44.81866, 10.36126], [44.81844, 10.35984], [44.81728, 10.35344], [44.81663, 10.35126], [44.81637, 10.35055], [44.81436, 10.34798], [44.81443, 10.34799], [44.81573, 10.34652], [44.81595, 10.34621], [44.81631, 10.34556], [44.81715, 10.34348], [44.81747, 10.3429], [44.81766, 10.34263], [44.81807, 10.34218], [44.81988, 10.34049], [44.82037, 10.33989], [44.82079, 10.33921], [44.82108, 10.33859], [44.82133, 10.33791], [44.82159, 10.33687], [44.82169, 10.33583], [44.82169, 10.33433]]], "day": "yellow", "day_label": "Average", "evidence": "documented", "evidence_label": "", "name": "San Leonardo e stazione", "night": "red", "night_label": "Higher caution advised", "query": "Parma, Italy", "slug": "san-leonardo", "text": "The station and the quarter behind it, and the one part of Parma with a designated zona rossa. ParmaToday\u0027s reportage from inside it describes massed checks, pushers running, and residents who grip their bag in the underpass; shopkeepers and residents of San Leonardo went public saying they feel abandoned, with reports of crack and heroin use in front of homes. The Comune has assigned community officers to the quarter as part of a plan for thirty more local police. Many of Parma\u0027s cheaper rooms are here \u2014 the rating is the station end at night.", "url": "/parma/san-leonardo.html"}, {"coords": [[[44.86856, 10.3349], [44.86896, 10.33455], [44.86937, 10.33441], [44.86966, 10.33404], [44.87016, 10.33322], [44.87049, 10.33227], [44.87079, 10.33154], [44.87096, 10.33137], [44.87108, 10.33138], [44.87123, 10.33151], [44.87146, 10.33202], [44.87167, 10.33237], [44.87182, 10.33251], [44.87201, 10.33244], [44.87213, 10.33219], [44.87215, 10.3316], [44.87219, 10.33143], [44.87235, 10.33099], [44.87254, 10.3303], [44.87278, 10.33006], [44.87288, 10.33008], [44.87298, 10.33016], [44.87339, 10.33078], [44.87462, 10.33135], [44.87537, 10.33135], [44.8755, 10.33141], [44.87561, 10.33153], [44.87606, 10.33227], [44.87645, 10.33232], [44.87712, 10.3321], [44.8773, 10.3321], [44.87797, 10.33244], [44.8783, 10.33269], [44.87876, 10.33272], [44.87932, 10.33191], [44.87997, 10.3304], [44.88012, 10.3318], [44.87929, 10.33638], [44.87834, 10.34068], [44.87404, 10.36117], [44.87383, 10.36112], [44.87305, 10.36074], [44.87132, 10.35981], [44.87027, 10.36541], [44.87014, 10.3656], [44.87005, 10.36562], [44.87042, 10.36762], [44.87091, 10.36936], [44.8719, 10.37121], [44.87389, 10.37531], [44.87407, 10.37612], [44.87421, 10.3769], [44.87422, 10.3771], [44.87396, 10.37891], [44.87436, 10.38087], [44.87432, 10.38086], [44.87451, 10.38172], [44.87545, 10.38342], [44.87679, 10.38532], [44.8777, 10.38707], [44.87953, 10.39267], [44.87949, 10.39303], [44.8796, 10.39461], [44.87974, 10.39511], [44.8799, 10.39588], [44.87995, 10.39687], [44.87979, 10.39964], [44.87964, 10.40057], [44.87977, 10.40152], [44.87988, 10.40291], [44.87975, 10.40388], [44.87984, 10.40471], [44.87986, 10.40709], [44.87995, 10.4086], [44.87997, 10.41006], [44.88011, 10.41027], [44.88039, 10.41142], [44.8806, 10.41273], [44.88102, 10.4145], [44.8813, 10.41504], [44.88125, 10.41642], [44.87963, 10.41573], [44.87898, 10.41553], [44.87885, 10.41539], [44.86412, 10.40943], [44.86487, 10.40597], [44.86174, 10.40458], [44.86143, 10.40453], [44.85893, 10.40343], [44.85886, 10.40336], [44.85894, 10.40279], [44.85888, 10.40265], [44.85826, 10.40236], [44.85739, 10.40204], [44.85681, 10.40168], [44.85621, 10.40139], [44.85501, 10.40093], [44.85394, 10.40072], [44.85284, 10.40022], [44.85376, 10.39586], [44.85214, 10.39521], [44.85156, 10.39502], [44.85059, 10.39455], [44.8477, 10.39348], [44.84766, 10.39339], [44.84765, 10.39324], [44.84761, 10.39319], [44.8416, 10.39078], [44.83913, 10.38985], [44.83856, 10.38975], [44.83725, 10.38917], [44.82931, 10.38589], [44.82932, 10.38583], [44.82476, 10.384], [44.82759, 10.37635], [44.82537, 10.37471], [44.82547, 10.37444], [44.82432, 10.37355], [44.8237, 10.37521], [44.82285, 10.37548], [44.8209, 10.37524], [44.82048, 10.37452], [44.81866, 10.36126], [44.81844, 10.35984], [44.81728, 10.35344], [44.81663, 10.35126], [44.81637, 10.35055], [44.81436, 10.34798], [44.81443, 10.34799], [44.81573, 10.34652], [44.81595, 10.34621], [44.81631, 10.34556], [44.81715, 10.34348], [44.81747, 10.3429], [44.81766, 10.34263], [44.81807, 10.34218], [44.81988, 10.34049], [44.82046, 10.33976], [44.82091, 10.33898], [44.82124, 10.33817], [44.82143, 10.33757], [44.82162, 10.33668], [44.82169, 10.33583], [44.82169, 10.32946], [44.82213, 10.31931], [44.82264, 10.3194], [44.82339, 10.31979], [44.82423, 10.3199], [44.82437, 10.31985], [44.82441, 10.31977], [44.82446, 10.31949], [44.82444, 10.31923], [44.82458, 10.31901], [44.82477, 10.31896], [44.82493, 10.31898], [44.82506, 10.31906], [44.82517, 10.31923], [44.82529, 10.31932], [44.82581, 10.31941], [44.82615, 10.31929], [44.82663, 10.31884], [44.82678, 10.31854], [44.82691, 10.31803], [44.8271, 10.31668], [44.82707, 10.3165], [44.82699, 10.31636], [44.82641, 10.31574], [44.82636, 10.31561], [44.82638, 10.31544], [44.82646, 10.31528], [44.8268, 10.31492], [44.82686, 10.3148], [44.82691, 10.31382], [44.82705, 10.31336], [44.8272, 10.3131], [44.8276, 10.31263], [44.82812, 10.31242], [44.82951, 10.31263], [44.82977, 10.31258], [44.83022, 10.3124], [44.83057, 10.31253], [44.83197, 10.31354], [44.83225, 10.31384], [44.83229, 10.314], [44.83216, 10.31446], [44.83212, 10.31503], [44.83246, 10.31545], [44.83281, 10.31576], [44.83349, 10.31566], [44.83362, 10.31571], [44.83388, 10.316], [44.83413, 10.31639], [44.83433, 10.31685], [44.83454, 10.31711], [44.8348, 10.31725], [44.83514, 10.31725], [44.83525, 10.31712], [44.83569, 10.31629], [44.83593, 10.31571], [44.83623, 10.31553], [44.83654, 10.31553], [44.83706, 10.31583], [44.83721, 10.31586], [44.8376, 10.31571], [44.83813, 10.31511], [44.83823, 10.31481], [44.83829, 10.31439], [44.83831, 10.31387], [44.83819, 10.31346], [44.83785, 10.31257], [44.83779, 10.31196], [44.83787, 10.31162], [44.83813, 10.31111], [44.83843, 10.31067], [44.83862, 10.31047], [44.83885, 10.31033], [44.83961, 10.31046], [44.8399, 10.3104], [44.84062, 10.31008], [44.84089, 10.31012], [44.8411, 10.31032], [44.84129, 10.31089], [44.8414, 10.3117], [44.84126, 10.31242], [44.84128, 10.31286], [44.84138, 10.31313], [44.8416, 10.31334], [44.84177, 10.31368], [44.84187, 10.31413], [44.84184, 10.31469], [44.84141, 10.31563], [44.84143, 10.31628], [44.84151, 10.31647], [44.84177, 10.31657], [44.84211, 10.31653], [44.84243, 10.31635], [44.84311, 10.31587], [44.84323, 10.31563], [44.84333, 10.3151], [44.84334, 10.31474], [44.84327, 10.31445], [44.843, 10.31386], [44.84281, 10.31378], [44.84263, 10.31311], [44.84261, 10.31257], [44.84295, 10.31145], [44.84369, 10.31054], [44.84392, 10.31018], [44.84399, 10.30969], [44.84411, 10.30936], [44.8443, 10.30914], [44.8445, 10.30915], [44.84482, 10.30931], [44.84528, 10.31], [44.84549, 10.31048], [44.84577, 10.311], [44.84661, 10.31201], [44.84689, 10.31203], [44.84717, 10.31192], [44.84731, 10.31172], [44.84804, 10.31124], [44.84874, 10.31126], [44.84892, 10.31109], [44.84922, 10.31001], [44.8494, 10.30973], [44.85017, 10.30936], [44.85031, 10.30938], [44.85066, 10.30966], [44.85089, 10.31013], [44.85111, 10.31043], [44.85161, 10.31073], [44.85182, 10.31069], [44.85243, 10.31017], [44.85258, 10.31022], [44.85418, 10.31148], [44.85439, 10.31154], [44.85533, 10.31112], [44.8555, 10.31113], [44.85563, 10.31126], [44.85595, 10.31245], [44.85613, 10.31356], [44.8565, 10.31468], [44.85677, 10.31494], [44.85712, 10.31502], [44.85723, 10.31519], [44.85722, 10.31605], [44.85682, 10.31797], [44.85661, 10.31918], [44.85619, 10.32034], [44.85571, 10.32142], [44.85504, 10.32227], [44.85438, 10.323], [44.85428, 10.3233], [44.85433, 10.32386], [44.8545, 10.32442], [44.8549, 10.32512], [44.8549, 10.32574], [44.85499, 10.32649], [44.85511, 10.32697], [44.85539, 10.32748], [44.85559, 10.32764], [44.856, 10.32781], [44.85613, 10.32774], [44.85656, 10.32729], [44.85684, 10.32678], [44.85707, 10.32664], [44.85726, 10.32665], [44.85738, 10.32676], [44.85759, 10.32715], [44.85766, 10.32739], [44.85756, 10.3279], [44.8572, 10.32871], [44.85711, 10.32911], [44.85719, 10.3293], [44.85769, 10.32963], [44.85777, 10.32979], [44.85775, 10.33037], [44.85797, 10.33111], [44.85789, 10.33132], [44.85766, 10.33158], [44.85724, 10.33159], [44.85677, 10.33172], [44.8567, 10.33187], [44.85677, 10.33244], [44.85667, 10.3328], [44.85672, 10.33308], [44.85686, 10.33338], [44.85708, 10.33339], [44.8573, 10.33331], [44.85762, 10.33311], [44.85813, 10.33299], [44.85867, 10.33306], [44.85881, 10.33291], [44.85885, 10.33265], [44.85861, 10.33124], [44.85867, 10.33074], [44.8588, 10.33045], [44.85912, 10.33012], [44.85947, 10.32994], [44.85993, 10.32995], [44.86032, 10.3301], [44.86073, 10.33051], [44.86099, 10.33098], [44.86121, 10.33161], [44.86127, 10.33268], [44.86133, 10.33292], [44.86149, 10.33303], [44.86167, 10.33309], [44.8619, 10.33299], [44.86219, 10.33257], [44.86238, 10.33241], [44.86253, 10.33238], [44.86328, 10.33241], [44.86349, 10.33252], [44.86382, 10.33282], [44.86418, 10.33334], [44.86445, 10.33352], [44.86469, 10.33354], [44.8648, 10.33336], [44.86496, 10.33269], [44.86497, 10.33209], [44.86492, 10.33188], [44.86496, 10.33143], [44.86512, 10.33084], [44.86572, 10.32973], [44.86586, 10.32961], [44.86611, 10.32954], [44.86649, 10.32961], [44.86693, 10.32987], [44.86713, 10.33008], [44.86742, 10.3306], [44.86772, 10.3317], [44.86772, 10.33213], [44.86718, 10.3329], [44.86692, 10.33334], [44.86687, 10.33374], [44.86694, 10.33435], [44.86686, 10.33463], [44.86686, 10.33482], [44.86703, 10.33506], [44.86733, 10.33521], [44.86769, 10.33525], [44.8683, 10.33508], [44.86856, 10.3349]]], "day": "green", "day_label": "Relatively safer", "evidence": "no_findings", "evidence_label": "No area-specific findings", "name": "San Martino", "night": "green", "night_label": "Relatively safer", "query": "Parma, Italy", "slug": "san-martino", "text": "Residential Parma, outside the areas local reporting and the Comune\u0027s security deployments name. The review found nothing area-specific for it \u2014 it is not in the designated zona rossa, not among the quartieri assigned community officers, and not singled out in the 2026 crime mapping. The dashed outline marks that as an absence of findings rather than a verified all-clear: the quiet parts of a city are also the ones nobody writes about.", "url": "/parma/san-martino.html"}, {"coords": [[[44.80895, 10.36044], [44.80892, 10.35994], [44.80995, 10.35661], [44.80922, 10.35605], [44.80878, 10.35615], [44.80845, 10.35703], [44.80718, 10.35654], [44.80736, 10.3556], [44.80732, 10.35551], [44.80674, 10.35528], [44.80654, 10.35525], [44.80619, 10.35574], [44.80559, 10.35497], [44.80521, 10.35412], [44.80537, 10.35349], [44.80429, 10.35293], [44.80412, 10.35237], [44.80393, 10.352], [44.80373, 10.35172], [44.80321, 10.35128], [44.80258, 10.35091], [44.80267, 10.3506], [44.80295, 10.34995], [44.8012, 10.34745], [44.79909, 10.34594], [44.79736, 10.34494], [44.79688, 10.34484], [44.79685, 10.34517], [44.79672, 10.34561], [44.79356, 10.3549], [44.79333, 10.35567], [44.79269, 10.35751], [44.7927, 10.3576], [44.79265, 10.35763], [44.79225, 10.35876], [44.79248, 10.35888], [44.79183, 10.36088], [44.79203, 10.361], [44.79155, 10.36234], [44.79137, 10.3631], [44.7915, 10.36466], [44.7911, 10.36569], [44.7908, 10.36802], [44.79056, 10.36856], [44.79013, 10.36909], [44.78933, 10.36967], [44.78865, 10.37052], [44.78811, 10.3714], [44.78788, 10.37188], [44.78784, 10.37207], [44.7879, 10.37348], [44.78766, 10.37428], [44.78731, 10.37586], [44.7864, 10.37853], [44.78577, 10.38014], [44.78547, 10.381], [44.78488, 10.38305], [44.78339, 10.38204], [44.78325, 10.38277], [44.78302, 10.38266], [44.78275, 10.38384], [44.78211, 10.38573], [44.78181, 10.38688], [44.78135, 10.38664], [44.78166, 10.38538], [44.78088, 10.38496], [44.78039, 10.38286], [44.77923, 10.38233], [44.77778, 10.38776], [44.77317, 10.38511], [44.77253, 10.38677], [44.77712, 10.38972], [44.77681, 10.39089], [44.7759, 10.39047], [44.77546, 10.39207], [44.77556, 10.39439], [44.77802, 10.39537], [44.77839, 10.39607], [44.77809, 10.39726], [44.77843, 10.39761], [44.77838, 10.3985], [44.77861, 10.39897], [44.77831, 10.39983], [44.7782, 10.39991], [44.77806, 10.40037], [44.77687, 10.39976], [44.77649, 10.40142], [44.77739, 10.40202], [44.77566, 10.40672], [44.77521, 10.40648], [44.7747, 10.40793], [44.77519, 10.40827], [44.77456, 10.41007], [44.7741, 10.40978], [44.7721, 10.41547], [44.77115, 10.41495], [44.76839, 10.42336], [44.76838, 10.42499], [44.77004, 10.42464], [44.76993, 10.42821], [44.77014, 10.42798], [44.77055, 10.42764], [44.7711, 10.4276], [44.77172, 10.42717], [44.77249, 10.4273], [44.77285, 10.42744], [44.77394, 10.42708], [44.77458, 10.42722], [44.77508, 10.42722], [44.77607, 10.42689], [44.77653, 10.42668], [44.77708, 10.42658], [44.77737, 10.42624], [44.77761, 10.42604], [44.77773, 10.42603], [44.77805, 10.42588], [44.77853, 10.42518], [44.7788, 10.42502], [44.77911, 10.42503], [44.77985, 10.4252], [44.78075, 10.42498], [44.78128, 10.4245], [44.78155, 10.42461], [44.78343, 10.42468], [44.78477, 10.42451], [44.78552, 10.42448], [44.78594, 10.42461], [44.78665, 10.42474], [44.78804, 10.42448], [44.78948, 10.42344], [44.78998, 10.42328], [44.79255, 10.42308], [44.7929, 10.42323], [44.79408, 10.42306], [44.7948, 10.42277], [44.79552, 10.42311], [44.79638, 10.42307], [44.79691, 10.42294], [44.79735, 10.42256], [44.7991, 10.4241], [44.79924, 10.42439], [44.79937, 10.42449], [44.7996, 10.42485], [44.79977, 10.42535], [44.8005, 10.42804], [44.80018, 10.42951], [44.80018, 10.43076], [44.79994, 10.43214], [44.79993, 10.43343], [44.79975, 10.43541], [44.80006, 10.4364], [44.80024, 10.43678], [44.80022, 10.43686], [44.80035, 10.43704], [44.80034, 10.43711], [44.80074, 10.43796], [44.80147, 10.43831], [44.80273, 10.43739], [44.80374, 10.43671], [44.80578, 10.4359], [44.80673, 10.43591], [44.80715, 10.43653], [44.80781, 10.4369], [44.80863, 10.43776], [44.81031, 10.43802], [44.8111, 10.43828], [44.81202, 10.43873], [44.81247, 10.43886], [44.813, 10.43939], [44.81314, 10.43961], [44.81337, 10.43985], [44.81529, 10.44097], [44.816, 10.44121], [44.81628, 10.44139], [44.81666, 10.4418], [44.81736, 10.4435], [44.8176, 10.44364], [44.8187, 10.44289], [44.81931, 10.44265], [44.8197, 10.44076], [44.82003, 10.43861], [44.82015, 10.43829], [44.82022, 10.43799], [44.82128, 10.43847], [44.82205, 10.43404], [44.82229, 10.43312], [44.82245, 10.4327], [44.82366, 10.43007], [44.82451, 10.42783], [44.82744, 10.42361], [44.82937, 10.42067], [44.82932, 10.42042], [44.82942, 10.42049], [44.82947, 10.42049], [44.82953, 10.42042], [44.83198, 10.41606], [44.8322, 10.41589], [44.83149, 10.41177], [44.8311, 10.40931], [44.83037, 10.40515], [44.82868, 10.39476], [44.82627, 10.3892], [44.82607, 10.38855], [44.82581, 10.38802], [44.82399, 10.38379], [44.8241, 10.38377], [44.82443, 10.38393], [44.82456, 10.38388], [44.82476, 10.384], [44.82759, 10.37635], [44.82537, 10.37471], [44.82547, 10.37444], [44.82432, 10.37355], [44.8237, 10.37521], [44.82285, 10.37548], [44.8209, 10.37524], [44.81951, 10.37278], [44.81871, 10.37257], [44.81833, 10.37126], [44.81492, 10.36689], [44.81491, 10.36166], [44.8146, 10.36119], [44.81422, 10.36093], [44.81262, 10.36381], [44.81192, 10.36276], [44.81193, 10.36168], [44.81145, 10.36145], [44.81062, 10.36247], [44.81025, 10.3621], [44.80895, 10.36044]]], "day": "green", "day_label": "Relatively safer", "evidence": "no_findings", "evidence_label": "No area-specific findings", "name": "San Lazzaro", "night": "green", "night_label": "Relatively safer", "query": "Parma, Italy", "slug": "san-lazzaro", "text": "Residential Parma, outside the areas local reporting and the Comune\u0027s security deployments name. The review found nothing area-specific for it \u2014 it is not in the designated zona rossa, not among the quartieri assigned community officers, and not singled out in the 2026 crime mapping. The dashed outline marks that as an absence of findings rather than a verified all-clear: the quiet parts of a city are also the ones nobody writes about.", "url": "/parma/san-lazzaro.html"}, {"coords": [[[44.74849, 10.4289], [44.74766, 10.42848], [44.74662, 10.42817], [44.74505, 10.42806], [44.74442, 10.42779], [44.74349, 10.42724], [44.74316, 10.4269], [44.74319, 10.42511], [44.74275, 10.42488], [44.74208, 10.42482], [44.74104, 10.42131], [44.74093, 10.4211], [44.7409, 10.42087], [44.74021, 10.41865], [44.74201, 10.41958], [44.74199, 10.41967], [44.74206, 10.4197], [44.74332, 10.41429], [44.74502, 10.40733], [44.74525, 10.40674], [44.74739, 10.40757], [44.74852, 10.40287], [44.74575, 10.40146], [44.74442, 10.4006], [44.74465, 10.39989], [44.7434, 10.3991], [44.74259, 10.39827], [44.74261, 10.39807], [44.74219, 10.39761], [44.74321, 10.39099], [44.74663, 10.3921], [44.74736, 10.39351], [44.74932, 10.39473], [44.7518, 10.37621], [44.74803, 10.37541], [44.74845, 10.37377], [44.7491, 10.37247], [44.75305, 10.37381], [44.75364, 10.37041], [44.75539, 10.37145], [44.75563, 10.37076], [44.75745, 10.37203], [44.75886, 10.36979], [44.76114, 10.36084], [44.76163, 10.36114], [44.763, 10.35482], [44.76488, 10.35373], [44.76511, 10.35283], [44.76847, 10.35109], [44.76935, 10.3512], [44.76939, 10.35052], [44.77011, 10.35057], [44.77011, 10.34998], [44.77057, 10.34958], [44.77085, 10.34942], [44.77115, 10.34976], [44.77243, 10.34946], [44.77242, 10.34858], [44.77444, 10.3478], [44.77654, 10.34772], [44.77701, 10.3463], [44.77759, 10.34591], [44.77868, 10.34544], [44.78054, 10.34551], [44.78056, 10.34508], [44.78082, 10.34487], [44.78079, 10.34431], [44.78222, 10.3435], [44.78361, 10.34289], [44.78388, 10.3426], [44.78446, 10.34248], [44.78457, 10.34197], [44.78506, 10.34215], [44.7852, 10.34141], [44.78517, 10.34131], [44.78554, 10.34112], [44.78578, 10.34121], [44.78697, 10.34069], [44.78702, 10.34022], [44.78725, 10.34046], [44.78897, 10.34119], [44.78913, 10.34133], [44.78917, 10.3413], [44.78945, 10.34141], [44.79672, 10.34471], [44.79688, 10.34484], [44.79685, 10.34517], [44.79672, 10.34561], [44.79356, 10.3549], [44.79333, 10.35567], [44.79269, 10.35751], [44.7927, 10.3576], [44.79265, 10.35763], [44.79225, 10.35876], [44.79248, 10.35888], [44.79183, 10.36088], [44.79203, 10.361], [44.79155, 10.36234], [44.79137, 10.3631], [44.7915, 10.36466], [44.7911, 10.36569], [44.7908, 10.36802], [44.79056, 10.36856], [44.79013, 10.36909], [44.78933, 10.36967], [44.78865, 10.37052], [44.78811, 10.3714], [44.78788, 10.37188], [44.78784, 10.37207], [44.7879, 10.37348], [44.78766, 10.37428], [44.78731, 10.37586], [44.7864, 10.37853], [44.78577, 10.38014], [44.78547, 10.381], [44.78488, 10.38305], [44.78339, 10.38204], [44.78325, 10.38277], [44.78302, 10.38266], [44.78275, 10.38384], [44.78211, 10.38573], [44.78181, 10.38688], [44.78135, 10.38664], [44.78166, 10.38538], [44.78088, 10.38496], [44.78039, 10.38286], [44.77923, 10.38233], [44.77778, 10.38776], [44.77317, 10.38511], [44.77253, 10.38677], [44.77712, 10.38972], [44.77681, 10.39089], [44.7759, 10.39047], [44.77546, 10.39207], [44.77556, 10.39439], [44.77802, 10.39537], [44.77839, 10.39607], [44.77809, 10.39726], [44.77843, 10.39761], [44.77838, 10.3985], [44.77861, 10.39897], [44.77831, 10.39983], [44.7782, 10.39991], [44.77806, 10.40037], [44.77687, 10.39976], [44.77649, 10.40142], [44.77739, 10.40202], [44.77566, 10.40672], [44.77521, 10.40648], [44.7747, 10.40793], [44.77519, 10.40827], [44.77456, 10.41007], [44.7741, 10.40978], [44.7721, 10.41547], [44.77115, 10.41495], [44.76839, 10.42336], [44.76838, 10.42499], [44.77004, 10.42464], [44.76993, 10.42821], [44.76885, 10.42791], [44.76837, 10.42788], [44.76785, 10.42796], [44.76598, 10.42756], [44.76542, 10.4275], [44.76479, 10.42753], [44.76423, 10.4278], [44.76372, 10.42816], [44.76347, 10.42806], [44.76304, 10.42797], [44.7626, 10.42801], [44.76213, 10.42813], [44.76089, 10.42784], [44.75911, 10.42788], [44.75824, 10.42803], [44.75759, 10.42843], [44.75686, 10.42896], [44.75594, 10.42913], [44.75465, 10.42925], [44.75417, 10.42927], [44.75399, 10.42919], [44.7537, 10.42931], [44.75314, 10.42923], [44.75266, 10.42972], [44.75244, 10.42962], [44.75201, 10.42977], [44.75149, 10.42928], [44.75109, 10.42912], [44.75021, 10.42968], [44.75001, 10.42968], [44.74849, 10.4289]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Lubiana", "night": "yellow", "night_label": "Average", "query": "Parma, Italy", "slug": "lubiana", "text": "Eastern residential Parma. Named alongside the centre, San Leonardo and Oltretorrente in the grouping that accounts for over 70% of the episodes in the opposition group\u0027s 2026 crime map, though its own share of that total is small. Residential, with little visitor traffic.", "url": "/parma/lubiana.html"}, {"coords": [[[44.79183, 10.3425], [44.78936, 10.34137], [44.78917, 10.3413], [44.78913, 10.34133], [44.78897, 10.34119], [44.78725, 10.34046], [44.78702, 10.34022], [44.78697, 10.34069], [44.78578, 10.34121], [44.78554, 10.34112], [44.78517, 10.34131], [44.7852, 10.34141], [44.78506, 10.34215], [44.78457, 10.34197], [44.78446, 10.34248], [44.78388, 10.3426], [44.78361, 10.34289], [44.78222, 10.3435], [44.78079, 10.34431], [44.78082, 10.34487], [44.78056, 10.34508], [44.78054, 10.34551], [44.77868, 10.34544], [44.77759, 10.34591], [44.77701, 10.3463], [44.77654, 10.34772], [44.77444, 10.3478], [44.77242, 10.34858], [44.77243, 10.34946], [44.77115, 10.34976], [44.77085, 10.34942], [44.77057, 10.34958], [44.77011, 10.34998], [44.77011, 10.35057], [44.76939, 10.35052], [44.76935, 10.3512], [44.76847, 10.35109], [44.76511, 10.35283], [44.76488, 10.35373], [44.763, 10.35482], [44.76163, 10.36114], [44.76114, 10.36084], [44.75886, 10.36979], [44.75745, 10.37203], [44.75563, 10.37076], [44.75539, 10.37145], [44.75364, 10.37041], [44.75305, 10.37381], [44.7491, 10.37247], [44.74845, 10.37377], [44.74803, 10.37541], [44.7518, 10.37621], [44.74932, 10.39473], [44.74736, 10.39351], [44.74663, 10.3921], [44.74321, 10.39099], [44.74219, 10.39761], [44.74204, 10.39753], [44.74181, 10.39717], [44.74165, 10.39707], [44.74168, 10.39696], [44.74143, 10.3965], [44.74276, 10.38787], [44.74266, 10.38794], [44.74234, 10.38773], [44.7421, 10.38743], [44.74171, 10.38742], [44.74109, 10.38723], [44.74077, 10.38676], [44.74051, 10.38666], [44.73994, 10.38681], [44.7396, 10.38684], [44.73818, 10.38657], [44.73778, 10.38641], [44.73682, 10.38562], [44.73651, 10.38552], [44.73611, 10.3853], [44.73556, 10.3849], [44.7347, 10.3846], [44.73417, 10.38427], [44.73362, 10.384], [44.73338, 10.3838], [44.7331, 10.38345], [44.73278, 10.38317], [44.73253, 10.38299], [44.73198, 10.38287], [44.73176, 10.38259], [44.73151, 10.38244], [44.73117, 10.38231], [44.73067, 10.38178], [44.73016, 10.38162], [44.72943, 10.38119], [44.72882, 10.38072], [44.72866, 10.38066], [44.7284, 10.38048], [44.72799, 10.38014], [44.72529, 10.37862], [44.7245, 10.3781], [44.72367, 10.37792], [44.7233, 10.378], [44.72263, 10.37833], [44.72205, 10.37815], [44.72127, 10.37756], [44.72052, 10.37721], [44.72005, 10.37647], [44.71949, 10.37618], [44.71944, 10.37605], [44.71908, 10.37615], [44.71869, 10.37739], [44.71751, 10.37736], [44.71709, 10.37726], [44.71691, 10.37712], [44.71655, 10.3773], [44.71629, 10.37721], [44.716, 10.37723], [44.71163, 10.37661], [44.71161, 10.37647], [44.71173, 10.37542], [44.71144, 10.37363], [44.70812, 10.37352], [44.70496, 10.37351], [44.70404, 10.37344], [44.70549, 10.36709], [44.70565, 10.36504], [44.70574, 10.36439], [44.70594, 10.36336], [44.70599, 10.36317], [44.7061, 10.36304], [44.70647, 10.36283], [44.7066, 10.36266], [44.70678, 10.3623], [44.70711, 10.36131], [44.70733, 10.35945], [44.70739, 10.35925], [44.70749, 10.35912], [44.70777, 10.35889], [44.70847, 10.35811], [44.70866, 10.35798], [44.70906, 10.35789], [44.7103, 10.35716], [44.71075, 10.35697], [44.71092, 10.35683], [44.71163, 10.35583], [44.71174, 10.35524], [44.71173, 10.35513], [44.71283, 10.35451], [44.71316, 10.35437], [44.71345, 10.35436], [44.71414, 10.35447], [44.71459, 10.35313], [44.71499, 10.35208], [44.71551, 10.35085], [44.71571, 10.35028], [44.71946, 10.33907], [44.71995, 10.33897], [44.72097, 10.34019], [44.72536, 10.34019], [44.72719, 10.34001], [44.72816, 10.33933], [44.72978, 10.33931], [44.7306, 10.3395], [44.73121, 10.34001], [44.73255, 10.34036], [44.73377, 10.34087], [44.73438, 10.34139], [44.73626, 10.34284], [44.73708, 10.34356], [44.73957, 10.34455], [44.74158, 10.34396], [44.74362, 10.34556], [44.74457, 10.34582], [44.74623, 10.34518], [44.74709, 10.34544], [44.74796, 10.34523], [44.74869, 10.34404], [44.75184, 10.34149], [44.75218, 10.34019], [44.75365, 10.33915], [44.75412, 10.3385], [44.75465, 10.33666], [44.75606, 10.33481], [44.75753, 10.33399], [44.75804, 10.33392], [44.75841, 10.33395], [44.75898, 10.33416], [44.75924, 10.33414], [44.75957, 10.33407], [44.76027, 10.33377], [44.76072, 10.3337], [44.76134, 10.33386], [44.76189, 10.33416], [44.76208, 10.33421], [44.76231, 10.33421], [44.76263, 10.33414], [44.76288, 10.33401], [44.7648, 10.33245], [44.76635, 10.33079], [44.76673, 10.33058], [44.76741, 10.33054], [44.76765, 10.33041], [44.76803, 10.33011], [44.76815, 10.32992], [44.76848, 10.32879], [44.76896, 10.32759], [44.76908, 10.32737], [44.76949, 10.32686], [44.76971, 10.32667], [44.76991, 10.32656], [44.77018, 10.32643], [44.77043, 10.32637], [44.77057, 10.32635], [44.77135, 10.32646], [44.7716, 10.32637], [44.7719, 10.32606], [44.77238, 10.32529], [44.77264, 10.32512], [44.77294, 10.32504], [44.77327, 10.32504], [44.77414, 10.32525], [44.77437, 10.32524], [44.77517, 10.32481], [44.77554, 10.32475], [44.77582, 10.32483], [44.77628, 10.32508], [44.77658, 10.32539], [44.77673, 10.32547], [44.77782, 10.32569], [44.77808, 10.3257], [44.77876, 10.32559], [44.77901, 10.3256], [44.77939, 10.32569], [44.77983, 10.32568], [44.78009, 10.32552], [44.78075, 10.32559], [44.78123, 10.32578], [44.7816, 10.32602], [44.78184, 10.3261], [44.78234, 10.32616], [44.78314, 10.32662], [44.78363, 10.32679], [44.78383, 10.32667], [44.78426, 10.32673], [44.78473, 10.32644], [44.78504, 10.32633], [44.78549, 10.3259], [44.78622, 10.32552], [44.78649, 10.32525], [44.78742, 10.32499], [44.78786, 10.32498], [44.78826, 10.32487], [44.78876, 10.32489], [44.78886, 10.32485], [44.79067, 10.32363], [44.79134, 10.32331], [44.79183, 10.32313], [44.7921, 10.32306], [44.79244, 10.32306], [44.79338, 10.32334], [44.79465, 10.32328], [44.79523, 10.32836], [44.79594, 10.33536], [44.79602, 10.33536], [44.79613, 10.33545], [44.79621, 10.33589], [44.79616, 10.33609], [44.79602, 10.33618], [44.79621, 10.33748], [44.7968, 10.34302], [44.79688, 10.34484], [44.79672, 10.34471], [44.79183, 10.3425]]], "day": "green", "day_label": "Relatively safer", "evidence": "no_findings", "evidence_label": "No area-specific findings", "name": "Cittadella", "night": "green", "night_label": "Relatively safer", "query": "Parma, Italy", "slug": "cittadella", "text": "Residential Parma, outside the areas local reporting and the Comune\u0027s security deployments name. The review found nothing area-specific for it \u2014 it is not in the designated zona rossa, not among the quartieri assigned community officers, and not singled out in the 2026 crime mapping. The dashed outline marks that as an absence of findings rather than a verified all-clear: the quiet parts of a city are also the ones nobody writes about.", "url": "/parma/cittadella.html"}, {"coords": [[[44.76734, 10.32251], [44.7676, 10.32162], [44.76777, 10.3212], [44.76798, 10.32083], [44.76815, 10.32056], [44.76943, 10.319], [44.76983, 10.31842], [44.77071, 10.31704], [44.77101, 10.31652], [44.77125, 10.316], [44.77144, 10.31541], [44.77164, 10.31455], [44.77257, 10.31009], [44.77278, 10.30938], [44.77313, 10.30855], [44.77358, 10.30778], [44.77419, 10.30704], [44.77636, 10.30505], [44.77651, 10.30528], [44.77663, 10.30535], [44.77722, 10.30551], [44.77794, 10.30614], [44.77833, 10.30671], [44.77814, 10.30759], [44.77803, 10.30831], [44.77774, 10.30914], [44.77762, 10.30995], [44.77905, 10.31083], [44.77986, 10.31102], [44.78062, 10.31111], [44.78153, 10.3117], [44.78241, 10.31261], [44.78346, 10.31415], [44.78446, 10.31533], [44.78505, 10.31586], [44.78633, 10.31676], [44.7867, 10.31692], [44.78831, 10.31822], [44.7889, 10.31854], [44.78975, 10.31878], [44.79024, 10.31906], [44.79075, 10.31929], [44.79113, 10.31971], [44.79164, 10.32066], [44.79349, 10.32331], [44.79338, 10.32334], [44.79292, 10.32318], [44.79231, 10.32305], [44.79197, 10.32309], [44.79134, 10.32331], [44.79067, 10.32363], [44.78881, 10.32487], [44.78826, 10.32487], [44.78786, 10.32498], [44.78742, 10.32499], [44.78649, 10.32525], [44.78622, 10.32552], [44.78549, 10.3259], [44.78504, 10.32633], [44.78477, 10.32642], [44.78422, 10.32674], [44.78383, 10.32667], [44.78367, 10.32678], [44.78349, 10.32676], [44.783, 10.32655], [44.78234, 10.32616], [44.78184, 10.3261], [44.7816, 10.32602], [44.78123, 10.32578], [44.78056, 10.32555], [44.78009, 10.32552], [44.77983, 10.32568], [44.77939, 10.32569], [44.77901, 10.3256], [44.77876, 10.32559], [44.77791, 10.3257], [44.77689, 10.32552], [44.77658, 10.32539], [44.77638, 10.32516], [44.77597, 10.3249], [44.77554, 10.32475], [44.77517, 10.32481], [44.77437, 10.32524], [44.77414, 10.32525], [44.77327, 10.32504], [44.77294, 10.32504], [44.77264, 10.32512], [44.77238, 10.32529], [44.7719, 10.32606], [44.77173, 10.32625], [44.7716, 10.32637], [44.77135, 10.32646], [44.77057, 10.32635], [44.77043, 10.32637], [44.77032, 10.32542], [44.76989, 10.32538], [44.76799, 10.32489], [44.76733, 10.32462], [44.76726, 10.32372], [44.7673, 10.32273], [44.76734, 10.32251]]], "day": "green", "day_label": "Relatively safer", "evidence": "documented", "evidence_label": "", "name": "Montanara", "night": "green", "night_label": "Relatively safer", "query": "Parma, Italy", "slug": "montanara", "text": "Southern residential Parma. It appears in the 2026 crime map only inside a 5% bucket shared with Lubiana, which is too thin to carry a rating of its own, and nowhere else. Quiet, and the page says exactly how little is behind that.", "url": "/parma/montanara.html"}, {"coords": [[[44.70446, 10.29658], [44.70441, 10.29656], [44.70437, 10.29676], [44.70452, 10.29682], [44.70427, 10.29803], [44.70029, 10.29625], [44.69963, 10.29587], [44.69916, 10.29566], [44.69685, 10.29514], [44.69437, 10.29406], [44.69378, 10.29384], [44.69287, 10.29365], [44.6923, 10.29348], [44.69177, 10.29326], [44.69141, 10.29306], [44.68966, 10.29719], [44.68595, 10.29535], [44.68496, 10.29492], [44.68494, 10.29501], [44.68371, 10.2945], [44.68339, 10.29603], [44.68294, 10.29584], [44.68246, 10.29552], [44.68235, 10.29558], [44.68172, 10.29535], [44.68038, 10.29496], [44.68014, 10.29612], [44.67343, 10.2934], [44.67334, 10.29379], [44.67247, 10.29348], [44.67177, 10.29648], [44.67178, 10.29664], [44.67154, 10.29753], [44.66963, 10.3024], [44.66871, 10.30544], [44.66849, 10.30605], [44.66842, 10.30603], [44.66819, 10.30578], [44.66768, 10.30492], [44.66746, 10.30436], [44.66675, 10.3049], [44.66584, 10.30573], [44.66306, 10.30804], [44.66248, 10.30857], [44.6624, 10.30872], [44.66287, 10.30898], [44.66587, 10.31298], [44.66702, 10.3141], [44.66739, 10.31458], [44.66806, 10.31582], [44.66915, 10.31732], [44.66959, 10.31773], [44.66992, 10.31857], [44.67092, 10.32034], [44.67247, 10.32229], [44.67281, 10.3229], [44.67366, 10.32403], [44.67407, 10.32481], [44.67561, 10.32663], [44.67727, 10.32847], [44.67874, 10.32927], [44.68059, 10.33128], [44.68091, 10.33156], [44.68096, 10.33167], [44.68114, 10.33165], [44.68194, 10.33122], [44.68211, 10.33137], [44.68316, 10.33198], [44.68381, 10.33222], [44.68435, 10.33231], [44.68449, 10.33239], [44.68456, 10.33249], [44.68551, 10.33254], [44.68654, 10.33253], [44.68818, 10.33322], [44.68954, 10.33373], [44.69112, 10.3339], [44.69279, 10.33473], [44.69458, 10.33507], [44.69523, 10.33478], [44.696, 10.33464], [44.69667, 10.33416], [44.69939, 10.33443], [44.70012, 10.3346], [44.70179, 10.33472], [44.70245, 10.33548], [44.7046, 10.3367], [44.70504, 10.33719], [44.70587, 10.33748], [44.70633, 10.33743], [44.70771, 10.33667], [44.70875, 10.33647], [44.70973, 10.33656], [44.71028, 10.3367], [44.71082, 10.33671], [44.71239, 10.33693], [44.71319, 10.33756], [44.71426, 10.33777], [44.71565, 10.33858], [44.71654, 10.33878], [44.71706, 10.3387], [44.71762, 10.33807], [44.71874, 10.33894], [44.71946, 10.33907], [44.71995, 10.33897], [44.72097, 10.34019], [44.72536, 10.34019], [44.72719, 10.34001], [44.72816, 10.33933], [44.72978, 10.33931], [44.7306, 10.3395], [44.73121, 10.34001], [44.73255, 10.34036], [44.73377, 10.34087], [44.73438, 10.34139], [44.73626, 10.34284], [44.73708, 10.34356], [44.73957, 10.34455], [44.74158, 10.34396], [44.74362, 10.34556], [44.74457, 10.34582], [44.74623, 10.34518], [44.74709, 10.34544], [44.74796, 10.34523], [44.74869, 10.34404], [44.75184, 10.34149], [44.75218, 10.34019], [44.75365, 10.33915], [44.75412, 10.3385], [44.75465, 10.33666], [44.75606, 10.33481], [44.75753, 10.33399], [44.75804, 10.33392], [44.75841, 10.33395], [44.75898, 10.33416], [44.75924, 10.33414], [44.75957, 10.33407], [44.76027, 10.33377], [44.76072, 10.3337], [44.76134, 10.33386], [44.76189, 10.33416], [44.76208, 10.33421], [44.76231, 10.33421], [44.76263, 10.33414], [44.76288, 10.33401], [44.7648, 10.33245], [44.76635, 10.33079], [44.76673, 10.33058], [44.76741, 10.33054], [44.76765, 10.33041], [44.76803, 10.33011], [44.76815, 10.32992], [44.76823, 10.32969], [44.76838, 10.3291], [44.7686, 10.32846], [44.76888, 10.32777], [44.76908, 10.32737], [44.76949, 10.32686], [44.76971, 10.32667], [44.77018, 10.32643], [44.77043, 10.32637], [44.77032, 10.32542], [44.76989, 10.32538], [44.76799, 10.32489], [44.76733, 10.32462], [44.76726, 10.32372], [44.7673, 10.32273], [44.76751, 10.32187], [44.76777, 10.3212], [44.76815, 10.32056], [44.76943, 10.319], [44.76983, 10.31842], [44.77071, 10.31704], [44.77101, 10.31652], [44.77125, 10.316], [44.77144, 10.31541], [44.77164, 10.31455], [44.77257, 10.31009], [44.77278, 10.30938], [44.77313, 10.30855], [44.77358, 10.30778], [44.77419, 10.30704], [44.77636, 10.30505], [44.77589, 10.30438], [44.7751, 10.30369], [44.77453, 10.30297], [44.77424, 10.30269], [44.7738, 10.30216], [44.77282, 10.30134], [44.77256, 10.30033], [44.77209, 10.29913], [44.77189, 10.29851], [44.77177, 10.29745], [44.77162, 10.29669], [44.77164, 10.29562], [44.77111, 10.29471], [44.77082, 10.29372], [44.77047, 10.29231], [44.76968, 10.29156], [44.76863, 10.29101], [44.76795, 10.29116], [44.7675, 10.29148], [44.76677, 10.29116], [44.7658, 10.29086], [44.76441, 10.28995], [44.76346, 10.28863], [44.76303, 10.28836], [44.76238, 10.28752], [44.76171, 10.28623], [44.76182, 10.2851], [44.76164, 10.28347], [44.76132, 10.28177], [44.7609, 10.28101], [44.76048, 10.27972], [44.76039, 10.27903], [44.76015, 10.27881], [44.76013, 10.27856], [44.75993, 10.278], [44.75999, 10.27779], [44.75986, 10.27758], [44.75964, 10.27734], [44.7595, 10.27683], [44.75913, 10.27652], [44.75843, 10.27645], [44.75784, 10.27659], [44.75761, 10.27682], [44.75696, 10.27701], [44.75667, 10.27721], [44.75618, 10.27698], [44.75591, 10.27669], [44.75525, 10.27642], [44.75519, 10.27634], [44.75496, 10.2764], [44.75467, 10.27614], [44.75415, 10.27555], [44.75358, 10.27483], [44.75301, 10.2743], [44.7524, 10.27337], [44.75164, 10.27266], [44.75149, 10.27243], [44.75078, 10.2721], [44.75037, 10.27186], [44.74969, 10.27112], [44.7493, 10.27054], [44.74907, 10.27007], [44.74891, 10.26951], [44.74886, 10.26834], [44.74858, 10.26743], [44.74831, 10.26702], [44.74812, 10.26636], [44.74648, 10.26491], [44.74609, 10.26475], [44.74557, 10.26425], [44.74492, 10.26422], [44.74419, 10.26344], [44.74375, 10.26319], [44.74281, 10.26239], [44.74224, 10.26232], [44.74205, 10.26219], [44.74163, 10.26202], [44.74091, 10.26187], [44.73956, 10.26182], [44.73892, 10.26081], [44.73848, 10.25976], [44.73831, 10.25926], [44.73673, 10.25698], [44.73644, 10.25533], [44.7359, 10.25422], [44.73549, 10.25368], [44.73543, 10.25349], [44.73536, 10.25349], [44.73527, 10.2534], [44.73516, 10.25319], [44.73505, 10.25282], [44.73507, 10.25253], [44.73484, 10.25206], [44.73469, 10.2515], [44.7346, 10.25147], [44.73447, 10.25111], [44.73399, 10.25065], [44.7331, 10.25022], [44.73296, 10.2501], [44.73262, 10.24943], [44.73197, 10.24862], [44.73163, 10.24813], [44.73143, 10.24759], [44.73122, 10.24745], [44.73102, 10.24719], [44.7307, 10.24653], [44.7307, 10.24609], [44.73045, 10.24574], [44.73018, 10.24557], [44.72992, 10.24522], [44.72977, 10.24511], [44.72931, 10.24437], [44.72864, 10.24374], [44.72822, 10.24359], [44.72732, 10.24314], [44.72695, 10.24287], [44.72612, 10.24208], [44.72564, 10.24189], [44.72376, 10.24131], [44.72296, 10.24448], [44.723, 10.24472], [44.72177, 10.24815], [44.72209, 10.24823], [44.72376, 10.24924], [44.72211, 10.25405], [44.72186, 10.25394], [44.72088, 10.25537], [44.71634, 10.25325], [44.71532, 10.25273], [44.71495, 10.25261], [44.71488, 10.25271], [44.71428, 10.25245], [44.7137, 10.25521], [44.71364, 10.25528], [44.71152, 10.26409], [44.71161, 10.26416], [44.70918, 10.27118], [44.70969, 10.27158], [44.707, 10.27891], [44.70688, 10.27942], [44.70688, 10.27971], [44.70695, 10.27988], [44.70702, 10.27994], [44.70731, 10.27977], [44.70737, 10.27987], [44.70741, 10.2802], [44.70754, 10.28022], [44.70758, 10.28038], [44.70765, 10.2805], [44.70774, 10.2805], [44.70786, 10.28065], [44.70779, 10.28078], [44.70724, 10.28117], [44.70724, 10.28128], [44.7074, 10.2816], [44.70755, 10.28167], [44.7077, 10.28152], [44.70789, 10.28154], [44.70813, 10.2812], [44.70824, 10.28122], [44.70827, 10.28127], [44.70827, 10.2814], [44.70804, 10.28198], [44.70799, 10.28218], [44.70801, 10.28233], [44.7081, 10.28234], [44.70834, 10.28218], [44.70845, 10.28217], [44.7086, 10.28224], [44.70869, 10.28237], [44.70868, 10.28247], [44.70831, 10.28267], [44.70805, 10.28308], [44.70801, 10.28327], [44.70802, 10.28338], [44.7082, 10.28372], [44.70836, 10.28386], [44.70856, 10.28383], [44.709, 10.28319], [44.70927, 10.2833], [44.70909, 10.28473], [44.70872, 10.28461], [44.70845, 10.2859], [44.70812, 10.28575], [44.70777, 10.28731], [44.70708, 10.29069], [44.70626, 10.29027], [44.70609, 10.29064], [44.70613, 10.29101], [44.706, 10.29141], [44.70603, 10.29168], [44.70564, 10.29332], [44.70525, 10.29317], [44.70446, 10.29658]]], "day": "green", "day_label": "Relatively safer", "evidence": "no_findings", "evidence_label": "No area-specific findings", "name": "Vigatto", "night": "green", "night_label": "Relatively safer", "query": "Parma, Italy", "slug": "vigatto", "text": "Residential Parma, outside the areas local reporting and the Comune\u0027s security deployments name. The review found nothing area-specific for it \u2014 it is not in the designated zona rossa, not among the quartieri assigned community officers, and not singled out in the 2026 crime mapping. The dashed outline marks that as an absence of findings rather than a verified all-clear: the quiet parts of a city are also the ones nobody writes about.", "url": "/parma/vigatto.html"}];
+  var CENTER = [44.79939, 10.32683];
+  var ZOOM = 12;
+  var SHOW_TOGGLE = true;
+  var SHOW_BURGLARY_TOGGLE = false;
+  var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
+  var L_CLICK = "Clicca un\u0027area sulla mappa per vedere il suo livello e il ragionamento dietro.";
+  var L_BOOKING = "Cerca un alloggio qui su Booking.com \u2192";
+  var L_MORE = "Vedi la pagina completa \u2192";
+  var L_NOTCOVERED = "";
+  // Vuoto dove nessun programma di affiliazione copre questa citta', e in quel
+  // caso il link resta quello di sempre. Il modello di permessi vive in
+  // build_site.py: qui arriva gia' deciso.
+  var BOOKING_PREFIX = "";
+
+  function bookingHref(query) {
+    var plain = 'https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(query);
+    // encodeURIComponent due volte, perche' la destinazione viaggia dentro un
+    // parametro di query: una sola passata lascia i suoi & a spezzare l'URL.
+    return BOOKING_PREFIX ? (BOOKING_PREFIX + encodeURIComponent(plain)) : plain;
+  }
+
+  // Ordinamento della tabella: i toni ordinano per gravita' (data-sort), non
+  // alfabeticamente — "green" prima di "red" e' l'ordine che serve, "green"
+  // prima di "yellow" per alfabeto sarebbe un caso fortunato.
+  (function () {
+    var t = document.getElementById('hubTable');
+    if (!t) return;
+    var body = t.tBodies[0];
+    t.tHead.addEventListener('click', function (ev) {
+      var th = ev.target.closest('th');
+      // Le colonne Evidence e Sights compaiono solo dove dicono qualcosa, quindi
+      // l'indice della colonna Book cambia da citta' a citta': era fisso a 5 e
+      // sarebbe diventato l'indice sbagliato. Si riconosce dal fatto che non e'
+      // ordinabile, che e' anche il motivo per cui la si salta.
+      if (!th || !th.hasAttribute('aria-sort')) return;
+      var i = th.cellIndex;
+      var isNum = th.classList.contains('num');
+      var asc = th.getAttribute('aria-sort') !== 'ascending';
+      [].forEach.call(t.tHead.rows[0].cells, function (c) {
+        if (c.hasAttribute('aria-sort')) c.setAttribute('aria-sort', 'none');
+      });
+      th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+      var rows = [].slice.call(body.rows);
+      rows.sort(function (a, b) {
+        var ca = a.cells[i], cb = b.cells[i];
+        var va = ca.dataset.sort !== undefined ? +ca.dataset.sort : ca.textContent.trim();
+        var vb = cb.dataset.sort !== undefined ? +cb.dataset.sort : cb.textContent.trim();
+        if (isNum) { va = +ca.textContent || 0; vb = +cb.textContent || 0; }
+        var r = (typeof va === 'number') ? va - vb : va.localeCompare(vb);
+        return asc ? r : -r;
+      });
+      rows.forEach(function (r) { body.appendChild(r); });
+    });
+  })();
+
+  var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Arte e storia", "icon": "\ud83c\udfdb", "lat": 44.80334, "lon": 10.33092, "name": "Parma Cathedral", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Arte e storia", "icon": "\ud83c\udfdb", "lat": 44.80313, "lon": 10.32726, "name": "Teatro Regio (Parma)", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Arte e storia", "icon": "\ud83d\uddbc", "lat": 44.805, "lon": 10.32611, "name": "Palazzo della Pilotta", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Arte e storia", "icon": "\ud83c\udfdb", "lat": 44.80293, "lon": 10.33219, "name": "San Giovanni Evangelista", "rank": 4}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Verde", "icon": "\ud83c\udf33", "lat": 44.79253, "lon": 10.33155, "name": "Cittadella di Parma", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Arte e storia", "icon": "\ud83d\uddbc", "lat": 44.80371, "lon": 10.32797, "name": "Museo Glauco Lombardi", "rank": 6}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Vita notturna", "icon": "\ud83d\udeb6", "lat": 44.80361, "lon": 10.31861, "name": "Oltretorrente", "rank": 7}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Verde", "icon": "\ud83c\udf33", "lat": 44.80615, "lon": 10.31959, "name": "Parco Ducale", "rank": 8}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Arte e storia", "icon": "\ud83d\uddbc", "lat": 44.8044, "lon": 10.3292, "name": "Camera di San Paolo", "rank": 9}];
+  var POI_ALL = "Tutti";
+  var L_HIDE_SIGHTS = "Nascondi i luoghi";
+  var L_SIGHTS_HIDDEN = "Luoghi nascosti";
+  var L_LEGEND_DAYNIGHT = { green: "Tranquillo \u2014 nessun problema segnalato", yellow: "Attenzione \u2014 di giorno va bene, la sera serve pi\u00f9 prudenza", red: "Sconsigliato a chi visita \u2014 problemi noti e ricorrenti", grey: "Non coperto da questi dati" };
+  var L_LEGEND_BURGLARY = {
+    green: "Burglary rate well below the 12-district average",
+    yellow: "Burglary rate close to the 12-district average",
+    red: "Burglary rate well above the 12-district average",
+    grey: "No burglary data for this district"
+  };
+
+  // zoomSnap:0 perche' altrimenti Leaflet arrotonda per difetto lo zoom che
+  // fa entrare la citta': dove ne servirebbe 12.23 usava 12, e un quarto di
+  // livello buttato via vuol dire il 21% di dimensione in meno su entrambi i
+  // lati — a mappa ferma, con lo stesso spazio a disposizione. Con lo zoom
+  // frazionario l'inquadratura e' quella giusta e basta.
+  // Misura l'header e la pubblica come --hdr, cosi' la barra dei filtri sa
+  // dove fermarsi. Si rimisura al resize perche' l'altezza cambia con il
+  // gradino tipografico e quando la navigazione va a capo.
+  function syncHeaderHeight() {
+    var h = document.querySelector('.wz-header');
+    if (h) document.documentElement.style.setProperty('--hdr', h.offsetHeight + 'px');
+  }
+  syncHeaderHeight();
+  window.addEventListener('resize', syncHeaderHeight);
+  window.addEventListener('load', syncHeaderHeight);
+
+  var map = L.map('map', { scrollWheelZoom:true, zoomSnap:0, zoomDelta:0.5 }).setView(CENTER, ZOOM);
+
+  // Senza un fondo, si poteva rimpicciolire fino all'oceano o allontanarsi
+  // dalla citta' e non trovare piu' la strada indietro — con l'unico rimedio di
+  // ricaricare la pagina. Questo e' il fondo di ripiego, per le citta' che non
+  // hanno ancora sights; dove ci sono, lo rifissa poiFitAll() sulla vista che
+  // li contiene tutti.
+  var POI_HOME = null;
+  map.setMinZoom(Math.max(3, ZOOM - 2));
+  map.setMaxBounds(L.latLngBounds(
+    L.latLng(CENTER[0] - 0.55, CENTER[1] - 0.75),
+    L.latLng(CENTER[0] + 0.55, CENTER[1] + 0.75)
+  ));
+  map.options.maxBoundsViscosity = 0.7;
+  // Standard OpenStreetMap tiles — full street/park/POI detail, per explicit
+  // feedback that the light/muted basemap made city maps feel too bare.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+  var isNight = false;
+  var burglaryMode = false;
+  var layers = [];
+  var lastZone = null;
+  var selected = null;
+  // slug della zona -> poligono, per legare le card e l'elenco alla mappa.
+  var bySlug = {};
+
+  // Stessa tinta, piu' scura. Il colore e' il dato: la selezione puo' cambiare
+  // la profondita' ma non la tinta, altrimenti la mappa direbbe una cosa falsa
+  // sulla zona che hai appena scelto.
+  function darken(hex, f) {
+    var n = parseInt(hex.slice(1), 16);
+    return '#' + [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(function (c) {
+      var v = Math.max(0, Math.min(255, Math.round(c * f)));
+      return (v < 16 ? '0' : '') + v.toString(16);
+    }).join('');
+  }
+
+  function toneOf(z) {
+    if (burglaryMode) return (z.burglary && z.burglary.tone) || 'grey';
+    if (!SHOW_TOGGLE) return z.day || 'grey';
+    return isNight ? (z.night || 'grey') : (z.day || 'grey');
+  }
+
+  function badge(tone, text) {
+    return '<span class="badge ' + tone + '">' + text + '</span>';
+  }
+
+  var detailPanel = document.getElementById('detailBox');
+
+  function showPanel() { detailPanel.classList.add('visible'); }
+  function hidePanel() { detailPanel.classList.remove('visible'); lastZone = null; clearSelection(); }
+  document.getElementById('detailClose').addEventListener('click', hidePanel);
+
+  function renderBurglaryDetail(z) {
+    var html = '<div class="zn">' + z.name + '</div>';
+    var b = z.burglary;
+    if (!b) {
+      html += badge('grey', 'No real data for this district') +
+        '<div class="body-text">Kantonspolizei Zürich has no burglary figure covering this zone\'s district yet.</div>';
+    } else {
+      html += badge(b.tone, (b.tone === 'red' ? 'Above average' : b.tone === 'green' ? 'Below average' : 'Near average')) +
+        '<div class="body-text"><b>' + b.kreis_label + '</b> — ' + b.rate_avg_per_1000 + ' burglaries per 1,000 residents' +
+        (b.years_with_data === 1 ? ' in ' + b.years_included[0] : ' across ' + b.years_with_data + ' years (' + b.years_included.join(', ') + ')') +
+        (b.city_average_rate_per_1000 ? ', ' + Math.round(b.vs_city_average * 100) + '% of the 12-district average of ' + b.city_average_rate_per_1000 + '/1,000' : '') +
+        '. Real, current, official Kantonspolizei Zürich data — burglaries only, reported at district level, not for this exact neighbourhood.</div>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function renderDetail(z) {
+    lastZone = z;
+    if (burglaryMode) { renderBurglaryDetail(z); return; }
+    var tone = toneOf(z);
+    var html = '<div class="zn">' + z.name + '</div>';
+    if (SHOW_TOGGLE) {
+      html += badge(z.day || 'grey', z.day_label || z.day) + ' ' + badge(z.night || 'grey', z.night_label || z.night);
+    } else if (z.covered) {
+      html += badge(tone, z.tone_label || tone);
+    } else {
+      html += badge('grey', z.tone_label || '');
+    }
+    if (z.evidence === 'no_findings') {
+      html += '<div class="ev-flag"><span class="ev-dot"></span>' + z.evidence_label +
+              ' — the review reached no reporting specific to this area, so the rating rests on that ' +
+              'absence rather than on named sources.</div>';
+    }
+    if (z.text) {
+      html += '<div class="body-text">' + z.text + '</div>';
+    } else if (!z.covered) {
+      html += '<div class="body-text">' + L_NOTCOVERED + '</div>';
+    }
+    if (z.query) {
+      html += '<a class="cta" target="_blank" rel="noopener" href="' + bookingHref(z.query) + '">' + L_BOOKING + '</a>';
+    }
+    if (z.url) {
+      html += '<a class="cta secondary" href="' + z.url + '">' + L_MORE + '</a>';
+    }
+    document.getElementById('detail').innerHTML = html;
+    showPanel();
+  }
+
+  function updateLegend() {
+    var set = burglaryMode ? L_LEGEND_BURGLARY : L_LEGEND_DAYNIGHT;
+    document.getElementById('legendGreenText').textContent = set.green;
+    document.getElementById('legendYellowText').textContent = set.yellow;
+    document.getElementById('legendRedText').textContent = set.red;
+    var greyEl = document.getElementById('legendGreyText');
+    if (greyEl) { greyEl.textContent = set.grey; }
+  }
+
+  // Dashed where the rating rests on an absence of reporting rather than on
+  // sources: the colour still carries the judgement, the outline says how much
+  // evidence is behind it.
+  function zoneStyle(z, state) {
+    var base = COLORS[toneOf(z)] || COLORS.grey;
+    var thin = z.evidence === 'no_findings';
+    var dash = thin ? '5,4' : null;
+    if (state === 'selected') {
+      return { color: darken(base, 0.55), weight: thin ? 2.5 : 3, dashArray: dash, fillOpacity: 0.62 };
+    }
+    return { color: base, weight: state === 'hover' ? 3.5 : (thin ? 1.5 : 2),
+             dashArray: dash, fillOpacity: 0.32 };
+  }
+
+  function clearSelection() {
+    if (!selected) { return; }
+    selected.setStyle(zoneStyle(selected.wzZone, 'base'));
+    selected = null;
+  }
+
+  // La scheda dice quale zona hai scelto, ma solo a parole e in un angolo della
+  // mappa. Lo scurimento lo dice sulla mappa stessa, dove stai guardando.
+  function selectZone(poly, z) {
+    clearSelection();
+    selected = poly;
+    poly.setStyle(zoneStyle(z, 'selected'));
+    poly.bringToFront();
+    renderDetail(z);
+  }
+
+  function reselect(z) {
+    for (var i = 0; i < layers.length; i++) {
+      if (layers[i].wzZone === z) { selectZone(layers[i], z); return; }
+    }
+    renderDetail(z);
+  }
+
+  function draw() {
+    layers.forEach(function(l){ map.removeLayer(l); });
+    layers = [];
+    bySlug = {};
+    // Il giorno/notte e i furti ridisegnano tutto con colori nuovi: una
+    // selezione vecchia non avrebbe piu' niente da dire.
+    selected = null;
+    ZONES.forEach(function(z){
+      var poly = L.polygon(z.coords, zoneStyle(z, 'base')).addTo(map);
+      poly.wzZone = z;
+      // Name is visible on hover (not just after a click) via a sticky
+      // tooltip, plus a highlight so it's obvious which zone you're over —
+      // click still opens the full detail card.
+      poly.bindTooltip(z.name, { sticky:true, direction:'top', className:'zone-tooltip' });
+      poly.on('mouseover', function(){
+        if (selected !== poly) { poly.setStyle(zoneStyle(z, 'hover')); }
+        poly.bringToFront();
+      });
+      poly.on('mouseout', function(){
+        if (selected !== poly) { poly.setStyle(zoneStyle(z, 'base')); }
+      });
+      poly.on('click', function(){ selectZone(poly, z); });
+      if (z.slug) { bySlug[z.slug] = poly; }
+      layers.push(poly);
+    });
+  }
+
+  draw();
+
+  if (SHOW_TOGGLE) {
+    var sw = document.getElementById('dnSwitch');
+    sw.addEventListener('click', function(){
+      isNight = !isNight;
+      sw.classList.toggle('on', isNight);
+      draw();
+      // draw() ricostruisce i poligoni da zero, quindi la zona scelta va
+      // riselezionata sul nuovo oggetto, non solo ridisegnata nella scheda.
+      if (lastZone && !burglaryMode) reselect(lastZone);
+    });
+  }
+
+  if (SHOW_BURGLARY_TOGGLE) {
+    var bsw = document.getElementById('burglarySwitch');
+    var bwrap = document.getElementById('burglaryToggleWrap');
+    bsw.addEventListener('click', function(){
+      burglaryMode = !burglaryMode;
+      bsw.classList.toggle('burglary-on', burglaryMode);
+      bwrap.classList.toggle('active', burglaryMode);
+      if (SHOW_TOGGLE) {
+        var dnWrap = document.getElementById('dnSwitchWrap');
+        dnWrap.style.opacity = burglaryMode ? '0.4' : '1';
+      }
+      updateLegend();
+      draw();
+      if (lastZone) reselect(lastZone);
+    });
+  }
+
+  // ---------------------------------------------------------------------
+  // Sights, laid over the safety map
+  //
+  // The point of the pairing is that a visitor sees what is worth going to
+  // AND which safety area it sits in, on one map. So the pins carry no colour
+  // of their own — colour belongs to safety. The opening view used to be the
+  // safety geography alone, which left a distant sight like Superga or
+  // Stupinigi off screen: a pin nobody can see is a pin that does not exist.
+  // The view now covers every sight as well as every zone.
+  // ---------------------------------------------------------------------
+  var poiMarkers = [];
+  var poiLeaders = [];
+  var POI_SPREAD = 34;
+
+  function poiBuild() {
+    if (!POIS || !POIS.length) return;
+    POIS.forEach(function (p) {
+      var m = L.marker([p.lat, p.lon], { icon: L.divIcon({
+        className: '', iconSize: [26, 26], iconAnchor: [13, 13],
+        html: '<div class="poi-ico">' + p.icon + '<span class="poi-num">' + p.rank + '</span></div>'
+      })});
+      m.bindTooltip(p.name, { direction: 'right', offset: [15, 0], className: 'poi-lab-tt' });
+      m.bindPopup('<b>' + p.name + '</b><br><span style="color:#5b6670">' + p.cat_label + '</span>');
+      m.poiCat = p.cat; m.poiRank = p.rank; m.poiName = p.name;
+      m.addTo(map); poiMarkers.push(m);
+    });
+    poiFitAll();
+    poiChips();
+    poiLegend(null);
+    poiListing();
+    map.on('zoomend moveend', poiRefresh);
+    window.addEventListener('resize', function () { layoutStage(); poiHome(false); poiRefresh(); });
+    poiRefresh();
+  }
+
+  // Tutti i sights devono stare nella vista d'apertura, e quella vista diventa
+  // anche il limite: non si rimpicciolisce oltre, non ci si allontana oltre, e
+  // "Reset view" riporta esattamente qui. Cosi' da telefono non si finisce mai
+  // in un punto da cui non si sa tornare.
+  // I confini di quello che c'e' DISEGNATO sulla mappa, non della finestra in
+  // cui e' mostrata. Prima si partiva da map.getBounds(), cioe' dal rettangolo
+  // che il contenitore inquadrava a quello zoom: su un contenitore largo quel
+  // rettangolo comprendeva chilometri di campagna a est, e siccome diventava
+  // anche l'inquadratura d'apertura, la campagna se la portava dietro per
+  // sempre. Partendo dai poligoni e dai pin, l'inquadratura e' la citta'.
+  function contentBounds() {
+    var b = null;
+    function add(x) { if (!x) return; b = b ? b.extend(x) : L.latLngBounds(x, x); }
+    layers.forEach(function (l) { if (l.getBounds) { var lb = l.getBounds(); if (lb.isValid()) { b = b ? b.extend(lb) : L.latLngBounds(lb.getSouthWest(), lb.getNorthEast()); } } });
+    poiMarkers.forEach(function (m) { add(m.poiReal || m.getLatLng()); });
+    return (b && b.isValid()) ? b : map.getBounds();
+  }
+
+  function poiFitAll() {
+    POI_HOME = contentBounds();
+    layoutStage();
+    poiHome(true);
+  }
+
+  // Quanto e' larga la mappa non e' una scelta grafica, e' una conseguenza:
+  // Leaflet inquadra il lato che sta piu' stretto, e per quasi tutte le citta'
+  // (Torino 1.03, Roma 0.95, Madrid 0.85, Birmingham 0.82 di rapporto est-ovest
+  // su nord-sud) il lato stretto e' l'altezza. Un riquadro largo il doppio
+  // dell'altezza sprecava quindi meta' larghezza in terreno vuoto, e la citta'
+  // veniva disegnata grande la meta'. Qui la mappa si stringe esattamente a
+  // quello che i suoi confini chiedono — lo zoom non cambia di un livello,
+  // cambia solo quanta cornice vuota c'e' intorno — e il resto va alla colonna.
+  // Parigi, che e' larga davvero (1.87), non si stringe e non prende colonna:
+  // e' la stessa regola, applicata a una citta' di forma diversa.
+  var STAGE_GAP = 22, RAIL_MIN = 300, RAIL_MAX = 620, MAP_MIN = 560, SPLIT_MIN_WIDTH = 1080;
+  function layoutStage() {
+    var stage = document.getElementById('mapStage'),
+        wrap  = document.getElementById('mapWrap'),
+        rail  = document.getElementById('mapRail'),
+        shell = document.querySelector('.page-shell');
+    if (!stage || !wrap || !rail) return;
+    // Si misura sempre da mappa a tutta larghezza, altrimenti la decisione
+    // dipenderebbe dalla larghezza lasciata dal passaggio precedente e a ogni
+    // resize la colonna si mangerebbe un altro pezzo di mappa.
+    stage.classList.remove('split');
+    wrap.style.width = ''; rail.style.width = ''; rail.style.maxHeight = '';
+    document.getElementById('map').style.height = '';
+    if (shell) shell.style.maxWidth = '';
+    map.invalidateSize(false);
+    if (window.innerWidth < SPLIT_MIN_WIDTH) return;
+    var home = POI_HOME || contentBounds();
+    if (!home || !home.isValid()) return;
+    // La forma dei confini, indipendente dallo zoom: e' questa che il riquadro
+    // deve avere per inquadrare la citta' senza contorno di campagna.
+    var z  = map.getBoundsZoom(home, false, L.point(28, 28));
+    var ne = map.project(home.getNorthEast(), z), sw = map.project(home.getSouthWest(), z);
+    var aspect = (ne.x - sw.x) / (sw.y - ne.y);
+    if (!isFinite(aspect) || aspect <= 0) return;
+
+    // clientWidth comprende il padding del contenitore: usandolo si assegnavano
+    // 48px piu' di quelli che c'erano davvero e la colonna, in un flex che va a
+    // capo, finiva sotto la mappa invece che accanto.
+    var cs = getComputedStyle(stage);
+    var avail = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+
+    // Il primo tentativo teneva la mappa alta 760px fisse e le stringeva la
+    // larghezza per farle prendere la forma giusta. Funziona, ma vuol dire che
+    // su una finestra grande la mappa resta piccola in mezzo a due fasce
+    // bianche: il riquadro non cresceva con lo schermo, cresceva il margine.
+    // Il verso giusto e' l'opposto — si prende la larghezza che c'e' e si
+    // ricava l'ALTEZZA dalla forma dei confini. Cosi' una finestra piu' grande
+    // da' una mappa piu' grande, e continua a non esserci campagna di troppo.
+    var railW = Math.min(RAIL_MAX, Math.max(RAIL_MIN, Math.round(avail * 0.26)));
+    var mapW  = avail - STAGE_GAP - railW;
+    var PAD   = 56;
+    var mapH  = Math.round((mapW - PAD) / aspect) + PAD;
+
+    // Una mappa molto piu' alta della finestra si guarda a pezzi, quindi
+    // l'altezza ha un tetto — generoso, perche' qualche centinaio di pixel di
+    // scorrimento e' un prezzo onesto per una mappa grande.
+    var maxH = Math.max(560, Math.min(1180, Math.round(window.innerHeight * 1.15) - 100));
+    if (mapH > maxH) {
+      mapH = maxH;
+      // Alla larghezza esatta dei confini si puo' concedere un po' di contorno:
+      // il difetto di partenza era il DOPPIO di cornice, non un margine. Fino a
+      // 1.3 la citta' resta grande e la finestra larga viene usata invece di
+      // diventare bordo bianco.
+      var exact = Math.round((mapH - PAD) * aspect) + PAD;
+      mapW  = Math.min(avail - STAGE_GAP - railW, Math.round(exact * 1.3));
+      railW = Math.min(RAIL_MAX, avail - STAGE_GAP - mapW);
+    }
+    if (mapW < MAP_MIN || railW < RAIL_MIN) return;   // non c'e' spazio per due colonne
+    wrap.style.width = mapW + 'px';
+    rail.style.width = railW + 'px';
+    document.getElementById('map').style.height = mapH + 'px';
+    // E la pagina si stringe su quello che c'e' davvero, invece di restare
+    // larga quanto lo schermo: cosi' titolo, filtri, mappa e colonna hanno
+    // tutti lo stesso bordo sinistro e quello che avanza e' margine simmetrico.
+    // Prima il titolo partiva da sinistra e la mappa era centrata nello stage:
+    // il vuoto si apriva tutto da un lato solo, ed e' quello che si vedeva.
+    if (shell) {
+      shell.style.maxWidth = (mapW + STAGE_GAP + railW +
+        parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)) + 'px';
+    }
+    stage.classList.add('split');
+    map.invalidateSize(false);
+    rail.style.maxHeight = document.getElementById('map').clientHeight + 'px';
+  }
+
+  // Il fondo dipende da quanto e' grande la mappa, che cambia ruotando il
+  // telefono, quindi si ricalcola anche al resize. Fissarlo una volta sola
+  // lasciava un minZoom piu' stretto della vista d'apertura: cioe' proprio il
+  // caso in cui, dopo aver zoomato, non si riusciva piu' a tornare indietro.
+  function poiHome(recenter) {
+    if (!POI_HOME) return;
+    map.setMinZoom(3);
+    map.invalidateSize(false);
+    var z = map.getBoundsZoom(POI_HOME, false, L.point(28, 28));
+    if (recenter) map.setView(POI_HOME.getCenter(), z, { animate: false });
+    map.setMinZoom(z);
+    map.setMaxBounds(POI_HOME.pad(0.35));
+  }
+
+  // Pins closer than POI_SPREAD px are fanned onto a small circle with a
+  // hairline back to the true spot: all of them stay clickable instead of
+  // stacking, and none of them lies about where it is.
+  function poiDeclutter() {
+    poiLeaders.forEach(function (l) { map.removeLayer(l); });
+    poiLeaders = [];
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    vis.forEach(function (m) {
+      if (!m.poiReal) m.poiReal = m.getLatLng();
+      m.setLatLng(m.poiReal);
+    });
+    vis.forEach(function (m) { m.poiPt = map.latLngToLayerPoint(m.getLatLng()); });
+    var groups = [];
+    vis.forEach(function (m) {
+      var g = null;
+      groups.forEach(function (gr) {
+        if (!g && gr.some(function (o) { return o.poiPt.distanceTo(m.poiPt) < POI_SPREAD; })) g = gr;
+      });
+      if (g) { g.push(m); } else { groups.push([m]); }
+    });
+    groups.forEach(function (g) {
+      if (g.length === 1) return;
+      var cx = 0, cy = 0;
+      g.forEach(function (m) { cx += m.poiPt.x; cy += m.poiPt.y; });
+      cx /= g.length; cy /= g.length;
+      var R = Math.max(26, 12 + g.length * 6);
+      g.sort(function (a, b) { return a.poiRank - b.poiRank; });
+      g.forEach(function (m, i) {
+        var ang = (2 * Math.PI * i) / g.length - Math.PI / 2;
+        m.setLatLng(map.layerPointToLatLng(L.point(cx + R * Math.cos(ang), cy + R * Math.sin(ang))));
+        poiLeaders.push(L.polyline([m.poiReal, m.getLatLng()],
+          { color: '#16232b', weight: 1, opacity: .38, interactive: false }).addTo(map));
+      });
+    });
+  }
+
+  function poiOverlap(a, b) { return !(a.r < b.l || b.r < a.l || a.b < b.t || b.b < a.t); }
+
+  // A name stays on screen only where it collides with nothing — not with
+  // another name, not with another pin, not with the edge. Names are tried in
+  // rank order, so when two compete the better-known place keeps its label.
+  // There is no zoom threshold: a name is drawn wherever it fits and dropped
+  // where it would collide, which is the same test at every zoom. Below the
+  // pins, the numbered chips carry the names that did not make it.
+  function poiLabels() {
+    poiMarkers.forEach(function (m) {
+      if (m.poiPerm) { map.removeLayer(m.poiPerm); m.poiPerm = null; }
+    });
+    var vis = poiMarkers.filter(function (m) { return map.hasLayer(m); });
+    if (!vis.length) return;
+    var size = map.getSize();
+    var taken = vis.map(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      return { l: pt.x - 15, r: pt.x + 15, t: pt.y - 15, b: pt.y + 15 };
+    });
+    vis.slice().sort(function (a, b) { return a.poiRank - b.poiRank; }).forEach(function (m) {
+      var pt = map.latLngToContainerPoint(m.getLatLng());
+      var w = 10 + m.poiName.length * 6.6, h = 18;
+      var cand = [
+        { d: 'right', o: [15, 0],  b: { l: pt.x + 16, r: pt.x + 16 + w, t: pt.y - h / 2, b: pt.y + h / 2 } },
+        { d: 'left',  o: [-15, 0], b: { l: pt.x - 16 - w, r: pt.x - 16, t: pt.y - h / 2, b: pt.y + h / 2 } }
+      ];
+      var ok = null;
+      cand.forEach(function (c) {
+        if (ok) return;
+        if (c.b.l < 8 || c.b.r > size.x - 8) return;
+        var clash = false;
+        taken.forEach(function (t) { if (poiOverlap(c.b, t)) clash = true; });
+        if (!clash) ok = c;
+      });
+      if (!ok) return;
+      taken.push(ok.b);
+      m.poiPerm = L.tooltip({ permanent: true, direction: ok.d, offset: ok.o,
+                              className: 'poi-lab-tt', interactive: false })
+                   .setLatLng(m.getLatLng()).setContent(m.poiName).addTo(map);
+    });
+  }
+
+  function poiRefresh() { poiDeclutter(); poiLabels(); }
+
+  // La legenda deve dire quello che si vede. Filtrando su "Green space" le
+  // altre voci descrivono pin che in quel momento non ci sono, quindi
+  // spariscono con loro invece di restare a promettere icone assenti.
+  // Le categorie non stanno piu' nella legenda: erano le stesse sei voci, con
+  // le stesse icone, dei filtri sopra la mappa — scritte due volte a quindici
+  // centimetri di distanza. La funzione resta perche' se un giorno tornasse un
+  // riquadro per le icone si riaccende da sola, e intanto non fa niente.
+  function poiLegend(active) {
+    var box = document.getElementById('legendPoi');
+    if (!box) return;
+    if (active === undefined) { box.innerHTML = ''; return; }
+    var seen = {};
+    POIS.forEach(function (p) { seen[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    box.innerHTML = '';
+    Object.keys(seen).forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'legend-poi-item' + (active && active !== c ? ' off' : '');
+      row.textContent = seen[c];
+      box.appendChild(row);
+    });
+  }
+
+  // Cosa si vede dei sights dipende da due cose — la categoria scelta e
+  // l'interruttore generale — quindi sono un unico stato applicato da un unico
+  // punto. Tenerle separate significherebbe che l'ultima delle due a essere
+  // toccata riaccende quello che l'altra aveva spento.
+  var poiCat = null, poiHidden = false;
+
+  function poiApply() {
+    poiMarkers.forEach(function (m) {
+      var show = !poiHidden && (poiCat === null || m.poiCat === poiCat);
+      if (show) { m.addTo(map); } else { map.removeLayer(m); }
+    });
+    var wrap = document.querySelector('.poi-list-wrap');
+    if (wrap) wrap.hidden = poiHidden;
+    var bar = document.getElementById('poiBar');
+    if (bar) {
+      Array.prototype.forEach.call(bar.querySelectorAll('.poi-chip'), function (x) {
+        x.setAttribute('aria-pressed', (!poiHidden && x.poiCat === poiCat) ? 'true' : 'false');
+        x.style.opacity = poiHidden ? '.45' : '';
+      });
+      var hb = bar.querySelector('.poi-hide');
+      if (hb) {
+        hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
+        hb.lastChild.nodeValue = poiHidden ? (' ' + L_SIGHTS_HIDDEN) : (' ' + L_HIDE_SIGHTS);
+      }
+    }
+    poiLegend(poiHidden ? undefined : poiCat);
+    poiListFilter(poiCat);
+    poiRefresh();
+  }
+
+  function poiChips() {
+    var bar = document.getElementById('poiBar');
+    if (!bar) return;
+    var cats = [null];
+    POIS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); });
+    var labelOf = {};
+    POIS.forEach(function (p) { labelOf[p.cat] = p.cat_icon + ' ' + p.cat_label; });
+    cats.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'poi-chip';
+      b.poiCat = c;
+      b.textContent = c === null ? POI_ALL : labelOf[c];
+      b.setAttribute('aria-pressed', c === null ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        // Scegliere una categoria riaccende i sights da sola: cliccare un
+        // filtro e non veder comparire niente, perche' un interruttore altrove
+        // e' spento, e' il tipo di vicolo cieco che fa ricaricare la pagina.
+        poiCat = c; poiHidden = false; poiApply();
+      });
+      bar.appendChild(b);
+    });
+    var hide = document.createElement('button');
+    hide.type = 'button'; hide.className = 'poi-hide';
+    hide.setAttribute('aria-pressed', 'false');
+    hide.title = 'Turn the sights layer off and leave only the safety colours';
+    hide.appendChild(document.createElement('span')).className = 'box';
+    hide.appendChild(document.createTextNode(' ' + L_HIDE_SIGHTS));
+    hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
+    bar.appendChild(hide);
+  }
+
+  // On a narrow screen a twenty-character label has nowhere to go, so the
+  // numbered list is where the names live: the pin shows the number, the list
+  // gives the name, and tapping one flies the map there.
+  function poiListing() {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    POIS.forEach(function (p) {
+      var li = document.createElement('li');
+      li.setAttribute('data-cat', p.cat);
+      li.innerHTML = '<span class="n">' + p.rank + '</span><span>' + p.name + '</span>';
+      li.addEventListener('click', function () { map.setView([p.lat, p.lon], 16); });
+      ol.appendChild(li);
+    });
+  }
+
+  // Filtrando su "Art & history" la mappa mostra solo quei pin: l'elenco qui
+  // sotto e' la stessa cosa scritta, quindi si filtra con lei. I numeri non si
+  // rinumerano, altrimenti non corrisponderebbero piu' ai pin.
+  function poiListFilter(c) {
+    var ol = document.getElementById('poiList');
+    if (!ol) return;
+    Array.prototype.forEach.call(ol.children, function (li) {
+      var show = c === null || li.getAttribute('data-cat') === c;
+      li.style.display = show ? 'inline-flex' : 'none';
+    });
+  }
+
+  var poiResetBtn = document.getElementById('poiReset');
+  if (poiResetBtn) {
+    poiResetBtn.addEventListener('click', function () {
+      if (POI_HOME) { poiHome(true); } else { map.setView(CENTER, ZOOM); }
+      hidePanel();
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // Le raccomandazioni e l'elenco accendono la zona sulla mappa
+  //
+  //   Una card dice "St Peter and the Waterfront" a qualcuno che a Plymouth
+  //   non c'e' mai stato. Il nome da solo non dice dove sia, e la mappa qui
+  //   sopra ha venti poligoni tutti uguali. Passare sopra la card accende il
+  //   suo, cliccarla la seleziona e riporta la mappa in vista.
+  (function () {
+    function polyFor(el) {
+      var slug = el && el.getAttribute('data-zone');
+      return slug ? bySlug[slug] : null;
+    }
+    function bind(el) {
+      el.addEventListener('mouseenter', function () {
+        var p = polyFor(el);
+        if (!p || selected === p) { return; }
+        p.setStyle(zoneStyle(p.wzZone, 'hover'));
+        p.bringToFront();
+        el.classList.add('linked');
+      });
+      el.addEventListener('mouseleave', function () {
+        var p = polyFor(el);
+        el.classList.remove('linked');
+        if (p && selected !== p) { p.setStyle(zoneStyle(p.wzZone, 'base')); }
+      });
+      el.addEventListener('click', function (ev) {
+        // I link dentro la card — il nome dell'area, il bottone Booking —
+        // devono continuare a portare dove portano.
+        if (ev.target.closest('a')) { return; }
+        var p = polyFor(el);
+        if (!p) { return; }
+        selectZone(p, p.wzZone);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    [].forEach.call(document.querySelectorAll('[data-zone]'), bind);
+  })();
+
+  poiBuild();
+
+</script>
+</body>
+</html>

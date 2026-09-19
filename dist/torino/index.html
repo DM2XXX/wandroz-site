@@ -6,6 +6,9 @@
 <title>Where to stay in Turin: safest neighbourhoods compared | Wandroz</title>
 <meta name="description" content="Interactive map of Turin&#39;s neighbourhoods with the council&#39;s real official boundaries, day/night safety levels.">
 <link rel="canonical" href="https://www.wandroz.com/torino/">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/torino/">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/torino/">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/torino/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Where to stay in Turin: safest neighbourhoods compared | Wandroz">
 <meta property="og:description" content="Interactive map of Turin&#39;s neighbourhoods with the council&#39;s real official boundaries, day/night safety levels.">
@@ -78,6 +81,11 @@
   /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
      chi non conosce la citta' legge il nome di un quartiere e non ha modo di
      sapere dove sia rispetto al resto. */
+  .lang-switch { display:flex; gap:2px; align-items:center; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
   .hub-card { cursor:pointer; }
   .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
   .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
@@ -520,6 +528,10 @@
     </div>
     
     
+    <div class="lang-switch" aria-label="Language">
+      <a href="https://www.wandroz.com/torino/" class="on" aria-current="true" hreflang="en">EN</a>
+      <a href="https://www.wandroz.com/it/torino/" hreflang="it">IT</a>
+    </div>
     <nav class="wz-nav">
       <a href="/">Home</a>
       <a href="/methodology.html">Methodology</a>
@@ -534,12 +546,8 @@
 
 
 
-<p class="hub-answer">
-  For a short stay in Turin:
-  <strong>Centro</strong> and <strong>San Donato</strong>.
-  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and
-  night rating — including where that rating says be careful.</span> None of them is here because
-  someone paid for it.
+<p class="hub-answer">For a short stay in Turin: <strong>Centro</strong> and <strong>San Donato</strong>.
+  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and night rating — including where that rating says be careful.</span> None of them is here because someone paid for it.
 </p>
 
 
@@ -665,8 +673,7 @@
 <details class="hub-table-wrap">
   <summary>Compare all 23 neighbourhoods</summary>
   
-  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
-    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city, not by rating — the unusual ones first. Click a column to sort it your way.</p>
   <div class="hub-scroll">
     <table class="hub" id="hubTable">
       <thead><tr>
@@ -910,7 +917,7 @@
   var SHOW_TOGGLE = true;
   var SHOW_BURGLARY_TOGGLE = false;
   var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
-  var L_CLICK = "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_CLICK = "Click an area on the map to see its level and the reasoning behind it.";
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
@@ -962,6 +969,8 @@
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 45.068333, "lon": 7.684444, "name": "Museo Egizio", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.06898, "lon": 7.69324, "name": "Mole Antonelliana", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.07332, "lon": 7.685435, "name": "Turin Cathedral", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.07283, "lon": 7.686333, "name": "Royal Palace of Turin", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.070944, "lon": 7.685778, "name": "Palazzo Madama", "rank": 5}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 45.054, "lon": 7.686, "name": "Parco del Valentino", "rank": 6}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 45.0708, "lon": 7.6858, "name": "Piazza Castello", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.075, "lon": 7.6847, "name": "Palatine Towers", "rank": 8}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 45.03185, "lon": 7.67348, "name": "Museo dell\u0027Automobile", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 45.0677, "lon": 7.68257, "name": "Piazza San Carlo", "rank": 10}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 45.076772, "lon": 7.683646, "name": "Porta Palazzo market", "rank": 11}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 45.0597, "lon": 7.69722, "name": "Monte dei Cappuccini", "rank": 12}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 45.062902, "lon": 7.695519, "name": "Murazzi del Po", "rank": 13}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 45.07538, "lon": 7.6797, "name": "Quadrilatero Romano", "rank": 14}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 45.064805555556, "lon": 7.6954166666667, "name": "Piazza Vittorio Veneto", "rank": 15}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 45.05555556, "lon": 7.67972222, "name": "San Salvario", "rank": 16}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 45.08971, "lon": 7.66644, "name": "Parco Dora", "rank": 17}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 45.07245, "lon": 7.68927, "name": "Giardini Reali", "rank": 18}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfdb", "lat": 45.08062, "lon": 7.767366, "name": "Basilica of Superga", "rank": 19}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 44.995, "lon": 7.603889, "name": "Palazzina di caccia of Stupinigi", "rank": 20}];
   var POI_ALL = "All";
+  var L_HIDE_SIGHTS = "Hide sights";
+  var L_SIGHTS_HIDDEN = "Sights hidden";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
@@ -1477,7 +1486,7 @@
       var hb = bar.querySelector('.poi-hide');
       if (hb) {
         hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
-        hb.lastChild.nodeValue = poiHidden ? ' Sights hidden' : ' Hide sights';
+        hb.lastChild.nodeValue = poiHidden ? (' ' + L_SIGHTS_HIDDEN) : (' ' + L_HIDE_SIGHTS);
       }
     }
     poiLegend(poiHidden ? undefined : poiCat);
@@ -1511,7 +1520,7 @@
     hide.setAttribute('aria-pressed', 'false');
     hide.title = 'Turn the sights layer off and leave only the safety colours';
     hide.appendChild(document.createElement('span')).className = 'box';
-    hide.appendChild(document.createTextNode(' Hide sights'));
+    hide.appendChild(document.createTextNode(' ' + L_HIDE_SIGHTS));
     hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
     bar.appendChild(hide);
   }

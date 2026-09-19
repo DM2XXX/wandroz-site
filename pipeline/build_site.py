@@ -25,6 +25,7 @@ import os
 import urllib.parse
 import re
 import shutil
+import i18n
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import Markup
 
@@ -461,17 +462,26 @@ def uk_ward_evidence(city_key):
 # Apertura della frase, in base a cosa la card sta consigliando. Il punto e'
 # tenere separate le due dimensioni: l'etichetta dice a cosa serve la zona, il
 # badge dice cosa dicono i dati, e questa riga spiega perche' possono coesistere.
-_CAUTION_OPENER = {
-    "For a first visit": "Still a practical base for a first visit",
-    "With family": "Still a workable choice with family",
-    "For going out": "Still where the evening happens",
-    "Best rated overall": "Still the best-rated area in the city",
+# L'etichetta inglese della card e' la chiave interna: identifica QUALE card e'
+# e non e' testo mostrato. Il testo mostrato arriva dal catalogo.
+# Come sopra: l'etichetta inglese identifica la card, il testo viene dal catalogo.
+CARD_LABEL_KEY = {
+    "For a first visit": "card_first_visit",
+    "With family": "card_family",
+    "For going out": "card_going_out",
+    "Best rated overall": "card_best",
 }
-_CAUTION_CLOSER = ("Take extra care, particularly after dark — that is what the rating is "
-                   "for, not a reason to stay out of the area.")
 
 
-def caution_note(city_key, zone, labels=(), sights=0, resident_rate_ok=True):
+_CAUTION_OPENER_KEY = {
+    "For a first visit": "caution_open_first_visit",
+    "With family": "caution_open_family",
+    "For going out": "caution_open_going_out",
+    "Best rated overall": "caution_open_best",
+}
+
+
+def caution_note(city_key, zone, labels=(), sights=0, resident_rate_ok=True, t=None):
     """Why a recommended area can carry a caution rating, for the cards.
 
     THE CONTRADICTION THIS EXISTS TO RESOLVE
@@ -504,47 +514,48 @@ def caution_note(city_key, zone, labels=(), sights=0, resident_rate_ok=True):
     if not (day_red or night_red):
         return ""
 
-    opener = _CAUTION_OPENER.get(labels[0] if labels else "", "Still a practical choice")
+    t = t or i18n.strings(i18n.DEFAULT_LANG)
+    opener = t[_CAUTION_OPENER_KEY.get(labels[0] if labels else "", "caution_open_generic")]
+    closer = t["caution_closer"]
 
     ev = uk_ward_evidence(city_key).get(zone.get("slug"))
     if ev:
         def top(kind):
             items = ev[kind]
-            return CRIME_CATEGORY_PLAIN.get(items[0][0], items[0][0]) if items else None
+            return t.get("cat_" + items[0][0], items[0][0]) if items else None
         d = top("day") if day_red else None
         n = top("night") if night_red else None
         if d and n:
-            core = "the rating is driven by %s during the day and %s after dark" % (d, n)
+            core = t["caution_core_both"] % {"day": d, "night": n}
         elif d:
-            core = "the daytime rating is driven by %s" % d
+            core = t["caution_core_day"] % {"day": d}
         elif n:
-            core = "the night rating is driven by %s" % n
+            core = t["caution_core_night"] % {"night": n}
         else:
             core = None
         if core:
             pop = ev.get("population")
             if pop and resident_rate_ok:
-                core += (", counted as a rate against the %s people registered as living "
-                         "here rather than the far larger number who pass through" % f"{pop:,}")
-            return "%s: %s. %s" % (opener, core, _CAUTION_CLOSER)
+                core += t["caution_denominator"] % {"pop": f"{pop:,}"}
+            return "%s: %s. %s" % (opener, core, closer)
 
     if city_key in RESIDENT_RATE_CITIES:
-        where = ("%d of the city's main sights are inside it. " % sights) if sights >= 3 else ""
-        return ("%s. %sThe city's published rate is counted per registered resident, so a "
-                "district that hosts many more people than it houses reads higher. %s"
-                % (opener, where, _CAUTION_CLOSER))
+        where = (t["caution_sights_here"] % {"n": sights}) if sights >= 3 else ""
+        return t["caution_snapshot"] % {"open": opener, "where": where, "closer": closer}
 
     # Nessun tasso dietro la valutazione: nessuna affermazione sul denominatore.
-    return ("%s, for its location and what is within walking distance of it. The safety "
-            "evidence points the other way, and the rating is a reason to take extra care "
-            "— particularly after dark — not by itself a reason to avoid the area." % opener)
+    return t["caution_neutral"] % {"open": opener}
 
 
 SIGHT_CATS = ("art", "square", "view", "food")
 
 
-def hub_data(city_key, zones):
-    """Per-area sight counts, plus the recommendation cards."""
+def hub_data(city_key, zones, t=None):
+    """Per-area sight counts, plus the recommendation cards.
+
+    `t` is the string catalogue; omitted it means English, and the English
+    output is unchanged byte for byte."""
+    t = t or i18n.strings(i18n.DEFAULT_LANG)
     pois = load_pois(city_key) or []
     counts = {z["slug"]: {"sights": 0, "night": 0, "green": 0} for z in zones}
     for p in pois:
@@ -604,8 +615,7 @@ def hub_data(city_key, zones):
         #   card portano gia' le valutazioni, quindi non serve ripeterle.
         n = counts[best["slug"]]["sights"]
         add("For a first visit", best,
-            "%d of the city's main sights are close enough to walk between" % n
-            if n > 1 else "one of the city's main sights is inside it")
+            (t["why_first_visit"] % {"n": n}) if n > 1 else t["why_first_visit_one"])
 
     family = [z for z in zones
               if counts[z["slug"]]["green"] > 0 and counts[z["slug"]]["night"] == 0]
@@ -613,8 +623,7 @@ def hub_data(city_key, zones):
         best = sorted(family, key=rank)[0]
         g = counts[best["slug"]]["green"]
         add("With family", best,
-            "%d park%s within reach, and nothing here turns into a nightlife strip after dark"
-            % (g, "" if g == 1 else "s"))
+            t["why_family_one"] if g == 1 else (t["why_family"] % {"n": g}))
 
     # Only offered where the night rating supports it. A city whose nightlife
     # sits in areas rated red gets no card at all, which is the honest output.
@@ -622,11 +631,10 @@ def hub_data(city_key, zones):
              if counts[z["slug"]]["night"] > 0 and z["night"] in ("green", "yellow")]
     if night:
         best = max(night, key=lambda z: (counts[z["slug"]]["night"], -TONE_ORDER.get(z["night"], 3)))
-        add("For going out", best, "this is where the city's evening venues are concentrated")
+        add("For going out", best, t["why_going_out"])
 
     if zones:
-        add("Best rated overall", sorted(zones, key=rank)[0],
-            "nowhere in the city is rated better, by day or after dark")
+        add("Best rated overall", sorted(zones, key=rank)[0], t["why_best"])
 
     # ORDINE DELLA TABELLA: per contrasto, non per valutazione.
     #
@@ -864,6 +872,22 @@ def country_codes_covered():
             raise ValueError("COUNTRY_FLAGS[%r] is not a two-letter flag" % country)
         codes.add("".join(chr(c - 0x1F1E6 + ord("a")) for c in pts))
     return ",".join(sorted(codes))
+
+
+def city_country_code(city_label):
+    """ISO 3166-1 alpha-2 for a city's country, from the flag emoji — the same
+    derivation the address geocoder uses, for the same reason: the flag IS the
+    code, so there is no second table to keep in step. Returns "" for a city
+    with no country entry rather than raising, because a missing language is a
+    page that does not exist, not a build that should die."""
+    country = CITY_COUNTRY.get(city_only(city_label))
+    flag = COUNTRY_FLAGS.get(country or "")
+    if not flag:
+        return ""
+    pts = [ord(c) for c in flag if 0x1F1E6 <= ord(c) <= 0x1F1FF]
+    if len(pts) != 2:
+        return ""
+    return "".join(chr(c - 0x1F1E6 + ord("a")) for c in pts)
 
 
 def countries_covered():
@@ -1373,7 +1397,7 @@ def assert_every_poi_file_is_used():
             % ", ".join(orphan))
 
 
-def load_pois(city_key):
+def load_pois(city_key, t=None):
     """Sights for a city, or nothing if it has none yet.
 
     Only what the page needs reaches the template. The Wikidata id and the
@@ -1393,7 +1417,7 @@ def load_pois(city_key):
             continue          # not somewhere to send a visitor today
         out.append({
             "name": p["name"], "lat": p["lat"], "lon": p["lon"],
-            "cat": p["category"], "cat_label": POI_CATEGORY_LABEL[p["category"]],
+            "cat": p["category"], "cat_label": (t or {}).get("poi_" + p["category"]) or POI_CATEGORY_LABEL[p["category"]],
             "icon": POI_TYPE_ICON[p["poi_type"]],
             "cat_icon": POI_CATEGORY_ICON[p["category"]], "rank": p["rank"],
         })
@@ -2140,67 +2164,116 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
 
     map_tpl = env.get_template("city_map.html")
     canonical = f"{SITE_URL}/{url_slug}/"
-    _hubdata = hub_data(city_key, zones)
-    for _r in _hubdata["rows"]:
-        _r["url"] = f"/{url_slug}/{_r['slug']}.html" if flat else f"/{url_slug}/{_r['slug']}/"
-        _r["day_label"] = tone_badge.get(_r["day"], _r["day"])
-        _r["night_label"] = tone_badge.get(_r["night"], _r["night"])
-        _r["book"] = booking_href(next((z["query"] for z in zones if z["slug"] == _r["slug"]), ""),
-                                  city_key)
-    # Due card rosse sulla stessa pagina possono ricevere la stessa frase — la
-    # forma breve, che non nomina l'area, e' identica per costruzione. Stamparla
-    # due volte non aggiunge niente e sembra un modello incollato.
-    _notes_seen = set()
-    for _c in _hubdata["cards"]:
-        _z = _c["zone"]
-        _c["url"] = f"/{url_slug}/{_z['slug']}.html" if flat else f"/{url_slug}/{_z['slug']}/"
-        _c["day_label"] = tone_badge.get(_z["day"], _z["day"])
-        _c["night_label"] = tone_badge.get(_z["night"], _z["night"])
-        _c["book"] = booking_href(_z["query"], city_key)
-        _note = caution_note(city_key, _z, _c["labels"], _c["counts"]["sights"])
-        _c["caution"] = "" if _note in _notes_seen else _note
-        if _note:
-            _notes_seen.add(_note)
-    _hub = hub_headline(data["label"], ui.get("page_description", ""), len(zones))
-    html = map_tpl.render(
-        lang="en", city_label=data["label"], tagline=ui["tagline"],
-        nav_home=ui["nav_home"], nav_methodology=ui["nav_methodology"],
-        page_title=_hub.get("title") or ui["page_title"],
-        page_description=ui["page_description"],
-        canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
-        page_h1=_hub.get("h1") or ui["page_h1"],
-        # Deliberately "area" and not the local word: the singular of wijken,
-        # quartieri or seniūnijos is not derivable by trimming an s, and
-        # "Every wijken rated" is worse than the plain English. The local term
-        # keeps the table heading, where the plural is the correct form anyway.
-        # "The map is below the table" e' diventato falso il giorno in cui la
-        # mappa e' salita sopra le card e la tabella e' finita chiusa in fondo.
-        # Una riga che dice al lettore dove guardare, e guarda dall'altra parte,
-        # e' peggio di nessuna riga.
-        page_lead=("Every area rated for day and night, with the reasoning and the sources "
-                   "behind each rating."
-                   if _hubdata["rows"] else ui["page_lead"]),
-        hub=_hubdata, hub_unit=_hub.get("unit"), hub_local=_hub.get("local"),
-        data_note=evidence_line(city_key, len(zones)), show_toggle=show_toggle,
-        label_day=ui["label_day"], label_night=ui["label_night"],
-        legend_green=ui["legend_green"], legend_yellow=legend_yellow,
-        legend_red=ui["legend_red"], legend_grey=ui["legend_grey"],
-        has_grey=any(z["day"] == "grey" or z["night"] == "grey" for z in zones),
-        has_no_findings=any(z.get("evidence") == "no_findings" for z in zones),
-        label_zone_detail=ui["label_zone_detail"], label_click_hint=ui["label_click_hint"],
-        label_all_zones=ui["label_all_zones"], label_booking=ui["label_booking"],
-        booking_prefix=booking_affiliate_prefix(city_key),
-        label_more=ui["label_more"], label_not_covered="",
-        pois=load_pois(city_key), poi_filter_all="All",
-        footer_note=ui["footer_note"],
-        zones=js_zones, zone_groups=group_zones(zones, js_zones),
-        center=data["center"], zoom=data["zoom"],
-        show_burglary_toggle=bool(extra_zone_data),
-    )
-    with open(os.path.join(city_dir, "index.html"), "w") as f:
-        f.write(html)
-    urls.append(canonical)
-    print(f"Wrote {os.path.join(city_dir, 'index.html')} ({len(zones)} zones)")
+    # LA STESSA PAGINA, UNA VOLTA PER LINGUA
+    #
+    #   L'inglese resta dov'e' e com'e': /plymouth/, stessi byte di prima.
+    #   Spostarlo sotto /en/ butterebbe via ogni URL che Google ha indicizzato
+    #   in cambio di niente. Le altre lingue nascono accanto, sotto il loro
+    #   prefisso, e hreflang dice a Google che sono la stessa pagina.
+    #
+    #   hub_data() viene ricalcolato per lingua perche' le frasi delle card e
+    #   la spiegazione delle zone rosse sono costruite li' dentro. Costa un
+    #   secondo passaggio sui POI per citta' per lingua; il build resta sotto i
+    #   venti secondi e in cambio non esiste un solo pezzo di testo che sia
+    #   inglese per sbaglio.
+    _langs = [i18n.DEFAULT_LANG] + i18n.languages_for_country_code(
+        city_country_code(data["label"]))
+    _alts = [(lg, SITE_URL + i18n.url_for(lg, "%s/" % url_slug)) for lg in _langs]
+
+    for _lang in _langs:
+        _t = i18n.strings(_lang)
+        _is_en = _lang == i18n.DEFAULT_LANG
+        _city_only = i18n.place(_lang, city_only(data["label"]))
+        _label = i18n.local_label(_lang, data["label"])
+        _hubdata = hub_data(city_key, zones, _t)
+        _tone = tone_badge if _is_en else {
+            "green": _t["tone_green"], "yellow": _t["tone_yellow"],
+            "red": _t["tone_red"], "grey": _t["tone_grey"],
+        }
+        # Le pagine delle singole aree non sono ancora tradotte — sono i 177.000
+        # parole di ragionamento che aspettano il servizio di traduzione — quindi
+        # da una hub tradotta i link puntano alla versione inglese, che esiste.
+        # Mandare un lettore italiano su una pagina inglese e' un limite; mandarlo
+        # su un 404 sarebbe un difetto.
+        def _area_url(slug):
+            return f"/{url_slug}/{slug}.html" if flat else f"/{url_slug}/{slug}/"
+
+        for _r in _hubdata["rows"]:
+            _r["url"] = _area_url(_r["slug"])
+            _r["day_label"] = _tone.get(_r["day"], _r["day"])
+            _r["night_label"] = _tone.get(_r["night"], _r["night"])
+            _r["book"] = booking_href(next((z["query"] for z in zones
+                                            if z["slug"] == _r["slug"]), ""), city_key)
+        # Due card rosse sulla stessa pagina possono ricevere la stessa frase — la
+        # forma breve, che non nomina l'area, e' identica per costruzione. Stamparla
+        # due volte non aggiunge niente e sembra un modello incollato.
+        _notes_seen = set()
+        for _c in _hubdata["cards"]:
+            _z = _c["zone"]
+            _c["url"] = _area_url(_z["slug"])
+            _c["day_label"] = _tone.get(_z["day"], _z["day"])
+            _c["night_label"] = _tone.get(_z["night"], _z["night"])
+            _c["book"] = booking_href(_z["query"], city_key)
+            _c["label_text"] = " · ".join(_t.get(CARD_LABEL_KEY[l], l) for l in _c["labels"])
+            _note = caution_note(city_key, _z, _c["labels"], _c["counts"]["sights"], t=_t)
+            _c["caution"] = "" if _note in _notes_seen else _note
+            if _note:
+                _notes_seen.add(_note)
+        _hub = hub_headline(data["label"], ui.get("page_description", ""), len(zones))
+        _dir = city_dir if _is_en else os.path.join(OUT_DIR, _lang, url_slug)
+        os.makedirs(_dir, exist_ok=True)
+        _canonical = SITE_URL + i18n.url_for(_lang, "%s/" % url_slug)
+
+        html = map_tpl.render(
+            lang=_lang, alternates=_alts, languages=i18n.LANGUAGES,
+            t=_t,
+            city_label=_label, tagline=_t["tagline"],
+            current_city_url=SITE_URL + "/%s/" % url_slug,
+            nav_home=_t["nav_home"], nav_methodology=_t["nav_methodology"],
+            page_title=(_hub.get("title") or ui["page_title"]) if _is_en
+                       else _t["hub_title"] % {"city": _city_only},
+            page_description=ui["page_description"] if _is_en
+                             else _t["hub_description"] % {"city": _city_only},
+            canonical_url=_canonical,
+            city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
+            page_h1=(_hub.get("h1") or ui["page_h1"]) if _is_en
+                    else _t["hub_h1"] % {"city": _city_only},
+            # Deliberately "area" and not the local word: the singular of wijken,
+            # quartieri or seniūnijos is not derivable by trimming an s, and
+            # "Every wijken rated" is worse than the plain English. The local term
+            # keeps the table heading, where the plural is the correct form anyway.
+            page_lead=(_t["hub_lead"] if _hubdata["rows"] else ui["page_lead"]),
+            hub=_hubdata, hub_unit=_hub.get("unit"),
+            # Il termine locale — wijken, quartieri, seniunijos — resta com'e':
+            # e' il nome che quella citta' da' alle sue aree, non una parola da
+            # tradurre. Si traduce solo il generico "neighbourhoods", che e'
+            # inglese perche' la descrizione da cui viene e' inglese.
+            hub_local=(_t["unit_generic"] if _hub.get("local") == "neighbourhoods"
+                       else _hub.get("local")),
+            data_note=evidence_line(city_key, len(zones)) if _is_en else "",
+            show_toggle=show_toggle,
+            label_day=_t["label_day"], label_night=_t["label_night"],
+            legend_green=_t["legend_green"],
+            legend_yellow=legend_yellow if _is_en else _t["legend_yellow"],
+            legend_red=_t["legend_red"], legend_grey=_t["legend_grey"],
+            has_grey=any(z["day"] == "grey" or z["night"] == "grey" for z in zones),
+            has_no_findings=any(z.get("evidence") == "no_findings" for z in zones),
+            label_zone_detail=ui["label_zone_detail"], label_click_hint=_t["click_hint"],
+            label_all_zones=_t["all_zones"], label_booking=_t["booking_cta"],
+            booking_prefix=booking_affiliate_prefix(city_key),
+            label_more=_t["see_full_page"], label_not_covered="",
+            pois=load_pois(city_key, _t), poi_filter_all=_t["poi_all"],
+            label_hide_sights=_t["hide_sights"], label_sights_hidden=_t["sights_hidden"],
+            footer_note=_t["footer_note"],
+            zones=js_zones, zone_groups=group_zones(zones, js_zones),
+            center=data["center"], zoom=data["zoom"],
+            show_burglary_toggle=bool(extra_zone_data),
+        )
+        with open(os.path.join(_dir, "index.html"), "w") as f:
+            f.write(html)
+        urls.append(_canonical)
+    print(f"Wrote {os.path.join(city_dir, 'index.html')} ({len(zones)} zones"
+          f"{', +' + ','.join(_langs[1:]) if len(_langs) > 1 else ''})")
 
     neigh_tpl = env.get_template("neighbourhood.html")
     for z in zones:
@@ -2354,7 +2427,11 @@ def render_london_map(cities):
                                      (_b.get("workday_population_ratio") in (None, 1.0)))
 
     html = map_tpl.render(
-        lang="en", city_label="London", tagline="Neighbourhood safety for travellers",
+        # Londra non ha ancora una seconda lingua: alternates vuoto significa
+        # nessun hreflang e nessun selettore, che e' la cosa giusta per una
+        # pagina che esiste in una versione sola.
+        lang="en", t=i18n.strings("en"), alternates=[], current_city_url=None,
+        city_label="London", tagline="Neighbourhood safety for travellers",
         nav_home="Home", nav_methodology="Methodology", canonical_url=canonical, city_links=CITY_LINKS, city_country_links=CITY_LINKS_BY_COUNTRY,
         page_title="Where to stay in London: safest boroughs compared | Wandroz",
         page_description="Compare all 33 London boroughs on Metropolitan Police recorded crime. Which rate safest, which suit a first visit, families or a night out, and where to book in each.",
@@ -2372,6 +2449,7 @@ def render_london_map(cities):
         label_more="See the auto-updating live data →",
         label_not_covered="",
         pois=load_pois("london"), poi_filter_all="All",
+        label_hide_sights="Hide sights", label_sights_hidden="Sights hidden",
         footer_note="public official data, not just reviews. In beta — coverage is expanding.",
         zones=js_zones, center=[51.509, -0.118], zoom=10,
     )

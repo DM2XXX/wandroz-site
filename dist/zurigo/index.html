@@ -78,6 +78,11 @@
   /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
      chi non conosce la citta' legge il nome di un quartiere e non ha modo di
      sapere dove sia rispetto al resto. */
+  .lang-switch { display:flex; gap:2px; align-items:center; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
   .hub-card { cursor:pointer; }
   .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
   .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
@@ -539,12 +544,8 @@
 
 
 
-<p class="hub-answer">
-  For a short stay in Zurich:
-  <strong>Lindenhof</strong>, <strong>Enge</strong> and <strong>Rathaus</strong>.
-  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and
-  night rating — including where that rating says be careful.</span> None of them is here because
-  someone paid for it.
+<p class="hub-answer">For a short stay in Zurich: <strong>Lindenhof</strong>, <strong>Enge</strong> and <strong>Rathaus</strong>.
+  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and night rating — including where that rating says be careful.</span> None of them is here because someone paid for it.
 </p>
 
 
@@ -705,8 +706,7 @@
 <details class="hub-table-wrap">
   <summary>Compare all 34 neighbourhoods</summary>
   
-  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
-    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city, not by rating — the unusual ones first. Click a column to sort it your way.</p>
   <div class="hub-scroll">
     <table class="hub" id="hubTable">
       <thead><tr>
@@ -1049,7 +1049,7 @@
   var SHOW_TOGGLE = true;
   var SHOW_BURGLARY_TOGGLE = true;
   var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
-  var L_CLICK = "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_CLICK = "Click an area on the map to see its level and the reasoning behind it.";
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
@@ -1101,6 +1101,8 @@
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.37, "lon": 8.544167, "name": "Grossm\u00fcnster", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.365, "lon": 8.546944, "name": "Z\u00fcrich Opera House", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.370278, "lon": 8.548056, "name": "Kunsthaus Z\u00fcrich", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 47.379167, "lon": 8.539722, "name": "Swiss National Museum", "rank": 4}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.349722, "lon": 8.490278, "name": "Uetliberg", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.369722, "lon": 8.541111, "name": "Fraum\u00fcnster", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 47.371097, "lon": 8.540687, "name": "St. Peter, Zurich", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 47.373681, "lon": 8.538523, "name": "Bahnhofstrasse", "rank": 8}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.373, "lon": 8.5412, "name": "Lindenhof", "rank": 9}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 47.36694, "lon": 8.54083, "name": "Lake Zurich", "rank": 10}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.3733, "lon": 8.545, "name": "Niederdorf", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.3763, "lon": 8.52667, "name": "Langstrasse", "rank": 12}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 47.3536, "lon": 8.55211, "name": "Z\u00fcrichhorn lakeside", "rank": 13}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 47.380277777778, "lon": 8.54, "name": "Platzspitz park", "rank": 14}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 47.3908, "lon": 8.5225, "name": "Z\u00fcrich West (Escher-Wyss)", "rank": 15}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 47.36278, "lon": 8.53633, "name": "Arboretum Z\u00fcrich", "rank": 16}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 47.35788, "lon": 8.53051, "name": "Rieterpark", "rank": 17}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 47.35497, "lon": 8.55199, "name": "Chinese Garden", "rank": 18}];
   var POI_ALL = "All";
+  var L_HIDE_SIGHTS = "Hide sights";
+  var L_SIGHTS_HIDDEN = "Sights hidden";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
@@ -1616,7 +1618,7 @@
       var hb = bar.querySelector('.poi-hide');
       if (hb) {
         hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
-        hb.lastChild.nodeValue = poiHidden ? ' Sights hidden' : ' Hide sights';
+        hb.lastChild.nodeValue = poiHidden ? (' ' + L_SIGHTS_HIDDEN) : (' ' + L_HIDE_SIGHTS);
       }
     }
     poiLegend(poiHidden ? undefined : poiCat);
@@ -1650,7 +1652,7 @@
     hide.setAttribute('aria-pressed', 'false');
     hide.title = 'Turn the sights layer off and leave only the safety colours';
     hide.appendChild(document.createElement('span')).className = 'box';
-    hide.appendChild(document.createTextNode(' Hide sights'));
+    hide.appendChild(document.createTextNode(' ' + L_HIDE_SIGHTS));
     hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
     bar.appendChild(hide);
   }

@@ -6,6 +6,9 @@
 <title>Where to stay in Verona: safest neighbourhoods compared | Wandroz</title>
 <meta name="description" content="Interactive map of Verona&#39;s 8 official circoscrizioni (real official administrative boundaries) with day/night safety levels from a structured local-source assessment.">
 <link rel="canonical" href="https://www.wandroz.com/verona/">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/verona/">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/verona/">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/verona/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Where to stay in Verona: safest neighbourhoods compared | Wandroz">
 <meta property="og:description" content="Interactive map of Verona&#39;s 8 official circoscrizioni (real official administrative boundaries) with day/night safety levels from a structured local-source assessment.">
@@ -78,6 +81,11 @@
   /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
      chi non conosce la citta' legge il nome di un quartiere e non ha modo di
      sapere dove sia rispetto al resto. */
+  .lang-switch { display:flex; gap:2px; align-items:center; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
   .hub-card { cursor:pointer; }
   .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
   .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
@@ -520,6 +528,10 @@
     </div>
     
     
+    <div class="lang-switch" aria-label="Language">
+      <a href="https://www.wandroz.com/verona/" class="on" aria-current="true" hreflang="en">EN</a>
+      <a href="https://www.wandroz.com/it/verona/" hreflang="it">IT</a>
+    </div>
     <nav class="wz-nav">
       <a href="/">Home</a>
       <a href="/methodology.html">Methodology</a>
@@ -534,12 +546,8 @@
 
 
 
-<p class="hub-answer">
-  For a short stay in Verona:
-  <strong>Centro storico e Veronetta</strong> and <strong>Borgo Trento, Valdonega (Nord-Ovest)</strong>.
-  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and
-  night rating — including where that rating says be careful.</span> None of them is here because
-  someone paid for it.
+<p class="hub-answer">For a short stay in Verona: <strong>Centro storico e Veronetta</strong> and <strong>Borgo Trento, Valdonega (Nord-Ovest)</strong>.
+  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and night rating — including where that rating says be careful.</span> None of them is here because someone paid for it.
 </p>
 
 
@@ -635,8 +643,7 @@
 <details class="hub-table-wrap">
   <summary>Compare all 8 circoscrizioni</summary>
   
-  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
-    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city, not by rating — the unusual ones first. Click a column to sort it your way.</p>
   <div class="hub-scroll">
     <table class="hub" id="hubTable">
       <thead><tr>
@@ -745,7 +752,7 @@
   var SHOW_TOGGLE = true;
   var SHOW_BURGLARY_TOGGLE = false;
   var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
-  var L_CLICK = "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_CLICK = "Click an area on the map to see its level and the reasoning behind it.";
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
@@ -797,6 +804,8 @@
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.43889, "lon": 10.99444, "name": "Verona Arena", "rank": 1}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 45.44777, "lon": 11, "name": "Ponte Pietra", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.44722, "lon": 10.99694, "name": "Verona Cathedral", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.4425, "lon": 10.97917, "name": "Basilica of San Zeno", "rank": 4}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 45.44306, "lon": 10.99722, "name": "piazza delle Erbe", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.43957, "lon": 10.9881, "name": "Castelvecchio", "rank": 6}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 45.43889, "lon": 10.99278, "name": "piazza Bra", "rank": 7}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 45.44028, "lon": 10.98722, "name": "Castelvecchio Bridge", "rank": 8}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.44742, "lon": 11.00164, "name": "Roman theatre of Verona", "rank": 9}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.44194, "lon": 10.9933, "name": "Porta Borsari", "rank": 10}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.44364, "lon": 10.99893, "name": "Scaliger Tombs", "rank": 11}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.442, "lon": 10.99869, "name": "Casa di Giulietta", "rank": 12}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 45.44694, "lon": 11.00278, "name": "Santa Maria in Organo", "rank": 13}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 45.4423, "lon": 11.0054, "name": "Veronetta", "rank": 14}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 45.44816, "lon": 11.00336, "name": "Castel San Pietro", "rank": 15}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 45.44303, "lon": 11.0064, "name": "Giardino Giusti (Verona)", "rank": 16}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 45.45309, "lon": 11.00467, "name": "Parco delle Colombare", "rank": 17}];
   var POI_ALL = "All";
+  var L_HIDE_SIGHTS = "Hide sights";
+  var L_SIGHTS_HIDDEN = "Sights hidden";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
@@ -1312,7 +1321,7 @@
       var hb = bar.querySelector('.poi-hide');
       if (hb) {
         hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
-        hb.lastChild.nodeValue = poiHidden ? ' Sights hidden' : ' Hide sights';
+        hb.lastChild.nodeValue = poiHidden ? (' ' + L_SIGHTS_HIDDEN) : (' ' + L_HIDE_SIGHTS);
       }
     }
     poiLegend(poiHidden ? undefined : poiCat);
@@ -1346,7 +1355,7 @@
     hide.setAttribute('aria-pressed', 'false');
     hide.title = 'Turn the sights layer off and leave only the safety colours';
     hide.appendChild(document.createElement('span')).className = 'box';
-    hide.appendChild(document.createTextNode(' Hide sights'));
+    hide.appendChild(document.createTextNode(' ' + L_HIDE_SIGHTS));
     hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
     bar.appendChild(hide);
   }

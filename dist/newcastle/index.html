@@ -78,6 +78,11 @@
   /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
      chi non conosce la citta' legge il nome di un quartiere e non ha modo di
      sapere dove sia rispetto al resto. */
+  .lang-switch { display:flex; gap:2px; align-items:center; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
   .hub-card { cursor:pointer; }
   .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
   .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
@@ -534,12 +539,8 @@
 
 
 
-<p class="hub-answer">
-  For a short stay in Newcastle upon Tyne:
-  <strong>Monument</strong> and <strong>Dene &amp; South Gosforth</strong>.
-  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and
-  night rating — including where that rating says be careful.</span> None of them is here because
-  someone paid for it.
+<p class="hub-answer">For a short stay in Newcastle upon Tyne: <strong>Monument</strong> and <strong>Dene &amp; South Gosforth</strong>.
+  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and night rating — including where that rating says be careful.</span> None of them is here because someone paid for it.
 </p>
 
 
@@ -570,7 +571,7 @@
     </div>
     
   <div class="zone-list">
-    <h2>All wards</h2>
+    <h2>All neighbourhoods</h2>
     
     <ul>
       
@@ -671,8 +672,7 @@
 <details class="hub-table-wrap">
   <summary>Compare all 26 wards</summary>
   
-  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
-    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city, not by rating — the unusual ones first. Click a column to sort it your way.</p>
   <div class="hub-scroll">
     <table class="hub" id="hubTable">
       <thead><tr>
@@ -943,7 +943,7 @@
   var SHOW_TOGGLE = true;
   var SHOW_BURGLARY_TOGGLE = false;
   var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
-  var L_CLICK = "Click a ward on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_CLICK = "Click an area on the map to see its level and the reasoning behind it.";
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
@@ -995,6 +995,8 @@
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 54.97556, "lon": -1.62167, "name": "St James\u2019 Park", "rank": 1}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 54.96944, "lon": -1.59972, "name": "Gateshead Millennium Bridge", "rank": 2}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 54.96819, "lon": -1.60625, "name": "Tyne Bridge", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 54.96883, "lon": -1.61036, "name": "Newcastle upon Tyne Castle", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 54.96917, "lon": -1.59778, "name": "Baltic Centre for Contemporary Art", "rank": 5}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 54.97383, "lon": -1.61317, "name": "Grey\u0027s Monument", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 54.98, "lon": -1.613, "name": "Great North Museum: Hancock", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 54.975, "lon": -1.609, "name": "Laing Art Gallery", "rank": 8}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 54.9725, "lon": -1.6114, "name": "Grainger Town", "rank": 9}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 54.99, "lon": -1.59, "name": "Jesmond Dene", "rank": 10}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 54.977, "lon": -1.623, "name": "Leazes Park", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 54.97142, "lon": -1.61447, "name": "Bigg Market", "rank": 12}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 54.974, "lon": -1.59, "name": "Ouseburn Valley", "rank": 13}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 54.9728, "lon": -1.61491, "name": "Grainger Market", "rank": 14}];
   var POI_ALL = "All";
+  var L_HIDE_SIGHTS = "Hide sights";
+  var L_SIGHTS_HIDDEN = "Sights hidden";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
@@ -1510,7 +1512,7 @@
       var hb = bar.querySelector('.poi-hide');
       if (hb) {
         hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
-        hb.lastChild.nodeValue = poiHidden ? ' Sights hidden' : ' Hide sights';
+        hb.lastChild.nodeValue = poiHidden ? (' ' + L_SIGHTS_HIDDEN) : (' ' + L_HIDE_SIGHTS);
       }
     }
     poiLegend(poiHidden ? undefined : poiCat);
@@ -1544,7 +1546,7 @@
     hide.setAttribute('aria-pressed', 'false');
     hide.title = 'Turn the sights layer off and leave only the safety colours';
     hide.appendChild(document.createElement('span')).className = 'box';
-    hide.appendChild(document.createTextNode(' Hide sights'));
+    hide.appendChild(document.createTextNode(' ' + L_HIDE_SIGHTS));
     hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
     bar.appendChild(hide);
   }

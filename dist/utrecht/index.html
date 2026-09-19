@@ -78,6 +78,11 @@
   /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
      chi non conosce la citta' legge il nome di un quartiere e non ha modo di
      sapere dove sia rispetto al resto. */
+  .lang-switch { display:flex; gap:2px; align-items:center; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
   .hub-card { cursor:pointer; }
   .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
   .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
@@ -534,12 +539,8 @@
 
 
 
-<p class="hub-answer">
-  For a short stay in Utrecht:
-  <strong>Binnenstad</strong> and <strong>Vleuten-De Meern</strong>.
-  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and
-  night rating — including where that rating says be careful.</span> None of them is here because
-  someone paid for it.
+<p class="hub-answer">For a short stay in Utrecht: <strong>Binnenstad</strong> and <strong>Vleuten-De Meern</strong>.
+  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and night rating — including where that rating says be careful.</span> None of them is here because someone paid for it.
 </p>
 
 
@@ -639,8 +640,7 @@
 <details class="hub-table-wrap">
   <summary>Compare all 10 wijken</summary>
   
-  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
-    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city, not by rating — the unusual ones first. Click a column to sort it your way.</p>
   <div class="hub-scroll">
     <table class="hub" id="hubTable">
       <thead><tr>
@@ -767,7 +767,7 @@
   var SHOW_TOGGLE = true;
   var SHOW_BURGLARY_TOGGLE = false;
   var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
-  var L_CLICK = "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_CLICK = "Click an area on the map to see its level and the reasoning behind it.";
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
@@ -819,6 +819,8 @@
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.08533, "lon": 5.1476, "name": "Rietveld Schr\u00f6der House", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.09092, "lon": 5.12223, "name": "St. Martin\u0027s Cathedral, Utrecht", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 52.12143, "lon": 4.98635, "name": "Castle de Haar", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.08333, "lon": 5.12583, "name": "Centraal Museum", "rank": 4}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 52.09065, "lon": 5.1214, "name": "Dom Tower of Utrecht", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.09029, "lon": 5.1189, "name": "Museum Speelklok", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.08778, "lon": 5.13167, "name": "Spoorwegmuseum", "rank": 7}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 52.09167, "lon": 5.11778, "name": "Oudegracht", "rank": 8}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.10056, "lon": 5.12694, "name": "Griftpark", "rank": 9}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 52.10014, "lon": 5.02469, "name": "M\u00e1ximapark", "rank": 10}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 52.09306, "lon": 5.11861, "name": "Neude", "rank": 11}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 52.09361, "lon": 5.12111, "name": "Janskerkhof", "rank": 12}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 52.09083, "lon": 5.12028, "name": "Vismarkt", "rank": 13}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 52.08387, "lon": 5.12563, "name": "nijntje museum", "rank": 14}];
   var POI_ALL = "All";
+  var L_HIDE_SIGHTS = "Hide sights";
+  var L_SIGHTS_HIDDEN = "Sights hidden";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
@@ -1334,7 +1336,7 @@
       var hb = bar.querySelector('.poi-hide');
       if (hb) {
         hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
-        hb.lastChild.nodeValue = poiHidden ? ' Sights hidden' : ' Hide sights';
+        hb.lastChild.nodeValue = poiHidden ? (' ' + L_SIGHTS_HIDDEN) : (' ' + L_HIDE_SIGHTS);
       }
     }
     poiLegend(poiHidden ? undefined : poiCat);
@@ -1368,7 +1370,7 @@
     hide.setAttribute('aria-pressed', 'false');
     hide.title = 'Turn the sights layer off and leave only the safety colours';
     hide.appendChild(document.createElement('span')).className = 'box';
-    hide.appendChild(document.createTextNode(' Hide sights'));
+    hide.appendChild(document.createTextNode(' ' + L_HIDE_SIGHTS));
     hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
     bar.appendChild(hide);
   }

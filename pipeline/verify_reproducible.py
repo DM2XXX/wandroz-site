@@ -60,6 +60,14 @@ except Exception as exc:  # pragma: no cover
     sys.exit(2)
 
 
+# I prefissi di lingua che il generatore puo' produrre. Letti da i18n, non
+# riscritti qui: due liste della stessa cosa divergono, ed e' gia' successo.
+try:
+    import i18n as _I18N
+    LANG_PREFIXES = set(_I18N.extra_languages())
+except Exception:                                    # pragma: no cover
+    LANG_PREFIXES = set()
+
 # Files the build legitimately emits that are not zone or hub pages.
 EXPECTED_ROOT_FILES = {
     "index.html", "methodology.html", "robots.txt", "sitemap.xml",
@@ -189,10 +197,22 @@ def classify(dist, reg, findings):
                     if p.startswith(LONDON_SLUG + os.sep) and not p.endswith("index.html")}
     root_pages = {p for p in built_pages if os.sep not in p}
 
+    # Le hub tradotte vivono sotto il prefisso della lingua — /it/milano/ — e
+    # non hanno una zona sorgente propria: sono la stessa citta' detta in
+    # un'altra lingua. Sono attese quando la lingua e' dichiarata in i18n e lo
+    # slug e' una citta' che il build produce davvero; qualunque altra cosa
+    # sotto un prefisso di lingua resta un orfano da segnalare.
+    lang_hubs = set()
+    for p in built_pages:
+        parts = p.split(os.sep)
+        if len(parts) == 3 and parts[0] in LANG_PREFIXES and parts[2] == "index.html":
+            if (parts[1] + os.sep + "index.html") in expected_hubs:
+                lang_hubs.add(p)
+
     for rel in sorted(source_pages - built_pages):
         findings.append(("SOURCE_ONLY", rel, "zone exists in source but the build produced no page"))
 
-    accounted = source_pages | expected_hubs | london_pages | root_pages
+    accounted = source_pages | expected_hubs | london_pages | root_pages | lang_hubs
     for rel in sorted(built_pages - accounted):
         findings.append(("GENERATED_ONLY", rel, "page exists in the build with no zone in source"))
 

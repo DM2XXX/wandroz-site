@@ -6,6 +6,9 @@
 <title>Where to stay in Rome: safest neighbourhoods compared | Wandroz</title>
 <meta name="description" content="Interactive map of Rome&#39;s neighbourhoods (real official Zone Urbanistiche boundaries) with day/night safety levels from a structured local-source assessment.">
 <link rel="canonical" href="https://www.wandroz.com/roma/">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/roma/">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/roma/">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/roma/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Where to stay in Rome: safest neighbourhoods compared | Wandroz">
 <meta property="og:description" content="Interactive map of Rome&#39;s neighbourhoods (real official Zone Urbanistiche boundaries) with day/night safety levels from a structured local-source assessment.">
@@ -78,6 +81,11 @@
   /* Passarci sopra accende la zona sulla mappa, cliccarla la seleziona: senza,
      chi non conosce la citta' legge il nome di un quartiere e non ha modo di
      sapere dove sia rispetto al resto. */
+  .lang-switch { display:flex; gap:2px; align-items:center; }
+  .lang-switch a { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted);
+                   text-decoration:none; padding:4px 8px; border-radius:6px; }
+  .lang-switch a.on { background:var(--navy); color:#fff; }
+  .lang-switch a:not(.on):hover { background:#eef1f4; color:var(--navy); }
   .hub-card { cursor:pointer; }
   .hub-card.linked { border-color:#9aa6b1; box-shadow:0 2px 12px rgba(12,29,57,.12); }
   .zone-list li.linked, .zone-list li.linked > a { color:var(--accent); font-weight:600; }
@@ -520,6 +528,10 @@
     </div>
     
     
+    <div class="lang-switch" aria-label="Language">
+      <a href="https://www.wandroz.com/roma/" class="on" aria-current="true" hreflang="en">EN</a>
+      <a href="https://www.wandroz.com/it/roma/" hreflang="it">IT</a>
+    </div>
     <nav class="wz-nav">
       <a href="/">Home</a>
       <a href="/methodology.html">Methodology</a>
@@ -534,12 +546,8 @@
 
 
 
-<p class="hub-answer">
-  For a short stay in Rome:
-  <strong>Centro Storico</strong>, <strong>Nomentano</strong>, <strong>Trastevere</strong> and <strong>Acilia Nord</strong>.
-  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and
-  night rating — including where that rating says be careful.</span> None of them is here because
-  someone paid for it.
+<p class="hub-answer">For a short stay in Rome: <strong>Centro Storico</strong>, <strong>Nomentano</strong>, <strong>Trastevere</strong> and <strong>Acilia Nord</strong>.
+  <span class="hub-answer-more">One area for each kind of trip, each shown with its own day and night rating — including where that rating says be careful.</span> None of them is here because someone paid for it.
 </p>
 
 
@@ -1116,8 +1124,7 @@
 <details class="hub-table-wrap">
   <summary>Compare all 155 neighbourhoods</summary>
   
-  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city,
-    not by rating — the unusual ones first. Click a column to sort it your way.</p>
+  <p class="hub-table-note">Ordered by how much each area differs from the rest of the city, not by rating — the unusual ones first. Click a column to sort it your way.</p>
   <div class="hub-scroll">
     <table class="hub" id="hubTable">
       <thead><tr>
@@ -2549,7 +2556,7 @@
   var SHOW_TOGGLE = true;
   var SHOW_BURGLARY_TOGGLE = false;
   var COLORS = { green: "#2e7d46", yellow: "#c98a02", red: "#c0392b", grey: "#7a8190" };
-  var L_CLICK = "Click a zone on the map to see its level, the reasoning, and a Booking.com link for that area.";
+  var L_CLICK = "Click an area on the map to see its level and the reasoning behind it.";
   var L_BOOKING = "Search accommodation here on Booking.com \u2192";
   var L_MORE = "See the full page \u2192";
   var L_NOTCOVERED = "";
@@ -2601,6 +2608,8 @@
 
   var POIS = [{"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.890278, "lon": 12.492222, "name": "Colosseum", "rank": 1}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.902222, "lon": 12.453417, "name": "St. Peter\u0027s Basilica", "rank": 2}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.902956, "lon": 12.454433, "name": "Sistine Chapel", "rank": 3}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.898611, "lon": 12.476944, "name": "Pantheon", "rank": 4}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.8922, "lon": 12.4852, "name": "Roman Forum", "rank": 5}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.900833, "lon": 12.483056, "name": "Trevi Fountain", "rank": 6}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83d\uddbc", "lat": 41.906389, "lon": 12.454444, "name": "Vatican Museums", "rank": 7}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.888333, "lon": 12.486944, "name": "Palatine Hill", "rank": 8}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.903044, "lon": 12.466307, "name": "Castel Sant\u0027Angelo", "rank": 9}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 41.89871, "lon": 12.47316, "name": "Piazza Navona", "rank": 10}, {"cat": "art", "cat_icon": "\ud83c\udfdb", "cat_label": "Art \u0026 history", "icon": "\ud83c\udfdb", "lat": 41.894722, "lon": 12.483056, "name": "Altare della Patria", "rank": 11}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 41.887222, "lon": 12.465556, "name": "Trastevere", "rank": 12}, {"cat": "square", "cat_icon": "\ud83d\udeb6", "cat_label": "Squares \u0026 walks", "icon": "\ud83d\udeb6", "lat": 41.90611, "lon": 12.48278, "name": "Spanish Steps", "rank": 13}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 41.913647, "lon": 12.485104, "name": "Villa Borghese", "rank": 14}, {"cat": "view", "cat_icon": "\ud83c\udfd4", "cat_label": "Views", "icon": "\ud83c\udfd4", "lat": 41.891666666667, "lon": 12.461111111111, "name": "Janiculum Hill", "rank": 15}, {"cat": "food", "cat_icon": "\ud83c\udf7d", "cat_label": "Food markets", "icon": "\ud83c\udf7d", "lat": 41.89566377508, "lon": 12.472046538447, "name": "Campo de\u0027 Fiori", "rank": 16}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 41.87611111, "lon": 12.475, "name": "Testaccio", "rank": 17}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 41.894962, "lon": 12.4892253, "name": "Monti", "rank": 18}, {"cat": "night", "cat_icon": "\ud83c\udf09", "cat_label": "Nightlife", "icon": "\ud83d\udeb6", "lat": 41.897102, "lon": 12.515745, "name": "San Lorenzo", "rank": 19}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 41.91379, "lon": 12.51209, "name": "Villa Torlonia", "rank": 20}, {"cat": "green", "cat_icon": "\ud83c\udf33", "cat_label": "Green space", "icon": "\ud83c\udf33", "lat": 41.93201, "lon": 12.50181, "name": "Villa Ada", "rank": 21}];
   var POI_ALL = "All";
+  var L_HIDE_SIGHTS = "Hide sights";
+  var L_SIGHTS_HIDDEN = "Sights hidden";
   var L_LEGEND_DAYNIGHT = { green: "Calm \u2014 no particular concern", yellow: "Caution \u2014 fine by day, be more careful in the evening/night", red: "Not recommended for a tourist \u2014 known, recurring issues", grey: "Not covered by this dataset" };
   var L_LEGEND_BURGLARY = {
     green: "Burglary rate well below the 12-district average",
@@ -3116,7 +3125,7 @@
       var hb = bar.querySelector('.poi-hide');
       if (hb) {
         hb.setAttribute('aria-pressed', poiHidden ? 'true' : 'false');
-        hb.lastChild.nodeValue = poiHidden ? ' Sights hidden' : ' Hide sights';
+        hb.lastChild.nodeValue = poiHidden ? (' ' + L_SIGHTS_HIDDEN) : (' ' + L_HIDE_SIGHTS);
       }
     }
     poiLegend(poiHidden ? undefined : poiCat);
@@ -3150,7 +3159,7 @@
     hide.setAttribute('aria-pressed', 'false');
     hide.title = 'Turn the sights layer off and leave only the safety colours';
     hide.appendChild(document.createElement('span')).className = 'box';
-    hide.appendChild(document.createTextNode(' Hide sights'));
+    hide.appendChild(document.createTextNode(' ' + L_HIDE_SIGHTS));
     hide.addEventListener('click', function () { poiHidden = !poiHidden; poiApply(); });
     bar.appendChild(hide);
   }

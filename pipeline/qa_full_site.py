@@ -724,6 +724,54 @@ def check_recipe_not_published(dist, F):
                        "not on a public page." % (m.group(0), why))
 
 
+def check_i18n(dist, F):
+    """A declared language must be fully translated, and its pages must point
+    at each other.
+
+    WHY THIS IS A GATE
+        A half-translated language is worse than no translation: the reader
+        gets a page that looks Italian and turns English halfway down, and
+        Google gets a page it cannot classify. The catalogue makes that easy to
+        cause — add a key for English, forget the others, ship. So the build
+        fails instead.
+
+        The hreflang half matters for the same reason in the other direction:
+        two versions of a page that do not name each other are not translations
+        as far as a search engine is concerned, they are duplicates competing
+        with one another.
+    """
+    try:
+        import i18n
+    except Exception as exc:                          # pragma: no cover
+        F.fail("I18N", "catalogue-importable", "pipeline/i18n.py",
+               "cannot import the string catalogue (%s)" % exc)
+        return
+
+    for lang in i18n.extra_languages():
+        missing = i18n.missing_keys(lang)
+        if missing:
+            F.fail("I18N", "language-complete", lang,
+                   "%d string(s) not translated: %s" % (len(missing), ", ".join(missing[:8])))
+
+    # hreflang reciproco: se A dichiara B, B deve dichiarare A.
+    declared = {}
+    for path, rel in walk_html(dist):
+        html = read(path)
+        alts = dict(re.findall(r'<link rel="alternate" hreflang="([a-z-]+)" href="([^"]+)"', html))
+        if alts:
+            declared[rel] = alts
+    for rel, alts in sorted(declared.items()):
+        for code, href in alts.items():
+            if code == "x-default":
+                continue
+            target = href.replace(BS.SITE_URL, "").lstrip("/")
+            target = (target + "index.html") if target.endswith("/") else target
+            if target not in declared:
+                F.fail("I18N", "hreflang-reciprocal", rel,
+                       "declares hreflang=%s -> %s, which declares no alternates back"
+                       % (code, href))
+
+
 def check_forbidden_copy(dist, F):
     for path, rel in walk_html(dist):
         text = TAG_RE.sub(" ", read(path))
@@ -1258,6 +1306,7 @@ def main():
     check_methodology(dist, reg, F)
     check_forbidden_copy(dist, F)
     check_recipe_not_published(dist, F)
+    check_i18n(dist, F)
     check_no_coverage_rule(F)
     check_denominator_artefacts(F)
     check_contact(dist, F)
