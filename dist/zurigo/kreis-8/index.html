@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Kreis 8 in Zurich safe? | Wandroz</title>
+<meta name="description" content="Kreis 8 is one of the 12 official Stadtkreise the city of Zurich is divided into, covering Seefeld, Mühlebach, Weinegg. Kantonspolizei Zürich recorded 1,591 off">
+<link rel="canonical" href="https://www.wandroz.com/zurigo/kreis-8/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/zurigo/">Zurich, Switzerland</a> &rsaquo; Kreis 8</nav>
+<main>
+  <h1 class="page-title">Kreis 8 &mdash; Zurich, Switzerland</h1>
+  
+  <p class="evidence-line">🟢 Official crime data · Kantonspolizei Zürich PKS, by Stadtkreis <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Average</span> <span class="badge-label">Safety level (no day/night split in the source data)</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Kreis 8 is one of the 12 official Stadtkreise the city of Zurich is divided into, covering Seefeld, Mühlebach, Weinegg. Kantonspolizei Zürich recorded 1,591 offences under the Swiss Criminal Code here in 2025 across 17,379 residents — 91.5 per 1,000, 90% of the citywide average of 101.6. The figure is the canton&#39;s own published Häufigkeitszahl, normalised against registered residents rather than the people who pass through, so a central Kreis with few residents and heavy daily footfall reads higher than the experience of being there would suggest. Zurich publishes no crime statistic below Stadtkreis level, and the same figure therefore applies to every Quartier inside this one. It is an annual snapshot, not a live feed, and it carries no time of day: the day and night levels shown here come from the same number.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Kreis+8%2C+Zurich%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This rating is derived from Kantonspolizei Zürich&#39;s official Polizeiliche Kriminalstatistik, by Stadtkreis — an official statistic covering this area, not an assessment of it. It is a periodic snapshot rather than a live feed, and it is normalised against residents rather than footfall; the methodology page sets out the year, the normalisation and what that means for busy central areas.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Kreis 8 safe?</summary>
+      <p>Wandroz currently rates Kreis 8 in Zurich as roughly average compared to other neighbourhoods in Zurich. This rating is derived from Kantonspolizei Zürich&#39;s official Polizeiliche Kriminalstatistik, by Stadtkreis — an official statistic, not an assessment. High-footfall tourist, transit or shopping areas can read higher on this kind of measure without that meaning elevated risk per visit, since these statistics are normalised against registered residents rather than footfall — see the note on this page and the methodology page for the full caveats. The source data has no day/night breakdown, so this single rating applies at any time of day rather than being a distinct night-specific figure.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Does Kreis 8&#39;s rating differ between day and night?</summary>
+      <p>No — Kreis 8&#39;s source data has no time-of-day breakdown, so the same rating (roughly average compared to other neighbourhoods in Zurich) is shown for both day and night rather than Wandroz inventing a separate night figure it doesn&#39;t actually have.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Kreis 8 a good area to stay in as a tourist?</summary>
+      <p>Kreis 8&#39;s day rating (roughly average compared to other neighbourhoods in Zurich) is the more relevant one for typical daytime tourist activity; check the night rating too if you&#39;ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is there official crime data for Kreis 8?</summary>
+      <p>Yes. Kreis 8&#39;s rating is derived from Kantonspolizei Zürich&#39;s official Polizeiliche Kriminalstatistik, by Stadtkreis, not an assessment — see the note on this page for the exact figure and the methodology page for full sourcing.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Kreis%208%2C%20Zurich%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz currently rates Kreis 8 in Zurich as roughly average compared to other neighbourhoods in Zurich. This rating is derived from Kantonspolizei Z\u00fcrich\u0027s official Polizeiliche Kriminalstatistik, by Stadtkreis \u2014 an official statistic, not an assessment. High-footfall tourist, transit or shopping areas can read higher on this kind of measure without that meaning elevated risk per visit, since these statistics are normalised against registered residents rather than footfall \u2014 see the note on this page and the methodology page for the full caveats. The source data has no day/night breakdown, so this single rating applies at any time of day rather than being a distinct night-specific figure."}, "name": "Is Kreis 8 safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "No \u2014 Kreis 8\u0027s source data has no time-of-day breakdown, so the same rating (roughly average compared to other neighbourhoods in Zurich) is shown for both day and night rather than Wandroz inventing a separate night figure it doesn\u0027t actually have."}, "name": "Does Kreis 8\u0027s rating differ between day and night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Kreis 8\u0027s day rating (roughly average compared to other neighbourhoods in Zurich) is the more relevant one for typical daytime tourist activity; check the night rating too if you\u0027ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page."}, "name": "Is Kreis 8 a good area to stay in as a tourist?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Kreis 8\u0027s rating is derived from Kantonspolizei Z\u00fcrich\u0027s official Polizeiliche Kriminalstatistik, by Stadtkreis, not an assessment \u2014 see the note on this page for the exact figure and the methodology page for full sourcing."}, "name": "Is there official crime data for Kreis 8?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[47.36601, 8.54901], [47.36575, 8.55], [47.36573, 8.55015], [47.36576, 8.55022], [47.36566, 8.55122], [47.36547, 8.55201], [47.36545, 8.55222], [47.36504, 8.5533], [47.36468, 8.55409], [47.36457, 8.55422], [47.36477, 8.55486], [47.36456, 8.55534], [47.36443, 8.55545], [47.36419, 8.55634], [47.36416, 8.55662], [47.36403, 8.55672], [47.36398, 8.55666], [47.36375, 8.55698], [47.36375, 8.55705], [47.36305, 8.55804], [47.36264, 8.5587], [47.36216, 8.55969], [47.36204, 8.56013], [47.36201, 8.56039], [47.36177, 8.56014], [47.36169, 8.5604], [47.36162, 8.56049], [47.36057, 8.56106], [47.36012, 8.5616], [47.36005, 8.56164], [47.36007, 8.56178], [47.36002, 8.56181], [47.35993, 8.56221], [47.35964, 8.56263], [47.35949, 8.56293], [47.35946, 8.56306], [47.35946, 8.56334], [47.3595, 8.56377], [47.35955, 8.56388], [47.35947, 8.56444], [47.35947, 8.56471], [47.35951, 8.56521], [47.35963, 8.56568], [47.35962, 8.5658], [47.35957, 8.56596], [47.35911, 8.56664], [47.35882, 8.56697], [47.35874, 8.56713], [47.35875, 8.56741], [47.35892, 8.56782], [47.35899, 8.56813], [47.35884, 8.56871], [47.35871, 8.56942], [47.35861, 8.5696], [47.35846, 8.56972], [47.35832, 8.56974], [47.35804, 8.56964], [47.35795, 8.56968], [47.35786, 8.56982], [47.35784, 8.56992], [47.35785, 8.57012], [47.35798, 8.57063], [47.35797, 8.57111], [47.35807, 8.57235], [47.35804, 8.57272], [47.35798, 8.57281], [47.35779, 8.57292], [47.35764, 8.57314], [47.35699, 8.57444], [47.35692, 8.5745], [47.35664, 8.57456], [47.35654, 8.57468], [47.35642, 8.57497], [47.35625, 8.57512], [47.35586, 8.57505], [47.35555, 8.57518], [47.35546, 8.57536], [47.35547, 8.57582], [47.35541, 8.576], [47.35535, 8.57606], [47.35528, 8.57606], [47.3553, 8.57611], [47.35493, 8.5763], [47.35493, 8.57648], [47.35504, 8.57674], [47.35505, 8.5769], [47.35498, 8.57717], [47.35484, 8.57734], [47.35482, 8.57743], [47.35488, 8.57772], [47.35489, 8.57802], [47.35475, 8.57816], [47.35457, 8.57809], [47.35445, 8.57818], [47.35441, 8.57827], [47.35427, 8.57907], [47.3541, 8.57939], [47.35393, 8.57953], [47.35374, 8.57944], [47.35361, 8.57956], [47.35359, 8.57984], [47.35365, 8.58015], [47.35364, 8.58035], [47.35339, 8.58084], [47.3534, 8.58089], [47.3536, 8.58115], [47.35379, 8.58152], [47.35376, 8.58163], [47.35358, 8.58169], [47.35345, 8.58182], [47.35342, 8.5823], [47.35334, 8.58255], [47.35322, 8.58265], [47.35288, 8.58278], [47.35283, 8.58284], [47.3528, 8.58319], [47.35265, 8.58338], [47.35259, 8.58358], [47.35258, 8.58365], [47.35264, 8.58388], [47.35287, 8.58417], [47.35294, 8.58451], [47.35291, 8.58466], [47.35277, 8.58484], [47.35276, 8.58497], [47.35254, 8.58534], [47.35248, 8.58564], [47.35261, 8.58581], [47.35283, 8.58593], [47.35287, 8.58619], [47.35285, 8.58629], [47.35247, 8.58606], [47.35231, 8.58592], [47.35201, 8.58531], [47.35175, 8.58506], [47.35168, 8.58493], [47.35152, 8.58478], [47.35145, 8.5846], [47.35141, 8.58463], [47.35129, 8.58418], [47.35116, 8.58439], [47.35113, 8.58423], [47.35084, 8.584], [47.35104, 8.58349], [47.35087, 8.58336], [47.35096, 8.58287], [47.35101, 8.58222], [47.35061, 8.58247], [47.34885, 8.57887], [47.34886, 8.57869], [47.34873, 8.57852], [47.34888, 8.57828], [47.34865, 8.57787], [47.34878, 8.57687], [47.34859, 8.5769], [47.34838, 8.57626], [47.34751, 8.5731], [47.34765, 8.57301], [47.34744, 8.57215], [47.34736, 8.57221], [47.34727, 8.57164], [47.34711, 8.57171], [47.34672, 8.5703], [47.3476, 8.56969], [47.34673, 8.56742], [47.34673, 8.56736], [47.34693, 8.56715], [47.34688, 8.56705], [47.34713, 8.56682], [47.34706, 8.56666], [47.34691, 8.56589], [47.34684, 8.56564], [47.34666, 8.56576], [47.34646, 8.56524], [47.34644, 8.5651], [47.34086, 8.55388], [47.35268, 8.54205], [47.3632, 8.54214], [47.36422, 8.54586], [47.36421, 8.54619], [47.36442, 8.54696], [47.36458, 8.54737], [47.36602, 8.54885], [47.36601, 8.54901]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "dist": "/Users/dm2/wandroz/repo/dist",
-  "pages_audited": 2430,
+  "pages_audited": 2408,
   "cities_expected": 62,
   "cities_built": 62,
   "cities_missing": [],
@@ -66,9 +66,9 @@
     "warsaw": 18,
     "york": 21,
     "zagreb": 16,
-    "zurigo": 34
+    "zurigo": 12
   },
-  "zones_in_source": 1912,
+  "zones_in_source": 1890,
   "florence": {
     "expected": 75,
     "generated": 75
@@ -79,26 +79,26 @@
   },
   "booking": {
     "URL_STRUCTURE_PASS": {
-      "PASS": 1944
+      "PASS": 1922
     },
     "WANDROZ_QUERY_MATCH": {
-      "PASS": 1944
+      "PASS": 1922
     },
     "BOOKING_DESTINATION_VERIFIED": {
-      "MANUAL_VERIFICATION_REQUIRED": 1245,
+      "MANUAL_VERIFICATION_REQUIRED": 1223,
       "PASS": 699
     },
     "AFFILIATE_ATTRIBUTION_VERIFIED": {
       "PASS": 228,
-      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1716
+      "NOT_ATTRIBUTED_BY_CURRENT_CODE": 1694
     },
     "destination_class": {
-      "UNVERIFIED": 1245,
+      "UNVERIFIED": 1223,
       "TRAVELLER_ALIAS": 382,
       "CITY_FALLBACK": 314,
       "EXACT_AREA": 3
     },
-    "ctas_total": 1944
+    "ctas_total": 1922
   },
   "correction_email": {
     "canonical": "hellowandroz@gmail.com",
@@ -256,7 +256,7 @@
       "category": "BOOKING",
       "check": "affiliate-attribution",
       "target": "site-wide",
-      "message": "1716 of 1944 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
+      "message": "1694 of 1922 Booking CTAs carry no recognised attribution parameter (aid, label, sid, utm_source, utm_campaign). Absence is conclusive; presence would still need account-side confirmation. Do not add parameters without the real account's authorised link format."
     },
     {
       "severity": "WARN",
