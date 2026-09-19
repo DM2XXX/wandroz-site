@@ -1,11 +1,11 @@
 {
  "label": "Geneva, Switzerland",
  "center": [
-  46.2044,
-  6.1432
+  46.21,
+  6.135
  ],
- "zoom": 11,
- "dataNote": "Geneva is a canton of 45 communes of which the city is one, so this map covers all of it: the Ville de Genève's eight quarters, and every other commune from Carouge to the vineyard villages on the French border. The canton recorded 50,020 criminal-code offences in 2025, 4% fewer than in 2024, of which 36,844 were against property and 2,291 against life and bodily integrity — three quarters of it theft. Burglaries have fallen by 40% since 2015. The canton does publish those figures per commune, but only as a PDF whose text layer runs the cantonal and communal columns together, so a row cannot be read back reliably; rather than risk publishing a commune's crime count wrong by a factor of ten, the ratings here come from sourced reporting and the per-commune table is left cited and unextracted. Source: Police cantonale genevoise, 14 August 2026.",
+ "zoom": 12,
+ "dataNote": "Geneva is a canton of 45 communes of which the city is one, so this map covers all of it: the Ville de Genève's eight quarters, and every other commune from Carouge to the vineyard villages on the French border. The canton also runs a Diagnostic local de sécurité — a survey of residents on how safe they feel — and its 2023 edition found 28.9% saying they feel unsafe walking alone in their own neighbourhood after 10pm, down from 32.8% in 2020 and from a peak of 49.9% in 2013. Where a commune's text cites that ranking it is describing what people report feeling, which is not the same thing as what is recorded, and the canton publishes both because they diverge. The canton recorded 50,020 criminal-code offences in 2025, 4% fewer than in 2024, of which 36,844 were against property and 2,291 against life and bodily integrity — three quarters of it theft. Burglaries have fallen by 40% since 2015. The canton does publish those figures per commune, but only as a PDF whose text layer runs the cantonal and communal columns together, so a row cannot be read back reliably; rather than risk publishing a commune's crime count wrong by a factor of ten, the ratings here come from sourced reporting and the per-commune table is left cited and unextracted. Source: Police cantonale genevoise, 14 August 2026.",
  "zones": [
   {
    "name": "Acacias Bâtie",
@@ -97001,7 +97001,7 @@
    "name": "Carouge",
    "slug": "carouge",
    "day": "green",
-   "night": "green",
+   "night": "yellow",
    "coords": [
     [
      [
@@ -101254,10 +101254,10 @@
      ]
     ]
    ],
-   "text": "The Sardinian-built town across the Arve, low ochre houses, arcades, workshops and the liveliest evening streets outside the city centre. One of six communes with a security agreement with the canton — an arrangement about policing, not a finding about crime. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.",
+   "text": "The Sardinian-built town across the Arve: low ochre houses, arcades, workshops, and the liveliest evening streets outside the city centre. The canton's Diagnostic local de sécurité, which asks residents how safe they feel walking alone in their own streets after 10pm, puts Carouge second of the communes surveyed, behind Vernier. That is a measure of how people feel rather than of what is recorded, and Carouge's evening crowd is a large part of why it ranks where it does — the night rating reflects a busy going-out town, not a dangerous one. Source: Diagnostic local de sécurité, canton de Genève, 2023.",
    "query": "Carouge, Geneva, Switzerland",
    "booking_scope": "city",
-   "evidence": "no_findings"
+   "evidence": "documented"
   },
   {
    "name": "Cartigny",
@@ -198710,7 +198710,7 @@
      ]
     ]
    ],
-   "text": "A large commune between the city and the airport, from the Pont-Rouge towers to older estates and the Parc Navazza. One of six communes with a security agreement with the canton. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.",
+   "text": "A large commune between the city and the airport, from the Pont-Rouge towers to older estates and the Parc Navazza. In the canton's Diagnostic local de sécurité, which asks residents how safe they feel walking alone in their own streets after 10pm, Lancy ranks fourth of the communes surveyed — a measure of how people feel rather than of recorded crime, and one the canton publishes precisely because the two differ. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.",
    "query": "Lancy, Geneva, Switzerland",
    "booking_scope": "city",
    "evidence": "no_findings"
@@ -208486,7 +208486,7 @@
      ]
     ]
    ],
-   "text": "A satellite town built for CERN, with the laboratory on its edge and a large international population. One of six communes with a security agreement with the canton. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.",
+   "text": "A satellite town built for CERN, with the laboratory on its edge and a large international population. In the canton's Diagnostic local de sécurité, which asks residents how safe they feel walking alone in their own streets after 10pm, Meyrin ranks fifth of the communes surveyed — a measure of how people feel rather than of recorded crime, and one the canton publishes precisely because the two differ. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.",
    "query": "Meyrin, Geneva, Switzerland",
    "booking_scope": "city",
    "evidence": "no_findings"
@@ -224996,7 +224996,7 @@
      ]
     ]
    ],
-   "text": "South of the city, the canton's watchmaking and biotech estate with residential districts around it. One of six communes with a security agreement with the canton. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.",
+   "text": "South of the city, the canton's watchmaking and biotech estate with residential districts around it. In the canton's Diagnostic local de sécurité, which asks residents how safe they feel walking alone in their own streets after 10pm, Plan-les-Ouates ranks third of the communes surveyed — a measure of how people feel rather than of recorded crime, and one the canton publishes precisely because the two differ. Nothing area-specific was found in the source review; the dashed outline on the map records that absence rather than a checked all-clear.",
    "query": "Plan-les-Ouates, Geneva, Switzerland",
    "booking_scope": "city",
    "evidence": "no_findings"
@@ -322680,7 +322680,7 @@
      ]
     ]
    ],
-   "text": "The canton's second-largest commune, an industrial and residential belt west of the city that includes Le Lignon — a kilometre-long 1960s housing complex, one of the largest in Europe. Le Lignon has had a run of fires and vandalism reported over months, with complaints filed weekly, and the canton and the commune have put police and social workers into it together; a local party has petitioned for the municipal police post to be reinstated. That is property damage and disorder rather than crime against passers-by, and it concerns one estate rather than the commune. Vernier is one of six communes with a security agreement with the canton. Sources: Tribune de Genève; Canton de Genève.",
+   "text": "The canton's second-largest commune, an industrial and residential belt west of the city that includes Le Lignon — a kilometre-long 1960s housing complex, one of the largest in Europe. Le Lignon has had a run of fires and vandalism reported over months, with complaints filed weekly, and the canton and the commune have put police and social workers into it together; a local party has petitioned for the municipal police post to be reinstated. That is property damage and disorder rather than crime against passers-by, and it concerns one estate rather than the commune. Vernier also comes first among the communes the canton surveys for how safe residents feel walking alone after 10pm — again a measure of feeling, not of recorded crime. Sources: Tribune de Genève; Diagnostic local de sécurité, canton de Genève, 2023.",
    "query": "Vernier, Geneva, Switzerland",
    "booking_scope": "city",
    "evidence": "documented"

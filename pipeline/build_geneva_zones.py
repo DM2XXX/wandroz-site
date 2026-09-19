@@ -67,6 +67,16 @@ FOUND = {
         "of the better places to be in Geneva. The plaine is a large open space that "
         "empties at night, which is the whole of the night rating; nothing "
         "area-specific beyond that was found."), "documented"),
+    "Carouge": ("green", "yellow", (
+        "The Sardinian-built town across the Arve: low ochre houses, arcades, "
+        "workshops, and the liveliest evening streets outside the city centre. The "
+        "canton's Diagnostic local de sécurité, which asks residents how safe they "
+        "feel walking alone in their own streets after 10pm, puts Carouge second of "
+        "the communes surveyed, behind Vernier. That is a measure of how people feel "
+        "rather than of what is recorded, and Carouge's evening crowd is a large part "
+        "of why it ranks where it does — the night rating reflects a busy going-out "
+        "town, not a dangerous one. Source: Diagnostic local de sécurité, canton de "
+        "Genève, 2023."), "documented"),
     "Vernier": ("green", "yellow", (
         "The canton's second-largest commune, an industrial and residential belt west "
         "of the city that includes Le Lignon — a kilometre-long 1960s housing complex, "
@@ -75,9 +85,11 @@ FOUND = {
         "commune have put police and social workers into it together; a local party "
         "has petitioned for the municipal police post to be reinstated. That is "
         "property damage and disorder rather than crime against passers-by, and it "
-        "concerns one estate rather than the commune. Vernier is one of six communes "
-        "with a security agreement with the canton. Sources: Tribune de Genève; "
-        "Canton de Genève."), "documented"),
+        "concerns one estate rather than the commune. Vernier also comes first among "
+        "the communes the canton surveys for how safe residents feel walking alone "
+        "after 10pm — again a measure of feeling, not of recorded crime. Sources: "
+        "Tribune de Genève; Diagnostic local de sécurité, canton de Genève, 2023."),
+        "documented"),
 }
 
 # name -> one line of what the place actually is. Everything here was searched
@@ -95,7 +107,6 @@ PLAIN = {
     "Bardonnex": "A rural commune on the southern border, best known for its motorway customs post.",
     "Bellevue": "A lakeside commune north of the city, villas and the Port-Gitana marina.",
     "Bernex": "A large residential commune west of the city, growing fast around its new tram line.",
-    "Carouge": "The Sardinian-built town across the Arve, low ochre houses, arcades, workshops and the liveliest evening streets outside the city centre. One of six communes with a security agreement with the canton — an arrangement about policing, not a finding about crime.",
     "Cartigny": "A village of farms and vineyards above the Rhône.",
     "Chancy": "The westernmost commune in Switzerland, on the Rhône at the French border.",
     "Choulex": "A small rural commune in the canton's eastern countryside.",
@@ -114,12 +125,12 @@ PLAIN = {
     "Hermance": "A medieval lakeside village at the eastern end of the canton.",
     "Jussy": "Farmland and woodland in the canton's eastern countryside.",
     "Laconnex": "A small farming village in the south-west.",
-    "Lancy": "A large commune between the city and the airport, from the Pont-Rouge towers to older estates and the Parc Navazza. One of six communes with a security agreement with the canton.",
+    "Lancy": "A large commune between the city and the airport, from the Pont-Rouge towers to older estates and the Parc Navazza. In the canton's Diagnostic local de sécurité, which asks residents how safe they feel walking alone in their own streets after 10pm, Lancy ranks fourth of the communes surveyed — a measure of how people feel rather than of recorded crime, and one the canton publishes precisely because the two differ.",
     "Meinier": "A rural commune of hamlets east of the city.",
-    "Meyrin": "A satellite town built for CERN, with the laboratory on its edge and a large international population. One of six communes with a security agreement with the canton.",
+    "Meyrin": "A satellite town built for CERN, with the laboratory on its edge and a large international population. In the canton's Diagnostic local de sécurité, which asks residents how safe they feel walking alone in their own streets after 10pm, Meyrin ranks fifth of the communes surveyed — a measure of how people feel rather than of recorded crime, and one the canton publishes precisely because the two differ.",
     "Onex": "A hillside commune west of the city, mostly postwar housing estates around the Cité Nouvelle, with its own municipal police.",
     "Perly-Certoux": "A small commune on the southern border, with its own customs crossing.",
-    "Plan-les-Ouates": "South of the city, the canton's watchmaking and biotech estate with residential districts around it. One of six communes with a security agreement with the canton.",
+    "Plan-les-Ouates": "South of the city, the canton's watchmaking and biotech estate with residential districts around it. In the canton's Diagnostic local de sécurité, which asks residents how safe they feel walking alone in their own streets after 10pm, Plan-les-Ouates ranks third of the communes surveyed — a measure of how people feel rather than of recorded crime, and one the canton publishes precisely because the two differ.",
     "Pregny-Chambésy": "A wealthy commune above the lake, with the Rothschild estate and the botanical gardens.",
     "Presinge": "A farming village near the French border in the east.",
     "Puplinge": "A small commune on the eastern border, half village and half suburb.",
@@ -174,12 +185,24 @@ def main():
 
     out = {
         "label": "Geneva, Switzerland",
-        "center": [46.2044, 6.1432],
-        "zoom": 11,
+        # Zoom 11 fitted the whole canton and made the city unreadable: Céligny
+        # sits 15 km north as an exclave, so framing everything pushes Geneva
+        # itself down to a smudge among French villages. 12 frames the city and
+        # its ring of communes, which is where 48 of the 52 areas are; the rest
+        # is one drag away and "Reset view" comes back.
+        "center": [46.2100, 6.1350],
+        "zoom": 12,
         "dataNote": (
             "Geneva is a canton of 45 communes of which the city is one, so this map "
             "covers all of it: the Ville de Genève's eight quarters, and every other "
             "commune from Carouge to the vineyard villages on the French border. The "
+            "canton also runs a Diagnostic local de sécurité — a survey of residents "
+            "on how safe they feel — and its 2023 edition found 28.9% saying they feel "
+            "unsafe walking alone in their own neighbourhood after 10pm, down from "
+            "32.8% in 2020 and from a peak of 49.9% in 2013. Where a commune's text "
+            "cites that ranking it is describing what people report feeling, which is "
+            "not the same thing as what is recorded, and the canton publishes both "
+            "because they diverge. The "
             "canton recorded 50,020 criminal-code offences in 2025, 4% fewer than in "
             "2024, of which 36,844 were against property and 2,291 against life and "
             "bodily integrity — three quarters of it theft. Burglaries have fallen by "
