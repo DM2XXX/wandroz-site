@@ -14,36 +14,6 @@
 <style>
   main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
   h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
-  @media (min-width: 721px){
-    h1.page-title { font-size: 36px; }
-    h2 { font-size: 22px; }
-    .body-text { font-size: 17px; }
-    .badges .badge-label { font-size: 14px; }
-    .cta-note { font-size: 13.5px; max-width: 620px; }
-    .evidence-flag { font-size: 14.5px; }
-    .methodnote { font-size: 15.5px; }
-    .faq-item summary { font-size: 16.5px; }
-    .faq-item p { font-size: 15.5px; }
-    nav.crumbs { font-size: 14px !important; }
-  }
-  @media (min-width: 1800px){
-    h1.page-title { font-size: 42px; }
-    h2 { font-size: 25px; }
-    .body-text { font-size: 18.5px; }
-    .evidence-flag { font-size: 16px; }
-    .methodnote { font-size: 17px; }
-    .faq-item summary { font-size: 18px; }
-    .faq-item p { font-size: 17px; }
-    nav.crumbs { font-size: 15px !important; }
-  }
-  @media (min-width: 2400px){
-    h1.page-title { font-size: 50px; }
-    .body-text { font-size: 20.5px; }
-    .methodnote { font-size: 19px; }
-    .evidence-flag { font-size: 17.5px; }
-    .faq-item summary { font-size: 20px; }
-    .faq-item p { font-size: 19px; }
-  }
   h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
   .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
   .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
@@ -56,6 +26,8 @@
                    margin:10px 0 0; line-height:1.5; max-width:640px; }
   .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
                   border:1.5px dashed #7a8190; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
   .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
   #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
   .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
@@ -65,6 +37,67 @@
   .faq-item summary::before { content:"+ "; color: var(--muted); }
   .faq-item[open] summary::before { content:"– "; }
   .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
@@ -87,7 +120,8 @@
 <nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="../">Berlin, Germany</a> &rsaquo; Westend</nav>
 <main>
   <h1 class="page-title">Westend &mdash; Berlin, Germany</h1>
-  <p style="font-size:12px;color:var(--muted);margin:0 0 10px;">🟢 Official crime data · Polizei Berlin, Kriminalitätsatlas <a href="/methodology.html" style="color:inherit;">Methodology &rarr;</a></p>
+  
+  <p class="evidence-line">🟢 Official crime data · Polizei Berlin, Kriminalitätsatlas <a href="/methodology.html">Methodology &rarr;</a></p>
   <div class="badges">
     
     <span class="badge yellow">Average</span> <span class="badge-label">Safety level (no day/night split in the source data)</span>
