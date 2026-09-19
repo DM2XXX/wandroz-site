@@ -2278,13 +2278,16 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             # inglese perche' la descrizione da cui viene e' inglese.
             hub_local=(_t["unit_generic"] if _hub.get("local") == "neighbourhoods"
                        else _hub.get("local")),
-            # A city whose data file carries a dataNote has something to say
-            # beyond its evidence tier — Bath's map covers a council area
-            # larger than the city, and a reader has to be told that before
-            # they read "Keynsham" as a Bath neighbourhood. The note is
-            # appended, not substituted: the evidence line still has to show.
+            # scopeNote, not dataNote. A city whose map covers more ground than
+            # its name does has to say so next to the evidence line — Bath's
+            # data is published for a council area containing Keynsham and
+            # Midsomer Norton. It is a separate field on purpose: rendering the
+            # existing dataNote instead surfaced stale copy on 15 cities that
+            # no page had shown for months and that the forbidden-copy gate
+            # immediately failed. Those notes are dead text to be cleaned, not
+            # text to start publishing by accident.
             data_note=((evidence_line(city_key, len(zones))
-                        + ((" " + data["dataNote"]) if data.get("dataNote") else ""))
+                        + ((" " + data["scopeNote"]) if data.get("scopeNote") else ""))
                        if _is_en else ""),
             show_toggle=show_toggle,
             label_day=_t["label_day"], label_night=_t["label_night"],

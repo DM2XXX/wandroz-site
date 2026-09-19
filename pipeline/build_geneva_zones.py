@@ -192,7 +192,7 @@ def main():
         # is one drag away and "Reset view" comes back.
         "center": [46.2100, 6.1350],
         "zoom": 12,
-        "dataNote": (
+        "scopeNote": (
             "Geneva is a canton of 45 communes of which the city is one, so this map "
             "covers all of it: the Ville de Genève's eight quarters, and every other "
             "commune from Carouge to the vineyard villages on the French border. The "

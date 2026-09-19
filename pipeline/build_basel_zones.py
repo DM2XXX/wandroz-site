@@ -257,7 +257,7 @@ def main():
         "label": "Basel, Switzerland",
         "center": [47.5596, 7.5886],
         "zoom": 12,
-        "dataNote": (
+        "scopeNote": (
             "Basel-Stadt records more offences per resident than any other Swiss "
             "canton, and a reader may well have met that headline. Two things are "
             "worth knowing before it does any work. First, it is a poor comparison: "

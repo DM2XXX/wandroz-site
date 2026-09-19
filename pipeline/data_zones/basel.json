@@ -5,7 +5,6 @@
   7.5886
  ],
  "zoom": 12,
- "dataNote": "Basel-Stadt records more offences per resident than any other Swiss canton, and a reader may well have met that headline. Two things are worth knowing before it does any work. First, it is a poor comparison: Basel-Stadt is the only canton that is nothing but a city, with no countryside to average against, on a triple border that brings daily foot traffic from two other countries. Second, and more useful, it is almost entirely a theft figure. Of the 27,467 criminal-code offences recorded in the city of Basel in 2025, 70% were against property and just 5% were against the person — and most of that 5% was minor assault. Vehicle theft alone was 20% of all recorded crime, of which 2,840 bicycles and 2,571 e-bikes. Criminologist Dirk Baier, asked about this exact ranking in March 2024, said Basel “is still a very safe city” and that the risk of serious violent attack is essentially zero. So the practical reading of Basel's rank is: lock the bike, watch the bag, and do not read it as a reason to avoid parts of the city. Neither the canton nor the Kantonspolizei publishes crime below municipality level, so the ratings for the 19 city quarters come from sourced reporting rather than a per-quarter figure; Riehen and Bettingen are separate municipalities and do have official figures of their own. Source for the breakdown: data.bs.ch dataset 100508, 2025.",
  "zones": [
   {
    "name": "Altstadt Grossbasel",
@@ -62741,5 +62740,6 @@
    "booking_scope": "city",
    "evidence": "documented"
   }
- ]
+ ],
+ "scopeNote": "Basel-Stadt records more offences per resident than any other Swiss canton, and a reader may well have met that headline. Two things are worth knowing before it does any work. First, it is a poor comparison: Basel-Stadt is the only canton that is nothing but a city, with no countryside to average against, on a triple border that brings daily foot traffic from two other countries. Second, and more useful, it is almost entirely a theft figure. Of the 27,467 criminal-code offences recorded in the city of Basel in 2025, 70% were against property and just 5% were against the person — and most of that 5% was minor assault. Vehicle theft alone was 20% of all recorded crime, of which 2,840 bicycles and 2,571 e-bikes. Criminologist Dirk Baier, asked about this exact ranking in March 2024, said Basel “is still a very safe city” and that the risk of serious violent attack is essentially zero. So the practical reading of Basel's rank is: lock the bike, watch the bag, and do not read it as a reason to avoid parts of the city. Neither the canton nor the Kantonspolizei publishes crime below municipality level, so the ratings for the 19 city quarters come from sourced reporting rather than a per-quarter figure; Riehen and Bettingen are separate municipalities and do have official figures of their own. Source for the breakdown: data.bs.ch dataset 100508, 2025."
 }

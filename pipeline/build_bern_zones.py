@@ -216,7 +216,7 @@ def main():
         "label": "Bern, Switzerland",
         "center": [46.9480, 7.4474],
         "zoom": 12,
-        "dataNote": (
+        "scopeNote": (
             "Kantonspolizei Bern publishes crime for the canton by administrative "
             "district and by municipality, so the city of Bern has one figure and its "
             "28 districts have none; the ratings here come from sourced reporting "

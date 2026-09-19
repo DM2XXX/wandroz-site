@@ -5,7 +5,6 @@
   -2.4586
  ],
  "zoom": 11,
- "dataNote": "This map covers the Bath and North East Somerset council area, which is the geography the crime data is published for. That area is larger than Bath: Keynsham, Midsomer Norton, Radstock, Paulton, Saltford, Timsbury, Peasedown and the Chew Valley are separate towns and villages in North East Somerset, up to 15 km from the city, and the Bathavon wards are the rural parishes around it. They are shown because the dataset covers them and leaving them off would put blank ground on the map, but they are not Bath, and the recommendations above are drawn only from wards inside the city.",
  "zones": [
   {
    "name": "Bathavon North",
@@ -15337,5 +15336,6 @@
     ]
    ]
   }
- ]
+ ],
+ "scopeNote": "This map covers the Bath and North East Somerset council area, which is the geography the crime data is published for. That area is larger than Bath: Keynsham, Midsomer Norton, Radstock, Paulton, Saltford, Timsbury, Peasedown and the Chew Valley are separate towns and villages in North East Somerset, up to 15 km from the city, and the Bathavon wards are the rural parishes around it. They are shown because the dataset covers them and leaving them off would put blank ground on the map, but they are not Bath, and the recommendations above are drawn only from wards inside the city."
 }
