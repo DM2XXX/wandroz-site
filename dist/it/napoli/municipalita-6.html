@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) è una zona sicura? | Wandroz</title>
+<meta name="description" content="La periferia orientale di Napoli e, stando ai dati attuali, la zona più costantemente pericolosa della città. La Corte d’Appello indica “Barra-Ponticelli” tra l">
+<link rel="canonical" href="https://www.wandroz.com/it/napoli/municipalita-6.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/napoli/municipalita-6.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/napoli/municipalita-6.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/napoli/municipalita-6.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/napoli/">Napoli, Italia</a> &rsaquo; Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6)</nav>
+<main>
+  <h1 class="page-title">Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) &mdash; Napoli, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 10 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge red">Consigliata maggiore prudenza</span> <span class="badge-label">giorno</span>
+    <span class="badge red">Consigliata maggiore prudenza</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>La periferia orientale di Napoli e, stando ai dati attuali, la zona più costantemente pericolosa della città. La Corte d’Appello indica “Barra-Ponticelli” tra le aree con il più alto numero di episodi di stese; un censimento condotto su tutto il territorio comunale ha rilevato 92 episodi di stese a Napoli e nella sua provincia nel 2024 (in aumento rispetto ai 59 del 2023), con San Giovanni a Teduccio indicata tra le cinque zone più colpite. Il 24 aprile 2025, in pieno giorno, due uomini armati hanno sparato dodici colpi in Piazza Capri a San Giovanni a Teduccio nell’ambito di una faida in corso tra i clan Rinaldi e D’Amico (legati all’organizzazione Mazzarella) — pochi giorni dopo che degli spari avevano già interrotto una processione del Venerdì Santo nella stessa zona. Nell’aprile 2026 un ventenne è stato assassinato a Ponticelli, innescando un’intensificazione dei controlli della Prefettura in tutta l’area, che si è aggiunta a una campagna già consistente condotta nel 2025 (oltre 65 operazioni, 11.384 persone controllate, 237 denunce, 76 arresti). Si tratta di una zona a rischio sia di giorno che di notte, sulla base di una sparatoria documentata in pieno giorno e di un omicidio avvenuto nel 2026, non di una valutazione limitata al solo periodo notturno. Fonti consultate: Fanpage.it, 26/28 giugno 2023, che cita la relazione della Corte d’Appello di Napoli; Napolitan.it, 13 aprile 2025 (92 «stese» nel 2024, zone indicate); Pupia.tv, 24 aprile 2025 (sparatoria in pieno giorno in Piazza Capri); Positanonews.it, maggio 2024 (arresti per compravendita di voti, Ponticelli-Barra-San Giovanni); Fanpage.it, 7 aprile 2026 (omicidio a Ponticelli e statistiche sulle operazioni di polizia del 2025).</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Naples%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Naples publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) a Naples come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples, sia di giorno sia dopo il tramonto. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Naples non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) è sicura di notte?</summary>
+      <p>Di notte Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) è valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) (una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Ponticelli, Barra, San Giovanni a Teduccio (Municipalità 6) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Ponticelli%2C%20Barra%2C%20San%20Giovanni%20a%20Teduccio%20%28Municipalit%C3%A0%206%29%2C%20Napoli%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6) a Naples come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples, sia di giorno sia dopo il tramonto. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Naples non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6) \u00e8 valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6) (una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Ponticelli, Barra, San Giovanni a Teduccio (Municipalit\u00e0 6)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[40.84515, 14.28851], [40.84394, 14.29017], [40.84377, 14.29046], [40.84365, 14.29075], [40.84329, 14.29097], [40.8432, 14.29111], [40.84312, 14.29132], [40.84244, 14.29247], [40.84234, 14.29291], [40.8421, 14.2924], [40.84154, 14.29316], [40.84056, 14.29253], [40.84039, 14.29295], [40.83964, 14.29249], [40.83951, 14.2923], [40.83899, 14.2919], [40.8365, 14.29009], [40.83614, 14.28992], [40.83591, 14.29048], [40.83536, 14.29009], [40.83519, 14.29047], [40.83773, 14.2923], [40.83615, 14.29527], [40.83551, 14.29468], [40.83558, 14.29457], [40.83538, 14.29438], [40.83533, 14.29449], [40.83507, 14.29426], [40.83513, 14.29416], [40.83493, 14.29397], [40.83488, 14.29406], [40.83464, 14.29386], [40.8347, 14.29374], [40.8345, 14.29355], [40.83444, 14.29366], [40.83392, 14.29318], [40.83323, 14.29419], [40.82976, 14.29897], [40.8304, 14.29981], [40.83142, 14.29843], [40.83242, 14.29969], [40.83163, 14.30078], [40.83241, 14.30176], [40.83319, 14.30064], [40.83373, 14.29961], [40.83383, 14.29967], [40.83391, 14.29979], [40.83358, 14.30051], [40.83339, 14.3006], [40.83313, 14.30098], [40.83311, 14.30114], [40.83298, 14.30138], [40.83283, 14.3014], [40.83271, 14.30171], [40.83272, 14.30199], [40.83235, 14.30263], [40.83193, 14.30325], [40.83181, 14.30334], [40.83122, 14.30335], [40.83116, 14.30353], [40.83151, 14.30389], [40.83152, 14.304], [40.83169, 14.3045], [40.83182, 14.30458], [40.83173, 14.30495], [40.83169, 14.30541], [40.83031, 14.30755], [40.82993, 14.308], [40.8297, 14.30839], [40.82956, 14.3083], [40.82942, 14.30847], [40.82936, 14.30837], [40.82929, 14.30833], [40.8292, 14.30838], [40.82913, 14.30848], [40.82939, 14.3089], [40.82935, 14.30895], [40.82931, 14.30899], [40.82909, 14.30866], [40.829, 14.30861], [40.8289, 14.30868], [40.82882, 14.30891], [40.82896, 14.30897], [40.82912, 14.30914], [40.82889, 14.30963], [40.82781, 14.31124], [40.82764, 14.31133], [40.82749, 14.31112], [40.82735, 14.31107], [40.82714, 14.3111], [40.82626, 14.31238], [40.82592, 14.31268], [40.82578, 14.31295], [40.82579, 14.31306], [40.82599, 14.31336], [40.82612, 14.31348], [40.8261, 14.31353], [40.8258, 14.3133], [40.82571, 14.31329], [40.82566, 14.31343], [40.82552, 14.31347], [40.82499, 14.31346], [40.82485, 14.31341], [40.82441, 14.31467], [40.82443, 14.31483], [40.82453, 14.31481], [40.82491, 14.31367], [40.82514, 14.31365], [40.82546, 14.31383], [40.82572, 14.31418], [40.82581, 14.31508], [40.8257, 14.31532], [40.82469, 14.31681], [40.82461, 14.31685], [40.82435, 14.31669], [40.82456, 14.31638], [40.82458, 14.31623], [40.8245, 14.31617], [40.82438, 14.3163], [40.82418, 14.31662], [40.82402, 14.31653], [40.82393, 14.31657], [40.8239, 14.3167], [40.82423, 14.3169], [40.82427, 14.31708], [40.82412, 14.3175], [40.82412, 14.31763], [40.82356, 14.31845], [40.8235, 14.31826], [40.82344, 14.31824], [40.8232, 14.31839], [40.82303, 14.31824], [40.82296, 14.31825], [40.8227, 14.31854], [40.82219, 14.31884], [40.82195, 14.31918], [40.82186, 14.31943], [40.82138, 14.32005], [40.821, 14.32032], [40.82099, 14.32023], [40.82107, 14.32013], [40.82105, 14.32004], [40.82101, 14.32001], [40.82077, 14.32028], [40.82182, 14.32163], [40.82275, 14.3229], [40.82299, 14.32333], [40.8233, 14.32282], [40.82304, 14.32255], [40.82356, 14.32165], [40.8238, 14.32105], [40.82399, 14.32145], [40.82414, 14.32118], [40.82428, 14.32127], [40.82524, 14.31859], [40.8252, 14.31854], [40.82534, 14.31816], [40.82551, 14.3183], [40.82576, 14.3179], [40.82608, 14.31759], [40.82594, 14.31736], [40.82705, 14.3163], [40.82697, 14.31614], [40.82771, 14.31544], [40.82813, 14.31621], [40.82807, 14.31654], [40.82772, 14.31745], [40.82766, 14.31884], [40.82767, 14.31939], [40.82782, 14.3199], [40.82735, 14.32067], [40.82712, 14.32115], [40.82688, 14.32352], [40.8269, 14.32379], [40.82716, 14.32441], [40.82796, 14.32575], [40.82807, 14.32604], [40.82928, 14.3257], [40.82937, 14.32564], [40.82968, 14.32527], [40.8299, 14.32513], [40.83006, 14.32506], [40.83077, 14.32494], [40.83092, 14.32487], [40.83195, 14.3241], [40.83216, 14.32466], [40.83174, 14.32494], [40.83315, 14.32943], [40.83484, 14.32843], [40.83568, 14.33081], [40.83717, 14.32981], [40.83719, 14.32984], [40.83744, 14.33043], [40.8382, 14.33254], [40.83882, 14.33449], [40.83984, 14.33732], [40.84003, 14.33795], [40.84025, 14.33847], [40.84047, 14.33948], [40.84066, 14.3398], [40.84114, 14.34081], [40.84135, 14.34139], [40.84152, 14.34194], [40.84162, 14.34247], [40.84557, 14.34015], [40.84576, 14.34079], [40.84652, 14.34277], [40.84666, 14.34371], [40.84659, 14.34539], [40.84668, 14.34592], [40.84686, 14.3465], [40.84753, 14.34774], [40.84771, 14.34875], [40.84769, 14.34908], [40.84782, 14.3495], [40.84871, 14.34721], [40.84882, 14.34711], [40.85023, 14.34993], [40.85164, 14.34899], [40.85182, 14.34891], [40.85198, 14.34891], [40.85207, 14.34904], [40.85225, 14.34968], [40.85291, 14.34946], [40.85315, 14.34929], [40.85318, 14.3492], [40.85318, 14.34901], [40.85323, 14.34892], [40.85582, 14.34689], [40.85639, 14.34903], [40.85756, 14.35377], [40.85828, 14.35312], [40.85908, 14.35255], [40.86067, 14.35182], [40.86187, 14.35108], [40.86353, 14.35015], [40.86443, 14.34947], [40.86595, 14.34789], [40.86616, 14.34751], [40.8664, 14.34676], [40.86683, 14.3464], [40.87109, 14.34222], [40.87115, 14.34191], [40.8709, 14.34065], [40.87093, 14.34045], [40.87099, 14.34032], [40.87244, 14.3387], [40.87331, 14.33792], [40.8746, 14.33685], [40.87453, 14.33648], [40.87443, 14.33534], [40.8743, 14.33491], [40.87417, 14.33468], [40.87397, 14.33445], [40.87407, 14.33357], [40.87414, 14.33334], [40.87448, 14.33294], [40.87497, 14.33249], [40.87613, 14.33108], [40.88028, 14.32584], [40.87827, 14.32376], [40.87944, 14.32314], [40.87927, 14.32282], [40.88125, 14.32138], [40.88097, 14.32105], [40.87996, 14.32057], [40.87973, 14.31805], [40.88074, 14.31795], [40.88098, 14.3185], [40.88175, 14.3177], [40.88017, 14.31576], [40.87788, 14.31243], [40.87759, 14.3119], [40.87647, 14.30929], [40.87607, 14.30851], [40.87525, 14.30659], [40.87363, 14.30778], [40.87338, 14.30794], [40.87283, 14.30814], [40.8709, 14.30848], [40.87055, 14.30847], [40.87022, 14.30837], [40.86935, 14.3079], [40.86887, 14.30786], [40.8657, 14.30854], [40.86484, 14.30213], [40.86003, 14.29779], [40.85934, 14.29792], [40.85835, 14.29696], [40.85141, 14.29839], [40.84979, 14.29803], [40.84766, 14.29626], [40.8481, 14.29498], [40.84894, 14.29221], [40.84842, 14.29146], [40.84793, 14.29095], [40.84673, 14.28982], [40.84515, 14.28851]]];
+    var color = "#c0392b";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

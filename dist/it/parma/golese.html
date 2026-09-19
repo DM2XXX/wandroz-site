@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golese è una zona sicura? | Wandroz</title>
+<meta name="description" content="Parma residenziale, al di fuori delle aree oggetto di segnalazioni locali e dei nomi indicati nei piani di sicurezza del Comune. L’analisi non ha rilevato nulla">
+<link rel="canonical" href="https://www.wandroz.com/it/parma/golese.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/parma/golese.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/parma/golese.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/parma/golese.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/parma/">Parma, Italia</a> &rsaquo; Golese</nav>
+<main>
+  <h1 class="page-title">Golese &mdash; Parma, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 13 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Parma residenziale, al di fuori delle aree oggetto di segnalazioni locali e dei nomi indicati nei piani di sicurezza del Comune. L’analisi non ha rilevato nulla di specifico per questa zona: non rientra nella “zona rossa” designata, non figura tra i quartieri a cui sono assegnati agenti di quartiere e non è stata individuata nella mappatura della criminalità del 2026. Il contorno tratteggiato indica che si tratta di un’assenza di riscontri piuttosto che di un via libera verificato: le zone tranquille di una città sono anche quelle di cui nessuno parla.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Parma, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Golese è una zona sicura?</summary>
+      <p>Wandroz valuta Golese a Parma come relativamente più sicura della maggior parte degli altri quartieri di Parma. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Golese — nessun episodio, nessun problema ricorrente, niente di documentato né in un senso né nell&#39;altro — letta insieme al carattere della zona. Non è un riscontro positivo di sicurezza: un&#39;assenza di segnalazioni è un&#39;evidenza più debole delle valutazioni con fonti che trovi altrove su questa mappa, ed è indicata come tale ovunque compaia.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Che cosa è stato verificato per Golese?</summary>
+      <p>La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Parma: stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Golese non è emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative più piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell&#39;area.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Golese è una buona zona dove alloggiare da turista?</summary>
+      <p>Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Parma le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Golese%2C%20Parma%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta Golese a Parma come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Parma. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Golese \u2014 nessun episodio, nessun problema ricorrente, niente di documentato n\u00e9 in un senso n\u00e9 nell\u0027altro \u2014 letta insieme al carattere della zona. Non \u00e8 un riscontro positivo di sicurezza: un\u0027assenza di segnalazioni \u00e8 un\u0027evidenza pi\u00f9 debole delle valutazioni con fonti che trovi altrove su questa mappa, ed \u00e8 indicata come tale ovunque compaia."}, "name": "Golese \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Parma: stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Golese non \u00e8 emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative pi\u00f9 piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell\u0027area."}, "name": "Che cosa \u00e8 stato verificato per Golese?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Parma le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Golese \u00e8 una buona zona dove alloggiare da turista?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.87997, 10.3304], [44.88056, 10.3291], [44.88113, 10.32878], [44.8818, 10.32857], [44.88132, 10.32708], [44.88112, 10.32692], [44.88108, 10.32684], [44.88119, 10.32607], [44.88175, 10.32357], [44.88187, 10.32281], [44.88196, 10.32257], [44.88482, 10.31047], [44.88532, 10.30822], [44.88581, 10.30623], [44.88388, 10.30552], [44.88548, 10.29638], [44.88843, 10.29632], [44.89151, 10.29657], [44.89172, 10.29653], [44.89169, 10.29864], [44.89447, 10.29864], [44.89417, 10.2959], [44.89506, 10.29594], [44.89659, 10.29585], [44.89891, 10.29626], [44.90065, 10.29682], [44.90071, 10.29046], [44.90074, 10.28979], [44.88789, 10.28348], [44.88711, 10.28295], [44.88392, 10.27935], [44.88113, 10.27707], [44.88049, 10.27631], [44.87971, 10.27528], [44.87907, 10.27471], [44.87898, 10.27458], [44.87866, 10.27379], [44.87879, 10.27347], [44.8788, 10.27329], [44.87877, 10.27323], [44.87802, 10.2726], [44.87798, 10.27248], [44.8782, 10.2706], [44.87831, 10.27], [44.87862, 10.26892], [44.8787, 10.26838], [44.87868, 10.26784], [44.87864, 10.26763], [44.87823, 10.26595], [44.8782, 10.26569], [44.87825, 10.26499], [44.87822, 10.26473], [44.87816, 10.26464], [44.8779, 10.2645], [44.87777, 10.2643], [44.87667, 10.26137], [44.87594, 10.25919], [44.87556, 10.25871], [44.8755, 10.25855], [44.87551, 10.25718], [44.87557, 10.25653], [44.87612, 10.2539], [44.87606, 10.25379], [44.87595, 10.2537], [44.87568, 10.25357], [44.87567, 10.2534], [44.87588, 10.25262], [44.8761, 10.25143], [44.87641, 10.24909], [44.8773, 10.24756], [44.87747, 10.24747], [44.87705, 10.24744], [44.87596, 10.24766], [44.87582, 10.2469], [44.87577, 10.24647], [44.87579, 10.24614], [44.87604, 10.24489], [44.87635, 10.24361], [44.87649, 10.24317], [44.87659, 10.24112], [44.87635, 10.24108], [44.87529, 10.23927], [44.87445, 10.2388], [44.87389, 10.23828], [44.87297, 10.23814], [44.87205, 10.23838], [44.87155, 10.23906], [44.87031, 10.2431], [44.86874, 10.24395], [44.86629, 10.24519], [44.86572, 10.24577], [44.86396, 10.24626], [44.86209, 10.24551], [44.86068, 10.24393], [44.85843, 10.24324], [44.85482, 10.24315], [44.85422, 10.24317], [44.85365, 10.24334], [44.85328, 10.24329], [44.85266, 10.24266], [44.85223, 10.24231], [44.84863, 10.24042], [44.84627, 10.24075], [44.84596, 10.241], [44.84567, 10.24098], [44.84453, 10.24144], [44.84432, 10.24129], [44.84357, 10.24121], [44.84307, 10.24106], [44.84267, 10.24076], [44.84255, 10.24078], [44.84243, 10.24071], [44.84223, 10.24045], [44.84183, 10.24041], [44.84072, 10.23967], [44.83964, 10.23913], [44.83893, 10.2384], [44.83848, 10.23801], [44.83841, 10.23765], [44.83783, 10.23703], [44.83755, 10.23661], [44.83646, 10.23581], [44.83621, 10.23574], [44.83528, 10.23514], [44.83447, 10.23419], [44.83327, 10.23357], [44.83276, 10.23242], [44.83204, 10.23208], [44.83062, 10.23051], [44.82961, 10.22982], [44.82913, 10.22925], [44.82872, 10.22908], [44.82831, 10.22874], [44.82808, 10.22863], [44.82797, 10.22851], [44.82785, 10.22849], [44.82689, 10.22801], [44.82641, 10.22733], [44.82398, 10.23957], [44.82221, 10.23889], [44.81752, 10.26126], [44.81723, 10.26269], [44.8171, 10.26354], [44.81698, 10.26467], [44.81341, 10.31163], [44.81323, 10.31317], [44.81293, 10.31496], [44.81344, 10.31504], [44.81368, 10.31548], [44.814, 10.3155], [44.8141, 10.315], [44.81447, 10.31509], [44.81473, 10.3157], [44.81483, 10.31636], [44.81546, 10.31644], [44.81583, 10.3225], [44.81611, 10.32208], [44.81638, 10.3214], [44.817, 10.3204], [44.8172, 10.3202], [44.81752, 10.31997], [44.81816, 10.31971], [44.81839, 10.31966], [44.81856, 10.31969], [44.819, 10.31992], [44.81934, 10.32023], [44.8196, 10.32038], [44.81996, 10.32055], [44.82025, 10.32058], [44.82047, 10.32052], [44.82082, 10.32031], [44.82105, 10.32007], [44.82127, 10.31954], [44.82151, 10.31911], [44.82159, 10.31873], [44.82168, 10.31861], [44.82174, 10.31859], [44.8219, 10.31872], [44.82204, 10.31917], [44.82213, 10.31931], [44.82264, 10.3194], [44.82327, 10.31975], [44.82373, 10.31985], [44.82417, 10.3199], [44.82437, 10.31985], [44.82443, 10.31971], [44.82446, 10.31949], [44.82446, 10.31917], [44.82458, 10.31901], [44.8247, 10.31897], [44.82485, 10.31896], [44.82502, 10.31903], [44.82517, 10.31923], [44.82529, 10.31932], [44.82573, 10.31941], [44.82599, 10.31937], [44.82631, 10.31917], [44.82663, 10.31884], [44.82678, 10.31854], [44.82691, 10.31803], [44.8271, 10.31675], [44.82707, 10.3165], [44.82699, 10.31636], [44.82641, 10.31574], [44.82636, 10.31561], [44.82638, 10.31544], [44.82646, 10.31528], [44.8268, 10.31492], [44.82686, 10.3148], [44.82691, 10.31382], [44.82705, 10.31336], [44.8272, 10.3131], [44.8276, 10.31263], [44.82812, 10.31242], [44.82951, 10.31263], [44.82977, 10.31258], [44.83022, 10.3124], [44.83057, 10.31253], [44.83197, 10.31354], [44.83225, 10.31384], [44.83229, 10.314], [44.83216, 10.31446], [44.83212, 10.31503], [44.83246, 10.31545], [44.83281, 10.31576], [44.83349, 10.31566], [44.83362, 10.31571], [44.83388, 10.316], [44.83413, 10.31639], [44.83433, 10.31685], [44.83454, 10.31711], [44.8348, 10.31725], [44.83514, 10.31725], [44.83525, 10.31712], [44.83569, 10.31629], [44.83593, 10.31571], [44.83623, 10.31553], [44.83654, 10.31553], [44.83706, 10.31583], [44.83721, 10.31586], [44.8376, 10.31571], [44.83813, 10.31511], [44.83823, 10.31481], [44.83829, 10.31439], [44.83831, 10.31387], [44.83819, 10.31346], [44.83785, 10.31257], [44.83779, 10.31196], [44.83787, 10.31162], [44.83813, 10.31111], [44.83843, 10.31067], [44.83862, 10.31047], [44.83885, 10.31033], [44.83961, 10.31046], [44.8399, 10.3104], [44.84062, 10.31008], [44.84089, 10.31012], [44.8411, 10.31032], [44.84129, 10.31089], [44.8414, 10.3117], [44.84126, 10.31242], [44.84128, 10.31286], [44.84138, 10.31313], [44.8416, 10.31334], [44.84177, 10.31368], [44.84187, 10.31413], [44.84184, 10.31469], [44.84141, 10.31563], [44.84143, 10.31628], [44.84151, 10.31647], [44.84177, 10.31657], [44.84211, 10.31653], [44.84243, 10.31635], [44.84311, 10.31587], [44.84323, 10.31563], [44.84333, 10.3151], [44.84334, 10.31474], [44.84327, 10.31445], [44.843, 10.31386], [44.84281, 10.31378], [44.84263, 10.31311], [44.84261, 10.31257], [44.84295, 10.31145], [44.84369, 10.31054], [44.84392, 10.31018], [44.84399, 10.30969], [44.84411, 10.30936], [44.8443, 10.30914], [44.8445, 10.30915], [44.84482, 10.30931], [44.84528, 10.31], [44.84549, 10.31048], [44.84577, 10.311], [44.84661, 10.31201], [44.84689, 10.31203], [44.84717, 10.31192], [44.84731, 10.31172], [44.84804, 10.31124], [44.84874, 10.31126], [44.84892, 10.31109], [44.84922, 10.31001], [44.8494, 10.30973], [44.85017, 10.30936], [44.85031, 10.30938], [44.85066, 10.30966], [44.85089, 10.31013], [44.85111, 10.31043], [44.85161, 10.31073], [44.85182, 10.31069], [44.85243, 10.31017], [44.85258, 10.31022], [44.85418, 10.31148], [44.85439, 10.31154], [44.85533, 10.31112], [44.8555, 10.31113], [44.85563, 10.31126], [44.85595, 10.31245], [44.85613, 10.31356], [44.8565, 10.31468], [44.85677, 10.31494], [44.85712, 10.31502], [44.85723, 10.31519], [44.85722, 10.31605], [44.85682, 10.31797], [44.85661, 10.31918], [44.85619, 10.32034], [44.85571, 10.32142], [44.85504, 10.32227], [44.85438, 10.323], [44.85428, 10.3233], [44.85433, 10.32386], [44.8545, 10.32442], [44.8549, 10.32512], [44.8549, 10.32574], [44.85499, 10.32649], [44.85511, 10.32697], [44.85539, 10.32748], [44.85559, 10.32764], [44.856, 10.32781], [44.85613, 10.32774], [44.85656, 10.32729], [44.85684, 10.32678], [44.85707, 10.32664], [44.85726, 10.32665], [44.85738, 10.32676], [44.85759, 10.32715], [44.85766, 10.32739], [44.85756, 10.3279], [44.8572, 10.32871], [44.85711, 10.32911], [44.85719, 10.3293], [44.85769, 10.32963], [44.85777, 10.32979], [44.85775, 10.33037], [44.85797, 10.33111], [44.85789, 10.33132], [44.85766, 10.33158], [44.85724, 10.33159], [44.85677, 10.33172], [44.8567, 10.33187], [44.85677, 10.33244], [44.85667, 10.3328], [44.85672, 10.33308], [44.85686, 10.33338], [44.85708, 10.33339], [44.8573, 10.33331], [44.85762, 10.33311], [44.85813, 10.33299], [44.85867, 10.33306], [44.85881, 10.33291], [44.85885, 10.33265], [44.85861, 10.33124], [44.85867, 10.33074], [44.8588, 10.33045], [44.85912, 10.33012], [44.85947, 10.32994], [44.85993, 10.32995], [44.86032, 10.3301], [44.86073, 10.33051], [44.86099, 10.33098], [44.86121, 10.33161], [44.86127, 10.33268], [44.86133, 10.33292], [44.86149, 10.33303], [44.86167, 10.33309], [44.8619, 10.33299], [44.86219, 10.33257], [44.86238, 10.33241], [44.86253, 10.33238], [44.86328, 10.33241], [44.86349, 10.33252], [44.86382, 10.33282], [44.86418, 10.33334], [44.86445, 10.33352], [44.86469, 10.33354], [44.8648, 10.33336], [44.86496, 10.33269], [44.86497, 10.33209], [44.86492, 10.33188], [44.86496, 10.33143], [44.86512, 10.33084], [44.86572, 10.32973], [44.86586, 10.32961], [44.86611, 10.32954], [44.86649, 10.32961], [44.86693, 10.32987], [44.86713, 10.33008], [44.86742, 10.3306], [44.86772, 10.3317], [44.86772, 10.33213], [44.86718, 10.3329], [44.86692, 10.33334], [44.86687, 10.33374], [44.86694, 10.33435], [44.86686, 10.33463], [44.86686, 10.33482], [44.86703, 10.33506], [44.86733, 10.33521], [44.86769, 10.33525], [44.8683, 10.33508], [44.86896, 10.33455], [44.86937, 10.33441], [44.86966, 10.33404], [44.87016, 10.33322], [44.87049, 10.33227], [44.87079, 10.33154], [44.87096, 10.33137], [44.87108, 10.33138], [44.87123, 10.33151], [44.87146, 10.33202], [44.87167, 10.33237], [44.87182, 10.33251], [44.87201, 10.33244], [44.87213, 10.33219], [44.87215, 10.3316], [44.87219, 10.33143], [44.87235, 10.33099], [44.87254, 10.3303], [44.87278, 10.33006], [44.87288, 10.33008], [44.87298, 10.33016], [44.87339, 10.33078], [44.87462, 10.33135], [44.87537, 10.33135], [44.8755, 10.33141], [44.87561, 10.33153], [44.87606, 10.33227], [44.87645, 10.33232], [44.87712, 10.3321], [44.8773, 10.3321], [44.87797, 10.33244], [44.8783, 10.33269], [44.87876, 10.33272], [44.87932, 10.33191], [44.87997, 10.3304]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

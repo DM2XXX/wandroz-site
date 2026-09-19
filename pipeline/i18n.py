@@ -163,6 +163,94 @@ STRINGS = {
         "cat_anti-social-behaviour": "anti-social behaviour",
 
         # --- honesty about what is not translated -------------------------
+
+        # --- FAQ dell'area -------------------------------------------------
+        "desc_green": "relatively safer than most other neighbourhoods in %(city)s",
+        "desc_yellow": "roughly average compared to other neighbourhoods in %(city)s",
+        "desc_red": "an area where the data suggests extra caution relative to other neighbourhoods in %(city)s",
+        "desc_grey": "not covered by this dataset",
+
+        "faq_q_safe": "Is %(name)s safe?",
+        "faq_q_night": "Is %(name)s safe at night?",
+        "faq_q_daynight": "Does %(name)s's rating differ between day and night?",
+        "faq_q_tourist": "Is %(name)s a good area to stay in as a tourist?",
+        "faq_q_checked": "What was checked for %(name)s?",
+        "faq_q_official": "Is there official crime data for %(name)s?",
+
+        "basis_official": ("This rating is derived from %(source)s — an official statistic, not an "
+                           "assessment. High-footfall tourist, transit or shopping areas can read "
+                           "higher on this kind of measure without that meaning elevated risk per "
+                           "visit, since these statistics are normalised against registered "
+                           "residents rather than footfall — see the note on this page and the "
+                           "methodology page for the full caveats."),
+        "basis_research": ("This comes from a structured local-source assessment: an area-level "
+                           "review of credible local sources — local and national news, municipal "
+                           "and police-published material, and official surveys where they exist — "
+                           "consolidated across sources rather than taken from a single report. "
+                           "%(city)s publishes no comparable neighbourhood-level crime dataset; "
+                           "where a city does, Wandroz uses it instead."),
+        "basis_limited": ("This is a limited-data assessment: %(city)s publishes no "
+                          "neighbourhood-level crime dataset and this area has not yet had a full "
+                          "source review, so the rating is indicative and labelled as such rather "
+                          "than presented as evidenced."),
+
+        "faq_a_rating_same": ("Wandroz currently rates %(name)s in %(city)s as %(day)s, both by day "
+                              "and after dark. %(basis)s"),
+        "faq_a_rating_diff": ("Wandroz currently rates %(name)s in %(city)s as %(day)s during the "
+                              "day and %(night)s at night. %(basis)s"),
+        "faq_a_rating_notime": ("Wandroz currently rates %(name)s in %(city)s as %(day)s. %(basis)s "
+                                "The source data has no day/night breakdown, so this single rating "
+                                "applies at any time of day rather than being a distinct "
+                                "night-specific figure."),
+        "faq_a_night": ("At night, %(name)s is rated as %(night)s. If you're unsure, it's worth "
+                        "checking recent local reviews for your specific street or block, since a "
+                        "neighbourhood-wide rating can't capture block-by-block variation."),
+        "faq_a_daynight": ("No — %(name)s's source data has no time-of-day breakdown, so the same "
+                           "rating (%(day)s) is shown for both day and night rather than Wandroz "
+                           "inventing a separate night figure it doesn't actually have."),
+        "faq_a_tourist": ("%(name)s's day rating (%(day)s) is the more relevant one for typical "
+                          "daytime tourist activity; check the night rating too if you'll be out "
+                          "late. You can search accommodation already filtered to this specific "
+                          "area using the Booking.com link on this page."),
+
+        "faq_a_nofind_safe": ("Wandroz rates %(name)s in %(city)s as %(day)s. That rating rests on "
+                              "an area-level review that reached no traveller-relevant reporting "
+                              "specific to %(name)s — no incidents, no recurring problems, nothing "
+                              "documented either way — read together with the character of the "
+                              "area. It is not a positive finding of safety: an absence of "
+                              "reporting is weaker evidence than the sourced ratings elsewhere on "
+                              "this map, and it is marked as such wherever it appears."),
+        "faq_a_nofind_checked": ("The same area-level review every other neighbourhood on the "
+                                 "%(city)s map gets: local and national news, municipal and "
+                                 "police-published material, and official surveys where they exist, "
+                                 "searched for this specific area. %(name)s returned nothing "
+                                 "traveller-relevant, which is common for smaller administrative "
+                                 "areas without a press profile of their own. Where a review does "
+                                 "return something, the sources are named on the area's page."),
+        "faq_a_nofind_tourist": ("Nothing documented argues against it. For a stay, weigh that "
+                                 "against the areas on the %(city)s map whose ratings are backed by "
+                                 "named sources, and check recent reviews for the specific street. "
+                                 "You can search accommodation already scoped to this area using "
+                                 "the Booking.com link on this page."),
+
+        "faq_a_official_yes": ("Yes. %(name)s's rating is derived from %(source)s, not an "
+                               "assessment — see the note on this page for the exact figure and the "
+                               "methodology page for full sourcing."),
+        "faq_a_official_research": ("Not an official government crime feed — %(name)s's rating "
+                                    "comes from Wandroz's own current local/national press and "
+                                    "survey research for this specific area instead (see the note "
+                                    "on this page for what was checked and the sources used). An "
+                                    "absence of recent negative coverage is treated as "
+                                    "inconclusive, not as proof the area is safe. If you live in or "
+                                    "know %(name)s well, you can suggest a correction using the "
+                                    "link below."),
+        "faq_a_official_none": ("Not yet at neighbourhood level. Unlike London, this city does not "
+                                "currently publish an open, geolocated crime dataset at this level "
+                                "of detail (checked against the relevant local and national "
+                                "open-data portals — see the methodology page for what was "
+                                "checked). If you live in or know %(name)s well, you can suggest a "
+                                "correction to its rating using the link below."),
+        "source_generic": "a real official crime statistic",
         "untranslated_notice": ("The assessment text for this area has not been translated yet "
                                 "and is shown in English."),
     },
@@ -282,6 +370,100 @@ STRINGS = {
         "cat_public-order": "reati contro l'ordine pubblico",
         "cat_anti-social-behaviour": "comportamenti antisociali",
 
+
+        # --- FAQ dell'area -------------------------------------------------
+        "desc_green": "relativamente più sicura della maggior parte degli altri quartieri di %(city)s",
+        "desc_yellow": "nella media rispetto agli altri quartieri di %(city)s",
+        "desc_red": "una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di %(city)s",
+        "desc_grey": "non coperta da questi dati",
+
+        "faq_q_safe": "%(name)s è una zona sicura?",
+        "faq_q_night": "%(name)s è sicura di notte?",
+        "faq_q_daynight": "La valutazione di %(name)s cambia fra giorno e notte?",
+        "faq_q_tourist": "%(name)s è una buona zona dove alloggiare da turista?",
+        "faq_q_checked": "Che cosa è stato verificato per %(name)s?",
+        "faq_q_official": "Esistono dati ufficiali sulla criminalità per %(name)s?",
+
+        "basis_official": ("Questa valutazione deriva da %(source)s — una statistica ufficiale, non "
+                           "una stima. Le zone con molto passaggio — turismo, trasporti, negozi — "
+                           "possono risultare più alte su una misura di questo tipo senza che questo "
+                           "significhi un rischio maggiore per il singolo visitatore, perché queste "
+                           "statistiche sono rapportate ai residenti registrati e non alle persone "
+                           "che ci passano: vedi la nota su questa pagina e la pagina della "
+                           "metodologia per i limiti completi."),
+        "basis_research": ("Deriva da una valutazione strutturata su fonti locali: una revisione "
+                           "area per area di fonti credibili — stampa locale e nazionale, materiale "
+                           "pubblicato da comune e forze dell'ordine, e indagini ufficiali dove "
+                           "esistono — messe a confronto fra loro invece che prese da un singolo "
+                           "articolo. %(city)s non pubblica un dataset comparabile sulla criminalità "
+                           "a livello di quartiere; dove una città lo fa, Wandroz usa quello."),
+        "basis_limited": ("Questa è una valutazione con dati limitati: %(city)s non pubblica un "
+                          "dataset sulla criminalità a livello di quartiere e per quest'area non è "
+                          "ancora stata completata una revisione delle fonti, quindi la valutazione "
+                          "è indicativa ed è dichiarata come tale invece di essere presentata come "
+                          "documentata."),
+
+        "faq_a_rating_same": ("Wandroz valuta attualmente %(name)s a %(city)s come %(day)s, sia di "
+                              "giorno sia dopo il tramonto. %(basis)s"),
+        "faq_a_rating_diff": ("Wandroz valuta attualmente %(name)s a %(city)s come %(day)s di giorno "
+                              "e %(night)s di notte. %(basis)s"),
+        "faq_a_rating_notime": ("Wandroz valuta attualmente %(name)s a %(city)s come %(day)s. "
+                                "%(basis)s I dati di partenza non distinguono fra giorno e notte, "
+                                "quindi questa singola valutazione vale a qualunque ora invece di "
+                                "essere un dato notturno a sé."),
+        "faq_a_night": ("Di notte %(name)s è valutata come %(night)s. Se hai dubbi, vale la pena "
+                        "leggere recensioni recenti sulla tua strada o sul tuo isolato: una "
+                        "valutazione che copre tutto il quartiere non può cogliere le differenze da "
+                        "un isolato all'altro."),
+        "faq_a_daynight": ("No — i dati di partenza di %(name)s non distinguono le ore del giorno, "
+                           "quindi la stessa valutazione (%(day)s) vale sia di giorno sia di notte, "
+                           "invece che Wandroz si inventi un dato notturno che non ha."),
+        "faq_a_tourist": ("La valutazione diurna di %(name)s (%(day)s) è quella più utile per una "
+                          "giornata da turista; se pensi di stare fuori fino a tardi guarda anche "
+                          "quella notturna. Puoi cercare un alloggio già circoscritto a questa zona "
+                          "con il link Booking.com su questa pagina."),
+
+        "faq_a_nofind_safe": ("Wandroz valuta %(name)s a %(city)s come %(day)s. Quella valutazione "
+                              "poggia su una revisione area per area che non ha trovato alcuna "
+                              "segnalazione rilevante per chi viaggia specifica di %(name)s — nessun "
+                              "episodio, nessun problema ricorrente, niente di documentato né in un "
+                              "senso né nell'altro — letta insieme al carattere della zona. Non è un "
+                              "riscontro positivo di sicurezza: un'assenza di segnalazioni è "
+                              "un'evidenza più debole delle valutazioni con fonti che trovi altrove "
+                              "su questa mappa, ed è indicata come tale ovunque compaia."),
+        "faq_a_nofind_checked": ("La stessa revisione area per area che riceve ogni altro quartiere "
+                                 "sulla mappa di %(city)s: stampa locale e nazionale, materiale "
+                                 "pubblicato da comune e forze dell'ordine, e indagini ufficiali "
+                                 "dove esistono, cercati per questa specifica zona. Per %(name)s non "
+                                 "è emerso nulla di rilevante per chi viaggia, cosa comune per le "
+                                 "suddivisioni amministrative più piccole che non hanno una propria "
+                                 "presenza sulla stampa. Dove una revisione trova qualcosa, le fonti "
+                                 "sono indicate sulla pagina dell'area."),
+        "faq_a_nofind_tourist": ("Niente di documentato dice il contrario. Per un soggiorno, mettilo "
+                                 "a confronto con le zone della mappa di %(city)s le cui valutazioni "
+                                 "sono sostenute da fonti citate, e leggi recensioni recenti sulla "
+                                 "strada specifica. Puoi cercare un alloggio già circoscritto a "
+                                 "questa zona con il link Booking.com su questa pagina."),
+
+        "faq_a_official_yes": ("Sì. La valutazione di %(name)s deriva da %(source)s, non da una "
+                               "stima — vedi la nota su questa pagina per la cifra esatta e la "
+                               "pagina della metodologia per le fonti complete."),
+        "faq_a_official_research": ("Non da un flusso ufficiale di dati governativi — la valutazione "
+                                    "di %(name)s viene invece dalla ricerca di Wandroz su stampa "
+                                    "locale e nazionale e su indagini, condotta per questa specifica "
+                                    "zona (vedi la nota su questa pagina per cosa è stato verificato "
+                                    "e con quali fonti). L'assenza di notizie negative recenti è "
+                                    "trattata come non conclusiva, non come prova che la zona sia "
+                                    "sicura. Se abiti a %(name)s o la conosci bene, puoi segnalare "
+                                    "una correzione con il link qui sotto."),
+        "faq_a_official_none": ("Non ancora a livello di quartiere. A differenza di Londra, questa "
+                                "città non pubblica al momento un dataset aperto e geolocalizzato "
+                                "sulla criminalità a questo livello di dettaglio (verificato sui "
+                                "portali open data locali e nazionali competenti — vedi la pagina "
+                                "della metodologia per cosa è stato controllato). Se abiti a "
+                                "%(name)s o la conosci bene, puoi segnalare una correzione con il "
+                                "link qui sotto."),
+        "source_generic": "una vera statistica ufficiale sulla criminalità",
         "untranslated_notice": ("Il testo di valutazione di quest'area non è ancora tradotto ed è "
                                 "mostrato in inglese."),
     },

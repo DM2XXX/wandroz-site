@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) è una zona sicura? | Wandroz</title>
+<meta name="description" content="Secondigliano è una delle roccaforti storiche della criminalità organizzata a Napoli (sede del clan Di Lauro e, dopo la scissione del 2005, degli “Scissionisti ">
+<link rel="canonical" href="https://www.wandroz.com/it/napoli/municipalita-7.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/napoli/municipalita-7.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/napoli/municipalita-7.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/napoli/municipalita-7.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/napoli/">Napoli, Italia</a> &rsaquo; Miano, Secondigliano, San Pietro a Patierno (Municipalità 7)</nav>
+<main>
+  <h1 class="page-title">Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) &mdash; Napoli, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 10 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Nella media</span> <span class="badge-label">giorno</span>
+    <span class="badge red">Consigliata maggiore prudenza</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Secondigliano è una delle roccaforti storiche della criminalità organizzata a Napoli (sede del clan Di Lauro e, dopo la scissione del 2005, degli “Scissionisti di Secondigliano”), e la Corte d’Appello indica “Miano-San Pietro a Patierno” tra le zone con il maggior numero di “stese”; Secondigliano figura inoltre tra le cinque zone più colpite dai 92 casi di «stese» registrati in tutta la città nel 2024. È in corso un vero e proprio programma di riqualificazione per il 2025, dotato di finanziamenti, che riguarda congiuntamente Scampia e Secondigliano, sostenuto dal governo nazionale e dal Comune: si tratta di uno sviluppo concreto e positivo — ma è un piano pluriennale ancora nelle sue fasi iniziali, non un cambiamento già riflesso nell’andamento della criminalità. Fonti consultate: Fanpage.it, 26/28 giugno 2023, che cita la relazione della Corte d’Appello di Napoli; Napolitan.it, 13 aprile 2025 (92 stese nel 2024, zone indicate); Ottopagine.it / Periferiamonews.org, maggio 2025 (piano di riqualificazione di Scampia-Secondigliano).</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Naples%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Naples publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) a Naples come nella media rispetto agli altri quartieri di Naples di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Naples non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) è sicura di notte?</summary>
+      <p>Di notte Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) è valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) (nella media rispetto agli altri quartieri di Naples) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Miano, Secondigliano, San Pietro a Patierno (Municipalità 7)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Miano, Secondigliano, San Pietro a Patierno (Municipalità 7) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Miano%2C%20Secondigliano%2C%20San%20Pietro%20a%20Patierno%20%28Municipalit%C3%A0%207%29%2C%20Napoli%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7) a Naples come nella media rispetto agli altri quartieri di Naples di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Naples non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7) \u00e8 valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7) (nella media rispetto agli altri quartieri di Naples) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Miano, Secondigliano, San Pietro a Patierno (Municipalit\u00e0 7)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[40.88417, 14.23702], [40.88367, 14.2371], [40.88311, 14.23756], [40.88363, 14.23856], [40.88386, 14.23884], [40.88393, 14.23914], [40.88384, 14.24062], [40.88391, 14.24116], [40.88416, 14.24195], [40.88453, 14.24287], [40.8849, 14.24421], [40.88455, 14.24514], [40.88425, 14.2464], [40.88428, 14.24756], [40.88391, 14.24777], [40.88364, 14.24785], [40.88323, 14.24807], [40.88325, 14.24851], [40.88295, 14.24937], [40.88297, 14.24967], [40.88304, 14.2499], [40.88292, 14.25009], [40.88286, 14.25028], [40.8827, 14.25045], [40.88234, 14.25068], [40.88219, 14.25082], [40.88209, 14.2512], [40.8821, 14.25141], [40.88219, 14.25157], [40.88236, 14.25168], [40.88309, 14.25197], [40.88321, 14.25213], [40.8832, 14.25228], [40.8826, 14.25249], [40.8824, 14.25273], [40.88224, 14.25312], [40.88222, 14.25328], [40.8823, 14.25357], [40.88239, 14.25363], [40.88275, 14.25347], [40.88291, 14.2536], [40.88294, 14.25384], [40.88286, 14.25406], [40.88272, 14.25423], [40.88212, 14.2544], [40.88204, 14.25455], [40.88212, 14.2548], [40.88233, 14.25496], [40.88239, 14.25514], [40.88216, 14.25614], [40.88207, 14.25623], [40.88202, 14.25637], [40.88206, 14.25678], [40.88204, 14.25687], [40.88163, 14.25765], [40.88165, 14.25784], [40.88172, 14.25791], [40.88192, 14.25875], [40.88179, 14.25938], [40.88192, 14.25982], [40.88186, 14.25998], [40.88147, 14.26022], [40.88138, 14.26038], [40.88135, 14.26051], [40.88138, 14.26072], [40.88145, 14.26088], [40.88145, 14.26147], [40.88151, 14.2616], [40.88174, 14.26166], [40.88212, 14.26232], [40.88237, 14.26264], [40.88235, 14.26277], [40.88208, 14.26323], [40.88208, 14.2635], [40.88223, 14.26401], [40.88231, 14.26475], [40.88226, 14.26525], [40.88216, 14.26551], [40.88196, 14.26579], [40.88151, 14.2661], [40.88192, 14.26658], [40.8823, 14.2672], [40.88213, 14.26808], [40.88282, 14.26834], [40.88297, 14.26845], [40.88234, 14.26974], [40.88224, 14.27009], [40.88218, 14.27075], [40.88222, 14.27106], [40.88213, 14.27188], [40.87194, 14.28225], [40.873, 14.28371], [40.87354, 14.28462], [40.87379, 14.28498], [40.87397, 14.28517], [40.87403, 14.28536], [40.87407, 14.28584], [40.87421, 14.28631], [40.87425, 14.28673], [40.87432, 14.28686], [40.87498, 14.28748], [40.87523, 14.28783], [40.87532, 14.28807], [40.87553, 14.28918], [40.8761, 14.2915], [40.87635, 14.29272], [40.87652, 14.29301], [40.87665, 14.29368], [40.87692, 14.29478], [40.87692, 14.29507], [40.87684, 14.29546], [40.87646, 14.29676], [40.87645, 14.29698], [40.87656, 14.29746], [40.87646, 14.29814], [40.87635, 14.29839], [40.87596, 14.29886], [40.87567, 14.2991], [40.87554, 14.29927], [40.87523, 14.30002], [40.87514, 14.30042], [40.87509, 14.30192], [40.87486, 14.30326], [40.87464, 14.30348], [40.87417, 14.30412], [40.8752, 14.30648], [40.87554, 14.30626], [40.87586, 14.30622], [40.87617, 14.30626], [40.87833, 14.30683], [40.8791, 14.30724], [40.87921, 14.30694], [40.88061, 14.30888], [40.88126, 14.31077], [40.88153, 14.31052], [40.88178, 14.31019], [40.88185, 14.31005], [40.88201, 14.30945], [40.88221, 14.30922], [40.88231, 14.30922], [40.88274, 14.3089], [40.88385, 14.30913], [40.88397, 14.30828], [40.88386, 14.30788], [40.88422, 14.30752], [40.88442, 14.3072], [40.88508, 14.30666], [40.88508, 14.30621], [40.88561, 14.30563], [40.8865, 14.30502], [40.88784, 14.30151], [40.89014, 14.30221], [40.89069, 14.30108], [40.89148, 14.29871], [40.89214, 14.29787], [40.89229, 14.29753], [40.89197, 14.29688], [40.89198, 14.29656], [40.89335, 14.29487], [40.89352, 14.29456], [40.89359, 14.29441], [40.8936, 14.2943], [40.89357, 14.29409], [40.89349, 14.29396], [40.89351, 14.29373], [40.89406, 14.29314], [40.89507, 14.29232], [40.89529, 14.29224], [40.89823, 14.29032], [40.89858, 14.29006], [40.8992, 14.28949], [40.89879, 14.28862], [40.89862, 14.28813], [40.89858, 14.28789], [40.89713, 14.2874], [40.89645, 14.28646], [40.89667, 14.28643], [40.89807, 14.28437], [40.89789, 14.28414], [40.89724, 14.28349], [40.89705, 14.28337], [40.89649, 14.28286], [40.89508, 14.28149], [40.89413, 14.28074], [40.89246, 14.27958], [40.89026, 14.27835], [40.89112, 14.27617], [40.89112, 14.27608], [40.89055, 14.2752], [40.89075, 14.2746], [40.89117, 14.27495], [40.89143, 14.27017], [40.89332, 14.27039], [40.89357, 14.27028], [40.89397, 14.26999], [40.8949, 14.269], [40.89648, 14.26762], [40.89683, 14.26828], [40.89722, 14.2688], [40.89751, 14.26905], [40.89771, 14.2693], [40.89807, 14.26954], [40.89824, 14.26961], [40.89873, 14.26972], [40.89946, 14.26977], [40.89989, 14.26975], [40.90042, 14.26956], [40.90092, 14.26927], [40.90208, 14.26911], [40.9021, 14.26882], [40.90204, 14.26794], [40.90197, 14.26755], [40.90193, 14.26744], [40.90152, 14.26691], [40.90147, 14.26679], [40.90136, 14.26632], [40.90131, 14.2652], [40.90126, 14.26495], [40.90115, 14.26467], [40.90228, 14.26358], [40.90272, 14.26278], [40.90359, 14.26182], [40.90487, 14.26152], [40.90584, 14.26044], [40.90576, 14.25962], [40.90561, 14.25963], [40.90542, 14.25702], [40.90583, 14.25702], [40.90582, 14.25473], [40.90829, 14.25509], [40.90552, 14.25122], [40.90409, 14.24913], [40.90402, 14.24897], [40.90254, 14.25061], [40.90182, 14.25124], [40.90117, 14.25209], [40.89928, 14.25413], [40.89723, 14.25626], [40.8956, 14.25522], [40.89572, 14.25479], [40.89584, 14.2547], [40.89654, 14.25445], [40.89712, 14.25289], [40.89763, 14.25247], [40.89813, 14.25123], [40.89787, 14.25102], [40.89761, 14.25104], [40.89748, 14.251], [40.89256, 14.24799], [40.89242, 14.2489], [40.89104, 14.24812], [40.89068, 14.24808], [40.8907, 14.24654], [40.8908, 14.24578], [40.89099, 14.24493], [40.89056, 14.24462], [40.89031, 14.24536], [40.89024, 14.24567], [40.8901, 14.24656], [40.89, 14.24756], [40.88991, 14.24753], [40.88978, 14.24738], [40.88914, 14.24705], [40.88962, 14.24545], [40.88982, 14.24508], [40.88978, 14.24499], [40.88959, 14.24485], [40.8888, 14.24446], [40.88851, 14.24408], [40.88882, 14.24339], [40.88777, 14.24258], [40.88751, 14.24139], [40.88657, 14.2401], [40.88556, 14.23833], [40.88438, 14.23704], [40.88417, 14.23702]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

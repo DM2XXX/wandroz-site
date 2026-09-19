@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lido-Pellestrina (Venice Lido, Pellestrina) è una zona sicura? | Wandroz</title>
+<meta name="description" content="La copertura mediatica italiana (Il Gazzettino, La Nuova Venezia, VeneziaToday, La Voce di Venezia) dal 2024 al 2026 dimostra che Lido-Pellestrina rimane una zo">
+<link rel="canonical" href="https://www.wandroz.com/it/venezia/lido-pellestrina.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/venezia/lido-pellestrina.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/venezia/lido-pellestrina.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/venezia/lido-pellestrina.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/venezia/">Venezia, Italia</a> &rsaquo; Lido-Pellestrina (Venice Lido, Pellestrina)</nav>
+<main>
+  <h1 class="page-title">Lido-Pellestrina (Venice Lido, Pellestrina) &mdash; Venezia, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 6 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>La copertura mediatica italiana (Il Gazzettino, La Nuova Venezia, VeneziaToday, La Voce di Venezia) dal 2024 al 2026 dimostra che Lido-Pellestrina rimane una zona a bassa criminalità, prevalentemente residenziale e turistica, senza episodi di crimini violenti, rapine o furti organizzati ai danni dei turisti paragonabili a quelli del centro storico di Venezia. Il principale problema documentato è costituito da piccoli furti opportunistici presso gli stabilimenti balneari del Lido: un fenomeno ricorrente di borse, contanti, carte di credito e chiavi rubate dagli ombrelloni o dalle cabine mentre i proprietari nuotano (ad esempio, una coppia milanese derubata di 500 euro e delle chiavi in un beach club nell’agosto 2025; un ladro seriale che ha preso di mira ripetutamente le cabine in due famose spiagge), e occasionali effrazioni in auto parcheggiate vicino alle fermate dei vaporetti, con i ladri in fuga in barca. La Polizia Locale di Venezia ha condotto un’operazione di controllo denominata “Spiagge Sicure” sulle spiagge del Lido nel luglio 2026, sebbene fosse mirata ai venditori ambulanti abusivi e non ai reati violenti. Sul Lido si verificano occasionalmente arresti legati alla droga, ma a un livello in linea con quello di qualsiasi città italiana, non in una zona particolarmente a rischio. Una vera e propria preoccupazione per la sicurezza, a sé stante, è rappresentata dal rischio legato al traffico e alla circolazione pedonale sull’arteria principale del Lido, Via Sandro Gallo, dove almeno due pedoni anziani sono stati investiti e uccisi da veicoli in incidenti recenti (2024-2025) — un problema di sicurezza stradale piuttosto che di criminalità. Non sono state riscontrate prove di episodi di violenza nella vita notturna, aggressioni, molestie o alcun modello criminale degno di nota specifico di Pellestrina, che, come confermano i resoconti della stampa, è una tranquilla comunità di pescatori; le ricerche hanno portato alla luce solo controlli di routine in materia amministrativa e di sicurezza sul lavoro. Data l’assenza di crimini violenti o furti ai danni delle persone dopo il tramonto, sia il giorno che la notte non destano particolari preoccupazioni; l’unica precauzione pratica da adottare è la normale attenzione alle borse da spiaggia e la prudenza dei pedoni sulla strada principale. Fonti consultate: La Nuova Venezia (nuovavenezia.it); Il Gazzettino (ilgazzettino.it); La Voce di Venezia (lavocedivenezia.it); La Piazza Web (lapiazzaweb.it); CityNext (citynext.it); VeneziaToday (veneziatoday.it); Il Nuovo Terraglio (ilnuovoterraglio.it).</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Lido+di+Venezia%2C+Venice%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Venice publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Lido-Pellestrina (Venice Lido, Pellestrina) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Lido-Pellestrina (Venice Lido, Pellestrina) a Venice come relativamente più sicura della maggior parte degli altri quartieri di Venice, sia di giorno sia dopo il tramonto. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Venice non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Lido-Pellestrina (Venice Lido, Pellestrina) è sicura di notte?</summary>
+      <p>Di notte Lido-Pellestrina (Venice Lido, Pellestrina) è valutata come relativamente più sicura della maggior parte degli altri quartieri di Venice. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Lido-Pellestrina (Venice Lido, Pellestrina) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Lido-Pellestrina (Venice Lido, Pellestrina) (relativamente più sicura della maggior parte degli altri quartieri di Venice) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Lido-Pellestrina (Venice Lido, Pellestrina)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Lido-Pellestrina (Venice Lido, Pellestrina) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Lido-Pellestrina (Venice Lido, Pellestrina) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Lido-Pellestrina%20%28Venice%20Lido%2C%20Pellestrina%29%2C%20Venezia%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Lido-Pellestrina (Venice Lido, Pellestrina) a Venice come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Venice, sia di giorno sia dopo il tramonto. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Venice non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Lido-Pellestrina (Venice Lido, Pellestrina) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Lido-Pellestrina (Venice Lido, Pellestrina) \u00e8 valutata come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Venice. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Lido-Pellestrina (Venice Lido, Pellestrina) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Lido-Pellestrina (Venice Lido, Pellestrina) (relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Venice) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Lido-Pellestrina (Venice Lido, Pellestrina) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Lido-Pellestrina (Venice Lido, Pellestrina) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Lido-Pellestrina (Venice Lido, Pellestrina) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Lido-Pellestrina (Venice Lido, Pellestrina)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[45.32555, 12.24308], [45.32713, 12.24724], [45.32702, 12.24899], [45.32679, 12.25005], [45.3268, 12.25077], [45.32675, 12.25144], [45.32646, 12.25269], [45.32633, 12.25294], [45.32583, 12.25425], [45.32529, 12.25527], [45.32487, 12.25556], [45.3246, 12.25619], [45.32447, 12.2568], [45.32449, 12.25733], [45.32471, 12.25767], [45.32584, 12.2582], [45.32664, 12.25878], [45.3275, 12.25968], [45.32831, 12.26091], [45.329, 12.26267], [45.32944, 12.26423], [45.32964, 12.26589], [45.32952, 12.26775], [45.33006, 12.2717], [45.33035, 12.27661], [45.33054, 12.27915], [45.33151, 12.28213], [45.33232, 12.29579], [45.31456, 12.29938], [45.31191, 12.29872], [45.31008, 12.29897], [45.30603, 12.29978], [45.23652, 12.27507], [45.23273, 12.29082], [45.23237, 12.29737], [45.23125, 12.31417], [45.23354, 12.31456], [45.23365, 12.31462], [45.23388, 12.31438], [45.23391, 12.31414], [45.23379, 12.31368], [45.23383, 12.31245], [45.23434, 12.30512], [45.23457, 12.30467], [45.23487, 12.30428], [45.23565, 12.30363], [45.2364, 12.30252], [45.23681, 12.30153], [45.2368, 12.30143], [45.23676, 12.30134], [45.23669, 12.3013], [45.23657, 12.30138], [45.23656, 12.30145], [45.2364, 12.30151], [45.23638, 12.30057], [45.23656, 12.30022], [45.23693, 12.29983], [45.23755, 12.2995], [45.24051, 12.2985], [45.24122, 12.29849], [45.2445, 12.29795], [45.24618, 12.29783], [45.24719, 12.29887], [45.24773, 12.29929], [45.24924, 12.30012], [45.24992, 12.30028], [45.25048, 12.30037], [45.25137, 12.30032], [45.25562, 12.2993], [45.25709, 12.29946], [45.25784, 12.29992], [45.25832, 12.30035], [45.25847, 12.30052], [45.25851, 12.30075], [45.25853, 12.30032], [45.2586, 12.2998], [45.25865, 12.29982], [45.25861, 12.3008], [45.25865, 12.30086], [45.25876, 12.30065], [45.25895, 12.30057], [45.25934, 12.3005], [45.26052, 12.30066], [45.26094, 12.30077], [45.2612, 12.3009], [45.26136, 12.30087], [45.2617, 12.3011], [45.26201, 12.30138], [45.26209, 12.30162], [45.26213, 12.30153], [45.2622, 12.30104], [45.26224, 12.30105], [45.26223, 12.30157], [45.26227, 12.30167], [45.2632, 12.30149], [45.26443, 12.30179], [45.26501, 12.30185], [45.26573, 12.30226], [45.26579, 12.30198], [45.26583, 12.30198], [45.26582, 12.30242], [45.26619, 12.30224], [45.2666, 12.30221], [45.2673, 12.3023], [45.2678, 12.30222], [45.26856, 12.30237], [45.26938, 12.3027], [45.26967, 12.30294], [45.26974, 12.30272], [45.26978, 12.3023], [45.26982, 12.30231], [45.26981, 12.30264], [45.2702, 12.30256], [45.27084, 12.30255], [45.27136, 12.3026], [45.27153, 12.30266], [45.27167, 12.3028], [45.27171, 12.30257], [45.2718, 12.30244], [45.27183, 12.30267], [45.27299, 12.30297], [45.27347, 12.30321], [45.27377, 12.30344], [45.27385, 12.30302], [45.2739, 12.30302], [45.27384, 12.30365], [45.27415, 12.30334], [45.2763, 12.30332], [45.27655, 12.30341], [45.27692, 12.30364], [45.27762, 12.30378], [45.27818, 12.30431], [45.27828, 12.30379], [45.27833, 12.30375], [45.2783, 12.30419], [45.27893, 12.30409], [45.27975, 12.30409], [45.28037, 12.3042], [45.28111, 12.30456], [45.28174, 12.30469], [45.28238, 12.3051], [45.2826, 12.30542], [45.28267, 12.305], [45.28272, 12.30501], [45.28267, 12.3056], [45.28337, 12.30535], [45.28525, 12.30564], [45.28563, 12.30578], [45.28648, 12.30624], [45.28694, 12.30684], [45.28705, 12.30637], [45.28708, 12.30638], [45.28704, 12.30681], [45.28778, 12.30669], [45.28865, 12.3068], [45.29061, 12.30758], [45.29126, 12.30815], [45.29161, 12.30841], [45.29167, 12.3086], [45.29177, 12.30818], [45.2918, 12.30825], [45.29176, 12.30873], [45.29232, 12.30884], [45.29298, 12.30879], [45.29432, 12.30913], [45.29467, 12.30926], [45.29552, 12.3098], [45.29565, 12.30979], [45.2962, 12.31021], [45.2964, 12.31047], [45.29651, 12.31], [45.29655, 12.31007], [45.29647, 12.31061], [45.2979, 12.31063], [45.29864, 12.31083], [45.29907, 12.31077], [45.29937, 12.31088], [45.29954, 12.3111], [45.29993, 12.31132], [45.30058, 12.31179], [45.30101, 12.31201], [45.30115, 12.31224], [45.30127, 12.31177], [45.30132, 12.31179], [45.30123, 12.3124], [45.3019, 12.31213], [45.30248, 12.31223], [45.30323, 12.31243], [45.30423, 12.31275], [45.3048, 12.31302], [45.30527, 12.31333], [45.3056, 12.31368], [45.30586, 12.31416], [45.30598, 12.31364], [45.30598, 12.31345], [45.30602, 12.31345], [45.30605, 12.31365], [45.30601, 12.31392], [45.30677, 12.31379], [45.30787, 12.31398], [45.30832, 12.31434], [45.30909, 12.31487], [45.30969, 12.31555], [45.30988, 12.31581], [45.3101, 12.31488], [45.31015, 12.3149], [45.31002, 12.31561], [45.31065, 12.31555], [45.31106, 12.31561], [45.31216, 12.31597], [45.31261, 12.31616], [45.31364, 12.31695], [45.31383, 12.31723], [45.31401, 12.31659], [45.31404, 12.31662], [45.3139, 12.31742], [45.31424, 12.3173], [45.31474, 12.31731], [45.31529, 12.31746], [45.31582, 12.31767], [45.31646, 12.31797], [45.31683, 12.3182], [45.3172, 12.31858], [45.31744, 12.31892], [45.31762, 12.31822], [45.31767, 12.31825], [45.31757, 12.31879], [45.31825, 12.31875], [45.31908, 12.31886], [45.31979, 12.31922], [45.32021, 12.31935], [45.32066, 12.3196], [45.32177, 12.32051], [45.32184, 12.3203], [45.32187, 12.32046], [45.32181, 12.32076], [45.3222, 12.32076], [45.32272, 12.32095], [45.323, 12.32099], [45.32398, 12.32143], [45.32478, 12.32189], [45.32558, 12.32268], [45.32571, 12.32234], [45.32576, 12.32237], [45.3257, 12.32263], [45.32629, 12.32272], [45.32699, 12.32303], [45.32799, 12.32374], [45.32853, 12.32429], [45.32881, 12.32453], [45.3277, 12.32922], [45.32754, 12.32928], [45.32748, 12.32941], [45.32686, 12.33213], [45.32674, 12.33307], [45.32668, 12.33444], [45.32673, 12.33556], [45.32714, 12.33806], [45.3274, 12.33932], [45.32773, 12.34072], [45.32831, 12.34278], [45.32905, 12.34497], [45.3291, 12.34509], [45.32918, 12.34516], [45.32927, 12.34516], [45.32943, 12.34507], [45.32947, 12.34497], [45.32949, 12.3448], [45.32945, 12.34468], [45.33132, 12.34404], [45.33353, 12.34333], [45.33358, 12.34348], [45.33377, 12.34362], [45.33401, 12.34363], [45.33416, 12.34348], [45.33425, 12.34325], [45.33428, 12.343], [45.33425, 12.34217], [45.33542, 12.33804], [45.33565, 12.33694], [45.33587, 12.33618], [45.33586, 12.33606], [45.33622, 12.33462], [45.33631, 12.33409], [45.33644, 12.3337], [45.33643, 12.33359], [45.33693, 12.33136], [45.33704, 12.33103], [45.33733, 12.32981], [45.33779, 12.32962], [45.33899, 12.32935], [45.33983, 12.32927], [45.34146, 12.32919], [45.34219, 12.32904], [45.34478, 12.32919], [45.34636, 12.32933], [45.34904, 12.3297], [45.3507, 12.3301], [45.35247, 12.33067], [45.35348, 12.33127], [45.35422, 12.33164], [45.35464, 12.33193], [45.35499, 12.33209], [45.3557, 12.33261], [45.35606, 12.33275], [45.35661, 12.33319], [45.35733, 12.33388], [45.35744, 12.334], [45.35784, 12.33472], [45.35744, 12.33586], [45.35742, 12.33603], [45.35746, 12.33607], [45.35755, 12.33608], [45.3576, 12.33599], [45.35812, 12.33428], [45.35841, 12.33428], [45.35893, 12.33444], [45.35927, 12.3345], [45.35997, 12.3349], [45.36052, 12.33508], [45.36074, 12.33521], [45.36133, 12.33568], [45.36151, 12.33589], [45.36462, 12.33833], [45.36391, 12.34046], [45.36394, 12.34054], [45.36402, 12.34053], [45.36454, 12.33895], [45.36469, 12.33839], [45.36571, 12.33915], [45.36789, 12.34091], [45.37042, 12.34275], [45.37048, 12.34286], [45.37052, 12.34303], [45.37032, 12.34383], [45.37038, 12.34383], [45.37058, 12.34311], [45.37065, 12.34308], [45.37088, 12.34314], [45.37137, 12.34343], [45.37076, 12.34517], [45.37078, 12.34533], [45.37085, 12.34535], [45.37088, 12.34529], [45.37147, 12.34348], [45.37209, 12.34381], [45.3754, 12.34586], [45.37799, 12.34738], [45.37871, 12.34789], [45.37929, 12.34849], [45.37959, 12.34899], [45.37915, 12.35028], [45.37894, 12.35095], [45.37896, 12.35103], [45.37902, 12.35101], [45.37962, 12.34919], [45.37982, 12.34921], [45.38064, 12.34949], [45.38135, 12.34993], [45.38154, 12.35014], [45.38159, 12.35026], [45.38138, 12.35084], [45.38141, 12.35089], [45.38143, 12.3509], [45.3817, 12.35013], [45.38234, 12.35059], [45.38205, 12.35135], [45.38206, 12.35138], [45.38211, 12.35137], [45.38238, 12.35064], [45.38301, 12.35109], [45.38274, 12.35184], [45.38276, 12.35189], [45.38279, 12.35188], [45.38306, 12.35114], [45.38368, 12.35158], [45.3837, 12.35161], [45.38342, 12.35235], [45.38347, 12.35238], [45.38377, 12.35164], [45.38442, 12.35206], [45.38416, 12.35285], [45.38421, 12.35286], [45.38446, 12.35209], [45.38511, 12.35246], [45.38487, 12.35322], [45.38488, 12.35331], [45.38493, 12.35324], [45.38516, 12.35249], [45.38582, 12.35289], [45.38556, 12.35369], [45.38557, 12.35374], [45.38562, 12.35373], [45.38587, 12.35292], [45.38652, 12.35333], [45.38624, 12.35414], [45.38626, 12.35417], [45.38632, 12.35412], [45.38657, 12.35337], [45.38722, 12.3538], [45.38696, 12.35458], [45.38697, 12.35466], [45.38701, 12.35465], [45.38727, 12.35383], [45.38791, 12.35424], [45.38764, 12.35506], [45.38766, 12.35511], [45.38769, 12.3551], [45.38797, 12.35427], [45.3886, 12.35472], [45.38832, 12.35549], [45.38834, 12.35555], [45.38864, 12.35477], [45.38926, 12.3552], [45.38898, 12.35597], [45.389, 12.35601], [45.38905, 12.35598], [45.38931, 12.35523], [45.38995, 12.35568], [45.38966, 12.35643], [45.38969, 12.35648], [45.38972, 12.35648], [45.39, 12.35572], [45.39062, 12.35618], [45.39033, 12.35692], [45.39034, 12.35698], [45.39038, 12.35694], [45.39067, 12.35622], [45.3913, 12.35668], [45.39101, 12.35753], [45.39105, 12.35753], [45.39132, 12.3568], [45.39193, 12.35731], [45.39167, 12.35797], [45.39167, 12.35803], [45.39172, 12.35802], [45.39198, 12.35734], [45.39212, 12.35739], [45.39245, 12.35763], [45.39254, 12.35775], [45.39258, 12.35789], [45.39233, 12.35852], [45.39239, 12.35852], [45.39264, 12.3579], [45.3929, 12.35799], [45.39309, 12.35815], [45.39327, 12.35838], [45.39302, 12.35897], [45.39301, 12.35901], [45.39305, 12.35906], [45.39341, 12.35816], [45.39388, 12.3585], [45.39404, 12.35862], [45.39368, 12.35956], [45.3937, 12.35961], [45.39373, 12.35961], [45.39407, 12.35869], [45.39418, 12.35873], [45.3947, 12.35915], [45.39437, 12.36003], [45.39439, 12.36009], [45.39443, 12.36006], [45.39471, 12.3593], [45.39477, 12.35919], [45.39538, 12.35965], [45.39504, 12.36056], [45.39505, 12.36063], [45.3951, 12.36061], [45.39545, 12.35969], [45.39594, 12.36007], [45.39601, 12.3603], [45.39572, 12.36103], [45.39575, 12.36106], [45.39578, 12.36101], [45.39604, 12.36033], [45.39607, 12.36032], [45.3965, 12.36065], [45.39654, 12.36083], [45.39617, 12.36177], [45.39617, 12.36187], [45.39622, 12.36189], [45.39656, 12.361], [45.39667, 12.36096], [45.39692, 12.36108], [45.39705, 12.36119], [45.39716, 12.36134], [45.39727, 12.36159], [45.39725, 12.36171], [45.3969, 12.36248], [45.39692, 12.36254], [45.39696, 12.36256], [45.39699, 12.36252], [45.39734, 12.36165], [45.39739, 12.36163], [45.39765, 12.36174], [45.39789, 12.36192], [45.39822, 12.36241], [45.39825, 12.36251], [45.39779, 12.36355], [45.39781, 12.36362], [45.39786, 12.36358], [45.39829, 12.36255], [45.39834, 12.3625], [45.39839, 12.36252], [45.39871, 12.36272], [45.39917, 12.36326], [45.39921, 12.36335], [45.39909, 12.36362], [45.39909, 12.36378], [45.39925, 12.36342], [45.39952, 12.36345], [45.39987, 12.36368], [45.40002, 12.36385], [45.40018, 12.36412], [45.40019, 12.3642], [45.3998, 12.36526], [45.3998, 12.36531], [45.39977, 12.36528], [45.39974, 12.3654], [45.39986, 12.36549], [45.3999, 12.36538], [45.39985, 12.36534], [45.3999, 12.36527], [45.40023, 12.36434], [45.40042, 12.3644], [45.40058, 12.36452], [45.40088, 12.36483], [45.40105, 12.3651], [45.40054, 12.36623], [45.40054, 12.36631], [45.40057, 12.36632], [45.40062, 12.36622], [45.40109, 12.36515], [45.40157, 12.36538], [45.40183, 12.36568], [45.40193, 12.36592], [45.40156, 12.36666], [45.40153, 12.36673], [45.40157, 12.36682], [45.40204, 12.36592], [45.40278, 12.36647], [45.40332, 12.36714], [45.40341, 12.36737], [45.40292, 12.36834], [45.40291, 12.36839], [45.40294, 12.36845], [45.40314, 12.36811], [45.40346, 12.36739], [45.40361, 12.36746], [45.40407, 12.36784], [45.40434, 12.36818], [45.40451, 12.36847], [45.40405, 12.36941], [45.40413, 12.36947], [45.40453, 12.3686], [45.40463, 12.36843], [45.40478, 12.36852], [45.40513, 12.36886], [45.40554, 12.36942], [45.40556, 12.36946], [45.40503, 12.37044], [45.40504, 12.3705], [45.40508, 12.37049], [45.40521, 12.37027], [45.40561, 12.3695], [45.40565, 12.3695], [45.40588, 12.36961], [45.40619, 12.36985], [45.40663, 12.37052], [45.40616, 12.37139], [45.40613, 12.37153], [45.40617, 12.37153], [45.40626, 12.3714], [45.4067, 12.37052], [45.40705, 12.37077], [45.40744, 12.37115], [45.4077, 12.37152], [45.40721, 12.37252], [45.40719, 12.37262], [45.40721, 12.37266], [45.4073, 12.37266], [45.40735, 12.37257], [45.40762, 12.3719], [45.40802, 12.372], [45.40831, 12.37226], [45.40978, 12.37435], [45.40984, 12.37461], [45.40954, 12.37528], [45.40955, 12.37536], [45.4096, 12.37539], [45.40965, 12.37535], [45.40994, 12.37466], [45.41015, 12.37468], [45.41038, 12.37476], [45.41062, 12.37494], [45.41105, 12.3755], [45.41171, 12.37625], [45.41192, 12.37662], [45.41168, 12.37716], [45.41168, 12.37728], [45.41172, 12.3773], [45.41179, 12.37721], [45.41195, 12.37682], [45.41217, 12.37686], [45.41249, 12.3771], [45.41335, 12.37807], [45.41618, 12.38154], [45.41756, 12.38316], [45.41972, 12.38609], [45.42157, 12.38844], [45.42227, 12.38947], [45.42383, 12.39162], [45.42445, 12.39259], [45.42457, 12.39305], [45.42476, 12.39335], [45.42513, 12.39362], [45.42553, 12.39419], [45.42586, 12.39492], [45.42672, 12.39626], [45.42771, 12.39818], [45.42889, 12.40106], [45.42872, 12.4021], [45.42842, 12.40477], [45.42698, 12.41217], [45.42682, 12.41277], [45.42654, 12.41348], [45.42626, 12.41407], [45.4249, 12.41649], [45.41914, 12.4251], [45.41885, 12.42552], [45.41874, 12.42562], [45.41871, 12.42575], [45.41838, 12.42626], [45.41818, 12.42644], [45.41813, 12.42641], [45.41814, 12.42648], [45.41805, 12.42659], [45.41803, 12.42667], [45.41774, 12.42687], [45.41764, 12.42707], [45.41766, 12.42731], [45.41771, 12.42742], [45.41783, 12.42752], [45.4218, 12.43566], [45.42472, 12.43139], [45.43023, 12.42066], [45.43355, 12.41756], [45.43612, 12.41643], [45.4381, 12.41614], [45.44087, 12.416], [45.44248, 12.41744], [45.44117, 12.40646], [45.4425, 12.40217], [45.43735, 12.3879], [45.42714, 12.37081], [45.40698, 12.35457], [45.40634, 12.35095], [45.40254, 12.35095], [45.4025, 12.33414], [45.40158, 12.30622], [45.40054, 12.30626], [45.39641, 12.26613], [45.3601, 12.26567], [45.33424, 12.24901], [45.33417, 12.24901], [45.32997, 12.246], [45.32717, 12.24415], [45.32622, 12.24357], [45.32555, 12.24308]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

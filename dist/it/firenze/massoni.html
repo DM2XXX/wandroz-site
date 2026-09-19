@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Massoni è una zona sicura? | Wandroz</title>
+<meta name="description" content="Non sono state riscontrate particolari preoccupazioni in materia di sicurezza né sulla stampa locale né nelle fonti ufficiali relative a questa zona; si tratta ">
+<link rel="canonical" href="https://www.wandroz.com/it/firenze/massoni.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/firenze/massoni.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/firenze/massoni.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/firenze/massoni.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/firenze/">Firenze, Italia</a> &rsaquo; Massoni</nav>
+<main>
+  <h1 class="page-title">Massoni &mdash; Firenze, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 74 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Non sono state riscontrate particolari preoccupazioni in materia di sicurezza né sulla stampa locale né nelle fonti ufficiali relative a questa zona; si tratta di una normale zona residenziale/periferica di Firenze, senza un andamento documentato della criminalità che possa avere ripercussioni sui residenti o sui visitatori. Fonti consultate: non sono state individuate notizie di rilievo sulla stampa locale né nelle fonti ufficiali relative alla criminalità per questa specifica zona.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Massoni%2C+Florence%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Florence, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Massoni è una zona sicura?</summary>
+      <p>Wandroz valuta Massoni a Florence come relativamente più sicura della maggior parte degli altri quartieri di Florence. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Massoni — nessun episodio, nessun problema ricorrente, niente di documentato né in un senso né nell&#39;altro — letta insieme al carattere della zona. Non è un riscontro positivo di sicurezza: un&#39;assenza di segnalazioni è un&#39;evidenza più debole delle valutazioni con fonti che trovi altrove su questa mappa, ed è indicata come tale ovunque compaia.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Che cosa è stato verificato per Massoni?</summary>
+      <p>La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Florence: stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Massoni non è emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative più piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell&#39;area.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Massoni è una buona zona dove alloggiare da turista?</summary>
+      <p>Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Florence le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Massoni%2C%20Firenze%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta Massoni a Florence come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Florence. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Massoni \u2014 nessun episodio, nessun problema ricorrente, niente di documentato n\u00e9 in un senso n\u00e9 nell\u0027altro \u2014 letta insieme al carattere della zona. Non \u00e8 un riscontro positivo di sicurezza: un\u0027assenza di segnalazioni \u00e8 un\u0027evidenza pi\u00f9 debole delle valutazioni con fonti che trovi altrove su questa mappa, ed \u00e8 indicata come tale ovunque compaia."}, "name": "Massoni \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Florence: stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Massoni non \u00e8 emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative pi\u00f9 piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell\u0027area."}, "name": "Che cosa \u00e8 stato verificato per Massoni?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Florence le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Massoni \u00e8 una buona zona dove alloggiare da turista?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[43.80921, 11.2633], [43.80866, 11.26148], [43.80877, 11.2604], [43.81002, 11.25774], [43.81051, 11.2571], [43.81048, 11.25678], [43.81111, 11.25561], [43.81143, 11.25462], [43.81168, 11.25317], [43.81244, 11.25205], [43.81277, 11.25116], [43.81298, 11.25113], [43.8131, 11.25082], [43.81351, 11.25083], [43.81462, 11.25135], [43.81493, 11.25119], [43.8155, 11.25066], [43.81565, 11.24983], [43.81588, 11.24972], [43.81598, 11.24933], [43.8175, 11.25002], [43.8178, 11.25036], [43.81919, 11.25324], [43.81902, 11.25341], [43.81941, 11.25425], [43.81916, 11.25533], [43.81977, 11.25541], [43.82013, 11.25647], [43.8201, 11.25768], [43.82031, 11.25903], [43.821, 11.25933], [43.82135, 11.26006], [43.82188, 11.26079], [43.823, 11.26392], [43.82312, 11.26489], [43.82426, 11.26685], [43.82447, 11.26622], [43.82509, 11.26637], [43.82521, 11.26618], [43.82541, 11.26616], [43.82641, 11.26661], [43.82673, 11.26639], [43.82733, 11.26628], [43.82737, 11.26493], [43.82711, 11.26377], [43.8273, 11.26338], [43.8273, 11.26303], [43.82718, 11.26278], [43.82666, 11.26233], [43.82664, 11.26163], [43.82637, 11.26106], [43.82676, 11.26031], [43.82692, 11.2607], [43.82744, 11.26103], [43.82907, 11.26145], [43.82978, 11.26181], [43.8302, 11.26227], [43.83053, 11.26341], [43.83077, 11.26367], [43.83114, 11.2634], [43.83155, 11.26332], [43.83111, 11.26358], [43.83126, 11.2646], [43.83035, 11.26489], [43.83001, 11.2654], [43.82961, 11.26547], [43.82937, 11.26531], [43.82843, 11.2665], [43.82878, 11.2677], [43.82868, 11.2683], [43.8274, 11.26883], [43.82679, 11.27456], [43.82675, 11.27727], [43.82714, 11.27723], [43.82693, 11.27754], [43.82627, 11.27769], [43.82572, 11.27743], [43.82564, 11.27715], [43.82474, 11.2764], [43.82448, 11.27551], [43.82421, 11.27505], [43.82357, 11.2747], [43.82293, 11.27366], [43.82254, 11.27324], [43.82271, 11.27256], [43.82265, 11.27235], [43.82236, 11.27218], [43.8214, 11.27036], [43.82056, 11.26959], [43.81975, 11.26904], [43.81664, 11.26946], [43.81539, 11.26802], [43.81488, 11.26716], [43.81365, 11.26569], [43.81305, 11.26535], [43.8125, 11.26477], [43.80934, 11.26379], [43.80921, 11.2633]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

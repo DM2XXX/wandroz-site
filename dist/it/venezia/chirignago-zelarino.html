@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chirignago-Zelarino (mainland residential district) è una zona sicura? | Wandroz</title>
+<meta name="description" content="Questa municipalità residenziale della terraferma (Chirignago, Zelarino, Gazzera, Cipressina, Trivignano) non ha dato adito a segnalazioni di un&#39;ondata di crimi">
+<link rel="canonical" href="https://www.wandroz.com/it/venezia/chirignago-zelarino.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/venezia/chirignago-zelarino.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/venezia/chirignago-zelarino.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/venezia/chirignago-zelarino.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/venezia/">Venezia, Italia</a> &rsaquo; Chirignago-Zelarino (mainland residential district)</nav>
+<main>
+  <h1 class="page-title">Chirignago-Zelarino (mainland residential district) &mdash; Venezia, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 6 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge yellow">Nella media</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Questa municipalità residenziale della terraferma (Chirignago, Zelarino, Gazzera, Cipressina, Trivignano) non ha dato adito a segnalazioni di un&#39;ondata di criminalità grave o persistente nella recente copertura giornalistica, e la vita diurna dei residenti e dei visitatori sembra procedere senza particolari eventi degni di nota. Il fatto più rilevante, di cui si ha notizia, è un&#39;operazione antidroga della Guardia di Finanza a Chirignago il 16 gennaio 2026, in cui un uomo è stato arrestato dopo che la polizia ha rinvenuto oltre 700 g di eroina, cocaina e hashish, oltre a denaro contante, in quella che *La Nuova Venezia* ha descritto come una piccola attività di spaccio — in linea con una precedente operazione su più ampia scala condotta dalla Polizia Locale nel 2021, che aveva smantellato un punto di spaccio di eroina nella campagna di Zelarino (900 dosi sequestrate). Nel 2026 gli abitanti di Chirignago, per lo più anziani, sono stati anche vittime di truffatori che si spacciavano per tecnici delle utenze per entrare nelle case e rubare oggetti di valore, nell’ambito di una tendenza più ampia nell’area di Mestre. VeneziaToday ha inoltre riportato una serie di finestrini e parabrezza di auto frantumati in un’unica incursione a Cipressina. In particolare, un episodio allarmante avvenuto a marzo 2024 a Gazzera — un massiccio intervento della polizia in seguito alla segnalazione di colpi d’arma da fuoco — si è rivelato un falso allarme, senza che venissero rinvenute né vittime né armi. Non è stato riscontrato alcun modello ricorrente di rapine in strada, aggressioni o violenza organizzata specifico di questo quartiere (a differenza del centro di Mestre o del centro storico di Venezia). Nel complesso, si tratta di una zona periferica tranquilla, con solo episodi isolati, per lo più non violenti, legati alla droga e ai reati contro il patrimonio; ciò giustifica un «giallo» di cautela durante la notte piuttosto che un «verde», date le operazioni antidroga documentate. Fonti consultate: La Nuova Venezia (nuovavenezia.it); Comune di Venezia - Live (live.comune.venezia.it); VeneziaToday (veneziatoday.it); Il Gazzettino (ilgazzettino.it); Antenna Tre / Medianordest (antennatre.medianordest.it); Ultima Ora Live (ultimaoralive.it); Gente Veneta (genteveneta.it).</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Chirignago%2C+Venice%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Venice publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Chirignago-Zelarino (mainland residential district) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Chirignago-Zelarino (mainland residential district) a Venice come relativamente più sicura della maggior parte degli altri quartieri di Venice di giorno e nella media rispetto agli altri quartieri di Venice di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Venice non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Chirignago-Zelarino (mainland residential district) è sicura di notte?</summary>
+      <p>Di notte Chirignago-Zelarino (mainland residential district) è valutata come nella media rispetto agli altri quartieri di Venice. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Chirignago-Zelarino (mainland residential district) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Chirignago-Zelarino (mainland residential district) (relativamente più sicura della maggior parte degli altri quartieri di Venice) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Chirignago-Zelarino (mainland residential district)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Chirignago-Zelarino (mainland residential district) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Chirignago-Zelarino (mainland residential district) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Chirignago-Zelarino%20%28mainland%20residential%20district%29%2C%20Venezia%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Chirignago-Zelarino (mainland residential district) a Venice come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Venice di giorno e nella media rispetto agli altri quartieri di Venice di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Venice non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Chirignago-Zelarino (mainland residential district) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Chirignago-Zelarino (mainland residential district) \u00e8 valutata come nella media rispetto agli altri quartieri di Venice. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Chirignago-Zelarino (mainland residential district) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Chirignago-Zelarino (mainland residential district) (relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Venice) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Chirignago-Zelarino (mainland residential district) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Chirignago-Zelarino (mainland residential district) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Chirignago-Zelarino (mainland residential district) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Chirignago-Zelarino (mainland residential district)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[45.5078, 12.17582], [45.50568, 12.17417], [45.50559, 12.17397], [45.50555, 12.17364], [45.50548, 12.17343], [45.50467, 12.17263], [45.50378, 12.17165], [45.50239, 12.16984], [45.50213, 12.16957], [45.50152, 12.16859], [45.50079, 12.16772], [45.49988, 12.16683], [45.49959, 12.16745], [45.49956, 12.16772], [45.49958, 12.16794], [45.49965, 12.16835], [45.49972, 12.16852], [45.50014, 12.16902], [45.49979, 12.17017], [45.49874, 12.17173], [45.49923, 12.17229], [45.49954, 12.17178], [45.50165, 12.17408], [45.50233, 12.17503], [45.50365, 12.17642], [45.50674, 12.17951], [45.50669, 12.18], [45.5065, 12.18048], [45.50583, 12.18156], [45.5044, 12.18018], [45.50428, 12.18012], [45.50372, 12.17963], [45.50344, 12.1793], [45.50157, 12.17757], [45.50201, 12.17688], [45.50085, 12.17564], [45.49973, 12.17462], [45.49954, 12.17533], [45.49826, 12.17433], [45.49852, 12.17375], [45.49845, 12.17362], [45.49822, 12.17348], [45.49688, 12.17211], [45.49648, 12.17186], [45.49581, 12.17154], [45.49554, 12.17167], [45.49539, 12.17203], [45.49535, 12.17248], [45.49491, 12.17223], [45.49475, 12.17204], [45.49454, 12.172], [45.49432, 12.1724], [45.49402, 12.17342], [45.494, 12.17381], [45.49385, 12.17426], [45.49379, 12.17486], [45.4936, 12.17588], [45.49248, 12.17683], [45.49193, 12.1768], [45.49159, 12.17797], [45.49152, 12.17815], [45.49134, 12.17842], [45.49107, 12.17867], [45.49055, 12.17904], [45.48883, 12.1799], [45.48863, 12.18023], [45.48844, 12.18081], [45.48825, 12.18122], [45.48801, 12.18137], [45.48792, 12.18192], [45.48757, 12.18199], [45.48698, 12.18247], [45.48702, 12.18186], [45.48592, 12.18133], [45.48584, 12.18155], [45.48477, 12.18079], [45.48477, 12.18067], [45.48472, 12.18063], [45.48456, 12.18059], [45.48368, 12.18001], [45.48343, 12.18023], [45.48329, 12.18023], [45.48282, 12.18003], [45.48167, 12.17934], [45.48111, 12.17914], [45.48083, 12.17908], [45.48005, 12.17869], [45.47981, 12.17931], [45.47942, 12.17917], [45.4789, 12.17891], [45.47697, 12.17775], [45.47693, 12.1776], [45.47682, 12.17761], [45.47679, 12.17774], [45.47673, 12.17778], [45.47617, 12.17805], [45.47597, 12.17836], [45.47594, 12.17857], [45.47602, 12.17894], [45.47598, 12.17903], [45.47712, 12.18386], [45.47799, 12.1879], [45.47981, 12.1969], [45.4817, 12.20493], [45.48191, 12.20509], [45.48199, 12.20549], [45.48196, 12.2056], [45.48182, 12.20555], [45.48266, 12.2091], [45.48293, 12.20988], [45.48329, 12.21152], [45.48399, 12.21567], [45.48414, 12.21862], [45.48413, 12.221], [45.48415, 12.22146], [45.48406, 12.22318], [45.48376, 12.22499], [45.48332, 12.22685], [45.48412, 12.22603], [45.48437, 12.22572], [45.48466, 12.22547], [45.48511, 12.22539], [45.48641, 12.22499], [45.48828, 12.22424], [45.48847, 12.22404], [45.48877, 12.22347], [45.48898, 12.22326], [45.4891, 12.22324], [45.48923, 12.22329], [45.49005, 12.22389], [45.49016, 12.22403], [45.49025, 12.22426], [45.4909, 12.2237], [45.49121, 12.22407], [45.4915, 12.22453], [45.49454, 12.22986], [45.49499, 12.23059], [45.49776, 12.23473], [45.4997, 12.23738], [45.50254, 12.23766], [45.50298, 12.23767], [45.50317, 12.23678], [45.50399, 12.23409], [45.5043, 12.2329], [45.50456, 12.23095], [45.5055, 12.22773], [45.506, 12.22628], [45.50646, 12.22444], [45.53875, 12.23066], [45.53884, 12.22986], [45.53878, 12.22961], [45.53869, 12.22938], [45.53848, 12.22902], [45.53847, 12.22888], [45.53853, 12.22844], [45.53859, 12.22832], [45.53866, 12.22825], [45.53891, 12.22823], [45.53898, 12.22816], [45.53903, 12.22801], [45.53899, 12.22785], [45.53883, 12.22755], [45.53873, 12.2263], [45.53828, 12.22592], [45.53793, 12.22581], [45.53763, 12.22555], [45.53763, 12.22528], [45.53783, 12.22511], [45.53857, 12.2249], [45.53865, 12.22466], [45.53865, 12.22439], [45.5386, 12.2238], [45.53869, 12.22346], [45.53873, 12.22309], [45.53858, 12.22249], [45.53859, 12.22195], [45.53854, 12.22166], [45.53841, 12.22167], [45.53822, 12.22158], [45.53812, 12.22119], [45.53811, 12.22095], [45.538, 12.22039], [45.53799, 12.22017], [45.53803, 12.21948], [45.53777, 12.21904], [45.53803, 12.21788], [45.53803, 12.21771], [45.538, 12.21759], [45.53778, 12.21729], [45.53769, 12.21676], [45.53745, 12.2164], [45.53719, 12.21539], [45.5372, 12.21523], [45.53731, 12.21481], [45.53764, 12.21393], [45.53766, 12.21367], [45.53762, 12.21332], [45.53765, 12.2132], [45.5377, 12.21309], [45.53785, 12.21293], [45.5384, 12.21288], [45.53861, 12.21281], [45.53868, 12.21274], [45.53877, 12.2125], [45.5387, 12.21202], [45.53882, 12.21184], [45.53924, 12.21156], [45.53969, 12.21156], [45.54015, 12.21134], [45.54056, 12.21095], [45.54062, 12.21082], [45.54052, 12.21037], [45.54058, 12.20985], [45.54072, 12.20954], [45.54099, 12.20936], [45.54119, 12.20894], [45.54123, 12.20868], [45.54113, 12.20824], [45.54104, 12.2081], [45.54091, 12.20797], [45.54046, 12.20776], [45.54039, 12.20763], [45.54038, 12.20744], [45.54043, 12.20713], [45.5405, 12.20687], [45.54092, 12.20631], [45.54102, 12.20598], [45.54114, 12.20584], [45.54131, 12.20579], [45.54146, 12.20581], [45.54159, 12.2059], [45.54173, 12.2059], [45.54183, 12.20583], [45.54204, 12.20554], [45.54254, 12.20521], [45.54257, 12.20506], [45.54254, 12.20488], [45.54237, 12.2046], [45.54234, 12.20446], [45.54244, 12.20371], [45.54309, 12.20384], [45.54323, 12.20436], [45.54697, 12.20457], [45.54696, 12.20437], [45.54773, 12.20433], [45.54827, 12.20414], [45.54842, 12.20421], [45.54848, 12.20311], [45.54733, 12.20293], [45.5472, 12.20218], [45.54718, 12.20154], [45.54735, 12.20044], [45.54738, 12.19919], [45.54578, 12.19904], [45.54589, 12.19606], [45.546, 12.1945], [45.54626, 12.192], [45.54716, 12.192], [45.5477, 12.19178], [45.54792, 12.19173], [45.54837, 12.19175], [45.54877, 12.19201], [45.54899, 12.19208], [45.55086, 12.19179], [45.55077, 12.19139], [45.55152, 12.1914], [45.55237, 12.19061], [45.55285, 12.1905], [45.553, 12.19029], [45.55304, 12.19005], [45.55298, 12.18965], [45.55314, 12.18899], [45.55292, 12.18859], [45.55292, 12.18808], [45.55288, 12.18787], [45.55288, 12.18719], [45.55298, 12.18553], [45.55293, 12.18473], [45.55308, 12.18326], [45.55306, 12.18294], [45.55311, 12.18241], [45.55314, 12.18127], [45.54704, 12.18078], [45.54677, 12.18079], [45.54644, 12.18088], [45.54522, 12.18138], [45.54448, 12.18136], [45.5443, 12.1814], [45.54424, 12.18146], [45.54414, 12.18123], [45.5441, 12.1807], [45.54261, 12.18058], [45.54273, 12.17916], [45.54233, 12.17909], [45.54222, 12.17983], [45.54104, 12.17969], [45.54048, 12.17957], [45.54045, 12.17963], [45.54029, 12.17955], [45.53879, 12.1792], [45.53899, 12.17875], [45.53927, 12.17844], [45.53947, 12.17802], [45.53952, 12.17781], [45.53968, 12.17767], [45.53982, 12.17712], [45.53909, 12.17675], [45.53843, 12.17623], [45.53794, 12.17578], [45.53805, 12.17571], [45.53795, 12.17557], [45.53728, 12.17515], [45.53692, 12.17505], [45.53679, 12.17494], [45.5369, 12.17454], [45.53692, 12.17404], [45.53683, 12.1734], [45.53672, 12.17319], [45.53555, 12.17214], [45.53443, 12.17104], [45.53382, 12.17054], [45.53271, 12.1695], [45.53251, 12.16948], [45.5323, 12.16933], [45.5318, 12.16887], [45.53158, 12.1688], [45.53133, 12.16883], [45.53111, 12.16878], [45.53101, 12.16882], [45.53097, 12.16891], [45.53112, 12.16928], [45.53114, 12.1695], [45.53106, 12.16974], [45.53095, 12.16991], [45.53081, 12.16996], [45.5302, 12.16975], [45.53024, 12.1708], [45.53032, 12.17176], [45.5301, 12.17245], [45.5301, 12.17263], [45.53016, 12.17287], [45.53011, 12.1733], [45.5302, 12.17369], [45.53018, 12.17377], [45.53011, 12.17384], [45.52968, 12.17368], [45.52951, 12.17373], [45.52949, 12.17393], [45.52961, 12.17463], [45.52965, 12.17513], [45.5296, 12.1756], [45.52953, 12.17572], [45.52917, 12.17585], [45.52911, 12.17594], [45.52908, 12.1761], [45.52913, 12.1767], [45.52898, 12.17732], [45.52811, 12.17835], [45.52808, 12.17891], [45.52825, 12.17907], [45.52852, 12.17917], [45.52908, 12.17898], [45.52917, 12.17919], [45.52907, 12.17941], [45.52893, 12.17954], [45.52873, 12.17947], [45.52821, 12.17969], [45.52796, 12.18135], [45.52803, 12.18203], [45.528, 12.1823], [45.52789, 12.18263], [45.52763, 12.18302], [45.5275, 12.18311], [45.52723, 12.18318], [45.52649, 12.18289], [45.52588, 12.18278], [45.52573, 12.18191], [45.52561, 12.18173], [45.52489, 12.1815], [45.52486, 12.18144], [45.52398, 12.18135], [45.52378, 12.18141], [45.52398, 12.18194], [45.52422, 12.18234], [45.52444, 12.183], [45.5245, 12.18335], [45.52449, 12.18374], [45.52436, 12.1844], [45.52438, 12.18454], [45.5245, 12.18479], [45.52451, 12.18492], [45.52423, 12.18592], [45.52407, 12.18617], [45.52396, 12.18629], [45.52381, 12.18638], [45.52371, 12.18638], [45.52356, 12.18617], [45.52346, 12.18611], [45.52328, 12.1861], [45.52314, 12.1862], [45.52278, 12.18763], [45.52281, 12.18773], [45.5232, 12.18809], [45.52323, 12.18822], [45.52321, 12.18836], [45.52296, 12.18876], [45.52287, 12.18886], [45.52244, 12.18891], [45.5219, 12.18939], [45.52174, 12.18986], [45.52149, 12.19026], [45.52107, 12.19119], [45.52088, 12.19183], [45.52077, 12.192], [45.52087, 12.19224], [45.52086, 12.19263], [45.52041, 12.19252], [45.5202, 12.19287], [45.51954, 12.19376], [45.51915, 12.19348], [45.51874, 12.19451], [45.51874, 12.1948], [45.51889, 12.19495], [45.51879, 12.19514], [45.51873, 12.19535], [45.51872, 12.19596], [45.51876, 12.19621], [45.51929, 12.19781], [45.51932, 12.19801], [45.5193, 12.1982], [45.51899, 12.19862], [45.51858, 12.19821], [45.51848, 12.19819], [45.51825, 12.19876], [45.51815, 12.19873], [45.51778, 12.19842], [45.5177, 12.19872], [45.51772, 12.19926], [45.51728, 12.1995], [45.51699, 12.19986], [45.51646, 12.19931], [45.51642, 12.19933], [45.51625, 12.19919], [45.51555, 12.1984], [45.51547, 12.19838], [45.51508, 12.19801], [45.51443, 12.19724], [45.51437, 12.19709], [45.51438, 12.19695], [45.51253, 12.19473], [45.51315, 12.19363], [45.51243, 12.19289], [45.51236, 12.19285], [45.51211, 12.19332], [45.51187, 12.19304], [45.51181, 12.1929], [45.51119, 12.19205], [45.51072, 12.19108], [45.51038, 12.19081], [45.5103, 12.19115], [45.51003, 12.1916], [45.5098, 12.19156], [45.50965, 12.19147], [45.50958, 12.19148], [45.50936, 12.19164], [45.50926, 12.19177], [45.50911, 12.1921], [45.5087, 12.19212], [45.50853, 12.19191], [45.5084, 12.19184], [45.50828, 12.19218], [45.50822, 12.19225], [45.50805, 12.19278], [45.50796, 12.19285], [45.50787, 12.19323], [45.50771, 12.19341], [45.50793, 12.19396], [45.50791, 12.19446], [45.50777, 12.19451], [45.50763, 12.19447], [45.50693, 12.19394], [45.50572, 12.19286], [45.50572, 12.19278], [45.50579, 12.19257], [45.50451, 12.19172], [45.50472, 12.19095], [45.50526, 12.18973], [45.50699, 12.19103], [45.50764, 12.19157], [45.50806, 12.19201], [45.50815, 12.19166], [45.50814, 12.19104], [45.50794, 12.19028], [45.50759, 12.18922], [45.50733, 12.1888], [45.50737, 12.18761], [45.50758, 12.18726], [45.5078, 12.18717], [45.5081, 12.18636], [45.50815, 12.18617], [45.50768, 12.18553], [45.50755, 12.18505], [45.50751, 12.18478], [45.50969, 12.1858], [45.5106, 12.18616], [45.51062, 12.18593], [45.51038, 12.18549], [45.51033, 12.18524], [45.51023, 12.18501], [45.51023, 12.18493], [45.51037, 12.18488], [45.51077, 12.18498], [45.51137, 12.18467], [45.51141, 12.18459], [45.51144, 12.1844], [45.51132, 12.18356], [45.51108, 12.18254], [45.5111, 12.1818], [45.51108, 12.18135], [45.51118, 12.18059], [45.51096, 12.18018], [45.51086, 12.1799], [45.51075, 12.1798], [45.51041, 12.18046], [45.5103, 12.18077], [45.51026, 12.18098], [45.51021, 12.18184], [45.50975, 12.18165], [45.50883, 12.18142], [45.50883, 12.18126], [45.5084, 12.18116], [45.50732, 12.18047], [45.50759, 12.1797], [45.50682, 12.17911], [45.50723, 12.17775], [45.50748, 12.1771], [45.50759, 12.17651], [45.5078, 12.17582]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

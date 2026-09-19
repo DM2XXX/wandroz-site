@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barcola, Roiano, Gretta è una zona sicura? | Wandroz</title>
+<meta name="description" content="La costa nord-occidentale e le pendici che la sovrastano: Barcola, dove d’estate tutta la città va a nuotare, e le terrazze residenziali di Roiano, Gretta, Colo">
+<link rel="canonical" href="https://www.wandroz.com/it/trieste/roiano-gretta-barcola-cologna-scorcola.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/trieste/roiano-gretta-barcola-cologna-scorcola.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/trieste/roiano-gretta-barcola-cologna-scorcola.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/trieste/roiano-gretta-barcola-cologna-scorcola.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/trieste/">Trieste, Italia</a> &rsaquo; Barcola, Roiano, Gretta</nav>
+<main>
+  <h1 class="page-title">Barcola, Roiano, Gretta &mdash; Trieste, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 7 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>La costa nord-occidentale e le pendici che la sovrastano: Barcola, dove d’estate tutta la città va a nuotare, e le terrazze residenziali di Roiano, Gretta, Cologna e Scorcola. Roiano figura nell’elenco #RioniSicuri della Polizia Locale, e vale la pena precisare che si tratta di un programma di ascolto e vicinanza con un ufficio mobile, non di una risposta a un problema di criminalità, e che le segnalazioni raccolte in tutta la città riguardavano principalmente rumori, rifiuti abbandonati e parcheggi. Nulla di tutto ciò figura nelle «zone rosse» della Prefettura.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Trieste%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Trieste publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Barcola, Roiano, Gretta è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Barcola, Roiano, Gretta a Trieste come relativamente più sicura della maggior parte degli altri quartieri di Trieste, sia di giorno sia dopo il tramonto. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Trieste non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Barcola, Roiano, Gretta è sicura di notte?</summary>
+      <p>Di notte Barcola, Roiano, Gretta è valutata come relativamente più sicura della maggior parte degli altri quartieri di Trieste. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Barcola, Roiano, Gretta è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Barcola, Roiano, Gretta (relativamente più sicura della maggior parte degli altri quartieri di Trieste) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Barcola, Roiano, Gretta?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Barcola, Roiano, Gretta viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Barcola, Roiano, Gretta o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Barcola%2C%20Roiano%2C%20Gretta%2C%20Trieste%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Barcola, Roiano, Gretta a Trieste come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Trieste, sia di giorno sia dopo il tramonto. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Trieste non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Barcola, Roiano, Gretta \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Barcola, Roiano, Gretta \u00e8 valutata come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Trieste. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Barcola, Roiano, Gretta \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Barcola, Roiano, Gretta (relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Trieste) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Barcola, Roiano, Gretta \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Barcola, Roiano, Gretta viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Barcola, Roiano, Gretta o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Barcola, Roiano, Gretta?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[45.65257, 13.78604], [45.65296, 13.78579], [45.65314, 13.78636], [45.65385, 13.78589], [45.65399, 13.78565], [45.65379, 13.7847], [45.6536, 13.78332], [45.65348, 13.78211], [45.65359, 13.78218], [45.65371, 13.78233], [45.65577, 13.78535], [45.65629, 13.78474], [45.65649, 13.78506], [45.65667, 13.78282], [45.65666, 13.78253], [45.6566, 13.78215], [45.65637, 13.78126], [45.6568, 13.78103], [45.65704, 13.78172], [45.65707, 13.7821], [45.65717, 13.78228], [45.65727, 13.78217], [45.65771, 13.78192], [45.65783, 13.78192], [45.65795, 13.78215], [45.65816, 13.78191], [45.65837, 13.78148], [45.65855, 13.7817], [45.65916, 13.78081], [45.65938, 13.77938], [45.65914, 13.77918], [45.6581, 13.77869], [45.65798, 13.77859], [45.65839, 13.77836], [45.65873, 13.77797], [45.65888, 13.77749], [45.65887, 13.7773], [45.6589, 13.77712], [45.65907, 13.77694], [45.65935, 13.77678], [45.65967, 13.77675], [45.66001, 13.77697], [45.66037, 13.77712], [45.66062, 13.77625], [45.66048, 13.77612], [45.66061, 13.77596], [45.66084, 13.77585], [45.66093, 13.77569], [45.66122, 13.77563], [45.66133, 13.77555], [45.66141, 13.77533], [45.66128, 13.77522], [45.66037, 13.77395], [45.66028, 13.77402], [45.66003, 13.77323], [45.65956, 13.77344], [45.65911, 13.77343], [45.65899, 13.77305], [45.65955, 13.77298], [45.66154, 13.77183], [45.66138, 13.77129], [45.66185, 13.77102], [45.66165, 13.77035], [45.6635, 13.76926], [45.66483, 13.76705], [45.6651, 13.76641], [45.66538, 13.76561], [45.66547, 13.76524], [45.66565, 13.76382], [45.66573, 13.76356], [45.66592, 13.76329], [45.66667, 13.76266], [45.66625, 13.76094], [45.66634, 13.76075], [45.66664, 13.76058], [45.66619, 13.75887], [45.66634, 13.75876], [45.66656, 13.75873], [45.66703, 13.75857], [45.6675, 13.75866], [45.66813, 13.75863], [45.66833, 13.75848], [45.66839, 13.75853], [45.66845, 13.7585], [45.66856, 13.75837], [45.66898, 13.75823], [45.66906, 13.75814], [45.66911, 13.75815], [45.66934, 13.75802], [45.66977, 13.7577], [45.67047, 13.75732], [45.67059, 13.75732], [45.67077, 13.75716], [45.67089, 13.75715], [45.67095, 13.75705], [45.67106, 13.75703], [45.67117, 13.75694], [45.67123, 13.75696], [45.67155, 13.75678], [45.67153, 13.75671], [45.67155, 13.7567], [45.67161, 13.75686], [45.6718, 13.75677], [45.6718, 13.7567], [45.67191, 13.75664], [45.6719, 13.75661], [45.67197, 13.75655], [45.67199, 13.75663], [45.67202, 13.75663], [45.67254, 13.75656], [45.67291, 13.75646], [45.67374, 13.75602], [45.67395, 13.75577], [45.67398, 13.75567], [45.67398, 13.75558], [45.6739, 13.75549], [45.67382, 13.75553], [45.67368, 13.75572], [45.67363, 13.75572], [45.67361, 13.75566], [45.67384, 13.75537], [45.67393, 13.75477], [45.67389, 13.75422], [45.67399, 13.75396], [45.67503, 13.75308], [45.67541, 13.75299], [45.67564, 13.75284], [45.6758, 13.7526], [45.67575, 13.75252], [45.67564, 13.7526], [45.67565, 13.75255], [45.67606, 13.7521], [45.67631, 13.75196], [45.67652, 13.75198], [45.67691, 13.75215], [45.67691, 13.75222], [45.67679, 13.75229], [45.67681, 13.75236], [45.6769, 13.75232], [45.67682, 13.7524], [45.67685, 13.75254], [45.67688, 13.7526], [45.67691, 13.75259], [45.67687, 13.75265], [45.67688, 13.7527], [45.67693, 13.75272], [45.67694, 13.7526], [45.67697, 13.75259], [45.67698, 13.7527], [45.67691, 13.75278], [45.67694, 13.75285], [45.67711, 13.75281], [45.67726, 13.75283], [45.67762, 13.75318], [45.67759, 13.75324], [45.67767, 13.75333], [45.67765, 13.75337], [45.6778, 13.75352], [45.6779, 13.75353], [45.67838, 13.7532], [45.67839, 13.75324], [45.67834, 13.7533], [45.67795, 13.75357], [45.67809, 13.75396], [45.67853, 13.75375], [45.67853, 13.75371], [45.67861, 13.75371], [45.67861, 13.75378], [45.67873, 13.75378], [45.67893, 13.75368], [45.67894, 13.75388], [45.6791, 13.75378], [45.67909, 13.75357], [45.67914, 13.75357], [45.67914, 13.75367], [45.67935, 13.75357], [45.67934, 13.75343], [45.67949, 13.75338], [45.67951, 13.75321], [45.67965, 13.7531], [45.67971, 13.7531], [45.67956, 13.75326], [45.67955, 13.75337], [45.67967, 13.75369], [45.67979, 13.75374], [45.68018, 13.75338], [45.68023, 13.7534], [45.68038, 13.75329], [45.6805, 13.75338], [45.68057, 13.75332], [45.68064, 13.75309], [45.68067, 13.75283], [45.68062, 13.75272], [45.68048, 13.7528], [45.68043, 13.75272], [45.68053, 13.7527], [45.68059, 13.75257], [45.68065, 13.75256], [45.6806, 13.75251], [45.6806, 13.75246], [45.68066, 13.75237], [45.68075, 13.7523], [45.68079, 13.75236], [45.68096, 13.75219], [45.68091, 13.75206], [45.68099, 13.752], [45.68087, 13.7517], [45.68056, 13.75196], [45.68051, 13.75196], [45.6805, 13.7519], [45.6815, 13.75093], [45.68146, 13.75066], [45.68235, 13.74975], [45.68244, 13.74973], [45.68244, 13.7498], [45.68158, 13.75068], [45.68156, 13.75078], [45.68165, 13.75093], [45.68098, 13.75158], [45.68115, 13.752], [45.68172, 13.75149], [45.68159, 13.75115], [45.6816, 13.75111], [45.68176, 13.75146], [45.68256, 13.75064], [45.68237, 13.75027], [45.6824, 13.75024], [45.68257, 13.75058], [45.68457, 13.74848], [45.68613, 13.74628], [45.68624, 13.74618], [45.68645, 13.74611], [45.68664, 13.74614], [45.68673, 13.7462], [45.68683, 13.74592], [45.68671, 13.74584], [45.68671, 13.74579], [45.68698, 13.74594], [45.68718, 13.74582], [45.68741, 13.74549], [45.68736, 13.7454], [45.68743, 13.74546], [45.68778, 13.74494], [45.68776, 13.74482], [45.68767, 13.74469], [45.68783, 13.74479], [45.68787, 13.74477], [45.68836, 13.74404], [45.68831, 13.74396], [45.68827, 13.74398], [45.68828, 13.74393], [45.68842, 13.74374], [45.68849, 13.74386], [45.68932, 13.74266], [45.68946, 13.74257], [45.68949, 13.74238], [45.68959, 13.74234], [45.68977, 13.74204], [45.68985, 13.74203], [45.69057, 13.74102], [45.69059, 13.74099], [45.69055, 13.74092], [45.69057, 13.7409], [45.69061, 13.74096], [45.69231, 13.73882], [45.69286, 13.73805], [45.69309, 13.73778], [45.69313, 13.73783], [45.69326, 13.73767], [45.69301, 13.73725], [45.69299, 13.73707], [45.69304, 13.73678], [45.69319, 13.7366], [45.69326, 13.73657], [45.69333, 13.73655], [45.69348, 13.73662], [45.69348, 13.73672], [45.69333, 13.73667], [45.69319, 13.73674], [45.69312, 13.73685], [45.69309, 13.73701], [45.69311, 13.7372], [45.69322, 13.73745], [45.69328, 13.73737], [45.69325, 13.73727], [45.69338, 13.73753], [45.69364, 13.7372], [45.69347, 13.73694], [45.69348, 13.73691], [45.69357, 13.73697], [45.69363, 13.73708], [45.69446, 13.73593], [45.69522, 13.73497], [45.69628, 13.73333], [45.69661, 13.7324], [45.69673, 13.7318], [45.69685, 13.73139], [45.69807, 13.7287], [45.69862, 13.72724], [45.69922, 13.72551], [45.69931, 13.72542], [45.69949, 13.72495], [45.69956, 13.725], [45.69963, 13.72481], [45.69961, 13.72463], [45.69976, 13.72424], [45.69998, 13.72391], [45.7001, 13.72368], [45.70007, 13.72365], [45.70038, 13.72307], [45.70034, 13.72303], [45.70028, 13.72307], [45.70007, 13.72353], [45.70003, 13.72351], [45.70014, 13.7232], [45.70036, 13.72281], [45.70033, 13.72278], [45.70022, 13.72297], [45.7002, 13.72291], [45.70047, 13.72236], [45.70052, 13.72232], [45.70053, 13.72236], [45.70034, 13.72276], [45.70037, 13.72279], [45.70048, 13.72255], [45.70052, 13.72259], [45.70049, 13.72258], [45.70031, 13.72296], [45.70039, 13.72304], [45.70045, 13.72292], [45.7005, 13.72297], [45.70052, 13.72294], [45.70047, 13.72289], [45.70056, 13.7227], [45.70061, 13.72271], [45.70057, 13.72268], [45.70067, 13.72253], [45.7008, 13.72205], [45.70091, 13.72187], [45.70103, 13.72141], [45.70098, 13.72136], [45.70104, 13.72097], [45.70103, 13.72062], [45.70113, 13.72048], [45.70108, 13.7202], [45.70093, 13.72023], [45.70092, 13.72017], [45.70104, 13.72014], [45.70092, 13.72012], [45.70088, 13.72003], [45.70102, 13.72008], [45.70112, 13.72], [45.70109, 13.71984], [45.70103, 13.71977], [45.70098, 13.71979], [45.70096, 13.71973], [45.70088, 13.71982], [45.70086, 13.71992], [45.70079, 13.71996], [45.70077, 13.71993], [45.70095, 13.7196], [45.70095, 13.7195], [45.70099, 13.71943], [45.70099, 13.71934], [45.70095, 13.7193], [45.70095, 13.71908], [45.70097, 13.71902], [45.70107, 13.71898], [45.70116, 13.71875], [45.7011, 13.71872], [45.70109, 13.71867], [45.70116, 13.71865], [45.70116, 13.7186], [45.70128, 13.71869], [45.70155, 13.71823], [45.70153, 13.71817], [45.70156, 13.71806], [45.7016, 13.71808], [45.70163, 13.71803], [45.70164, 13.7178], [45.70168, 13.71779], [45.70201, 13.7171], [45.70207, 13.71665], [45.70205, 13.71642], [45.70187, 13.71597], [45.70173, 13.7158], [45.70159, 13.71515], [45.70165, 13.71515], [45.70173, 13.71466], [45.70168, 13.71457], [45.70174, 13.71455], [45.70202, 13.71381], [45.70191, 13.71379], [45.70195, 13.71366], [45.70229, 13.7133], [45.7024, 13.71297], [45.7024, 13.71271], [45.70227, 13.71252], [45.70229, 13.71228], [45.70232, 13.7123], [45.70238, 13.71195], [45.7028, 13.71179], [45.7032, 13.7117], [45.70324, 13.71177], [45.70322, 13.71181], [45.70275, 13.71194], [45.70274, 13.71205], [45.703, 13.71225], [45.70364, 13.71223], [45.70379, 13.71207], [45.70386, 13.71193], [45.70389, 13.71167], [45.70401, 13.71148], [45.70407, 13.71148], [45.70393, 13.71167], [45.70391, 13.71189], [45.70419, 13.71147], [45.70432, 13.71143], [45.70438, 13.71131], [45.70446, 13.71125], [45.70429, 13.71122], [45.70438, 13.7112], [45.7044, 13.7111], [45.7046, 13.71104], [45.70462, 13.71109], [45.70476, 13.71095], [45.70483, 13.71099], [45.70489, 13.7111], [45.70511, 13.71092], [45.7057, 13.71079], [45.70663, 13.71177], [45.70675, 13.71181], [45.7072, 13.71182], [45.70722, 13.71187], [45.70717, 13.71191], [45.70661, 13.71186], [45.7057, 13.71092], [45.70534, 13.71099], [45.70534, 13.71106], [45.70546, 13.71104], [45.70535, 13.71108], [45.70536, 13.71114], [45.70548, 13.71112], [45.70549, 13.71116], [45.70525, 13.7112], [45.70532, 13.71197], [45.70635, 13.71331], [45.70682, 13.71347], [45.70696, 13.71274], [45.707, 13.71275], [45.70686, 13.71348], [45.70737, 13.71362], [45.70787, 13.71364], [45.70789, 13.7137], [45.70849, 13.71335], [45.70852, 13.71323], [45.70859, 13.71319], [45.70878, 13.71322], [45.70886, 13.71313], [45.70886, 13.71306], [45.70888, 13.7131], [45.70926, 13.71267], [45.70924, 13.71264], [45.70928, 13.71265], [45.70934, 13.71258], [45.70935, 13.71253], [45.70951, 13.71278], [45.70997, 13.71231], [45.70993, 13.71212], [45.71001, 13.71228], [45.71018, 13.71221], [45.71023, 13.71213], [45.71011, 13.71189], [45.71027, 13.71209], [45.71052, 13.71178], [45.71048, 13.71171], [45.7105, 13.71168], [45.71084, 13.71127], [45.71078, 13.71115], [45.7108, 13.71113], [45.71087, 13.71124], [45.71109, 13.71096], [45.71103, 13.71088], [45.71113, 13.71072], [45.71147, 13.71025], [45.71149, 13.71027], [45.71179, 13.70982], [45.71206, 13.70949], [45.71212, 13.70958], [45.71217, 13.70952], [45.71263, 13.7088], [45.7125, 13.70858], [45.71264, 13.70876], [45.71285, 13.70844], [45.71281, 13.70839], [45.71283, 13.70836], [45.71287, 13.70842], [45.71304, 13.70815], [45.71298, 13.70809], [45.713, 13.70806], [45.71306, 13.70812], [45.71331, 13.70775], [45.71319, 13.70758], [45.71332, 13.70772], [45.71355, 13.7072], [45.71339, 13.70698], [45.71357, 13.70719], [45.71387, 13.70678], [45.7137, 13.70658], [45.71369, 13.70635], [45.71386, 13.70615], [45.71395, 13.70617], [45.71394, 13.70624], [45.71379, 13.70631], [45.71375, 13.70646], [45.71377, 13.70659], [45.71388, 13.70675], [45.71405, 13.70649], [45.71399, 13.70635], [45.71401, 13.70632], [45.71408, 13.70646], [45.71457, 13.70577], [45.71448, 13.70563], [45.71459, 13.70576], [45.71481, 13.70534], [45.71501, 13.70507], [45.7152, 13.70489], [45.71553, 13.70437], [45.71543, 13.7042], [45.71556, 13.70434], [45.71592, 13.70383], [45.71587, 13.70374], [45.71593, 13.70381], [45.71616, 13.70342], [45.7162, 13.70331], [45.71616, 13.70322], [45.71618, 13.7032], [45.71622, 13.70329], [45.71625, 13.70328], [45.71651, 13.70293], [45.71646, 13.70287], [45.71648, 13.70284], [45.71653, 13.70289], [45.7166, 13.70276], [45.7166, 13.70269], [45.71662, 13.70272], [45.71674, 13.70254], [45.71679, 13.70243], [45.71674, 13.70236], [45.7168, 13.70241], [45.71683, 13.70234], [45.71679, 13.70229], [45.71684, 13.70231], [45.717, 13.70191], [45.71704, 13.70185], [45.71714, 13.70191], [45.71716, 13.70203], [45.71734, 13.70238], [45.71722, 13.7026], [45.71789, 13.70349], [45.71762, 13.70389], [45.7178, 13.70404], [45.71741, 13.70477], [45.7172, 13.70495], [45.71695, 13.70537], [45.71673, 13.70639], [45.71666, 13.70649], [45.71612, 13.70676], [45.71681, 13.70779], [45.71627, 13.70832], [45.71595, 13.70854], [45.71569, 13.70892], [45.71535, 13.7096], [45.71517, 13.71016], [45.71459, 13.71238], [45.71412, 13.71338], [45.71359, 13.7141], [45.71353, 13.71445], [45.71285, 13.71582], [45.71251, 13.71662], [45.7124, 13.71696], [45.71229, 13.71748], [45.7122, 13.71732], [45.7101, 13.71816], [45.70804, 13.71944], [45.70739, 13.71995], [45.70636, 13.72036], [45.70531, 13.72108], [45.70521, 13.7212], [45.70482, 13.72119], [45.70474, 13.72147], [45.70473, 13.72183], [45.70465, 13.72195], [45.70463, 13.72216], [45.70425, 13.72247], [45.70376, 13.72181], [45.70365, 13.72135], [45.70294, 13.7223], [45.70311, 13.7232], [45.70329, 13.72324], [45.70329, 13.72355], [45.70297, 13.72368], [45.7025, 13.72437], [45.70219, 13.72443], [45.70221, 13.72432], [45.70199, 13.72415], [45.70174, 13.72463], [45.70174, 13.72518], [45.70165, 13.72538], [45.7015, 13.72545], [45.70126, 13.72589], [45.70141, 13.72656], [45.70048, 13.72835], [45.70014, 13.72819], [45.69989, 13.72861], [45.69863, 13.73144], [45.69811, 13.73279], [45.69806, 13.73317], [45.69815, 13.7351], [45.69815, 13.73632], [45.69805, 13.73726], [45.69781, 13.73796], [45.69754, 13.73848], [45.69653, 13.74003], [45.69591, 13.74107], [45.69513, 13.74184], [45.69455, 13.74267], [45.69409, 13.74324], [45.69319, 13.74392], [45.69277, 13.74389], [45.69369, 13.74247], [45.69283, 13.74255], [45.69211, 13.74242], [45.69151, 13.74249], [45.69064, 13.74269], [45.68967, 13.7439], [45.6902, 13.74452], [45.69026, 13.74504], [45.69046, 13.7454], [45.69103, 13.74579], [45.69076, 13.74636], [45.69089, 13.74654], [45.69125, 13.74666], [45.69154, 13.74685], [45.692, 13.74729], [45.69257, 13.74814], [45.69281, 13.74869], [45.69242, 13.74985], [45.69238, 13.7507], [45.69233, 13.75103], [45.69207, 13.75207], [45.69159, 13.75353], [45.69081, 13.75551], [45.68988, 13.75813], [45.68861, 13.76117], [45.68654, 13.76699], [45.68392, 13.76512], [45.68331, 13.76661], [45.68268, 13.76721], [45.68148, 13.76878], [45.68125, 13.76964], [45.68064, 13.7723], [45.68056, 13.77282], [45.68032, 13.77325], [45.67996, 13.77376], [45.67974, 13.77391], [45.67952, 13.77379], [45.67918, 13.7735], [45.67885, 13.77444], [45.67772, 13.7731], [45.67718, 13.7727], [45.67643, 13.77232], [45.67586, 13.77213], [45.67508, 13.772], [45.6748, 13.77261], [45.6749, 13.77276], [45.67481, 13.77333], [45.67466, 13.77326], [45.67445, 13.77406], [45.67458, 13.77417], [45.6745, 13.77429], [45.67434, 13.77483], [45.67499, 13.77486], [45.67505, 13.77545], [45.67473, 13.77618], [45.67493, 13.7763], [45.67479, 13.7767], [45.67473, 13.77705], [45.67469, 13.77762], [45.67619, 13.77719], [45.67626, 13.77766], [45.67589, 13.77792], [45.67561, 13.77794], [45.67557, 13.7786], [45.67508, 13.77904], [45.67508, 13.77977], [45.67556, 13.78022], [45.67549, 13.7805], [45.67532, 13.78069], [45.67524, 13.78119], [45.67515, 13.78124], [45.67516, 13.78137], [45.67535, 13.78158], [45.67545, 13.78185], [45.67585, 13.78201], [45.6759, 13.78213], [45.67591, 13.78244], [45.67572, 13.78328], [45.6756, 13.78358], [45.67544, 13.78441], [45.67544, 13.78504], [45.6755, 13.78588], [45.67546, 13.78609], [45.67547, 13.78648], [45.67541, 13.7866], [45.67519, 13.78759], [45.67491, 13.78832], [45.67487, 13.7885], [45.67473, 13.78875], [45.67447, 13.78894], [45.67452, 13.78912], [45.67498, 13.78967], [45.67528, 13.79028], [45.67607, 13.79263], [45.67529, 13.7942], [45.6736, 13.79691], [45.67324, 13.79828], [45.67297, 13.79858], [45.67149, 13.80367], [45.67055, 13.80541], [45.66855, 13.80322], [45.66872, 13.80284], [45.66904, 13.80182], [45.66908, 13.80132], [45.66887, 13.80124], [45.66833, 13.80133], [45.66793, 13.80157], [45.66772, 13.80194], [45.66819, 13.80252], [45.66693, 13.80364], [45.66614, 13.80371], [45.66544, 13.80356], [45.66519, 13.80356], [45.66492, 13.80338], [45.66476, 13.80294], [45.66438, 13.80297], [45.66367, 13.80239], [45.66345, 13.8024], [45.66312, 13.8029], [45.66287, 13.80266], [45.66266, 13.80264], [45.66234, 13.80269], [45.66211, 13.80248], [45.66195, 13.80241], [45.66152, 13.8024], [45.66145, 13.80231], [45.66127, 13.80233], [45.6612, 13.80219], [45.6611, 13.80215], [45.66091, 13.8019], [45.66096, 13.80165], [45.65985, 13.80077], [45.65949, 13.80038], [45.65917, 13.79995], [45.65851, 13.79925], [45.6581, 13.79849], [45.65783, 13.79815], [45.65734, 13.79782], [45.6569, 13.79885], [45.65683, 13.79872], [45.65656, 13.79846], [45.65636, 13.79814], [45.65612, 13.79763], [45.65586, 13.79733], [45.65571, 13.79702], [45.65532, 13.7966], [45.65549, 13.7943], [45.65549, 13.79394], [45.65513, 13.79189], [45.6546, 13.79209], [45.65447, 13.79132], [45.6541, 13.7915], [45.65396, 13.79043], [45.65379, 13.78962], [45.6535, 13.78882], [45.65329, 13.78788], [45.65305, 13.7872], [45.65257, 13.78604]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

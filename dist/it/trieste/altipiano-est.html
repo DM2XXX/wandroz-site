@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opicina e Carso Est (Altipiano Est) è una zona sicura? | Wandroz</title>
+<meta name="description" content="L&#39;altopiano carsico che sovrasta la città — Opicina, Banne, Padriciano — raggiungibile con la storica linea tranviaria, e che in realtà costituisce un insieme d">
+<link rel="canonical" href="https://www.wandroz.com/it/trieste/altipiano-est.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/trieste/altipiano-est.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/trieste/altipiano-est.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/trieste/altipiano-est.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/trieste/">Trieste, Italia</a> &rsaquo; Opicina e Carso Est (Altipiano Est)</nav>
+<main>
+  <h1 class="page-title">Opicina e Carso Est (Altipiano Est) &mdash; Trieste, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 7 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>L&#39;altopiano carsico che sovrasta la città — Opicina, Banne, Padriciano — raggiungibile con la storica linea tranviaria, e che in realtà costituisce un insieme di villaggi piuttosto che di quartieri cittadini. Nelle fonti esaminate non è stato trovato nulla di specifico per quella zona e nulla di tutto ciò compare nelle «zone rosse» designate dalla città; il contorno tratteggiato indica che si tratta di un’area non ancora esaminata, piuttosto che di un’area di sicurezza.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Trieste%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Trieste, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Opicina e Carso Est (Altipiano Est) è una zona sicura?</summary>
+      <p>Wandroz valuta Opicina e Carso Est (Altipiano Est) a Trieste come relativamente più sicura della maggior parte degli altri quartieri di Trieste. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Opicina e Carso Est (Altipiano Est) — nessun episodio, nessun problema ricorrente, niente di documentato né in un senso né nell&#39;altro — letta insieme al carattere della zona. Non è un riscontro positivo di sicurezza: un&#39;assenza di segnalazioni è un&#39;evidenza più debole delle valutazioni con fonti che trovi altrove su questa mappa, ed è indicata come tale ovunque compaia.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Che cosa è stato verificato per Opicina e Carso Est (Altipiano Est)?</summary>
+      <p>La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Trieste: stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Opicina e Carso Est (Altipiano Est) non è emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative più piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell&#39;area.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Opicina e Carso Est (Altipiano Est) è una buona zona dove alloggiare da turista?</summary>
+      <p>Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Trieste le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Opicina%20e%20Carso%20Est%20%28Altipiano%20Est%29%2C%20Trieste%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta Opicina e Carso Est (Altipiano Est) a Trieste come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Trieste. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Opicina e Carso Est (Altipiano Est) \u2014 nessun episodio, nessun problema ricorrente, niente di documentato n\u00e9 in un senso n\u00e9 nell\u0027altro \u2014 letta insieme al carattere della zona. Non \u00e8 un riscontro positivo di sicurezza: un\u0027assenza di segnalazioni \u00e8 un\u0027evidenza pi\u00f9 debole delle valutazioni con fonti che trovi altrove su questa mappa, ed \u00e8 indicata come tale ovunque compaia."}, "name": "Opicina e Carso Est (Altipiano Est) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Trieste: stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Opicina e Carso Est (Altipiano Est) non \u00e8 emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative pi\u00f9 piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell\u0027area."}, "name": "Che cosa \u00e8 stato verificato per Opicina e Carso Est (Altipiano Est)?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Trieste le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Opicina e Carso Est (Altipiano Est) \u00e8 una buona zona dove alloggiare da turista?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[45.69971, 13.76955], [45.70007, 13.76987], [45.70053, 13.77039], [45.70075, 13.77058], [45.70117, 13.77137], [45.70194, 13.77264], [45.7022, 13.77304], [45.70276, 13.77372], [45.70272, 13.77395], [45.70343, 13.77567], [45.70396, 13.77628], [45.70473, 13.77732], [45.70626, 13.77912], [45.7062, 13.78142], [45.70605, 13.78273], [45.70571, 13.78681], [45.7056, 13.78762], [45.70553, 13.78771], [45.70499, 13.79141], [45.70465, 13.79412], [45.7046, 13.79422], [45.70422, 13.79715], [45.70416, 13.80043], [45.70464, 13.80089], [45.70486, 13.80126], [45.70516, 13.80137], [45.70627, 13.80198], [45.70659, 13.80224], [45.70677, 13.80245], [45.70706, 13.80292], [45.70697, 13.80357], [45.70689, 13.80386], [45.70654, 13.80475], [45.70636, 13.80494], [45.70591, 13.80527], [45.7055, 13.80545], [45.70525, 13.8055], [45.70497, 13.80543], [45.70469, 13.80529], [45.70449, 13.80516], [45.70401, 13.80472], [45.70386, 13.80509], [45.70362, 13.80591], [45.70338, 13.80644], [45.70316, 13.80707], [45.70286, 13.80765], [45.7027, 13.8081], [45.70244, 13.80856], [45.70202, 13.8096], [45.70163, 13.8107], [45.70131, 13.81123], [45.70123, 13.81157], [45.70064, 13.81286], [45.69998, 13.81446], [45.69973, 13.81494], [45.69911, 13.81661], [45.69876, 13.81732], [45.69856, 13.81795], [45.69767, 13.81981], [45.6975, 13.82049], [45.69734, 13.82097], [45.69728, 13.82113], [45.69711, 13.82137], [45.69705, 13.82217], [45.69688, 13.82234], [45.69624, 13.82391], [45.69638, 13.82435], [45.69618, 13.82453], [45.69613, 13.82482], [45.69613, 13.82521], [45.69557, 13.82562], [45.69553, 13.82612], [45.69554, 13.82642], [45.69547, 13.82672], [45.69573, 13.82751], [45.6956, 13.82806], [45.69412, 13.8287], [45.69336, 13.82895], [45.69147, 13.82982], [45.69054, 13.83121], [45.69017, 13.83187], [45.68981, 13.83241], [45.68878, 13.83316], [45.68831, 13.83341], [45.68764, 13.83345], [45.68709, 13.83364], [45.68685, 13.83451], [45.68664, 13.83508], [45.68622, 13.83605], [45.68573, 13.83672], [45.68523, 13.83771], [45.68472, 13.83847], [45.68431, 13.83897], [45.68378, 13.83987], [45.68344, 13.84059], [45.68275, 13.84179], [45.6822, 13.84258], [45.68176, 13.84335], [45.68141, 13.84411], [45.68074, 13.84515], [45.68031, 13.84554], [45.67912, 13.84647], [45.67863, 13.84699], [45.67798, 13.84754], [45.67684, 13.84843], [45.67622, 13.849], [45.6733, 13.85138], [45.67224, 13.8529], [45.67105, 13.85401], [45.66586, 13.85765], [45.65902, 13.8677], [45.65706, 13.87095], [45.6561, 13.87124], [45.6563, 13.87184], [45.65542, 13.87351], [45.65475, 13.87439], [45.65455, 13.87525], [45.6522, 13.87923], [45.64503, 13.89305], [45.64503, 13.89455], [45.64459, 13.89511], [45.64424, 13.89524], [45.64403, 13.8955], [45.6439, 13.89603], [45.64346, 13.89831], [45.64301, 13.89771], [45.64278, 13.8975], [45.64121, 13.89537], [45.64089, 13.8948], [45.64053, 13.89395], [45.6395, 13.89226], [45.63506, 13.88472], [45.63492, 13.88458], [45.63452, 13.88381], [45.63435, 13.88326], [45.63252, 13.88025], [45.63091, 13.87739], [45.63058, 13.87686], [45.63029, 13.87616], [45.62952, 13.87549], [45.62975, 13.87482], [45.62927, 13.87404], [45.62832, 13.87177], [45.62806, 13.87152], [45.62821, 13.87126], [45.62833, 13.87096], [45.62875, 13.86979], [45.62884, 13.86935], [45.62796, 13.86317], [45.6279, 13.86246], [45.62777, 13.86231], [45.62775, 13.86139], [45.6282, 13.85953], [45.62831, 13.85939], [45.62852, 13.85856], [45.62879, 13.85735], [45.62885, 13.85653], [45.62891, 13.85623], [45.62877, 13.85505], [45.62853, 13.85358], [45.62841, 13.85246], [45.6287, 13.85077], [45.62935, 13.8492], [45.62961, 13.84865], [45.63019, 13.84715], [45.63119, 13.84479], [45.63138, 13.84454], [45.63146, 13.84434], [45.63162, 13.84417], [45.63186, 13.84375], [45.63204, 13.84362], [45.63206, 13.84345], [45.63222, 13.84327], [45.63256, 13.84268], [45.63333, 13.84164], [45.63402, 13.84194], [45.63538, 13.84147], [45.63616, 13.84177], [45.63786, 13.8428], [45.63907, 13.84324], [45.63976, 13.8434], [45.64069, 13.84352], [45.64112, 13.8427], [45.6416, 13.84259], [45.6422, 13.84312], [45.64395, 13.83955], [45.64496, 13.83692], [45.64526, 13.83649], [45.64534, 13.83646], [45.64557, 13.83666], [45.64621, 13.83737], [45.64752, 13.83871], [45.64877, 13.83891], [45.64905, 13.839], [45.64913, 13.83843], [45.65005, 13.83679], [45.65041, 13.836], [45.65107, 13.83168], [45.65167, 13.82977], [45.65084, 13.82818], [45.65063, 13.82733], [45.65057, 13.82619], [45.6514, 13.8246], [45.65231, 13.82342], [45.65236, 13.82299], [45.65228, 13.82256], [45.65233, 13.82188], [45.65284, 13.82076], [45.65287, 13.81992], [45.65282, 13.81943], [45.65283, 13.81904], [45.65287, 13.8188], [45.65311, 13.81852], [45.65416, 13.81826], [45.65502, 13.81751], [45.65539, 13.8173], [45.65677, 13.81687], [45.65868, 13.81534], [45.66231, 13.81165], [45.66399, 13.81039], [45.66456, 13.81001], [45.66513, 13.80944], [45.66548, 13.80878], [45.66575, 13.80811], [45.66614, 13.80748], [45.66652, 13.80675], [45.66695, 13.80634], [45.66731, 13.80553], [45.66824, 13.80371], [45.66855, 13.80322], [45.67055, 13.80541], [45.67149, 13.80367], [45.67297, 13.79858], [45.67324, 13.79828], [45.6736, 13.79691], [45.67529, 13.7942], [45.67607, 13.79263], [45.67528, 13.79028], [45.67498, 13.78967], [45.67452, 13.78912], [45.67447, 13.78894], [45.67473, 13.78875], [45.67487, 13.7885], [45.67491, 13.78832], [45.67519, 13.78759], [45.67541, 13.7866], [45.67547, 13.78648], [45.67546, 13.78609], [45.6755, 13.78588], [45.67544, 13.78504], [45.67544, 13.78441], [45.6756, 13.78358], [45.67572, 13.78328], [45.67591, 13.78244], [45.6759, 13.78213], [45.67585, 13.78201], [45.67545, 13.78185], [45.67535, 13.78158], [45.67516, 13.78137], [45.67515, 13.78124], [45.67524, 13.78119], [45.67532, 13.78069], [45.67549, 13.7805], [45.67556, 13.78022], [45.67508, 13.77977], [45.67508, 13.77904], [45.67557, 13.7786], [45.67561, 13.77794], [45.67589, 13.77792], [45.67626, 13.77766], [45.67619, 13.77719], [45.67469, 13.77762], [45.67473, 13.77705], [45.67479, 13.7767], [45.67493, 13.7763], [45.67473, 13.77618], [45.67505, 13.77545], [45.67499, 13.77486], [45.67434, 13.77483], [45.6745, 13.77429], [45.67458, 13.77417], [45.67445, 13.77406], [45.67466, 13.77326], [45.67481, 13.77333], [45.6749, 13.77276], [45.6748, 13.77261], [45.67508, 13.772], [45.67586, 13.77213], [45.67643, 13.77232], [45.67718, 13.7727], [45.67772, 13.7731], [45.67885, 13.77444], [45.67918, 13.7735], [45.67952, 13.77379], [45.67974, 13.77391], [45.67996, 13.77376], [45.68032, 13.77325], [45.68056, 13.77282], [45.68064, 13.7723], [45.68125, 13.76964], [45.68148, 13.76878], [45.68268, 13.76721], [45.68331, 13.76661], [45.68392, 13.76512], [45.68654, 13.76699], [45.68996, 13.76599], [45.69143, 13.76734], [45.6913, 13.76776], [45.69135, 13.76843], [45.69131, 13.76891], [45.69143, 13.76913], [45.69313, 13.76937], [45.69385, 13.76955], [45.69589, 13.77035], [45.69589, 13.77055], [45.69729, 13.77045], [45.69844, 13.77017], [45.69848, 13.77033], [45.69925, 13.77023], [45.69971, 13.76955]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro storico e caruggi (Centro Est) è una zona sicura? | Wandroz</title>
+<meta name="description" content="Il centro storico medievale più grande d’Europa, nonché la zona di Genova più sorvegliata dalla polizia. Dal 15 settembre 2026 la polizia locale garantirà una c">
+<link rel="canonical" href="https://www.wandroz.com/it/genova/centro-est.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/genova/centro-est.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/genova/centro-est.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/genova/centro-est.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/genova/">Genova, Italia</a> &rsaquo; Centro storico e caruggi (Centro Est)</nav>
+<main>
+  <h1 class="page-title">Centro storico e caruggi (Centro Est) &mdash; Genova, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 9 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Nella media</span> <span class="badge-label">giorno</span>
+    <span class="badge red">Consigliata maggiore prudenza</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Il centro storico medievale più grande d’Europa, nonché la zona di Genova più sorvegliata dalla polizia. Dal 15 settembre 2026 la polizia locale garantirà una copertura 24 ore su 24 nell’ambito del piano di sicurezza urbana 2026 del Comune; il perimetro interessato comprende la Darsena, il tratto tra il Prè e il vecchio ghetto, e l’asse che va dalla Maddalena e San Luca attraverso vico delle Mele fino a piazza Banchi — per contrastare lo spaccio, il vagabondaggio e il degrado. Si tratta dello stesso labirinto che racchiude via Garibaldi e i palazzi dei Rolli, San Lorenzo e il Porto Antico, luoghi vivaci e raffinati. I caruggi non si dividono in strade «buone» e «cattive» sulla mappa; cambiano carattere nel giro di cinquanta metri e di nuovo dopo il tramonto. Di notte, percorrete gli assi illuminati e per il resto prendete un taxi.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Genoa%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Genoa publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Centro storico e caruggi (Centro Est) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Centro storico e caruggi (Centro Est) a Genoa come nella media rispetto agli altri quartieri di Genoa di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Genoa di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Genoa non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Centro storico e caruggi (Centro Est) è sicura di notte?</summary>
+      <p>Di notte Centro storico e caruggi (Centro Est) è valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Genoa. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Centro storico e caruggi (Centro Est) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Centro storico e caruggi (Centro Est) (nella media rispetto agli altri quartieri di Genoa) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Centro storico e caruggi (Centro Est)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Centro storico e caruggi (Centro Est) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Centro storico e caruggi (Centro Est) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Centro%20storico%20e%20caruggi%20%28Centro%20Est%29%2C%20Genova%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Centro storico e caruggi (Centro Est) a Genoa come nella media rispetto agli altri quartieri di Genoa di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Genoa di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Genoa non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Centro storico e caruggi (Centro Est) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Centro storico e caruggi (Centro Est) \u00e8 valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Genoa. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Centro storico e caruggi (Centro Est) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Centro storico e caruggi (Centro Est) (nella media rispetto agli altri quartieri di Genoa) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Centro storico e caruggi (Centro Est) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Centro storico e caruggi (Centro Est) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Centro storico e caruggi (Centro Est) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Centro storico e caruggi (Centro Est)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.43322, 8.91416], [44.43321, 8.91408], [44.43281, 8.91365], [44.43264, 8.91366], [44.4325, 8.91353], [44.43242, 8.91352], [44.43231, 8.91358], [44.43223, 8.91356], [44.43192, 8.91337], [44.4315, 8.91294], [44.43107, 8.91223], [44.43058, 8.91166], [44.43033, 8.91154], [44.43026, 8.91164], [44.43021, 8.91159], [44.43014, 8.9117], [44.43001, 8.91157], [44.4299, 8.91155], [44.42987, 8.91161], [44.42988, 8.91173], [44.42999, 8.91202], [44.42997, 8.9121], [44.42991, 8.91212], [44.4297, 8.91173], [44.42936, 8.91157], [44.42904, 8.9113], [44.42882, 8.9113], [44.42872, 8.91109], [44.42828, 8.91133], [44.42766, 8.91202], [44.4273, 8.91252], [44.4268, 8.9124], [44.42675, 8.91275], [44.426, 8.91262], [44.4256, 8.91262], [44.42523, 8.9129], [44.42507, 8.91307], [44.42404, 8.91469], [44.42365, 8.91517], [44.42336, 8.91541], [44.42273, 8.91578], [44.42218, 8.91601], [44.42179, 8.91626], [44.42131, 8.91645], [44.42102, 8.91662], [44.42052, 8.91669], [44.41982, 8.91664], [44.41816, 8.91732], [44.41733, 8.91772], [44.4172, 8.91784], [44.41644, 8.91827], [44.41602, 8.91884], [44.41527, 8.91878], [44.41517, 8.91865], [44.41491, 8.91998], [44.41448, 8.92096], [44.41432, 8.92115], [44.4139, 8.9221], [44.4138, 8.9221], [44.41362, 8.92223], [44.41343, 8.92258], [44.41322, 8.92313], [44.41279, 8.92405], [44.41266, 8.92425], [44.41242, 8.92402], [44.4123, 8.92428], [44.41229, 8.92434], [44.41233, 8.92443], [44.4126, 8.92465], [44.41285, 8.92466], [44.41307, 8.92473], [44.41365, 8.92347], [44.4141, 8.92384], [44.41414, 8.92404], [44.41299, 8.92584], [44.41277, 8.9254], [44.41283, 8.92529], [44.41273, 8.92518], [44.4126, 8.92535], [44.41267, 8.92548], [44.4125, 8.92563], [44.41245, 8.92551], [44.41234, 8.92562], [44.41229, 8.92553], [44.41234, 8.9254], [44.41219, 8.92505], [44.41207, 8.92517], [44.41204, 8.92513], [44.4119, 8.92525], [44.41177, 8.92494], [44.41116, 8.92263], [44.41124, 8.92259], [44.41068, 8.9221], [44.41053, 8.92219], [44.41054, 8.92225], [44.4107, 8.92217], [44.41106, 8.92249], [44.41108, 8.92257], [44.41053, 8.92285], [44.41054, 8.92289], [44.41109, 8.92261], [44.41124, 8.92317], [44.41059, 8.9235], [44.41061, 8.92354], [44.41125, 8.92322], [44.41139, 8.92377], [44.41063, 8.92417], [44.41064, 8.92421], [44.4114, 8.92382], [44.41156, 8.92444], [44.41119, 8.92476], [44.41121, 8.9248], [44.41131, 8.92472], [44.41168, 8.92552], [44.41154, 8.92565], [44.41156, 8.9257], [44.41167, 8.92561], [44.412, 8.92637], [44.41183, 8.92652], [44.41189, 8.92657], [44.41183, 8.92657], [44.41191, 8.92677], [44.41167, 8.92697], [44.41162, 8.92686], [44.41156, 8.92683], [44.41152, 8.92703], [44.41148, 8.92702], [44.41152, 8.92682], [44.4114, 8.92681], [44.41104, 8.92547], [44.41106, 8.92546], [44.41099, 8.92515], [44.41109, 8.9251], [44.41108, 8.92504], [44.41067, 8.92524], [44.4109, 8.92614], [44.41079, 8.92618], [44.41095, 8.92678], [44.41099, 8.92676], [44.41115, 8.92739], [44.41042, 8.92766], [44.41041, 8.92577], [44.41036, 8.92577], [44.41036, 8.92539], [44.4101, 8.9254], [44.41011, 8.92236], [44.41004, 8.92236], [44.41004, 8.92537], [44.40997, 8.92537], [44.40998, 8.92547], [44.40994, 8.92546], [44.40991, 8.92536], [44.40981, 8.92533], [44.40972, 8.92545], [44.40966, 8.92545], [44.40966, 8.92551], [44.40972, 8.92552], [44.40982, 8.92564], [44.40988, 8.92563], [44.40994, 8.9255], [44.40997, 8.92551], [44.40995, 8.92766], [44.40922, 8.92738], [44.40921, 8.92744], [44.40915, 8.92742], [44.40947, 8.92627], [44.40921, 8.92614], [44.40892, 8.9272], [44.40838, 8.92686], [44.40833, 8.9263], [44.40843, 8.92553], [44.40835, 8.9254], [44.40827, 8.92551], [44.40825, 8.92547], [44.40851, 8.92508], [44.40856, 8.92485], [44.40844, 8.92399], [44.40864, 8.92394], [44.40877, 8.92449], [44.40887, 8.92444], [44.40886, 8.92438], [44.40911, 8.92426], [44.4093, 8.924], [44.40867, 8.92139], [44.40863, 8.9214], [44.40801, 8.91881], [44.40794, 8.91884], [44.40779, 8.91864], [44.40747, 8.91856], [44.40705, 8.91872], [44.40641, 8.9197], [44.40658, 8.92337], [44.40479, 8.92732], [44.40341, 8.92889], [44.40307, 8.92831], [44.40299, 8.92841], [44.40289, 8.92823], [44.40302, 8.92809], [44.40302, 8.92802], [44.40294, 8.92796], [44.40287, 8.92805], [44.4027, 8.92773], [44.40276, 8.92765], [44.40269, 8.92754], [44.40259, 8.92765], [44.40245, 8.92741], [44.40252, 8.92734], [44.40242, 8.92716], [44.40386, 8.92558], [44.40369, 8.92529], [44.40102, 8.92821], [44.40076, 8.92784], [44.40063, 8.92741], [44.40078, 8.92725], [44.40097, 8.92744], [44.40115, 8.9273], [44.40302, 8.92522], [44.40297, 8.92513], [44.4029, 8.92518], [44.40269, 8.9248], [44.40275, 8.92473], [44.40269, 8.92464], [44.40165, 8.92577], [44.40138, 8.92532], [44.40256, 8.92402], [44.40259, 8.92395], [44.40255, 8.92387], [44.40249, 8.92393], [44.40229, 8.92356], [44.40234, 8.9235], [44.4023, 8.92344], [44.40224, 8.92346], [44.40045, 8.92543], [44.40009, 8.92426], [44.4017, 8.92249], [44.40161, 8.92233], [44.39978, 8.92436], [44.39987, 8.92451], [44.39996, 8.92479], [44.39979, 8.9249], [44.39983, 8.92503], [44.39975, 8.92508], [44.3997, 8.92495], [44.39954, 8.92504], [44.39946, 8.92477], [44.39958, 8.92469], [44.39961, 8.92478], [44.39965, 8.92476], [44.3996, 8.9246], [44.39937, 8.92472], [44.39967, 8.92567], [44.3994, 8.92584], [44.40042, 8.92927], [44.40052, 8.92924], [44.40061, 8.92956], [44.40067, 8.92952], [44.40075, 8.9298], [44.40066, 8.92985], [44.40062, 8.92979], [44.4006, 8.92983], [44.40076, 8.93036], [44.40069, 8.93048], [44.40081, 8.93085], [44.40079, 8.93086], [44.40084, 8.93086], [44.40087, 8.93095], [44.40081, 8.931], [44.40095, 8.93153], [44.39964, 8.93211], [44.39886, 8.92947], [44.39833, 8.92914], [44.39828, 8.92925], [44.39754, 8.93229], [44.39556, 8.93136], [44.39665, 8.92685], [44.39649, 8.92678], [44.39523, 8.93199], [44.39433, 8.93157], [44.39422, 8.93167], [44.39388, 8.93282], [44.39379, 8.93282], [44.39374, 8.93288], [44.39357, 8.93354], [44.39389, 8.93465], [44.39397, 8.93466], [44.39407, 8.93458], [44.3938, 8.93347], [44.39428, 8.93183], [44.39432, 8.93173], [44.39494, 8.93201], [44.39467, 8.93313], [44.39465, 8.93312], [44.39462, 8.93324], [44.39496, 8.9334], [44.39492, 8.93354], [44.39458, 8.93338], [44.39457, 8.93342], [44.39485, 8.93356], [44.39482, 8.93367], [44.39457, 8.93355], [44.39455, 8.93364], [44.39478, 8.93375], [44.39538, 8.93423], [44.39659, 8.93501], [44.39793, 8.93571], [44.3978, 8.93629], [44.39741, 8.93905], [44.39731, 8.93938], [44.3972, 8.93961], [44.39743, 8.93981], [44.39721, 8.9402], [44.39715, 8.94015], [44.39706, 8.94035], [44.39712, 8.94041], [44.39695, 8.94086], [44.39682, 8.94141], [44.39722, 8.94157], [44.39712, 8.94201], [44.39749, 8.94271], [44.39838, 8.94316], [44.39839, 8.94333], [44.39873, 8.94333], [44.39883, 8.94322], [44.39975, 8.94346], [44.39973, 8.9436], [44.39995, 8.9437], [44.40008, 8.94362], [44.40011, 8.94356], [44.40005, 8.94356], [44.40004, 8.94349], [44.40078, 8.94324], [44.40075, 8.9434], [44.40096, 8.94339], [44.40099, 8.94304], [44.40091, 8.94308], [44.40083, 8.94304], [44.40085, 8.94293], [44.40088, 8.94294], [44.4009, 8.94288], [44.40089, 8.94282], [44.401, 8.94243], [44.40143, 8.94259], [44.40644, 8.9453], [44.40722, 8.94612], [44.40749, 8.94675], [44.40777, 8.94763], [44.40813, 8.94739], [44.40818, 8.94744], [44.40864, 8.94753], [44.40875, 8.94812], [44.40885, 8.9482], [44.409, 8.94813], [44.40911, 8.94791], [44.40947, 8.94848], [44.40985, 8.94836], [44.4098, 8.94798], [44.41071, 8.94806], [44.41067, 8.94837], [44.41138, 8.94872], [44.41203, 8.9485], [44.41175, 8.94858], [44.41178, 8.94853], [44.41179, 8.94829], [44.41291, 8.94804], [44.41314, 8.94873], [44.41323, 8.94881], [44.41331, 8.9488], [44.41343, 8.94869], [44.41354, 8.94828], [44.4136, 8.94821], [44.41416, 8.94818], [44.41441, 8.94851], [44.41448, 8.94852], [44.41476, 8.94792], [44.41477, 8.9477], [44.41532, 8.94726], [44.41548, 8.94727], [44.41557, 8.94736], [44.41596, 8.94719], [44.41591, 8.94699], [44.41608, 8.94681], [44.41659, 8.94634], [44.41668, 8.94641], [44.41689, 8.94623], [44.41671, 8.94566], [44.41664, 8.94516], [44.41624, 8.94431], [44.41621, 8.94371], [44.41642, 8.94313], [44.41762, 8.94196], [44.41791, 8.94214], [44.41885, 8.94196], [44.41926, 8.94157], [44.4194, 8.94127], [44.42023, 8.94068], [44.42049, 8.94064], [44.42106, 8.94075], [44.42153, 8.9401], [44.42156, 8.93982], [44.42166, 8.93967], [44.42246, 8.93898], [44.42344, 8.93837], [44.42349, 8.93858], [44.42405, 8.93835], [44.4244, 8.93762], [44.42432, 8.93751], [44.42478, 8.93683], [44.42491, 8.93698], [44.42552, 8.9361], [44.42549, 8.93583], [44.42578, 8.93555], [44.42608, 8.93533], [44.42648, 8.93513], [44.42651, 8.93532], [44.42747, 8.93495], [44.42768, 8.93465], [44.42767, 8.93446], [44.42856, 8.93409], [44.42862, 8.93425], [44.42916, 8.93413], [44.42931, 8.93375], [44.42937, 8.93348], [44.43038, 8.93293], [44.43044, 8.93305], [44.4307, 8.93298], [44.43099, 8.93247], [44.43214, 8.93224], [44.43218, 8.93225], [44.43217, 8.93236], [44.43275, 8.93266], [44.43278, 8.93253], [44.43356, 8.93274], [44.43357, 8.93292], [44.43387, 8.93318], [44.43441, 8.93255], [44.43438, 8.93245], [44.43544, 8.93217], [44.43546, 8.9323], [44.43634, 8.93224], [44.43662, 8.93206], [44.43661, 8.93193], [44.43738, 8.93167], [44.43741, 8.93181], [44.43794, 8.93182], [44.43826, 8.93156], [44.43829, 8.93132], [44.43953, 8.93095], [44.43956, 8.93081], [44.44009, 8.93082], [44.44013, 8.93097], [44.4407, 8.93117], [44.4408, 8.93105], [44.44152, 8.93115], [44.44056, 8.92938], [44.44047, 8.92945], [44.44004, 8.9282], [44.44013, 8.92813], [44.44007, 8.92777], [44.43994, 8.92737], [44.43985, 8.92738], [44.43965, 8.92518], [44.4386, 8.92372], [44.43835, 8.9233], [44.43804, 8.92224], [44.43779, 8.92158], [44.43759, 8.9207], [44.43721, 8.91979], [44.43716, 8.91969], [44.43652, 8.91893], [44.43627, 8.91841], [44.43586, 8.91777], [44.43572, 8.91732], [44.43563, 8.91714], [44.435, 8.91618], [44.43435, 8.91495], [44.43414, 8.91478], [44.43399, 8.91474], [44.43379, 8.91454], [44.43369, 8.91451], [44.43322, 8.91416]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

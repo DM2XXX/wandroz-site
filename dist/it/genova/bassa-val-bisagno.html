@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marassi, San Fruttuoso (Bassa Val Bisagno) è una zona sicura? | Wandroz</title>
+<meta name="description" content="Marassi — lo stadio di calcio e il carcere — oltre a San Fruttuoso e Staglieno con il suo cimitero monumentale. Sia Marassi che San Fruttuoso figurano nel rappo">
+<link rel="canonical" href="https://www.wandroz.com/it/genova/bassa-val-bisagno.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/genova/bassa-val-bisagno.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/genova/bassa-val-bisagno.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/genova/bassa-val-bisagno.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/genova/">Genova, Italia</a> &rsaquo; Marassi, San Fruttuoso (Bassa Val Bisagno)</nav>
+<main>
+  <h1 class="page-title">Marassi, San Fruttuoso (Bassa Val Bisagno) &mdash; Genova, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 9 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge yellow">Nella media</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Marassi — lo stadio di calcio e il carcere — oltre a San Fruttuoso e Staglieno con il suo cimitero monumentale. Sia Marassi che San Fruttuoso figurano nel rapporto locale del 2026 sui quartieri con criticità in materia di sicurezza. Per il resto, si tratta di un fondovalle densamente popolato e dall’aspetto ordinario, che i visitatori vedono nei giorni delle partite.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Genoa%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Genoa publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Marassi, San Fruttuoso (Bassa Val Bisagno) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Marassi, San Fruttuoso (Bassa Val Bisagno) a Genoa come relativamente più sicura della maggior parte degli altri quartieri di Genoa di giorno e nella media rispetto agli altri quartieri di Genoa di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Genoa non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Marassi, San Fruttuoso (Bassa Val Bisagno) è sicura di notte?</summary>
+      <p>Di notte Marassi, San Fruttuoso (Bassa Val Bisagno) è valutata come nella media rispetto agli altri quartieri di Genoa. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Marassi, San Fruttuoso (Bassa Val Bisagno) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Marassi, San Fruttuoso (Bassa Val Bisagno) (relativamente più sicura della maggior parte degli altri quartieri di Genoa) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Marassi, San Fruttuoso (Bassa Val Bisagno)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Marassi, San Fruttuoso (Bassa Val Bisagno) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Marassi, San Fruttuoso (Bassa Val Bisagno) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Marassi%2C%20San%20Fruttuoso%20%28Bassa%20Val%20Bisagno%29%2C%20Genova%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Marassi, San Fruttuoso (Bassa Val Bisagno) a Genoa come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Genoa di giorno e nella media rispetto agli altri quartieri di Genoa di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Genoa non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Marassi, San Fruttuoso (Bassa Val Bisagno) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Marassi, San Fruttuoso (Bassa Val Bisagno) \u00e8 valutata come nella media rispetto agli altri quartieri di Genoa. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Marassi, San Fruttuoso (Bassa Val Bisagno) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Marassi, San Fruttuoso (Bassa Val Bisagno) (relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Genoa) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Marassi, San Fruttuoso (Bassa Val Bisagno) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Marassi, San Fruttuoso (Bassa Val Bisagno) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Marassi, San Fruttuoso (Bassa Val Bisagno) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Marassi, San Fruttuoso (Bassa Val Bisagno)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.40683, 8.94668], [44.40677, 8.94677], [44.40681, 8.94682], [44.40665, 8.9471], [44.40661, 8.94705], [44.40648, 8.94726], [44.40652, 8.9473], [44.40604, 8.94821], [44.40571, 8.94903], [44.40533, 8.95029], [44.40502, 8.95146], [44.40488, 8.95235], [44.40482, 8.95342], [44.40481, 8.95914], [44.4047, 8.96536], [44.40502, 8.96695], [44.40518, 8.96697], [44.40516, 8.96684], [44.40523, 8.96691], [44.40521, 8.96683], [44.40527, 8.96684], [44.40528, 8.96677], [44.40533, 8.96676], [44.40574, 8.96736], [44.40591, 8.96745], [44.40596, 8.96706], [44.4061, 8.96691], [44.4061, 8.9668], [44.40634, 8.96649], [44.40639, 8.96634], [44.40651, 8.96624], [44.40671, 8.96645], [44.40665, 8.96704], [44.40648, 8.96748], [44.40659, 8.96768], [44.40705, 8.96697], [44.40714, 8.96697], [44.40765, 8.96762], [44.40773, 8.96779], [44.40854, 8.96876], [44.40866, 8.96879], [44.40875, 8.96864], [44.40883, 8.96863], [44.40991, 8.96895], [44.4109, 8.97006], [44.41125, 8.97037], [44.41158, 8.9705], [44.41188, 8.97074], [44.41192, 8.97086], [44.41182, 8.9713], [44.41235, 8.97248], [44.41253, 8.97298], [44.41269, 8.97364], [44.41276, 8.97426], [44.41291, 8.97477], [44.41291, 8.97506], [44.41307, 8.97548], [44.41304, 8.97573], [44.4129, 8.97617], [44.41275, 8.97646], [44.41262, 8.97684], [44.41242, 8.97689], [44.41232, 8.97698], [44.41229, 8.97708], [44.41234, 8.97724], [44.41305, 8.97827], [44.41334, 8.97854], [44.4135, 8.97882], [44.41362, 8.97884], [44.41388, 8.97927], [44.41411, 8.97969], [44.41414, 8.98025], [44.41444, 8.98097], [44.4151, 8.98173], [44.4158, 8.98289], [44.416, 8.98353], [44.41611, 8.98401], [44.41637, 8.98459], [44.41682, 8.98496], [44.41735, 8.98521], [44.41797, 8.98528], [44.41825, 8.98591], [44.41948, 8.98746], [44.41963, 8.9876], [44.42029, 8.98789], [44.42051, 8.98817], [44.4206, 8.98834], [44.4207, 8.98879], [44.42083, 8.9889], [44.42087, 8.98904], [44.42093, 8.9891], [44.42104, 8.98945], [44.42116, 8.99019], [44.42125, 8.99051], [44.42127, 8.99077], [44.42113, 8.99123], [44.4207, 8.99158], [44.42083, 8.99165], [44.42154, 8.99268], [44.42194, 8.99252], [44.42242, 8.9926], [44.4233, 8.99391], [44.42369, 8.99442], [44.42554, 8.9954], [44.42572, 8.99542], [44.42645, 8.9957], [44.42798, 8.99651], [44.42911, 8.99722], [44.43083, 8.9979], [44.43249, 8.99903], [44.43329, 8.99995], [44.43374, 9.00024], [44.43428, 8.99976], [44.43646, 8.99695], [44.43744, 8.99413], [44.43745, 8.99308], [44.43771, 8.99249], [44.43775, 8.99202], [44.43766, 8.99066], [44.43737, 8.9895], [44.43722, 8.98865], [44.43671, 8.98705], [44.43642, 8.98543], [44.43569, 8.98342], [44.43453, 8.98112], [44.4343, 8.98082], [44.43401, 8.97992], [44.43317, 8.97849], [44.433, 8.97801], [44.43284, 8.97734], [44.43263, 8.97724], [44.43195, 8.97634], [44.43173, 8.97626], [44.43156, 8.976], [44.43088, 8.97552], [44.43037, 8.97467], [44.43013, 8.97464], [44.42994, 8.97447], [44.42972, 8.97437], [44.42933, 8.97405], [44.42921, 8.97389], [44.42907, 8.9736], [44.42894, 8.97346], [44.42892, 8.97311], [44.42902, 8.97287], [44.42918, 8.97228], [44.42911, 8.9721], [44.42912, 8.97175], [44.42906, 8.97138], [44.42895, 8.97117], [44.42905, 8.97101], [44.42908, 8.97069], [44.42904, 8.97054], [44.42871, 8.97012], [44.42865, 8.96997], [44.4285, 8.96934], [44.42848, 8.96887], [44.42841, 8.96871], [44.42838, 8.96853], [44.42855, 8.96741], [44.4285, 8.96668], [44.42836, 8.96623], [44.42804, 8.96562], [44.4278, 8.96397], [44.42629, 8.95715], [44.42566, 8.95561], [44.42531, 8.95448], [44.42477, 8.95353], [44.42169, 8.95393], [44.41961, 8.95393], [44.4194, 8.95419], [44.41907, 8.9537], [44.41891, 8.9537], [44.41877, 8.95364], [44.41871, 8.95357], [44.41857, 8.95377], [44.4183, 8.95362], [44.41802, 8.95338], [44.4182, 8.9532], [44.4182, 8.95308], [44.41826, 8.95291], [44.41886, 8.95227], [44.41865, 8.9519], [44.41883, 8.95165], [44.41783, 8.94984], [44.41743, 8.95031], [44.41645, 8.94947], [44.41533, 8.94824], [44.41509, 8.94843], [44.41486, 8.94904], [44.41473, 8.94921], [44.41459, 8.94929], [44.41453, 8.94929], [44.41448, 8.94852], [44.41441, 8.94851], [44.41416, 8.94818], [44.4136, 8.94821], [44.41354, 8.94828], [44.41347, 8.94862], [44.41336, 8.94877], [44.41327, 8.94881], [44.41318, 8.94879], [44.41314, 8.94873], [44.41291, 8.94804], [44.41179, 8.94829], [44.41178, 8.94853], [44.41175, 8.94858], [44.41203, 8.9485], [44.41138, 8.94872], [44.41067, 8.94837], [44.41071, 8.94806], [44.4098, 8.94798], [44.40985, 8.94836], [44.40947, 8.94848], [44.40911, 8.94791], [44.409, 8.94813], [44.40885, 8.9482], [44.40875, 8.94812], [44.40864, 8.94753], [44.40818, 8.94744], [44.40813, 8.94739], [44.40777, 8.94763], [44.40749, 8.94675], [44.40722, 8.94612], [44.40714, 8.94616], [44.40711, 8.94612], [44.40697, 8.94636], [44.40704, 8.94644], [44.40696, 8.94657], [44.40692, 8.94653], [44.40683, 8.94668]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

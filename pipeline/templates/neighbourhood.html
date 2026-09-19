@@ -6,6 +6,12 @@
 <title>{{ page_title }}</title>
 <meta name="description" content="{{ page_description }}">
 <link rel="canonical" href="{{ canonical_url }}">
+{%- for code, href in (alternates if alternates and alternates|length > 1 else []) %}
+<link rel="alternate" hreflang="{{ code }}" href="{{ href }}">
+{%- endfor %}
+{%- if alternates and alternates|length > 1 %}
+<link rel="alternate" hreflang="x-default" href="{{ alternates[0][1] }}">
+{%- endif %}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +32,8 @@
                    margin:10px 0 0; line-height:1.5; max-width:640px; }
   .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
                   border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
   .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
   .evidence-line a { color:inherit; }
   .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
@@ -117,7 +125,7 @@
   </a>
 </header>
 
-<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">{{ nav_home }}</a> &rsaquo; <a href="../">{{ city_label }}</a> &rsaquo; {{ zone.name }}</nav>
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">{{ nav_home }}</a> &rsaquo; <a href="{{ city_hub_url }}">{{ city_label }}</a> &rsaquo; {{ zone.name }}</nav>
 <main>
   <h1 class="page-title">{{ zone.name }} &mdash; {{ city_label }}</h1>
   {# Era uno style inline da 12px. Uno stile inline batte qualunque foglio,
@@ -136,7 +144,10 @@
     {% endif %}
   </div>
   <div id="minimap"></div>
-  <h2>{{ label_detail }}</h2>
+  {%- if untranslated_notice %}
+<p class="untranslated">{{ untranslated_notice }}</p>
+{%- endif %}
+<h2>{{ label_detail }}</h2>
   <div class="body-text"><p>{{ zone.text }}</p></div>
   {% if zone.query %}
   <a class="btn-primary" href="{{ booking_url }}" target="_blank" rel="noopener">{{ label_booking }}</a>

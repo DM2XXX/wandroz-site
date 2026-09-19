@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arenella, Vomero (Municipalità 5) è una zona sicura? | Wandroz</title>
+<meta name="description" content="Un quartiere collinare prevalentemente residenziale e di classe media. La stampa locale, nel gennaio 2025, ha documentato una vera e propria ondata di incidenti">
+<link rel="canonical" href="https://www.wandroz.com/it/napoli/municipalita-5.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/napoli/municipalita-5.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/napoli/municipalita-5.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/napoli/municipalita-5.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/napoli/">Napoli, Italia</a> &rsaquo; Arenella, Vomero (Municipalità 5)</nav>
+<main>
+  <h1 class="page-title">Arenella, Vomero (Municipalità 5) &mdash; Napoli, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 10 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Nella media</span> <span class="badge-label">giorno</span>
+    <span class="badge yellow">Nella media</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Un quartiere collinare prevalentemente residenziale e di classe media. La stampa locale, nel gennaio 2025, ha documentato una vera e propria ondata di incidenti in un arco di due settimane: un tentativo di doppio furto con scasso nella notte dell’Epifania nei pressi del Mercato De Bustis, una violenta aggressione con sottrazione del cellulare ai danni di una giovane coppia in Piazza Leonardo, un furto con scasso in una filiale bancaria in Via Cimarosa, e furti in un pub e nella sacrestia di una chiesa — che hanno spinto un&#39;associazione di residenti locali a lanciare un appello pubblico per un miglior coordinamento delle forze dell’ordine. Allo stesso tempo, il bilancio ufficiale di fine anno del prefetto locale riportava che la criminalità registrata a Vomero era in calo, non in aumento. Entrambi questi dati reali e datati vengono riportati qui anziché sceglierne uno solo: un’area residenziale con un vero e proprio recente picco di furti, ma non una in cui i dati ufficiali mostrino un peggioramento generale della situazione. Fonti verificate: InterNapoli.it, 23 gennaio 2025 (concentrazione di reati a Vomero e appello dei residenti); NapoliToday.it (rapporto di fine anno del prefetto: calo dei reati registrati a Vomero).</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Vomero%2C+Naples%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Naples publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Arenella, Vomero (Municipalità 5) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Arenella, Vomero (Municipalità 5) a Naples come nella media rispetto agli altri quartieri di Naples, sia di giorno sia dopo il tramonto. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Naples non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Arenella, Vomero (Municipalità 5) è sicura di notte?</summary>
+      <p>Di notte Arenella, Vomero (Municipalità 5) è valutata come nella media rispetto agli altri quartieri di Naples. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Arenella, Vomero (Municipalità 5) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Arenella, Vomero (Municipalità 5) (nella media rispetto agli altri quartieri di Naples) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Arenella, Vomero (Municipalità 5)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Arenella, Vomero (Municipalità 5) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Arenella, Vomero (Municipalità 5) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Arenella%2C%20Vomero%20%28Municipalit%C3%A0%205%29%2C%20Napoli%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Arenella, Vomero (Municipalit\u00e0 5) a Naples come nella media rispetto agli altri quartieri di Naples, sia di giorno sia dopo il tramonto. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Naples non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Arenella, Vomero (Municipalit\u00e0 5) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Arenella, Vomero (Municipalit\u00e0 5) \u00e8 valutata come nella media rispetto agli altri quartieri di Naples. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Arenella, Vomero (Municipalit\u00e0 5) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Arenella, Vomero (Municipalit\u00e0 5) (nella media rispetto agli altri quartieri di Naples) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Arenella, Vomero (Municipalit\u00e0 5) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Arenella, Vomero (Municipalit\u00e0 5) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Arenella, Vomero (Municipalit\u00e0 5) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Arenella, Vomero (Municipalit\u00e0 5)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[40.86374, 14.18827], [40.86357, 14.18831], [40.86308, 14.18867], [40.86295, 14.18918], [40.8625, 14.18933], [40.86222, 14.18953], [40.86179, 14.18959], [40.86168, 14.18966], [40.86149, 14.18987], [40.86114, 14.19012], [40.861, 14.19043], [40.8608, 14.1906], [40.86054, 14.19068], [40.86013, 14.19109], [40.85994, 14.19118], [40.85957, 14.1912], [40.85949, 14.19125], [40.85928, 14.19154], [40.85904, 14.19152], [40.85871, 14.19122], [40.8571, 14.1906], [40.85666, 14.1905], [40.85586, 14.19054], [40.85617, 14.19085], [40.85639, 14.19133], [40.85657, 14.19203], [40.85667, 14.19343], [40.85748, 14.19467], [40.85734, 14.19653], [40.85759, 14.19794], [40.85791, 14.19841], [40.85836, 14.19942], [40.85869, 14.2004], [40.85866, 14.2012], [40.85843, 14.20196], [40.85806, 14.20264], [40.85733, 14.20341], [40.85698, 14.20401], [40.85688, 14.20492], [40.85704, 14.20635], [40.85726, 14.20776], [40.85661, 14.20807], [40.85575, 14.20803], [40.85484, 14.20788], [40.85427, 14.20813], [40.8537, 14.20801], [40.85336, 14.20828], [40.85312, 14.20872], [40.85308, 14.20928], [40.85322, 14.21014], [40.85325, 14.21057], [40.85196, 14.21004], [40.85077, 14.21064], [40.85046, 14.21084], [40.84996, 14.21104], [40.8498, 14.21069], [40.84938, 14.21027], [40.84909, 14.21025], [40.84858, 14.21036], [40.8481, 14.21062], [40.84783, 14.21091], [40.84799, 14.21164], [40.84784, 14.21207], [40.84745, 14.2124], [40.84607, 14.21252], [40.84617, 14.21293], [40.84608, 14.21316], [40.8461, 14.21477], [40.8462, 14.21507], [40.84525, 14.21561], [40.84407, 14.21681], [40.84379, 14.21595], [40.8429, 14.21571], [40.84289, 14.21515], [40.84326, 14.21466], [40.84336, 14.21409], [40.84247, 14.21389], [40.8419, 14.21501], [40.84169, 14.21567], [40.84168, 14.21596], [40.84134, 14.2163], [40.84184, 14.21709], [40.84162, 14.21724], [40.84138, 14.21669], [40.84103, 14.2166], [40.84044, 14.21669], [40.8402, 14.21627], [40.84096, 14.21531], [40.84147, 14.21491], [40.84168, 14.21458], [40.84179, 14.21431], [40.84145, 14.21414], [40.84105, 14.21386], [40.84101, 14.21353], [40.84072, 14.21314], [40.84039, 14.21292], [40.84017, 14.213], [40.83976, 14.2133], [40.83966, 14.21333], [40.83932, 14.21299], [40.83921, 14.21272], [40.83914, 14.21296], [40.8389, 14.21299], [40.83817, 14.21392], [40.8381, 14.21405], [40.83803, 14.21445], [40.83773, 14.21453], [40.83751, 14.21445], [40.83735, 14.21428], [40.83719, 14.21403], [40.83626, 14.21469], [40.83617, 14.21471], [40.83609, 14.21468], [40.83599, 14.21454], [40.8359, 14.21398], [40.83586, 14.21392], [40.83575, 14.21384], [40.83567, 14.21384], [40.83553, 14.21395], [40.8355, 14.21409], [40.83551, 14.21425], [40.83562, 14.21493], [40.83566, 14.21507], [40.83577, 14.21525], [40.83591, 14.21531], [40.83606, 14.2153], [40.83652, 14.2148], [40.8366, 14.21478], [40.83673, 14.21482], [40.83681, 14.21493], [40.8369, 14.21537], [40.83696, 14.21546], [40.83716, 14.21558], [40.83724, 14.21572], [40.83715, 14.21641], [40.83717, 14.21651], [40.83728, 14.21669], [40.83779, 14.21704], [40.83788, 14.21724], [40.83788, 14.21753], [40.83774, 14.21785], [40.83774, 14.21804], [40.83764, 14.21821], [40.83762, 14.21847], [40.83765, 14.21855], [40.83778, 14.21872], [40.83856, 14.21936], [40.83861, 14.21948], [40.83858, 14.21978], [40.83831, 14.22015], [40.83826, 14.2203], [40.83826, 14.22041], [40.83832, 14.22056], [40.83857, 14.2207], [40.83866, 14.22093], [40.83863, 14.22108], [40.83835, 14.22171], [40.8383, 14.2219], [40.83832, 14.22217], [40.83839, 14.22249], [40.83825, 14.22298], [40.83827, 14.22317], [40.83845, 14.22349], [40.83847, 14.22359], [40.83882, 14.22336], [40.83903, 14.22331], [40.83916, 14.22333], [40.83918, 14.22387], [40.83905, 14.22398], [40.83905, 14.22404], [40.8391, 14.22409], [40.83912, 14.22429], [40.83905, 14.22469], [40.83907, 14.22488], [40.83894, 14.22494], [40.83894, 14.22509], [40.83924, 14.22544], [40.83921, 14.22549], [40.83925, 14.22588], [40.83915, 14.22637], [40.83898, 14.22653], [40.83879, 14.22738], [40.83851, 14.22751], [40.83838, 14.22772], [40.83843, 14.22806], [40.83838, 14.22863], [40.83846, 14.22897], [40.83898, 14.22902], [40.83895, 14.22915], [40.83871, 14.22928], [40.83871, 14.22946], [40.83861, 14.23], [40.83824, 14.22993], [40.8382, 14.23049], [40.83826, 14.23051], [40.83818, 14.23126], [40.83833, 14.23171], [40.83842, 14.23182], [40.83863, 14.2319], [40.8391, 14.23186], [40.83919, 14.2322], [40.83911, 14.23245], [40.83924, 14.23265], [40.83946, 14.23315], [40.8398, 14.23367], [40.8398, 14.23398], [40.83998, 14.234], [40.8399, 14.23427], [40.83986, 14.23458], [40.83987, 14.23543], [40.83993, 14.2357], [40.84001, 14.23585], [40.84016, 14.23635], [40.84025, 14.23679], [40.84035, 14.23697], [40.8406, 14.23715], [40.84089, 14.23665], [40.84093, 14.23687], [40.84109, 14.23728], [40.84123, 14.23741], [40.84151, 14.23779], [40.84155, 14.23791], [40.84183, 14.23803], [40.84182, 14.23823], [40.84174, 14.23861], [40.84155, 14.23915], [40.84174, 14.23929], [40.84174, 14.23983], [40.84193, 14.23986], [40.84231, 14.24094], [40.84232, 14.24109], [40.84207, 14.24174], [40.84208, 14.24197], [40.84217, 14.24201], [40.84232, 14.24188], [40.84356, 14.24248], [40.84432, 14.2421], [40.84448, 14.24184], [40.84416, 14.24117], [40.84411, 14.24118], [40.84402, 14.24131], [40.84395, 14.24122], [40.84395, 14.24117], [40.8444, 14.24004], [40.84489, 14.2392], [40.84517, 14.23839], [40.84546, 14.23865], [40.84595, 14.23792], [40.84611, 14.23811], [40.84651, 14.23796], [40.84682, 14.23758], [40.84713, 14.23739], [40.8472, 14.23761], [40.84722, 14.23811], [40.84738, 14.23806], [40.84765, 14.23784], [40.84831, 14.23716], [40.84858, 14.23672], [40.84882, 14.23666], [40.84925, 14.23631], [40.84937, 14.23669], [40.84957, 14.23661], [40.84998, 14.2362], [40.85014, 14.23644], [40.85067, 14.23623], [40.85077, 14.23629], [40.85117, 14.23603], [40.85134, 14.23603], [40.85217, 14.23521], [40.85211, 14.23515], [40.85226, 14.23493], [40.8524, 14.23505], [40.85251, 14.23486], [40.85236, 14.23471], [40.85248, 14.23449], [40.85253, 14.23454], [40.85264, 14.23431], [40.85293, 14.23457], [40.85323, 14.23492], [40.85346, 14.23488], [40.85352, 14.23559], [40.85373, 14.23569], [40.85382, 14.2362], [40.85408, 14.23713], [40.85462, 14.23794], [40.85475, 14.23821], [40.85479, 14.23824], [40.85502, 14.23799], [40.85536, 14.23734], [40.85539, 14.23691], [40.85559, 14.23617], [40.85558, 14.23576], [40.85638, 14.23558], [40.85664, 14.23526], [40.85688, 14.23527], [40.85708, 14.23548], [40.85692, 14.23583], [40.85688, 14.23611], [40.85677, 14.23631], [40.85689, 14.23713], [40.8568, 14.23724], [40.85771, 14.23814], [40.85851, 14.23738], [40.85861, 14.23718], [40.85889, 14.23679], [40.8591, 14.23476], [40.85948, 14.23388], [40.85995, 14.2332], [40.86023, 14.23296], [40.86049, 14.23281], [40.86088, 14.23268], [40.86162, 14.23259], [40.86158, 14.23213], [40.8616, 14.23183], [40.86176, 14.23155], [40.86223, 14.23097], [40.86245, 14.23057], [40.86286, 14.23012], [40.86294, 14.2299], [40.86363, 14.22945], [40.86371, 14.22933], [40.86382, 14.22851], [40.86391, 14.2283], [40.86416, 14.22816], [40.8645, 14.22784], [40.86504, 14.22714], [40.86546, 14.2273], [40.86573, 14.22732], [40.86599, 14.22726], [40.86624, 14.2271], [40.86648, 14.22706], [40.86837, 14.22775], [40.86855, 14.22773], [40.86875, 14.22405], [40.86869, 14.22348], [40.86856, 14.22308], [40.86852, 14.22282], [40.86813, 14.22275], [40.86713, 14.22242], [40.86473, 14.22153], [40.86441, 14.22096], [40.86395, 14.21931], [40.86412, 14.21802], [40.86403, 14.21759], [40.86384, 14.21699], [40.86369, 14.21549], [40.86372, 14.21481], [40.86318, 14.21399], [40.86287, 14.21318], [40.86282, 14.21285], [40.86285, 14.212], [40.86318, 14.21057], [40.86321, 14.21029], [40.86325, 14.20724], [40.86321, 14.2068], [40.86301, 14.20595], [40.863, 14.20469], [40.86303, 14.20437], [40.8633, 14.20347], [40.86332, 14.20328], [40.86324, 14.20279], [40.86288, 14.20172], [40.86286, 14.20142], [40.86298, 14.20041], [40.86372, 14.19885], [40.86382, 14.19862], [40.86393, 14.19823], [40.86416, 14.19698], [40.86418, 14.1967], [40.86416, 14.1962], [40.86421, 14.19513], [40.86405, 14.19417], [40.86399, 14.19338], [40.86392, 14.19316], [40.8636, 14.19251], [40.86357, 14.19235], [40.86358, 14.19211], [40.86374, 14.19167], [40.8644, 14.19081], [40.86417, 14.19066], [40.86416, 14.19056], [40.86421, 14.19042], [40.86452, 14.19026], [40.86476, 14.18993], [40.86531, 14.18964], [40.86528, 14.18946], [40.86527, 14.18865], [40.86523, 14.18857], [40.86399, 14.18835], [40.86374, 14.18827]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

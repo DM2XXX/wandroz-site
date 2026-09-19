@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>San Donato-San Vitale è una zona sicura? | Wandroz</title>
+<meta name="description" content="Il quartiere che ospita entrambe le zone più segnalate di Bologna per i problemi che presentano, motivo per cui è considerato il più difficile. Piazza Verdi e v">
+<link rel="canonical" href="https://www.wandroz.com/it/bologna/san-donato-san-vitale.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/bologna/san-donato-san-vitale.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/bologna/san-donato-san-vitale.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/bologna/san-donato-san-vitale.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/bologna/">Bologna, Italia</a> &rsaquo; San Donato-San Vitale</nav>
+<main>
+  <h1 class="page-title">San Donato-San Vitale &mdash; Bologna, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 6 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Nella media</span> <span class="badge-label">giorno</span>
+    <span class="badge red">Consigliata maggiore prudenza</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Il quartiere che ospita entrambe le zone più segnalate di Bologna per i problemi che presentano, motivo per cui è considerato il più difficile. Piazza Verdi e via Zamboni — il cuore del quartiere universitario e una via che la maggior parte dei visitatori percorre per raggiungere le Due Torri — sono costantemente al centro dell’attenzione de «Il Resto del Carlino» e di «BolognaToday» per lo spaccio di strada, i disordini notturni e le aggressioni; i commercianti di via Zamboni hanno pubblicamente descritto la situazione come fuori controllo, e il Comune conduce ripetute operazioni anti-degrado nella piazza. Più in periferia, il complesso residenziale del Pilastro è un punto fisso all’ordine del giorno del comitato provinciale di sicurezza della Prefettura, che segnala una costante presenza delle forze dell’ordine in quella zona. La stessa zona di San Donato è descritta dalla stampa locale come una delle aree più difficili della città, afflitta dallo spaccio e dalla criminalità giovanile. Di giorno le vie dell’università sono semplicemente affollate e piene di studenti; la valutazione si riferisce al periodo notturno.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Bologna%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Bologna publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>San Donato-San Vitale è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente San Donato-San Vitale a Bologna come nella media rispetto agli altri quartieri di Bologna di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Bologna di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Bologna non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>San Donato-San Vitale è sicura di notte?</summary>
+      <p>Di notte San Donato-San Vitale è valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Bologna. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>San Donato-San Vitale è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di San Donato-San Vitale (nella media rispetto agli altri quartieri di Bologna) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per San Donato-San Vitale?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di San Donato-San Vitale viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a San Donato-San Vitale o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20San%20Donato-San%20Vitale%2C%20Bologna%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente San Donato-San Vitale a Bologna come nella media rispetto agli altri quartieri di Bologna di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Bologna di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Bologna non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "San Donato-San Vitale \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte San Donato-San Vitale \u00e8 valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Bologna. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "San Donato-San Vitale \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di San Donato-San Vitale (nella media rispetto agli altri quartieri di Bologna) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "San Donato-San Vitale \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di San Donato-San Vitale viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a San Donato-San Vitale o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per San Donato-San Vitale?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.48287, 11.37626], [44.48664, 11.37611], [44.48665, 11.37642], [44.48646, 11.37715], [44.48661, 11.37731], [44.48886, 11.3781], [44.48951, 11.37846], [44.48982, 11.37869], [44.48987, 11.37881], [44.48989, 11.37919], [44.4897, 11.37994], [44.48969, 11.38015], [44.48977, 11.38103], [44.48926, 11.38348], [44.49079, 11.38396], [44.49093, 11.38408], [44.4918, 11.38428], [44.48073, 11.41179], [44.48094, 11.41196], [44.48105, 11.41229], [44.48105, 11.41283], [44.48111, 11.41338], [44.48151, 11.41454], [44.48172, 11.41479], [44.48199, 11.41496], [44.48231, 11.41503], [44.48268, 11.415], [44.48376, 11.41577], [44.48382, 11.41606], [44.48404, 11.41635], [44.48418, 11.41684], [44.48401, 11.41816], [44.48384, 11.42211], [44.48388, 11.42338], [44.48404, 11.42447], [44.48413, 11.42487], [44.48427, 11.42533], [44.4845, 11.42559], [44.48469, 11.42562], [44.48488, 11.42557], [44.48505, 11.42534], [44.4853, 11.42456], [44.48555, 11.42419], [44.48574, 11.42398], [44.4859, 11.42397], [44.48677, 11.42463], [44.48695, 11.42487], [44.48719, 11.42529], [44.48732, 11.4259], [44.48921, 11.42717], [44.49013, 11.42459], [44.48878, 11.42417], [44.4892, 11.42223], [44.48954, 11.42041], [44.49025, 11.418], [44.49044, 11.41749], [44.49063, 11.41744], [44.49077, 11.41734], [44.49103, 11.4174], [44.49245, 11.41838], [44.4961, 11.42162], [44.49666, 11.41922], [44.49741, 11.41975], [44.49841, 11.42054], [44.49844, 11.42107], [44.49836, 11.4224], [44.5012, 11.42312], [44.50066, 11.42519], [44.50116, 11.42552], [44.50163, 11.42571], [44.50175, 11.4257], [44.50394, 11.42653], [44.50606, 11.42741], [44.50577, 11.42809], [44.50562, 11.42823], [44.50547, 11.42828], [44.50627, 11.42897], [44.50653, 11.42884], [44.50685, 11.42915], [44.51073, 11.43216], [44.51078, 11.43214], [44.51182, 11.43279], [44.51304, 11.43345], [44.51377, 11.43168], [44.51535, 11.42695], [44.5196, 11.43034], [44.52074, 11.42752], [44.51901, 11.42643], [44.51959, 11.42466], [44.51988, 11.42469], [44.52058, 11.42429], [44.52103, 11.42421], [44.52163, 11.42442], [44.5228, 11.42534], [44.52319, 11.42434], [44.52413, 11.42124], [44.52427, 11.42126], [44.52488, 11.42156], [44.52521, 11.42151], [44.5256, 11.42131], [44.52594, 11.42095], [44.52607, 11.42087], [44.52671, 11.42094], [44.52741, 11.4205], [44.52775, 11.42037], [44.52809, 11.42079], [44.52828, 11.4209], [44.52859, 11.42061], [44.52858, 11.42044], [44.52866, 11.42028], [44.52892, 11.42021], [44.52934, 11.41987], [44.52921, 11.41975], [44.52861, 11.41944], [44.52686, 11.41656], [44.52593, 11.4149], [44.52564, 11.4143], [44.52664, 11.41196], [44.52851, 11.40739], [44.52939, 11.40815], [44.5301, 11.40864], [44.53059, 11.40906], [44.53129, 11.40952], [44.53305, 11.41055], [44.5366, 11.4128], [44.53999, 11.41487], [44.54275, 11.40607], [44.54034, 11.40438], [44.5412, 11.40132], [44.54028, 11.40074], [44.54012, 11.4006], [44.54094, 11.39864], [44.54171, 11.3992], [44.54299, 11.39536], [44.54135, 11.39437], [44.53963, 11.39354], [44.53732, 11.392], [44.53413, 11.38949], [44.53223, 11.38776], [44.5316, 11.38702], [44.53008, 11.38492], [44.52899, 11.38404], [44.52597, 11.38068], [44.52469, 11.3791], [44.52457, 11.37909], [44.52455, 11.37894], [44.52448, 11.3788], [44.52371, 11.37789], [44.52345, 11.3775], [44.5234, 11.37725], [44.52343, 11.37672], [44.52341, 11.37632], [44.52333, 11.3758], [44.52315, 11.37544], [44.52262, 11.37469], [44.52235, 11.37419], [44.52187, 11.37377], [44.52155, 11.37398], [44.52139, 11.37403], [44.52115, 11.374], [44.52102, 11.37392], [44.51901, 11.37189], [44.52283, 11.3639], [44.52051, 11.36209], [44.51958, 11.3615], [44.51784, 11.36064], [44.51685, 11.35998], [44.51632, 11.35968], [44.5108, 11.35697], [44.51048, 11.35676], [44.50797, 11.35559], [44.50407, 11.35367], [44.50218, 11.35843], [44.50184, 11.35803], [44.5014, 11.35709], [44.50094, 11.35622], [44.50085, 11.35627], [44.49872, 11.35654], [44.49835, 11.35667], [44.49809, 11.35663], [44.49078, 11.35745], [44.48912, 11.36303], [44.48919, 11.36308], [44.48905, 11.36352], [44.48931, 11.36368], [44.48924, 11.36395], [44.4894, 11.36405], [44.48925, 11.36457], [44.48977, 11.365], [44.48935, 11.36603], [44.48935, 11.36619], [44.48717, 11.36637], [44.48682, 11.36638], [44.48665, 11.36633], [44.48585, 11.36845], [44.48532, 11.36998], [44.48505, 11.3706], [44.48489, 11.37108], [44.48287, 11.37626]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

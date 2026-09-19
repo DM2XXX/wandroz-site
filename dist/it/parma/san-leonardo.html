@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>San Leonardo e stazione è una zona sicura? | Wandroz</title>
+<meta name="description" content="La stazione e il quartiere alle sue spalle, l’unica zona di Parma dichiarata “zona rossa”. Il reportage di ParmaToday dall’interno descrive controlli di massa, ">
+<link rel="canonical" href="https://www.wandroz.com/it/parma/san-leonardo.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/parma/san-leonardo.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/parma/san-leonardo.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/parma/san-leonardo.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/parma/">Parma, Italia</a> &rsaquo; San Leonardo e stazione</nav>
+<main>
+  <h1 class="page-title">San Leonardo e stazione &mdash; Parma, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 13 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Nella media</span> <span class="badge-label">giorno</span>
+    <span class="badge red">Consigliata maggiore prudenza</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>La stazione e il quartiere alle sue spalle, l’unica zona di Parma dichiarata “zona rossa”. Il reportage di ParmaToday dall’interno descrive controlli di massa, spacciatori in fuga e residenti che stringono forte la borsa nel sottopassaggio; negozianti e abitanti di San Leonardo hanno dichiarato pubblicamente di sentirsi abbandonati, segnalando casi di consumo di crack ed eroina davanti alle abitazioni. Il Comune ha assegnato agenti di quartiere al quartiere nell’ambito di un piano che prevede l’assunzione di altri trenta agenti di polizia locale. Molte delle stanze più economiche di Parma si trovano qui: di notte la zona vicino alla stazione è particolarmente malfamata.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Parma publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>San Leonardo e stazione è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente San Leonardo e stazione a Parma come nella media rispetto agli altri quartieri di Parma di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Parma di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Parma non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>San Leonardo e stazione è sicura di notte?</summary>
+      <p>Di notte San Leonardo e stazione è valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Parma. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>San Leonardo e stazione è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di San Leonardo e stazione (nella media rispetto agli altri quartieri di Parma) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per San Leonardo e stazione?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di San Leonardo e stazione viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a San Leonardo e stazione o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20San%20Leonardo%20e%20stazione%2C%20Parma%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente San Leonardo e stazione a Parma come nella media rispetto agli altri quartieri di Parma di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Parma di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Parma non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "San Leonardo e stazione \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte San Leonardo e stazione \u00e8 valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Parma. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "San Leonardo e stazione \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di San Leonardo e stazione (nella media rispetto agli altri quartieri di Parma) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "San Leonardo e stazione \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di San Leonardo e stazione viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a San Leonardo e stazione o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per San Leonardo e stazione?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.82169, 10.33433], [44.82169, 10.32946], [44.82213, 10.31931], [44.82204, 10.31917], [44.8219, 10.31872], [44.82174, 10.31859], [44.82168, 10.31861], [44.82159, 10.31873], [44.82151, 10.31911], [44.82127, 10.31954], [44.82105, 10.32007], [44.82082, 10.32031], [44.82036, 10.32056], [44.8201, 10.32057], [44.81981, 10.32049], [44.81934, 10.32023], [44.819, 10.31992], [44.81881, 10.3198], [44.81848, 10.31967], [44.81816, 10.31971], [44.81752, 10.31997], [44.8171, 10.32029], [44.81669, 10.32086], [44.81638, 10.3214], [44.81611, 10.32208], [44.81583, 10.3225], [44.8156, 10.32262], [44.81463, 10.32376], [44.81422, 10.32413], [44.8138, 10.32441], [44.8135, 10.32455], [44.81215, 10.3249], [44.81191, 10.32503], [44.81167, 10.32524], [44.81123, 10.32546], [44.81092, 10.32555], [44.81072, 10.32552], [44.81071, 10.32589], [44.80975, 10.33011], [44.81001, 10.3303], [44.80999, 10.3304], [44.80938, 10.33261], [44.80905, 10.33351], [44.80886, 10.33421], [44.80875, 10.33488], [44.80861, 10.33538], [44.80855, 10.33625], [44.80849, 10.33652], [44.80831, 10.33625], [44.80742, 10.33904], [44.8073, 10.33966], [44.80726, 10.34017], [44.80718, 10.34033], [44.80698, 10.34014], [44.80502, 10.34519], [44.8048, 10.34552], [44.80469, 10.34576], [44.80267, 10.3506], [44.80258, 10.35091], [44.80321, 10.35128], [44.80373, 10.35172], [44.80393, 10.352], [44.80412, 10.35237], [44.80429, 10.35293], [44.80537, 10.35349], [44.80521, 10.35412], [44.80559, 10.35497], [44.80619, 10.35574], [44.80654, 10.35525], [44.80674, 10.35528], [44.80734, 10.35553], [44.80736, 10.3556], [44.80718, 10.35654], [44.80845, 10.35703], [44.80878, 10.35615], [44.80922, 10.35605], [44.80995, 10.35661], [44.80892, 10.35994], [44.80895, 10.36044], [44.81025, 10.3621], [44.81062, 10.36247], [44.81145, 10.36145], [44.81193, 10.36168], [44.81192, 10.36276], [44.81262, 10.36381], [44.81422, 10.36093], [44.8146, 10.36119], [44.81491, 10.36166], [44.81492, 10.36689], [44.81833, 10.37126], [44.81871, 10.37257], [44.81951, 10.37278], [44.82048, 10.37452], [44.81866, 10.36126], [44.81844, 10.35984], [44.81728, 10.35344], [44.81663, 10.35126], [44.81637, 10.35055], [44.81436, 10.34798], [44.81443, 10.34799], [44.81573, 10.34652], [44.81595, 10.34621], [44.81631, 10.34556], [44.81715, 10.34348], [44.81747, 10.3429], [44.81766, 10.34263], [44.81807, 10.34218], [44.81988, 10.34049], [44.82037, 10.33989], [44.82079, 10.33921], [44.82108, 10.33859], [44.82133, 10.33791], [44.82159, 10.33687], [44.82169, 10.33583], [44.82169, 10.33433]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

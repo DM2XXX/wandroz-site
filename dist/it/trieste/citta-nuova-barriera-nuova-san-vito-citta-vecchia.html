@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro, Città Vecchia e stazione è una zona sicura? | Wandroz</title>
+<meta name="description" content="Tutto ciò per cui un visitatore viene a Trieste si trova in questo unico rione — piazza Unità d&#39;Italia, il Molo Audace, piazza Oberdan, corso Cavour, San Giusto">
+<link rel="canonical" href="https://www.wandroz.com/it/trieste/citta-nuova-barriera-nuova-san-vito-citta-vecchia.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/trieste/citta-nuova-barriera-nuova-san-vito-citta-vecchia.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/trieste/citta-nuova-barriera-nuova-san-vito-citta-vecchia.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/trieste/citta-nuova-barriera-nuova-san-vito-citta-vecchia.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/trieste/">Trieste, Italia</a> &rsaquo; Centro, Città Vecchia e stazione</nav>
+<main>
+  <h1 class="page-title">Centro, Città Vecchia e stazione &mdash; Trieste, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 7 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge yellow">Nella media</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Tutto ciò per cui un visitatore viene a Trieste si trova in questo unico rione — piazza Unità d&#39;Italia, il Molo Audace, piazza Oberdan, corso Cavour, San Giusto — e lo stesso vale per la stazione. Questi due aspetti tirano in direzioni opposte e la valutazione segue il secondo. Le «zone rosse» della Prefettura, in vigore da gennaio 2025, hanno inserito piazza della Libertà, la stazione e le vie circostanti nella Zona 2, insieme a piazza Verdi, largo Barriera e la Scala dei Giganti. Nel maggio 2026 un giovane afgano è stato accoltellato in piazza della Libertà e la risposta è stata un aumento delle pattuglie e delle telecamere. Piazza della Libertà e gli ex Silos alle sue spalle segnano la fine della rotta balcanica e rappresentano da anni un problema cronico per il Comune. Il lungomare e il centro storico sono tranquilli a qualsiasi ora; il piazzale della stazione dopo il tramonto è invece la zona da trattare in modo diverso.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Trieste%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Trieste publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Centro, Città Vecchia e stazione è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Centro, Città Vecchia e stazione a Trieste come relativamente più sicura della maggior parte degli altri quartieri di Trieste di giorno e nella media rispetto agli altri quartieri di Trieste di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Trieste non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Centro, Città Vecchia e stazione è sicura di notte?</summary>
+      <p>Di notte Centro, Città Vecchia e stazione è valutata come nella media rispetto agli altri quartieri di Trieste. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Centro, Città Vecchia e stazione è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Centro, Città Vecchia e stazione (relativamente più sicura della maggior parte degli altri quartieri di Trieste) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Centro, Città Vecchia e stazione?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Centro, Città Vecchia e stazione viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Centro, Città Vecchia e stazione o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Centro%2C%20Citt%C3%A0%20Vecchia%20e%20stazione%2C%20Trieste%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Centro, Citt\u00e0 Vecchia e stazione a Trieste come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Trieste di giorno e nella media rispetto agli altri quartieri di Trieste di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Trieste non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Centro, Citt\u00e0 Vecchia e stazione \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Centro, Citt\u00e0 Vecchia e stazione \u00e8 valutata come nella media rispetto agli altri quartieri di Trieste. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Centro, Citt\u00e0 Vecchia e stazione \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Centro, Citt\u00e0 Vecchia e stazione (relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Trieste) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Centro, Citt\u00e0 Vecchia e stazione \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Centro, Citt\u00e0 Vecchia e stazione viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Centro, Citt\u00e0 Vecchia e stazione o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Centro, Citt\u00e0 Vecchia e stazione?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[45.63247, 13.78059], [45.63384, 13.77997], [45.63478, 13.77937], [45.63529, 13.77893], [45.63584, 13.77827], [45.63685, 13.77694], [45.63699, 13.77687], [45.63946, 13.77624], [45.63972, 13.77511], [45.63972, 13.77501], [45.63923, 13.77233], [45.6394, 13.77223], [45.64135, 13.7722], [45.6415, 13.77222], [45.64206, 13.77249], [45.6425, 13.77231], [45.64284, 13.77229], [45.64395, 13.77451], [45.64433, 13.7752], [45.64498, 13.77557], [45.64568, 13.77286], [45.64573, 13.77286], [45.64579, 13.77294], [45.64599, 13.7735], [45.6461, 13.7736], [45.64658, 13.77384], [45.64746, 13.77523], [45.64762, 13.77524], [45.65001, 13.77723], [45.6501, 13.7775], [45.65013, 13.77776], [45.65009, 13.77849], [45.65001, 13.77901], [45.64969, 13.78034], [45.65001, 13.78025], [45.65015, 13.78033], [45.65027, 13.78049], [45.65057, 13.78221], [45.65044, 13.78284], [45.65044, 13.7831], [45.65079, 13.78454], [45.65243, 13.78313], [45.65254, 13.78371], [45.65239, 13.7838], [45.65198, 13.78422], [45.65257, 13.78604], [45.65296, 13.78579], [45.65314, 13.78636], [45.65385, 13.78589], [45.65399, 13.78565], [45.65379, 13.7847], [45.6536, 13.78332], [45.65348, 13.78211], [45.65359, 13.78218], [45.65371, 13.78233], [45.65577, 13.78535], [45.65629, 13.78474], [45.65649, 13.78506], [45.65667, 13.78282], [45.65666, 13.78253], [45.6566, 13.78215], [45.65637, 13.78126], [45.6568, 13.78103], [45.65704, 13.78172], [45.65707, 13.7821], [45.65716, 13.78228], [45.65727, 13.78217], [45.65771, 13.78192], [45.65783, 13.78192], [45.65795, 13.78215], [45.65816, 13.78191], [45.65837, 13.78148], [45.65855, 13.7817], [45.65916, 13.78081], [45.65938, 13.77938], [45.65914, 13.77918], [45.6581, 13.77869], [45.65798, 13.77859], [45.65839, 13.77836], [45.65873, 13.77797], [45.65888, 13.77749], [45.65887, 13.7773], [45.6589, 13.77712], [45.65907, 13.77694], [45.65935, 13.77678], [45.65967, 13.77675], [45.66001, 13.77697], [45.66037, 13.77712], [45.66062, 13.77625], [45.66048, 13.77612], [45.66061, 13.77596], [45.66084, 13.77585], [45.66093, 13.77569], [45.66122, 13.77563], [45.66133, 13.77555], [45.66141, 13.77533], [45.66128, 13.77522], [45.66037, 13.77395], [45.66028, 13.77402], [45.66003, 13.77323], [45.65956, 13.77344], [45.65911, 13.77343], [45.65899, 13.77305], [45.65955, 13.77298], [45.66154, 13.77183], [45.66138, 13.77129], [45.66185, 13.77102], [45.66165, 13.77035], [45.6635, 13.76926], [45.6647, 13.76729], [45.6651, 13.76641], [45.66534, 13.76574], [45.66547, 13.76524], [45.66565, 13.76382], [45.66573, 13.76356], [45.66592, 13.76329], [45.66667, 13.76266], [45.66625, 13.76094], [45.66634, 13.76075], [45.66664, 13.76058], [45.66622, 13.75906], [45.66619, 13.75887], [45.66626, 13.75883], [45.66618, 13.75854], [45.66424, 13.75968], [45.66431, 13.75993], [45.66561, 13.75915], [45.66608, 13.76086], [45.66416, 13.76193], [45.66379, 13.76056], [45.66372, 13.76059], [45.66362, 13.76022], [45.65962, 13.76251], [45.66026, 13.76487], [45.65792, 13.76642], [45.6572, 13.76392], [45.65656, 13.76429], [45.65728, 13.7668], [45.65477, 13.76815], [45.65462, 13.76645], [45.65386, 13.76659], [45.65404, 13.76855], [45.65363, 13.76877], [45.65364, 13.7688], [45.65356, 13.76884], [45.65355, 13.76881], [45.65319, 13.769], [45.65309, 13.76937], [45.65303, 13.76934], [45.653, 13.76946], [45.65292, 13.76942], [45.653, 13.76912], [45.65247, 13.76882], [45.65211, 13.76855], [45.65191, 13.76831], [45.65152, 13.7677], [45.65287, 13.76529], [45.65271, 13.7651], [45.65138, 13.76746], [45.65091, 13.76677], [45.64982, 13.765], [45.64984, 13.76478], [45.65131, 13.76291], [45.65078, 13.76205], [45.64915, 13.76412], [45.64833, 13.76303], [45.64937, 13.76165], [45.64921, 13.76143], [45.64838, 13.7625], [45.64772, 13.76145], [45.64902, 13.75973], [45.6489, 13.75953], [45.6476, 13.76126], [45.64722, 13.76065], [45.6473, 13.76055], [45.6471, 13.76021], [45.64733, 13.75993], [45.64718, 13.75972], [45.64711, 13.75981], [45.64708, 13.75976], [45.64745, 13.75927], [45.64723, 13.75891], [45.6472, 13.75894], [45.64732, 13.75913], [45.64718, 13.75931], [45.6472, 13.75934], [45.64639, 13.76035], [45.64615, 13.75997], [45.64677, 13.7592], [45.64667, 13.75903], [45.64669, 13.75899], [45.6468, 13.75916], [45.64696, 13.75896], [45.64692, 13.7589], [45.64697, 13.75879], [45.64691, 13.75887], [45.64689, 13.75883], [45.64695, 13.75876], [45.64693, 13.75873], [45.64687, 13.75881], [45.64682, 13.75873], [45.64701, 13.7585], [45.64699, 13.75847], [45.64599, 13.75972], [45.6459, 13.75958], [45.6457, 13.75903], [45.64567, 13.75843], [45.64579, 13.75796], [45.64682, 13.75582], [45.64829, 13.75621], [45.6483, 13.75615], [45.64797, 13.75609], [45.64801, 13.75581], [45.64878, 13.75599], [45.64909, 13.75653], [45.64917, 13.75722], [45.64876, 13.7572], [45.64876, 13.75726], [45.64882, 13.75736], [45.64928, 13.75738], [45.64975, 13.75949], [45.6498, 13.75947], [45.64932, 13.75737], [45.64955, 13.75672], [45.64959, 13.75675], [45.64968, 13.75655], [45.64976, 13.75655], [45.65007, 13.75584], [45.65009, 13.75236], [45.64966, 13.75174], [45.6485, 13.75106], [45.64848, 13.75113], [45.64963, 13.75179], [45.65005, 13.75238], [45.64997, 13.75466], [45.64962, 13.75465], [45.64961, 13.75471], [45.64949, 13.75471], [45.64948, 13.75536], [45.64955, 13.75536], [45.64955, 13.75559], [45.64947, 13.75557], [45.64934, 13.7555], [45.64936, 13.75464], [45.64908, 13.75462], [45.6491, 13.75327], [45.64902, 13.75326], [45.649, 13.75434], [45.64892, 13.75433], [45.6489, 13.75425], [45.64885, 13.75459], [45.64863, 13.75457], [45.6482, 13.75442], [45.64817, 13.75435], [45.64775, 13.7541], [45.64763, 13.75397], [45.64777, 13.75356], [45.64708, 13.75299], [45.64689, 13.7529], [45.64662, 13.75269], [45.64654, 13.75251], [45.64646, 13.75243], [45.64665, 13.75186], [45.64662, 13.75172], [45.64658, 13.75168], [45.6466, 13.75159], [45.64647, 13.75191], [45.64627, 13.75176], [45.6464, 13.75139], [45.64637, 13.75136], [45.64633, 13.75147], [45.6463, 13.7514], [45.64631, 13.75128], [45.6464, 13.75104], [45.64618, 13.75068], [45.64598, 13.75092], [45.64452, 13.7484], [45.64407, 13.74835], [45.64404, 13.74871], [45.64158, 13.74826], [45.64157, 13.74814], [45.6413, 13.74819], [45.64082, 13.7439], [45.63912, 13.74424], [45.63966, 13.74884], [45.63955, 13.74975], [45.63806, 13.75383], [45.63757, 13.75372], [45.63706, 13.74916], [45.63558, 13.74948], [45.63557, 13.74952], [45.63649, 13.75754], [45.6364, 13.75845], [45.63494, 13.7624], [45.63478, 13.76229], [45.63474, 13.7624], [45.63456, 13.76247], [45.63455, 13.76272], [45.63344, 13.7627], [45.63123, 13.75493], [45.62799, 13.7568], [45.62788, 13.75691], [45.63048, 13.76599], [45.63365, 13.76605], [45.63365, 13.76644], [45.63423, 13.76644], [45.63423, 13.76628], [45.63426, 13.76623], [45.63504, 13.7663], [45.63508, 13.76638], [45.63516, 13.76638], [45.6352, 13.7663], [45.63552, 13.76631], [45.63551, 13.76649], [45.6368, 13.76656], [45.63693, 13.76665], [45.63693, 13.76678], [45.63678, 13.76687], [45.6356, 13.76681], [45.6356, 13.76689], [45.6355, 13.76689], [45.6355, 13.76708], [45.63517, 13.76706], [45.63512, 13.76712], [45.63516, 13.76716], [45.63619, 13.76723], [45.63627, 13.7673], [45.63629, 13.76739], [45.63627, 13.76746], [45.63616, 13.76753], [45.63532, 13.76751], [45.63528, 13.76746], [45.63517, 13.76746], [45.63517, 13.7675], [45.63473, 13.76748], [45.63472, 13.76764], [45.6356, 13.76768], [45.63557, 13.76895], [45.63406, 13.76888], [45.63407, 13.76904], [45.63557, 13.76909], [45.63556, 13.76943], [45.63449, 13.76939], [45.63449, 13.76948], [45.63621, 13.76955], [45.63638, 13.76966], [45.63637, 13.76983], [45.6362, 13.76993], [45.63448, 13.76986], [45.63447, 13.76997], [45.63554, 13.77001], [45.63545, 13.7736], [45.63539, 13.77372], [45.63319, 13.77185], [45.63311, 13.77205], [45.63493, 13.7736], [45.63466, 13.77426], [45.63345, 13.77323], [45.63338, 13.77341], [45.63537, 13.77513], [45.63558, 13.7756], [45.63557, 13.77571], [45.63551, 13.77578], [45.63511, 13.77575], [45.63313, 13.77406], [45.6331, 13.77407], [45.63303, 13.77424], [45.63437, 13.77538], [45.63424, 13.77556], [45.63426, 13.77568], [45.63395, 13.77624], [45.63411, 13.77641], [45.63394, 13.77676], [45.63376, 13.77657], [45.63335, 13.77692], [45.63339, 13.77699], [45.63329, 13.77706], [45.63283, 13.77729], [45.63271, 13.7774], [45.63268, 13.77736], [45.63094, 13.7783], [45.63141, 13.77973], [45.63169, 13.78073], [45.63247, 13.78059]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

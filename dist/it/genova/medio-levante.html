@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foce, Albaro, Boccadasse (Medio Levante) è una zona sicura? | Wandroz</title>
+<meta name="description" content="Il lato piacevole: Foce, con le ville di Albaro e le facoltà universitarie, e Boccadasse, l’antica insenatura di pescatori che non manca mai in nessun itinerari">
+<link rel="canonical" href="https://www.wandroz.com/it/genova/medio-levante.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/genova/medio-levante.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/genova/medio-levante.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/genova/medio-levante.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/genova/">Genova, Italia</a> &rsaquo; Foce, Albaro, Boccadasse (Medio Levante)</nav>
+<main>
+  <h1 class="page-title">Foce, Albaro, Boccadasse (Medio Levante) &mdash; Genova, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 9 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Il lato piacevole: Foce, con le ville di Albaro e le facoltà universitarie, e Boccadasse, l’antica insenatura di pescatori che non manca mai in nessun itinerario genovese. Non compare in nessuna delle aree prioritarie del Comune per il 2026 né in nessuna delle misure di sicurezza locale che citano altri quartieri. Il contorno tratteggiato indica che si tratta di un’assenza di riscontri piuttosto che di un «via libera» verificato: i quartieri costieri benestanti sono anche quelli che generano il minor numero di segnalazioni.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Genoa%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Genoa, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Foce, Albaro, Boccadasse (Medio Levante) è una zona sicura?</summary>
+      <p>Wandroz valuta Foce, Albaro, Boccadasse (Medio Levante) a Genoa come relativamente più sicura della maggior parte degli altri quartieri di Genoa. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Foce, Albaro, Boccadasse (Medio Levante) — nessun episodio, nessun problema ricorrente, niente di documentato né in un senso né nell&#39;altro — letta insieme al carattere della zona. Non è un riscontro positivo di sicurezza: un&#39;assenza di segnalazioni è un&#39;evidenza più debole delle valutazioni con fonti che trovi altrove su questa mappa, ed è indicata come tale ovunque compaia.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Che cosa è stato verificato per Foce, Albaro, Boccadasse (Medio Levante)?</summary>
+      <p>La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Genoa: stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Foce, Albaro, Boccadasse (Medio Levante) non è emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative più piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell&#39;area.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Foce, Albaro, Boccadasse (Medio Levante) è una buona zona dove alloggiare da turista?</summary>
+      <p>Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Genoa le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Foce%2C%20Albaro%2C%20Boccadasse%20%28Medio%20Levante%29%2C%20Genova%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta Foce, Albaro, Boccadasse (Medio Levante) a Genoa come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Genoa. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Foce, Albaro, Boccadasse (Medio Levante) \u2014 nessun episodio, nessun problema ricorrente, niente di documentato n\u00e9 in un senso n\u00e9 nell\u0027altro \u2014 letta insieme al carattere della zona. Non \u00e8 un riscontro positivo di sicurezza: un\u0027assenza di segnalazioni \u00e8 un\u0027evidenza pi\u00f9 debole delle valutazioni con fonti che trovi altrove su questa mappa, ed \u00e8 indicata come tale ovunque compaia."}, "name": "Foce, Albaro, Boccadasse (Medio Levante) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Genoa: stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Foce, Albaro, Boccadasse (Medio Levante) non \u00e8 emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative pi\u00f9 piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell\u0027area."}, "name": "Che cosa \u00e8 stato verificato per Foce, Albaro, Boccadasse (Medio Levante)?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Genoa le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Foce, Albaro, Boccadasse (Medio Levante) \u00e8 una buona zona dove alloggiare da turista?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.3897, 8.9767], [44.38988, 8.97681], [44.39005, 8.97673], [44.39015, 8.97691], [44.39035, 8.9771], [44.3909, 8.97748], [44.39126, 8.97763], [44.39149, 8.97763], [44.39174, 8.97754], [44.39186, 8.97756], [44.39211, 8.97761], [44.39256, 8.97789], [44.39283, 8.97794], [44.39372, 8.97774], [44.39422, 8.97772], [44.39428, 8.97782], [44.39438, 8.97786], [44.39476, 8.97777], [44.39478, 8.97826], [44.39489, 8.97842], [44.39507, 8.97839], [44.39512, 8.97895], [44.39503, 8.97938], [44.39503, 8.97956], [44.39513, 8.97957], [44.39524, 8.97953], [44.39556, 8.97898], [44.396, 8.97841], [44.39624, 8.97828], [44.39657, 8.97822], [44.39699, 8.97827], [44.39719, 8.97824], [44.39755, 8.97796], [44.3978, 8.97766], [44.398, 8.97724], [44.39807, 8.97716], [44.39824, 8.97707], [44.39866, 8.97671], [44.39965, 8.97654], [44.39994, 8.97641], [44.40034, 8.97702], [44.40024, 8.97771], [44.40026, 8.97781], [44.40036, 8.97791], [44.40016, 8.9785], [44.40028, 8.97861], [44.40005, 8.9791], [44.40021, 8.97944], [44.40018, 8.97948], [44.40019, 8.97953], [44.4003, 8.97967], [44.40042, 8.98007], [44.4005, 8.98022], [44.40055, 8.98045], [44.40051, 8.98081], [44.40071, 8.98102], [44.40104, 8.98148], [44.40119, 8.98184], [44.40137, 8.98203], [44.40139, 8.98195], [44.40155, 8.98194], [44.40241, 8.98232], [44.40294, 8.98214], [44.40299, 8.98224], [44.40281, 8.98248], [44.40248, 8.98318], [44.40298, 8.98366], [44.40316, 8.98373], [44.4034, 8.98329], [44.40372, 8.9829], [44.404, 8.98264], [44.40399, 8.98287], [44.4042, 8.98294], [44.40443, 8.98288], [44.40469, 8.98301], [44.40493, 8.98327], [44.40503, 8.98307], [44.40508, 8.98316], [44.40519, 8.98322], [44.40525, 8.98318], [44.40547, 8.98328], [44.40575, 8.98343], [44.40594, 8.9836], [44.40633, 8.98322], [44.40648, 8.98342], [44.40707, 8.98383], [44.40729, 8.98404], [44.4077, 8.98423], [44.40802, 8.9842], [44.40831, 8.98425], [44.40857, 8.98445], [44.4092, 8.98479], [44.40975, 8.98517], [44.40999, 8.98509], [44.41044, 8.98478], [44.41089, 8.98475], [44.41092, 8.98481], [44.41111, 8.98493], [44.41118, 8.98512], [44.41128, 8.98525], [44.41129, 8.98536], [44.41155, 8.9856], [44.41172, 8.98568], [44.41202, 8.98594], [44.41217, 8.98613], [44.41221, 8.98624], [44.41249, 8.98646], [44.41273, 8.98679], [44.41275, 8.9869], [44.41282, 8.98698], [44.41339, 8.98734], [44.4136, 8.98758], [44.41365, 8.98769], [44.41405, 8.98803], [44.4143, 8.98814], [44.41449, 8.98829], [44.41481, 8.98842], [44.41495, 8.98857], [44.41543, 8.98888], [44.4156, 8.98913], [44.4158, 8.9893], [44.41586, 8.9893], [44.41586, 8.98937], [44.41596, 8.98939], [44.41598, 8.98936], [44.41617, 8.98949], [44.41642, 8.98978], [44.41702, 8.98981], [44.41707, 8.99004], [44.41736, 8.99018], [44.41746, 8.99027], [44.41764, 8.99031], [44.41781, 8.99047], [44.41805, 8.99048], [44.41817, 8.99061], [44.41854, 8.9907], [44.41887, 8.99057], [44.41899, 8.99057], [44.41907, 8.99072], [44.41924, 8.99076], [44.4194, 8.99089], [44.41956, 8.99087], [44.41989, 8.99107], [44.42001, 8.99107], [44.42024, 8.99119], [44.42063, 8.99158], [44.4207, 8.99158], [44.42113, 8.99123], [44.42127, 8.99077], [44.42125, 8.99051], [44.42116, 8.99019], [44.42104, 8.98945], [44.42093, 8.9891], [44.42087, 8.98904], [44.42083, 8.9889], [44.4207, 8.98879], [44.4206, 8.98834], [44.42051, 8.98817], [44.42029, 8.98789], [44.41963, 8.9876], [44.41948, 8.98746], [44.41825, 8.98591], [44.41797, 8.98528], [44.41735, 8.98521], [44.41682, 8.98496], [44.41637, 8.98459], [44.41611, 8.98401], [44.416, 8.98353], [44.4158, 8.98289], [44.4151, 8.98173], [44.41444, 8.98097], [44.41414, 8.98025], [44.41411, 8.97969], [44.41388, 8.97927], [44.41362, 8.97884], [44.4135, 8.97882], [44.41334, 8.97854], [44.41305, 8.97827], [44.41234, 8.97724], [44.41229, 8.97708], [44.41232, 8.97698], [44.41242, 8.97689], [44.41262, 8.97684], [44.41275, 8.97646], [44.4129, 8.97617], [44.41304, 8.97573], [44.41307, 8.97548], [44.41291, 8.97506], [44.41291, 8.97477], [44.41276, 8.97426], [44.41269, 8.97364], [44.41253, 8.97298], [44.41235, 8.97248], [44.41182, 8.9713], [44.41192, 8.97086], [44.41188, 8.97074], [44.41158, 8.9705], [44.41125, 8.97037], [44.4109, 8.97006], [44.40991, 8.96895], [44.40883, 8.96863], [44.40875, 8.96864], [44.40866, 8.96879], [44.40854, 8.96876], [44.40773, 8.96779], [44.40765, 8.96762], [44.40714, 8.96697], [44.40705, 8.96697], [44.40659, 8.96768], [44.40648, 8.96748], [44.40665, 8.96704], [44.40671, 8.96645], [44.40651, 8.96624], [44.40639, 8.96634], [44.40634, 8.96649], [44.4061, 8.9668], [44.4061, 8.96691], [44.40596, 8.96706], [44.40591, 8.96745], [44.40574, 8.96736], [44.40533, 8.96676], [44.40528, 8.96677], [44.40527, 8.96684], [44.40521, 8.96683], [44.40523, 8.96691], [44.40516, 8.96684], [44.40518, 8.96697], [44.40502, 8.96695], [44.4047, 8.96536], [44.40481, 8.95914], [44.40482, 8.95342], [44.40488, 8.95235], [44.40502, 8.95146], [44.40533, 8.95029], [44.40571, 8.94903], [44.40604, 8.94821], [44.40652, 8.9473], [44.40648, 8.94726], [44.40661, 8.94705], [44.40665, 8.9471], [44.40681, 8.94682], [44.40677, 8.94677], [44.40692, 8.94653], [44.40696, 8.94657], [44.40704, 8.94644], [44.40697, 8.94636], [44.40711, 8.94612], [44.40714, 8.94616], [44.40722, 8.94612], [44.40644, 8.9453], [44.40143, 8.94259], [44.401, 8.94243], [44.40089, 8.94282], [44.4009, 8.94288], [44.40088, 8.94294], [44.40085, 8.94293], [44.40083, 8.94304], [44.40091, 8.94308], [44.40099, 8.94304], [44.40096, 8.94339], [44.40075, 8.9434], [44.40078, 8.94324], [44.40004, 8.94349], [44.40005, 8.94356], [44.40011, 8.94356], [44.40008, 8.94362], [44.39995, 8.9437], [44.39973, 8.9436], [44.39975, 8.94346], [44.39883, 8.94322], [44.39873, 8.94333], [44.39839, 8.94333], [44.39838, 8.94316], [44.39749, 8.94271], [44.39712, 8.94201], [44.39722, 8.94157], [44.39682, 8.94141], [44.39695, 8.94086], [44.39712, 8.94041], [44.39706, 8.94035], [44.39715, 8.94015], [44.39721, 8.9402], [44.39743, 8.93981], [44.3972, 8.93961], [44.39731, 8.93938], [44.39741, 8.93905], [44.3978, 8.93629], [44.39793, 8.93571], [44.39659, 8.93501], [44.39538, 8.93423], [44.39478, 8.93377], [44.39449, 8.93497], [44.39469, 8.93505], [44.39468, 8.93525], [44.39474, 8.93533], [44.39554, 8.93584], [44.39549, 8.936], [44.39552, 8.93602], [44.39558, 8.93581], [44.39565, 8.93585], [44.39558, 8.93607], [44.39561, 8.93608], [44.39566, 8.93592], [44.39576, 8.93598], [44.39593, 8.93546], [44.39599, 8.93551], [44.39601, 8.93545], [44.39594, 8.93541], [44.39615, 8.93485], [44.39735, 8.93562], [44.39736, 8.93628], [44.39639, 8.93569], [44.39637, 8.93574], [44.39631, 8.93565], [44.39485, 8.94014], [44.39432, 8.93982], [44.39531, 8.93678], [44.39437, 8.93618], [44.39422, 8.93664], [44.39437, 8.93674], [44.39448, 8.93641], [44.39511, 8.93682], [44.39392, 8.94051], [44.39237, 8.93953], [44.39246, 8.93892], [44.3935, 8.93572], [44.39325, 8.93556], [44.39337, 8.935], [44.39335, 8.93494], [44.39326, 8.93489], [44.39318, 8.93491], [44.39298, 8.93564], [44.393, 8.93642], [44.39254, 8.93773], [44.39226, 8.93841], [44.39206, 8.93925], [44.39204, 8.93976], [44.39213, 8.94059], [44.39241, 8.94103], [44.39321, 8.94167], [44.39397, 8.94208], [44.39416, 8.94212], [44.39465, 8.94233], [44.39463, 8.94243], [44.39549, 8.94284], [44.39534, 8.94344], [44.39449, 8.94304], [44.39442, 8.94305], [44.39437, 8.94313], [44.3944, 8.94325], [44.3946, 8.94326], [44.39476, 8.94333], [44.39483, 8.94365], [44.39472, 8.94485], [44.39456, 8.94573], [44.39434, 8.94562], [44.3943, 8.9457], [44.39454, 8.94587], [44.39449, 8.94641], [44.39435, 8.94707], [44.3942, 8.94762], [44.39406, 8.94798], [44.39397, 8.9485], [44.3939, 8.94866], [44.39373, 8.94857], [44.39373, 8.94864], [44.39364, 8.94855], [44.39361, 8.94862], [44.39371, 8.94872], [44.39366, 8.94879], [44.3937, 8.94879], [44.39372, 8.94886], [44.39361, 8.94918], [44.39364, 8.94919], [44.39378, 8.94893], [44.39386, 8.94902], [44.39399, 8.94906], [44.394, 8.94934], [44.39393, 8.94952], [44.39355, 8.94987], [44.3934, 8.94994], [44.39314, 8.94997], [44.39303, 8.94993], [44.39289, 8.94984], [44.3928, 8.94974], [44.39276, 8.94963], [44.3928, 8.9495], [44.39279, 8.94943], [44.393, 8.94908], [44.393, 8.94903], [44.39296, 8.949], [44.3929, 8.94903], [44.39261, 8.94929], [44.39249, 8.94928], [44.39241, 8.94938], [44.39236, 8.94961], [44.39226, 8.94978], [44.39178, 8.95025], [44.39126, 8.95064], [44.39106, 8.95095], [44.39102, 8.95117], [44.391, 8.95135], [44.39107, 8.95168], [44.39128, 8.95208], [44.39139, 8.95221], [44.39163, 8.95228], [44.39165, 8.95232], [44.39164, 8.9524], [44.39155, 8.95243], [44.39157, 8.95271], [44.39154, 8.95287], [44.39144, 8.95306], [44.3913, 8.95314], [44.3913, 8.95326], [44.39155, 8.95321], [44.39157, 8.95374], [44.39152, 8.95404], [44.39124, 8.9549], [44.39121, 8.9549], [44.39113, 8.95513], [44.39106, 8.95519], [44.39086, 8.95518], [44.3908, 8.95528], [44.39074, 8.9553], [44.39072, 8.95537], [44.39077, 8.95539], [44.39073, 8.95554], [44.39076, 8.95576], [44.39089, 8.95584], [44.391, 8.95598], [44.39102, 8.95597], [44.39098, 8.95581], [44.39104, 8.95583], [44.39117, 8.95613], [44.39117, 8.95621], [44.39108, 8.95622], [44.39113, 8.95678], [44.39106, 8.9572], [44.39104, 8.95724], [44.39088, 8.95725], [44.39088, 8.95731], [44.39103, 8.9573], [44.3907, 8.95777], [44.39071, 8.95783], [44.39078, 8.95786], [44.39082, 8.95799], [44.39082, 8.95814], [44.39074, 8.95839], [44.39083, 8.95879], [44.39081, 8.9589], [44.39083, 8.95894], [44.39098, 8.95893], [44.39101, 8.95888], [44.39106, 8.95891], [44.39103, 8.959], [44.3908, 8.95932], [44.39077, 8.95953], [44.39079, 8.95964], [44.3909, 8.95982], [44.39126, 8.95993], [44.39148, 8.96006], [44.39154, 8.96015], [44.39174, 8.96066], [44.39167, 8.96078], [44.39178, 8.96075], [44.39177, 8.96101], [44.3918, 8.96119], [44.3916, 8.9624], [44.39118, 8.96416], [44.39098, 8.96476], [44.39089, 8.96488], [44.39074, 8.96486], [44.39068, 8.96477], [44.39064, 8.96483], [44.39066, 8.96498], [44.39069, 8.96501], [44.39064, 8.96499], [44.39054, 8.96539], [44.39062, 8.96543], [44.39062, 8.96548], [44.39076, 8.96552], [44.3905, 8.9667], [44.39039, 8.96705], [44.3901, 8.96789], [44.38992, 8.96807], [44.38962, 8.96814], [44.38951, 8.96785], [44.38945, 8.96789], [44.3893, 8.96827], [44.38924, 8.96867], [44.38929, 8.96898], [44.38935, 8.9691], [44.3894, 8.96904], [44.38942, 8.96877], [44.38943, 8.96881], [44.38948, 8.96877], [44.38961, 8.96886], [44.3896, 8.96902], [44.38954, 8.96916], [44.38954, 8.96931], [44.38959, 8.96949], [44.38977, 8.96991], [44.38986, 8.96991], [44.38994, 8.96997], [44.38996, 8.97006], [44.38992, 8.97032], [44.38975, 8.97095], [44.38945, 8.97079], [44.38943, 8.97084], [44.3895, 8.97086], [44.3895, 8.97093], [44.38935, 8.97086], [44.38934, 8.97093], [44.38913, 8.97077], [44.38917, 8.9709], [44.38949, 8.97117], [44.38982, 8.97132], [44.38977, 8.97172], [44.38972, 8.97174], [44.38967, 8.97207], [44.38967, 8.97233], [44.38959, 8.97284], [44.38964, 8.97286], [44.38961, 8.97304], [44.38934, 8.97307], [44.3893, 8.97313], [44.38921, 8.97309], [44.38933, 8.97321], [44.38931, 8.97327], [44.38924, 8.97325], [44.38929, 8.97334], [44.38933, 8.97334], [44.3893, 8.97342], [44.38932, 8.97369], [44.38936, 8.97376], [44.38933, 8.97392], [44.38969, 8.97414], [44.38973, 8.97408], [44.38998, 8.97442], [44.38992, 8.97482], [44.38982, 8.97482], [44.38976, 8.97473], [44.38968, 8.97472], [44.38967, 8.97481], [44.38961, 8.97491], [44.38959, 8.97501], [44.38976, 8.97513], [44.38972, 8.97523], [44.38967, 8.97514], [44.3896, 8.97513], [44.3897, 8.9753], [44.38967, 8.97532], [44.38957, 8.9752], [44.38956, 8.97524], [44.3896, 8.97528], [44.38954, 8.97526], [44.38955, 8.9753], [44.38952, 8.97532], [44.38985, 8.97563], [44.38982, 8.97562], [44.38984, 8.97568], [44.38977, 8.97564], [44.38972, 8.97571], [44.38975, 8.97577], [44.38968, 8.97578], [44.38978, 8.97586], [44.38978, 8.97592], [44.3897, 8.97595], [44.3898, 8.97608], [44.38979, 8.97612], [44.38973, 8.97609], [44.38967, 8.97612], [44.38958, 8.97606], [44.38984, 8.97634], [44.38983, 8.97638], [44.38973, 8.9763], [44.38975, 8.97638], [44.38964, 8.97632], [44.38974, 8.97647], [44.38972, 8.97651], [44.38965, 8.97645], [44.38975, 8.97657], [44.38965, 8.97659], [44.3897, 8.9767]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

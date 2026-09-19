@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stazione Porta Nuova, Borgo Milano (Ovest) è una zona sicura? | Wandroz</title>
+<meta name="description" content="Valutata in base alla stazione, poiché è proprio quella la zona in cui si trovano i viaggiatori. Piazzale XXV Aprile, il piazzale antistante la stazione di Vero">
+<link rel="canonical" href="https://www.wandroz.com/it/verona/ovest.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/verona/ovest.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/verona/ovest.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/verona/ovest.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/verona/">Verona, Italia</a> &rsaquo; Stazione Porta Nuova, Borgo Milano (Ovest)</nav>
+<main>
+  <h1 class="page-title">Stazione Porta Nuova, Borgo Milano (Ovest) &mdash; Verona, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 8 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Nella media</span> <span class="badge-label">giorno</span>
+    <span class="badge red">Consigliata maggiore prudenza</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Valutata in base alla stazione, poiché è proprio quella la zona in cui si trovano i viaggiatori. Piazzale XXV Aprile, il piazzale antistante la stazione di Verona Porta Nuova, è segnalato dai media locali e dal sindacato dei trasporti FAISA-CISAL come un luogo in cui ogni giorno, alla luce del sole, si verificano rapine, molestie e spaccio, e l’opposizione in Consiglio comunale ha sollevato la questione come problema irrisolto; anche la zona dello stadio Bentegodi rientra nelle «zone rosse» della Prefettura. Il resto della circoscrizione — Borgo Milano, Saval, Chievo, San Massimo — è un normale sobborgo residenziale e nulla nelle fonti lo indica come un’area a rischio. Se alloggiate nei pressi della stazione, la “zona rossa” riguarda il piazzale antistante di notte, non il quartiere in cui dormite.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Verona%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Verona publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Stazione Porta Nuova, Borgo Milano (Ovest) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Stazione Porta Nuova, Borgo Milano (Ovest) a Verona come nella media rispetto agli altri quartieri di Verona di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Verona di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Verona non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Stazione Porta Nuova, Borgo Milano (Ovest) è sicura di notte?</summary>
+      <p>Di notte Stazione Porta Nuova, Borgo Milano (Ovest) è valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Verona. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Stazione Porta Nuova, Borgo Milano (Ovest) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Stazione Porta Nuova, Borgo Milano (Ovest) (nella media rispetto agli altri quartieri di Verona) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Stazione Porta Nuova, Borgo Milano (Ovest)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Stazione Porta Nuova, Borgo Milano (Ovest) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Stazione Porta Nuova, Borgo Milano (Ovest) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Stazione%20Porta%20Nuova%2C%20Borgo%20Milano%20%28Ovest%29%2C%20Verona%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Stazione Porta Nuova, Borgo Milano (Ovest) a Verona come nella media rispetto agli altri quartieri di Verona di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Verona di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Verona non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Stazione Porta Nuova, Borgo Milano (Ovest) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Stazione Porta Nuova, Borgo Milano (Ovest) \u00e8 valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Verona. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Stazione Porta Nuova, Borgo Milano (Ovest) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Stazione Porta Nuova, Borgo Milano (Ovest) (nella media rispetto agli altri quartieri di Verona) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Stazione Porta Nuova, Borgo Milano (Ovest) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Stazione Porta Nuova, Borgo Milano (Ovest) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Stazione Porta Nuova, Borgo Milano (Ovest) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Stazione Porta Nuova, Borgo Milano (Ovest)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[45.42714, 10.90578], [45.42468, 10.90692], [45.42207, 10.90823], [45.42134, 10.90855], [45.42291, 10.92589], [45.42707, 10.92591], [45.42709, 10.93028], [45.42703, 10.93676], [45.42701, 10.94818], [45.42695, 10.95701], [45.42736, 10.95724], [45.42707, 10.95825], [45.42678, 10.96006], [45.42659, 10.96153], [45.42421, 10.96138], [45.42398, 10.9626], [45.4237, 10.96579], [45.42369, 10.96619], [45.42377, 10.96742], [45.42362, 10.97289], [45.42341, 10.97288], [45.42334, 10.97486], [45.42309, 10.9757], [45.42269, 10.97569], [45.42253, 10.98162], [45.42259, 10.98213], [45.42294, 10.98191], [45.4231, 10.98236], [45.42303, 10.98242], [45.42321, 10.98288], [45.42359, 10.98314], [45.42372, 10.98339], [45.42523, 10.98412], [45.4266, 10.9851], [45.42876, 10.9862], [45.4292, 10.98709], [45.43053, 10.98773], [45.43082, 10.98765], [45.43126, 10.98765], [45.43141, 10.98638], [45.43109, 10.98623], [45.43101, 10.98644], [45.43092, 10.98643], [45.43089, 10.98637], [45.43085, 10.98508], [45.43074, 10.98508], [45.43075, 10.98491], [45.43083, 10.98476], [45.43091, 10.9849], [45.43158, 10.98404], [45.43164, 10.98403], [45.43171, 10.98413], [45.43167, 10.98433], [45.43196, 10.98451], [45.43269, 10.98296], [45.4326, 10.98285], [45.43298, 10.98205], [45.43275, 10.98173], [45.43261, 10.98188], [45.43254, 10.9818], [45.43253, 10.98173], [45.43285, 10.98039], [45.43273, 10.98035], [45.43275, 10.98022], [45.43282, 10.98013], [45.43291, 10.98008], [45.43295, 10.98028], [45.43394, 10.98009], [45.434, 10.98016], [45.43399, 10.98027], [45.43389, 10.98038], [45.43405, 10.98073], [45.43499, 10.9801], [45.43492, 10.97971], [45.435, 10.97929], [45.43508, 10.97928], [45.43513, 10.97921], [45.43534, 10.97928], [45.43546, 10.9794], [45.43559, 10.97971], [45.43726, 10.9784], [45.43716, 10.97795], [45.437, 10.97798], [45.43695, 10.97793], [45.43694, 10.97783], [45.43757, 10.97715], [45.43751, 10.97702], [45.43761, 10.97693], [45.43772, 10.97688], [45.43776, 10.97704], [45.43845, 10.97681], [45.4385, 10.97685], [45.43852, 10.97698], [45.43851, 10.97704], [45.43842, 10.97713], [45.43861, 10.97756], [45.44122, 10.97585], [45.44113, 10.97542], [45.44099, 10.97546], [45.44092, 10.97535], [45.44092, 10.97529], [45.44094, 10.97523], [45.44166, 10.97453], [45.44159, 10.9744], [45.44162, 10.97433], [45.44172, 10.97426], [45.4418, 10.97428], [45.4418, 10.9745], [45.44247, 10.97456], [45.44259, 10.97528], [45.44558, 10.97498], [45.44564, 10.97453], [45.44554, 10.97452], [45.44549, 10.97446], [45.44548, 10.97432], [45.44553, 10.97425], [45.44682, 10.97382], [45.44699, 10.97572], [45.44693, 10.97579], [45.44687, 10.97579], [45.44677, 10.97561], [45.44647, 10.97581], [45.44738, 10.97914], [45.44767, 10.97907], [45.44799, 10.98002], [45.44727, 10.9802], [45.44717, 10.97981], [45.4452, 10.98069], [45.44437, 10.98119], [45.44456, 10.98208], [45.44508, 10.98199], [45.44572, 10.98214], [45.44711, 10.98259], [45.44841, 10.98272], [45.45051, 10.98235], [45.45125, 10.98191], [45.4519, 10.98139], [45.45259, 10.98069], [45.45317, 10.97986], [45.45398, 10.97838], [45.4552, 10.97602], [45.45613, 10.97398], [45.45663, 10.97222], [45.45753, 10.96488], [45.4584, 10.95873], [45.45854, 10.95595], [45.45899, 10.95312], [45.45996, 10.95078], [45.46021, 10.94792], [45.46024, 10.94592], [45.46048, 10.94356], [45.46088, 10.94254], [45.4614, 10.94173], [45.46242, 10.94082], [45.46302, 10.94059], [45.46358, 10.94031], [45.46494, 10.94066], [45.46605, 10.94167], [45.46669, 10.94308], [45.46796, 10.94656], [45.46856, 10.94733], [45.46913, 10.94784], [45.47021, 10.94862], [45.47145, 10.94913], [45.47253, 10.94941], [45.47355, 10.94952], [45.47449, 10.94922], [45.47511, 10.94847], [45.4755, 10.94743], [45.4756, 10.94638], [45.47566, 10.94437], [45.47578, 10.94252], [45.47578, 10.94201], [45.47593, 10.94038], [45.47671, 10.93772], [45.47735, 10.93664], [45.48041, 10.93104], [45.48108, 10.92977], [45.48147, 10.92889], [45.48166, 10.92815], [45.48171, 10.92755], [45.48172, 10.92725], [45.48162, 10.92647], [45.48102, 10.92498], [45.48061, 10.92437], [45.47947, 10.923], [45.47872, 10.92226], [45.4781, 10.92182], [45.47757, 10.92158], [45.47487, 10.92084], [45.47388, 10.92064], [45.4733, 10.92045], [45.47287, 10.9202], [45.47161, 10.91917], [45.47109, 10.91862], [45.47067, 10.91802], [45.47024, 10.91727], [45.4698, 10.91623], [45.46959, 10.91561], [45.4692, 10.9132], [45.46914, 10.91214], [45.46921, 10.91103], [45.46955, 10.90924], [45.46967, 10.9088], [45.47021, 10.90727], [45.47062, 10.90653], [45.47006, 10.90603], [45.46989, 10.90627], [45.46955, 10.90523], [45.46925, 10.90323], [45.46917, 10.903], [45.46907, 10.90302], [45.46901, 10.90297], [45.46889, 10.90257], [45.46867, 10.90209], [45.46853, 10.90197], [45.468, 10.90174], [45.4681, 10.90121], [45.46801, 10.90065], [45.46759, 10.89962], [45.46751, 10.89953], [45.46696, 10.89823], [45.46644, 10.89681], [45.46563, 10.89379], [45.46592, 10.89365], [45.46551, 10.89198], [45.46534, 10.89076], [45.46524, 10.89045], [45.46506, 10.88949], [45.46437, 10.88767], [45.46332, 10.88545], [45.46285, 10.88435], [45.46236, 10.88279], [45.46179, 10.88071], [45.46154, 10.87876], [45.46151, 10.87751], [45.46089, 10.87736], [45.46092, 10.87688], [45.46086, 10.87685], [45.45923, 10.87743], [45.45851, 10.87809], [45.45763, 10.87873], [45.45703, 10.87954], [45.45595, 10.88078], [45.45474, 10.8789], [45.45399, 10.8777], [45.45391, 10.87752], [45.45382, 10.8775], [45.45359, 10.87807], [45.45266, 10.88004], [45.4518, 10.88144], [45.45182, 10.882], [45.45172, 10.88236], [45.45083, 10.88354], [45.45062, 10.88414], [45.44898, 10.88524], [45.44784, 10.88595], [45.44743, 10.88561], [45.44638, 10.8873], [45.44441, 10.89031], [45.44396, 10.89091], [45.44409, 10.89119], [45.44183, 10.89463], [45.43775, 10.9007], [45.43605, 10.90299], [45.43499, 10.9042], [45.43421, 10.90496], [45.43299, 10.90599], [45.43231, 10.90646], [45.43171, 10.90642], [45.43142, 10.90627], [45.43081, 10.9058], [45.43043, 10.90568], [45.43022, 10.90573], [45.43, 10.90589], [45.42975, 10.90622], [45.4296, 10.90659], [45.42961, 10.90708], [45.42976, 10.90788], [45.4271, 10.9091], [45.42714, 10.90578]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

@@ -874,6 +874,33 @@ def country_codes_covered():
     return ",".join(sorted(codes))
 
 
+_TRANSLATION_CACHE = {}
+
+
+def translated_text(lang, city_key, text):
+    """The Italian (or other) version of one area's reasoning, or "" if it was
+    never translated.
+
+    Read from data_i18n/<lang>/<city>.json, which translate.py wrote once and
+    committed. Keyed by a hash of the English source, so an area whose
+    reasoning was rewritten after the translation run comes back empty rather
+    than returning a translation of text that no longer exists — which is the
+    failure mode worth designing against: a stale translation of a safety
+    claim looks exactly like a current one."""
+    if lang == i18n.DEFAULT_LANG or not text:
+        return ""
+    key = (lang, city_key)
+    if key not in _TRANSLATION_CACHE:
+        path = os.path.join(BASE_DIR, "data_i18n", lang, "%s.json" % city_key)
+        try:
+            with open(path, encoding="utf-8") as f:
+                _TRANSLATION_CACHE[key] = json.load(f)
+        except Exception:
+            _TRANSLATION_CACHE[key] = {}
+    h = hashlib.sha256(text.strip().encode("utf-8")).hexdigest()[:16]
+    return _TRANSLATION_CACHE[key].get(h, "")
+
+
 def city_country_code(city_label):
     """ISO 3166-1 alpha-2 for a city's country, from the flag emoji — the same
     derivation the address geocoder uses, for the same reason: the flag IS the
@@ -1493,14 +1520,12 @@ EVIDENCE_NOTE = (
 # cross-city ranking overstated what the data actually supports. See the
 # methodology page's comparability note for the same caveat spelled out in
 # full.
-def tone_descriptor(tone, city_label):
-    phrase = {
-        "green": "relatively safer than most other neighbourhoods in {city}",
-        "yellow": "roughly average compared to other neighbourhoods in {city}",
-        "red": "an area where the data suggests extra caution relative to other neighbourhoods in {city}",
-        "grey": "not covered by this dataset",
-    }.get(tone, tone)
-    return phrase.format(city=city_label) if "{city}" in phrase else phrase
+def tone_descriptor(tone, city_label, t=None):
+    t = t or i18n.strings(i18n.DEFAULT_LANG)
+    phrase = t.get("desc_" + tone)
+    if not phrase:
+        return tone
+    return phrase % {"city": city_label} if "%(city)s" in phrase else phrase
 
 
 def _faq_jsonld(items):
@@ -1526,7 +1551,7 @@ def _faq_jsonld(items):
 
 
 def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIMENTAL,
-                            crime_source=None, has_time_of_day=True):
+                            crime_source=None, has_time_of_day=True, t=None):
     """FAQ content for a non-London, non-automated neighbourhood page.
 
     tier is one of the CITY_METHODOLOGY constants (OFFICIAL_SNAPSHOT /
@@ -1549,35 +1574,19 @@ def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIME
     If burglary is given (Zurich only), a data-availability question
     surfaces that one real, narrowly-scoped official data point instead of
     just saying "no data exists"."""
+    t = t or i18n.strings(i18n.DEFAULT_LANG)
     name = zone["name"]
     city_label = city_only(city_label)
-    day_desc = tone_descriptor(zone["day"], city_label)
-    night_desc = tone_descriptor(zone["night"], city_label)
+    day_desc = tone_descriptor(zone["day"], city_label, t)
+    night_desc = tone_descriptor(zone["night"], city_label, t)
+    q = lambda key: t[key] % {"name": name}
 
     if tier == OFFICIAL_SNAPSHOT:
-        source_phrase = crime_source or "a real official crime statistic"
-        basis_sentence = (
-            f"This rating is derived from {source_phrase} — an official statistic, not an assessment. "
-            f"High-footfall tourist, "
-            f"transit or shopping areas can read higher on this kind of measure without that meaning "
-            f"elevated risk per visit, since these statistics are normalised against registered residents "
-            f"rather than footfall — see the note on this page and the methodology page for the full "
-            f"caveats."
-        )
+        basis = t["basis_official"] % {"source": crime_source or t["source_generic"]}
     elif tier == RESEARCH_BASED:
-        basis_sentence = (
-            f"This comes from a structured local-source assessment: an area-level review of credible "
-            f"local sources — local and national news, municipal and police-published material, and "
-            f"official surveys where they exist — consolidated across sources rather than taken from a "
-            f"single report. {city_label} publishes no comparable neighbourhood-level crime dataset; "
-            f"where a city does, Wandroz uses it instead."
-        )
+        basis = t["basis_research"] % {"city": city_label}
     else:
-        basis_sentence = (
-            f"This is a limited-data assessment: {city_label} publishes no neighbourhood-level crime "
-            f"dataset and this area has not yet had a full source review, so the rating is indicative "
-            f"and labelled as such rather than presented as evidenced."
-        )
+        basis = t["basis_limited"] % {"city": city_label}
 
     # Where the area-level review reached nothing specific, the rating still
     # stands — every area on a city map carries one — but the answer says what
@@ -1585,84 +1594,42 @@ def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIME
     # green earned by sources, and a visitor is entitled to know which they are
     # reading.
     if zone.get("evidence") == "no_findings":
-        faqs = [
-            {"q": f"Is {name} safe?",
-             "a": (f"Wandroz rates {name} in {city_label} as {day_desc}. That rating rests on an "
-                   f"area-level review that reached no traveller-relevant reporting specific to "
-                   f"{name} — no incidents, no recurring problems, nothing documented either way — "
-                   f"read together with the character of the area. It is not a positive finding of "
-                   f"safety: an absence of reporting is weaker evidence than the sourced ratings "
-                   f"elsewhere on this map, and it is marked as such wherever it appears.")},
-            {"q": f"What was checked for {name}?",
-             "a": (f"The same area-level review every other neighbourhood on the {city_label} map "
-                   f"gets: local and national news, municipal and police-published material, and "
-                   f"official surveys where they exist, searched for this specific area. {name} "
-                   f"returned nothing traveller-relevant, which is common for smaller administrative "
-                   f"areas without a press profile of their own. Where a review does return "
-                   f"something, the sources are named on the area's page.")},
-            {"q": f"Is {name} a good area to stay in as a tourist?",
-             "a": (f"Nothing documented argues against it. For a stay, weigh that against the areas "
-                   f"on the {city_label} map whose ratings are backed by named sources, and check "
-                   f"recent reviews for the specific street. You can search accommodation already "
-                   f"scoped to this area using the Booking.com link on this page.")},
+        return [
+            {"q": q("faq_q_safe"),
+             "a": t["faq_a_nofind_safe"] % {"name": name, "city": city_label, "day": day_desc}},
+            {"q": q("faq_q_checked"),
+             "a": t["faq_a_nofind_checked"] % {"name": name, "city": city_label}},
+            {"q": q("faq_q_tourist"),
+             "a": t["faq_a_nofind_tourist"] % {"city": city_label}},
         ]
-        return faqs
 
     if has_time_of_day:
         # Su 2.330 aree su 2.902 — l'ottanta per cento — giorno e notte hanno lo
         # stesso giudizio, e la frase ripeteva per intero la stessa perifrasi di
-        # quattordici parole due volte: "as an area where the data suggests
-        # extra caution relative to other neighbourhoods in Bath during the day
-        # and an area where the data suggests extra caution relative to other
-        # neighbourhoods in Bath at night". Quarantuno parole per dire una cosa
+        # quattordici parole due volte. Quarantuno parole per dire una cosa
         # sola, ed e' la frase che Google mostra come risposta alla domanda
         # "is X safe?". Quando i due giudizi coincidono lo si dice una volta.
-        if day_desc == night_desc:
-            rating_sentence = (
-                f"Wandroz currently rates {name} in {city_label} as {day_desc}, both by day and "
-                f"after dark. {basis_sentence}"
-            )
-        else:
-            rating_sentence = (
-                f"Wandroz currently rates {name} in {city_label} as {day_desc} during the day and "
-                f"{night_desc} at night. {basis_sentence}"
-            )
-        night_faq = {
-            "q": f"Is {name} safe at night?",
-            "a": (
-                f"At night, {name} is rated as {night_desc}. If you're unsure, it's worth checking recent "
-                f"local reviews for your specific street or block, since a neighbourhood-wide rating can't "
-                f"capture block-by-block variation."
-            ),
-        }
+        key = "faq_a_rating_same" if day_desc == night_desc else "faq_a_rating_diff"
+        rating_sentence = t[key] % {"name": name, "city": city_label,
+                                    "day": day_desc, "night": night_desc, "basis": basis}
+        night_faq = {"q": q("faq_q_night"),
+                     "a": t["faq_a_night"] % {"name": name, "night": night_desc}}
     else:
-        rating_sentence = (
-            f"Wandroz currently rates {name} in {city_label} as {day_desc}. {basis_sentence} The source "
-            f"data has no day/night breakdown, so this single rating applies at any time of day rather "
-            f"than being a distinct night-specific figure."
-        )
-        night_faq = {
-            "q": f"Does {name}'s rating differ between day and night?",
-            "a": (
-                f"No — {name}'s source data has no time-of-day breakdown, so the same rating ({day_desc}) "
-                f"is shown for both day and night rather than Wandroz inventing a separate night figure "
-                f"it doesn't actually have."
-            ),
-        }
+        rating_sentence = t["faq_a_rating_notime"] % {"name": name, "city": city_label,
+                                                      "day": day_desc, "basis": basis}
+        night_faq = {"q": q("faq_q_daynight"),
+                     "a": t["faq_a_daynight"] % {"name": name, "day": day_desc}}
 
     faqs = [
-        {"q": f"Is {name} safe?", "a": rating_sentence},
+        {"q": q("faq_q_safe"), "a": rating_sentence},
         night_faq,
-        {
-            "q": f"Is {name} a good area to stay in as a tourist?",
-            "a": (
-                f"{name}'s day rating ({day_desc}) is the more relevant one for typical daytime tourist "
-                f"activity; check the night rating too if you'll be out late. You can search accommodation "
-                f"already filtered to this specific area using the Booking.com link on this page."
-            ),
-        },
+        {"q": q("faq_q_tourist"),
+         "a": t["faq_a_tourist"] % {"name": name, "day": day_desc}},
     ]
     if burglary:
+        # Zurigo soltanto, e Zurigo oggi esiste solo in inglese: questa
+        # diramazione resta nella lingua di partenza finche' il tedesco non e'
+        # una lingua dichiarata.
         faqs.append({
             "q": f"Is there any official crime data for {name}?",
             "a": (
@@ -1680,36 +1647,15 @@ def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIME
             ),
         })
     elif tier == OFFICIAL_SNAPSHOT:
-        faqs.append({
-            "q": f"Is there official crime data for {name}?",
-            "a": (
-                f"Yes. {name}'s rating is derived from {crime_source or 'a real official crime statistic'}, "
-                f"not an assessment — see the note on this page for the exact "
-                f"figure and the methodology page for full sourcing."
-            ),
-        })
+        faqs.append({"q": q("faq_q_official"),
+                     "a": t["faq_a_official_yes"] % {"name": name,
+                                                     "source": crime_source or t["source_generic"]}})
     elif tier == RESEARCH_BASED:
-        faqs.append({
-            "q": f"Is there official crime data for {name}?",
-            "a": (
-                f"Not an official government crime feed — {name}'s rating comes from Wandroz's own current "
-                f"local/national press and survey research for this specific area instead (see the note on "
-                f"this page for what was checked and the sources used). An absence of recent negative "
-                f"coverage is treated as inconclusive, not as proof the area is safe. If you live in or "
-                f"know {name} well, you can suggest a correction using the link below."
-            ),
-        })
+        faqs.append({"q": q("faq_q_official"),
+                     "a": t["faq_a_official_research"] % {"name": name}})
     else:
-        faqs.append({
-            "q": f"Is there official crime data for {name}?",
-            "a": (
-                f"Not yet at neighbourhood level. Unlike London, this city does not currently publish an "
-                f"open, geolocated crime dataset at this level of detail (checked against the relevant local "
-                f"and national open-data portals — see the methodology page for what was checked). If you "
-                f"live in or know {name} well, you can suggest a correction to its rating using the link "
-                f"below."
-            ),
-        })
+        faqs.append({"q": q("faq_q_official"),
+                     "a": t["faq_a_official_none"] % {"name": name}})
     return faqs
 
 
@@ -2276,45 +2222,71 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
           f"{', +' + ','.join(_langs[1:]) if len(_langs) > 1 else ''})")
 
     neigh_tpl = env.get_template("neighbourhood.html")
-    for z in zones:
-        if flat:
-            out_path = os.path.join(city_dir, f"{z['slug']}.html")
-            z_canonical = f"{SITE_URL}/{url_slug}/{z['slug']}.html"
-        else:
-            zdir = os.path.join(city_dir, z["slug"])
-            os.makedirs(zdir, exist_ok=True)
-            out_path = os.path.join(zdir, "index.html")
-            z_canonical = f"{SITE_URL}/{url_slug}/{z['slug']}/"
-        zone_ctx = dict(z)
-        zone_ctx["evidence_label"] = EVIDENCE_LABEL.get(z.get("evidence", "documented"), "")
-        zone_ctx["evidence_note"] = EVIDENCE_NOTE if z.get("evidence") == "no_findings" else ""
-        zone_ctx["day_label"] = tone_badge.get(z["day"], z["day"])
-        zone_ctx["night_label"] = tone_badge.get(z["night"], z["night"])
-        if extra_zone_data:
-            zone_ctx["burglary"] = extra_zone_data.get(z["name"])
-        faq_items = build_faq_illustrative(
-            zone_ctx, data["label"], burglary=zone_ctx.get("burglary"),
-            tier=tier, crime_source=crime_source, has_time_of_day=show_toggle,
-        )
-        page = neigh_tpl.render(
-            lang="en", city_label=data["label"], tagline=ui["tagline"],
-            nav_home=ui["nav_home"], canonical_url=z_canonical,
-            page_title=ui["neigh_title"].format(name=z["name"], city=data["label"]),
-            page_description=z["text"][:160],
-            zone=zone_ctx, show_toggle=show_toggle,
-            label_day=ui["label_day"], label_night=ui["label_night"],
-            label_detail=ui["label_detail"], label_booking=ui["label_booking"],
-            booking_url=booking_href(z["query"], city_key),
-            label_booking_note=booking_note(ui, _scope_of(z)),
-            data_note=method_note(city_key, data["label"],
-                                  no_findings=(z.get("evidence") == "no_findings")),
-            footer_note=ui["footer_note"], correction_email=CORRECTION_EMAIL,
-            evidence_tag=evidence_line(city_key, len(zones)),
-            faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
-        )
-        with open(out_path, "w") as f:
-            f.write(page)
-        urls.append(z_canonical)
+    # Le pagine delle aree, una volta per lingua. Stessa logica della hub:
+    # l'inglese resta al suo URL, le altre lingue nascono sotto il prefisso, e
+    # hreflang le lega. Il testo lungo arriva dalla cache di traduzione; dove
+    # manca, la pagina mostra l'inglese e lo dice in una riga.
+    for _lang in _langs:
+        _t = i18n.strings(_lang)
+        _is_en = _lang == i18n.DEFAULT_LANG
+        _label = i18n.local_label(_lang, data["label"])
+        _tone = tone_badge if _is_en else {
+            "green": _t["tone_green"], "yellow": _t["tone_yellow"],
+            "red": _t["tone_red"], "grey": _t["tone_grey"],
+        }
+        for z in zones:
+            _rel = f"{url_slug}/{z['slug']}.html" if flat else f"{url_slug}/{z['slug']}/"
+            _base = city_dir if _is_en else os.path.join(OUT_DIR, _lang, url_slug)
+            if flat:
+                os.makedirs(_base, exist_ok=True)
+                out_path = os.path.join(_base, f"{z['slug']}.html")
+            else:
+                zdir = os.path.join(_base, z["slug"])
+                os.makedirs(zdir, exist_ok=True)
+                out_path = os.path.join(zdir, "index.html")
+            z_canonical = SITE_URL + i18n.url_for(_lang, _rel)
+            _z_alts = [(lg, SITE_URL + i18n.url_for(lg, _rel)) for lg in _langs]
+            # Il ragionamento dell'area: tradotto se e' in cache, altrimenti resta
+            # inglese e la pagina lo dichiara invece di far finta.
+            _body_text = translated_text(_lang, city_key, z.get("text") or "") or (z.get("text") or "")
+            _untranslated = (not _is_en) and not translated_text(_lang, city_key, z.get("text") or "")
+            zone_ctx = dict(z)
+            zone_ctx["text"] = _body_text
+            zone_ctx["evidence_label"] = EVIDENCE_LABEL.get(z.get("evidence", "documented"), "")
+            zone_ctx["evidence_note"] = EVIDENCE_NOTE if z.get("evidence") == "no_findings" else ""
+            zone_ctx["day_label"] = _tone.get(z["day"], z["day"])
+            zone_ctx["night_label"] = _tone.get(z["night"], z["night"])
+            if extra_zone_data:
+                zone_ctx["burglary"] = extra_zone_data.get(z["name"])
+            faq_items = build_faq_illustrative(
+                zone_ctx, data["label"], burglary=zone_ctx.get("burglary"),
+                tier=tier, crime_source=crime_source, has_time_of_day=show_toggle, t=_t,
+            )
+            page = neigh_tpl.render(
+                lang=_lang, t=_t, alternates=_z_alts, city_label=_label, tagline=_t["tagline"],
+                nav_home=_t["nav_home"], canonical_url=z_canonical,
+                # Era un "../" relativo. Da /bologna/x.html porta a /, che esiste;
+                # da /it/bologna/x.html porta a /it/, che non esiste. Un link
+                # relativo cambia significato quando la pagina cambia profondita'.
+                city_hub_url=i18n.url_for(_lang, "%s/" % url_slug),
+                page_title=(ui["neigh_title"].format(name=z["name"], city=data["label"])
+                            if _is_en else _t["faq_q_safe"] % {"name": z["name"]} + " | Wandroz"),
+                page_description=_body_text[:160],
+                zone=zone_ctx, show_toggle=show_toggle,
+                label_day=_t["label_day"], label_night=_t["label_night"],
+                label_detail=ui["label_detail"], label_booking=_t["booking_cta"],
+                booking_url=booking_href(z["query"], city_key),
+                label_booking_note=booking_note(ui, _scope_of(z)),
+                data_note=method_note(city_key, data["label"],
+                                      no_findings=(z.get("evidence") == "no_findings")),
+                footer_note=_t["footer_note"], correction_email=CORRECTION_EMAIL,
+                evidence_tag=evidence_line(city_key, len(zones)),
+                faq_items=faq_items, faq_schema=_faq_jsonld(faq_items),
+                untranslated_notice=_t["untranslated_notice"] if _untranslated else "",
+            )
+            with open(out_path, "w") as f:
+                f.write(page)
+            urls.append(z_canonical)
 
     print(f"Wrote {len(zones)} neighbourhood pages under {city_dir}/")
     # La geografia la dice gia' la pagina della citta' ("All 34 neighbourhoods

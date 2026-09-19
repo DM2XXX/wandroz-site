@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Molinetto è una zona sicura? | Wandroz</title>
+<meta name="description" content="Parma residenziale, al di fuori delle aree oggetto di segnalazioni locali e dei nomi indicati nei piani di sicurezza del Comune. L’analisi non ha rilevato nulla">
+<link rel="canonical" href="https://www.wandroz.com/it/parma/molinetto.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/parma/molinetto.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/parma/molinetto.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/parma/molinetto.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/parma/">Parma, Italia</a> &rsaquo; Molinetto</nav>
+<main>
+  <h1 class="page-title">Molinetto &mdash; Parma, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 13 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Parma residenziale, al di fuori delle aree oggetto di segnalazioni locali e dei nomi indicati nei piani di sicurezza del Comune. L’analisi non ha rilevato nulla di specifico per questa zona: non rientra nella “zona rossa” designata, non figura tra i quartieri a cui sono assegnati agenti di quartiere e non è stata individuata nella mappatura della criminalità del 2026. Il contorno tratteggiato indica che si tratta di un’assenza di riscontri piuttosto che di un via libera verificato: le zone tranquille di una città sono anche quelle di cui nessuno parla.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Parma, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Molinetto è una zona sicura?</summary>
+      <p>Wandroz valuta Molinetto a Parma come relativamente più sicura della maggior parte degli altri quartieri di Parma. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Molinetto — nessun episodio, nessun problema ricorrente, niente di documentato né in un senso né nell&#39;altro — letta insieme al carattere della zona. Non è un riscontro positivo di sicurezza: un&#39;assenza di segnalazioni è un&#39;evidenza più debole delle valutazioni con fonti che trovi altrove su questa mappa, ed è indicata come tale ovunque compaia.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Che cosa è stato verificato per Molinetto?</summary>
+      <p>La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Parma: stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Molinetto non è emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative più piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell&#39;area.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Molinetto è una buona zona dove alloggiare da turista?</summary>
+      <p>Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Parma le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Molinetto%2C%20Parma%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta Molinetto a Parma come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Parma. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Molinetto \u2014 nessun episodio, nessun problema ricorrente, niente di documentato n\u00e9 in un senso n\u00e9 nell\u0027altro \u2014 letta insieme al carattere della zona. Non \u00e8 un riscontro positivo di sicurezza: un\u0027assenza di segnalazioni \u00e8 un\u0027evidenza pi\u00f9 debole delle valutazioni con fonti che trovi altrove su questa mappa, ed \u00e8 indicata come tale ovunque compaia."}, "name": "Molinetto \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Parma: stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Molinetto non \u00e8 emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative pi\u00f9 piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell\u0027area."}, "name": "Che cosa \u00e8 stato verificato per Molinetto?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Parma le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Molinetto \u00e8 una buona zona dove alloggiare da turista?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.77581, 10.25888], [44.77477, 10.26427], [44.7741, 10.26742], [44.77402, 10.26758], [44.77402, 10.26777], [44.77365, 10.26945], [44.77361, 10.2697], [44.77371, 10.26993], [44.77363, 10.27003], [44.77297, 10.27334], [44.77291, 10.27339], [44.7702, 10.27353], [44.76968, 10.27341], [44.76958, 10.27334], [44.76896, 10.27257], [44.76667, 10.27995], [44.76699, 10.27992], [44.76691, 10.2805], [44.76747, 10.28069], [44.76742, 10.28086], [44.76726, 10.28083], [44.76715, 10.28129], [44.7676, 10.28147], [44.76666, 10.28693], [44.76626, 10.28597], [44.76561, 10.28415], [44.76538, 10.28366], [44.76493, 10.28294], [44.76429, 10.28233], [44.76358, 10.28173], [44.76294, 10.28129], [44.76153, 10.28067], [44.76142, 10.28057], [44.7609, 10.28101], [44.76132, 10.28177], [44.76164, 10.28347], [44.76182, 10.2851], [44.76171, 10.28623], [44.76238, 10.28752], [44.76303, 10.28836], [44.76346, 10.28863], [44.76441, 10.28995], [44.7658, 10.29086], [44.76677, 10.29116], [44.7675, 10.29148], [44.76795, 10.29116], [44.76863, 10.29101], [44.76968, 10.29156], [44.77047, 10.29231], [44.77082, 10.29372], [44.77111, 10.29471], [44.77164, 10.29562], [44.77162, 10.29669], [44.77177, 10.29745], [44.77189, 10.29851], [44.77209, 10.29913], [44.77256, 10.30033], [44.77282, 10.30134], [44.7738, 10.30216], [44.77424, 10.30269], [44.77453, 10.30297], [44.7751, 10.30369], [44.77589, 10.30438], [44.77651, 10.30528], [44.77663, 10.30535], [44.77722, 10.30551], [44.77794, 10.30614], [44.77833, 10.30671], [44.77814, 10.30759], [44.77803, 10.30831], [44.77774, 10.30914], [44.77762, 10.30995], [44.77905, 10.31083], [44.77986, 10.31102], [44.78062, 10.31111], [44.78153, 10.3117], [44.78241, 10.31261], [44.78346, 10.31415], [44.78446, 10.31533], [44.78505, 10.31586], [44.78633, 10.31676], [44.7867, 10.31692], [44.78831, 10.31822], [44.7889, 10.31854], [44.78975, 10.31878], [44.79024, 10.31906], [44.79075, 10.31929], [44.79113, 10.31971], [44.79164, 10.32066], [44.79349, 10.32331], [44.79465, 10.32328], [44.79453, 10.32217], [44.79457, 10.32189], [44.79462, 10.3218], [44.79469, 10.32146], [44.79492, 10.32071], [44.79461, 10.32073], [44.79463, 10.32034], [44.79486, 10.3198], [44.79506, 10.31824], [44.79532, 10.31758], [44.79525, 10.31709], [44.79543, 10.31694], [44.79558, 10.31666], [44.79583, 10.31664], [44.79597, 10.31728], [44.79606, 10.31727], [44.80051, 10.31338], [44.80051, 10.31331], [44.80007, 10.3123], [44.79989, 10.31164], [44.79987, 10.31168], [44.79806, 10.31156], [44.79815, 10.31092], [44.79799, 10.31042], [44.79761, 10.31042], [44.79793, 10.30849], [44.79862, 10.30868], [44.79925, 10.30868], [44.79826, 10.30557], [44.79826, 10.30442], [44.79691, 10.30442], [44.79696, 10.30318], [44.79745, 10.30313], [44.79761, 10.30353], [44.79794, 10.30359], [44.79811, 10.30274], [44.7978, 10.30237], [44.79717, 10.30225], [44.79714, 10.3026], [44.79666, 10.30254], [44.79677, 10.30193], [44.7967, 10.30052], [44.79692, 10.30013], [44.79699, 10.29986], [44.79701, 10.29944], [44.79692, 10.29864], [44.79676, 10.29841], [44.79633, 10.29809], [44.79595, 10.29663], [44.79599, 10.29629], [44.79118, 10.28956], [44.79033, 10.28817], [44.78968, 10.28689], [44.78917, 10.2857], [44.77802, 10.25723], [44.77614, 10.25711], [44.77581, 10.25888]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

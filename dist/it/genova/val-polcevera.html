@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) è una zona sicura? | Wandroz</title>
+<meta name="description" content="La valle che si estende verso l’interno alle spalle del porto — Rivarolo, Certosa, Bolzaneto, Pontedecimo — e l’area sotto il nuovo Ponte San Giorgio. Certosa e">
+<link rel="canonical" href="https://www.wandroz.com/it/genova/val-polcevera.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/genova/val-polcevera.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/genova/val-polcevera.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/genova/val-polcevera.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/genova/">Genova, Italia</a> &rsaquo; Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera)</nav>
+<main>
+  <h1 class="page-title">Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) &mdash; Genova, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 9 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge yellow">Nella media</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>La valle che si estende verso l’interno alle spalle del porto — Rivarolo, Certosa, Bolzaneto, Pontedecimo — e l’area sotto il nuovo Ponte San Giorgio. Certosa e Pontedecimo sono indicate come aree prioritarie nel piano di sicurezza urbana del Comune per il 2026, mentre Bolzaneto è stata coinvolta nell’operazione congiunta dell’aprile 2026 che ha interessato i quartieri occidentali. Zone residenziali e industriali, senza nulla che attiri visitatori.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Genoa%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Genoa publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) a Genoa come relativamente più sicura della maggior parte degli altri quartieri di Genoa di giorno e nella media rispetto agli altri quartieri di Genoa di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Genoa non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) è sicura di notte?</summary>
+      <p>Di notte Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) è valutata come nella media rispetto agli altri quartieri di Genoa. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) (relativamente più sicura della maggior parte degli altri quartieri di Genoa) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Rivarolo%2C%20Bolzaneto%2C%20Pontedecimo%20%28Val%20Polcevera%29%2C%20Genova%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) a Genoa come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Genoa di giorno e nella media rispetto agli altri quartieri di Genoa di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Genoa non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) \u00e8 valutata come nella media rispetto agli altri quartieri di Genoa. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) (relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Genoa) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Rivarolo, Bolzaneto, Pontedecimo (Val Polcevera)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.4846, 8.92174], [44.48476, 8.92009], [44.48495, 8.91955], [44.485, 8.91899], [44.48519, 8.91867], [44.4852, 8.91849], [44.48488, 8.91732], [44.48489, 8.91628], [44.48494, 8.91614], [44.48509, 8.91604], [44.48524, 8.91575], [44.48512, 8.91548], [44.48475, 8.91494], [44.48462, 8.91455], [44.48464, 8.91346], [44.48451, 8.91284], [44.48471, 8.91234], [44.48497, 8.91214], [44.48502, 8.91206], [44.48513, 8.91159], [44.48527, 8.91136], [44.48558, 8.91103], [44.48578, 8.91044], [44.48588, 8.91032], [44.48572, 8.91002], [44.48535, 8.90955], [44.48538, 8.90904], [44.48557, 8.9086], [44.48558, 8.90812], [44.48568, 8.90722], [44.48563, 8.90707], [44.48545, 8.90681], [44.48539, 8.90655], [44.48503, 8.9062], [44.48492, 8.90606], [44.48486, 8.9059], [44.48507, 8.90582], [44.48517, 8.90583], [44.48553, 8.906], [44.48605, 8.90616], [44.48637, 8.90609], [44.48659, 8.90609], [44.48678, 8.90621], [44.48685, 8.90631], [44.48694, 8.90617], [44.487, 8.90616], [44.48741, 8.90648], [44.48747, 8.90635], [44.48758, 8.9063], [44.48761, 8.90609], [44.4872, 8.90584], [44.48711, 8.90572], [44.4872, 8.90569], [44.48728, 8.9056], [44.48733, 8.90543], [44.48789, 8.90589], [44.48805, 8.90549], [44.48867, 8.90547], [44.48913, 8.90569], [44.48916, 8.90586], [44.48929, 8.90599], [44.48955, 8.90656], [44.48962, 8.90663], [44.49037, 8.90635], [44.4905, 8.90633], [44.49066, 8.90643], [44.49081, 8.90551], [44.49099, 8.90539], [44.49116, 8.9051], [44.49137, 8.90488], [44.49147, 8.90468], [44.49186, 8.90483], [44.49169, 8.90525], [44.49185, 8.9056], [44.49271, 8.90641], [44.49314, 8.90677], [44.49337, 8.90689], [44.49349, 8.90709], [44.49356, 8.90707], [44.49365, 8.90714], [44.49395, 8.90748], [44.49402, 8.90773], [44.49402, 8.90785], [44.49397, 8.90802], [44.49413, 8.90808], [44.49425, 8.90802], [44.49417, 8.90811], [44.49412, 8.90824], [44.49432, 8.90819], [44.49439, 8.90823], [44.49454, 8.90845], [44.49461, 8.90862], [44.49483, 8.90879], [44.49485, 8.90886], [44.49481, 8.90901], [44.49486, 8.90907], [44.49492, 8.90904], [44.495, 8.90927], [44.49519, 8.90917], [44.49543, 8.90922], [44.49556, 8.90914], [44.49566, 8.90899], [44.49595, 8.90885], [44.49582, 8.90854], [44.4963, 8.90831], [44.49661, 8.90838], [44.49728, 8.90832], [44.49743, 8.90842], [44.49748, 8.9086], [44.49761, 8.90853], [44.49785, 8.90859], [44.4979, 8.90846], [44.49801, 8.9084], [44.49786, 8.90818], [44.49784, 8.90787], [44.49764, 8.90762], [44.49766, 8.90753], [44.49786, 8.9074], [44.49786, 8.90732], [44.49776, 8.90726], [44.49748, 8.90723], [44.4973, 8.90711], [44.49709, 8.90679], [44.49673, 8.90655], [44.49675, 8.9064], [44.49706, 8.90636], [44.49716, 8.90618], [44.49749, 8.90621], [44.49761, 8.90602], [44.49763, 8.90589], [44.49771, 8.9059], [44.49775, 8.90516], [44.49792, 8.90504], [44.49816, 8.90469], [44.49861, 8.90476], [44.49842, 8.90548], [44.49865, 8.90548], [44.49905, 8.90575], [44.49912, 8.90593], [44.4994, 8.90614], [44.49969, 8.90685], [44.49972, 8.90699], [44.49951, 8.90773], [44.4994, 8.90789], [44.49943, 8.908], [44.49986, 8.90861], [44.49996, 8.90869], [44.50002, 8.90857], [44.50024, 8.90872], [44.50047, 8.90878], [44.50077, 8.90918], [44.5009, 8.90926], [44.50093, 8.90946], [44.50101, 8.90945], [44.50111, 8.90951], [44.50124, 8.90917], [44.50128, 8.90892], [44.50174, 8.90859], [44.50171, 8.90849], [44.50175, 8.9081], [44.50173, 8.90703], [44.50181, 8.90709], [44.50224, 8.90782], [44.50237, 8.90794], [44.50277, 8.908], [44.50283, 8.90814], [44.5031, 8.90792], [44.50369, 8.90778], [44.50397, 8.908], [44.50393, 8.90814], [44.50405, 8.90822], [44.5041, 8.90809], [44.50504, 8.90883], [44.50494, 8.90911], [44.50491, 8.90943], [44.50512, 8.90954], [44.50539, 8.90982], [44.50538, 8.90994], [44.50565, 8.91024], [44.5059, 8.91061], [44.50592, 8.91079], [44.50601, 8.91079], [44.50606, 8.91069], [44.50622, 8.91063], [44.50643, 8.91069], [44.50677, 8.91088], [44.5068, 8.91098], [44.50698, 8.91106], [44.50697, 8.91136], [44.50724, 8.91214], [44.50764, 8.91284], [44.50823, 8.91336], [44.50853, 8.91342], [44.5088, 8.9133], [44.50958, 8.91272], [44.50992, 8.91271], [44.5114, 8.91376], [44.51211, 8.9144], [44.51231, 8.91354], [44.5122, 8.91343], [44.51236, 8.91302], [44.51239, 8.91289], [44.51236, 8.91277], [44.51242, 8.9125], [44.51221, 8.91213], [44.51231, 8.91173], [44.51261, 8.91155], [44.51285, 8.91122], [44.51325, 8.91129], [44.51366, 8.91084], [44.51356, 8.91074], [44.51361, 8.91023], [44.51372, 8.90973], [44.51372, 8.90856], [44.51384, 8.90863], [44.51394, 8.90859], [44.51423, 8.90831], [44.51437, 8.90806], [44.51457, 8.90739], [44.51472, 8.90718], [44.51476, 8.90697], [44.51468, 8.90614], [44.51482, 8.90601], [44.51489, 8.90579], [44.51479, 8.9055], [44.51472, 8.90541], [44.51503, 8.90418], [44.51538, 8.90367], [44.51547, 8.90334], [44.51584, 8.903], [44.51618, 8.90232], [44.51651, 8.90208], [44.51661, 8.90193], [44.51701, 8.90161], [44.51775, 8.9011], [44.51887, 8.90094], [44.51903, 8.90103], [44.51918, 8.90103], [44.51957, 8.90075], [44.51984, 8.90067], [44.51965, 8.90001], [44.51951, 8.89974], [44.51913, 8.89945], [44.51874, 8.89963], [44.5185, 8.89937], [44.51845, 8.89897], [44.51838, 8.89872], [44.51834, 8.8982], [44.5184, 8.89785], [44.51839, 8.89771], [44.51826, 8.89757], [44.51823, 8.89748], [44.51827, 8.89722], [44.51825, 8.8971], [44.51806, 8.89693], [44.51793, 8.89657], [44.51791, 8.89639], [44.51768, 8.89589], [44.51769, 8.89568], [44.5178, 8.8954], [44.5178, 8.89513], [44.51771, 8.89438], [44.51756, 8.89381], [44.51751, 8.89335], [44.51727, 8.89297], [44.51687, 8.89276], [44.51659, 8.89298], [44.51639, 8.89337], [44.51568, 8.89402], [44.51545, 8.89418], [44.51534, 8.89412], [44.51522, 8.89379], [44.51495, 8.89383], [44.51481, 8.894], [44.5145, 8.89482], [44.5144, 8.89485], [44.51403, 8.89475], [44.51382, 8.8949], [44.51362, 8.89496], [44.5133, 8.89494], [44.51259, 8.89469], [44.51188, 8.89426], [44.51171, 8.89427], [44.51116, 8.89443], [44.51096, 8.89439], [44.51074, 8.89427], [44.51022, 8.89423], [44.5099, 8.89434], [44.50973, 8.89458], [44.50942, 8.89489], [44.50925, 8.89498], [44.50892, 8.89508], [44.50811, 8.89521], [44.50805, 8.89535], [44.50814, 8.89583], [44.5081, 8.89599], [44.50802, 8.89602], [44.50777, 8.89593], [44.50737, 8.89542], [44.50724, 8.89542], [44.50709, 8.89561], [44.5069, 8.8963], [44.50678, 8.89639], [44.50671, 8.89635], [44.50668, 8.89627], [44.50669, 8.89522], [44.50637, 8.89514], [44.50611, 8.89513], [44.50596, 8.89579], [44.50579, 8.89603], [44.50562, 8.89612], [44.50554, 8.89606], [44.50553, 8.89596], [44.50558, 8.89556], [44.50537, 8.89492], [44.50499, 8.89453], [44.50483, 8.89447], [44.50455, 8.8945], [44.50429, 8.89566], [44.50414, 8.89604], [44.50398, 8.89626], [44.5037, 8.89615], [44.50287, 8.89658], [44.50267, 8.89693], [44.50254, 8.89696], [44.50222, 8.8966], [44.50212, 8.89627], [44.50219, 8.8953], [44.50197, 8.89508], [44.50196, 8.89493], [44.5018, 8.89453], [44.5019, 8.89393], [44.50192, 8.8934], [44.50189, 8.8931], [44.50192, 8.89267], [44.50184, 8.89257], [44.5016, 8.89278], [44.5015, 8.89292], [44.5014, 8.89274], [44.50138, 8.89258], [44.50124, 8.89259], [44.5011, 8.89269], [44.50104, 8.89265], [44.50077, 8.89297], [44.50071, 8.89277], [44.50066, 8.89274], [44.50016, 8.89333], [44.49992, 8.89301], [44.49977, 8.89301], [44.49942, 8.89311], [44.49878, 8.89205], [44.49865, 8.89169], [44.49846, 8.8918], [44.49838, 8.8921], [44.49821, 8.89178], [44.49804, 8.89156], [44.49781, 8.89075], [44.49763, 8.89044], [44.49749, 8.89042], [44.49747, 8.89059], [44.4975, 8.89096], [44.49741, 8.89104], [44.49728, 8.89068], [44.49724, 8.89019], [44.49729, 8.88998], [44.49747, 8.88964], [44.49725, 8.88911], [44.4972, 8.88889], [44.49713, 8.88881], [44.4971, 8.88866], [44.49708, 8.88775], [44.49703, 8.88714], [44.49553, 8.88622], [44.49511, 8.88578], [44.49501, 8.88556], [44.49491, 8.88543], [44.49455, 8.88516], [44.49419, 8.88458], [44.49387, 8.88478], [44.49377, 8.88505], [44.49372, 8.88507], [44.49354, 8.885], [44.49341, 8.88508], [44.49309, 8.88504], [44.49285, 8.8851], [44.49277, 8.88525], [44.49275, 8.88544], [44.49264, 8.88568], [44.49256, 8.88573], [44.49229, 8.88568], [44.49215, 8.88573], [44.49202, 8.88586], [44.49183, 8.88616], [44.49117, 8.88638], [44.49084, 8.88667], [44.49059, 8.88683], [44.49048, 8.88681], [44.49022, 8.88653], [44.49009, 8.88651], [44.49003, 8.88656], [44.49, 8.88667], [44.49007, 8.88693], [44.49, 8.88714], [44.48962, 8.88734], [44.48941, 8.8876], [44.48924, 8.8879], [44.48884, 8.88818], [44.48865, 8.88818], [44.48844, 8.88825], [44.48806, 8.88823], [44.4878, 8.8884], [44.48738, 8.88851], [44.48722, 8.88847], [44.4869, 8.88824], [44.48648, 8.88813], [44.48608, 8.88795], [44.48583, 8.88795], [44.48516, 8.88802], [44.48499, 8.88808], [44.4847, 8.8882], [44.48421, 8.88858], [44.48395, 8.88863], [44.48353, 8.88854], [44.48331, 8.88845], [44.4831, 8.88829], [44.48303, 8.88811], [44.48298, 8.88759], [44.48294, 8.88749], [44.48278, 8.88746], [44.48244, 8.88771], [44.48239, 8.88781], [44.48203, 8.88815], [44.48174, 8.88825], [44.4814, 8.88821], [44.48114, 8.88848], [44.48108, 8.88864], [44.48108, 8.88901], [44.48101, 8.88923], [44.48091, 8.88936], [44.48083, 8.88936], [44.48071, 8.88932], [44.48057, 8.88918], [44.48009, 8.8882], [44.47987, 8.88758], [44.47983, 8.88754], [44.47967, 8.88756], [44.47944, 8.88775], [44.47931, 8.88792], [44.47922, 8.88796], [44.47903, 8.88794], [44.47877, 8.88787], [44.47843, 8.88735], [44.47836, 8.88729], [44.47827, 8.88728], [44.47812, 8.88734], [44.47805, 8.88751], [44.47773, 8.8877], [44.47698, 8.8876], [44.47668, 8.8876], [44.47617, 8.88809], [44.47599, 8.88819], [44.4755, 8.88829], [44.47524, 8.88824], [44.47457, 8.8884], [44.47448, 8.88859], [44.47442, 8.88884], [44.47441, 8.88916], [44.47457, 8.88961], [44.47491, 8.89017], [44.4749, 8.89043], [44.475, 8.89068], [44.47502, 8.89087], [44.475, 8.89099], [44.47488, 8.89123], [44.47472, 8.89079], [44.47443, 8.89052], [44.47377, 8.89032], [44.47338, 8.88967], [44.47295, 8.88883], [44.47263, 8.88848], [44.47254, 8.88808], [44.47264, 8.88716], [44.47264, 8.88635], [44.47256, 8.88598], [44.47252, 8.88535], [44.47254, 8.88517], [44.47269, 8.88487], [44.47275, 8.88454], [44.47285, 8.88448], [44.47297, 8.88451], [44.47308, 8.88448], [44.47335, 8.88425], [44.47344, 8.88399], [44.47343, 8.88343], [44.47352, 8.88315], [44.47359, 8.88305], [44.47367, 8.88302], [44.47405, 8.883], [44.47412, 8.88288], [44.47409, 8.88257], [44.47411, 8.88248], [44.47427, 8.88207], [44.47443, 8.88182], [44.47448, 8.88159], [44.47442, 8.88119], [44.47425, 8.88061], [44.47422, 8.88041], [44.47425, 8.88027], [44.47438, 8.8802], [44.47474, 8.88027], [44.4749, 8.8802], [44.4749, 8.87997], [44.47479, 8.87961], [44.47485, 8.87914], [44.47482, 8.87903], [44.47457, 8.87866], [44.47451, 8.87851], [44.47453, 8.87835], [44.47465, 8.87805], [44.47485, 8.87777], [44.47495, 8.87752], [44.47498, 8.87697], [44.47503, 8.87667], [44.47551, 8.87605], [44.47556, 8.87591], [44.47559, 8.87558], [44.47556, 8.87536], [44.47559, 8.87527], [44.47576, 8.87505], [44.47583, 8.87485], [44.47595, 8.87424], [44.47604, 8.87397], [44.47603, 8.87375], [44.47583, 8.87311], [44.47583, 8.87288], [44.47589, 8.87251], [44.47587, 8.87231], [44.47627, 8.8713], [44.47628, 8.87099], [44.47636, 8.87057], [44.47641, 8.86989], [44.47649, 8.86965], [44.47649, 8.86953], [44.47636, 8.86945], [44.47631, 8.86934], [44.4763, 8.86915], [44.47647, 8.86855], [44.47656, 8.86835], [44.47693, 8.8678], [44.47698, 8.86767], [44.47702, 8.86716], [44.47684, 8.86672], [44.4768, 8.86639], [44.47683, 8.86618], [44.47698, 8.86587], [44.47711, 8.86567], [44.4773, 8.8655], [44.47758, 8.86501], [44.47761, 8.8646], [44.47776, 8.8642], [44.47773, 8.86369], [44.47769, 8.8636], [44.47762, 8.86355], [44.47734, 8.86357], [44.47725, 8.86351], [44.47709, 8.86329], [44.47705, 8.86312], [44.47706, 8.86293], [44.47715, 8.86253], [44.47707, 8.86227], [44.47675, 8.86182], [44.47665, 8.8614], [44.47663, 8.86082], [44.47667, 8.86029], [44.47646, 8.8599], [44.47635, 8.85981], [44.4762, 8.8598], [44.47612, 8.85974], [44.47606, 8.85948], [44.47585, 8.85899], [44.47569, 8.85867], [44.47552, 8.85846], [44.47532, 8.85791], [44.4751, 8.85755], [44.47502, 8.85752], [44.47478, 8.85759], [44.47437, 8.85739], [44.47406, 8.8574], [44.47376, 8.85749], [44.47348, 8.85733], [44.47335, 8.85732], [44.47328, 8.85726], [44.47309, 8.85725], [44.47303, 8.857], [44.47269, 8.85689], [44.47255, 8.85703], [44.47222, 8.8571], [44.47212, 8.8572], [44.47208, 8.85744], [44.47208, 8.85803], [44.47201, 8.85858], [44.47191, 8.85892], [44.47176, 8.85902], [44.47152, 8.85943], [44.47106, 8.85997], [44.47067, 8.8603], [44.47049, 8.86035], [44.46995, 8.86013], [44.46978, 8.86013], [44.46947, 8.86028], [44.46869, 8.86087], [44.46837, 8.86104], [44.46763, 8.86101], [44.46724, 8.86155], [44.46691, 8.86188], [44.46625, 8.86227], [44.46502, 8.86276], [44.46378, 8.86263], [44.4631, 8.86325], [44.462, 8.86313], [44.46113, 8.86288], [44.46016, 8.86297], [44.45813, 8.86381], [44.45792, 8.86396], [44.45794, 8.86407], [44.45821, 8.86421], [44.45723, 8.86475], [44.45631, 8.86554], [44.45598, 8.86562], [44.45556, 8.86555], [44.45496, 8.86531], [44.45484, 8.86532], [44.45463, 8.86547], [44.45389, 8.86565], [44.45359, 8.86578], [44.45308, 8.86619], [44.45265, 8.86647], [44.45216, 8.86656], [44.45131, 8.86638], [44.45093, 8.86615], [44.45003, 8.86524], [44.44945, 8.86427], [44.44914, 8.86393], [44.44872, 8.86384], [44.4481, 8.86409], [44.44751, 8.86461], [44.44673, 8.8655], [44.44483, 8.86736], [44.44359, 8.8688], [44.44286, 8.8698], [44.44224, 8.87041], [44.4417, 8.87086], [44.44088, 8.87214], [44.44044, 8.87328], [44.44032, 8.87382], [44.44013, 8.87417], [44.43982, 8.87425], [44.43949, 8.87472], [44.43859, 8.87448], [44.43829, 8.87419], [44.43785, 8.87446], [44.43753, 8.87455], [44.43755, 8.8746], [44.43746, 8.87475], [44.43751, 8.87545], [44.43748, 8.87564], [44.43736, 8.87599], [44.43708, 8.87577], [44.43678, 8.87539], [44.43623, 8.87504], [44.43571, 8.87456], [44.43561, 8.87453], [44.4351, 8.87461], [44.43443, 8.87442], [44.43421, 8.87441], [44.43402, 8.87451], [44.43353, 8.87489], [44.43355, 8.87667], [44.43376, 8.87712], [44.43407, 8.87763], [44.43431, 8.87866], [44.43447, 8.87978], [44.43458, 8.88008], [44.43477, 8.88036], [44.43516, 8.8806], [44.43517, 8.88095], [44.4353, 8.88182], [44.43541, 8.88213], [44.43568, 8.88245], [44.4353, 8.88494], [44.43502, 8.88557], [44.43506, 8.88573], [44.43496, 8.88615], [44.43535, 8.88654], [44.436, 8.88687], [44.43539, 8.88817], [44.43485, 8.88948], [44.43464, 8.88991], [44.43119, 8.89004], [44.43045, 8.89001], [44.42961, 8.88983], [44.42913, 8.88966], [44.42732, 8.88864], [44.42707, 8.88965], [44.42631, 8.89171], [44.42513, 8.89088], [44.42436, 8.89265], [44.42446, 8.89321], [44.42456, 8.89345], [44.42477, 8.8937], [44.4245, 8.89391], [44.4243, 8.89443], [44.42403, 8.89446], [44.42483, 8.89695], [44.42544, 8.89636], [44.42592, 8.89666], [44.42621, 8.89701], [44.42662, 8.89802], [44.4273, 8.89892], [44.42721, 8.90108], [44.42776, 8.90428], [44.42857, 8.90532], [44.42902, 8.90603], [44.42954, 8.90782], [44.42952, 8.90987], [44.42989, 8.91103], [44.43028, 8.91151], [44.43066, 8.91173], [44.43107, 8.91223], [44.4315, 8.91294], [44.43192, 8.91337], [44.43223, 8.91356], [44.43231, 8.91358], [44.43242, 8.91352], [44.4325, 8.91353], [44.43264, 8.91366], [44.43281, 8.91365], [44.43321, 8.91408], [44.43322, 8.91416], [44.43369, 8.91451], [44.43379, 8.91454], [44.43399, 8.91474], [44.43414, 8.91478], [44.43435, 8.91495], [44.435, 8.91618], [44.43563, 8.91714], [44.43572, 8.91732], [44.43586, 8.91777], [44.43627, 8.91841], [44.43652, 8.91893], [44.43716, 8.91969], [44.43759, 8.9207], [44.43779, 8.92158], [44.43804, 8.92224], [44.43835, 8.9233], [44.4386, 8.92372], [44.43965, 8.92518], [44.43985, 8.92738], [44.43994, 8.92737], [44.44007, 8.92777], [44.44013, 8.92813], [44.44004, 8.9282], [44.44047, 8.92945], [44.44056, 8.92938], [44.44152, 8.93115], [44.44222, 8.93188], [44.44232, 8.93214], [44.44264, 8.93264], [44.44298, 8.93288], [44.44314, 8.93305], [44.44332, 8.93326], [44.44347, 8.9336], [44.44361, 8.93377], [44.44374, 8.93392], [44.44402, 8.93411], [44.44428, 8.93445], [44.44472, 8.93489], [44.44479, 8.93528], [44.44491, 8.93568], [44.44504, 8.93579], [44.44525, 8.93611], [44.4454, 8.93644], [44.4457, 8.93683], [44.44608, 8.93709], [44.44651, 8.93707], [44.44694, 8.93689], [44.44714, 8.93717], [44.44745, 8.93785], [44.44759, 8.93803], [44.44802, 8.93826], [44.44846, 8.93846], [44.44905, 8.93848], [44.4493, 8.93838], [44.44941, 8.9384], [44.44956, 8.93847], [44.45002, 8.93891], [44.45023, 8.93906], [44.45081, 8.93915], [44.45147, 8.93946], [44.4524, 8.93944], [44.45294, 8.93936], [44.4531, 8.93938], [44.45345, 8.93957], [44.45364, 8.93889], [44.45405, 8.93859], [44.45447, 8.93813], [44.45498, 8.93787], [44.45548, 8.93752], [44.45565, 8.93746], [44.45618, 8.93679], [44.45655, 8.93645], [44.45676, 8.93632], [44.45735, 8.93648], [44.45755, 8.93666], [44.4577, 8.93668], [44.45826, 8.93712], [44.45849, 8.93721], [44.45893, 8.93756], [44.4591, 8.93761], [44.45921, 8.9375], [44.45971, 8.93746], [44.4596, 8.93662], [44.45954, 8.93556], [44.45991, 8.93463], [44.45991, 8.9342], [44.45999, 8.93383], [44.46033, 8.93291], [44.46047, 8.9326], [44.46063, 8.93235], [44.46086, 8.9321], [44.46128, 8.93181], [44.46162, 8.93138], [44.46206, 8.93129], [44.46261, 8.93161], [44.46284, 8.93149], [44.46306, 8.93126], [44.46318, 8.93109], [44.46309, 8.93021], [44.46324, 8.92978], [44.46332, 8.92937], [44.4633, 8.92905], [44.46338, 8.92871], [44.46371, 8.92894], [44.46395, 8.92903], [44.46406, 8.929], [44.46411, 8.92911], [44.46453, 8.92938], [44.46471, 8.93], [44.46491, 8.93018], [44.46513, 8.93058], [44.4653, 8.93058], [44.46539, 8.93081], [44.46545, 8.93082], [44.46562, 8.93103], [44.46597, 8.93096], [44.46617, 8.93151], [44.46626, 8.93167], [44.46619, 8.93179], [44.46603, 8.93188], [44.46601, 8.93217], [44.46602, 8.9326], [44.46607, 8.93295], [44.46603, 8.93352], [44.46611, 8.93366], [44.46615, 8.93407], [44.4662, 8.93425], [44.46634, 8.93437], [44.46641, 8.934], [44.46662, 8.9334], [44.46675, 8.93323], [44.46728, 8.93283], [44.46742, 8.93342], [44.46748, 8.93352], [44.4675, 8.93366], [44.46774, 8.93432], [44.46782, 8.93438], [44.46804, 8.93437], [44.46828, 8.93444], [44.46828, 8.93465], [44.4682, 8.93491], [44.46834, 8.93518], [44.46879, 8.93518], [44.46907, 8.93527], [44.46924, 8.93518], [44.46957, 8.93512], [44.47001, 8.9351], [44.46998, 8.93408], [44.47005, 8.93361], [44.47034, 8.93314], [44.47056, 8.93295], [44.47036, 8.93276], [44.4701, 8.93266], [44.47006, 8.93258], [44.47003, 8.93231], [44.4702, 8.93224], [44.47034, 8.93212], [44.47063, 8.93175], [44.47073, 8.93159], [44.47101, 8.93088], [44.47108, 8.9308], [44.47133, 8.93088], [44.47144, 8.93084], [44.4717, 8.93065], [44.47182, 8.93046], [44.47184, 8.93027], [44.47199, 8.93011], [44.47213, 8.93005], [44.47235, 8.92978], [44.47271, 8.92961], [44.47315, 8.92958], [44.47328, 8.92949], [44.47353, 8.9291], [44.4734, 8.92892], [44.47327, 8.92865], [44.47326, 8.92853], [44.47332, 8.92842], [44.47334, 8.92822], [44.47346, 8.92805], [44.47322, 8.9279], [44.47301, 8.92788], [44.47251, 8.9286], [44.47243, 8.92865], [44.47217, 8.9286], [44.47213, 8.92829], [44.47222, 8.92769], [44.47239, 8.92716], [44.473, 8.92719], [44.47326, 8.92711], [44.47351, 8.92689], [44.47366, 8.92668], [44.47403, 8.92648], [44.47412, 8.92608], [44.47411, 8.92595], [44.47421, 8.92584], [44.47429, 8.92564], [44.47448, 8.92534], [44.4747, 8.92516], [44.47477, 8.92501], [44.47485, 8.92494], [44.47491, 8.92499], [44.47514, 8.92494], [44.47548, 8.92505], [44.47551, 8.92434], [44.47567, 8.92422], [44.47581, 8.92419], [44.47628, 8.92453], [44.47672, 8.92452], [44.47675, 8.92422], [44.47702, 8.923], [44.47712, 8.92205], [44.47721, 8.9215], [44.47718, 8.92092], [44.47661, 8.91969], [44.47613, 8.91778], [44.4761, 8.91738], [44.47613, 8.917], [44.47623, 8.91668], [44.47648, 8.91693], [44.47697, 8.91719], [44.47782, 8.91774], [44.47789, 8.91789], [44.47794, 8.9182], [44.4783, 8.91862], [44.47869, 8.91867], [44.47953, 8.9194], [44.48128, 8.92066], [44.48186, 8.92139], [44.48315, 8.92168], [44.48394, 8.92166], [44.4846, 8.92174]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

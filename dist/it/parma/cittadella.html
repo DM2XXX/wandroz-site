@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cittadella è una zona sicura? | Wandroz</title>
+<meta name="description" content="Parma residenziale, al di fuori delle aree oggetto di segnalazioni locali e dei nomi indicati nei piani di sicurezza del Comune. L’analisi non ha rilevato nulla">
+<link rel="canonical" href="https://www.wandroz.com/it/parma/cittadella.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/parma/cittadella.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/parma/cittadella.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/parma/cittadella.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/parma/">Parma, Italia</a> &rsaquo; Cittadella</nav>
+<main>
+  <h1 class="page-title">Cittadella &mdash; Parma, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 13 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Parma residenziale, al di fuori delle aree oggetto di segnalazioni locali e dei nomi indicati nei piani di sicurezza del Comune. L’analisi non ha rilevato nulla di specifico per questa zona: non rientra nella “zona rossa” designata, non figura tra i quartieri a cui sono assegnati agenti di quartiere e non è stata individuata nella mappatura della criminalità del 2026. Il contorno tratteggiato indica che si tratta di un’assenza di riscontri piuttosto che di un via libera verificato: le zone tranquille di una città sono anche quelle di cui nessuno parla.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Parma%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Parma, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Cittadella è una zona sicura?</summary>
+      <p>Wandroz valuta Cittadella a Parma come relativamente più sicura della maggior parte degli altri quartieri di Parma. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Cittadella — nessun episodio, nessun problema ricorrente, niente di documentato né in un senso né nell&#39;altro — letta insieme al carattere della zona. Non è un riscontro positivo di sicurezza: un&#39;assenza di segnalazioni è un&#39;evidenza più debole delle valutazioni con fonti che trovi altrove su questa mappa, ed è indicata come tale ovunque compaia.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Che cosa è stato verificato per Cittadella?</summary>
+      <p>La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Parma: stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Cittadella non è emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative più piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell&#39;area.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Cittadella è una buona zona dove alloggiare da turista?</summary>
+      <p>Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Parma le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Cittadella%2C%20Parma%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta Cittadella a Parma come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Parma. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di Cittadella \u2014 nessun episodio, nessun problema ricorrente, niente di documentato n\u00e9 in un senso n\u00e9 nell\u0027altro \u2014 letta insieme al carattere della zona. Non \u00e8 un riscontro positivo di sicurezza: un\u0027assenza di segnalazioni \u00e8 un\u0027evidenza pi\u00f9 debole delle valutazioni con fonti che trovi altrove su questa mappa, ed \u00e8 indicata come tale ovunque compaia."}, "name": "Cittadella \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Parma: stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per Cittadella non \u00e8 emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative pi\u00f9 piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell\u0027area."}, "name": "Che cosa \u00e8 stato verificato per Cittadella?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Parma le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Cittadella \u00e8 una buona zona dove alloggiare da turista?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.79183, 10.3425], [44.78936, 10.34137], [44.78917, 10.3413], [44.78913, 10.34133], [44.78897, 10.34119], [44.78725, 10.34046], [44.78702, 10.34022], [44.78697, 10.34069], [44.78578, 10.34121], [44.78554, 10.34112], [44.78517, 10.34131], [44.7852, 10.34141], [44.78506, 10.34215], [44.78457, 10.34197], [44.78446, 10.34248], [44.78388, 10.3426], [44.78361, 10.34289], [44.78222, 10.3435], [44.78079, 10.34431], [44.78082, 10.34487], [44.78056, 10.34508], [44.78054, 10.34551], [44.77868, 10.34544], [44.77759, 10.34591], [44.77701, 10.3463], [44.77654, 10.34772], [44.77444, 10.3478], [44.77242, 10.34858], [44.77243, 10.34946], [44.77115, 10.34976], [44.77085, 10.34942], [44.77057, 10.34958], [44.77011, 10.34998], [44.77011, 10.35057], [44.76939, 10.35052], [44.76935, 10.3512], [44.76847, 10.35109], [44.76511, 10.35283], [44.76488, 10.35373], [44.763, 10.35482], [44.76163, 10.36114], [44.76114, 10.36084], [44.75886, 10.36979], [44.75745, 10.37203], [44.75563, 10.37076], [44.75539, 10.37145], [44.75364, 10.37041], [44.75305, 10.37381], [44.7491, 10.37247], [44.74845, 10.37377], [44.74803, 10.37541], [44.7518, 10.37621], [44.74932, 10.39473], [44.74736, 10.39351], [44.74663, 10.3921], [44.74321, 10.39099], [44.74219, 10.39761], [44.74204, 10.39753], [44.74181, 10.39717], [44.74165, 10.39707], [44.74168, 10.39696], [44.74143, 10.3965], [44.74276, 10.38787], [44.74266, 10.38794], [44.74234, 10.38773], [44.7421, 10.38743], [44.74171, 10.38742], [44.74109, 10.38723], [44.74077, 10.38676], [44.74051, 10.38666], [44.73994, 10.38681], [44.7396, 10.38684], [44.73818, 10.38657], [44.73778, 10.38641], [44.73682, 10.38562], [44.73651, 10.38552], [44.73611, 10.3853], [44.73556, 10.3849], [44.7347, 10.3846], [44.73417, 10.38427], [44.73362, 10.384], [44.73338, 10.3838], [44.7331, 10.38345], [44.73278, 10.38317], [44.73253, 10.38299], [44.73198, 10.38287], [44.73176, 10.38259], [44.73151, 10.38244], [44.73117, 10.38231], [44.73067, 10.38178], [44.73016, 10.38162], [44.72943, 10.38119], [44.72882, 10.38072], [44.72866, 10.38066], [44.7284, 10.38048], [44.72799, 10.38014], [44.72529, 10.37862], [44.7245, 10.3781], [44.72367, 10.37792], [44.7233, 10.378], [44.72263, 10.37833], [44.72205, 10.37815], [44.72127, 10.37756], [44.72052, 10.37721], [44.72005, 10.37647], [44.71949, 10.37618], [44.71944, 10.37605], [44.71908, 10.37615], [44.71869, 10.37739], [44.71751, 10.37736], [44.71709, 10.37726], [44.71691, 10.37712], [44.71655, 10.3773], [44.71629, 10.37721], [44.716, 10.37723], [44.71163, 10.37661], [44.71161, 10.37647], [44.71173, 10.37542], [44.71144, 10.37363], [44.70812, 10.37352], [44.70496, 10.37351], [44.70404, 10.37344], [44.70549, 10.36709], [44.70565, 10.36504], [44.70574, 10.36439], [44.70594, 10.36336], [44.70599, 10.36317], [44.7061, 10.36304], [44.70647, 10.36283], [44.7066, 10.36266], [44.70678, 10.3623], [44.70711, 10.36131], [44.70733, 10.35945], [44.70739, 10.35925], [44.70749, 10.35912], [44.70777, 10.35889], [44.70847, 10.35811], [44.70866, 10.35798], [44.70906, 10.35789], [44.7103, 10.35716], [44.71075, 10.35697], [44.71092, 10.35683], [44.71163, 10.35583], [44.71174, 10.35524], [44.71173, 10.35513], [44.71283, 10.35451], [44.71316, 10.35437], [44.71345, 10.35436], [44.71414, 10.35447], [44.71459, 10.35313], [44.71499, 10.35208], [44.71551, 10.35085], [44.71571, 10.35028], [44.71946, 10.33907], [44.71995, 10.33897], [44.72097, 10.34019], [44.72536, 10.34019], [44.72719, 10.34001], [44.72816, 10.33933], [44.72978, 10.33931], [44.7306, 10.3395], [44.73121, 10.34001], [44.73255, 10.34036], [44.73377, 10.34087], [44.73438, 10.34139], [44.73626, 10.34284], [44.73708, 10.34356], [44.73957, 10.34455], [44.74158, 10.34396], [44.74362, 10.34556], [44.74457, 10.34582], [44.74623, 10.34518], [44.74709, 10.34544], [44.74796, 10.34523], [44.74869, 10.34404], [44.75184, 10.34149], [44.75218, 10.34019], [44.75365, 10.33915], [44.75412, 10.3385], [44.75465, 10.33666], [44.75606, 10.33481], [44.75753, 10.33399], [44.75804, 10.33392], [44.75841, 10.33395], [44.75898, 10.33416], [44.75924, 10.33414], [44.75957, 10.33407], [44.76027, 10.33377], [44.76072, 10.3337], [44.76134, 10.33386], [44.76189, 10.33416], [44.76208, 10.33421], [44.76231, 10.33421], [44.76263, 10.33414], [44.76288, 10.33401], [44.7648, 10.33245], [44.76635, 10.33079], [44.76673, 10.33058], [44.76741, 10.33054], [44.76765, 10.33041], [44.76803, 10.33011], [44.76815, 10.32992], [44.76848, 10.32879], [44.76896, 10.32759], [44.76908, 10.32737], [44.76949, 10.32686], [44.76971, 10.32667], [44.76991, 10.32656], [44.77018, 10.32643], [44.77043, 10.32637], [44.77057, 10.32635], [44.77135, 10.32646], [44.7716, 10.32637], [44.7719, 10.32606], [44.77238, 10.32529], [44.77264, 10.32512], [44.77294, 10.32504], [44.77327, 10.32504], [44.77414, 10.32525], [44.77437, 10.32524], [44.77517, 10.32481], [44.77554, 10.32475], [44.77582, 10.32483], [44.77628, 10.32508], [44.77658, 10.32539], [44.77673, 10.32547], [44.77782, 10.32569], [44.77808, 10.3257], [44.77876, 10.32559], [44.77901, 10.3256], [44.77939, 10.32569], [44.77983, 10.32568], [44.78009, 10.32552], [44.78075, 10.32559], [44.78123, 10.32578], [44.7816, 10.32602], [44.78184, 10.3261], [44.78234, 10.32616], [44.78314, 10.32662], [44.78363, 10.32679], [44.78383, 10.32667], [44.78426, 10.32673], [44.78473, 10.32644], [44.78504, 10.32633], [44.78549, 10.3259], [44.78622, 10.32552], [44.78649, 10.32525], [44.78742, 10.32499], [44.78786, 10.32498], [44.78826, 10.32487], [44.78876, 10.32489], [44.78886, 10.32485], [44.79067, 10.32363], [44.79134, 10.32331], [44.79183, 10.32313], [44.7921, 10.32306], [44.79244, 10.32306], [44.79338, 10.32334], [44.79465, 10.32328], [44.79523, 10.32836], [44.79594, 10.33536], [44.79602, 10.33536], [44.79613, 10.33545], [44.79621, 10.33589], [44.79616, 10.33609], [44.79602, 10.33618], [44.79621, 10.33748], [44.7968, 10.34302], [44.79688, 10.34484], [44.79672, 10.34471], [44.79183, 10.3425]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

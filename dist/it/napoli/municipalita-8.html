@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) è una zona sicura? | Wandroz</title>
+<meta name="description" content="Scampia è nota a livello internazionale, grazie al film “Gomorra”, come roccaforte della criminalità organizzata ed è annoverata tra le cinque zone più colpite ">
+<link rel="canonical" href="https://www.wandroz.com/it/napoli/municipalita-8.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/napoli/municipalita-8.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/napoli/municipalita-8.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/napoli/municipalita-8.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/napoli/">Napoli, Italia</a> &rsaquo; Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8)</nav>
+<main>
+  <h1 class="page-title">Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) &mdash; Napoli, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 10 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Nella media</span> <span class="badge-label">giorno</span>
+    <span class="badge red">Consigliata maggiore prudenza</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Scampia è nota a livello internazionale, grazie al film “Gomorra”, come roccaforte della criminalità organizzata ed è annoverata tra le cinque zone più colpite dalle 92 “stese” registrate in tutta Napoli nel 2024. La demolizione dell’ultima delle famigerate torri delle «Vele di Scampia» è stata completata nel febbraio 2025, con il sindaco Gaetano Manfredi che ha dichiarato pubblicamente: «Non è più Gomorra» (non è più Gomorra) — una pietra miliare autentica e significativa, accompagnata dallo stesso piano di riqualificazione del 2025 sostenuto dal governo che riguarda Secondigliano. Tale affermazione rappresenta un&#39;aspirazione per il futuro della zona, non ancora un cambiamento confermato nell’attuale andamento della criminalità; pertanto, la valutazione notturna rimane rossa in attesa di prove che dimostrino che il miglioramento si sia effettivamente consolidato. Fonti consultate: Napolitan.it, 13 aprile 2025 (92 «stese» nel 2024, con indicazione delle zone); TGCOM24, febbraio 2025 (demolizione delle Vele di Scampia completata, dichiarazione del sindaco Manfredi); RecoverWeb.it (demolizione e riqualificazione delle Vele di Scampia).</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Naples%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Naples publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) a Naples come nella media rispetto agli altri quartieri di Naples di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Naples non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) è sicura di notte?</summary>
+      <p>Di notte Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) è valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) (nella media rispetto agli altri quartieri di Naples) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8)?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Piscinola, Scampia, Marianella, Chiaiano (Municipalità 8) o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Piscinola%2C%20Scampia%2C%20Marianella%2C%20Chiaiano%20%28Municipalit%C3%A0%208%29%2C%20Napoli%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8) a Naples come nella media rispetto agli altri quartieri di Naples di giorno e una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Naples non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8) \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8) \u00e8 valutata come una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di Naples. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8) \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8) (nella media rispetto agli altri quartieri di Naples) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8) \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8) viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8) o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Piscinola, Scampia, Marianella, Chiaiano (Municipalit\u00e0 8)?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[40.87883, 14.1851], [40.87747, 14.18518], [40.87726, 14.18528], [40.87688, 14.18558], [40.87643, 14.18563], [40.87614, 14.18574], [40.87505, 14.1866], [40.87378, 14.18687], [40.87182, 14.18749], [40.87113, 14.18796], [40.87067, 14.18844], [40.8706, 14.18786], [40.8706, 14.18691], [40.86978, 14.18688], [40.86944, 14.18683], [40.86922, 14.18665], [40.86886, 14.18648], [40.8687, 14.18646], [40.86796, 14.18678], [40.86753, 14.18724], [40.8673, 14.18742], [40.86677, 14.18763], [40.8667, 14.18771], [40.86642, 14.18733], [40.86614, 14.18765], [40.86591, 14.18819], [40.8658, 14.18827], [40.86568, 14.18828], [40.86556, 14.18815], [40.8655, 14.18769], [40.865, 14.18774], [40.86495, 14.18799], [40.86476, 14.18818], [40.8647, 14.18846], [40.86525, 14.18859], [40.86531, 14.18964], [40.86476, 14.18993], [40.86452, 14.19026], [40.86421, 14.19042], [40.86416, 14.19056], [40.86417, 14.19066], [40.8644, 14.19081], [40.86374, 14.19167], [40.86358, 14.19211], [40.86357, 14.19235], [40.8636, 14.19251], [40.86392, 14.19316], [40.86399, 14.19338], [40.86405, 14.19417], [40.86421, 14.19513], [40.86416, 14.1962], [40.86416, 14.19698], [40.86393, 14.19823], [40.86382, 14.19862], [40.86298, 14.20041], [40.86285, 14.20156], [40.86324, 14.20279], [40.86332, 14.20328], [40.8633, 14.20347], [40.86303, 14.20437], [40.863, 14.20469], [40.86301, 14.20595], [40.86321, 14.2068], [40.86325, 14.20724], [40.86321, 14.21029], [40.86318, 14.21057], [40.86285, 14.212], [40.86282, 14.21285], [40.86287, 14.21318], [40.86318, 14.21399], [40.86372, 14.21481], [40.86369, 14.21549], [40.86384, 14.21699], [40.86403, 14.21759], [40.86412, 14.21802], [40.86395, 14.21931], [40.86434, 14.22075], [40.86441, 14.22096], [40.86473, 14.22153], [40.86713, 14.22242], [40.8684, 14.22282], [40.86852, 14.22282], [40.86834, 14.22243], [40.86833, 14.22173], [40.86846, 14.22075], [40.86868, 14.22038], [40.86931, 14.22012], [40.86981, 14.22084], [40.87032, 14.22141], [40.87051, 14.22202], [40.87073, 14.22196], [40.87143, 14.22163], [40.87167, 14.22164], [40.87167, 14.22176], [40.87179, 14.22187], [40.87226, 14.22209], [40.87283, 14.22181], [40.87324, 14.22198], [40.87333, 14.22227], [40.87335, 14.22265], [40.87335, 14.22304], [40.87324, 14.22442], [40.87336, 14.22465], [40.87377, 14.22488], [40.87395, 14.22513], [40.87404, 14.22576], [40.87416, 14.22632], [40.87494, 14.22607], [40.87503, 14.22705], [40.87509, 14.22731], [40.87523, 14.22753], [40.87522, 14.22786], [40.87489, 14.22791], [40.87473, 14.22805], [40.8749, 14.22866], [40.87456, 14.22999], [40.87534, 14.23027], [40.87605, 14.23082], [40.87608, 14.23112], [40.87599, 14.23134], [40.87628, 14.23195], [40.87635, 14.2325], [40.876, 14.23383], [40.87601, 14.23464], [40.87589, 14.23552], [40.87595, 14.23609], [40.87626, 14.2366], [40.87629, 14.23781], [40.87643, 14.2386], [40.8764, 14.23925], [40.8762, 14.23993], [40.87596, 14.24057], [40.87587, 14.24102], [40.87585, 14.24136], [40.87547, 14.24182], [40.8757, 14.24226], [40.87608, 14.24249], [40.87675, 14.24281], [40.87742, 14.24303], [40.87773, 14.24346], [40.87787, 14.24393], [40.87783, 14.2447], [40.8777, 14.24555], [40.87769, 14.24633], [40.87785, 14.2469], [40.87821, 14.24757], [40.87858, 14.24807], [40.87903, 14.24812], [40.87942, 14.24791], [40.87998, 14.24751], [40.8804, 14.24737], [40.88062, 14.24757], [40.88123, 14.24826], [40.88161, 14.24842], [40.88198, 14.2484], [40.88323, 14.24807], [40.88364, 14.24785], [40.88391, 14.24777], [40.88428, 14.24756], [40.88425, 14.2464], [40.88455, 14.24514], [40.8849, 14.24421], [40.88453, 14.24287], [40.88416, 14.24195], [40.88391, 14.24116], [40.88384, 14.24062], [40.88393, 14.23914], [40.88386, 14.23884], [40.88363, 14.23856], [40.88311, 14.23756], [40.88367, 14.2371], [40.88417, 14.23702], [40.88438, 14.23704], [40.88556, 14.23833], [40.88657, 14.2401], [40.88751, 14.24139], [40.88777, 14.24258], [40.88882, 14.24339], [40.88851, 14.24408], [40.8888, 14.24446], [40.88959, 14.24485], [40.88978, 14.24499], [40.88982, 14.24508], [40.88962, 14.24545], [40.88914, 14.24705], [40.88978, 14.24738], [40.88991, 14.24753], [40.89, 14.24756], [40.8901, 14.24656], [40.89024, 14.24567], [40.89031, 14.24536], [40.89056, 14.24462], [40.89099, 14.24493], [40.8908, 14.24578], [40.8907, 14.24654], [40.89068, 14.24808], [40.89104, 14.24812], [40.89242, 14.2489], [40.89256, 14.24799], [40.89748, 14.251], [40.89761, 14.25104], [40.89787, 14.25102], [40.89813, 14.25123], [40.89763, 14.25247], [40.89712, 14.25289], [40.89654, 14.25445], [40.89584, 14.2547], [40.89572, 14.25479], [40.8956, 14.25522], [40.89723, 14.25626], [40.89928, 14.25413], [40.90117, 14.25209], [40.90182, 14.25124], [40.90254, 14.25061], [40.90402, 14.24897], [40.90409, 14.24913], [40.90552, 14.25122], [40.90829, 14.25509], [40.90965, 14.2553], [40.90962, 14.25461], [40.90963, 14.25381], [40.90976, 14.2518], [40.90823, 14.25178], [40.90821, 14.25083], [40.90933, 14.25085], [40.90936, 14.25029], [40.9105, 14.25036], [40.91054, 14.24873], [40.9112, 14.24883], [40.91119, 14.25], [40.91363, 14.25021], [40.91396, 14.25086], [40.91417, 14.25207], [40.91477, 14.25144], [40.91441, 14.24792], [40.91612, 14.24787], [40.91607, 14.24638], [40.91458, 14.2466], [40.91452, 14.24536], [40.91397, 14.24542], [40.91367, 14.24393], [40.91304, 14.2439], [40.91318, 14.2428], [40.91318, 14.24201], [40.91307, 14.24203], [40.9132, 14.24085], [40.91312, 14.24075], [40.91232, 14.24076], [40.91225, 14.2405], [40.91218, 14.24044], [40.91201, 14.2404], [40.91188, 14.24029], [40.91422, 14.23767], [40.91378, 14.23768], [40.91141, 14.23728], [40.91116, 14.23729], [40.90983, 14.23762], [40.90948, 14.23767], [40.90919, 14.23764], [40.90826, 14.23732], [40.9067, 14.23722], [40.9066, 14.23787], [40.90509, 14.23771], [40.90542, 14.23589], [40.90517, 14.23574], [40.90517, 14.23534], [40.90528, 14.23477], [40.90537, 14.23389], [40.9057, 14.23384], [40.90605, 14.23385], [40.90637, 14.23378], [40.90675, 14.2335], [40.90711, 14.23336], [40.90751, 14.23313], [40.90782, 14.23284], [40.90862, 14.23176], [40.90879, 14.23134], [40.9092, 14.23078], [40.90911, 14.22928], [40.90951, 14.22678], [40.90959, 14.22584], [40.9093, 14.22598], [40.90894, 14.22609], [40.90836, 14.22603], [40.90799, 14.22591], [40.90772, 14.22571], [40.90635, 14.22546], [40.90532, 14.22552], [40.90467, 14.22543], [40.90393, 14.22539], [40.90365, 14.22531], [40.90319, 14.22525], [40.90277, 14.22499], [40.90199, 14.22427], [40.90172, 14.22411], [40.90042, 14.22382], [40.9001, 14.2238], [40.89954, 14.22354], [40.89882, 14.20919], [40.89852, 14.2081], [40.89834, 14.2068], [40.89799, 14.20561], [40.89788, 14.20547], [40.89713, 14.20398], [40.89645, 14.20351], [40.89636, 14.20329], [40.8957, 14.20285], [40.89547, 14.20286], [40.89455, 14.20225], [40.89432, 14.20232], [40.89392, 14.20258], [40.89373, 14.20278], [40.89334, 14.2034], [40.89324, 14.20342], [40.89293, 14.20333], [40.89243, 14.20332], [40.89218, 14.20359], [40.89112, 14.20432], [40.89033, 14.2045], [40.8902, 14.20444], [40.88987, 14.20372], [40.88961, 14.20304], [40.8893, 14.2027], [40.88867, 14.2022], [40.8879, 14.2022], [40.88768, 14.20227], [40.88738, 14.2026], [40.88724, 14.20265], [40.88708, 14.20255], [40.88693, 14.2021], [40.88678, 14.2019], [40.8865, 14.20179], [40.88631, 14.20186], [40.88598, 14.20231], [40.88549, 14.20251], [40.88536, 14.2024], [40.88525, 14.20213], [40.88522, 14.20145], [40.88511, 14.20105], [40.88511, 14.20059], [40.8849, 14.20047], [40.88462, 14.20039], [40.88429, 14.19938], [40.88431, 14.19883], [40.88407, 14.19796], [40.88404, 14.19742], [40.884, 14.1973], [40.88354, 14.19664], [40.88331, 14.19593], [40.8834, 14.19536], [40.88333, 14.19487], [40.88316, 14.19442], [40.88311, 14.19383], [40.88303, 14.19369], [40.88268, 14.19359], [40.88281, 14.19324], [40.88275, 14.19301], [40.88245, 14.19282], [40.88247, 14.19245], [40.88242, 14.19232], [40.8819, 14.19214], [40.88177, 14.19187], [40.88154, 14.19172], [40.8809, 14.19154], [40.88022, 14.19113], [40.87986, 14.19058], [40.87958, 14.18994], [40.8793, 14.189], [40.87943, 14.18827], [40.8794, 14.18794], [40.87921, 14.18703], [40.87926, 14.1864], [40.87918, 14.18606], [40.87883, 14.1851]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

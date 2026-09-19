@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorgane - Cinque Vie è una zona sicura? | Wandroz</title>
+<meta name="description" content="Sorgane è un quartiere di palazzoni popolari risalente agli anni ’70, situato nella zona sud-orientale della città. La stampa locale ha riportato casi concreti ">
+<link rel="canonical" href="https://www.wandroz.com/it/firenze/sorgane-cinque-vie.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/firenze/sorgane-cinque-vie.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/firenze/sorgane-cinque-vie.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/firenze/sorgane-cinque-vie.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/firenze/">Firenze, Italia</a> &rsaquo; Sorgane - Cinque Vie</nav>
+<main>
+  <h1 class="page-title">Sorgane - Cinque Vie &mdash; Firenze, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 74 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge yellow">Nella media</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Sorgane è un quartiere di palazzoni popolari risalente agli anni ’70, situato nella zona sud-orientale della città. La stampa locale ha riportato casi concreti di arresti per traffico di droga in questa zona (tra cui quello di un diciannovenne fermato con oltre 900 grammi di hashish su uno scooter rubato, e un trentenne arrestato per spaccio) e di un episodio in cui una donna è stata minacciata con un coltello da un gruppo di giovani durante una lite causata dall’abbaiare di un cane. Si tratta di episodi reali ma isolati e documentati, piuttosto che di un fenomeno diffuso di criminalità violenta. Fonti consultate: FirenzeToday, arresto per hashish/scooter a Sorgane; FirenzeToday, arresto per spaccio a Sorgane; La Nazione, donna minacciata con un coltello da alcuni giovani a Sorgane.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Sorgane%2C+Florence%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Florence publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Sorgane - Cinque Vie è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Sorgane - Cinque Vie a Florence come relativamente più sicura della maggior parte degli altri quartieri di Florence di giorno e nella media rispetto agli altri quartieri di Florence di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Florence non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Sorgane - Cinque Vie è sicura di notte?</summary>
+      <p>Di notte Sorgane - Cinque Vie è valutata come nella media rispetto agli altri quartieri di Florence. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Sorgane - Cinque Vie è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Sorgane - Cinque Vie (relativamente più sicura della maggior parte degli altri quartieri di Florence) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Sorgane - Cinque Vie?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Sorgane - Cinque Vie viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Sorgane - Cinque Vie o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Sorgane%20-%20Cinque%20Vie%2C%20Firenze%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Sorgane - Cinque Vie a Florence come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Florence di giorno e nella media rispetto agli altri quartieri di Florence di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Florence non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Sorgane - Cinque Vie \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Sorgane - Cinque Vie \u00e8 valutata come nella media rispetto agli altri quartieri di Florence. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Sorgane - Cinque Vie \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Sorgane - Cinque Vie (relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Florence) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Sorgane - Cinque Vie \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Sorgane - Cinque Vie viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Sorgane - Cinque Vie o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Sorgane - Cinque Vie?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[43.74268, 11.28896], [43.74247, 11.28851], [43.74213, 11.28836], [43.74222, 11.28806], [43.74205, 11.28744], [43.74246, 11.28716], [43.74273, 11.2867], [43.74454, 11.28259], [43.74551, 11.28349], [43.74587, 11.28405], [43.74665, 11.28364], [43.74719, 11.28358], [43.7478, 11.28375], [43.74858, 11.28421], [43.74954, 11.28509], [43.74974, 11.2851], [43.74998, 11.28486], [43.75006, 11.28554], [43.75446, 11.28841], [43.75247, 11.29139], [43.75125, 11.29449], [43.75071, 11.29522], [43.75323, 11.29761], [43.75368, 11.29794], [43.75526, 11.29864], [43.75468, 11.30383], [43.75442, 11.3055], [43.75425, 11.30567], [43.75423, 11.30603], [43.7544, 11.30608], [43.75436, 11.3063], [43.75169, 11.30584], [43.75071, 11.3058], [43.74974, 11.30645], [43.74863, 11.30658], [43.74792, 11.30662], [43.74662, 11.3062], [43.7456, 11.30615], [43.74522, 11.3055], [43.74482, 11.30542], [43.74441, 11.30563], [43.7441, 11.30531], [43.74356, 11.30382], [43.74241, 11.30461], [43.74162, 11.30485], [43.74112, 11.30307], [43.74075, 11.30273], [43.74025, 11.30281], [43.73973, 11.30315], [43.73946, 11.30534], [43.7389, 11.30549], [43.73831, 11.30546], [43.7385, 11.30375], [43.73847, 11.30232], [43.73972, 11.30281], [43.7399, 11.30024], [43.74078, 11.30005], [43.74157, 11.29943], [43.74119, 11.29905], [43.7415, 11.29892], [43.74151, 11.29875], [43.74193, 11.29864], [43.74186, 11.29807], [43.74149, 11.29801], [43.74088, 11.29698], [43.74057, 11.29718], [43.74034, 11.29608], [43.7411, 11.29577], [43.74121, 11.29637], [43.74207, 11.29673], [43.74218, 11.29627], [43.74204, 11.29596], [43.7417, 11.29574], [43.74141, 11.29448], [43.74086, 11.29439], [43.74084, 11.29298], [43.74103, 11.29296], [43.7412, 11.29337], [43.74159, 11.29375], [43.74193, 11.29372], [43.742, 11.2932], [43.74238, 11.29329], [43.74247, 11.29265], [43.74299, 11.2926], [43.74295, 11.29213], [43.74169, 11.2923], [43.74159, 11.29141], [43.74204, 11.29125], [43.74201, 11.29106], [43.74224, 11.29096], [43.74334, 11.291], [43.74346, 11.29068], [43.74268, 11.28896]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

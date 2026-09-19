@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Borgata Vittoria è una zona sicura? | Wandroz</title>
+<meta name="description" content="Quartiere popolare in fase di graduale riqualificazione, con alcuni problemi noti.">
+<link rel="canonical" href="https://www.wandroz.com/it/torino/borgata-vittoria/">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/torino/borgata-vittoria/">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/torino/borgata-vittoria/">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/torino/borgata-vittoria/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/torino/">Torino, Italia</a> &rsaquo; Borgata Vittoria</nav>
+<main>
+  <h1 class="page-title">Borgata Vittoria &mdash; Torino, Italia</h1>
+  
+  <p class="evidence-line">⚪ Limited-data assessment <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge yellow">Nella media</span> <span class="badge-label">giorno</span>
+    <span class="badge yellow">Nella media</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Quartiere popolare in fase di graduale riqualificazione, con alcuni problemi noti.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Borgata+Vittoria%2C+Turin%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">This link is already scoped to this area (not the whole city), using the neighbourhood&#39;s real coordinates.</p>
+  
+  <div class="methodnote">This is a limited-data assessment. Turin publishes no neighbourhood-level crime dataset, and this area has not yet had a full source review, so the rating is indicative and is labelled as such rather than presented as evidenced.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Borgata Vittoria è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Borgata Vittoria a Turin come nella media rispetto agli altri quartieri di Turin, sia di giorno sia dopo il tramonto. Questa è una valutazione con dati limitati: Turin non pubblica un dataset sulla criminalità a livello di quartiere e per quest&#39;area non è ancora stata completata una revisione delle fonti, quindi la valutazione è indicativa ed è dichiarata come tale invece di essere presentata come documentata.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Borgata Vittoria è sicura di notte?</summary>
+      <p>Di notte Borgata Vittoria è valutata come nella media rispetto agli altri quartieri di Turin. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Borgata Vittoria è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Borgata Vittoria (nella media rispetto agli altri quartieri di Turin) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Borgata Vittoria?</summary>
+      <p>Non ancora a livello di quartiere. A differenza di Londra, questa città non pubblica al momento un dataset aperto e geolocalizzato sulla criminalità a questo livello di dettaglio (verificato sui portali open data locali e nazionali competenti — vedi la pagina della metodologia per cosa è stato controllato). Se abiti a Borgata Vittoria o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Borgata%20Vittoria%2C%20Torino%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Borgata Vittoria a Turin come nella media rispetto agli altri quartieri di Turin, sia di giorno sia dopo il tramonto. Questa \u00e8 una valutazione con dati limitati: Turin non pubblica un dataset sulla criminalit\u00e0 a livello di quartiere e per quest\u0027area non \u00e8 ancora stata completata una revisione delle fonti, quindi la valutazione \u00e8 indicativa ed \u00e8 dichiarata come tale invece di essere presentata come documentata."}, "name": "Borgata Vittoria \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Borgata Vittoria \u00e8 valutata come nella media rispetto agli altri quartieri di Turin. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Borgata Vittoria \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Borgata Vittoria (nella media rispetto agli altri quartieri di Turin) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Borgata Vittoria \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non ancora a livello di quartiere. A differenza di Londra, questa citt\u00e0 non pubblica al momento un dataset aperto e geolocalizzato sulla criminalit\u00e0 a questo livello di dettaglio (verificato sui portali open data locali e nazionali competenti \u2014 vedi la pagina della metodologia per cosa \u00e8 stato controllato). Se abiti a Borgata Vittoria o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Borgata Vittoria?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[45.09082, 7.67046], [45.09619, 7.67161], [45.09642, 7.67153], [45.09664, 7.67197], [45.09692, 7.67172], [45.10483, 7.67299], [45.10491, 7.67163], [45.10576, 7.67314], [45.109, 7.67356], [45.10957, 7.67083], [45.11116, 7.6715], [45.11098, 7.67294], [45.1151, 7.67401], [45.11446, 7.6753], [45.11366, 7.67588], [45.11165, 7.67801], [45.11151, 7.67863], [45.11672, 7.67986], [45.11636, 7.68326], [45.11655, 7.68405], [45.117, 7.68468], [45.11733, 7.68608], [45.11696, 7.68715], [45.11589, 7.6887], [45.1157, 7.68926], [45.11502, 7.69], [45.11463, 7.69096], [45.11393, 7.69435], [45.11408, 7.69563], [45.11346, 7.69576], [45.1134, 7.69618], [45.11346, 7.6967], [45.11419, 7.69702], [45.11419, 7.69733], [45.11352, 7.69705], [45.11378, 7.69757], [45.11419, 7.69775], [45.11003, 7.69677], [45.10849, 7.69593], [45.10684, 7.69473], [45.10041, 7.6882], [45.09841, 7.68581], [45.09291, 7.68002], [45.09153, 7.67887], [45.0913, 7.67933], [45.091, 7.67932], [45.09051, 7.67871], [45.09017, 7.67864], [45.08941, 7.67755], [45.08769, 7.67638], [45.0901, 7.6703], [45.09082, 7.67046]]];
+    var color = "#c98a02";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

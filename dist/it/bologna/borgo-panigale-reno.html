@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Borgo Panigale-Reno è una zona sicura? | Wandroz</title>
+<meta name="description" content="La periferia occidentale di Bologna, zona residenziale e industriale, ben lontana da tutto ciò che attira i visitatori: qui si trovano lo stabilimento Ducati e ">
+<link rel="canonical" href="https://www.wandroz.com/it/bologna/borgo-panigale-reno.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/bologna/borgo-panigale-reno.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/bologna/borgo-panigale-reno.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/bologna/borgo-panigale-reno.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/bologna/">Bologna, Italia</a> &rsaquo; Borgo Panigale-Reno</nav>
+<main>
+  <h1 class="page-title">Borgo Panigale-Reno &mdash; Bologna, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 6 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge yellow">Nella media</span> <span class="badge-label">notte</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>La periferia occidentale di Bologna, zona residenziale e industriale, ben lontana da tutto ciò che attira i visitatori: qui si trovano lo stabilimento Ducati e la pista di avvicinamento all’aeroporto. I resoconti locali sul quartiere indicano che Barca e Casteldebole, le zone con il profilo socio-economico più debole, sono più esposte allo spaccio di droga; il resto è un sobborgo senza particolari caratteristiche. Pochi viaggiatori soggiornano qui e non c’è motivo di passeggiare da queste parti di notte.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Bologna%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Bologna publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Borgo Panigale-Reno è una zona sicura?</summary>
+      <p>Wandroz valuta attualmente Borgo Panigale-Reno a Bologna come relativamente più sicura della maggior parte degli altri quartieri di Bologna di giorno e nella media rispetto agli altri quartieri di Bologna di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili — stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono — messe a confronto fra loro invece che prese da un singolo articolo. Bologna non pubblica un dataset comparabile sulla criminalità a livello di quartiere; dove una città lo fa, Wandroz usa quello.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Borgo Panigale-Reno è sicura di notte?</summary>
+      <p>Di notte Borgo Panigale-Reno è valutata come nella media rispetto agli altri quartieri di Bologna. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non può cogliere le differenze da un isolato all&#39;altro.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Borgo Panigale-Reno è una buona zona dove alloggiare da turista?</summary>
+      <p>La valutazione diurna di Borgo Panigale-Reno (relativamente più sicura della maggior parte degli altri quartieri di Bologna) è quella più utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Esistono dati ufficiali sulla criminalità per Borgo Panigale-Reno?</summary>
+      <p>Non da un flusso ufficiale di dati governativi — la valutazione di Borgo Panigale-Reno viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa è stato verificato e con quali fonti). L&#39;assenza di notizie negative recenti è trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Borgo Panigale-Reno o la conosci bene, puoi segnalare una correzione con il link qui sotto.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Borgo%20Panigale-Reno%2C%20Bologna%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta attualmente Borgo Panigale-Reno a Bologna come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Bologna di giorno e nella media rispetto agli altri quartieri di Bologna di notte. Deriva da una valutazione strutturata su fonti locali: una revisione area per area di fonti credibili \u2014 stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono \u2014 messe a confronto fra loro invece che prese da un singolo articolo. Bologna non pubblica un dataset comparabile sulla criminalit\u00e0 a livello di quartiere; dove una citt\u00e0 lo fa, Wandroz usa quello."}, "name": "Borgo Panigale-Reno \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Di notte Borgo Panigale-Reno \u00e8 valutata come nella media rispetto agli altri quartieri di Bologna. Se hai dubbi, vale la pena leggere recensioni recenti sulla tua strada o sul tuo isolato: una valutazione che copre tutto il quartiere non pu\u00f2 cogliere le differenze da un isolato all\u0027altro."}, "name": "Borgo Panigale-Reno \u00e8 sicura di notte?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La valutazione diurna di Borgo Panigale-Reno (relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Bologna) \u00e8 quella pi\u00f9 utile per una giornata da turista; se pensi di stare fuori fino a tardi guarda anche quella notturna. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "Borgo Panigale-Reno \u00e8 una buona zona dove alloggiare da turista?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Non da un flusso ufficiale di dati governativi \u2014 la valutazione di Borgo Panigale-Reno viene invece dalla ricerca di Wandroz su stampa locale e nazionale e su indagini, condotta per questa specifica zona (vedi la nota su questa pagina per cosa \u00e8 stato verificato e con quali fonti). L\u0027assenza di notizie negative recenti \u00e8 trattata come non conclusiva, non come prova che la zona sia sicura. Se abiti a Borgo Panigale-Reno o la conosci bene, puoi segnalare una correzione con il link qui sotto."}, "name": "Esistono dati ufficiali sulla criminalit\u00e0 per Borgo Panigale-Reno?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[44.53291, 11.23092], [44.5324, 11.23069], [44.53151, 11.23014], [44.53129, 11.22988], [44.53106, 11.22971], [44.53077, 11.22962], [44.53049, 11.22962], [44.53012, 11.22969], [44.52907, 11.23008], [44.52835, 11.23017], [44.5281, 11.2301], [44.52786, 11.23015], [44.52727, 11.22981], [44.5271, 11.22985], [44.52578, 11.2308], [44.52567, 11.23104], [44.52552, 11.2312], [44.52519, 11.23133], [44.52461, 11.23184], [44.52445, 11.23223], [44.52422, 11.2331], [44.52429, 11.23374], [44.52422, 11.23671], [44.52394, 11.23862], [44.52371, 11.23938], [44.52318, 11.24025], [44.52215, 11.24104], [44.52167, 11.24123], [44.52116, 11.24127], [44.52002, 11.24109], [44.51884, 11.24068], [44.51809, 11.24025], [44.51784, 11.24005], [44.51772, 11.2399], [44.51745, 11.23972], [44.51718, 11.23961], [44.51684, 11.23948], [44.51555, 11.23925], [44.51512, 11.23913], [44.51417, 11.2386], [44.51345, 11.23837], [44.51276, 11.23822], [44.51245, 11.23808], [44.51224, 11.23779], [44.5121, 11.2374], [44.51205, 11.23687], [44.51208, 11.23642], [44.51223, 11.23579], [44.51219, 11.23538], [44.51187, 11.23446], [44.51155, 11.2341], [44.5111, 11.2338], [44.50893, 11.23251], [44.50834, 11.23427], [44.50801, 11.2352], [44.50796, 11.23525], [44.50735, 11.23701], [44.50667, 11.23658], [44.5066, 11.23664], [44.50573, 11.23607], [44.50567, 11.23596], [44.50528, 11.23703], [44.50323, 11.23572], [44.50268, 11.2382], [44.50264, 11.23866], [44.50257, 11.23901], [44.50219, 11.23985], [44.50172, 11.24066], [44.50157, 11.24124], [44.50135, 11.24173], [44.50122, 11.2423], [44.50107, 11.24521], [44.50107, 11.24592], [44.50114, 11.24682], [44.50142, 11.24759], [44.50149, 11.24795], [44.5015, 11.24827], [44.50148, 11.24857], [44.50116, 11.2501], [44.49873, 11.24863], [44.49668, 11.24772], [44.49644, 11.24766], [44.49708, 11.25124], [44.49733, 11.25369], [44.49741, 11.25582], [44.49754, 11.25665], [44.49764, 11.25708], [44.49522, 11.25627], [44.49326, 11.25508], [44.4932, 11.25668], [44.49294, 11.25653], [44.49198, 11.2599], [44.49153, 11.26152], [44.49091, 11.26414], [44.49035, 11.26663], [44.49033, 11.26688], [44.49037, 11.26792], [44.49031, 11.2684], [44.49125, 11.2691], [44.49103, 11.26962], [44.49059, 11.27087], [44.49024, 11.27203], [44.49003, 11.27261], [44.49009, 11.273], [44.49065, 11.27506], [44.49096, 11.27638], [44.49098, 11.27678], [44.49141, 11.27894], [44.49064, 11.27989], [44.49024, 11.28057], [44.48931, 11.28191], [44.48992, 11.28315], [44.48941, 11.28362], [44.48867, 11.28465], [44.48776, 11.28503], [44.48781, 11.28526], [44.4879, 11.28543], [44.48833, 11.28597], [44.48836, 11.28607], [44.48813, 11.2879], [44.48809, 11.28797], [44.48783, 11.28803], [44.4879, 11.28814], [44.48816, 11.28825], [44.48825, 11.28842], [44.48851, 11.2886], [44.48865, 11.289], [44.48892, 11.2905], [44.48954, 11.29325], [44.48888, 11.29358], [44.48883, 11.29341], [44.48746, 11.29428], [44.48764, 11.29464], [44.48789, 11.29527], [44.48914, 11.29893], [44.48979, 11.30019], [44.49067, 11.30143], [44.49096, 11.30175], [44.4911, 11.30184], [44.49234, 11.30228], [44.49249, 11.30183], [44.49283, 11.30269], [44.49448, 11.3073], [44.4953, 11.309], [44.49564, 11.31061], [44.49574, 11.3106], [44.49582, 11.31066], [44.49592, 11.31093], [44.49827, 11.31181], [44.49881, 11.30981], [44.49894, 11.30946], [44.49916, 11.30865], [44.49916, 11.30854], [44.4996, 11.3069], [44.49981, 11.30633], [44.49995, 11.30609], [44.50001, 11.30616], [44.50017, 11.30623], [44.50074, 11.30615], [44.50089, 11.30604], [44.50108, 11.30576], [44.50258, 11.30758], [44.50381, 11.30845], [44.50461, 11.30871], [44.5057, 11.3094], [44.50707, 11.31011], [44.50748, 11.31043], [44.50785, 11.31085], [44.50815, 11.31061], [44.50829, 11.31062], [44.51003, 11.31151], [44.51068, 11.3119], [44.51093, 11.31215], [44.51088, 11.31237], [44.5111, 11.31243], [44.51116, 11.3123], [44.51118, 11.31203], [44.51118, 11.3108], [44.51151, 11.31082], [44.51291, 11.31109], [44.51466, 11.30402], [44.5161, 11.29866], [44.51649, 11.29904], [44.51673, 11.29919], [44.517, 11.29925], [44.51823, 11.29935], [44.51857, 11.29951], [44.51994, 11.30042], [44.52018, 11.30052], [44.52164, 11.30084], [44.52222, 11.30109], [44.52327, 11.30225], [44.52348, 11.30287], [44.52409, 11.30299], [44.52423, 11.3035], [44.52415, 11.3038], [44.52416, 11.30407], [44.52432, 11.3047], [44.52447, 11.30503], [44.52535, 11.30618], [44.52551, 11.3063], [44.52596, 11.30643], [44.52671, 11.30704], [44.52742, 11.30748], [44.52851, 11.3079], [44.52898, 11.308], [44.52945, 11.30802], [44.5298, 11.30817], [44.53011, 11.30836], [44.53255, 11.3043], [44.53282, 11.30346], [44.53356, 11.30079], [44.53387, 11.29931], [44.53581, 11.29104], [44.53891, 11.29301], [44.54251, 11.28968], [44.54335, 11.28849], [44.54412, 11.2875], [44.54457, 11.28697], [44.54476, 11.2869], [44.54478, 11.28666], [44.54691, 11.28284], [44.54758, 11.28297], [44.54773, 11.28272], [44.54778, 11.28243], [44.54801, 11.28238], [44.54851, 11.28179], [44.54643, 11.28044], [44.54694, 11.27873], [44.5474, 11.27897], [44.54775, 11.27777], [44.54631, 11.27689], [44.54588, 11.27811], [44.54431, 11.2772], [44.54396, 11.27747], [44.54378, 11.278], [44.5436, 11.27789], [44.5434, 11.27785], [44.54035, 11.27553], [44.54072, 11.27457], [44.53907, 11.27349], [44.53919, 11.27319], [44.53793, 11.27219], [44.53668, 11.27129], [44.53618, 11.27086], [44.53557, 11.27042], [44.53544, 11.2703], [44.53524, 11.27001], [44.53496, 11.27061], [44.53492, 11.27066], [44.53482, 11.27067], [44.53248, 11.26911], [44.53437, 11.26762], [44.53616, 11.26628], [44.53686, 11.2657], [44.53954, 11.2637], [44.54703, 11.25789], [44.55578, 11.25118], [44.55408, 11.25014], [44.55569, 11.24499], [44.55389, 11.24377], [44.5507, 11.24184], [44.54783, 11.24001], [44.54761, 11.23974], [44.5472, 11.23992], [44.54707, 11.23969], [44.54532, 11.23827], [44.54364, 11.23734], [44.54319, 11.23704], [44.54236, 11.23674], [44.54135, 11.23629], [44.5409, 11.23597], [44.54084, 11.2358], [44.54014, 11.23531], [44.53982, 11.23524], [44.53754, 11.23405], [44.53621, 11.2331], [44.53401, 11.23185], [44.53317, 11.23108], [44.53291, 11.23092]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

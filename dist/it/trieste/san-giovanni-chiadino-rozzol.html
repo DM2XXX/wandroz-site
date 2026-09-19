@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>San Giovanni, Chiadino, Rozzol è una zona sicura? | Wandroz</title>
+<meta name="description" content="Zona residenziale collinare a est del centro, con al centro il Parco di San Giovanni — l’ex manicomio trasformato in parco pubblico. Dall’analisi non è emersa a">
+<link rel="canonical" href="https://www.wandroz.com/it/trieste/san-giovanni-chiadino-rozzol.html">
+<link rel="alternate" hreflang="en" href="https://www.wandroz.com/trieste/san-giovanni-chiadino-rozzol.html">
+<link rel="alternate" hreflang="it" href="https://www.wandroz.com/it/trieste/san-giovanni-chiadino-rozzol.html">
+<link rel="alternate" hreflang="x-default" href="https://www.wandroz.com/trieste/san-giovanni-chiadino-rozzol.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Sicurezza dei quartieri per chi viaggia</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/it/trieste/">Trieste, Italia</a> &rsaquo; San Giovanni, Chiadino, Rozzol</nav>
+<main>
+  <h1 class="page-title">San Giovanni, Chiadino, Rozzol &mdash; Trieste, Italia</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 7 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">giorno</span>
+    <span class="badge green">Relativamente più sicura</span> <span class="badge-label">notte</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>Zona residenziale collinare a est del centro, con al centro il Parco di San Giovanni — l’ex manicomio trasformato in parco pubblico. Dall’analisi non è emersa alcuna segnalazione specifica relativa alla sicurezza in questa zona: non rientra in nessuna delle «zone rosse» della Prefettura, né figura tra i rioni indicati nelle operazioni anti-degrado del 2026 o nei percorsi #RioniSicuri. Il contorno tratteggiato indica l’assenza di riscontri, non un «via libera» verificato.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Trieste%2C+Italy" target="_blank" rel="noopener">Cerca un alloggio qui su Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Trieste, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>San Giovanni, Chiadino, Rozzol è una zona sicura?</summary>
+      <p>Wandroz valuta San Giovanni, Chiadino, Rozzol a Trieste come relativamente più sicura della maggior parte degli altri quartieri di Trieste. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di San Giovanni, Chiadino, Rozzol — nessun episodio, nessun problema ricorrente, niente di documentato né in un senso né nell&#39;altro — letta insieme al carattere della zona. Non è un riscontro positivo di sicurezza: un&#39;assenza di segnalazioni è un&#39;evidenza più debole delle valutazioni con fonti che trovi altrove su questa mappa, ed è indicata come tale ovunque compaia.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Che cosa è stato verificato per San Giovanni, Chiadino, Rozzol?</summary>
+      <p>La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Trieste: stampa locale e nazionale, materiale pubblicato da comune e forze dell&#39;ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per San Giovanni, Chiadino, Rozzol non è emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative più piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell&#39;area.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>San Giovanni, Chiadino, Rozzol è una buona zona dove alloggiare da turista?</summary>
+      <p>Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Trieste le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio già circoscritto a questa zona con il link Booking.com su questa pagina.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20San%20Giovanni%2C%20Chiadino%2C%20Rozzol%2C%20Trieste%2C%20Italia">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz valuta San Giovanni, Chiadino, Rozzol a Trieste come relativamente pi\u00f9 sicura della maggior parte degli altri quartieri di Trieste. Quella valutazione poggia su una revisione area per area che non ha trovato alcuna segnalazione rilevante per chi viaggia specifica di San Giovanni, Chiadino, Rozzol \u2014 nessun episodio, nessun problema ricorrente, niente di documentato n\u00e9 in un senso n\u00e9 nell\u0027altro \u2014 letta insieme al carattere della zona. Non \u00e8 un riscontro positivo di sicurezza: un\u0027assenza di segnalazioni \u00e8 un\u0027evidenza pi\u00f9 debole delle valutazioni con fonti che trovi altrove su questa mappa, ed \u00e8 indicata come tale ovunque compaia."}, "name": "San Giovanni, Chiadino, Rozzol \u00e8 una zona sicura?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "La stessa revisione area per area che riceve ogni altro quartiere sulla mappa di Trieste: stampa locale e nazionale, materiale pubblicato da comune e forze dell\u0027ordine, e indagini ufficiali dove esistono, cercati per questa specifica zona. Per San Giovanni, Chiadino, Rozzol non \u00e8 emerso nulla di rilevante per chi viaggia, cosa comune per le suddivisioni amministrative pi\u00f9 piccole che non hanno una propria presenza sulla stampa. Dove una revisione trova qualcosa, le fonti sono indicate sulla pagina dell\u0027area."}, "name": "Che cosa \u00e8 stato verificato per San Giovanni, Chiadino, Rozzol?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Niente di documentato dice il contrario. Per un soggiorno, mettilo a confronto con le zone della mappa di Trieste le cui valutazioni sono sostenute da fonti citate, e leggi recensioni recenti sulla strada specifica. Puoi cercare un alloggio gi\u00e0 circoscritto a questa zona con il link Booking.com su questa pagina."}, "name": "San Giovanni, Chiadino, Rozzol \u00e8 una buona zona dove alloggiare da turista?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[45.63333, 13.84164], [45.63402, 13.84194], [45.63538, 13.84147], [45.63616, 13.84177], [45.63786, 13.8428], [45.63907, 13.84324], [45.63976, 13.8434], [45.64069, 13.84352], [45.64112, 13.8427], [45.6416, 13.84259], [45.6422, 13.84312], [45.64395, 13.83955], [45.64496, 13.83692], [45.64526, 13.83649], [45.64534, 13.83646], [45.64557, 13.83666], [45.64621, 13.83737], [45.64752, 13.83871], [45.64877, 13.83891], [45.64905, 13.839], [45.64913, 13.83843], [45.65005, 13.83679], [45.65041, 13.836], [45.65107, 13.83168], [45.65167, 13.82977], [45.65084, 13.82818], [45.65063, 13.82733], [45.65057, 13.82619], [45.6514, 13.8246], [45.65231, 13.82342], [45.65236, 13.82299], [45.65228, 13.82256], [45.65233, 13.82188], [45.65284, 13.82076], [45.65287, 13.81992], [45.65282, 13.81943], [45.65283, 13.81904], [45.65287, 13.8188], [45.65311, 13.81852], [45.65416, 13.81826], [45.65502, 13.81751], [45.65539, 13.8173], [45.65677, 13.81687], [45.65868, 13.81534], [45.66231, 13.81165], [45.66399, 13.81039], [45.66456, 13.81001], [45.66513, 13.80944], [45.66548, 13.80878], [45.66575, 13.80811], [45.66614, 13.80748], [45.66652, 13.80675], [45.66695, 13.80634], [45.66731, 13.80553], [45.66824, 13.80371], [45.66855, 13.80322], [45.66872, 13.80284], [45.66904, 13.80182], [45.66908, 13.80132], [45.66887, 13.80124], [45.66833, 13.80133], [45.66793, 13.80157], [45.66772, 13.80194], [45.66819, 13.80252], [45.66693, 13.80364], [45.66614, 13.80371], [45.66544, 13.80356], [45.66519, 13.80356], [45.66492, 13.80338], [45.66476, 13.80294], [45.66438, 13.80297], [45.66367, 13.80239], [45.66345, 13.8024], [45.66312, 13.8029], [45.66287, 13.80266], [45.66266, 13.80264], [45.66234, 13.80269], [45.66211, 13.80248], [45.66195, 13.80241], [45.66152, 13.8024], [45.66145, 13.80231], [45.66127, 13.80233], [45.6612, 13.80219], [45.6611, 13.80215], [45.66091, 13.8019], [45.66096, 13.80165], [45.65985, 13.80077], [45.65949, 13.80038], [45.65917, 13.79995], [45.65851, 13.79925], [45.6581, 13.79849], [45.65783, 13.79815], [45.65734, 13.79782], [45.6569, 13.79885], [45.65683, 13.79872], [45.65656, 13.79846], [45.65636, 13.79814], [45.65612, 13.79763], [45.65586, 13.79733], [45.65571, 13.79702], [45.65532, 13.7966], [45.65549, 13.7943], [45.65549, 13.79394], [45.65513, 13.79189], [45.6546, 13.79209], [45.65447, 13.79132], [45.6541, 13.7915], [45.65396, 13.79043], [45.65379, 13.78962], [45.65306, 13.79009], [45.6529, 13.78995], [45.65271, 13.78961], [45.65261, 13.78952], [45.65258, 13.78934], [45.6526, 13.78925], [45.65281, 13.78894], [45.65286, 13.78865], [45.6526, 13.78729], [45.6525, 13.78692], [45.65226, 13.78625], [45.6521, 13.78616], [45.65188, 13.78608], [45.6511, 13.78658], [45.65094, 13.78675], [45.6508, 13.78683], [45.65071, 13.78641], [45.6504, 13.78657], [45.64989, 13.78693], [45.64985, 13.78693], [45.64983, 13.78677], [45.64937, 13.78712], [45.64854, 13.78785], [45.64849, 13.78788], [45.64836, 13.78754], [45.64831, 13.78754], [45.64807, 13.7878], [45.64715, 13.78845], [45.64745, 13.78911], [45.64792, 13.79098], [45.6472, 13.79175], [45.64686, 13.79202], [45.64676, 13.7917], [45.64554, 13.79256], [45.64543, 13.79227], [45.64535, 13.79267], [45.64534, 13.7929], [45.64497, 13.79334], [45.64513, 13.7936], [45.6448, 13.79454], [45.64484, 13.79457], [45.6447, 13.7951], [45.64474, 13.79523], [45.64463, 13.79744], [45.6444, 13.79783], [45.64349, 13.79712], [45.64359, 13.79676], [45.64209, 13.79592], [45.64192, 13.79418], [45.64192, 13.79358], [45.64181, 13.79354], [45.64151, 13.79432], [45.64133, 13.7942], [45.64124, 13.79455], [45.6412, 13.79453], [45.64115, 13.79474], [45.64158, 13.79492], [45.64151, 13.79551], [45.64079, 13.79517], [45.63995, 13.79484], [45.63988, 13.79476], [45.6398, 13.79459], [45.63958, 13.79011], [45.6396, 13.78974], [45.63821, 13.78922], [45.63788, 13.78987], [45.63766, 13.79041], [45.63752, 13.79098], [45.63746, 13.79154], [45.63687, 13.79262], [45.63702, 13.7966], [45.63718, 13.79898], [45.63761, 13.8024], [45.63807, 13.80449], [45.63813, 13.80489], [45.63818, 13.80578], [45.63829, 13.80657], [45.6383, 13.80696], [45.63824, 13.80788], [45.6384, 13.80901], [45.63837, 13.81094], [45.63833, 13.81143], [45.63786, 13.81291], [45.63774, 13.81435], [45.63762, 13.81468], [45.63727, 13.81617], [45.63652, 13.81907], [45.63649, 13.81953], [45.63638, 13.82005], [45.63588, 13.82142], [45.63552, 13.82224], [45.63571, 13.82392], [45.63569, 13.82435], [45.63557, 13.82485], [45.63559, 13.82608], [45.63567, 13.82763], [45.63609, 13.82812], [45.63697, 13.82828], [45.63717, 13.82869], [45.63731, 13.82876], [45.63754, 13.82843], [45.63767, 13.82861], [45.63803, 13.82809], [45.63844, 13.82872], [45.63637, 13.83139], [45.63615, 13.83129], [45.63539, 13.83165], [45.63512, 13.83094], [45.63501, 13.83102], [45.63494, 13.8317], [45.63474, 13.83258], [45.63407, 13.83458], [45.63355, 13.83746], [45.63344, 13.83864], [45.63311, 13.84038], [45.63312, 13.84052], [45.63202, 13.84118], [45.63333, 13.84164]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — la copertura è in crescita &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

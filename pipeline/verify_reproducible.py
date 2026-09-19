@@ -202,17 +202,21 @@ def classify(dist, reg, findings):
     # un'altra lingua. Sono attese quando la lingua e' dichiarata in i18n e lo
     # slug e' una citta' che il build produce davvero; qualunque altra cosa
     # sotto un prefisso di lingua resta un orfano da segnalare.
-    lang_hubs = set()
+    lang_pages = set()
     for p in built_pages:
         parts = p.split(os.sep)
-        if len(parts) == 3 and parts[0] in LANG_PREFIXES and parts[2] == "index.html":
-            if (parts[1] + os.sep + "index.html") in expected_hubs:
-                lang_hubs.add(p)
+        if not parts or parts[0] not in LANG_PREFIXES:
+            continue
+        # La stessa pagina senza il prefisso di lingua deve esistere: una
+        # traduzione e' una pagina inglese detta in un'altra lingua, e se
+        # l'originale non c'e' la traduzione e' un orfano come qualunque altro.
+        if os.sep.join(parts[1:]) in (source_pages | expected_hubs):
+            lang_pages.add(p)
 
     for rel in sorted(source_pages - built_pages):
         findings.append(("SOURCE_ONLY", rel, "zone exists in source but the build produced no page"))
 
-    accounted = source_pages | expected_hubs | london_pages | root_pages | lang_hubs
+    accounted = source_pages | expected_hubs | london_pages | root_pages | lang_pages
     for rel in sorted(built_pages - accounted):
         findings.append(("GENERATED_ONLY", rel, "page exists in the build with no zone in source"))
 
