@@ -387,6 +387,39 @@ def check_slug_collisions(reg, F):
                        "%d zones share this display name" % n)
 
 
+def check_city_has_sights(dist, reg, F):
+    """Every city map must carry sights.
+
+    Basel shipped with 21 areas, official boundaries, sourced ratings — and no
+    pins at all, because nobody had run build_city_pois.py for it. The map drew
+    coloured polygons over an otherwise blank street map, the sights bar was
+    empty and the category filters had nothing to filter. Every gate passed:
+    the page was internally consistent, the source reproduced it, and it
+    removed nothing. None of them asked whether the map was any use.
+
+    A city with no pins is a city where a reader cannot tell which shape
+    contains the cathedral, which is most of what the map is for.
+    """
+    for city, (key, _scheme) in sorted(reg.items()):
+        hub = os.path.join(dist, city, "index.html")
+        if not os.path.isfile(hub):
+            continue
+        html = read(hub)
+        m = re.search(r"var POIS = (\[.*?\]);\n", html, re.S)
+        try:
+            pois = json.loads(m.group(1)) if m else []
+        except ValueError:
+            pois = []
+        if not pois:
+            F.fail("MAP", "city-has-sights", city,
+                   "map has no sights at all — run `python3 pipeline/build_city_pois.py %s`"
+                   % key)
+        elif len(pois) < 6:
+            F.warn("MAP", "city-has-sights", city,
+                   "only %d sight(s) on the map; the category filters will look empty"
+                   % len(pois))
+
+
 def check_map_integrity(dist, reg, F):
     """The hub's map polygons and the zone pages must describe one reality."""
     for city, (key, scheme) in sorted(reg.items()):
@@ -1307,6 +1340,7 @@ def main():
 
     counts = check_inventory(dist, reg, F)
     check_slug_collisions(reg, F)
+    check_city_has_sights(dist, reg, F)
     check_map_integrity(dist, reg, F)
     check_navigation(dist, reg, F)
     check_methodology(dist, reg, F)
