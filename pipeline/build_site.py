@@ -1526,9 +1526,20 @@ EVIDENCE_NOTE = (
 # cross-city ranking overstated what the data actually supports. See the
 # methodology page's comparability note for the same caveat spelled out in
 # full.
-def tone_descriptor(tone, city_label, t=None):
+def tone_descriptor(tone, city_label, t=None, tier=None):
+    """The sentence behind a colour.
+
+    Green means two different things on this site. Where a city has per-area
+    official figures, it means measured below the city's own average, and
+    "relatively safer than most other neighbourhoods" is exactly right. Where
+    it does not, green means the area-level review found nothing — and calling
+    that "safer than most" is a ranking claim the data cannot support. It was
+    being made about every area in Ghent and 24 of Bern's 28."""
     t = t or i18n.strings(i18n.DEFAULT_LANG)
-    phrase = t.get("desc_" + tone)
+    key = "desc_" + tone
+    if tone == "green" and tier is not None and tier != OFFICIAL_SNAPSHOT:
+        key = "desc_green_nofind"
+    phrase = t.get(key)
     if not phrase:
         return tone
     return phrase % {"city": city_label} if "%(city)s" in phrase else phrase
@@ -1583,8 +1594,8 @@ def build_faq_illustrative(zone, city_label, burglary=None, tier=MANUAL_EXPERIME
     t = t or i18n.strings(i18n.DEFAULT_LANG)
     name = zone["name"]
     city_label = city_only(city_label)
-    day_desc = tone_descriptor(zone["day"], city_label, t)
-    night_desc = tone_descriptor(zone["night"], city_label, t)
+    day_desc = tone_descriptor(zone["day"], city_label, t, tier)
+    night_desc = tone_descriptor(zone["night"], city_label, t, tier)
     q = lambda key: t[key] % {"name": name}
 
     if tier == OFFICIAL_SNAPSHOT:
@@ -2081,6 +2092,13 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
 
     methodology = CITY_METHODOLOGY.get(city_key, {"tier": MANUAL_EXPERIMENTAL})
     tier = methodology["tier"]
+    # "Relatively safer" is a comparison. Without per-area figures there is
+    # nothing to compare, so the badge says what the green actually rests on.
+    # ui is the city's own UI strings, not the translation catalogue, which is
+    # why this reads the catalogue directly.
+    if tier != OFFICIAL_SNAPSHOT:
+        tone_badge = dict(tone_badge)
+        tone_badge["green"] = i18n.strings(i18n.DEFAULT_LANG)["tone_green_nofind"]
     crime_source = methodology.get("crime_source")
 
     # The shared legend's yellow line ("Caution — fine by day, be more
@@ -2140,7 +2158,9 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         _label = i18n.local_label(_lang, data["label"])
         _hubdata = hub_data(city_key, zones, _t)
         _tone = tone_badge if _is_en else {
-            "green": _t["tone_green"], "yellow": _t["tone_yellow"],
+            "green": (_t["tone_green_nofind"] if tier != OFFICIAL_SNAPSHOT
+                      else _t["tone_green"]),
+            "yellow": _t["tone_yellow"],
             "red": _t["tone_red"], "grey": _t["tone_grey"],
         }
         # Le pagine delle singole aree non sono ancora tradotte — sono i 177.000
@@ -2239,7 +2259,9 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         _is_en = _lang == i18n.DEFAULT_LANG
         _label = i18n.local_label(_lang, data["label"])
         _tone = tone_badge if _is_en else {
-            "green": _t["tone_green"], "yellow": _t["tone_yellow"],
+            "green": (_t["tone_green_nofind"] if tier != OFFICIAL_SNAPSHOT
+                      else _t["tone_green"]),
+            "yellow": _t["tone_yellow"],
             "red": _t["tone_red"], "grey": _t["tone_grey"],
         }
         for z in zones:

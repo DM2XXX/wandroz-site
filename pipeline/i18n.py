@@ -166,6 +166,13 @@ STRINGS = {
 
         # --- FAQ dell'area -------------------------------------------------
         "desc_green": "relatively safer than most other neighbourhoods in %(city)s",
+        # Used instead of the line above wherever the rating does not rest on a
+        # per-area measurement. "Relatively safer than most" is a ranking, and a
+        # ranking cannot be true of most of a city — in Ghent it was said of
+        # every area, in Bern of 24 out of 28. Where the green means the review
+        # found nothing, the page says that instead.
+        "desc_green_nofind": "an area where the review found nothing traveller-relevant to report",
+        "tone_green_nofind": "Nothing reported",
         "desc_yellow": "roughly average compared to other neighbourhoods in %(city)s",
         "desc_red": "an area where the data suggests extra caution relative to other neighbourhoods in %(city)s",
         "desc_grey": "not covered by this dataset",
@@ -406,6 +413,8 @@ STRINGS = {
 
         # --- FAQ dell'area -------------------------------------------------
         "desc_green": "relativamente più sicura della maggior parte degli altri quartieri di %(city)s",
+        "desc_green_nofind": "un'area per cui la revisione non ha trovato nulla di rilevante per chi viaggia",
+        "tone_green_nofind": "Nulla di segnalato",
         "desc_yellow": "nella media rispetto agli altri quartieri di %(city)s",
         "desc_red": "una zona in cui i dati suggeriscono maggiore prudenza rispetto agli altri quartieri di %(city)s",
         "desc_grey": "non coperta da questi dati",
