@@ -362,7 +362,7 @@
    "pct_green": 55,
    "pct_yellow": 45,
    "pct_red": 0,
-   "pct_daynight_differs": 100
+   "pct_daynight_differs": 82
   },
   {
    "city": "edinburgh",
@@ -512,9 +512,7 @@
   {
    "city": "london",
    "areas": 33,
-   "problems": [
-    "duplicate slug: None (x33)"
-   ],
+   "problems": [],
    "flags": [
     "18 km out: Barking and Dagenham",
     "12 km out: Barnet",

@@ -84,7 +84,16 @@ GREEN_THRESHOLD = 0.8
 # honestly from the real numbers, but their text flags the small
 # population explicitly rather than presenting a bare, easily-misread
 # rate.
-SMALL_POP_THRESHOLD = 1000
+# Raised from 1,000 after the QA audit. At 1,000, Sloterdijk Nieuw-West — 1,445
+# recorded crimes against 1,830 residents, very nearly one per resident, next to
+# Amsterdam's second-busiest interchange station — carried no caveat at all, and
+# neither did Sloterdijk-West (825 / 1,540) or Coenhaven/Minervahaven (493 /
+# 1,765) in the port. CBS publishes no jobs or daytime population per wijk, only
+# business establishments, so there is no exposure denominator to substitute and
+# none is invented here. What can be said honestly is that a rate computed over
+# a base this small is unstable in both directions, which is as true of the
+# quiet wijken the higher threshold now also catches as it is of the port.
+SMALL_POP_THRESHOLD = 2000
 
 
 def slugify(name):

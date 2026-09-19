@@ -2475,6 +2475,11 @@ def render_london_map(cities):
         if match:
             live_count += 1
             entry["url"] = f"/london/{match['slug']}.html"
+            # The map entry had no slug, so every QA check keyed on slug saw 33
+            # nulls for London and could not compare the map's rating against
+            # each borough's own page. Purely additive: nothing reads it yet
+            # except the audit.
+            entry["slug"] = match["slug"]
             # Live boroughs get their colour AND label replaced by the real
             # computed rating — the baked tester value is only a fallback
             # for boroughs not yet on the automated pipeline.

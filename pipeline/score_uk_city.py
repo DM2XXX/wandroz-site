@@ -69,7 +69,10 @@ def describe(z, rank, total, force, window, top_day, top_night, city):
     return (
         "%s recorded %s crimes inside this ward's official boundary over %s — %s per 1,000 "
         "residents, the %s highest rate of %s's %d wards. The daytime score here is "
-        "driven by %s; the evening/night score by %s. Rated against the average of the city's "
+        "driven by %s; the evening/night score by %s. Those two scores are split by "
+        "offence type, not by clock time — the police feed records no time of day, so "
+        "day and night here mean the kinds of crime typical of each, not counts of "
+        "incidents observed then. Rated against the average of the city's "
         "own wards, never against another city."
         % (force, "{:,}".format(z["total"]), window, z["rate_all"],
            ordinal(rank), city, total, cats(top_day) or "no recorded incidents in those categories",
