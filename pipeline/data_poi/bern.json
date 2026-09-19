@@ -1,0 +1,269 @@
+{
+ "city": "bern",
+ "pois": [
+  {
+   "name": "Federal Palace of Switzerland",
+   "category": "art",
+   "qid": "Q30911",
+   "lat": 46.94667,
+   "lon": 7.44417,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 1
+  },
+  {
+   "name": "Zytglogge",
+   "category": "art",
+   "qid": "Q246105",
+   "lat": 46.94806,
+   "lon": 7.44778,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 2
+  },
+  {
+   "name": "Bern Minster",
+   "category": "art",
+   "qid": "Q688315",
+   "lat": 46.94722,
+   "lon": 7.45139,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 3
+  },
+  {
+   "name": "Kunstmuseum Bern",
+   "category": "art",
+   "qid": "Q194622",
+   "lat": 46.95111,
+   "lon": 7.44333,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 4
+  },
+  {
+   "name": "Bern railway station",
+   "category": "art",
+   "qid": "Q28870",
+   "lat": 46.94882,
+   "lon": 7.43912,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 5
+  },
+  {
+   "name": "Zentrum Paul Klee",
+   "category": "art",
+   "qid": "Q191189",
+   "lat": 46.94917,
+   "lon": 7.47389,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 6
+  },
+  {
+   "name": "Historical Museum of Bern",
+   "category": "art",
+   "qid": "Q670058",
+   "lat": 46.94299,
+   "lon": 7.44933,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 7
+  },
+  {
+   "name": "Gurten",
+   "category": "view",
+   "qid": "Q360492",
+   "lat": 46.9172,
+   "lon": 7.44361,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 8
+  },
+  {
+   "name": "Einsteinhaus",
+   "category": "art",
+   "qid": "Q390003",
+   "lat": 46.94767,
+   "lon": 7.44997,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 9
+  },
+  {
+   "name": "Bundesplatz",
+   "category": "square",
+   "qid": "Q30933",
+   "lat": 46.94722,
+   "lon": 7.44417,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 10
+  },
+  {
+   "name": "Natural History Museum of Bern",
+   "category": "art",
+   "qid": "Q1286799",
+   "lat": 46.94214,
+   "lon": 7.44891,
+   "poi_type": "MUSEUM",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 11
+  },
+  {
+   "name": "Kulturzentrum Reitschule",
+   "category": "night",
+   "qid": "Q693020",
+   "lat": 46.95299,
+   "lon": 7.44064,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 12
+  },
+  {
+   "name": "Rose Garden Bern",
+   "category": "view",
+   "qid": "Q2167108",
+   "lat": 46.9519,
+   "lon": 7.46028,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 13
+  },
+  {
+   "name": "Botanical Garden Bern",
+   "category": "green",
+   "qid": "Q894639",
+   "lat": 46.9527,
+   "lon": 7.44491,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 14
+  },
+  {
+   "name": "Tierpark Bern",
+   "category": "green",
+   "qid": "Q683361",
+   "lat": 46.9344,
+   "lon": 7.44972,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 15
+  },
+  {
+   "name": "Nydegg Church",
+   "category": "art",
+   "qid": "Q2006078",
+   "lat": 46.9488,
+   "lon": 7.4574,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 16
+  },
+  {
+   "name": "Dampfzentrale",
+   "category": "night",
+   "qid": "Q1158892",
+   "lat": 46.94073,
+   "lon": 7.44423,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 17
+  },
+  {
+   "name": "Marktgasse",
+   "category": "food",
+   "qid": "Q691716",
+   "lat": 46.948,
+   "lon": 7.44567,
+   "poi_type": "MARKET",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 18
+  },
+  {
+   "name": "Gerechtigkeitsgasse",
+   "category": "square",
+   "qid": "Q5550544",
+   "lat": 46.94838,
+   "lon": 7.45453,
+   "poi_type": "AREA",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 19
+  },
+  {
+   "name": "Former Granary",
+   "category": "art",
+   "qid": "Q1784541",
+   "lat": 46.94883,
+   "lon": 7.44726,
+   "poi_type": "LANDMARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 20
+  },
+  {
+   "name": "BärenPark Bern",
+   "category": "green",
+   "qid": "Q20850350",
+   "lat": 46.94806,
+   "lon": 7.45917,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 21
+  },
+  {
+   "name": "Marzili",
+   "category": "green",
+   "qid": "Q1906539",
+   "lat": 46.94249,
+   "lon": 7.44162,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 22
+  },
+  {
+   "name": "Münster platform",
+   "category": "view",
+   "qid": "Q1425778",
+   "lat": 46.94667,
+   "lon": 7.45194,
+   "poi_type": "VIEWPOINT",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 23
+  },
+  {
+   "name": "Lorrainebad",
+   "category": "green",
+   "qid": "Q139720093",
+   "lat": 46.9586,
+   "lon": 7.4424,
+   "poi_type": "PARK",
+   "status": "OPEN",
+   "map_priority": 3,
+   "rank": 24
+  }
+ ]
+}

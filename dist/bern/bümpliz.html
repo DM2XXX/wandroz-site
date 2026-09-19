@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Bümpliz in Bern safe? | Wandroz</title>
+<meta name="description" content="The old village centre of Bern West and the largest district in the city&#39;s sixth Stadtteil, with the postwar estates around it. It carries a reputation that loc">
+<link rel="canonical" href="https://www.wandroz.com/bern/bümpliz.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/bern/">Bern, Switzerland</a> &rsaquo; Bümpliz</nav>
+<main>
+  <h1 class="page-title">Bümpliz &mdash; Bern, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 28 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relatively safer</span> <span class="badge-label">day</span>
+    <span class="badge yellow">Average</span> <span class="badge-label">night</span>
+    
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>The old village centre of Bern West and the largest district in the city&#39;s sixth Stadtteil, with the postwar estates around it. It carries a reputation that local reporting itself describes as a media construction — shootings, vandalism, tower blocks — and a reputation is not something this site rates on. What is reported: youth violence in the Kleefeld part of the district, against a canton-wide picture of total offences down 4% in 2025 and youth violence up 5%, sharpest among 10- to 14-year-olds. Ordinary by day, with the usual caution for large estates after dark. Sources: Kantonspolizei Bern PKS 2025; Hauptstadt; Kanton Bern.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Bern%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This rating comes from a structured local-source assessment. This specific area was reviewed against credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — and the signals were consolidated across sources rather than taken from any single report, with the reasoning and the sources shown above. Bern publishes no comparable neighbourhood-level crime dataset; where a city does publish one, Wandroz uses it instead of an assessment. Where a review finds nothing documented, that is recorded as no findings rather than as a safety rating.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Bümpliz safe?</summary>
+      <p>Wandroz currently rates Bümpliz in Bern as relatively safer than most other neighbourhoods in Bern during the day and roughly average compared to other neighbourhoods in Bern at night. This comes from a structured local-source assessment: an area-level review of credible local sources — local and national news, municipal and police-published material, and official surveys where they exist — consolidated across sources rather than taken from a single report. Bern publishes no comparable neighbourhood-level crime dataset; where a city does, Wandroz uses it instead.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Bümpliz safe at night?</summary>
+      <p>At night, Bümpliz is rated as roughly average compared to other neighbourhoods in Bern. If you&#39;re unsure, it&#39;s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can&#39;t capture block-by-block variation.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Bümpliz a good area to stay in as a tourist?</summary>
+      <p>Bümpliz&#39;s day rating (relatively safer than most other neighbourhoods in Bern) is the more relevant one for typical daytime tourist activity; check the night rating too if you&#39;ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is there official crime data for Bümpliz?</summary>
+      <p>Not an official government crime feed — Bümpliz&#39;s rating comes from Wandroz&#39;s own current local/national press and survey research for this specific area instead (see the note on this page for what was checked and the sources used). An absence of recent negative coverage is treated as inconclusive, not as proof the area is safe. If you live in or know Bümpliz well, you can suggest a correction using the link below.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20B%C3%BCmpliz%2C%20Bern%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz currently rates B\u00fcmpliz in Bern as relatively safer than most other neighbourhoods in Bern during the day and roughly average compared to other neighbourhoods in Bern at night. This comes from a structured local-source assessment: an area-level review of credible local sources \u2014 local and national news, municipal and police-published material, and official surveys where they exist \u2014 consolidated across sources rather than taken from a single report. Bern publishes no comparable neighbourhood-level crime dataset; where a city does, Wandroz uses it instead."}, "name": "Is B\u00fcmpliz safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "At night, B\u00fcmpliz is rated as roughly average compared to other neighbourhoods in Bern. If you\u0027re unsure, it\u0027s worth checking recent local reviews for your specific street or block, since a neighbourhood-wide rating can\u0027t capture block-by-block variation."}, "name": "Is B\u00fcmpliz safe at night?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "B\u00fcmpliz\u0027s day rating (relatively safer than most other neighbourhoods in Bern) is the more relevant one for typical daytime tourist activity; check the night rating too if you\u0027ll be out late. You can search accommodation already filtered to this specific area using the Booking.com link on this page."}, "name": "Is B\u00fcmpliz a good area to stay in as a tourist?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Not an official government crime feed \u2014 B\u00fcmpliz\u0027s rating comes from Wandroz\u0027s own current local/national press and survey research for this specific area instead (see the note on this page for what was checked and the sources used). An absence of recent negative coverage is treated as inconclusive, not as proof the area is safe. If you live in or know B\u00fcmpliz well, you can suggest a correction using the link below."}, "name": "Is there official crime data for B\u00fcmpliz?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.94186, 7.40197], [46.94282, 7.40127], [46.94307, 7.40137], [46.94304, 7.40095], [46.94327, 7.40077], [46.94406, 7.39982], [46.94569, 7.3977], [46.94649, 7.39655], [46.9465, 7.39443], [46.94644, 7.39342], [46.94634, 7.3925], [46.94452, 7.37773], [46.94425, 7.37625], [46.94381, 7.37441], [46.94151, 7.37579], [46.94151, 7.37588], [46.94144, 7.37579], [46.9392, 7.37641], [46.93782, 7.37757], [46.93751, 7.37763], [46.93735, 7.3778], [46.93734, 7.37774], [46.93712, 7.37772], [46.93652, 7.37747], [46.9358, 7.37887], [46.93559, 7.37792], [46.93606, 7.37702], [46.93523, 7.37622], [46.93513, 7.376], [46.93485, 7.37498], [46.93403, 7.37372], [46.93428, 7.37312], [46.93421, 7.37254], [46.93247, 7.37324], [46.93252, 7.37325], [46.93255, 7.37331], [46.93262, 7.37423], [46.93271, 7.37489], [46.93143, 7.37487], [46.93157, 7.37598], [46.93166, 7.37792], [46.93172, 7.37805], [46.93171, 7.37818], [46.93182, 7.37812], [46.93251, 7.37835], [46.93272, 7.37854], [46.93251, 7.37966], [46.93236, 7.38007], [46.93237, 7.38063], [46.93241, 7.38087], [46.93233, 7.38095], [46.93083, 7.38048], [46.93035, 7.38079], [46.93021, 7.38032], [46.92989, 7.38002], [46.92854, 7.38166], [46.92838, 7.38168], [46.92793, 7.38208], [46.92751, 7.38213], [46.92728, 7.38231], [46.92778, 7.38281], [46.92847, 7.3841], [46.92823, 7.38443], [46.92866, 7.38526], [46.92934, 7.38626], [46.92974, 7.38623], [46.92987, 7.38637], [46.93002, 7.3868], [46.93045, 7.38757], [46.93101, 7.3884], [46.93142, 7.38929], [46.93172, 7.39145], [46.93166, 7.39194], [46.9324, 7.39152], [46.93261, 7.3926], [46.93294, 7.39376], [46.93325, 7.39455], [46.93359, 7.39516], [46.93416, 7.39599], [46.93464, 7.3965], [46.93623, 7.39776], [46.93691, 7.3985], [46.93733, 7.39927], [46.93766, 7.39979], [46.93809, 7.40077], [46.93871, 7.40297], [46.93906, 7.40271], [46.93921, 7.40336], [46.9394, 7.40381], [46.93965, 7.40428], [46.93999, 7.40475], [46.94053, 7.4054], [46.94089, 7.40535], [46.9412, 7.40555], [46.94127, 7.40578], [46.94146, 7.40593], [46.94155, 7.40592], [46.94175, 7.40632], [46.94185, 7.40634], [46.9419, 7.40617], [46.94203, 7.40445], [46.94245, 7.40461], [46.94258, 7.40447], [46.94244, 7.40412], [46.94277, 7.40387], [46.94182, 7.40234], [46.94186, 7.40197]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

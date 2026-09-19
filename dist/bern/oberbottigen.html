@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Oberbottigen in Bern safe? | Wandroz</title>
+<meta name="description" content="The city&#39;s rural western tip — farms, woodland and a few hamlets, technically Bern and in practice countryside. Nothing area-specific was found in the source re">
+<link rel="canonical" href="https://www.wandroz.com/bern/oberbottigen.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/bern/">Bern, Switzerland</a> &rsaquo; Oberbottigen</nav>
+<main>
+  <h1 class="page-title">Oberbottigen &mdash; Bern, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 28 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relatively safer</span> <span class="badge-label">day</span>
+    <span class="badge green">Relatively safer</span> <span class="badge-label">night</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>The city&#39;s rural western tip — farms, woodland and a few hamlets, technically Bern and in practice countryside. Nothing area-specific was found in the source review.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Bern%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Bern, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Oberbottigen safe?</summary>
+      <p>Wandroz rates Oberbottigen in Bern as relatively safer than most other neighbourhoods in Bern. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Oberbottigen — no incidents, no recurring problems, nothing documented either way — read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>What was checked for Oberbottigen?</summary>
+      <p>The same area-level review every other neighbourhood on the Bern map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Oberbottigen returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area&#39;s page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Oberbottigen a good area to stay in as a tourist?</summary>
+      <p>Nothing documented argues against it. For a stay, weigh that against the areas on the Bern map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Oberbottigen%2C%20Bern%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz rates Oberbottigen in Bern as relatively safer than most other neighbourhoods in Bern. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Oberbottigen \u2014 no incidents, no recurring problems, nothing documented either way \u2014 read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears."}, "name": "Is Oberbottigen safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "The same area-level review every other neighbourhood on the Bern map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Oberbottigen returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area\u0027s page."}, "name": "What was checked for Oberbottigen?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Nothing documented argues against it. For a stay, weigh that against the areas on the Bern map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page."}, "name": "Is Oberbottigen a good area to stay in as a tourist?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.94277, 7.37002], [46.94362, 7.37011], [46.94396, 7.37025], [46.94401, 7.37117], [46.94459, 7.37321], [46.94501, 7.37307], [46.9448, 7.37136], [46.94488, 7.37103], [46.94496, 7.37098], [46.94525, 7.37096], [46.94631, 7.3717], [46.94716, 7.37245], [46.94719, 7.37209], [46.94708, 7.37143], [46.94709, 7.37127], [46.94753, 7.36957], [46.94792, 7.36233], [46.94807, 7.36135], [46.9483, 7.36057], [46.9497, 7.35682], [46.95027, 7.35461], [46.95046, 7.35404], [46.95073, 7.35354], [46.95142, 7.35289], [46.95053, 7.35251], [46.95021, 7.35056], [46.94855, 7.35136], [46.94828, 7.35035], [46.94826, 7.35012], [46.94805, 7.34955], [46.94792, 7.34939], [46.94783, 7.34908], [46.94783, 7.34851], [46.94766, 7.34765], [46.94769, 7.34757], [46.94791, 7.34751], [46.94805, 7.3474], [46.94821, 7.3474], [46.94829, 7.34735], [46.94812, 7.34682], [46.94943, 7.34664], [46.94879, 7.34346], [46.94737, 7.34385], [46.94728, 7.34323], [46.94724, 7.34224], [46.94709, 7.34215], [46.94719, 7.3415], [46.94608, 7.34141], [46.94608, 7.34117], [46.94624, 7.34068], [46.94615, 7.34016], [46.94607, 7.33994], [46.94606, 7.33977], [46.94612, 7.33852], [46.94609, 7.33837], [46.94619, 7.33817], [46.9462, 7.33804], [46.94631, 7.33789], [46.94632, 7.33755], [46.94629, 7.3372], [46.94631, 7.33705], [46.94621, 7.33669], [46.9461, 7.33649], [46.946, 7.33573], [46.946, 7.33549], [46.94608, 7.33523], [46.94621, 7.33427], [46.94617, 7.33407], [46.94628, 7.33391], [46.94625, 7.33373], [46.94628, 7.33331], [46.9461, 7.33339], [46.94609, 7.33216], [46.94611, 7.3319], [46.94623, 7.33146], [46.94644, 7.33134], [46.94663, 7.33103], [46.94654, 7.33036], [46.94655, 7.33003], [46.94639, 7.32836], [46.94606, 7.32759], [46.94551, 7.32673], [46.94534, 7.32655], [46.94519, 7.3262], [46.94511, 7.32617], [46.94492, 7.32624], [46.94461, 7.32613], [46.94435, 7.32583], [46.94423, 7.32561], [46.94393, 7.32537], [46.94388, 7.32524], [46.9437, 7.32503], [46.94361, 7.32499], [46.94358, 7.3249], [46.94353, 7.32492], [46.94345, 7.32487], [46.94342, 7.32477], [46.94333, 7.32479], [46.94329, 7.32474], [46.94315, 7.32365], [46.94312, 7.3226], [46.94315, 7.32244], [46.94307, 7.32227], [46.94301, 7.3217], [46.94295, 7.32154], [46.94286, 7.32088], [46.94281, 7.32075], [46.94274, 7.31991], [46.94263, 7.31949], [46.94266, 7.31944], [46.94252, 7.31907], [46.94253, 7.319], [46.94257, 7.31897], [46.9425, 7.31882], [46.94254, 7.31876], [46.94252, 7.31849], [46.94248, 7.31834], [46.94251, 7.3182], [46.94244, 7.31807], [46.94244, 7.31771], [46.94241, 7.31749], [46.94226, 7.31699], [46.94228, 7.31663], [46.94225, 7.31648], [46.94229, 7.31621], [46.94226, 7.31617], [46.94237, 7.31579], [46.94237, 7.31558], [46.9425, 7.3152], [46.94246, 7.31509], [46.94248, 7.31493], [46.94242, 7.31475], [46.94204, 7.31407], [46.94182, 7.31373], [46.94168, 7.31176], [46.94149, 7.31045], [46.94152, 7.30993], [46.9415, 7.30981], [46.94037, 7.30686], [46.94004, 7.30686], [46.93996, 7.30644], [46.9398, 7.30645], [46.93964, 7.30653], [46.93944, 7.30625], [46.93936, 7.30637], [46.93928, 7.30641], [46.9392, 7.30634], [46.93906, 7.30584], [46.93875, 7.30516], [46.93834, 7.30465], [46.93825, 7.3046], [46.93813, 7.3046], [46.93766, 7.30472], [46.93687, 7.3047], [46.93668, 7.30465], [46.93623, 7.30434], [46.93584, 7.30448], [46.93543, 7.30446], [46.93529, 7.30452], [46.93493, 7.30511], [46.93449, 7.30524], [46.93431, 7.30546], [46.93415, 7.30556], [46.93383, 7.30573], [46.93322, 7.30598], [46.93302, 7.30525], [46.93209, 7.3061], [46.93138, 7.3064], [46.93123, 7.30636], [46.93094, 7.30615], [46.93082, 7.30599], [46.9308, 7.30567], [46.9307, 7.30556], [46.93055, 7.30525], [46.93042, 7.30445], [46.93024, 7.30408], [46.92989, 7.30369], [46.92951, 7.30278], [46.92937, 7.30261], [46.92881, 7.30217], [46.92856, 7.30187], [46.92849, 7.30172], [46.92848, 7.30143], [46.92836, 7.30131], [46.92824, 7.30086], [46.92811, 7.29976], [46.92792, 7.29911], [46.92768, 7.29875], [46.92759, 7.29848], [46.92746, 7.29827], [46.92621, 7.2969], [46.92607, 7.29663], [46.92574, 7.29617], [46.92528, 7.29575], [46.92505, 7.2954], [46.9247, 7.29505], [46.92398, 7.29445], [46.92374, 7.29431], [46.92349, 7.29439], [46.92287, 7.29497], [46.9229, 7.29676], [46.92286, 7.29733], [46.92287, 7.29854], [46.92254, 7.30249], [46.92242, 7.30324], [46.92237, 7.30389], [46.92233, 7.3057], [46.92225, 7.30676], [46.92231, 7.30905], [46.92243, 7.31025], [46.92272, 7.31176], [46.9233, 7.31423], [46.92348, 7.31477], [46.92385, 7.31565], [46.92448, 7.31727], [46.92481, 7.31875], [46.92515, 7.31987], [46.9252, 7.32054], [46.92506, 7.32123], [46.92509, 7.32219], [46.92518, 7.32316], [46.92515, 7.32451], [46.92512, 7.32478], [46.92495, 7.32475], [46.92469, 7.32526], [46.92464, 7.3258], [46.92431, 7.3262], [46.92418, 7.3264], [46.9242, 7.32647], [46.92359, 7.32692], [46.91903, 7.32746], [46.91967, 7.33937], [46.92454, 7.33878], [46.92486, 7.34354], [46.9251, 7.34499], [46.92516, 7.34598], [46.92518, 7.34704], [46.92524, 7.348], [46.92547, 7.34894], [46.92556, 7.34959], [46.92577, 7.35033], [46.92589, 7.35106], [46.92603, 7.35219], [46.926, 7.35337], [46.92603, 7.35395], [46.92681, 7.35393], [46.92679, 7.35416], [46.92686, 7.35514], [46.92702, 7.35614], [46.92719, 7.3576], [46.92715, 7.35897], [46.9272, 7.36056], [46.92798, 7.36051], [46.92859, 7.36041], [46.92868, 7.36083], [46.92882, 7.36253], [46.92906, 7.36367], [46.92922, 7.36529], [46.92951, 7.36641], [46.92981, 7.36715], [46.93043, 7.36831], [46.93055, 7.36848], [46.93089, 7.36841], [46.93179, 7.36744], [46.93239, 7.36807], [46.9323, 7.36843], [46.93219, 7.36914], [46.9321, 7.36941], [46.93196, 7.36974], [46.9318, 7.36993], [46.93214, 7.37073], [46.93224, 7.37072], [46.93264, 7.37318], [46.93421, 7.37254], [46.93428, 7.37312], [46.93403, 7.37372], [46.93485, 7.37498], [46.93513, 7.376], [46.93523, 7.37622], [46.93606, 7.37702], [46.93559, 7.37792], [46.9358, 7.37887], [46.93652, 7.37747], [46.93712, 7.37772], [46.93734, 7.37774], [46.93735, 7.3778], [46.93751, 7.37763], [46.93782, 7.37757], [46.9392, 7.37641], [46.94144, 7.37579], [46.94151, 7.37588], [46.94151, 7.37579], [46.94381, 7.37441], [46.94277, 7.37002]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>

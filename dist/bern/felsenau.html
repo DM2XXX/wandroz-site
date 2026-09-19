@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Felsenau in Bern safe? | Wandroz</title>
+<meta name="description" content="A small district on the Aare loop in the north, wooded and residential, with the Felsenau brewery and the viaduct. Nothing area-specific was found in the source">
+<link rel="canonical" href="https://www.wandroz.com/bern/felsenau.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { max-width: 880px; margin: 0 auto; padding: 26px 24px 60px; }
+  h1.page-title { font-size: 28px; margin: 8px 0 10px; font-weight:800; letter-spacing:-0.01em; }
+  h2 { font-size: 18px; margin: 30px 0 12px; font-weight:700; }
+  .badges { display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 20px; align-items:center; }
+  .badges .badge-label { font-size:12px; color:var(--muted); align-self:center; }
+  .body-text { font-size:14.5px; color:#3a3f4d; line-height:1.65; }
+  .cta-note { font-size:11.5px; color:var(--muted); margin-top:10px; max-width: 520px; }
+  /* Il colore dice il giudizio, questa riga dice su cosa poggia. Tenerli
+     separati e' l'unico modo per colorare ogni area senza far passare una
+     ricerca vuota per una conferma. */
+  .evidence-flag { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted);
+                   margin:10px 0 0; line-height:1.5; max-width:640px; }
+  .evidence-dot { flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%;
+                  border:1.5px dashed #7a8190; }
+  .untranslated { font-size:12px; color:var(--muted); border-left:2px solid var(--line);
+                  padding-left:9px; margin:14px 0; }
+  .evidence-line { font-size:12px; color:var(--muted); margin:0 0 10px; }
+  .evidence-line a { color:inherit; }
+  .methodnote { font-size:13px; color:var(--muted); background:#f7f9fb; border:1px solid var(--line); border-radius: var(--radius-md); padding:14px 16px; margin: 18px 0; line-height:1.6; }
+  #minimap { height: 320px; border-radius: var(--radius-md); margin: 18px 0; border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .faq { display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+  .faq-item { border:1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background:#fff; }
+  .faq-item summary { font-size:14.5px; font-weight:600; cursor:pointer; list-style:none; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::before { content:"+ "; color: var(--muted); }
+  .faq-item[open] summary::before { content:"– "; }
+  .faq-item p { font-size:13.5px; color:#3a3f4d; line-height:1.6; margin:10px 0 2px; }
+
+  /* PERCHE' I MEDIA QUERY STANNO IN FONDO E NON IN CIMA
+     Stavano sopra le regole base, e a parita' di specificita' vince l'ultima
+     scritta: `.body-text { font-size:14.5px }`, dichiarata piu' sotto, batteva
+     il 17px del media query. Risultato, su un portatile la pagina rendeva i
+     valori del telefono — corpo a 14,5px, mappa alta 320px, FAQ a 14,5px —
+     mentre h1 e crumbs, dichiarati sopra il blocco, obbedivano. Da qui
+     l'impressione di testo minuscolo dentro una colonna vuota.
+     Spostati in fondo, valgono tutti. */
+  /* I valori base qui sopra sono quelli del telefono e restano intoccati: su
+     mobile la pagina andava bene ed e' stato chiesto esplicitamente di non
+     cambiarla. Tutto quello che segue vive dentro un media query.
+
+     Su portatile la pagina era un nastro di 880px in mezzo a due metri di
+     bianco, con il testo a 17px e una mappa alta 320px: leggibile a fatica e
+     soprattutto piccola rispetto allo spazio disponibile. Il corpo del testo
+     sale a 23px — il 60% in piu' del valore base — la colonna si allarga
+     perche' 23px dentro 880px darebbero righe troppo corte, e la mappa quasi
+     raddoppia, che era l'altra meta' della lamentela. */
+  @media (min-width: 721px){
+    .evidence-line { font-size: 18px; }
+    .badges .badge { font-size: 19px; padding:7px 18px; }
+    main { max-width: 1040px; padding: 30px 28px 72px; }
+    h1.page-title { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .body-text { font-size: 23px; }
+    .badges .badge-label { font-size: 17px; }
+    .cta-note { font-size: 17px; max-width: 760px; }
+    .evidence-flag { font-size: 19px; max-width: 900px; }
+    .methodnote { font-size: 20px; padding:20px 22px; }
+    .faq-item summary { font-size: 22px; }
+    .faq-item p { font-size: 20px; }
+    nav.crumbs { font-size: 18px !important; }
+    #minimap { height: 560px; }
+  }
+  @media (min-width: 1800px){
+    .evidence-line { font-size: 20px; }
+    .badges .badge { font-size: 21px; }
+    main { max-width: 1240px; }
+    h1.page-title { font-size: 52px; }
+    h2 { font-size: 32px; }
+    .body-text { font-size: 26px; }
+    .evidence-flag { font-size: 21px; }
+    .methodnote { font-size: 22px; }
+    .faq-item summary { font-size: 25px; }
+    .faq-item p { font-size: 23px; }
+    nav.crumbs { font-size: 19px !important; }
+    #minimap { height: 660px; }
+  }
+  @media (min-width: 2400px){
+    .evidence-line { font-size: 22px; }
+    .badges .badge { font-size: 24px; }
+    main { max-width: 1420px; }
+    h1.page-title { font-size: 60px; }
+    .body-text { font-size: 29px; }
+    .methodnote { font-size: 25px; }
+    .evidence-flag { font-size: 23px; }
+    .faq-item summary { font-size: 28px; }
+    .faq-item p { font-size: 26px; }
+    #minimap { height: 760px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E36MYT740L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E36MYT740L');
+</script>
+<script defer src="/booking-events.js"></script>
+</head>
+<body>
+<header class="wz-header">
+  <a class="wz-brand" href="/">
+    <img class="wz-logo" src="/logo-mark.png" alt="Wandroz" width="34" height="34">
+    <div><span class="wz-name">Wandroz</span><p class="wz-tagline">Neighbourhood safety for travellers</p></div>
+  </a>
+</header>
+
+<nav class="crumbs" style="font-size:12.5px;color:var(--muted);padding:14px 24px 0;"><a href="/">Home</a> &rsaquo; <a href="/bern/">Bern, Switzerland</a> &rsaquo; Felsenau</nav>
+<main>
+  <h1 class="page-title">Felsenau &mdash; Bern, Switzerland</h1>
+  
+  <p class="evidence-line">🟡 Local-source safety assessment · 28 areas reviewed individually <a href="/methodology.html">Methodology &rarr;</a></p>
+  <div class="badges">
+    
+    <span class="badge green">Relatively safer</span> <span class="badge-label">day</span>
+    <span class="badge green">Relatively safer</span> <span class="badge-label">night</span>
+    
+    
+    <p class="evidence-flag"><span class="evidence-dot"></span><strong>No area-specific findings.</strong> Sources were reviewed for this area and returned nothing traveller-relevant. The rating reflects that absence together with the character of the area — it is not a positive finding of safety, and it carries less weight than a rating built on documented sources.</p>
+    
+  </div>
+  <div id="minimap"></div>
+<h2>In detail</h2>
+  <div class="body-text"><p>A small district on the Aare loop in the north, wooded and residential, with the Felsenau brewery and the viaduct. Nothing area-specific was found in the source review.</p></div>
+  
+  <a class="btn-primary" href="https://www.booking.com/searchresults.html?ss=Bern%2C+Switzerland" target="_blank" rel="noopener">Search accommodation here on Booking.com →</a>
+  <p class="cta-note">Booking.com has no separate search area for this neighbourhood, so this link searches the whole city rather than just this area.</p>
+  
+  <div class="methodnote">This area was reviewed as part of a structured local-source assessment — the same area-level review applied to every neighbourhood in Bern, drawing on local and national news, municipal and police-published material and official surveys where they exist. It returned nothing traveller-relevant specific to this area. The rating above therefore rests on that absence together with the character of the area, and is marked “no area-specific findings”: it carries less weight than the ratings on this map that are built on named sources, and it is not a positive finding of safety.</div>
+  
+  
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    
+    <details class="faq-item">
+      <summary>Is Felsenau safe?</summary>
+      <p>Wandroz rates Felsenau in Bern as relatively safer than most other neighbourhoods in Bern. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Felsenau — no incidents, no recurring problems, nothing documented either way — read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>What was checked for Felsenau?</summary>
+      <p>The same area-level review every other neighbourhood on the Bern map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Felsenau returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area&#39;s page.</p>
+    </details>
+    
+    <details class="faq-item">
+      <summary>Is Felsenau a good area to stay in as a tourist?</summary>
+      <p>Nothing documented argues against it. For a stay, weigh that against the areas on the Bern map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page.</p>
+    </details>
+    
+  </div>
+  
+  <p class="cta-note" style="margin-top:20px;">See something wrong or out of date on this page? <a href="mailto:hellowandroz@gmail.com?subject=Wandroz%20correction%3A%20Felsenau%2C%20Bern%2C%20Switzerland">Report a correction &rarr;</a></p>
+</main>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Wandroz rates Felsenau in Bern as relatively safer than most other neighbourhoods in Bern. That rating rests on an area-level review that reached no traveller-relevant reporting specific to Felsenau \u2014 no incidents, no recurring problems, nothing documented either way \u2014 read together with the character of the area. It is not a positive finding of safety: an absence of reporting is weaker evidence than the sourced ratings elsewhere on this map, and it is marked as such wherever it appears."}, "name": "Is Felsenau safe?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "The same area-level review every other neighbourhood on the Bern map gets: local and national news, municipal and police-published material, and official surveys where they exist, searched for this specific area. Felsenau returned nothing traveller-relevant, which is common for smaller administrative areas without a press profile of their own. Where a review does return something, the sources are named on the area\u0027s page."}, "name": "What was checked for Felsenau?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Nothing documented argues against it. For a stay, weigh that against the areas on the Bern map whose ratings are backed by named sources, and check recent reviews for the specific street. You can search accommodation already scoped to this area using the Booking.com link on this page."}, "name": "Is Felsenau a good area to stay in as a tourist?"}]}</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  try {
+    var coords = [[[46.97886, 7.44612], [46.97901, 7.44652], [46.97901, 7.4477], [46.97832, 7.44867], [46.97701, 7.44905], [46.97564, 7.44839], [46.9749, 7.44702], [46.9748, 7.44569], [46.97576, 7.44482], [46.97682, 7.44329], [46.97698, 7.44226], [46.97679, 7.44125], [46.97603, 7.4404], [46.97537, 7.43989], [46.97447, 7.43959], [46.97003, 7.43934], [46.96892, 7.43859], [46.96843, 7.43785], [46.96818, 7.43649], [46.96843, 7.43536], [46.96907, 7.43474], [46.97134, 7.43399], [46.97269, 7.43271], [46.97342, 7.43113], [46.97375, 7.42966], [46.97379, 7.42812], [46.97333, 7.42826], [46.97317, 7.42817], [46.97212, 7.42629], [46.9712, 7.42422], [46.97106, 7.42401], [46.97085, 7.42389], [46.97025, 7.42387], [46.97015, 7.42549], [46.97002, 7.42619], [46.96992, 7.42652], [46.96977, 7.42686], [46.9695, 7.42727], [46.96932, 7.42746], [46.96867, 7.42793], [46.96655, 7.4291], [46.9641, 7.43072], [46.9639, 7.43097], [46.96276, 7.43205], [46.96289, 7.4324], [46.9626, 7.43549], [46.96262, 7.43583], [46.96301, 7.43611], [46.96418, 7.43677], [46.96628, 7.43755], [46.96655, 7.43924], [46.96652, 7.43954], [46.96579, 7.44206], [46.96563, 7.44203], [46.96556, 7.44249], [46.96484, 7.44262], [46.96474, 7.44304], [46.96558, 7.44339], [46.96642, 7.44367], [46.96728, 7.44387], [46.9673, 7.44398], [46.96682, 7.44406], [46.96633, 7.44449], [46.96569, 7.44449], [46.96549, 7.44496], [46.96634, 7.44566], [46.96684, 7.44595], [46.96952, 7.44794], [46.97, 7.44849], [46.97052, 7.44936], [46.97085, 7.45038], [46.97108, 7.45144], [46.97125, 7.45244], [46.97119, 7.45388], [46.96991, 7.45786], [46.96983, 7.45966], [46.97032, 7.46129], [46.9714, 7.46322], [46.97267, 7.46435], [46.97412, 7.4664], [46.97488, 7.46694], [46.97547, 7.46702], [46.97583, 7.46673], [46.9761, 7.46618], [46.97622, 7.46548], [46.97621, 7.4636], [46.97708, 7.45601], [46.97721, 7.45548], [46.97747, 7.45501], [46.97782, 7.45465], [46.97822, 7.45446], [46.98205, 7.45336], [46.98357, 7.45278], [46.98905, 7.45239], [46.98968, 7.45221], [46.99012, 7.45146], [46.99015, 7.45068], [46.98926, 7.44849], [46.98811, 7.44764], [46.98698, 7.44727], [46.98544, 7.44714], [46.98436, 7.44663], [46.98251, 7.44493], [46.9805, 7.44173], [46.97982, 7.44128], [46.97904, 7.44156], [46.97849, 7.44247], [46.97807, 7.44405], [46.97886, 7.44612]]];
+    var color = "#2e7d46";
+    var map = L.map('minimap', { scrollWheelZoom:false, dragging:true, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { detectRetina: true, maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+    var poly = L.polygon(coords, { color: color, weight:2, fillOpacity:0.3 }).addTo(map);
+    map.fitBounds(poly.getBounds().pad(0.1));
+  } catch(e) {}
+</script>
+
+<footer class="wz-footer">
+  Wandroz &middot; in beta — coverage is expanding &middot; map data: OpenStreetMap contributors<br>
+  <a href="/">Home</a> &middot;
+  <a href="/methodology.html">Methodology</a> &middot;
+  <a href="/about.html">About</a> &middot;
+  <a href="/privacy.html">Privacy</a> &middot;
+  <a href="/affiliate-disclosure.html">Affiliate disclosure</a> &middot;
+  <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>
