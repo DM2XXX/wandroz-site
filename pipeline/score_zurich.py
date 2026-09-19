@@ -179,6 +179,28 @@ def score_kreis(kreis_n, years_available, employees):
     }
 
 
+def _quartiles(sorted_values):
+    """Q1 and Q3 by linear interpolation, matching statistics.quantiles(n=4).
+    Written out rather than imported so this runs on the same Python the rest
+    of the pipeline assumes, and so the cut-offs are visible where they are
+    used."""
+    n = len(sorted_values)
+    if n < 4:
+        return sorted_values[0], sorted_values[-1]
+
+    def at(p):
+        pos = p * (n + 1) - 1
+        low = int(pos)
+        if low < 0:
+            return sorted_values[0]
+        if low >= n - 1:
+            return sorted_values[-1]
+        frac = pos - low
+        return sorted_values[low] + frac * (sorted_values[low + 1] - sorted_values[low])
+
+    return at(0.25), at(0.75)
+
+
 def write_empty(reason):
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(OUT_PATH, "w") as f:
@@ -218,16 +240,41 @@ def main():
         write_empty("Found raw Zurich files, but none had a usable 'Einbrüche insgesamt' rate — wrote an empty result.")
         return
 
-    city_avg = sum(v["rate_avg_per_1000"] for v in scored.values()) / len(scored)
+    rates = sorted(v["rate_avg_per_1000"] for v in scored.values())
+    city_avg = sum(rates) / len(rates)
+
+    # Thresholds come from this city's own spread, not from a constant.
+    #
+    # The first version of this reused score_london.py's 1.3x / 0.8x of the
+    # mean, "for consistency across the site". Those cut-offs were calibrated
+    # on London, where the boroughs span about 10x. Zurich's districts, once
+    # divided by premises rather than residents, span 2.6x — 2.31 to 6.07 with
+    # everything except Kreis 4 between 2.3 and 4.0. A band of +-20 to 30%
+    # around the mean of a distribution that tight catches almost all of it:
+    # 20 of Zurich's 34 quarters came out amber, which is a map that
+    # distinguishes nothing.
+    #
+    # So: Tukey's fence, the standard definition of an outlier. Red is above
+    # Q3 + 1.5 x IQR — genuinely out of line with the rest of the city. Amber
+    # is the top quarter below that fence. Green is the rest. The rule adapts
+    # to whatever spread the data has: in a city where everywhere really is
+    # much the same, almost everywhere is green, which is the honest picture;
+    # where one district stands out, it alone turns red.
+    #
+    # London keeps its own thresholds for now. They work there because its
+    # spread is wide, and changing a live 33-borough scale is not a change to
+    # make in passing.
+    q1, q3 = _quartiles(rates)
+    fence = q3 + 1.5 * (q3 - q1)
     for v in scored.values():
-        ratio = (v["rate_avg_per_1000"] / city_avg) if city_avg else 1.0
-        v["vs_city_average"] = round(ratio, 3)
-        if ratio >= RED_THRESHOLD:
+        rate = v["rate_avg_per_1000"]
+        v["vs_city_average"] = round(rate / city_avg, 3) if city_avg else 1.0
+        if rate > fence:
             v["tone"] = "red"
-        elif ratio <= GREEN_THRESHOLD:
-            v["tone"] = "green"
-        else:
+        elif rate > q3:
             v["tone"] = "yellow"
+        else:
+            v["tone"] = "green"
 
     out = {
         "kreise": scored,
