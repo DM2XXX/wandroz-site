@@ -95,8 +95,13 @@
   .popup-name { font-size:16px; font-weight:800; color:var(--navy); margin-bottom:7px; display:flex; align-items:center; gap:7px; }
   .popup-meta { font-size:12.5px; color:var(--muted); margin-bottom:12px; line-height:1.5; }
   .popup-meta strong { color:var(--ink); font-weight:600; }
-  .popup-cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:8px 14px; border-radius: var(--radius-sm); font-size:12.5px; font-weight:700; transition: background .15s ease; }
-  .popup-cta:hover { text-decoration:none; background:var(--accent-bright); }
+  /* Il selettore parte da .leaflet-container per una ragione di specificita',
+     non per eleganza: il CSS di Leaflet contiene `.leaflet-container a { color:
+     #0078A8 }`, che con due componenti batte `.popup-cta` che ne ha una. Il
+     colore bianco era gia' scritto qui e non si vedeva: il bottone usciva con
+     il testo azzurro di Leaflet su fondo verde scuro, praticamente illeggibile. */
+  .leaflet-container a.popup-cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:8px 14px; border-radius: var(--radius-sm); font-size:12.5px; font-weight:700; transition: background .15s ease; }
+  .leaflet-container a.popup-cta:hover { text-decoration:none; background:var(--accent-bright); color:#fff; }
 
   /* ---------- Benefit cards ---------- */
   .benefits-section { padding: 30px 0 4px; }
