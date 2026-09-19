@@ -71,6 +71,11 @@ EXPECTED_ROOT_FILES = {
     # inspects the root of dist/, so those per-city files are outside its
     # reach — the count parity check below is what covers them.
     "city-boxes.json",
+    # SHA-256 su tutto quello che il build produce, pubblicato insieme. Serve a
+    # check_production_live.py per dire in una richiesta se la produzione sta
+    # servendo davvero questo build — il 18 settembre un deployment mancato e'
+    # rimasto invisibile due ore perche' niente lo chiedeva.
+    "build-fingerprint.txt",
     # Reports outbound Booking clicks to GA4. Listed because the gate correctly
     # refused a build the moment it appeared: an unexplained file at the root of
     # a published site is exactly what this check is for.

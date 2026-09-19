@@ -18,6 +18,7 @@ another city) regenerates every page from the current JSON — this is the
 many cities, proven out end-to-end here with one real city.
 """
 
+import hashlib
 import json
 import math
 import os
@@ -2540,6 +2541,49 @@ def copy_static():
     return copied
 
 
+FINGERPRINT_FILE = "build-fingerprint.txt"
+
+
+def write_build_fingerprint():
+    """A hash of everything the build produced, published with it.
+
+    WHY NOT COMPARE SITEMAPS
+        The obvious check for "is production serving what main says?" is to
+        compare the live sitemap with the committed one. It would not have
+        caught the failure that prompted this: on 18 September a commit changed
+        the wording on 1,944 pages and added no URL, Vercel skipped the
+        deployment entirely because the account was over its storage quota, and
+        the two sitemaps stayed identical for two hours while production served
+        the previous build. Nobody noticed until a person opened the site.
+
+        A hash over the CONTENT catches that, and catches it in one request.
+
+    WHY IT DOES NOT BREAK REPRODUCIBILITY
+        It is derived from the output, not from the commit: same bytes in, same
+        hash out. Embedding the git SHA instead would have made every rebuild
+        differ from the one before it and broken the reproducibility gate,
+        which is the one thing that must not be traded away for convenience.
+    """
+    h = hashlib.sha256()
+    for root, dirs, files in os.walk(OUT_DIR):
+        dirs.sort()
+        for name in sorted(files):
+            if name == FINGERPRINT_FILE:
+                continue
+            full = os.path.join(root, name)
+            rel = os.path.relpath(full, OUT_DIR)
+            h.update(rel.encode("utf-8") + b"\0")
+            with open(full, "rb") as f:
+                for chunk in iter(lambda: f.read(1 << 20), b""):
+                    h.update(chunk)
+    digest = h.hexdigest()
+    path = os.path.join(OUT_DIR, FINGERPRINT_FILE)
+    with open(path, "w") as f:
+        f.write(digest + "\n")
+    print("Wrote %s (%s)" % (path, digest[:16]))
+    return digest
+
+
 def write_robots_and_sitemap(urls):
     robots_path = os.path.join(OUT_DIR, "robots.txt")
     with open(robots_path, "w") as f:
@@ -3250,6 +3294,8 @@ def main():
 
     assert_every_poi_file_is_used()
     write_robots_and_sitemap(sitemap_urls)
+    # Ultimo di tutti: l'impronta deve coprire ogni file appena scritto.
+    write_build_fingerprint()
 
 
 if __name__ == "__main__":
