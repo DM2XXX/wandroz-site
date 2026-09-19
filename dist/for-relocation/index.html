@@ -206,8 +206,8 @@
 
   .bars{margin-top:16px}
   .bars .bh{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;margin-bottom:9px}
-  .bar{display:grid;grid-template-columns:128px 1fr 62px;gap:10px;align-items:center;margin-bottom:7px;font-size:12px}
-  .bar .nm2{color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar{display:grid;grid-template-columns:150px 1fr 62px;gap:10px;align-items:center;margin-bottom:8px;font-size:12px}
+  .bar .nm2{color:var(--ink-2);line-height:1.3;overflow:hidden}
   .bar .tr{background:var(--line-2);border-radius:4px;height:16px;position:relative;overflow:hidden}
   .bar .fl{height:100%;border-radius:4px}
   .bar.g .fl{background:var(--calm-fill)} .bar.y .fl{background:var(--watch-fill)} .bar.r .fl{background:var(--alert-fill)}
@@ -656,28 +656,63 @@
   }
 
   function bars(){
-    var box=document.getElementById("bars");
-    box.textContent="";
+    var box=document.getElementById("bars"); box.textContent="";
     box.appendChild(el("div","bh",D().barTitle));
-    var rows=D().map.slice().sort(function(a,b){ return parseFloat(a.rate.replace(/,/g,""))-parseFloat(b.rate.replace(/,/g,"")); });
-    var max=Math.max.apply(null,rows.map(function(r){return parseFloat(r.rate.replace(/,/g,""));}));
+
+    // Zurich's break-in figures are published per Kreis, not per Quartier, so
+    // eight neighbourhood labels carried five distinct numbers and Hard sat
+    // next to Langstrasse on an identical 6.07 with no explanation. The chart
+    // now shows the district and names the neighbourhoods inside it, which is
+    // what the data actually is.
+    var rows;
+    if (CITY === "zurich") {
+      var byK = {};
+      D().map.forEach(function(z){
+        var k = z.kreis;
+        if (!byK[k]) byK[k] = {key:k, rate:z.rate, btone:z.btone, names:[], focus:false};
+        byK[k].names.push(z.n);
+        if (z.focus) byK[k].focus = true;
+      });
+      rows = Object.keys(byK).map(function(k){
+        var g = byK[k];
+        return {label:g.key, sub:g.names.join(", "), rate:g.rate, tone:g.btone, focus:g.focus};
+      });
+    } else {
+      rows = D().map.map(function(z){
+        return {label:z.n, sub:"", rate:z.rate, tone:z.tone, focus:z.focus};
+      });
+    }
+
+    var num = function(r){ return parseFloat(String(r.rate).replace(/,/g,"")); };
+    rows.sort(function(a,b){ return num(a)-num(b); });
+    var max = Math.max.apply(null, rows.map(num));
+
     rows.forEach(function(r){
-      var val=parseFloat(r.rate.replace(/,/g,""));
-      var cls = r.tone==="green"?"g":(r.tone==="yellow"?"y":"r");
+      // Colour and length now describe the same measure. They did not: the bar
+      // took its colour from the day/night rating and its length from the
+      // break-in rate, so Hard was green and Langstrasse red on one number.
+      var cls = r.tone==="green" ? "g" : (r.tone==="yellow" ? "y" : "r");
       var row=el("div","bar "+cls+(r.focus?" me":""));
-      row.appendChild(el("div","nm2",r.n));
+      var nm=el("div","nm2");
+      nm.appendChild(document.createTextNode(r.label));
+      if(r.sub){
+        var sb=el("div"); sb.style.cssText="font-size:10.5px;color:var(--muted);font-weight:400";
+        sb.textContent=r.sub; nm.appendChild(sb);
+      }
+      row.appendChild(nm);
       var tr=el("div","tr");
-      var fl=el("div","fl"); fl.style.width=Math.max(2,(val/max)*100)+"%";
-      tr.appendChild(fl);
-      var av=el("div","avgline"); av.style.left=((D().avg/max)*100)+"%";
-      av.title=D().avgLabel;
+      var fl=el("div","fl"); fl.style.width=Math.max(2,(num(r)/max)*100)+"%"; tr.appendChild(fl);
+      var av=el("div","avgline"); av.style.left=((D().avg/max)*100)+"%"; av.title=D().avgLabel;
       tr.appendChild(av);
       row.appendChild(tr);
       row.appendChild(el("div","vv",r.rate));
       box.appendChild(row);
     });
-    var note=el("div"); note.style.cssText="font-size:10.5px;color:var(--muted);margin-top:7px;font-family:'DM Mono',monospace";
-    note.textContent="vertical line = "+D().avgLabel;
+
+    var note=el("div");
+    note.style.cssText="font-size:10.5px;color:var(--muted);margin-top:7px;font-family:'DM Mono',monospace";
+    note.textContent="vertical line = "+D().avgLabel
+      + (CITY==="zurich" ? " \u00b7 figures are per district; neighbourhoods in the same district share one" : "");
     box.appendChild(note);
   }
 
