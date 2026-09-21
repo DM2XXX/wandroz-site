@@ -629,9 +629,13 @@ def hub_data(city_key, zones, t=None):
     # The cards are the one place the page tells a visitor where to stay, so
     # they are chosen only from areas actually in the city. Everything else on
     # the page — map, table, area pages — still covers the full dataset.
+    #
+    # This used to rebind `zones`, which also fed the comparison table further
+    # down: Bath's table silently lost 18 of its 33 rows while its map kept
+    # them, so the page offered "Compare all 15 wards" over a 33-area map. The
+    # narrowing now applies to card selection alone.
     outside = OUTSIDE_CITY.get(city_key, set())
-    if outside:
-        zones = [z for z in zones if z["name"] not in outside]
+    card_zones = [z for z in zones if z["name"] not in outside] if outside else zones
 
     cards, used = [], {}
 
@@ -646,7 +650,7 @@ def hub_data(city_key, zones, t=None):
         used[zone["slug"]] = c
         cards.append(c)
 
-    with_sights = [z for z in zones if counts[z["slug"]]["sights"] > 0]
+    with_sights = [z for z in card_zones if counts[z["slug"]]["sights"] > 0]
     if with_sights:
         top = max(counts[z["slug"]]["sights"] for z in with_sights)
         pool = [z for z in with_sights if counts[z["slug"]]["sights"] >= max(1, top - 1)]
@@ -662,7 +666,7 @@ def hub_data(city_key, zones, t=None):
         add("For a first visit", best,
             (t["why_first_visit"] % {"n": n}) if n > 1 else t["why_first_visit_one"])
 
-    family = [z for z in zones
+    family = [z for z in card_zones
               if counts[z["slug"]]["green"] > 0 and counts[z["slug"]]["night"] == 0]
     if family:
         best = sorted(family, key=rank)[0]
@@ -672,14 +676,14 @@ def hub_data(city_key, zones, t=None):
 
     # Only offered where the night rating supports it. A city whose nightlife
     # sits in areas rated red gets no card at all, which is the honest output.
-    night = [z for z in zones
+    night = [z for z in card_zones
              if counts[z["slug"]]["night"] > 0 and z["night"] in ("green", "yellow")]
     if night:
         best = max(night, key=lambda z: (counts[z["slug"]]["night"], -TONE_ORDER.get(z["night"], 3)))
         add("For going out", best, t["why_going_out"])
 
     if zones:
-        add("Best rated overall", sorted(zones, key=rank)[0], t["why_best"])
+        add("Best rated overall", sorted(card_zones, key=rank)[0], t["why_best"])
 
     # ORDINE DELLA TABELLA: per contrasto, non per valutazione.
     #
