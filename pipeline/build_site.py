@@ -2298,13 +2298,22 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             "yellow": _t["tone_yellow"],
             "red": _t["tone_red"], "grey": _t["tone_grey"],
         }
-        # Le pagine delle singole aree non sono ancora tradotte — sono i 177.000
-        # parole di ragionamento che aspettano il servizio di traduzione — quindi
-        # da una hub tradotta i link puntano alla versione inglese, che esiste.
-        # Mandare un lettore italiano su una pagina inglese e' un limite; mandarlo
-        # su un 404 sarebbe un difetto.
-        def _area_url(slug):
-            return f"/{url_slug}/{slug}.html" if flat else f"/{url_slug}/{slug}/"
+        # Ogni lingua costruisce le proprie pagine d'area — il ciclo piu' sotto
+        # le scrive sotto /<lang>/<citta'>/ — quindi il link deve restare nella
+        # lingua della hub. Questo punto ha portato per mesi il commento opposto:
+        # quando fu scritto le aree erano solo in inglese e mandare il lettore
+        # alla versione inglese era meglio di un 404. La traduzione e' arrivata
+        # dopo e la riga non fu aggiornata: 405 pagine italiane costruite,
+        # indicizzate e raggiungibili solo dalla sitemap, perche' nessun link
+        # dell'hub italiano ci arrivava.
+        def _area_url(slug, _l=_lang):
+            _rel = f"{url_slug}/{slug}.html" if flat else f"{url_slug}/{slug}/"
+            return i18n.url_for(_l, _rel)
+
+        # La mappa legge gli URL da qui, non dalla tabella: senza questa copia
+        # per lingua i poligoni dell'hub italiano linkavano ancora l'inglese.
+        _js_zones = js_zones if _is_en else [
+            dict(z, url=_area_url(z["slug"])) for z in js_zones]
 
         for _r in _hubdata["rows"]:
             _r["url"] = _area_url(_r["slug"])
@@ -2384,7 +2393,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             pois=load_pois(city_key, _t), poi_filter_all=_t["poi_all"],
             label_hide_sights=_t["hide_sights"], label_sights_hidden=_t["sights_hidden"],
             footer_note=_t["footer_note"],
-            zones=js_zones, zone_groups=group_zones(zones, js_zones),
+            zones=_js_zones, zone_groups=group_zones(zones, _js_zones),
             center=data["center"], zoom=data["zoom"],
             show_burglary_toggle=bool(extra_zone_data),
         )

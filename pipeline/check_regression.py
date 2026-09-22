@@ -60,7 +60,14 @@ FEATURES = {
 
 
 def git(*args):
-    r = subprocess.run(["git"] + list(args), cwd=REPO, capture_output=True, text=True)
+    # core.quotepath=off, or git prints a path with a non-ASCII character as
+    # "dist/basel/kleinh\303\274ningen.html" — quoted and octal-escaped. The
+    # trailing quote makes it fail the .html test, so 17 pages across Basel,
+    # Bern and Geneva were invisible to this gate: a build that dropped one of
+    # them would have passed. Found because the gate reported "+17 pages" for
+    # a build that added none.
+    r = subprocess.run(["git", "-c", "core.quotepath=off"] + list(args),
+                       cwd=REPO, capture_output=True, text=True)
     return r.stdout if r.returncode == 0 else None
 
 
