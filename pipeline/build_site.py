@@ -213,6 +213,10 @@ UK_CITIES = [
      "lat": 52.6309, "lon": 1.2974, "color": "#6b8f5a"},
 ]
 
+# London is built by its own pipeline but from the same feed and the same
+# offence-type split, so it belongs here too.
+UK_PROXY_KEYS = {c["key"] for c in UK_CITIES} | {"london"}
+
 
 
 
@@ -1274,6 +1278,33 @@ def method_note(city_key, city_label, no_findings=False):
         "This is a limited-data assessment. %s publishes no neighbourhood-level crime dataset, and this "
         "area has not yet had a full source review, so the rating is indicative and is labelled as such "
         "rather than presented as evidenced." % city_label
+    )
+
+
+def daynight_note(city_key):
+    """What "by day" and "at night" mean on a UK map, said on the hub.
+
+    The area pages have always explained it, with the counts: Bath's Lansdown
+    is red by day off 22 shopliftings and green at night off 12 violent
+    offences, because data.police.uk records no time of day and the two scores
+    are split by offence type. The hub said none of it — and the hub is where a
+    reader meets 86 areas across 20 cities that are rated worse by day than
+    after dark. Without the sentence that reads as a bug, and a reader who
+    thinks the colours are wrong is right to stop trusting the rest.
+
+    Only where it is true. Every other city either has no split at all or sets
+    day and night from what was reported about the place, not from a proxy.
+    """
+    if city_key not in UK_PROXY_KEYS:
+        return ""
+    return (
+        "Day and night here are split by offence type, not by clock time: the "
+        "police feed records no time of day, so \u201cby day\u201d weights "
+        "shoplifting, theft and burglary and \u201cat night\u201d weights "
+        "violence, robbery and anti-social behaviour. An area with a busy high "
+        "street and quiet evenings can therefore read worse by day, and that is "
+        "the offence mix, not a count of incidents seen at each hour. Each area "
+        "page shows the figures behind both."
     )
 
 
@@ -2377,7 +2408,8 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             # immediately failed. Those notes are dead text to be cleaned, not
             # text to start publishing by accident.
             data_note=((evidence_line(city_key, len(zones))
-                        + ((" " + data["scopeNote"]) if data.get("scopeNote") else ""))
+                        + ((" " + data["scopeNote"]) if data.get("scopeNote") else "")
+                        + ((" " + daynight_note(city_key)) if daynight_note(city_key) else ""))
                        if _is_en else ""),
             show_toggle=show_toggle,
             label_day=_t["label_day"], label_night=_t["label_night"],
@@ -2556,7 +2588,7 @@ def render_london_map(cities):
     data_note = (
         f"{LONDON_EVIDENCE_TAG} · Police-recorded crime, data.police.uk · "
         f"{live_count} of {total_zones} areas scored — 32 boroughs and the City of "
-        f"London — {london_window()}"
+        f"London — {london_window()}. " + daynight_note("london")
     )
     # hub_data works on zone dicts with a slug; London's map entries carry a
     # url instead, and the boroughs without one have no page to link to — the
