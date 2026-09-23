@@ -5,7 +5,7 @@
    "areas": 110,
    "problems": [],
    "flags": [
-    "14 km out: Aetsveld/Oostelijke Vechtoever"
+    "14 km out (this city's own fence: 12 km): Aetsveld/Oostelijke Vechtoever"
    ],
    "coverage_pct": 53.8,
    "overlap_pct": 0.1,
@@ -20,7 +20,7 @@
    "areas": 10,
    "problems": [],
    "flags": [
-    "16 km out: Berendrecht-Zandvliet-Lillo"
+    "16 km out (this city's own fence: 12 km): Berendrecht-Zandvliet-Lillo"
    ],
    "coverage_pct": 38.4,
    "overlap_pct": 0.0,
@@ -46,10 +46,7 @@
   {
    "city": "barcelona",
    "areas": 73,
-   "problems": [
-    "self-intersecting ring: la Barceloneta",
-    "self-intersecting ring: el Carmel"
-   ],
+   "problems": [],
    "flags": [],
    "coverage_pct": 43.5,
    "overlap_pct": 0.0,
@@ -63,7 +60,10 @@
    "city": "basel",
    "areas": 21,
    "problems": [],
-   "flags": [],
+   "flags": [
+    "5 km out (this city's own fence: 4 km): Riehen",
+    "6 km out (this city's own fence: 4 km): Bettingen"
+   ],
    "coverage_pct": 37.7,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -76,10 +76,7 @@
    "city": "bath",
    "areas": 33,
    "problems": [],
-   "flags": [
-    "15 km out: Chew Valley",
-    "14 km out: Mendip"
-   ],
+   "flags": [],
    "coverage_pct": 62.9,
    "overlap_pct": 0.8,
    "rating_mismatches": 0,
@@ -92,47 +89,7 @@
    "city": "berlin",
    "areas": 143,
    "problems": [],
-   "flags": [
-    "15 km out: Allende-Viertel",
-    "13 km out: Altglienicke",
-    "13 km out: Altstadt Köpenick",
-    "13 km out: Blankenfelde/ Niederschönhausen",
-    "15 km out: Bohnsdorf",
-    "18 km out: Brunsbütteler Damm",
-    "16 km out: Buch",
-    "13 km out: Dammvorstadt",
-    "18 km out: Falkenhagener Feld",
-    "15 km out: Friedrichshagen",
-    "18 km out: Gatow/Kladow",
-    "17 km out: Grünau",
-    "17 km out: Hakenfelde",
-    "13 km out: Haselhorst",
-    "12 km out: Heerstraße (Charlottenburg-Wilmersdorf)",
-    "17 km out: Heerstraße (Spandau)",
-    "14 km out: Hellersdorf Nord",
-    "14 km out: Hellersdorf Ost",
-    "12 km out: Hellersdorf Süd",
-    "13 km out: Karow",
-    "13 km out: Köllnische Vorstadt/ Spindlersfeld",
-    "13 km out: Köpenick Nord",
-    "16 km out: Köpenick Süd",
-    "13 km out: Lichtenrade Süd",
-    "14 km out: Mahlsdorf",
-    "13 km out: Marzahn Nord",
-    "22 km out: Müggelheim",
-    "15 km out: Nord 1 - Frohnau/ Hermsdorf",
-    "13 km out: Nord 2 – Waidmannslust/ Wittenau/ Lübars",
-    "22 km out: Rahnsdorf",
-    "12 km out: Rollbergesiedlung",
-    "22 km out: Schmöckwitz",
-    "14 km out: Spandau Mitte",
-    "14 km out: Teltower Damm",
-    "15 km out: West 2 - Heiligensee/Konradshöhe",
-    "13 km out: West 3 - Borsigwalde/Freie Scholle",
-    "13 km out: West 5 - Tegel",
-    "14 km out: Wilhelmstadt",
-    "20 km out: Zehlendorf Südwest"
-   ],
+   "flags": [],
    "coverage_pct": 50.6,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -145,7 +102,9 @@
    "city": "bern",
    "areas": 28,
    "problems": [],
-   "flags": [],
+   "flags": [
+    "8 km out (this city's own fence: 5 km): Oberbottigen"
+   ],
    "coverage_pct": 41.8,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -158,13 +117,7 @@
    "city": "birmingham",
    "areas": 69,
    "problems": [],
-   "flags": [
-    "12 km out: Frankley Great Park",
-    "13 km out: Rubery & Rednal",
-    "12 km out: Sutton Four Oaks",
-    "13 km out: Sutton Mere Green",
-    "13 km out: Sutton Roughley"
-   ],
+   "flags": [],
    "coverage_pct": 49.2,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -190,10 +143,7 @@
    "city": "bratislava",
    "areas": 17,
    "problems": [],
-   "flags": [
-    "14 km out: Rusovce",
-    "16 km out: Čunovo"
-   ],
+   "flags": [],
    "coverage_pct": 49.6,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -219,7 +169,9 @@
    "city": "bristol",
    "areas": 34,
    "problems": [],
-   "flags": [],
+   "flags": [
+    "8 km out (this city's own fence: 8 km): Avonmouth and Lawrence Weston"
+   ],
    "coverage_pct": 45.2,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -257,12 +209,8 @@
   {
    "city": "budapest",
    "areas": 23,
-   "problems": [
-    "self-intersecting ring: Hegyvidék (12. kerület)"
-   ],
-   "flags": [
-    "14 km out: Rákosmente (17. kerület)"
-   ],
+   "problems": [],
+   "flags": [],
    "coverage_pct": 56.7,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -301,7 +249,9 @@
    "city": "catania",
    "areas": 6,
    "problems": [],
-   "flags": [],
+   "flags": [
+    "10 km out (this city's own fence: 4 km): Librino, Zia Lisa, San Giorgio"
+   ],
    "coverage_pct": 47.9,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -326,9 +276,7 @@
   {
    "city": "denhaag",
    "areas": 44,
-   "problems": [
-    "self-intersecting ring: Bouwlust en Vrederust"
-   ],
+   "problems": [],
    "flags": [],
    "coverage_pct": 42.3,
    "overlap_pct": 0.0,
@@ -368,7 +316,9 @@
    "city": "edinburgh",
    "areas": 17,
    "problems": [],
-   "flags": [],
+   "flags": [
+    "11 km out (this city's own fence: 9 km): Pentland Hills (Ward 2)"
+   ],
    "coverage_pct": 56.4,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -393,17 +343,8 @@
   {
    "city": "geneva",
    "areas": 52,
-   "problems": [
-    "self-intersecting ring: Pâquis Sécheron"
-   ],
-   "flags": [
-    "12 km out: Avusy",
-    "14 km out: Chancy",
-    "17 km out: Céligny",
-    "12 km out: Gy",
-    "13 km out: Hermance",
-    "12 km out: Jussy"
-   ],
+   "problems": [],
+   "flags": [],
    "coverage_pct": 37.8,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -417,7 +358,7 @@
    "areas": 9,
    "problems": [],
    "flags": [
-    "14 km out: Pegli, Prà, Voltri (Ponente)"
+    "14 km out (this city's own fence: 13 km): Pegli, Prà, Voltri (Ponente)"
    ],
    "coverage_pct": 44.7,
    "overlap_pct": 0.0,
@@ -457,11 +398,7 @@
    "city": "leeds",
    "areas": 33,
    "problems": [],
-   "flags": [
-    "13 km out: Guiseley & Rawdon",
-    "14 km out: Kippax & Methley",
-    "17 km out: Wetherby"
-   ],
+   "flags": [],
    "coverage_pct": 59.5,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -500,7 +437,9 @@
    "city": "liverpool",
    "areas": 30,
    "problems": [],
-   "flags": [],
+   "flags": [
+    "9 km out (this city's own fence: 8 km): Speke-Garston"
+   ],
    "coverage_pct": 52.2,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -513,25 +452,7 @@
    "city": "london",
    "areas": 33,
    "problems": [],
-   "flags": [
-    "18 km out: Barking and Dagenham",
-    "12 km out: Barnet",
-    "20 km out: Bexley",
-    "19 km out: Bromley",
-    "18 km out: Croydon",
-    "14 km out: Ealing",
-    "14 km out: Enfield",
-    "12 km out: Greenwich",
-    "18 km out: Harrow",
-    "24 km out: Havering",
-    "24 km out: Hillingdon",
-    "18 km out: Hounslow",
-    "19 km out: Kingston upon Thames",
-    "12 km out: Merton",
-    "15 km out: Redbridge",
-    "16 km out: Richmond upon Thames",
-    "18 km out: Sutton"
-   ],
+   "flags": [],
    "coverage_pct": 60.1,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -545,11 +466,11 @@
    "areas": 131,
    "problems": [],
    "flags": [
-    "17 km out: El Pardo",
-    "13 km out: El Goloso",
-    "12 km out: El Plantío",
-    "13 km out: El Cañaveral",
-    "12 km out: Aeropuerto"
+    "12 km out (this city's own fence: 12 km): El Plantío",
+    "12 km out (this city's own fence: 12 km): Aeropuerto",
+    "13 km out (this city's own fence: 12 km): El Cañaveral",
+    "13 km out (this city's own fence: 12 km): El Goloso",
+    "17 km out (this city's own fence: 12 km): El Pardo"
    ],
    "coverage_pct": 50.6,
    "overlap_pct": 0.1,
@@ -562,9 +483,7 @@
   {
    "city": "milano",
    "areas": 88,
-   "problems": [
-    "self-intersecting ring: Parco Nord"
-   ],
+   "problems": [],
    "flags": [],
    "coverage_pct": 56.2,
    "overlap_pct": 0.8,
@@ -630,7 +549,9 @@
    "city": "nottingham",
    "areas": 20,
    "problems": [],
-   "flags": [],
+   "flags": [
+    "8 km out (this city's own fence: 7 km): Clifton East"
+   ],
    "coverage_pct": 47.8,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -708,7 +629,11 @@
    "city": "portsmouth",
    "areas": 14,
    "problems": [],
-   "flags": [],
+   "flags": [
+    "5 km out (this city's own fence: 4 km): Drayton and Farlington",
+    "5 km out (this city's own fence: 4 km): Cosham",
+    "5 km out (this city's own fence: 4 km): Paulsgrove"
+   ],
    "coverage_pct": 62.9,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -721,21 +646,7 @@
    "city": "praha",
    "areas": 57,
    "problems": [],
-   "flags": [
-    "12 km out: Praha 13",
-    "13 km out: Praha 16",
-    "13 km out: Praha 17",
-    "13 km out: Praha 21",
-    "13 km out: Praha-Klánovice",
-    "15 km out: Praha-Lipence",
-    "12 km out: Praha-Lochkov",
-    "12 km out: Praha-Nebušice",
-    "13 km out: Praha-Nedvězí",
-    "15 km out: Praha-Přední Kopanina",
-    "12 km out: Praha-Zbraslav",
-    "15 km out: Praha-Zličín",
-    "14 km out: Praha-Řeporyje"
-   ],
+   "flags": [],
    "coverage_pct": 54.2,
    "overlap_pct": 0.1,
    "rating_mismatches": 0,
@@ -747,54 +658,10 @@
   {
    "city": "roma",
    "areas": 155,
-   "problems": [
-    "self-intersecting ring: Ostia Nord",
-    "centroid 31 km from the city's median centre: Martignano",
-    "centroid 26 km from the city's median centre: Ostia Nord"
-   ],
+   "problems": [],
    "flags": [
-    "17 km out: Acilia Nord",
-    "18 km out: Acilia Sud",
-    "13 km out: Appia Antica Sud",
-    "13 km out: Barcaccia",
-    "14 km out: Boccea",
-    "17 km out: Borghesiana",
-    "13 km out: Bufalotta",
-    "23 km out: Castel Fusano",
-    "19 km out: Castel Porziano",
-    "21 km out: Castel Romano",
-    "16 km out: Castelluccia",
-    "24 km out: Cesano",
-    "12 km out: Ciampino",
-    "17 km out: Decima",
-    "13 km out: Giardinetti-Tor Vergata",
-    "13 km out: Giustiniana",
-    "19 km out: Infernetto",
-    "19 km out: La Storta",
-    "13 km out: Labaro",
-    "15 km out: Lunghezza",
-    "15 km out: Malafede",
-    "12 km out: Massimina",
-    "13 km out: Mezzocammino",
-    "14 km out: Morena",
-    "21 km out: Ostia Antica",
-    "24 km out: Ostia Sud",
-    "19 km out: Palocco",
-    "15 km out: Pantano di Grano",
-    "14 km out: Ponte Galeria",
-    "18 km out: Porta Medaglia",
-    "18 km out: Prima Porta",
-    "12 km out: S. Alessandro",
-    "16 km out: S. Cornelia",
-    "21 km out: S. Maria di Galeria",
-    "22 km out: S. Vittorino",
-    "22 km out: Santa Palomba",
-    "12 km out: Settebagni",
-    "12 km out: Settecamini",
-    "13 km out: Spinaceto",
-    "15 km out: Tor S. Giovanni",
-    "13 km out: Torre Angela",
-    "13 km out: Vallerano Castel di Leva"
+    "26 km out (this city's own fence: 24 km): Ostia Nord",
+    "31 km out (this city's own fence: 24 km): Martignano"
    ],
    "coverage_pct": 45.5,
    "overlap_pct": 0.4,
@@ -807,13 +674,10 @@
   {
    "city": "rotterdam",
    "areas": 21,
-   "problems": [
-    "self-intersecting ring: Charlois"
-   ],
+   "problems": [],
    "flags": [
-    "21 km out: Hoek van Holland",
-    "23 km out: Botlek-Europoort-Maasvlakte",
-    "13 km out: Rozenburg"
+    "21 km out (this city's own fence: 14 km): Hoek van Holland",
+    "23 km out (this city's own fence: 14 km): Botlek-Europoort-Maasvlakte"
    ],
    "coverage_pct": 37.6,
    "overlap_pct": 0.0,
@@ -828,7 +692,7 @@
    "areas": 28,
    "problems": [],
    "flags": [
-    "15 km out: Stocksbridge and Upper Don"
+    "15 km out (this city's own fence: 13 km): Stocksbridge and Upper Don"
    ],
    "coverage_pct": 52.1,
    "overlap_pct": 0.0,
@@ -869,7 +733,7 @@
    "areas": 8,
    "problems": [],
    "flags": [
-    "16 km out: Kesklinn"
+    "16 km out (this city's own fence: 14 km): Kesklinn"
    ],
    "coverage_pct": 27.7,
    "overlap_pct": 0.0,
@@ -922,9 +786,7 @@
    "city": "venezia",
    "areas": 6,
    "problems": [],
-   "flags": [
-    "19 km out: Lido-Pellestrina (Venice Lido, Pellestrina)"
-   ],
+   "flags": [],
    "coverage_pct": 31.1,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -976,9 +838,7 @@
    "city": "warsaw",
    "areas": 18,
    "problems": [],
-   "flags": [
-    "13 km out: Wesoła"
-   ],
+   "flags": [],
    "coverage_pct": 58.7,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,
@@ -1004,9 +864,7 @@
    "city": "zagreb",
    "areas": 16,
    "problems": [],
-   "flags": [
-    "14 km out: Sesvete"
-   ],
+   "flags": [],
    "coverage_pct": 53.5,
    "overlap_pct": 0.0,
    "rating_mismatches": 0,

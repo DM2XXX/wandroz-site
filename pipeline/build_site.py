@@ -18,6 +18,7 @@ another city) regenerates every page from the current JSON — this is the
 many cities, proven out end-to-end here with one real city.
 """
 
+import copy
 import hashlib
 import json
 import math
@@ -115,6 +116,146 @@ def _simplify_ring(ring, tol):
     return out if len(out) >= 4 else [list(p) for p in ring]
 
 
+# ---------------------------------------------------------------------------
+# Ring hygiene: closing tails and self-intersections.
+#
+# Two separate things, found together because the first was hiding the second.
+#
+# The tail: rounding to five decimals moves each point by up to about a metre,
+# so a ring that closed exactly in the source can come out with its last point
+# a metre off its first. 2,016 of the site's 2,084 rings were in that state.
+# Leaflet closes a polygon for you, so nothing looked wrong — but the implicit
+# closing edge then crossed the first edge, and every self-intersection test in
+# this project dutifully reported a defect that was a rounding artefact. Madrid
+# had 19 of them.
+#
+# The crossing: two edges that share a vertex are touching, not crossing, and
+# official boundaries touch themselves at a point regularly. Counting a shared
+# vertex as a crossing is how Budapest's Hegyvidek was reported as a 16-hectare
+# bowtie when its two edges simply met at the same corner.
+#
+# With both corrected, eight rings across the whole site genuinely cross
+# themselves, and only Rome's Ostia Nord (8,926 m2) is large enough to see.
+# ---------------------------------------------------------------------------
+RING_SNAP_M = 3.0
+# A loop bigger than this share of the ring is not repaired. Silently deleting
+# a real piece of a neighbourhood is a worse failure than shipping a visible
+# bowtie, so past this point the build leaves the ring alone and audit_maps.py
+# reports it for a person to look at.
+RING_REPAIR_MAX_SHARE = 0.01
+
+
+def _same_point(p, q):
+    return abs(p[0] - q[0]) < 1e-9 and abs(p[1] - q[1]) < 1e-9
+
+
+def _orient(a, b, c):
+    v = (b[1] - a[1]) * (c[0] - b[0]) - (b[0] - a[0]) * (c[1] - b[1])
+    return 0 if abs(v) < 1e-12 else (1 if v > 0 else 2)
+
+
+def segments_cross(p1, p2, p3, p4):
+    """A proper crossing only — the two segments meet at a point interior to
+    both. Shared endpoints and collinear touching are not crossings."""
+    if (_same_point(p1, p3) or _same_point(p1, p4)
+            or _same_point(p2, p3) or _same_point(p2, p4)):
+        return False
+    o1, o2 = _orient(p1, p2, p3), _orient(p1, p2, p4)
+    o3, o4 = _orient(p3, p4, p1), _orient(p3, p4, p2)
+    if 0 in (o1, o2, o3, o4):
+        return False
+    return o1 != o2 and o3 != o4
+
+
+def _intersection(p1, p2, p3, p4):
+    x1, y1 = p1[1], p1[0]
+    x2, y2 = p2[1], p2[0]
+    x3, y3 = p3[1], p3[0]
+    x4, y4 = p4[1], p4[0]
+    d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+    if abs(d) < 1e-18:
+        return None
+    a = x1 * y2 - y1 * x2
+    b = x3 * y4 - y3 * x4
+    return [round((a * (y3 - y4) - (y1 - y2) * b) / d, GEOM_DECIMALS),
+            round((a * (x3 - x4) - (x1 - x2) * b) / d, GEOM_DECIMALS)]
+
+
+def ring_area_m2(ring):
+    """Shoelace on a local equirectangular projection. At the scale of a city
+    district the distortion is far below anything this is used to decide."""
+    if len(ring) < 3:
+        return 0.0
+    lat0 = sum(p[0] for p in ring) / len(ring)
+    k = math.cos(math.radians(lat0))
+    R = 111320.0
+    s = 0.0
+    n = len(ring)
+    for i in range(n):
+        y1, x1 = ring[i][0] * R, ring[i][1] * R * k
+        y2, x2 = ring[(i + 1) % n][0] * R, ring[(i + 1) % n][1] * R * k
+        s += x1 * y2 - x2 * y1
+    return abs(s) / 2.0
+
+
+def close_ring(ring, snap_m=RING_SNAP_M):
+    """Drops a trailing point that is the first point to within snap_m."""
+    if len(ring) < 4:
+        return ring
+    a, b = ring[0], ring[-1]
+    dy = (b[0] - a[0]) * 111320.0
+    dx = (b[1] - a[1]) * 111320.0 * math.cos(math.radians(a[0]))
+    return ring[:-1] if math.hypot(dx, dy) <= snap_m else ring
+
+
+def find_self_crossing(ring):
+    """O(n^2) with a bounding-box rejection first. The boxes are what make it
+    usable: without them a 1,100-point ring costs about a second, and the build
+    calls this on every ring of every city."""
+    n = len(ring)
+    box = []
+    for i in range(n):
+        a, b = ring[i], ring[(i + 1) % n]
+        box.append((min(a[0], b[0]), max(a[0], b[0]),
+                    min(a[1], b[1]), max(a[1], b[1])))
+    for i in range(n):
+        alo, ahi, blo, bhi = box[i]
+        a, b = ring[i], ring[(i + 1) % n]
+        for j in range(i + 2, n):
+            if i == 0 and j == n - 1:
+                continue
+            clo, chi, dlo, dhi = box[j]
+            if alo > chi or clo > ahi or blo > dhi or dlo > bhi:
+                continue
+            if segments_cross(a, b, ring[j], ring[(j + 1) % n]):
+                return i, j
+    return None
+
+
+def repair_ring(ring):
+    """Removes each proper self-intersection by dropping the smaller of the two
+    loops it creates, up to RING_REPAIR_MAX_SHARE of the ring's area."""
+    pts = list(ring)
+    for _ in range(20):
+        hit = find_self_crossing(pts)
+        if not hit:
+            break
+        i, j = hit
+        n = len(pts)
+        p = _intersection(pts[i], pts[(i + 1) % n], pts[j], pts[(j + 1) % n])
+        if p is None:
+            break
+        loop_a = [p] + pts[i + 1:j + 1]
+        loop_b = [p] + pts[j + 1:] + pts[:i + 1]
+        area_a, area_b = ring_area_m2(loop_a), ring_area_m2(loop_b)
+        keep, drop = (loop_b, area_a) if area_a <= area_b else (loop_a, area_b)
+        whole = area_a + area_b
+        if whole and drop / whole > RING_REPAIR_MAX_SHARE:
+            break
+        pts = keep
+    return pts
+
+
 def simplify_rings(coords):
     """Rendering-grade version of one zone's coordinate rings: decimated, then
     rounded. Rounding last so the output is exactly what ships — rounding
@@ -135,8 +276,11 @@ def simplify_rings(coords):
         # corners to enclose any area at all, and these no longer have them.
         if len({tuple(p) for p in rounded}) < 4:
             continue
-        out.append(rounded)
+        out.append(repair_ring(close_ring(rounded)))
     return out
+
+
+_ZONE_FILE_CACHE = {}
 
 
 def load_zone_file(path):
@@ -144,13 +288,22 @@ def load_zone_file(path):
     accidentally keep full-precision geometry. Reads the source untouched on
     disk and hands back the rendering-grade version — the maps, the area
     pages and the published boundary files therefore all draw the same
-    shapes, which the homepage's point-in-polygon search depends on."""
-    with open(path) as f:
-        data = json.load(f)
-    for z in data.get("zones", []):
-        if z.get("coords"):
-            z["coords"] = simplify_rings(z["coords"])
-    return data
+    shapes, which the homepage's point-in-polygon search depends on.
+
+    Cached per path. Six call sites each re-read and re-simplified the same
+    file, which was merely wasteful until the ring repair made simplification
+    cost real time; then it was six times a cost worth paying once. Callers
+    mutate what they get back — booking hrefs, evidence labels — so each gets
+    its own deep copy and the simplification is what is shared."""
+    hit = _ZONE_FILE_CACHE.get(path)
+    if hit is None:
+        with open(path) as f:
+            hit = json.load(f)
+        for z in hit.get("zones", []):
+            if z.get("coords"):
+                z["coords"] = simplify_rings(z["coords"])
+        _ZONE_FILE_CACHE[path] = hit
+    return copy.deepcopy(hit)
 
 
 # "Report a correction" mailto target, shown on every neighbourhood/borough

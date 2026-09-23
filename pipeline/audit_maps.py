@@ -42,6 +42,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import published
+import build_site as BS
 
 DIST = os.path.join(os.path.dirname(HERE), "dist")
 
@@ -59,29 +60,23 @@ def centroid(rings):
     return sum(p[0] for p in r) / len(r), sum(p[1] for p in r) / len(r)
 
 
-def _seg_hit(p1, p2, p3, p4):
-    def o(a, b, c):
-        v = (b[1] - a[1]) * (c[0] - b[0]) - (b[0] - a[0]) * (c[1] - b[1])
-        return 0 if abs(v) < 1e-12 else (1 if v > 0 else 2)
-    o1, o2, o3, o4 = o(p1, p2, p3), o(p1, p2, p4), o(p3, p4, p1), o(p3, p4, p2)
-    return o1 != o2 and o3 != o4
+def self_intersects(ring):
+    """Delegates to build_site, which is what actually produces the geometry.
 
+    This function used to have its own copy of the test, and the copy was
+    wrong twice over. It skipped any ring past 400 points — so Bucharest's two
+    largest districts, at 1,112 and 809 points, were never tested and were
+    reported clean. And it counted two edges that share a vertex as a crossing,
+    which official boundaries do all the time, so it reported Budapest's
+    Hegyvidek as a 16-hectare bowtie where its two edges simply met at the same
+    corner. One version over-reported, the other under-reported, and the two
+    cancelled out into a number that looked plausible.
 
-def self_intersects(ring, cap=400):
-    """Only sampled on rings up to `cap` points: the test is O(n^2) and a
-    boundary traced from an official shapefile can carry thousands. A ring that
-    long is also the least likely to be hand-edited, which is where the fault
-    would come from."""
-    n = len(ring)
-    if n > cap or n < 4:
+    The cap is gone: with the bounding-box rejection in build_site the whole
+    site scans in about four seconds."""
+    if len(ring) < 4:
         return False
-    for i in range(n - 1):
-        for j in range(i + 2, n - 1):
-            if i == 0 and j == n - 2:
-                continue
-            if _seg_hit(ring[i], ring[i + 1], ring[j], ring[j + 1]):
-                return True
-    return False
+    return BS.find_self_crossing(BS.close_ring(list(ring))) is not None
 
 
 def inside(lat, lon, rings):
@@ -145,15 +140,37 @@ def audit_city(slug, zones):
         cents.append((z["name"], *centroid(rings)))
 
     if cents:
+        # Distance from the centre is a FLAG, never a fault. This was a fault
+        # at a fixed 25 km, and the only thing it ever caught was Rome for
+        # containing Ostia and Martignano — which really are Roma Capitale, a
+        # comune of 1,287 km2. Rebuilt on the city's own Tukey fence it caught
+        # Basel's Bettingen, Bern's Oberbottigen, Rotterdam's Europoort and
+        # three Catania quarters, every one of them correct geography: a
+        # municipality is entitled to a rural tip, an exclave or a port.
+        #
+        # Checked across all 65 cities, the farthest area anywhere is 30.5 km
+        # out, and each of the top fifteen is genuine — Havering, Schmöckwitz,
+        # El Pardo, Céligny. There is no threshold in that range that separates
+        # a defect from a suburb, so the only honest fault line is one no
+        # European municipality reaches: past 60 km the polygon is in another
+        # city, which is a real error. Everything below it is reported for a
+        # person to look at, against the spread of the city's own areas.
         las = sorted(c[1] for c in cents)
         los = sorted(c[2] for c in cents)
         cla, clo = las[len(las) // 2], los[len(los) // 2]
-        for n, la, lo in cents:
-            d = km(cla, clo, la, lo)
-            if d > 25:
-                P("centroid %.0f km from the city's median centre: %s" % (d, n))
-            elif d > 12:
-                F("%.0f km out: %s" % (d, n))
+        dists = sorted((km(cla, clo, la, lo), n) for n, la, lo in cents)
+        vals = [d for d, _ in dists]
+        m = len(vals)
+        q3 = vals[(3 * m) // 4]
+        iqr = q3 - vals[m // 4]
+        soft = max(q3 + 1.5 * iqr, 3.0)
+        for d, n in dists:
+            if d > 60.0:
+                P("centroid %.0f km from the city's median centre — further "
+                  "than any European municipality reaches: %s" % (d, n))
+            elif d > soft:
+                F("%.0f km out (this city's own fence: %.0f km): %s"
+                  % (d, soft, n))
 
     # Overlap and coverage, sampled on a grid over the areas' own extent.
     pts = [p for z in zones for r in (z.get("coords") or []) for p in r]
