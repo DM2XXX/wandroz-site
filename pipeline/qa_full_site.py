@@ -61,81 +61,12 @@ except Exception as exc:  # pragma: no cover - environment problem, not a site p
 # --------------------------------------------------------------------------
 # City registry
 # --------------------------------------------------------------------------
-# Maps the public URL slug to the data_zones key, the URL scheme, and where
-# the zone data comes from. Three cities need it because the two names differ
-# (monaco-di-baviera/munich) or the scheme does (torino, zurigo, milano are
-# nested; every other illustrative city is flat).
+# Slug -> data_zones key and URL scheme, read from build_site.CITY_REGISTRY.
+# QA used to carry its own table of 64 cities here, and warn on every run that
+# it was a second copy of the truth. It is now derived in the generator from
+# mapped_cities(), so there is nothing left to drift: checked before removing
+# it, the two agreed on all 64 slugs, keys and schemes.
 #
-# This belongs in build_site.py as the single canonical registry — see
-# PATCH-build_site.md. Until it moves there, QA carries it and warns, rather
-# than silently owning a second copy of the truth.
-FALLBACK_REGISTRY = {
-    #  url slug             data_zones key       scheme
-    "amsterdam":            ("amsterdam",        "flat"),
-    "athens":               ("athens",           "flat"),
-    "barcelona":            ("barcelona",        "flat"),
-    "basel":                ("basel",            "flat"),
-    "bern":                 ("bern",             "flat"),
-    "geneva":               ("geneva",           "flat"),
-    "berlin":               ("berlin",           "flat"),
-    "birmingham":           ("birmingham",       "flat"),
-    "bristol":              ("bristol",          "flat"),
-    "brussels":             ("brussels",         "flat"),
-    "budapest":             ("budapest",         "flat"),
-    "dublin":               ("dublin",           "flat"),
-    "edinburgh":            ("edinburgh",        "flat"),
-    "firenze":              ("firenze",          "flat"),
-    "krakow":               ("krakow",           "flat"),
-    "leeds":                ("leeds",            "flat"),
-    "lisbon":               ("lisbon",           "flat"),
-    "madrid":               ("madrid",           "flat"),
-    "milano":               ("milano",           "nested"),
-    "monaco-di-baviera":    ("munich",           "flat"),
-    "napoli":               ("napoli",           "flat"),
-    "oslo":                 ("oslo",             "flat"),
-    "paris":                ("paris",            "flat"),
-    "praha":                ("praha",            "flat"),
-    "roma":                 ("roma",             "flat"),
-    "bologna":              ("bologna",          "flat"),
-    "verona":               ("verona",           "flat"),
-    "genova":               ("genova",           "flat"),
-    "trieste":              ("trieste",          "flat"),
-    "catania":              ("catania",          "flat"),
-    "parma":                ("parma",            "flat"),
-    "warsaw":               ("warsaw",           "flat"),
-    "tallinn":              ("tallinn",          "flat"),
-    "zagreb":               ("zagreb",           "flat"),
-    "bucharest":            ("bucharest",        "flat"),
-    "bratislava":           ("bratislava",       "flat"),
-    "vilnius":              ("vilnius",          "flat"),
-    "rotterdam":            ("rotterdam",        "flat"),
-    "utrecht":              ("utrecht",          "flat"),
-    "denhaag":              ("denhaag",          "flat"),
-    "antwerp":              ("antwerp",          "flat"),
-    "ghent":                ("ghent",            "flat"),
-    "cardiff":               ("cardiff",             "flat"),
-    "leicester":             ("leicester",           "flat"),
-    "newcastle":             ("newcastle",           "flat"),
-    "nottingham":            ("nottingham",          "flat"),
-    "sheffield":             ("sheffield",           "flat"),
-    "brighton":              ("brighton",            "flat"),
-    "liverpool":             ("liverpool",           "flat"),
-    "bath":                  ("bath",                "flat"),
-    "cambridge":             ("cambridge",           "flat"),
-    "oxford":                ("oxford",              "flat"),
-    "york":                  ("york",                "flat"),
-    "coventry":              ("coventry",            "flat"),
-    "portsmouth":            ("portsmouth",          "flat"),
-    "southampton":           ("southampton",         "flat"),
-    "plymouth":              ("plymouth",            "flat"),
-    "derby":                 ("derby",               "flat"),
-    "norwich":               ("norwich",             "flat"),
-    "stockholm":            ("stockholm",        "flat"),
-    "torino":               ("torino",           "nested"),
-    "venezia":              ("venezia",          "flat"),
-    "vienna":               ("vienna",           "flat"),
-    "zurigo":               ("zurigo",           "nested"),
-}
 # London is generated by its own pipeline from data/scores/london.json and
 # uses underscored borough slugs, so it is handled separately throughout.
 LONDON_SLUG = "london"
@@ -301,12 +232,12 @@ def load_zone_source(key):
 
 def registry(F):
     reg = getattr(BS, "CITY_REGISTRY", None)
-    if reg:
-        return {k: (v["data_key"], v["scheme"]) for k, v in reg.items()}
-    F.warn("INVENTORY", "canonical-registry", "build_site.py",
-           "no CITY_REGISTRY in build_site.py; QA is using its own fallback table. "
-           "Move the registry into the generator so slug/scheme/data-key live in one place.")
-    return dict(FALLBACK_REGISTRY)
+    if not reg:
+        F.fail("INVENTORY", "canonical-registry", "build_site.py",
+               "build_site.CITY_REGISTRY is gone. QA has no city list of its own "
+               "any more — on purpose — so it cannot check anything without it.")
+        return {}
+    return {k: (v["data_key"], v["scheme"]) for k, v in reg.items()}
 
 
 def zone_page_path(dist, city, slug, scheme):

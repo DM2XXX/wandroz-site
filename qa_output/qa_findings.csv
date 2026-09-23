@@ -1,5 +1,4 @@
 severity,category,check,target,message
-WARN,INVENTORY,canonical-registry,build_site.py,no CITY_REGISTRY in build_site.py; QA is using its own fallback table. Move the registry into the generator so slug/scheme/data-key live in one place.
 WARN,METHODOLOGY,denominator-artefact,amsterdam/coenhaven-minervahaven,"rated red/red on 1765 registered residents — the rate rests on a denominator too small to carry a verdict, and the hub table now shows it ranked"
 WARN,METHODOLOGY,denominator-artefact,amsterdam/havens-west,"rated red/red on 30 registered residents — the rate rests on a denominator too small to carry a verdict, and the hub table now shows it ranked"
 WARN,METHODOLOGY,denominator-artefact,amsterdam/lutkemeer-ookmeer,"rated yellow/yellow on 1255 registered residents — the rate rests on a denominator too small to carry a verdict, and the hub table now shows it ranked"

@@ -2845,6 +2845,19 @@ def mapped_cities():
     return list(ILLUSTRATIVE_CITIES) + uk
 
 
+# The canonical registry, derived rather than written. qa_full_site.py needed
+# slug -> (data key, URL scheme) and, having nowhere to read it from, kept its
+# own hand-maintained table of 64 cities and warned about it on every run. Two
+# lists describing the same set is the bug this project keeps rediscovering —
+# it is why 438 UK wards were unsearchable, and why 405 Italian pages had no
+# link pointing at them. Building this from mapped_cities() means the second
+# list cannot drift, because there is no second list.
+CITY_REGISTRY = {
+    slug: {"data_key": key, "scheme": "flat" if flat else "nested", "label": label}
+    for key, slug, label, flat in mapped_cities()
+}
+
+
 # Separatori con cui un nome amministrativo elenca piu' luoghi in uno.
 _ALIAS_SPLIT = re.compile(r"\s*[-/]\s+|\s+[-/]\s*|\s*·\s*")
 # Pezzi che da soli non sono il nome di un posto: "Q.re" e' l'abbreviazione di

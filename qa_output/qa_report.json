@@ -111,16 +111,9 @@
   },
   "totals": {
     "failures": 0,
-    "warnings": 22
+    "warnings": 21
   },
   "findings": [
-    {
-      "severity": "WARN",
-      "category": "INVENTORY",
-      "check": "canonical-registry",
-      "target": "build_site.py",
-      "message": "no CITY_REGISTRY in build_site.py; QA is using its own fallback table. Move the registry into the generator so slug/scheme/data-key live in one place."
-    },
     {
       "severity": "WARN",
       "category": "METHODOLOGY",
