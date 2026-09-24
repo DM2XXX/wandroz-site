@@ -259,7 +259,7 @@
       "category": "BOOKING",
       "check": "affiliate-attribution",
       "target": "site-wide",
-      "message": "CJ click wrappers in use, issued by an approved programme: {'cj:15734897': 228}. These pass layer D. Every other city keeps an unattributed Booking link, which is correct until its region is approved."
+      "message": "CJ click wrappers in use, issued by an approved programme: {'cj:15734897': 228}. These pass layer D. Every other city keeps an unattributed Booking link. That is correct and, for DACH, ES, IT, Nordics, final: those programmes refused this publisher on geography, so adding a link id there would attribute traffic to a programme that has said no."
     }
   ]
 }

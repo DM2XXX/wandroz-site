@@ -1123,11 +1123,19 @@ def check_booking(dist, reg, F, booking_rows):
         cj = {k: v for k, v in attribution_seen.items() if k.startswith("cj:")}
         bare = {k: v for k, v in attribution_seen.items() if not k.startswith("cj:")}
         if cj:
+            # "until its region is approved" was true while the applications
+            # were open. Four were refused on 23 Sep 2026, so the sentence now
+            # has to separate a region still waiting from one that has already
+            # said no — otherwise this warning reads as a to-do list and the
+            # obvious action is the wrong one.
+            refused = sorted(getattr(BS, "BOOKING_PROGRAMMES_REFUSED", {}))
             F.warn("BOOKING", "affiliate-attribution", "site-wide",
                    "CJ click wrappers in use, issued by an approved programme: %s. "
                    "These pass layer D. Every other city keeps an unattributed "
-                   "Booking link, which is correct until its region is approved."
-                   % dict(cj))
+                   "Booking link. That is correct and, for %s, final: those "
+                   "programmes refused this publisher on geography, so adding a "
+                   "link id there would attribute traffic to a programme that "
+                   "has said no." % (dict(cj), ", ".join(refused) or "none yet"))
         if bare:
             F.warn("BOOKING", "affiliate-attribution", "site-wide",
                    "bare attribution parameters found in use: %s — these stay "

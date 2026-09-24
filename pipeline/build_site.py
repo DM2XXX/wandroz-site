@@ -491,6 +491,29 @@ BOOKING_PROGRAMMES = {
     "benelux": {"link_id": "15734897", "cities": ("amsterdam", "brussels", "rotterdam", "utrecht", "denhaag",
                                                 "antwerp", "ghent")},
 }
+
+# Refused, 23 September 2026. Four applications, one reason for all four:
+# "your website traffic or account is outside the required geographical regions
+# for this program."
+#
+# Worth reading carefully, because it is not about the site's content. Wandroz
+# maps 326 areas in DACH, 405 in Italy, 204 in Spain and 27 in the Nordics —
+# 962 of its 2,046 areas are in exactly the territories these programmes sell.
+# The same account and the same traffic were APPROVED for BENELUX, so what
+# separates them is each programme's own publisher-location rule, not anything
+# on this site that could be edited into shape. CJ's own suggestions say so:
+# they ask for a different business entity, not different pages.
+#
+# Recorded here so the next move is not the obvious wrong one. Re-applying with
+# the same account gets the same answer, and adding an aid= or a link id by
+# hand would attribute traffic to a programme that has refused this publisher —
+# which is worse than earning nothing.
+BOOKING_PROGRAMMES_REFUSED = {
+    "DACH":    {"advertiser": "4297289", "on": "2026-09-23"},
+    "ES":      {"advertiser": "4347393", "on": "2026-09-23"},
+    "IT":      {"advertiser": "4347401", "on": "2026-09-23"},
+    "Nordics": {"advertiser": "5095558", "on": "2026-09-23"},
+}
 # CJ rotates equivalent tracking hosts; any of them is valid.
 CJ_HOST = "https://www.jdoqocy.com"
 
