@@ -496,18 +496,27 @@ BOOKING_PROGRAMMES = {
 # "your website traffic or account is outside the required geographical regions
 # for this program."
 #
-# Worth reading carefully, because it is not about the site's content. Wandroz
-# maps 326 areas in DACH, 405 in Italy, 204 in Spain and 27 in the Nordics —
-# 962 of its 2,046 areas are in exactly the territories these programmes sell.
-# The same account and the same traffic were APPROVED for BENELUX, so what
-# separates them is each programme's own publisher-location rule, not anything
-# on this site that could be edited into shape. CJ's own suggestions say so:
-# they ask for a different business entity, not different pages.
+# Seven of the eight regional programmes refused, over six days: UK and CEE and
+# Nordics on 17 Sep, Italy and Spain & Portugal on 18 Sep, France on 20 Sep,
+# DACH on 22 Sep. Only BENELUX approved.
 #
-# Recorded here so the next move is not the obvious wrong one. Re-applying with
-# the same account gets the same answer, and adding an aid= or a link id by
-# hand would attribute traffic to a programme that has refused this publisher —
-# which is worse than earning nothing.
+# That looks like a verdict on the site and is not one. CJ's own Booking.com
+# page states the rule: "Pick the region that matches where most of your
+# primary audience is located." One region per publisher, chosen by where the
+# AUDIENCE is — not by where the publisher lives, and not one per territory the
+# site covers. Eight applications were always going to produce seven refusals,
+# and for a site with no traffic history yet there is no region whose share of
+# the audience can be demonstrated at all.
+#
+# So the refusals are the system working, and the remedy is not an appeal:
+# asking DACH to reconsider is asking it to break its own rule while BENELUX
+# already holds this publisher. The remedy is traffic, and then one application
+# to the single region where the audience actually concentrates.
+#
+# Recorded here so the next move is not the obvious wrong one. Re-applying now
+# gets the same answer, and adding an aid= or a link id by hand would attribute
+# traffic to a programme that has refused this publisher — worse than earning
+# nothing.
 BOOKING_PROGRAMMES_REFUSED = {
     "DACH":    {"advertiser": "4297289", "on": "2026-09-23"},
     "ES":      {"advertiser": "4347393", "on": "2026-09-23"},
