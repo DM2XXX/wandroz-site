@@ -308,6 +308,10 @@
     .poi-chip { font-size:12px; padding:6px 10px; }
     .map-detail { left:10px; right:10px; bottom:10px; max-width:none; }
     .zone-list ul { columns:2; }
+    /* La lista spostata in fondo: dentro il riquadro richiudibile, con lo
+       stesso respiro della tabella. */
+    .zone-list-collapsed .zone-list { margin-top:14px; padding:0; }
+    .zone-list-collapsed .zone-group { break-inside:avoid; }
   }
   /* Da tablet in su i caratteri crescono. Sta tutto qui dentro, e il limite e'
      a 721px, perche' su telefono l'impaginazione e' quella che e' gia' e non
@@ -1628,6 +1632,31 @@
   })();
 
   poiBuild();
+
+  /* La lista dei quartieri vive nella colonna di destra, che su telefono si
+     impila sotto la mappa: a Parigi sono 80 nomi in 20 gruppi piantati fra la
+     mappa e i consigli, e per arrivare in fondo alla pagina bisogna scorrerli
+     tutti. In fondo e chiusa e' dove serve, esattamente come la tabella qui
+     sotto — chi cerca un quartiere per nome lo cerca apposta.
+     Solo su telefono, e solo spostando il nodo che esiste gia': nessuna
+     duplicazione, quindi la lista resta una sola per chi legge la pagina senza
+     eseguire JavaScript. */
+  (function () {
+    if (!window.matchMedia || !window.matchMedia('(max-width: 720px)').matches) { return; }
+    var list = document.querySelector('.map-rail .zone-list');
+    var anchor = document.querySelector('.hub-table-wrap');
+    if (!list || !anchor || !anchor.parentNode) { return; }
+    var heading = list.querySelector('h2');
+    var label = heading ? heading.textContent.trim() : 'All neighbourhoods';
+    if (heading) { heading.remove(); }
+    var box = document.createElement('details');
+    box.className = 'hub-table-wrap zone-list-collapsed';
+    var sum = document.createElement('summary');
+    sum.textContent = label;
+    box.appendChild(sum);
+    box.appendChild(list);
+    anchor.parentNode.insertBefore(box, anchor);
+  })();
 
 </script>
 </body>
