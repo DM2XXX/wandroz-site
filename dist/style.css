@@ -189,3 +189,92 @@ footer.wz-footer a { color: var(--muted); }
 @media (min-width: 2400px){
   .mbody { font-size:21px; }
 }
+
+/* ---------------------------------------------------------------------------
+   Wandy and the hidden gem.
+
+   One place per city, chosen by a person. Everything else on this site is
+   computed, so this card is deliberately the only warm thing on the page: a
+   tinted panel instead of a white one, a rounded shape instead of a square
+   one, and a character instead of a badge. It must not be mistakable for a
+   rating, so it borrows none of the rating colours.
+   --------------------------------------------------------------------------- */
+.gem{
+  display:flex; gap:18px; align-items:flex-start;
+  margin:28px 0; padding:20px 22px;
+  background:var(--panel);
+  border:1px solid var(--line); border-left:3px solid var(--accent);
+  border-radius:var(--radius-md);
+}
+.gem-figure{flex:0 0 auto; width:62px; text-align:center}
+.gem-figure .wandy{width:62px; height:auto; display:block}
+.gem-name{
+  display:block; margin-top:6px; font-size:11px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--accent);
+}
+.gem-body{flex:1 1 auto; min-width:0}
+.gem-kicker{
+  margin:0 0 6px; font-size:12px; font-weight:700;
+  letter-spacing:.07em; text-transform:uppercase; color:var(--accent);
+}
+.gem-title{margin:0 0 4px; font-size:21px; line-height:1.25; color:var(--ink)}
+.gem-title a{color:inherit; text-decoration:none; border-bottom:2px solid #c3e2d9}
+.gem-title a:hover{border-bottom-color:var(--accent-bright)}
+.gem-meta{margin:0 0 10px; font-size:13px; color:var(--muted)}
+.gem-meta span+span:before{content:" · "; color:var(--muted-soft)}
+.gem-quote{
+  margin:0 0 10px; font-size:15px; line-height:1.55; color:var(--ink);
+}
+.gem-blurb{margin:0 0 12px; font-size:14.5px; line-height:1.6; color:var(--muted)}
+.gem-link{
+  display:inline-block; font-size:14px; font-weight:600;
+  color:var(--accent); text-decoration:none;
+}
+.gem-link:hover{text-decoration:underline}
+.gem-link:after{content:" \2197"}
+/* On the hub the link stays inside the site, so no outbound arrow. */
+.gem-hub .gem-link:after{content:" \2192"}
+.gem-note{
+  margin:12px 0 0; padding-top:10px; border-top:1px solid var(--line);
+  font-size:12px; line-height:1.5; color:var(--muted);
+}
+@media (max-width:560px){
+  .gem{flex-direction:column; gap:12px; padding:18px}
+  .gem-figure{width:52px} .gem-figure .wandy{width:52px}
+}
+
+/* Wandy herself. Two dots, a thin mouth, one sparkle. The blush, the eye
+   highlights and the float that were here read as a mascot on a site that
+   publishes police statistics; restraint is the whole point of the mark. */
+.wandy-body{fill:url(#wandy-body)}
+.wandy-face{fill:#fff}
+.wandy-eye{fill:var(--navy)}
+.wandy-lid{fill:none; stroke:var(--navy); stroke-width:2.8; stroke-linecap:round; opacity:0}
+.wandy-smile{fill:none; stroke:var(--navy); stroke-width:2.4; stroke-linecap:round}
+/* The sparkle is the only mark that sits OUTSIDE the pin, so it is the only
+   one that has to survive whatever is behind it. In accent teal it was the
+   pin's own colour an inch away from the pin and simply vanished. Navy ties it
+   to the eyes and the mouth instead, which leaves the whole mark on two
+   colours: teal body, navy features. On a dark ground it flips to the face
+   white, for the same reason. */
+.wandy-sparkle{fill:var(--navy)}
+.wandy-on-dark .wandy-sparkle,
+.wandy-dark .wandy-sparkle{fill:#fff; opacity:.9}
+
+/* Both eyes open at rest; the right one winks for a beat every six seconds.
+   The closing eye and the lid arc share one timeline so they swap without
+   overlapping, and nine tenths of the loop is the resting state. */
+.wandy-eye-r{transform-box:fill-box; transform-origin:center;
+             animation:wandy-shut 6s ease-in-out infinite}
+.wandy-lid{animation:wandy-lid 6s ease-in-out infinite}
+@keyframes wandy-shut{
+  0%,88%,100%{transform:scaleY(1)}
+  91%,95%{transform:scaleY(0)}
+}
+@keyframes wandy-lid{
+  0%,89%,100%{opacity:0}
+  91%,95%{opacity:1}
+}
+@media (prefers-reduced-motion:reduce){
+  .wandy-eye-r,.wandy-lid{animation:none}
+}

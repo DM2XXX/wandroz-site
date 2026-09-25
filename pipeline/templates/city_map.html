@@ -575,6 +575,23 @@
   {% endfor %}
 </div>
 {% endif %}
+{%- if gem %}
+{#- One pointer, under the recommendation cards. The cards above are computed
+    from the ratings; this is not, and it says so. It links to the
+    neighbourhood page rather than straight out, so the reader lands on the
+    safety assessment for the street it is on before they land on the bar. -#}
+<div class="gem gem-hub">
+  <div class="gem-figure">{% include "_wandy.html" %}<span class="gem-name">Wandy</span></div>
+  <div class="gem-body">
+    <p class="gem-kicker">Hidden gem &middot; {{ city_label.split(',')[0] }}</p>
+    <h3 class="gem-title"><a href="{{ gem.url }}">{{ gem.name }}</a></h3>
+    <p class="gem-meta"><span>{{ gem.kind }}</span><span>{{ gem.zone_name }}</span><span>{{ gem.address }}</span></p>
+    <p class="gem-quote">{{ gem.why }}</p>
+    <a class="gem-link" href="{{ gem.url }}">See it on the {{ gem.zone_name }} page</a>
+    <p class="gem-note">{{ gem.disclosure_text }}</p>
+  </div>
+</div>
+{%- endif %}
 
 
 

@@ -153,6 +153,25 @@
   <a class="btn-primary" href="{{ booking_url }}" target="_blank" rel="noopener">{{ label_booking }}</a>
   <p class="cta-note">{{ label_booking_note }}</p>
   {% endif %}
+  {%- if zone.pick %}
+  {#- Wandy's pick. Deliberately below the rating and the booking link: it is
+      the one thing on this page nobody computed, and it must never be mistaken
+      for part of the assessment. -#}
+  <div class="gem">
+    <div class="gem-figure">{% include "_wandy.html" %}<span class="gem-name">Wandy</span></div>
+    <div class="gem-body">
+      <p class="gem-kicker">Hidden gem &middot; {{ city_label.split(',')[0] }}</p>
+      <h3 class="gem-title"><a href="{{ zone.pick.url }}" target="_blank" rel="noopener nofollow">{{ zone.pick.name }}</a></h3>
+      <p class="gem-meta">
+        <span>{{ zone.pick.kind }}</span><span>{{ zone.pick.address }}</span><span>{{ zone.pick.hours }}</span>
+      </p>
+      {% if zone.pick.why %}<p class="gem-quote">{{ zone.pick.why }}</p>{% endif %}
+      <p class="gem-blurb">{{ zone.pick.blurb }}</p>
+      <a class="gem-link" href="{{ zone.pick.url }}" target="_blank" rel="noopener nofollow">{{ zone.pick.url | replace('https://','') | replace('http://','') | trim('/') }}</a>
+      <p class="gem-note">{{ zone.pick.disclosure_text }}</p>
+    </div>
+  </div>
+  {%- endif %}
   <div class="methodnote">{{ data_note }}</div>
   {% if zone.burglary %}
   <div class="methodnote">

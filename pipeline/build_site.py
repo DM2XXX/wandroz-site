@@ -1689,6 +1689,77 @@ def assert_every_poi_file_is_used():
             % ", ".join(orphan))
 
 
+PICK_DIR = os.path.join(BASE_DIR, "data_picks")
+
+# What a pick is, and what it is not.
+#
+# Every POI on this site comes from Wikidata with a notability rank behind it.
+# A pick does not: it is one place, chosen by hand, and there is no dataset
+# that says it belongs here. On a site whose footer reads "public official
+# data, not just reviews", quietly sliding a hand-picked venue in among the
+# ranked sights would be the one thing it has spent all its effort not doing.
+#
+# So a pick is built to look like what it is. It sits in its own card, under
+# its own name, it never touches a rating or a colour, and it carries a line
+# saying where it came from. Two disclosures are supported and one of them has
+# to be chosen:
+#
+#   editorial  nobody paid, nobody asked, someone here liked the place
+#   paid       money or value changed hands
+#
+# There is no third option and no default. A missing or unknown disclosure
+# fails the build rather than publishing an undisclosed advertisement, which
+# in the EU is also illegal, not merely shabby.
+#
+# The wording of the editorial line matters more than it looks. The tempting
+# version was "recommended through feedback received and captured online",
+# which describes a review pipeline this site does not have — and on a site
+# whose footer reads "not just reviews", inventing one is the own goal. What is
+# true is smaller and better: a person went, a person liked it, nobody paid.
+# So the line says that, and then opens the channel instead of claiming it —
+# every gem asks for a better one.
+PICK_DISCLOSURE = {
+    "editorial": ("One hand-picked place per city, from someone who has "
+                  "actually been. Not scored, not ranked, not paid for, and it "
+                  "changes nothing about the safety ratings on this page — "
+                  "those are computed the same way whether a place is listed "
+                  "here or not. Know somewhere better in this neighbourhood? "
+                  "Tell us at %s." % CORRECTION_EMAIL),
+    "paid": ("Paid placement. This is an advertisement: the business has paid "
+             "to appear here. It changes nothing about the safety ratings on "
+             "this page, which are computed the same way whether a business "
+             "pays or not."),
+}
+
+
+def load_picks(city_key):
+    """Wandy's pick for a city, keyed by the zone slug it sits in.
+
+    One per city, enforced rather than trusted. A hidden gem stops being one at
+    the twelfth, and a page that carries a dozen "picks" is a directory — which
+    is a different product, built on nobody's judgement in particular."""
+    stem = POI_FILE_FOR_KEY.get(city_key, city_key)
+    path = os.path.join(PICK_DIR, f"{stem}.json")
+    if not os.path.isfile(path):
+        return {}
+    with open(path, encoding="utf-8") as f:
+        raw = json.load(f).get("picks", [])
+    if len(raw) > 1:
+        raise SystemExit(
+            "%s holds %d picks. One per city: pick the one that is actually "
+            "worth the walk." % (path, len(raw)))
+    out = {}
+    for p in raw:
+        d = p.get("disclosure")
+        if d not in PICK_DISCLOSURE:
+            raise SystemExit(
+                "pick %r in %s has disclosure %r; it must be 'editorial' or "
+                "'paid'. Publishing it without one is not an option."
+                % (p.get("name"), path, d))
+        out[p["zone"]] = dict(p, disclosure_text=PICK_DISCLOSURE[d])
+    return out
+
+
 def load_pois(city_key, t=None):
     """Sights for a city, or nothing if it has none yet.
 
@@ -2502,6 +2573,20 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
         city_country_code(data["label"]))
     _alts = [(lg, SITE_URL + i18n.url_for(lg, "%s/" % url_slug)) for lg in _langs]
 
+    # Wandy's one pick for this city, surfaced on the hub so it is findable
+    # without already knowing which neighbourhood it is in. The card itself
+    # lives on that neighbourhood's page; this is a pointer to it.
+    _hub_gem = None
+    for _pz, _p in load_picks(city_key).items():
+        _z = next((z for z in zones if z["slug"] == _pz), None)
+        if _z is None:
+            raise SystemExit(
+                "pick %r names zone %r, which %s does not have."
+                % (_p["name"], _pz, url_slug))
+        _hub_gem = dict(_p, zone_name=_z["name"],
+                        url=f"/{url_slug}/{_pz}.html" if flat else f"/{url_slug}/{_pz}/",
+                        site=_p["url"])
+
     for _lang in _langs:
         _t = i18n.strings(_lang)
         _is_en = _lang == i18n.DEFAULT_LANG
@@ -2610,6 +2695,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             pois=load_pois(city_key, _t), poi_filter_all=_t["poi_all"],
             label_hide_sights=_t["hide_sights"], label_sights_hidden=_t["sights_hidden"],
             footer_note=_t["footer_note"],
+            gem=_hub_gem if _is_en else None,
             zones=_js_zones, zone_groups=group_zones(zones, _js_zones),
             center=data["center"], zoom=data["zoom"],
             show_burglary_toggle=bool(extra_zone_data),
@@ -2621,6 +2707,7 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
           f"{', +' + ','.join(_langs[1:]) if len(_langs) > 1 else ''})")
 
     neigh_tpl = env.get_template("neighbourhood.html")
+    _picks = load_picks(city_key)
     # Le pagine delle aree, una volta per lingua. Stessa logica della hub:
     # l'inglese resta al suo URL, le altre lingue nascono sotto il prefisso, e
     # hreflang le lega. Il testo lungo arriva dalla cache di traduzione; dove
@@ -2657,6 +2744,11 @@ def render_illustrative_city(city_key, url_slug, ui, tone_badge, extra_zone_data
             zone_ctx["evidence_note"] = EVIDENCE_NOTE if z.get("evidence") == "no_findings" else ""
             zone_ctx["day_label"] = _tone.get(z["day"], z["day"])
             zone_ctx["night_label"] = _tone.get(z["night"], z["night"])
+            # English only for now: the blurb is hand-written and the
+            # translation cache has never seen it. Showing an Italian reader an
+            # English paragraph is a limit; machine-guessing a recommendation
+            # in their language is a fabrication.
+            zone_ctx["pick"] = _picks.get(z["slug"]) if _is_en else None
             if extra_zone_data:
                 zone_ctx["burglary"] = extra_zone_data.get(z["name"])
             faq_items = build_faq_illustrative(

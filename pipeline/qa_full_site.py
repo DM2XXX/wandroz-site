@@ -320,6 +320,73 @@ def check_slug_collisions(reg, F):
                        "%d zones share this display name" % n)
 
 
+def check_picks(dist, reg, F):
+    """Wandy's picks, against the site's own geometry.
+
+    A pick names a neighbourhood, and the whole point of naming it is that the
+    reader lands on that neighbourhood's safety assessment first. If the
+    address is actually one street over, the page recommends a place while
+    showing the ratings for somewhere else — a quiet way to be wrong that no
+    other check here would notice.
+
+    So the coordinates are tested against the polygon the pick claims, using
+    the same point-in-polygon the homepage search uses. Everything else about a
+    pick is enforced in build_site (one per city, a disclosure that must be
+    'editorial' or 'paid'); what needs a built site to verify is this.
+    """
+    import published as _pub
+    zones_by_city = dict(_pub.published_cities())
+    pick_dir = os.path.join(BASE_DIR, "data_picks")
+    if not os.path.isdir(pick_dir):
+        return
+    for fn in sorted(os.listdir(pick_dir)):
+        if not fn.endswith(".json"):
+            continue
+        stem = fn[:-5]
+        with open(os.path.join(pick_dir, fn), encoding="utf-8") as f:
+            picks = json.load(f).get("picks", [])
+        zones = zones_by_city.get(stem)
+        if zones is None:
+            F.fail("PICKS", "unknown-city", fn,
+                   "no published city %r for this pick file" % stem)
+            continue
+        for p in picks:
+            z = next((x for x in zones if x.get("slug") == p.get("zone")), None)
+            if z is None:
+                F.fail("PICKS", "unknown-zone", "%s/%s" % (stem, p.get("name")),
+                       "names zone %r, which this city does not publish" % p.get("zone"))
+                continue
+            lat, lon = p.get("lat"), p.get("lon")
+            if lat is None or lon is None:
+                F.warn("PICKS", "no-coordinates", "%s/%s" % (stem, p.get("name")),
+                       "no lat/lon, so its neighbourhood cannot be verified")
+                continue
+            if not _point_in(lat, lon, z.get("coords") or []):
+                inside = [x["name"] for x in zones
+                          if _point_in(lat, lon, x.get("coords") or [])]
+                F.fail("PICKS", "wrong-zone", "%s/%s" % (stem, p.get("name")),
+                       "is filed under %s but its coordinates fall in %s"
+                       % (z["name"], ", ".join(inside) or "no published zone"))
+            page = zone_page_path(dist, stem, p["zone"], reg[stem][1])
+            if os.path.isfile(page):
+                h = open(page, encoding="utf-8", errors="replace").read()
+                if p["url"] in h and 'rel="noopener nofollow"' not in h:
+                    F.warn("PICKS", "outbound-rel", "%s/%s" % (stem, p.get("name")),
+                           "outbound link is not rel=noopener nofollow")
+
+
+def _point_in(lat, lon, rings):
+    c = False
+    for r in rings:
+        n = len(r)
+        for i in range(n):
+            y1, x1 = r[i]
+            y2, x2 = r[(i + 1) % n]
+            if (y1 > lat) != (y2 > lat) and lon < (x2 - x1) * (lat - y1) / (y2 - y1) + x1:
+                c = not c
+    return c
+
+
 def check_city_has_sights(dist, reg, F):
     """Every city map must carry sights.
 
@@ -1293,6 +1360,7 @@ def main():
     counts = check_inventory(dist, reg, F)
     check_slug_collisions(reg, F)
     check_city_has_sights(dist, reg, F)
+    check_picks(dist, reg, F)
     check_map_integrity(dist, reg, F)
     check_navigation(dist, reg, F)
     check_methodology(dist, reg, F)

@@ -1,0 +1,47 @@
+{#
+  Wandy — the Wandroz guide.
+
+  A location pin with a face, because the pin is what this whole site is: one
+  shape dropped on one neighbourhood. Drawn inline rather than shipped as an
+  asset so it stays crisp at any size, inherits the palette, and costs no
+  request. Palette is the site's own: --accent-bright to --accent.
+
+  Restraint is the brief. The first version reached for the baby schema — big
+  eyes, highlights, blush, a float — and it read as a mascot on a site that
+  publishes police statistics. What is left is a mark: clean geometry, two dots
+  for eyes, a thin mouth, one small sparkle. It should sit beside the wordmark
+  without embarrassing it.
+
+  The wink is the only moving part, and it is an action rather than an
+  expression: both eyes are open for most of the loop and the right one shuts
+  for a beat every six seconds. So the resting state — what a screenshot
+  catches, and what a reader with prefers-reduced-motion keeps on screen — is
+  Wandy looking straight ahead.
+#}
+<svg class="wandy" viewBox="0 0 80 104" role="img"
+     aria-label="Wandy, the Wandroz guide, winking">
+  <defs>
+    <linearGradient id="wandy-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#25b694"/>
+      <stop offset="100%" stop-color="#147a65"/>
+    </linearGradient>
+  </defs>
+
+  {# A taller head and a longer taper: this is a pin first. #}
+  <path class="wandy-body"
+        d="M40 96 C40 96 70 58 70 34 C70 17.4 56.6 4 40 4
+           C23.4 4 10 17.4 10 34 C10 58 40 96 40 96 Z"/>
+
+  <circle class="wandy-face" cx="40" cy="33.5" r="18"/>
+
+  <circle class="wandy-eye" cx="33.4" cy="32" r="3.1"/>
+  <circle class="wandy-eye wandy-eye-r" cx="46.6" cy="32" r="3.1"/>
+  {# The closed lid takes the right eye's place on the same timeline. #}
+  <path class="wandy-lid" d="M42.8 32.4 q3.8 3.6 7.6 0"/>
+
+  <path class="wandy-smile" d="M35.6 40.4 q4.4 3.4 8.8 0"/>
+
+  {# One sparkle, not three: this is a find, said quietly. #}
+  <path class="wandy-sparkle"
+        d="M66 12 l1.5 3.7 3.7 1.5 -3.7 1.5 -1.5 3.7 -1.5 -3.7 -3.7 -1.5 3.7 -1.5 Z"/>
+</svg>
