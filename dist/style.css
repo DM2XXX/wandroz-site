@@ -199,42 +199,46 @@ footer.wz-footer a { color: var(--muted); }
    It must not be mistakable for a rating, so it borrows none of the rating
    colours.
 
-   Sized a step above the recommendation cards above it rather than a step
-   below. It shipped at the same scale as a footnote and, stretched across a
-   desktop hub, read as small print — the disclosure line in particular, which
-   is the one sentence here that must not look like small print. The text
-   column is capped at roughly 72 characters for the same reason: full-width
-   prose at 13px is unreadable however large the card is.
+   The layout is a grid, not a column, because the card is as wide as the hub
+   and a single capped column left two thirds of it empty — the text huddled on
+   the left at footnote size while the box stretched to 1,500px. Capping the
+   line length was right; doing it without giving the rest of the width a job
+   was not.
+
+   So: Wandy, then the place, then the disclosure in its own column. The
+   disclosure earns that column. It is a different kind of statement from the
+   rest of the card — the one sentence here that must not read as small print —
+   and standing it beside the recommendation rather than under it is the
+   clearest way to say so.
    --------------------------------------------------------------------------- */
 .gem{
-  display:flex; gap:22px; align-items:flex-start;
-  margin:28px 0; padding:24px 26px;
+  display:grid; gap:28px; align-items:start;
+  grid-template-columns:auto minmax(0,1.6fr) minmax(260px,1fr);
+  margin:28px 0; padding:28px 30px;
   background:var(--panel);
   border:1px solid var(--line); border-left:3px solid var(--accent);
   border-radius:var(--radius-md);
 }
-.gem-figure{flex:0 0 auto; width:76px; text-align:center}
-.gem-figure .wandy{width:76px; height:auto; display:block; margin:0 auto}
+.gem-figure{width:112px; text-align:center}
+.gem-figure .wandy{width:112px; height:auto; display:block; margin:0 auto}
 .gem-name{
-  display:block; margin-top:8px; font-size:12px; font-weight:700;
+  display:block; margin-top:10px; font-size:12.5px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--accent);
+}
+.gem-body{min-width:0}
+.gem-kicker{
+  margin:0 0 10px; font-size:13.5px; font-weight:700;
   letter-spacing:.09em; text-transform:uppercase; color:var(--accent);
 }
-.gem-body{flex:1 1 auto; min-width:0; max-width:72ch}
-.gem-kicker{
-  margin:0 0 8px; font-size:13px; font-weight:700;
-  letter-spacing:.08em; text-transform:uppercase; color:var(--accent);
-}
-.gem-title{margin:0 0 6px; font-size:27px; line-height:1.2; color:var(--ink)}
+.gem-title{margin:0 0 8px; font-size:34px; line-height:1.15; color:var(--ink)}
 .gem-title a{color:inherit; text-decoration:none; border-bottom:2px solid #c3e2d9}
 .gem-title a:hover{border-bottom-color:var(--accent-bright)}
-.gem-meta{margin:0 0 14px; font-size:15px; line-height:1.5; color:var(--muted)}
+.gem-meta{margin:0 0 16px; font-size:16.5px; line-height:1.5; color:var(--muted)}
 .gem-meta span+span:before{content:" · "; color:var(--muted-soft)}
-.gem-quote{
-  margin:0 0 12px; font-size:18px; line-height:1.55; color:var(--ink);
-}
-.gem-blurb{margin:0 0 16px; font-size:16px; line-height:1.65; color:var(--muted)}
+.gem-quote{margin:0 0 14px; font-size:20px; line-height:1.5; color:var(--ink)}
+.gem-blurb{margin:0 0 18px; font-size:17px; line-height:1.6; color:var(--muted)}
 .gem-link{
-  display:inline-block; font-size:16px; font-weight:600;
+  display:inline-block; font-size:17px; font-weight:600;
   color:var(--accent); text-decoration:none;
 }
 .gem-link:hover{text-decoration:underline}
@@ -242,15 +246,25 @@ footer.wz-footer a { color: var(--muted); }
 /* On the hub the link stays inside the site, so no outbound arrow. */
 .gem-hub .gem-link:after{content:" \2192"}
 .gem-note{
-  margin:18px 0 0; padding-top:14px; border-top:1px solid var(--line);
-  font-size:14px; line-height:1.6; color:var(--muted);
+  margin:0; padding:18px 20px;
+  background:var(--accent-bg); border-radius:var(--radius-sm);
+  font-size:15px; line-height:1.6; color:var(--ink);
+}
+
+/* Below 1080px the disclosure drops under the place rather than beside it, and
+   keeps its own capped measure so it never runs the full width of the card. */
+@media (max-width:1080px){
+  .gem{grid-template-columns:auto minmax(0,1fr); gap:22px}
+  .gem-note{grid-column:1 / -1; max-width:78ch}
 }
 @media (max-width:640px){
-  .gem{flex-direction:column; gap:14px; padding:20px}
-  .gem-figure{width:58px} .gem-figure .wandy{width:58px}
-  .gem-title{font-size:23px}
-  .gem-quote{font-size:16.5px}
-  .gem-blurb{font-size:15px}
+  .gem{grid-template-columns:1fr; gap:16px; padding:22px}
+  .gem-figure{width:72px; text-align:left}
+  .gem-figure .wandy{width:72px; margin:0}
+  .gem-title{font-size:26px}
+  .gem-quote{font-size:17.5px}
+  .gem-blurb{font-size:16px}
+  .gem-meta{font-size:15px}
 }
 
 /* Wandy herself. Two dots, a thin mouth, one sparkle. The blush, the eye

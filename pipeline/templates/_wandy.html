@@ -4,21 +4,24 @@
   A location pin with a face, because the pin is what this whole site is: one
   shape dropped on one neighbourhood. Drawn inline rather than shipped as an
   asset so it stays crisp at any size, inherits the palette, and costs no
-  request. Palette is the site's own: --accent-bright to --accent.
+  request. Two colours and no more: teal body, navy features.
 
-  Restraint is the brief. The first version reached for the baby schema — big
-  eyes, highlights, blush, a float — and it read as a mascot on a site that
-  publishes police statistics. What is left is a mark: clean geometry, two dots
-  for eyes, a thin mouth, one small sparkle. It should sit beside the wordmark
-  without embarrassing it.
+  Two things were wrong in the first drawing, and both were about size rather
+  than taste. The viewBox was 80 wide for a pin that spanned 10 to 70, so a
+  fifth of every box she was given went to empty margin and she rendered
+  smaller than her own CSS width promised. And the face was small inside the
+  pin, which put the eyes below the size at which they read as eyes at all.
+  The box is now cropped to what is actually drawn, and the face takes more of
+  the head. She reads at 40px, which is where a mark has to work.
 
-  The wink is the only moving part, and it is an action rather than an
-  expression: both eyes are open for most of the loop and the right one shuts
-  for a beat every six seconds. So the resting state — what a screenshot
-  catches, and what a reader with prefers-reduced-motion keeps on screen — is
-  Wandy looking straight ahead.
+  Restraint is still the brief — no blush, no eye highlights, no float. The
+  wink is the only moving part, and it is an action rather than an expression:
+  both eyes are open for most of the loop and the right one shuts for a beat
+  every six seconds. So the resting state — what a screenshot catches, and
+  what a reader with prefers-reduced-motion keeps on screen — is Wandy looking
+  straight ahead.
 #}
-<svg class="wandy" viewBox="0 0 80 104" role="img"
+<svg class="wandy" viewBox="8 2 66 96" role="img"
      aria-label="Wandy, the Wandroz guide, winking">
   <defs>
     <linearGradient id="wandy-body" x1="0" y1="0" x2="0" y2="1">
@@ -27,21 +30,21 @@
     </linearGradient>
   </defs>
 
-  {# A taller head and a longer taper: this is a pin first. #}
   <path class="wandy-body"
         d="M40 96 C40 96 70 58 70 34 C70 17.4 56.6 4 40 4
            C23.4 4 10 17.4 10 34 C10 58 40 96 40 96 Z"/>
 
-  <circle class="wandy-face" cx="40" cy="33.5" r="18"/>
+  {# A larger face: at 40px the old one put the eyes under two pixels. #}
+  <circle class="wandy-face" cx="40" cy="33" r="20.5"/>
 
-  <circle class="wandy-eye" cx="33.4" cy="32" r="3.1"/>
-  <circle class="wandy-eye wandy-eye-r" cx="46.6" cy="32" r="3.1"/>
+  <circle class="wandy-eye" cx="32.6" cy="31.2" r="3.7"/>
+  <circle class="wandy-eye wandy-eye-r" cx="47.4" cy="31.2" r="3.7"/>
   {# The closed lid takes the right eye's place on the same timeline. #}
-  <path class="wandy-lid" d="M42.8 32.4 q3.8 3.6 7.6 0"/>
+  <path class="wandy-lid" d="M43.1 31.6 q4.3 4.1 8.6 0"/>
 
-  <path class="wandy-smile" d="M35.6 40.4 q4.4 3.4 8.8 0"/>
+  <path class="wandy-smile" d="M34.6 40.6 q5.4 4.2 10.8 0"/>
 
   {# One sparkle, not three: this is a find, said quietly. #}
   <path class="wandy-sparkle"
-        d="M66 12 l1.5 3.7 3.7 1.5 -3.7 1.5 -1.5 3.7 -1.5 -3.7 -3.7 -1.5 3.7 -1.5 Z"/>
+        d="M66.5 11 l1.7 4.1 4.1 1.7 -4.1 1.7 -1.7 4.1 -1.7 -4.1 -4.1 -1.7 4.1 -1.7 Z"/>
 </svg>
