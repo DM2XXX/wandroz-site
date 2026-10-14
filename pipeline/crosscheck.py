@@ -117,6 +117,52 @@ def check_ratios(cities):
     return seen, bad
 
 
+def check_swiss_population():
+    """Bern's and Basel's published resident counts against the source files.
+
+    These are the first official per-area figures either city has on this site,
+    and they are written into prose rather than formatted at render time, so a
+    refetch moves the data and leaves the sentence behind. Same failure mode as
+    the Zurich burglary figures above, same guard."""
+    bad = []
+    seen = 0
+    raw_dir = os.path.join(os.path.dirname(HERE), "data", "raw_swiss")
+    for city in ("bern", "basel"):
+        raw = os.path.join(raw_dir, "%s_population.json" % city)
+        src = os.path.join(HERE, "data_zones", "%s.json" % city)
+        if not (os.path.isfile(raw) and os.path.isfile(src)):
+            continue
+        doc = json.load(open(raw, encoding="utf-8"))
+        pop, year = doc["areas"], doc["year"]
+        for z in json.load(open(src, encoding="utf-8"))["zones"]:
+            want = pop.get(z["name"])
+            if want is None:
+                bad.append((city, z["name"], "no population in %s" % doc["source"]))
+                continue
+            text = z.get("text") or ""
+            m = re.search(r"counted ([\d,]+) residents in the \w+ at the end of (\d{4})",
+                          text)
+            if not m:
+                # The short form is used where the figure was already in the
+                # prose; then the year is the only thing to check.
+                if "That is the figure" in text:
+                    seen += 1
+                    if year not in text:
+                        bad.append((city, z["name"],
+                                    "cites a year that is not %s" % year))
+                continue
+            seen += 1
+            said = int(m.group(1).replace(",", ""))
+            if said != want:
+                bad.append((city, z["name"],
+                            "text says %s residents; %s says %s"
+                            % (m.group(1), doc["source"], "{:,}".format(want))))
+            elif m.group(2) != year:
+                bad.append((city, z["name"],
+                            "text says end of %s; the file is %s" % (m.group(2), year)))
+    return seen, bad
+
+
 def check_zurich_prose():
     """Figures typed by hand into Zurich's area texts against the scored file.
 
@@ -293,6 +339,8 @@ def main(only):
         ("RATE — published rate vs its own count and population", check_rates(cities)),
         ("RATIO — published multiple vs the city's own average", check_ratios(cities)),
         ("UK RATE — per-1,000 rate vs the ward's population", check_uk_rates(cities)),
+        ("POPULATION — Bern and Basel resident counts vs the source files",
+         check_swiss_population() if not only or only in ("bern", "basel") else (0, [])),
         ("PROSE — hand-typed Zurich figures vs the scored data",
          check_zurich_prose() if not only or only == "zurigo" else (0, [])),
         ("TABLE — hub table rating vs map rating", check_hub_table(cities)),
