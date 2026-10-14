@@ -19,6 +19,7 @@ many cities, proven out end-to-end here with one real city.
 """
 
 import copy
+import datetime
 import hashlib
 import json
 import math
@@ -3228,7 +3229,11 @@ def write_robots_and_sitemap(urls):
     print(f"Wrote {robots_path}")
 
     sitemap_path = os.path.join(OUT_DIR, "sitemap.xml")
-    entries = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
+    stamps = sitemap_lastmod(urls)
+    entries = "\n".join(
+        "  <url><loc>%s</loc>%s</url>"
+        % (u, "<lastmod>%s</lastmod>" % stamps[u] if u in stamps else "")
+        for u in urls)
     xml = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -3237,7 +3242,62 @@ def write_robots_and_sitemap(urls):
     )
     with open(sitemap_path, "w") as f:
         f.write(xml)
-    print(f"Wrote {sitemap_path} ({len(urls)} URLs)")
+    dated = len(stamps)
+    print(f"Wrote {sitemap_path} ({len(urls)} URLs, {dated} with lastmod)")
+
+
+# ---------------------------------------------------------------------------
+# lastmod, and why it is computed rather than stamped.
+#
+# The sitemap listed 2,535 URLs and not one date. Google uses lastmod to decide
+# what to crawl first and what is worth coming back to; without it, a new
+# domain hands over two and a half thousand undifferentiated URLs and lets the
+# crawler guess. Search Console currently reports 819 of them as discovered and
+# not yet crawled.
+#
+# The lazy fix is worse than nothing: stamping every URL with today's date each
+# build tells the crawler that all 2,535 pages changed every time anything did,
+# and a sitemap that cries wolf is ignored. So the date has to be true.
+#
+# It is derived from the page's own bytes. A manifest maps each URL to the hash
+# of what it last published and the date that hash first appeared; a page whose
+# hash is unchanged keeps its old date no matter how many builds run over it.
+# The manifest is committed, so the history survives a fresh checkout.
+# ---------------------------------------------------------------------------
+SITEMAP_STATE = os.path.join(BASE_DIR, "data", "sitemap_lastmod.json")
+
+
+def _page_file_for_url(u):
+    rel = u[len(SITE_URL):].lstrip("/") if u.startswith(SITE_URL) else u.lstrip("/")
+    cand = os.path.join(OUT_DIR, rel)
+    if rel == "" or rel.endswith("/"):
+        cand = os.path.join(OUT_DIR, rel, "index.html")
+    return cand if os.path.isfile(cand) else None
+
+
+def sitemap_lastmod(urls):
+    """{url: YYYY-MM-DD} — the day each page's content last actually changed."""
+    try:
+        with open(SITEMAP_STATE, encoding="utf-8") as f:
+            prev = json.load(f)
+    except Exception:
+        prev = {}
+    today = datetime.date.today().isoformat()
+    state, out = {}, {}
+    for u in urls:
+        path = _page_file_for_url(u)
+        if not path:
+            continue
+        with open(path, "rb") as f:
+            digest = hashlib.sha1(f.read()).hexdigest()[:16]
+        was = prev.get(u)
+        day = was["date"] if was and was.get("hash") == digest else today
+        state[u] = {"hash": digest, "date": day}
+        out[u] = day
+    os.makedirs(os.path.dirname(SITEMAP_STATE), exist_ok=True)
+    with open(SITEMAP_STATE, "w", encoding="utf-8") as f:
+        json.dump(state, f, ensure_ascii=False, indent=0, sort_keys=True)
+    return out
 
 
 TORINO_UI = {
